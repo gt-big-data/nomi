@@ -20,4 +20,5 @@ Rules for this app:
 - No health data leaves the device (ADR-0002). Profiles, conditions and scan history are stored
   encrypted locally, and no analytics or crash-reporting SDK may receive them.
 - No modeling logic in the app. The scoring engine only looks up and adds values the pipeline exported.
-- Uses a development build (`react-native-vision-camera` does not run in Expo Go).
+- Barcodes are read on the device with Google ML Kit, so scanning works offline (NOMI-011).
+- Uses a development build (camera and ML Kit libraries don't run in Expo Go).

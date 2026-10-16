@@ -159,6 +159,7 @@ def validate(tickets):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--dry-run", action="store_true", help="print what would be created")
+    parser.add_argument("--only", help="comma-separated backlog IDs to sync, e.g. NOMI-007,NOMI-011")
     args = parser.parse_args()
 
     tickets = parse_backlog(BACKLOG.read_text())
@@ -209,17 +210,23 @@ def main():
 
     # Second pass: every ticket has a number now. Sync title, body, milestone and labels,
     # linking NOMI-XXX references to issue numbers.
+    only = set(args.only.split(",")) if args.only else None
     for t in tickets:
+        if only and t["id"] not in only:
+            continue
         cmd = ["issue", "edit", refs[t["id"]].lstrip("#"), "--title", t["title"],
                "--body", issue_body(t, refs, blocks[t["id"]]),
                "--milestone", MILESTONES[t["meta"]["sprint"]][0]]
         for label in labels_for(t):
             cmd += ["--add-label", label]
+        for team in TEAMS:
+            if team != t["meta"]["team"]:
+                cmd += ["--remove-label", f"team:{team}"]
         gh(*cmd)
         print(f"updated    {refs[t['id']]}  {t['title']}", flush=True)
         time.sleep(WRITE_DELAY_SECONDS)
 
-    print(f"\nDone: {len(tickets)} issues synced.")
+    print(f"\nDone: {len(only) if only else len(tickets)} issues synced.")
 
 
 if __name__ == "__main__":

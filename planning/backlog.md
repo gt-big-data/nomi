@@ -114,9 +114,9 @@ One ticket = one person, one week. New to the project? Read `docs/nomi-101.md`. 
 ---
 
 ## NOMI-020: Collect 300 real OTC barcodes
-**Team:** all | **Priority:** P0 | **Sprint:** S1 | **Depends on:** none | **Extra:** good first issue
+**Team:** platform | **Priority:** P0 | **Sprint:** S1 | **Depends on:** none | **Extra:** good first issue
 
-**Goal:** Build a real-world barcode test set by having every team member scan OTC boxes in stores.
+**Goal:** Build a real-world barcode test set. One Platform member runs the drive; every team member scans OTC boxes in stores.
 
 **Deliverable:** `pipeline/tests/fixtures/barcodes.csv`
 
@@ -130,8 +130,8 @@ One ticket = one person, one week. New to the project? Read `docs/nomi-101.md`. 
 
 ---
 
-## NOMI-007: Build the barcode-to-NDC parser
-**Team:** platform | **Priority:** P0 | **Sprint:** S1 | **Depends on:** NOMI-001 (same sprint) | **Extra:** good first issue
+## NOMI-007: Turn scanned barcodes into NDC codes
+**Team:** visualization | **Priority:** P0 | **Sprint:** S1 | **Depends on:** NOMI-001 (same sprint) | **Extra:** good first issue
 
 **Goal:** Turn scanned barcode digits into possible NDC codes, in both Python and TypeScript.
 
@@ -144,7 +144,7 @@ One ticket = one person, one week. New to the project? Read `docs/nomi-101.md`. 
 
 **Done when:** Both functions return identical output for every case, covering every status.
 
-**Notes:** NDC is FDA's product code; drug barcodes usually contain it.
+**Notes:** NDC is FDA's product code; drug barcodes usually contain it. Pairs with the ML Kit scanner in NOMI-011; the Python copy is used by the pipeline.
 
 ---
 
@@ -201,20 +201,22 @@ One ticket = one person, one week. New to the project? Read `docs/nomi-101.md`. 
 
 ---
 
-## NOMI-011: Scaffold the Expo app with barcode scanning
+## NOMI-011: Build the ML Kit barcode scanner in the Expo app
 **Team:** visualization | **Priority:** P0 | **Sprint:** S1 | **Depends on:** NOMI-001 (same sprint)
 
-**Goal:** Get a phone app that opens to the camera and reads OTC barcodes on real devices.
+**Goal:** Get a phone app that opens to the camera and reads OTC barcodes on-device with Google ML Kit.
 
-**Deliverable:** Expo app in `apps/mobile` installed on one iPhone and one Android phone
+**Deliverable:** Expo app in `apps/mobile` with ML Kit scanning, installed on one iPhone and one Android phone
 
 **Tasks**
-- [ ] Create a TypeScript Expo app with expo-router
-- [ ] Open straight to the camera and read UPC-A and EAN-13 offline
-- [ ] Buzz on scan and show the digits on a placeholder screen
-- [ ] Write build and install steps in `apps/mobile/README.md`
+- [ ] Create a TypeScript Expo app with expo-router (dev build)
+- [ ] Add camera plus Google ML Kit barcode scanning on iOS and Android
+- [ ] Read UPC-A and EAN-13 offline; buzz and show the digits on scan
+- [ ] Record the ML Kit library choice and build steps in `apps/mobile/README.md`
 
 **Done when:** On both phones, median of 10 timed scans is 300 ms or less, with timings in the PR.
+
+**Notes:** ML Kit runs on the phone, so scanning works with no signal. ML Kit libraries don't run in Expo Go, so use a dev build.
 
 ---
 
