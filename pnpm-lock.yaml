@@ -8,6 +8,12 @@ importers:
 
   .:
     devDependencies:
+      prettier:
+        specifier: ^3.9.10
+        version: 3.9.10
+
+  packages/schema:
+    devDependencies:
       json-schema-to-typescript:
         specifier: ^15.0.4
         version: 15.0.4
