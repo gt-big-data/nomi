@@ -1,0 +1,25 @@
+[tool.uv.workspace]
+members = ["pipeline"]
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+extend-exclude = ["apps", "packages/schema/generated"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "SIM"]
+ignore = ["E501"]  # the formatter handles line length
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+ignore_missing_imports = true
+files = ["pipeline/src", "pipeline/tests"]
+
+[dependency-groups]
+dev = [
+    "mypy>=2.4.0",
+    "pre-commit>=4.7.0",
+    "pytest>=9.1.1",
+    "ruff>=0.17.1",
+]

@@ -1,0 +1,10 @@
+[project]
+name = "nomi-pipeline"
+version = "0.1.0"
+description = "Nomi data and scoring pipeline"
+requires-python = ">=3.12,<3.13"
+dependencies = []
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
