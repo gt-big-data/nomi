@@ -2,3 +2,5 @@
 pnpm-lock.yaml
 data/
 packages/schema/generated/
+packages/schema/schemas/
+packages/schema/fixtures/

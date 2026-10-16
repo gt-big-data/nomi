@@ -53,7 +53,11 @@ jobs:
         with:
           node-version-file: .nvmrc
           cache: pnpm
+      - uses: astral-sh/setup-uv@v7
+        with:
+          enable-cache: true
       - run: pnpm install --frozen-lockfile
+      - run: uv sync --locked
       - run: pnpm lint
       - run: pnpm typecheck
       - run: pnpm test
