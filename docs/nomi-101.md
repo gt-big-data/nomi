@@ -134,6 +134,10 @@ Steps 1 to 5 happen in our **pipeline** (Python, runs on our machines). Step 6 h
 5. Work through the steps. Ask in your team channel if something is unclear; don't guess on medical facts.
 6. Check every box under "Done when", then mark the PR ready for review.
 
+## Going deeper
+
+For the full architecture, data formats, scoring model and roadmap, read `docs/system-design.md`.
+
 ## The demo
 
 Everything before Nov 20 serves one demo: someone hands us a box, we scan it in airplane mode, and

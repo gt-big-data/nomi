@@ -20,6 +20,12 @@ Built by the GT Big Data Big Impact Nomi team.
    personalized score locally, so scans are instant, work offline, and health data never leaves
    the device.
 
+## Learn more
+
+- `docs/nomi-101.md`: product overview and glossary, start here
+- `docs/system-design.md`: full architecture and technical details
+- `planning/`: sprint plan and backlog
+
 ## Repository layout
 
 ```
