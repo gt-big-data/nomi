@@ -1,0 +1,37 @@
+# Pipeline data: raw downloads and generated tables are never committed
+data/*
+!data/README.md
+*.parquet
+*.duckdb
+*.sqlite
+*.sqlite-journal
+
+# Secrets
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.mypy_cache/
+.ruff_cache/
+.pytest_cache/
+*.egg-info/
+.ipynb_checkpoints/
+
+# Node and Expo
+node_modules/
+.expo/
+dist/
+web-build/
+*.tsbuildinfo
+ios/
+android/
+
+# Editors and OS
+.DS_Store
+.idea/
+.vscode/*
+!.vscode/extensions.json
