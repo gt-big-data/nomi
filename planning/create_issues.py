@@ -122,18 +122,12 @@ def issue_body(ticket, refs, blocks):
     depends = link(meta.get("depends on", "none"), refs)
     blocked = ", ".join(refs.get(b, b) for b in blocks) or "none"
     lines = [
-        "| Sprint | Team | Priority | Depends on | Blocks |",
-        "|---|---|---|---|---|",
-        f"| {sprint_title} | {team} | {meta['priority']} | {depends} | {blocked} |",
-        "",
-        f"> New to Nomi? Read [Nomi 101]({REPO_URL}/docs/nomi-101.md) first for the product overview and glossary.",
+        f"**{sprint_title}** | {team} | {meta['priority']}  ",
+        f"Depends on: {depends} | Blocks: {blocked}",
         "",
         link(unwrap(ticket["body"]), refs),
         "",
-        "---",
-        f"**Backlog ID:** {ticket['id']}. Source: [planning/backlog.md]({REPO_URL}/planning/backlog.md). "
-        "Dependencies marked (same sprint) can start against the reference products in "
-        "`packages/schema/examples/` or a fixture.",
+        f"<sub>{ticket['id']}. New to Nomi? Read [Nomi 101]({REPO_URL}/docs/nomi-101.md).</sub>",
     ]
     return "\n".join(lines) + "\n"
 
@@ -193,7 +187,7 @@ def main():
                "-f", f"due_on={due}T23:59:59Z", "-f", f"description={description}")
             print(f"milestone  {title}")
 
-    backlog_id_re = re.compile(r"\*\*Backlog ID:\*\* (NOMI-\d{3})")
+    backlog_id_re = re.compile(r"(?:\*\*Backlog ID:\*\* |<sub>)(NOMI-\d{3})")
     existing = {}
     for issue in gh_json("issue", "list", "--state", "all", "--limit", "500", "--json", "number,title,body"):
         found = backlog_id_re.search(issue["body"] or "")
