@@ -2,9 +2,10 @@
 """Create GitHub labels, milestones and issues from planning/backlog.md.
 
 Requires the GitHub CLI (`gh`) authenticated with access to the repo.
-Idempotent: existing labels, milestones and issues (matched by title) are skipped.
-After creating issues, every issue body is rewritten so NOMI-XXX references become
-#issue links and each issue lists the tickets it blocks.
+Idempotent: existing labels and milestones are kept, and existing issues (matched by the
+Backlog ID in their body) are updated in place instead of duplicated. Every issue's title,
+body, milestone and labels are synced from the backlog, with NOMI-XXX references turned
+into #issue links and a list of the tickets each one blocks.
 """
 
 import argparse
@@ -83,14 +84,32 @@ def link(text, refs):
     return ID_RE.sub(lambda m: refs.get(m.group(0), m.group(0)), text)
 
 
+REPO_URL = "https://github.com/gt-big-data/nomi/blob/main"
+NOT_JOINABLE = ("-", "*", "#", "|", "`", ">")
+LIST_START_RE = re.compile(r"^\s*(?:[-*]|\d+\.)\s")
+
+
 def unwrap(text):
     """Join hard-wrapped prose lines; GitHub renders each newline in an issue as a line break."""
     out = []
+    in_code = False
     for line in text.splitlines():
-        is_prose = bool(line.strip()) and not line.lstrip().startswith(("-", "*", "#", "|", "`"))
-        prev_is_prose = bool(out) and bool(out[-1].strip()) and not out[-1].lstrip().startswith(("-", "*", "#", "|", "`"))
-        if is_prose and prev_is_prose:
-            out[-1] += " " + line.strip()
+        stripped = line.strip()
+        if stripped.startswith("```"):
+            in_code = not in_code
+            out.append(line)
+            continue
+        prev = out[-1].strip() if out else ""
+        joinable = (
+            not in_code
+            and stripped
+            and prev
+            and not stripped.startswith(NOT_JOINABLE)
+            and not LIST_START_RE.match(line)
+            and not prev.startswith(("#", "|", "```"))
+        )
+        if joinable:
+            out[-1] = out[-1].rstrip() + " " + stripped
         else:
             out.append(line)
     return "\n".join(out)
@@ -100,18 +119,21 @@ def issue_body(ticket, refs, blocks):
     meta = ticket["meta"]
     sprint_title = MILESTONES[meta["sprint"]][0]
     team = TEAMS[meta["team"]][0]
+    depends = link(meta.get("depends on", "none"), refs)
+    blocked = ", ".join(refs.get(b, b) for b in blocks) or "none"
     lines = [
-        f"**Sprint:** {sprint_title}  ",
-        f"**Team:** {team}  ",
-        f"**Priority:** {meta['priority']}  ",
-        f"**Depends on:** {link(meta.get('depends on', 'none'), refs)}  ",
-        f"**Blocks:** {', '.join(refs.get(b, b) for b in blocks) or 'none'}  ",
-        f"**Backlog ID:** {ticket['id']}",
+        "| Sprint | Team | Priority | Depends on | Blocks |",
+        "|---|---|---|---|---|",
+        f"| {sprint_title} | {team} | {meta['priority']} | {depends} | {blocked} |",
+        "",
+        f"> New to Nomi? Read [Nomi 101]({REPO_URL}/docs/nomi-101.md) first for the product overview and glossary.",
         "",
         link(unwrap(ticket["body"]), refs),
         "",
-        "Full plan: `planning/backlog.md`. Dependencies marked (same sprint) can start against the "
-        "reference products in `packages/schema/examples/` or a fixture.",
+        "---",
+        f"**Backlog ID:** {ticket['id']}. Source: [planning/backlog.md]({REPO_URL}/planning/backlog.md). "
+        "Dependencies marked (same sprint) can start against the reference products in "
+        "`packages/schema/examples/` or a fixture.",
     ]
     return "\n".join(lines) + "\n"
 
@@ -171,14 +193,16 @@ def main():
                "-f", f"due_on={due}T23:59:59Z", "-f", f"description={description}")
             print(f"milestone  {title}")
 
-    existing_issues = {
-        i["title"]: i["number"]
-        for i in gh_json("issue", "list", "--state", "all", "--limit", "500", "--json", "title,number")
-    }
-    refs = {}
+    backlog_id_re = re.compile(r"\*\*Backlog ID:\*\* (NOMI-\d{3})")
+    existing = {}
+    for issue in gh_json("issue", "list", "--state", "all", "--limit", "500", "--json", "number,title,body"):
+        found = backlog_id_re.search(issue["body"] or "")
+        if found:
+            existing[found.group(1)] = issue["number"]
+
+    refs = {t["id"]: f"#{existing[t['id']]}" for t in tickets if t["id"] in existing}
     for t in tickets:
-        if t["title"] in existing_issues:
-            refs[t["id"]] = f"#{existing_issues[t['title']]}"
+        if t["id"] in refs:
             continue
         cmd = ["issue", "create", "--title", t["title"], "--body", issue_body(t, {}, blocks[t["id"]]),
                "--milestone", MILESTONES[t["meta"]["sprint"]][0]]
@@ -186,15 +210,22 @@ def main():
             cmd += ["--label", label]
         url = gh(*cmd).strip()
         refs[t["id"]] = f"#{url.rsplit('/', 1)[-1]}"
-        print(f"issue      {refs[t['id']]}  {t['title']}")
+        print(f"created    {refs[t['id']]}  {t['title']}")
         time.sleep(WRITE_DELAY_SECONDS)
 
-    # Second pass: every ticket now has a number, so link dependencies and blockers.
+    # Second pass: every ticket has a number now. Sync title, body, milestone and labels,
+    # linking NOMI-XXX references to issue numbers.
     for t in tickets:
-        gh("issue", "edit", refs[t["id"]].lstrip("#"), "--body", issue_body(t, refs, blocks[t["id"]]))
+        cmd = ["issue", "edit", refs[t["id"]].lstrip("#"), "--title", t["title"],
+               "--body", issue_body(t, refs, blocks[t["id"]]),
+               "--milestone", MILESTONES[t["meta"]["sprint"]][0]]
+        for label in labels_for(t):
+            cmd += ["--add-label", label]
+        gh(*cmd)
+        print(f"updated    {refs[t['id']]}  {t['title']}", flush=True)
         time.sleep(WRITE_DELAY_SECONDS)
 
-    print(f"\nDone: {len(tickets)} issues linked.")
+    print(f"\nDone: {len(tickets)} issues synced.")
 
 
 if __name__ == "__main__":

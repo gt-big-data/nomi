@@ -1,5 +1,7 @@
 # Nomi planning
 
+New to the project? Start with `docs/nomi-101.md`. To write a new ticket, follow `planning/ticket-template.md`.
+
 This folder is the source of truth for the initial backlog. `backlog.md` holds every ticket in a
 format both people and `create_issues.py` can read; the script turns it into GitHub labels,
 milestones and issues.
