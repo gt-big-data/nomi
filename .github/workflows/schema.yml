@@ -1,0 +1,57 @@
+name: schema
+
+on:
+  pull_request:
+    paths:
+      - "packages/schema/**"
+      - ".github/workflows/schema.yml"
+  push:
+    branches: [main]
+    paths:
+      - "packages/schema/**"
+      - ".github/workflows/schema.yml"
+
+jobs:
+  schema:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: packages/schema
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          package_json_file: packages/schema/package.json
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+          cache-dependency-path: packages/schema/pnpm-lock.yaml
+
+      - uses: astral-sh/setup-uv@v5
+
+      - name: Install dependencies
+        run: |
+          pnpm install --frozen-lockfile
+          uv sync --frozen
+
+      - name: Schemas, samples and Pydantic models
+        run: uv run pytest
+
+      - name: TypeScript types compile
+        run: pnpm run typecheck
+
+      - name: Generated files are up to date
+        run: |
+          pnpm run codegen
+          if ! git diff --exit-code -- generated; then
+            echo "::error::Generated files are stale. Run 'pnpm run codegen' in packages/schema and commit the result."
+            exit 1
+          fi
+          if [ -n "$(git status --porcelain -- generated)" ]; then
+            git status --porcelain -- generated
+            echo "::error::Codegen produced untracked files. Run 'pnpm run codegen' and commit them."
+            exit 1
+          fi
