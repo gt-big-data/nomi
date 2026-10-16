@@ -48,12 +48,40 @@ pnpm run test
 ```
 
 `codegen` regenerates both TypeScript and Python. `test` validates the schemas and samples, loads the
-valid samples into the Pydantic models, and type-checks the TypeScript. CI also fails if the generated
-files don't match the schemas, so always run `codegen` and commit the result after editing a schema.
+valid samples into the Pydantic models, and type-checks the TypeScript. CI (`.github/workflows/schema.yml`)
+runs on every PR that touches this folder and also fails if the generated files don't match the
+schemas, so always run `codegen` and commit the result after editing a schema.
+
+The CI check only runs when this folder changes, so don't mark it as a required check in branch
+protection: PRs that don't touch schemas would wait on it forever.
+
+## Validating data
+
+The Pydantic models and TypeScript types check field names, types and allowed values. They do **not**
+check cross-field rules such as "a non-zero severity needs a citation" or "a hard stop targets either
+an ingredient or a product". Always validate against the JSON Schema before writing a contract file:
+
+```python
+from nomi_schema import validate, SchemaValidationError
+
+validate("ingredient-dimensions", data)  # raises SchemaValidationError listing every problem
+```
+
+## Versioning and compatibility
+
+`provenance.schema_version` records which version of these contracts a file was written with (semver).
+
+- **Patch** (0.1.0 to 0.1.1): descriptions, docs, stricter patterns that existing data already meets.
+- **Minor** (0.1.0 to 0.2.0): new optional fields, new enum values. Readers built on the old version may
+  see values they don't know; the app must ship before datasets use new enum values (set the dataset's
+  minimum app version, see `docs/system-design.md` section 7.2).
+- **Major** (0.x to 1.0): renamed or removed fields, new required fields, changed meanings. Coordinate
+  with every team and bump the dataset's minimum app version.
 
 ## Changing a schema
 
 1. Edit the file in `schemas/`. Give every new field a `description`.
 2. Update the valid sample in `fixtures/schema-samples/valid/` and add an invalid sample if you added a rule.
 3. Run `pnpm run codegen` and `pnpm run test`.
-4. Commit the schema, samples and generated files together.
+4. Bump `version` in `package.json` and `pyproject.toml` if the change is minor or major.
+5. Commit the schema, samples and generated files together.

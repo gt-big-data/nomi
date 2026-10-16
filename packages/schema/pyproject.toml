@@ -3,12 +3,11 @@ name = "nomi-schema"
 version = "0.1.0"
 description = "Nomi shared data contracts: Pydantic models generated from packages/schema/schemas."
 requires-python = ">=3.12"
-dependencies = ["pydantic>=2.7"]
+dependencies = ["pydantic>=2.7", "jsonschema>=4.23"]
 
 [dependency-groups]
 dev = [
   "datamodel-code-generator>=0.26",
-  "jsonschema>=4.23",
   "pytest>=8.3",
 ]
 

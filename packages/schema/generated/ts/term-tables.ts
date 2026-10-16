@@ -68,6 +68,15 @@ export type MedicationType =
  */
 export type CitationId = string;
 /**
+ * A rule that forces the result tier. Targets either an ingredient (every product containing it) or one product (for label rules like age limits that differ between products with the same ingredient). Matches when the profile matches every given field.
+ *
+ * This interface was referenced by `TermTables`'s JSON-Schema
+ * via the `definition` "hard_stop".
+ */
+export type HardStop = {
+  [k: string]: unknown;
+};
+/**
  * Kind of source a value comes from.
  */
 export type CitationSource =
@@ -164,41 +173,6 @@ export interface Term {
   citation_ids: [CitationId, ...CitationId[]];
 }
 /**
- * A rule that forces the result tier. Matches when the product contains the ingredient and the profile matches every given field.
- *
- * This interface was referenced by `TermTables`'s JSON-Schema
- * via the `definition` "hard_stop".
- */
-export interface HardStop {
-  /**
-   * Stable rule id, e.g. 'hs_salicylate_children'.
-   */
-  id: string;
-  unii: Unii;
-  /**
-   * Personas the rule applies to. Omit to apply to all.
-   *
-   * @minItems 1
-   */
-  personas?: [Persona, ...Persona[]];
-  condition?: Condition;
-  medication_type?: MedicationType;
-  /**
-   * Tier forced when the rule matches.
-   */
-  result: "red";
-  /**
-   * Explanation template shown when the rule fires.
-   */
-  message_template_id: string;
-  /**
-   * Keys into the citations map.
-   *
-   * @minItems 1
-   */
-  citation_ids: [CitationId, ...CitationId[]];
-}
-/**
  * Citations keyed by citation id, so rows can reference them without repeating them.
  */
 export interface CitationMap {
@@ -230,6 +204,10 @@ export interface Citation {
  * Which data and code produced a file or record.
  */
 export interface Provenance {
+  /**
+   * Version of these contracts the data was written with (semver). A major bump means old readers can't read it.
+   */
+  schema_version: string;
   /**
    * Dataset release, e.g. 2026.11.0.
    */

@@ -176,6 +176,10 @@ export interface CitationMap {
  */
 export interface Provenance {
   /**
+   * Version of these contracts the data was written with (semver). A major bump means old readers can't read it.
+   */
+  schema_version: string;
+  /**
    * Dataset release, e.g. 2026.11.0.
    */
   dataset_version: string;

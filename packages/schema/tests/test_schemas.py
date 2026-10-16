@@ -1,13 +1,13 @@
-"""Check the schemas, their samples, and that the generated Pydantic models accept valid data."""
+"""Check the schemas, their samples, the packaged validator and the generated Pydantic models."""
 
 import json
 from pathlib import Path
 
 import pytest
-from jsonschema import Draft202012Validator, FormatChecker
-from referencing import Registry, Resource
+from jsonschema import Draft202012Validator
 
 import nomi_schema
+from nomi_schema import SchemaValidationError, validate
 
 ROOT = Path(__file__).resolve().parent.parent
 SCHEMA_DIR = ROOT / "schemas"
@@ -15,14 +15,7 @@ SAMPLES = ROOT / "fixtures" / "schema-samples"
 
 SCHEMAS = {p.name.removesuffix(".schema.json"): json.loads(p.read_text()) for p in SCHEMA_DIR.glob("*.schema.json")}
 DOMAIN_SCHEMAS = sorted(name for name in SCHEMAS if name != "common")
-REGISTRY = Registry().with_resources(
-    (f"{name}.schema.json", Resource.from_contents(schema)) for name, schema in SCHEMAS.items()
-)
-MODELS = {name: getattr(nomi_schema, SCHEMAS[name]["title"]) for name in DOMAIN_SCHEMAS}
-
-
-def validator(name: str) -> Draft202012Validator:
-    return Draft202012Validator(SCHEMAS[name], registry=REGISTRY, format_checker=FormatChecker())
+INVALID = sorted((SAMPLES / "invalid").glob("*.json"))
 
 
 def load(path: Path):
@@ -34,6 +27,12 @@ def test_schema_is_valid_draft_2020_12(name):
     Draft202012Validator.check_schema(SCHEMAS[name])
 
 
+@pytest.mark.parametrize("name", sorted(SCHEMAS))
+def test_packaged_schema_matches_source(name):
+    packaged = Path(nomi_schema.__file__).parent / "schemas" / f"{name}.schema.json"
+    assert json.loads(packaged.read_text()) == SCHEMAS[name], "run pnpm run codegen"
+
+
 @pytest.mark.parametrize("name", DOMAIN_SCHEMAS)
 def test_every_schema_has_valid_and_invalid_samples(name):
     assert (SAMPLES / "valid" / f"{name}.json").exists()
@@ -42,18 +41,23 @@ def test_every_schema_has_valid_and_invalid_samples(name):
 
 @pytest.mark.parametrize("name", DOMAIN_SCHEMAS)
 def test_valid_sample_passes(name):
-    errors = list(validator(name).iter_errors(load(SAMPLES / "valid" / f"{name}.json")))
-    assert not errors, [e.message for e in errors]
+    validate(name, load(SAMPLES / "valid" / f"{name}.json"))
 
 
-@pytest.mark.parametrize(
-    "path", sorted((SAMPLES / "invalid").glob("*.json")), ids=lambda p: p.name.removesuffix(".json")
-)
+@pytest.mark.parametrize("path", INVALID, ids=lambda p: p.name.removesuffix(".json"))
 def test_invalid_sample_fails(path):
     name = path.name.split(".")[0]
-    assert list(validator(name).iter_errors(load(path))), f"{path.name} should fail {name}"
+    with pytest.raises(SchemaValidationError) as raised:
+        validate(name, load(path))
+    assert raised.value.errors
 
 
 @pytest.mark.parametrize("name", DOMAIN_SCHEMAS)
 def test_generated_model_accepts_valid_sample(name):
-    MODELS[name].model_validate(load(SAMPLES / "valid" / f"{name}.json"))
+    model = getattr(nomi_schema, SCHEMAS[name]["title"])
+    model.model_validate(load(SAMPLES / "valid" / f"{name}.json"))
+
+
+def test_unknown_schema_name_is_an_error():
+    with pytest.raises(KeyError):
+        validate("prodcut", {})

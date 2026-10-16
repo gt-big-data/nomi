@@ -92,6 +92,8 @@
     },
     "review_status": { "$ref": "common.schema.json#/$defs/review_status" }
   },
+  "if": { "properties": { "scope": { "const": "in_scope" } }, "required": ["scope"] },
+  "then": { "properties": { "otc_category": { "type": "string" } } },
   "$defs": {
     "active_ingredient": {
       "title": "ActiveIngredient",

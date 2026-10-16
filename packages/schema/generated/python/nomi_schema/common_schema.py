@@ -170,6 +170,10 @@ class Provenance(BaseModel):
     model_config = ConfigDict(
         extra="forbid",
     )
+    schema_version: Annotated[str, Field(pattern="^[0-9]+\\.[0-9]+\\.[0-9]+$")]
+    """
+    Version of these contracts the data was written with (semver). A major bump means old readers can't read it.
+    """
     dataset_version: Annotated[str, Field(min_length=1)]
     """
     Dataset release, e.g. 2026.11.0.

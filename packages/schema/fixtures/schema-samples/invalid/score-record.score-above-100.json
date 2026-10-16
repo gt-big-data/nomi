@@ -46,6 +46,7 @@
   ],
   "review_status": "preliminary",
   "provenance": {
+    "schema_version": "0.1.0",
     "dataset_version": "2026.11.0",
     "rubric_version": "rubric-v0.1",
     "code_commit": "abc1234",

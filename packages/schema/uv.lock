@@ -322,23 +322,25 @@ name = "nomi-schema"
 version = "0.1.0"
 source = { editable = "." }
 dependencies = [
+    { name = "jsonschema" },
     { name = "pydantic" },
 ]
 
 [package.dev-dependencies]
 dev = [
     { name = "datamodel-code-generator" },
-    { name = "jsonschema" },
     { name = "pytest" },
 ]
 
 [package.metadata]
-requires-dist = [{ name = "pydantic", specifier = ">=2.7" }]
+requires-dist = [
+    { name = "jsonschema", specifier = ">=4.23" },
+    { name = "pydantic", specifier = ">=2.7" },
+]
 
 [package.metadata.requires-dev]
 dev = [
     { name = "datamodel-code-generator", specifier = ">=0.26" },
-    { name = "jsonschema", specifier = ">=4.23" },
     { name = "pytest", specifier = ">=8.3" },
 ]
 

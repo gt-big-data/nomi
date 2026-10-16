@@ -35,6 +35,11 @@ def main() -> None:
         check=True,
     )
 
+    # Ship the schemas and a validator with the package. The Pydantic models don't enforce
+    # cross-field rules (if/then, not), so writers must call nomi_schema.validate().
+    shutil.copytree(SCHEMA_DIR, OUT_DIR / "schemas", ignore=shutil.ignore_patterns("*.gitkeep"))
+    shutil.copy(ROOT / "scripts" / "templates" / "validate.py", OUT_DIR / "validate.py")
+
     # Re-export the types each schema owns, so callers can write `from nomi_schema import Product`.
     lines = [HEADER, ""]
     names = []
@@ -50,6 +55,8 @@ def main() -> None:
         owned = [t for t in titles if t in classes]
         lines.append(f"from .{module} import {', '.join(owned)}")
         names += owned
+    lines.append("from .validate import SchemaValidationError, errors, validate")
+    names += ["SchemaValidationError", "errors", "validate"]
     lines += ["", f"__all__ = {sorted(names)!r}", ""]
     (OUT_DIR / "__init__.py").write_text("\n".join(lines))
     subprocess.run(["black", "-q", str(OUT_DIR / "__init__.py")], check=True)

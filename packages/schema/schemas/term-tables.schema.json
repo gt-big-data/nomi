@@ -117,10 +117,10 @@
     },
     "hard_stop": {
       "title": "HardStop",
-      "description": "A rule that forces the result tier. Matches when the product contains the ingredient and the profile matches every given field.",
+      "description": "A rule that forces the result tier. Targets either an ingredient (every product containing it) or one product (for label rules like age limits that differ between products with the same ingredient). Matches when the profile matches every given field.",
       "type": "object",
       "additionalProperties": false,
-      "required": ["id", "unii", "result", "message_template_id", "citation_ids"],
+      "required": ["id", "result", "message_template_id", "citation_ids"],
       "properties": {
         "id": {
           "description": "Stable rule id, e.g. 'hs_salicylate_children'.",
@@ -128,6 +128,7 @@
           "pattern": "^hs_[a-z0-9_]+$"
         },
         "unii": { "$ref": "common.schema.json#/$defs/unii" },
+        "ndc11": { "$ref": "common.schema.json#/$defs/ndc11" },
         "personas": {
           "description": "Personas the rule applies to. Omit to apply to all.",
           "type": "array",
@@ -153,7 +154,12 @@
           "minItems": 1,
           "items": { "$ref": "common.schema.json#/$defs/citation_id" }
         }
-      }
+      },
+      "allOf": [
+        { "not": { "required": ["condition", "medication_type"] } },
+        { "not": { "required": ["unii", "ndc11"] } },
+        { "if": { "not": { "required": ["unii"] } }, "then": { "required": ["ndc11"] } }
+      ]
     }
   }
 }

@@ -92,7 +92,7 @@ class Result(StrEnum):
 
 class HardStop(BaseModel):
     """
-    A rule that forces the result tier. Matches when the product contains the ingredient and the profile matches every given field.
+    A rule that forces the result tier. Targets either an ingredient (every product containing it) or one product (for label rules like age limits that differ between products with the same ingredient). Matches when the profile matches every given field.
     """
 
     model_config = ConfigDict(
@@ -102,9 +102,13 @@ class HardStop(BaseModel):
     """
     Stable rule id, e.g. 'hs_salicylate_children'.
     """
-    unii: Annotated[str, Field(pattern="^[A-Z0-9]{10}$", title="Unii")]
+    unii: Annotated[str | None, Field(pattern="^[A-Z0-9]{10}$", title="Unii")] = None
     """
     FDA Unique Ingredient Identifier: 10 uppercase letters or digits, e.g. 362O9ITL9D (acetaminophen).
+    """
+    ndc11: Annotated[str | None, Field(pattern="^[0-9]{11}$", title="Ndc11")] = None
+    """
+    National Drug Code normalized to 11 digits with no hyphens, e.g. 50580044902.
     """
     personas: Annotated[list[common_schema.Persona] | None, Field(min_length=1)] = None
     """

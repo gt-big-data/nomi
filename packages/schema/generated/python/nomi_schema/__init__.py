@@ -26,6 +26,7 @@ from .score_record_schema import (
 )
 from .signal_schema import Signal
 from .term_tables_schema import TermTables, TierBands, Combine, Term, HardStop
+from .validate import SchemaValidationError, errors, validate
 
 __all__ = [
     "ActiveIngredient",
@@ -50,6 +51,7 @@ __all__ = [
     "Provenance",
     "Rating",
     "ReviewStatus",
+    "SchemaValidationError",
     "ScoreRecord",
     "Signal",
     "Term",
@@ -58,4 +60,6 @@ __all__ = [
     "TierBands",
     "TriggeredHardStop",
     "Unii",
+    "errors",
+    "validate",
 ]

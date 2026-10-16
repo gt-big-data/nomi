@@ -44,6 +44,19 @@
       "citation_ids": [
         "cit_acetaminophen_directions"
       ]
+    },
+    {
+      "id": "hs_adult_acetaminophen_children",
+      "ndc11": "99999000101",
+      "personas": [
+        "child_6_11",
+        "child_2_5"
+      ],
+      "result": "red",
+      "message_template_id": "hard_stop_label_age_limit",
+      "citation_ids": [
+        "cit_acetaminophen_directions"
+      ]
     }
   ],
   "citations": {
@@ -59,6 +72,7 @@
     }
   },
   "provenance": {
+    "schema_version": "0.1.0",
     "dataset_version": "2026.11.0",
     "rubric_version": "rubric-v0.1",
     "code_commit": "abc1234",

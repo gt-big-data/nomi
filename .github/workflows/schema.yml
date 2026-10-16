@@ -11,9 +11,17 @@ on:
       - "packages/schema/**"
       - ".github/workflows/schema.yml"
 
+permissions:
+  contents: read
+
+concurrency:
+  group: schema-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   schema:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     defaults:
       run:
         working-directory: packages/schema
@@ -31,6 +39,9 @@ jobs:
           cache-dependency-path: packages/schema/pnpm-lock.yaml
 
       - uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+          cache-dependency-glob: packages/schema/uv.lock
 
       - name: Install dependencies
         run: |
