@@ -47,9 +47,9 @@ Short and clear beats complete. Someone should understand the ticket in under a 
 - [ ] Look up each barcode's NDC candidates in the NDC directory
 - [ ] Join the match to its DailyMed label to get ingredients and strengths
 - [ ] Flag barcodes with zero or multiple matches
-- [ ] Run on the collected barcodes and list every miss with its reason
+- [ ] Generate a test barcode for every OTC package and list every miss
 
-**Done when:** At least 90% of collected barcodes resolve correctly by Oct 29.
+**Done when:** At least 90% of generated test barcodes resolve to the right product by Oct 29.
 
 **Notes:** NDC is FDA's product code; drug barcodes usually contain it (see NOMI-007).
 ```

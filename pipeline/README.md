@@ -23,7 +23,7 @@ Polars, DuckDB, lxml, Pydantic. Tooling setup lands in NOMI-001.
 | `knowledge/criteria/` | STOPP/START and ACB as structured data (NOMI-018) |
 | `knowledge/templates/` | Explanation templates filled in on the phone (NOMI-048) |
 | `knowledge/mandated_warnings.yaml` | FDA-required OTC warnings mapped to dimensions (NOMI-017) |
-| `tests/fixtures/` | Ground-truth barcodes (NOMI-020), label snippets, regression cases |
+| `tests/fixtures/` | Label snippets, generated test barcodes, regression cases |
 | `reports/` | Committed coverage and quality reports |
 | `docs/` | Method write-ups, such as signal detection |
 

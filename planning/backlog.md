@@ -113,20 +113,22 @@ One ticket = one person, one week. New to the project? Read `docs/nomi-101.md`. 
 
 ---
 
-## NOMI-020: Collect 300 real OTC barcodes
-**Team:** platform | **Priority:** P0 | **Sprint:** S1 | **Depends on:** none | **Extra:** good first issue
+## NOMI-020: Set up the pipeline project and CLI
+**Team:** platform | **Priority:** P0 | **Sprint:** S1 | **Depends on:** NOMI-001 (same sprint)
 
-**Goal:** Build a real-world barcode test set. One Platform member runs the drive; every team member scans OTC boxes in stores.
+**Goal:** Give the backend pipeline a runnable skeleton so every data ticket plugs into the same CLI, config and tests.
 
-**Deliverable:** `pipeline/tests/fixtures/barcodes.csv`
+**Deliverable:** `pipeline/pyproject.toml`, a `uv run pipeline` CLI, `pipeline/src/nomi_pipeline/config.py` and `.env.example`
 
 **Tasks**
-- [ ] Set up a free submission form and a store and aisle assignment sheet
-- [ ] Have each member scan about 25 boxes; photos go in the shared drive
-- [ ] Clean and dedupe results into `barcodes.csv`
-- [ ] Post counts per aisle, store and brand type in the PR
+- [ ] Create the uv package with a Typer CLI entry point named `pipeline`
+- [ ] Add empty commands for each stage: fetch, ingest, identity, extract, evidence, score, build
+- [ ] Load data paths and R2 credentials from `.env` in `config.py`
+- [ ] Add logging and a pytest setup with one passing test
 
-**Done when:** At least 300 unique barcodes, at least 30% store brands, and every aisle has at least one row.
+**Done when:** `uv run pipeline --help` lists every stage and `uv run pytest pipeline` passes in CI.
+
+**Notes:** NOMI-001 sets up repo-wide tooling; this ticket is the pipeline's own skeleton. NOMI-008, 009 and 010 add their commands here.
 
 ---
 
@@ -149,7 +151,7 @@ One ticket = one person, one week. New to the project? Read `docs/nomi-101.md`. 
 ---
 
 ## NOMI-008: Mirror raw data to R2 and build fetch
-**Team:** platform | **Priority:** P0 | **Sprint:** S1 | **Depends on:** NOMI-001 (same sprint), NOMI-006 (same sprint)
+**Team:** platform | **Priority:** P0 | **Sprint:** S1 | **Depends on:** NOMI-001 (same sprint), NOMI-006 (same sprint), NOMI-020 (same sprint)
 
 **Goal:** Let any developer get all raw data with one command.
 
@@ -167,7 +169,7 @@ One ticket = one person, one week. New to the project? Read `docs/nomi-101.md`. 
 ---
 
 ## NOMI-009: Ingest the openFDA NDC directory
-**Team:** platform | **Priority:** P0 | **Sprint:** S1 | **Depends on:** NOMI-008 (same sprint)
+**Team:** platform | **Priority:** P0 | **Sprint:** S1 | **Depends on:** NOMI-008 (same sprint), NOMI-020 (same sprint)
 
 **Goal:** Turn the raw NDC directory into one clean table of human OTC products.
 
@@ -184,7 +186,7 @@ One ticket = one person, one week. New to the project? Read `docs/nomi-101.md`. 
 ---
 
 ## NOMI-010: Parse DailyMed OTC labels
-**Team:** platform | **Priority:** P0 | **Sprint:** S1 | **Depends on:** NOMI-008 (same sprint)
+**Team:** platform | **Priority:** P0 | **Sprint:** S1 | **Depends on:** NOMI-008 (same sprint), NOMI-020 (same sprint)
 
 **Goal:** Extract products and ingredients from every DailyMed OTC label.
 
@@ -438,11 +440,11 @@ One ticket = one person, one week. New to the project? Read `docs/nomi-101.md`. 
 - [ ] Look up each barcode's NDC candidates in the NDC directory
 - [ ] Join the match to its DailyMed label to get ingredients and strengths
 - [ ] Flag barcodes with zero or multiple matches
-- [ ] Run on the collected barcodes and list every miss with its reason
+- [ ] Generate a test barcode for every OTC package and list every miss
 
-**Done when:** At least 90% of collected barcodes resolve correctly by Oct 29.
+**Done when:** At least 90% of generated test barcodes resolve to the right product by Oct 29.
 
-**Notes:** NDC is FDA's product code; drug barcodes usually contain it (see NOMI-007).
+**Notes:** A drug barcode is `3` + the 10-digit NDC + a check digit, so we can build one for every package in FDA's list and know the right answer.
 
 ---
 
@@ -613,7 +615,7 @@ One ticket = one person, one week. New to the project? Read `docs/nomi-101.md`. 
 - [ ] Have a second person spot check five values
 - [ ] List any uncovered aisle ingredients in the PR
 
-**Done when:** All 12 files pass schema validation, and every ingredient in these aisles' barcodes is covered or explained.
+**Done when:** All 12 files pass schema validation, and every ingredient in these aisles' products is covered or explained.
 
 ---
 
@@ -650,7 +652,7 @@ One ticket = one person, one week. New to the project? Read `docs/nomi-101.md`. 
 - [ ] Add a regression row for every fixed barcode
 - [ ] Update the coverage report with before and after numbers
 
-**Done when:** At least 95% of ground-truth barcodes resolve correctly and identity tests pass.
+**Done when:** At least 95% of generated test barcodes resolve correctly and identity tests pass.
 
 ---
 
@@ -1180,14 +1182,12 @@ One ticket = one person, one week. New to the project? Read `docs/nomi-101.md`. 
 **Deliverable:** `pipeline/tests/fixtures/barcodes_blind.csv`, resolver fixes, and `pipeline/reports/identity-blind-50.md`
 
 **Tasks**
-- [ ] Collect 50 new boxes, at least 15 store brands, every aisle
+- [ ] Scan 50 boxes from local stores with the app, at least 15 store brands
 - [ ] Run the resolver and mark each correct, wrong or not found
 - [ ] Fix each miss at its cause and add a regression fixture
-- [ ] Rerun on the ground-truth set to confirm nothing broke
+- [ ] Rerun the generated test barcodes to confirm nothing broke
 
 **Done when:** At least 48 of 50 resolve correctly, with fixes merged by Nov 16.
-
-**Notes:** None of the 50 may already be in `pipeline/tests/fixtures/barcodes.csv`.
 
 ---
 
