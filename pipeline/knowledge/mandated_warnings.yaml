@@ -1,1 +1,13 @@
-Warnings: 
+warnings: 
+  - id: liver_warning
+    ingredients:
+      - acetaminophen
+    dimension: liver
+    wording_variants:
+      - "Liver warning: This product contains acetaminophen. Severe liver damage may occur if you take"
+      - "Liver warning: This product contains acetaminophen. Severe liver damage may occur if your child takes"
+    citations: 
+      - "21 CFR § 201.326(a)(1)(iii)(A)"
+      - "21 CFR § 201.326(a)(1)(iv)(A)(1)"
+      - "OTC Monograph M013 § M013.50(c)(1)(iii)(A)"
+      - "OTC Monograph M013 § M013.50(c)(2)(iii)(A)"
