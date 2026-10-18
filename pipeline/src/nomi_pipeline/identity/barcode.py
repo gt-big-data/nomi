@@ -4,7 +4,6 @@ A drug UPC-A barcode is "3" + NDC10 + check digit. The NDC10 has no dashes, so i
 4-4-2, 5-3-2 or 5-4-1. We return the NDC11 for all three splits, in that order; the product lookup
 decides which one exists. The TypeScript copy in apps/mobile/src/lib/barcode.ts must return
 identical output for every case in packages/schema/fixtures/barcodes.json.
-
 """
 
 from typing import Literal, TypedDict
@@ -18,19 +17,22 @@ class BarcodeResult(TypedDict):
 
 
 def _check_digit(first11: str) -> int:
-    #Returns the expected check digit of a UPC-A barcode, given its first 11 digits.
+    """Returns the expected check digit of a UPC-A barcode, given its first 11 digits."""
     odds = sum(int(d) for d in first11[0::2])  # positions 1, 3, 5, 7, 9, 11
     evens = sum(int(d) for d in first11[1::2])  # positions 2, 4, 6, 8, 10
     total = odds * 3 + evens
     return (10 - total % 10) % 10
-    
+
 
 def _fail(status: Status) -> BarcodeResult:
     return {"status": status, "candidates": []}
 
 
 def ndc_candidates(raw: str) -> BarcodeResult:
-    #Returns the status and NDC11 candidates for scanning a barcode. Candidates is empty unless status is "ok".
+    """Returns the status and NDC11 candidates for a scanned barcode.
+
+    Candidates is empty unless status is "ok".
+    """
     code = raw.strip()
 
     # isascii() rejects other Unicode digits that isdigit() accepts.
@@ -41,7 +43,6 @@ def ndc_candidates(raw: str) -> BarcodeResult:
     if len(code) == 13 and code[0] == "0":
         code = code[1:]
 
-        
     if len(code) != 12:
         return _fail("invalid_format")
 
