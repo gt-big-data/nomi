@@ -1,1 +1,91 @@
-Warnings: 
+warnings: 
+  - id: liver_warning
+    ingredients:
+      - acetaminophen
+    dimension: liver
+    wording_variants:
+      - "Liver warning: This product contains acetaminophen. Severe liver damage may occur if you take"
+      - "Liver warning: This product contains acetaminophen. Severe liver damage may occur if your child takes"
+      - "Liver warning: This product contains acetaminophen. Severe liver damage may occur if"
+    citations: 
+      - "21 CFR § 201.326(a)(1)(iii)(A)"
+      - "21 CFR § 201.326(a)(1)(iv)(A)(1)"
+      - "21 CFR § 201.326(a)(1)(v)(A)"
+      - "OTC Monograph M013 § M013.50(c)(1)(iii)(A)"
+      - "OTC Monograph M013 § M013.50(c)(2)(iii)(A)"
+      - "OTC Monograph M013 § M013.50(c)(3)(iii)(A)"
+ 
+
+  - id: stomach_bleeding_warning
+    ingredients:
+      - aspirin
+      - ibuprofen
+      - naproxen sodium
+      - ketoprofen
+      - carbaspirin calcium
+      - choline salicylate
+      - magnesium salicylate
+      - sodium salicylate
+    dimension: stomach
+    wording_variants:
+      - "Stomach bleeding warning: This product contains an NSAID, which may cause severe stomach bleeding. The chance is higher if you"
+      - "Stomach bleeding warning: This product contains an NSAID, which may cause severe stomach bleeding. The chance is higher if your child"
+      - "Stomach bleeding warning: This product contains an NSAID, which may cause severe stomach bleeding. The chance is higher if the user"
+    citations:
+      - "21 CFR § 201.326(a)(2)(iii)(A)"
+      - "21 CFR § 201.326(a)(2)(iv)(A)(1)"
+      - "21 CFR § 201.326(a)(2)(v)(A)"
+      - "OTC Monograph M013 § M013.50(c)(1)(v)(A)"
+      - "OTC Monograph M013 § M013.50(c)(2)(v)(A)"
+      - "OTC Monograph M013 § M013.50(c)(3)(v)(A)"
+
+
+  - id: nsaid_allergy_alert
+    ingredients:
+      - aspirin
+      - carbaspirin calcium
+      - choline salicylate
+      - magnesium salicylate
+      - sodium salicylate
+    dimension: allergy
+    wording_variants:
+      - "Allergy alert: Aspirin may cause a severe allergic reaction"
+      - "Allergy alert: Carbaspirin calcium may cause a severe allergic reaction"
+      - "Allergy alert: Choline salicylate may cause a severe allergic reaction"
+      - "Allergy alert: Magnesium salicylate may cause a severe allergic reaction"
+      - "Allergy alert: Sodium salicylate may cause a severe allergic reaction"
+    citations:
+      - "21 CFR § 201.66(c)(5)(ii)(B)"
+      - "OTC Monograph M013 § M013.50(c)(1)(v)(E)(1)"
+      - "OTC Monograph M013 § M013.50(c)(2)(v)(E)(1)"
+      - "OTC Monograph M013 § M013.50(c)(3)(v)(D)(1)"
+
+
+  - id: reyes_syndrome_warning
+    ingredients:
+      - aspirin
+      - carbaspirin calcium
+      - choline salicylate
+      - magnesium salicylate
+      - sodium salicylate
+      - bismuth subsalicylate
+    dimension: pediatric
+    wording_variants:
+      - "Reye's syndrome: Children and teenagers who have or are recovering from chicken pox or flu-like symptoms should not use this product."
+    citations:
+      - "21 CFR § 201.314(h)(1)"
+      - "21 CFR § 201.66(c)(5)(ii)(A)"
+
+
+  - id: diphenhydramine_duplicate_use_warning
+    ingredients:
+      - diphenhydramine hydrochloride
+      - diphenhydramine citrate
+    dimension: overdose
+    wording_variants:
+      - "Do not use with any other product containing diphenhydramine, even one used on skin"
+    citations:
+      - "21 CFR § 341.72(c)(6)(iv)"
+      - "21 CFR § 341.72(c)(7)"
+      - "OTC Monograph M012 § M012.72(c)(6)(iv)"
+      - "OTC Monograph M012 § M012.72(c)(7)"

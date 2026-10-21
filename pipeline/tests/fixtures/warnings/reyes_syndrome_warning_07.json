@@ -1,0 +1,23 @@
+{
+  "id": "reyes_syndrome_warning_07",
+  "text": "Reye's syndrome: Children and teenagers who have or are recovering from chicken pox or flu-like symptoms should not use this product. When using this product, if changes in behavior with nausea and vomiting occur, consult a doctor because these symptoms could be an early sign of",
+  "expected_warnings": [
+    "reyes_syndrome_warning"
+  ],
+  "source": {
+    "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=033bccc6-6e81-487f-91fe-9d7cc465e1b2",
+    "openfda_query_url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name%3A%22BISMUTH+SUBSALICYLATE%22+AND+openfda.product_type%3A%22HUMAN+OTC+DRUG%22&limit=30",
+    "set_id": "033bccc6-6e81-487f-91fe-9d7cc465e1b2",
+    "label_id": "4efb4585-b90f-f303-e063-6294a90a4ba6",
+    "version": "4",
+    "effective_time": "20260408",
+    "retrieved_on": "2026-10-22",
+    "brand_name": [
+      "Pepto Bismol"
+    ],
+    "field": "warnings",
+    "item_index": 0,
+    "start": 9,
+    "end": 288
+  }
+}

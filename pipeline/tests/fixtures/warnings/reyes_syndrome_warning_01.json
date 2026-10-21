@@ -1,0 +1,23 @@
+{
+  "id": "reyes_syndrome_warning_01",
+  "text": "Reye’s syndrome Children and teenagers who have or are recovering from chicken pox or flu-like symptoms should not use this product. When using this product, if changes in behavior with nausea and vomiting occur, consult a doctor because these symptoms could be an early sign of",
+  "expected_warnings": [
+    "reyes_syndrome_warning"
+  ],
+  "source": {
+    "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=015ca07a-f6b5-4741-a7b0-821cf6d4e418",
+    "openfda_query_url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name%3A%22BISMUTH+SUBSALICYLATE%22+AND+openfda.product_type%3A%22HUMAN+OTC+DRUG%22&limit=30",
+    "set_id": "015ca07a-f6b5-4741-a7b0-821cf6d4e418",
+    "label_id": "3160c469-0445-4227-8ab2-93032e0443d9",
+    "version": "8",
+    "effective_time": "20181107",
+    "retrieved_on": "2026-10-22",
+    "brand_name": [
+      "Bismuth"
+    ],
+    "field": "warnings",
+    "item_index": 0,
+    "start": 9,
+    "end": 287
+  }
+}

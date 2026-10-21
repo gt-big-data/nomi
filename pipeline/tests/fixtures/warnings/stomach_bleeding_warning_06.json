@@ -1,0 +1,23 @@
+{
+  "id": "stomach_bleeding_warning_06",
+  "text": "Stomach bleeding warning : This product contains an NSAID, which may cause severe stomach bleeding. The chance is higher if you: are age 60 or older have had stomach ulcers or bleeding problems take a blood thinning (anticoagulant) or steroid drug take other drugs containing prescription or nonprescription NSAIDs [aspirin, ibuprofen, naproxen, or others] have 3 or more alcoholic drinks every day while using this product take more or for a longer time than directed",
+  "expected_warnings": [
+    "stomach_bleeding_warning"
+  ],
+  "source": {
+    "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=016299ef-ad40-46fd-acfc-e74ffee3d9b4",
+    "openfda_query_url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name%3A%22IBUPROFEN%22+AND+openfda.product_type%3A%22HUMAN+OTC+DRUG%22&limit=30",
+    "set_id": "016299ef-ad40-46fd-acfc-e74ffee3d9b4",
+    "label_id": "2790ee9d-7db5-427c-ad2b-394dfaa55f9f",
+    "version": "3",
+    "effective_time": "20221121",
+    "retrieved_on": "2026-10-22",
+    "brand_name": [
+      "Ibuprofen"
+    ],
+    "field": "warnings",
+    "item_index": 0,
+    "start": 287,
+    "end": 755
+  }
+}

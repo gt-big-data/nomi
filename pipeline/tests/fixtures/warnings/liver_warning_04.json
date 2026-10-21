@@ -1,0 +1,23 @@
+{
+  "id": "liver_warning_04",
+  "text": "Liver warning: This product contains acetaminophen. Severe liver damage may occur if you take: more than 4,000 mg of acetaminophen in 24 hours with other drugs containing acetaminophen 3 or more alcoholic drinks every day while using this product",
+  "expected_warnings": [
+    "liver_warning"
+  ],
+  "source": {
+    "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0044c53c-11dd-41a9-a5d9-622dd8b1c144",
+    "openfda_query_url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name%3A%22ACETAMINOPHEN%22+AND+openfda.product_type%3A%22HUMAN+OTC+DRUG%22&limit=30",
+    "set_id": "0044c53c-11dd-41a9-a5d9-622dd8b1c144",
+    "label_id": "3aa48604-afd3-49a2-b0a8-ab15171c7913",
+    "version": "3",
+    "effective_time": "20240327",
+    "retrieved_on": "2026-10-22",
+    "brand_name": [
+      "Daytime Cold and Flu"
+    ],
+    "field": "warnings",
+    "item_index": 0,
+    "start": 9,
+    "end": 255
+  }
+}

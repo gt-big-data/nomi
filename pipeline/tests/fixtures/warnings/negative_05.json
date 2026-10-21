@@ -1,0 +1,21 @@
+{
+  "id": "negative_05",
+  "text": "Do not use if you have an ulcer a bleeding problem bloody or black stool",
+  "expected_warnings": [],
+  "source": {
+    "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=015ca07a-f6b5-4741-a7b0-821cf6d4e418",
+    "openfda_query_url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name%3A%22BISMUTH+SUBSALICYLATE%22+AND+openfda.product_type%3A%22HUMAN+OTC+DRUG%22&limit=30",
+    "set_id": "015ca07a-f6b5-4741-a7b0-821cf6d4e418",
+    "label_id": "3160c469-0445-4227-8ab2-93032e0443d9",
+    "version": "8",
+    "effective_time": "20181107",
+    "retrieved_on": "2026-10-22",
+    "brand_name": [
+      "Bismuth"
+    ],
+    "field": "do_not_use",
+    "item_index": 0,
+    "start": 0,
+    "end": 72
+  }
+}

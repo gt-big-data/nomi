@@ -1,0 +1,23 @@
+{
+  "id": "diphenhydramine_duplicate_use_warning_07",
+  "text": "Do not use with any other product containing diphenhydramine, even one used on skin to make a child sleepy",
+  "expected_warnings": [
+    "diphenhydramine_duplicate_use_warning"
+  ],
+  "source": {
+    "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=047102c4-3d03-4b2d-961d-0ac75980147b",
+    "openfda_query_url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name%3A%22DIPHENHYDRAMINE+HYDROCHLORIDE%22+AND+openfda.product_type%3A%22HUMAN+OTC+DRUG%22&limit=30",
+    "set_id": "047102c4-3d03-4b2d-961d-0ac75980147b",
+    "label_id": "a5396255-6a91-4f7f-aeab-0393bcd91442",
+    "version": "5",
+    "effective_time": "20260506",
+    "retrieved_on": "2026-10-22",
+    "brand_name": [
+      "Allergy Childrens Allergy"
+    ],
+    "field": "warnings",
+    "item_index": 0,
+    "start": 9,
+    "end": 115
+  }
+}
