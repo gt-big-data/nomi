@@ -1,0 +1,23 @@
+{
+  "id": "reyes_syndrome_warning_04",
+  "text": "Reye's syndrome: Children and teenagers who have or are recovering from chicken pox or flu-like symptoms should not use this product. When using this product, if changes in behavior with nausea and vomiting occur, consult a doctor because these symptoms could be an early sign of",
+  "expected_warnings": [
+    "reyes_syndrome_warning"
+  ],
+  "source": {
+    "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=02737763-eb98-401d-942c-186c401a2d31",
+    "openfda_query_url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name%3A%22BISMUTH+SUBSALICYLATE%22+AND+openfda.product_type%3A%22HUMAN+OTC+DRUG%22&limit=30",
+    "set_id": "02737763-eb98-401d-942c-186c401a2d31",
+    "label_id": "451d87a9-6967-15e6-e063-6294a90a004f",
+    "version": "6",
+    "effective_time": "20251204",
+    "retrieved_on": "2026-10-22",
+    "brand_name": [
+      "QC Anti Diarrheal Vanilla Regular Flavor"
+    ],
+    "field": "warnings",
+    "item_index": 0,
+    "start": 9,
+    "end": 288
+  }
+}
