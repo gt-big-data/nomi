@@ -1,7 +1,6 @@
+# Default reviewers for every path. The last matching line wins, and a path listed with no
+# owners has no reviewers, so only add a path below together with its owners.
+# When GitHub teams exist, add per-area owners, for example:
+#   /packages/schema/    @gt-big-data/nomi-platform @gt-big-data/nomi-data-analysis
 *                     @ubterminater @shreyas-shrestha
-/apps/mobile/
-/apps/dashboard/
-/pipeline/
-/pipeline/knowledge/
-/packages/schema/
 /.github/             @ubterminater @shreyas-shrestha
