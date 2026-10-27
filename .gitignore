@@ -35,3 +35,4 @@ android/
 .idea/
 .vscode/*
 !.vscode/extensions.json
+demo/model/*.joblib

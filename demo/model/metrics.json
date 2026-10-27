@@ -1,0 +1,77 @@
+{
+  "n_labels_trained": 16368,
+  "n_labels_test": 4092,
+  "micro_f1": 0.948,
+  "macro_f1": 0.925,
+  "per_warning": {
+    "acetaminophen_duplicate_use_warning": {
+      "precision": 0.961,
+      "recall": 0.995,
+      "test_positives": 199
+    },
+    "acetaminophen_skin_reaction_alert": {
+      "precision": 0.884,
+      "recall": 0.994,
+      "test_positives": 176
+    },
+    "diphenhydramine_duplicate_use_warning": {
+      "precision": 0.941,
+      "recall": 0.985,
+      "test_positives": 65
+    },
+    "heart_attack_and_stroke_warning": {
+      "precision": 0.836,
+      "recall": 1.0,
+      "test_positives": 61
+    },
+    "liver_warning": {
+      "precision": 0.976,
+      "recall": 0.995,
+      "test_positives": 203
+    },
+    "maoi_warning": {
+      "precision": 0.962,
+      "recall": 1.0,
+      "test_positives": 227
+    },
+    "nsaid_allergy_alert": {
+      "precision": 0.971,
+      "recall": 1.0,
+      "test_positives": 101
+    },
+    "nsaid_pregnancy_warning": {
+      "precision": 0.398,
+      "recall": 1.0,
+      "test_positives": 33
+    },
+    "reyes_syndrome_warning": {
+      "precision": 0.93,
+      "recall": 1.0,
+      "test_positives": 66
+    },
+    "sore_throat_warning": {
+      "precision": 0.886,
+      "recall": 0.983,
+      "test_positives": 174
+    },
+    "stomach_bleeding_warning": {
+      "precision": 0.942,
+      "recall": 1.0,
+      "test_positives": 113
+    }
+  },
+  "labels": [
+    "acetaminophen_duplicate_use_warning",
+    "acetaminophen_skin_reaction_alert",
+    "diphenhydramine_duplicate_use_warning",
+    "heart_attack_and_stroke_warning",
+    "liver_warning",
+    "maoi_warning",
+    "nsaid_allergy_alert",
+    "nsaid_pregnancy_warning",
+    "reyes_syndrome_warning",
+    "sore_throat_warning",
+    "stomach_bleeding_warning"
+  ],
+  "source": "openFDA drug/label, product_type HUMAN OTC DRUG"
+}

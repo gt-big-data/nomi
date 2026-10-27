@@ -18,6 +18,11 @@ from typing import Any
 
 from nomi_pipeline.extract.rules import extract
 
+try:
+    import joblib
+except ImportError:  # models are optional; run train.py to build them
+    joblib = None
+
 HERE = Path(__file__).resolve().parent
 CACHE = HERE / "cache"
 OPENFDA = "https://api.fda.gov/drug/label.json"
@@ -51,6 +56,55 @@ PICKS = [
     ("Benadryl Allergy", "50580-573-04"),
     ("Pepto-Bismol", "76420-490-24"),
 ]
+
+
+MODEL_DIR = HERE / "model"
+_models: dict[str, Any] = {}
+
+
+def models() -> dict[str, Any]:
+    if not _models and joblib and (MODEL_DIR / "warning_model.joblib").exists():
+        _models["warn"] = joblib.load(MODEL_DIR / "warning_model.joblib")
+        _models["alt"] = joblib.load(MODEL_DIR / "alternatives.joblib")
+        _models["metrics"] = json.loads((MODEL_DIR / "metrics.json").read_text())
+    return _models
+
+
+def model_view(record: dict[str, Any], found: set[str]) -> dict[str, Any] | None:
+    m = models()
+    if not m:
+        return None
+    subs = " ".join(record.get("openfda", {}).get("substance_name") or [])
+    x = f"{subs} {first(record, 'active_ingredient')} {first(record, 'purpose')} "
+    x += first(record, "indications_and_usage")
+    probs = m["warn"]["model"].predict_proba([x])[0]
+    predicted = [
+        {"warning_id": w, "p": round(float(p), 3)}
+        for w, p in sorted(zip(m["warn"]["labels"], probs, strict=True), key=lambda t: -t[1])
+        if p >= 0.2
+    ]
+    alt = m["alt"]
+    uses = f"{first(record, 'purpose')} {first(record, 'indications_and_usage')}"
+    dist, idx = alt["nn"].kneighbors(alt["vec"].transform([uses]), n_neighbors=300)
+    me = brief(record)
+    seen = {me["brand"].lower(), me["generic"].lower()}
+    neighbours = []
+    for d, i in zip(dist[0], idx[0], strict=True):
+        c = alt["catalog"][i]
+        same = c["brand"].lower() in seen or c["generic"].lower() in seen
+        if c["set_id"] == record.get("set_id") or same or d > 0.6:
+            continue
+        seen.update((c["brand"].lower(), c["generic"].lower()))
+        neighbours.append({**c, "similarity": round(1 - float(d), 3)})
+    return {
+        "predicted": predicted,
+        "missing_on_label": [
+            p for p in predicted if p["p"] >= 0.5 and p["warning_id"] not in found
+        ],
+        "neighbours": neighbours[:15],
+        "micro_f1": m["metrics"]["micro_f1"],
+        "trained_on": m["metrics"]["n_labels_trained"] + m["metrics"]["n_labels_test"],
+    }
 
 
 class LookupError_(Exception):
@@ -147,6 +201,7 @@ def summarize(record: dict[str, Any], scanned_ndc: str | None = None) -> dict[st
     o = record.get("openfda", {})
     ndcs = o.get("package_ndc", [])
     ndc = scanned_ndc or (ndcs[0] if ndcs else None)
+    facts = extract(record)
     return {
         **brief(record),
         "ndc": ndc,
@@ -156,7 +211,8 @@ def summarize(record: dict[str, Any], scanned_ndc: str | None = None) -> dict[st
         "sections": [
             {"field": f, "title": t, "text": first(record, f)} for f, t in SECTIONS if record.get(f)
         ],
-        "facts": extract(record).model_dump(),
+        "facts": facts.model_dump(),
+        "model": model_view(record, facts.warning_ids()),
     }
 
 
@@ -209,6 +265,9 @@ class Handler(BaseHTTPRequestHandler):
         try:
             if url.path in ("/", "/index.html"):
                 self._send(200, (HERE / "index.html").read_bytes(), "text/html; charset=utf-8")
+                return
+            if url.path == "/app.js":
+                self._send(200, (HERE / "app.js").read_bytes(), "text/javascript; charset=utf-8")
                 return
             if url.path == "/api/barcode":
                 data: Any = by_barcode(params.get("code", ""))
