@@ -174,7 +174,7 @@ function render() {
   if (d.model) {
     const m = d.model;
     const miss = m.missing_on_label.length
-      ? `<p class="err" style="color:var(--caution)">Products like this usually carry: ${m.missing_on_label.map((x) => esc(nice(x.warning_id))).join(", ")}. This label's warning text didn't match, so check the box.</p>`
+      ? `<p class="err" style="color:var(--caution)">Products with these ingredients usually carry: ${m.missing_on_label.map((x) => esc(nice(x.warning_id))).join(", ")}. The rule extractor didn't find that wording here, so either the label omits it or words it differently. Check the box.</p>`
       : `<p style="margin-top:8px">The label's warnings match what the model expects for these ingredients.</p>`;
     model = `<section><h2>Model check</h2><div class="model"><p>Trained on ${m.trained_on.toLocaleString()} openFDA OTC labels to predict which warnings a product's ingredients and uses call for, without reading the warnings themselves.</p>
       <ul>${m.predicted
