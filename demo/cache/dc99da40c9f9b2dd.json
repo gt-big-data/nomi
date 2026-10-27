@@ -1,0 +1,68 @@
+[
+  {
+    "spl_product_data_elements": [
+      "Aleve NAPROXEN SODIUM CELLULOSE, MICROCRYSTALLINE POLYETHYLENE GLYCOL, UNSPECIFIED POVIDONE TALC TITANIUM DIOXIDE NAPROXEN SODIUM NAPROXEN FD&C BLUE NO. 2 HYPROMELLOSES MAGNESIUM STEARATE light blue ALEVE"
+    ],
+    "spl_unclassified_section": ["Drug Facts", "Dist. by: Bayer HealthCare LLC Whippany, NJ 07981"],
+    "active_ingredient": [
+      "Active ingredient (in each tablet) Naproxen sodium 220 mg (naproxen 200 mg) (NSAID) nonsteroidal anti-inflammatory drug"
+    ],
+    "purpose": ["Purposes Pain reliever/fever reducer"],
+    "indications_and_usage": [
+      "Uses temporarily relieves minor aches and pains due to: minor pain of arthritis muscular aches backache menstrual cramps headache toothache the common cold temporarily reduces fever"
+    ],
+    "dosage_and_administration": [
+      "Directions do not take more than directed the smallest effective dose should be used drink a full glass of water with each dose Adults and children 12 years and older take 1 tablet every 8 to 12 hours while symptoms last for the first dose you may take 2 tablets within the first hour do not exceed 2 tablets in any 8- to 12-hour period do not exceed 3 tablets in a 24-hour period Children under 12 years ask a doctor"
+    ],
+    "dosage_and_administration_table": [
+      "<table border=\"0\" width=\"100%\"><tbody><tr><td><list listType=\"unordered\"><item>Adults and children 12 years and older</item></list></td><td><list listType=\"unordered\"><item>take 1 tablet every 8 to 12 hours while symptoms last</item><item>for the first dose you may take 2 tablets within the first hour</item><item>do not exceed 2 tablets in any 8- to 12-hour period</item><item>do not exceed 3 tablets in a 24-hour period</item></list></td></tr><tr><td><list listType=\"unordered\"><item>Children under 12 years</item></list></td><td><list listType=\"unordered\"><item>ask a doctor</item></list></td></tr></tbody></table>"
+    ],
+    "storage_and_handling": [
+      "Other information each tablet contains: sodium 20 mg store at 20-25\u00baC (68-77\u00baF). Avoid high humidity and excessive heat above 40\u00b0C (104\u00b0F)."
+    ],
+    "inactive_ingredient": [
+      "Inactive ingredients FD&C blue #2 lake, hypromellose, magnesium stearate, microcrystalline cellulose, polyethylene glycol, povidone, talc, titanium dioxide"
+    ],
+    "questions": ["Questions or comments? 1-800-395-0689 (Mon-Fri 9AM \u2013 5PM EST)"],
+    "warnings": [""],
+    "keep_out_of_reach_of_children": [
+      "In case of overdose, get medical help or contact a Poison Control Center right away."
+    ],
+    "package_label_principal_display_panel": [
+      "PRINCIPAL DISPLAY PANEL - 24 Tablet Bottle Carton ALL DAY STRONG \u00ae ALEVE \u00ae naproxen sodium tablets, 220 mg (NSAID) Pain reliever/fever reducer STRENGTH TO LAST 12 HOURS ACTUAL SIZE 24 TABLETS Aleve Tablets - 24 Count Carton"
+    ],
+    "set_id": "00ef5b30-71d0-4cb4-84a3-48c67d1cea2a",
+    "id": "4526b265-424f-3e71-e063-6294a90a21a8",
+    "effective_time": "20251204",
+    "version": "19",
+    "openfda": {
+      "application_number": ["NDA020204"],
+      "brand_name": ["Aleve"],
+      "generic_name": ["NAPROXEN SODIUM"],
+      "manufacturer_name": ["Bayer HealthCare LLC."],
+      "product_ndc": ["0280-6010"],
+      "product_type": ["HUMAN OTC DRUG"],
+      "route": ["ORAL"],
+      "substance_name": ["NAPROXEN SODIUM"],
+      "rxcui": ["849574", "849728"],
+      "spl_id": ["4526b265-424f-3e71-e063-6294a90a21a8"],
+      "spl_set_id": ["00ef5b30-71d0-4cb4-84a3-48c67d1cea2a"],
+      "package_ndc": [
+        "0280-6010-24",
+        "0280-6010-50",
+        "0280-6010-01",
+        "0280-6010-02",
+        "0280-6010-03",
+        "0280-6010-04",
+        "0280-6010-06",
+        "0280-6010-05",
+        "0280-6010-07",
+        "0280-6010-09",
+        "0280-6010-10"
+      ],
+      "is_original_packager": [true],
+      "upc": ["0025866591981"],
+      "unii": ["9TN87S3A3C"]
+    }
+  }
+]

@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="icon" href="data:," />
+<title>Nomi — OTC safety check (prototype)</title>
+<style>
+  :root {
+    --ink: #1d2433; --muted: #5d6677; --line: #e3e6ec; --bg: #f6f7f9; --card: #fff;
+    --brand: #3b5bdb; --green: #2b8a3e; --green-bg: #ebfbee; --yellow: #a26b00; --yellow-bg: #fff4d6;
+    --red: #c92a2a; --red-bg: #fff0f0;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; font: 15px/1.45 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; color: var(--ink); background: var(--bg); }
+  header { background: var(--card); border-bottom: 1px solid var(--line); padding: 14px 20px; display: flex; align-items: center; gap: 12px; }
+  .logo { font-weight: 800; font-size: 22px; letter-spacing: -0.5px; color: var(--brand); }
+  .tag { font-size: 12px; font-weight: 600; background: #edf2ff; color: var(--brand); padding: 2px 8px; border-radius: 99px; }
+  .disclaimer { background: #fff9db; border-bottom: 1px solid #ffe066; padding: 8px 20px; font-size: 13px; color: #6b5300; }
+  main { max-width: 1100px; margin: 0 auto; padding: 20px; display: grid; grid-template-columns: 320px 1fr; gap: 20px; }
+  @media (max-width: 820px) { main { grid-template-columns: 1fr; } }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 16px; }
+  h2 { font-size: 13px; text-transform: uppercase; letter-spacing: .6px; color: var(--muted); margin: 0 0 10px; }
+  label.row { display: flex; gap: 8px; align-items: center; padding: 4px 0; cursor: pointer; }
+  select, input[type=text] { width: 100%; padding: 9px 10px; border: 1px solid var(--line); border-radius: 9px; font: inherit; }
+  button { font: inherit; border: 0; border-radius: 9px; padding: 9px 14px; background: var(--brand); color: #fff; font-weight: 600; cursor: pointer; }
+  button.ghost { background: #edf2ff; color: var(--brand); }
+  .inline { display: flex; gap: 8px; margin-bottom: 10px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .chip { background: #f1f3f5; color: var(--ink); font-weight: 500; padding: 6px 10px; font-size: 13px; border-radius: 99px; }
+  .chip:hover { background: #e7ecff; }
+  .results-list button { display: block; width: 100%; text-align: left; background: #f8f9fa; color: var(--ink); font-weight: 500; margin-top: 6px; }
+  .stack > * + * { margin-top: 16px; }
+  .product { display: flex; gap: 16px; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; }
+  .product h1 { margin: 0; font-size: 22px; }
+  .meta { color: var(--muted); font-size: 13px; }
+  .tier { min-width: 150px; text-align: center; border-radius: 14px; padding: 12px 16px; }
+  .tier .t { font-size: 26px; font-weight: 800; text-transform: uppercase; }
+  .tier .s { font-size: 13px; }
+  .tier.green { background: var(--green-bg); color: var(--green); }
+  .tier.yellow { background: var(--yellow-bg); color: var(--yellow); }
+  .tier.red { background: var(--red-bg); color: var(--red); }
+  .reason { border-left: 4px solid var(--line); padding: 8px 12px; margin: 10px 0; background: #fbfbfc; border-radius: 0 8px 8px 0; }
+  .reason.stop { border-color: var(--red); } .reason.high { border-color: #f08c00; } .reason.info { border-color: #adb5bd; }
+  .reason b { display: block; }
+  .pts { float: right; font-size: 12px; font-weight: 700; color: var(--muted); }
+  q, .ev { display: block; margin-top: 6px; font-size: 13px; color: #343a40; background: #fff; border: 1px dashed #ced4da; padding: 6px 8px; border-radius: 6px; quotes: none; }
+  .src { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: .4px; }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  td, th { text-align: left; padding: 7px 6px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { color: var(--muted); font-weight: 600; font-size: 12px; text-transform: uppercase; }
+  details { border-top: 1px solid var(--line); padding: 8px 0; }
+  summary { cursor: pointer; font-weight: 600; }
+  mark { background: #ffe8a3; padding: 0 1px; border-radius: 2px; }
+  .pipeline { display: flex; gap: 6px; flex-wrap: wrap; font-size: 12px; color: var(--muted); }
+  .pipeline span { background: #f1f3f5; padding: 3px 8px; border-radius: 99px; }
+  .err { color: var(--red); font-weight: 500; }
+  .empty { color: var(--muted); text-align: center; padding: 40px 10px; }
+  video { width: 100%; border-radius: 9px; margin-top: 8px; display: none; }
+</style>
+</head>
+<body>
+<header><span class="logo">nomi</span><span class="tag">MVP prototype</span>
+  <span class="meta" style="margin-left:auto">Is this OTC medicine safe for <i>me</i>?</span></header>
+<div class="disclaimer">Prototype for discussion only. Not medical advice. Label data from openFDA (unvalidated). Scores use a placeholder rubric, not the reviewed Nomi rubric.</div>
+<main>
+  <div class="stack">
+    <section class="card">
+      <h2>1. Who is taking it?</h2>
+      <select id="age">
+        <option value="30">Adult (18–64)</option>
+        <option value="70">Older adult (65+)</option>
+        <option value="14">Teen (12–17)</option>
+        <option value="8">Child (6–11)</option>
+        <option value="4">Child (2–5)</option>
+        <option value="1">Under 2</option>
+      </select>
+      <div style="margin-top:10px" id="conds"></div>
+    </section>
+    <section class="card">
+      <h2>2. Which product?</h2>
+      <div class="inline"><input id="code" type="text" inputmode="numeric" placeholder="Barcode (UPC) or NDC" /><button id="go">Check</button></div>
+      <div class="inline"><button class="ghost" id="scan" style="width:100%">Scan barcode with camera</button></div>
+      <video id="video" playsinline muted></video>
+      <div class="inline"><input id="q" type="text" placeholder="…or search by brand name" /><button class="ghost" id="search">Search</button></div>
+      <div class="results-list" id="hits"></div>
+      <h2 style="margin-top:14px">Try a product</h2>
+      <div class="chips" id="picks"></div>
+    </section>
+  </div>
+  <section id="out" class="card"><div class="empty">Pick a profile and a product to see Nomi's safety check.</div></section>
+</main>
+<script>
+const CONDS = [
+  ["pregnant", "Pregnant"],
+  ["liver", "Liver disease or 3+ drinks a day"],
+  ["ulcer", "Stomach ulcer or bleeding problems"],
+  ["heart", "High blood pressure or heart disease"],
+  ["kidney", "Kidney disease"],
+  ["thinner", "Takes a blood thinner (e.g. warfarin)"],
+  ["maoi", "Takes an MAOI antidepressant"],
+  ["glaucoma", "Glaucoma or enlarged prostate"],
+  ["nsaid_allergy", "Allergic to aspirin or ibuprofen"],
+];
+const $ = (id) => document.getElementById(id);
+$("conds").innerHTML = CONDS.map(([k, t]) => `<label class="row"><input type="checkbox" id="c_${k}"> ${t}</label>`).join("");
+let current = null;
+const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
+const FIELD = { warnings: "Warnings", do_not_use: "Do not use", ask_doctor: "Ask a doctor", ask_doctor_or_pharmacist: "Ask a doctor or pharmacist", stop_use: "Stop use", pregnancy_or_breast_feeding: "Pregnancy / breast-feeding", dosage_and_administration: "Directions", inactive_ingredient: "Inactive ingredients", active_ingredient: "Active ingredient", when_using: "When using", purpose: "Purpose", text: "Label" };
+
+function profile() {
+  const p = { age: Number($("age").value) };
+  for (const [k] of CONDS) p[k] = $("c_" + k).checked;
+  return p;
+}
+
+function score(d, p) {
+  const r = [];
+  const add = (points, title, evidence, stop = false) => r.push({ points, title, evidence, stop });
+  const has = (id) => d.facts.warnings.find((w) => w.warning_id === id);
+  const subst = (re) => d.substances.some((s) => re.test(s));
+  for (const a of d.facts.age_limits) {
+    if (p.age < a.under_years && p.age >= (a.min_years ?? 0)) {
+      if (a.action === "do_not_use") add(0, `Label: do not use under ${a.under_years}`, a.evidence, true);
+      else add(30, a.min_years != null ? `Label: ask a doctor for ages ${a.min_years} to under ${a.under_years}` : `Label: ask a doctor under ${a.under_years}`, a.evidence);
+    }
+  }
+  let w;
+  if ((w = has("reyes_syndrome_warning")) && p.age < 18) add(40, "Reye's syndrome risk for children and teens", w.evidence);
+  if ((w = has("liver_warning"))) p.liver ? add(45, "Contains acetaminophen: liver damage risk with liver disease or alcohol", w.evidence) : add(5, "Contains acetaminophen: easy to exceed the daily limit", w.evidence);
+  if ((w = has("stomach_bleeding_warning"))) {
+    if (p.ulcer) add(45, "NSAID with a history of ulcers or bleeding", w.evidence);
+    else if (p.thinner) add(45, "NSAID plus a blood thinner raises bleeding risk", w.evidence);
+    else if (p.age >= 60) add(20, "NSAID: stomach bleeding risk is higher at 60+", w.evidence);
+    else add(5, "NSAID: stomach bleeding warning on label", w.evidence);
+    if (p.kidney) add(25, "NSAIDs can worsen kidney disease (label: ask a doctor)", w.evidence);
+  }
+  if ((w = has("heart_attack_and_stroke_warning")) && p.heart) add(30, "NSAID with heart disease or high blood pressure", w.evidence);
+  if ((w = has("nsaid_allergy_alert")) && p.nsaid_allergy) add(0, "Allergy alert: you're allergic to this class of drug", w.evidence, true);
+  if ((w = has("nsaid_pregnancy_warning")) && p.pregnant) add(40, "NSAID in pregnancy: avoid in the last 3 months", w.evidence);
+  if ((w = has("maoi_warning")) && p.maoi) add(0, "Label: do not use with an MAOI", w.evidence, true);
+  if (subst(/diphenhydramine|doxylamine|chlorpheniramine/)) {
+    const ev = { field: "active_ingredient", text: d.substances.join(", ") };
+    if (p.age >= 65) add(30, "Sedating antihistamine: confusion and fall risk in older adults (AGS Beers)", ev);
+    if (p.glaucoma) add(25, "Antihistamine with glaucoma or enlarged prostate (label: ask a doctor)", ev);
+  }
+  if (subst(/pseudoephedrine|phenylephrine/) && p.heart) add(25, "Decongestant can raise blood pressure", { field: "active_ingredient", text: d.substances.join(", ") });
+  for (const id of ["acetaminophen_duplicate_use_warning", "diphenhydramine_duplicate_use_warning"]) {
+    if ((w = has(id))) add(0, "Don't combine with other products that contain the same ingredient", w.evidence);
+  }
+  const pts = r.reduce((s, x) => s + x.points, 0);
+  const sc = Math.max(0, Math.min(100, 100 - pts));
+  const stop = r.some((x) => x.stop);
+  const tier = stop ? "red" : sc >= 75 ? "green" : sc >= 50 ? "yellow" : "red";
+  r.sort((a, b) => (b.stop - a.stop) || (b.points - a.points));
+  return { score: sc, tier, stop, reasons: r };
+}
+
+const TIER_TEXT = { green: "Looks OK", yellow: "Use caution", red: "Avoid / ask first" };
+
+function render() {
+  if (!current) return;
+  const d = current, p = profile(), s = score(d, p), f = d.facts;
+  const reasons = s.reasons.length ? s.reasons.map((x) => `
+    <div class="reason ${x.stop ? "stop" : x.points >= 20 ? "high" : x.points ? "" : "info"}">
+      <span class="pts">${x.stop ? "HARD STOP" : x.points ? "−" + x.points : "info"}</span><b>${esc(x.title)}</b>
+      <span class="ev"><span class="src">${esc(FIELD[x.evidence.field] || x.evidence.field)}</span><br>“${esc(x.evidence.text)}”</span>
+    </div>`).join("") : `<p class="meta">No label warnings apply to this profile.</p>`;
+  const ages = f.age_limits.map((a) => `<tr><td>${a.action === "do_not_use" ? "Do not use" : "Ask a doctor"}</td><td>${a.min_years != null ? a.min_years + " to " : ""}under ${a.under_years} yrs</td><td class="meta">${esc(a.evidence.text)}</td></tr>`).join("");
+  const doses = f.max_daily_doses.map((m) => `<tr><td>Max per 24 h</td><td>${m.amount} ${esc(m.unit)}</td><td class="meta">${esc(m.evidence.text)}</td></tr>`).join("");
+  const allergens = f.allergens.map((a) => `<tr><td>Allergen</td><td>${esc(a.allergen)}</td><td class="meta">${esc(a.evidence.text)}</td></tr>`).join("");
+  const warns = f.warnings.map((w) => `<tr><td>Warning</td><td>${esc(w.warning_id.replace(/_/g, " "))}</td><td class="meta">${esc(w.evidence.text)}</td></tr>`).join("");
+  const n = f.warnings.length + f.age_limits.length + f.max_daily_doses.length + f.allergens.length;
+  const sections = d.sections.map((x) => `<details><summary>${esc(x.title)}</summary><p>${highlight(x)}</p></details>`).join("");
+  $("out").innerHTML = `
+    <div class="product">
+      <div><h1>${esc(d.brand)}</h1>
+        <div class="meta">${esc(d.generic)}<br>${esc(d.manufacturer)}${d.ndc ? " · NDC " + esc(d.ndc) : ""}${d.upc ? " · UPC " + esc(d.upc) : ""}</div></div>
+      <div class="tier ${s.tier}"><div class="t">${s.tier}</div><div class="s">${TIER_TEXT[s.tier]} · ${s.stop ? "label hard stop" : "score " + s.score}</div></div>
+    </div>
+    <h2 style="margin-top:18px">Why</h2>${reasons}
+    <h2 style="margin-top:18px">What Nomi read from the label (${n} facts)</h2>
+    <table><tr><th>Fact</th><th>Value</th><th>Evidence</th></tr>${warns}${ages}${doses}${allergens}</table>
+    <h2 style="margin-top:18px">Full label</h2>${sections}
+    <div class="pipeline" style="margin-top:14px"><span>openFDA label</span>→<span>rule extractor (NOMI-031)</span>→<span>placeholder scoring</span>→<span>tier + evidence</span></div>`;
+}
+
+function highlight(sec) {
+  const spans = [];
+  for (const group of ["warnings", "age_limits", "max_daily_doses", "allergens"])
+    for (const x of current.facts[group]) if (x.evidence.field === sec.field) spans.push(x.evidence.text);
+  let html = esc(sec.text);
+  for (const t of [...new Set(spans)].sort((a, b) => b.length - a.length)) {
+    const e = esc(t);
+    const i = html.indexOf(e);
+    if (i >= 0 && !html.slice(0, i).endsWith("<mark>")) html = html.slice(0, i) + "<mark>" + e + "</mark>" + html.slice(i + e.length);
+  }
+  return html;
+}
+
+async function api(path) {
+  const res = await fetch(path);
+  const body = await res.json();
+  if (!res.ok) throw new Error(body.error || "Lookup failed");
+  return body;
+}
+function loading(msg) { $("out").innerHTML = `<div class="empty">${esc(msg)}</div>`; }
+function fail(e) { $("out").innerHTML = `<div class="empty err">${esc(e.message)}</div>`; }
+
+async function byBarcode(code) {
+  $("code").value = code; $("hits").innerHTML = "";
+  loading("Looking up " + code + " on openFDA…");
+  try { current = await api("/api/barcode?code=" + encodeURIComponent(code)); render(); } catch (e) { fail(e); }
+}
+async function bySetId(id) {
+  loading("Loading label…");
+  try { current = await api("/api/label?set_id=" + encodeURIComponent(id)); render(); } catch (e) { fail(e); }
+}
+async function search() {
+  const q = $("q").value.trim(); if (!q) return;
+  $("hits").innerHTML = `<p class="meta">Searching…</p>`;
+  try {
+    const hits = await api("/api/search?q=" + encodeURIComponent(q));
+    $("hits").innerHTML = hits.length ? hits.map((h) => `<button data-id="${esc(h.set_id)}">${esc(h.brand)}<br><span class="meta">${esc(h.manufacturer)}</span></button>`).join("") : `<p class="meta">No OTC products found.</p>`;
+    $("hits").querySelectorAll("button").forEach((b) => (b.onclick = () => bySetId(b.dataset.id)));
+  } catch (e) { $("hits").innerHTML = `<p class="err">${esc(e.message)}</p>`; }
+}
+
+$("go").onclick = () => $("code").value.trim() && byBarcode($("code").value.trim());
+$("code").onkeydown = (e) => e.key === "Enter" && $("go").click();
+$("search").onclick = search;
+$("q").onkeydown = (e) => e.key === "Enter" && search();
+$("age").onchange = render;
+document.querySelectorAll("#conds input").forEach((i) => (i.onchange = render));
+
+api("/api/picks").then((ps) => {
+  $("picks").innerHTML = ps.map((x) => `<button class="chip" data-code="${x.barcode}">${esc(x.name)}</button>`).join("");
+  $("picks").querySelectorAll("button").forEach((b) => (b.onclick = () => byBarcode(b.dataset.code)));
+});
+
+$("scan").onclick = async () => {
+  if (!("BarcodeDetector" in window)) { alert("Camera scanning needs Chrome on Android/desktop. Type the barcode digits instead."); return; }
+  const video = $("video");
+  try {
+    const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } });
+    video.srcObject = stream; video.style.display = "block"; await video.play();
+    const det = new BarcodeDetector({ formats: ["upc_a", "ean_13"] });
+    const tick = async () => {
+      const codes = await det.detect(video).catch(() => []);
+      if (codes.length) { stream.getTracks().forEach((t) => t.stop()); video.style.display = "none"; byBarcode(codes[0].rawValue); }
+      else requestAnimationFrame(tick);
+    };
+    tick();
+  } catch (e) { alert("Camera unavailable: " + e.message); }
+};
+</script>
+</body>
+</html>

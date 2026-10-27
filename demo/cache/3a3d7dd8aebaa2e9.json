@@ -1,0 +1,564 @@
+[
+  {
+    "spl_product_data_elements": [
+      "Claritin Chewable Grape and Bubblegum Loratadine Claritin loratadine ASPARTAME LORATADINE LORATADINE SILICON DIOXIDE MAGNESIUM STEARATE STEARIC ACID ANHYDROUS CITRIC ACID SODIUM STARCH GLYCOLATE TYPE A POTATO D&C RED NO. 27 FD&C BLUE NO. 2 MANNITOL CELLULOSE, MICROCRYSTALLINE Light to medium purple with a slightly speckled and/or mottled appearance C flat faced beveled edge Claritin loratadine ASPARTAME LORATADINE LORATADINE SILICON DIOXIDE MAGNESIUM STEARATE ANHYDROUS CITRIC ACID SODIUM STARCH GLYCOLATE TYPE A POTATO CARMINIC ACID MANNITOL CELLULOSE, MICROCRYSTALLINE STEARIC ACID light to medium pink with a slightly and/or mottled appearance round (flat faced beveled edge) C"
+    ],
+    "active_ingredient": ["Active ingredient (in each tablet) Loratadine 5 mg"],
+    "purpose": ["Purpose Antihistamine"],
+    "indications_and_usage": [
+      "Uses temporarily relieves these symptoms due to hay fever or other upper respiratory allergies: \u25cfrunny nose \u25cfitchy, watery eyes \u25cfsneezing \u25cfitching of the nose or throat"
+    ],
+    "warnings": [
+      "Warnings Do not use if you have ever had an allergic reaction to this product or any of its ingredients. Ask a doctor before use if you have liver or kidney disease. Your doctor should determine if you need a different dose. When using this product do not take more than directed. Taking more than directed may cause drowsiness. Stop use and ask a doctor if an allergic reaction to this product occurs. Seek medical help right away. If pregnant or breast-feeding , ask a health professional before use. Keep out of reach of children. In case of overdose, get medical help or contact a Poison Control Center right away."
+    ],
+    "do_not_use": [
+      "Do not use if you have ever had an allergic reaction to this product or any of its ingredients."
+    ],
+    "ask_doctor": [
+      "Ask a doctor before use if you have liver or kidney disease. Your doctor should determine if you need a different dose."
+    ],
+    "when_using": [
+      "When using this product do not take more than directed. Taking more than directed may cause drowsiness."
+    ],
+    "stop_use": [
+      "Stop use and ask a doctor if an allergic reaction to this product occurs. Seek medical help right away."
+    ],
+    "pregnancy_or_breast_feeding": [
+      "If pregnant or breast-feeding , ask a health professional before use."
+    ],
+    "keep_out_of_reach_of_children": [
+      "Keep out of reach of children. In case of overdose, get medical help or contact a Poison Control Center right away."
+    ],
+    "dosage_and_administration": [
+      "Directions chew or crush tablets completely before swallowing. adults and children 6 years and over chew 2 tablets daily; not more than 2 chewable tablets in 24 hours children 2 to under 6 years of age chew 1 tablet daily; not more than 1 chewable tablet in 24 hours children under 2 years of age ask a doctor consumers with liver or kidney disease ask a doctor"
+    ],
+    "dosage_and_administration_table": [
+      "<table border=\"0\" width=\"100%\"><tbody><tr><td>adults and children 6 years and over</td><td>chew 2 tablets daily; not more than 2 chewable tablets in 24 hours</td></tr><tr><td>children 2 to under 6 years of age</td><td>chew 1 tablet daily; not more than 1 chewable tablet in 24 hours</td></tr><tr><td>children under 2 years of age</td><td>ask a doctor</td></tr><tr><td>consumers with liver or kidney disease</td><td>ask a doctor</td></tr></tbody></table>"
+    ],
+    "storage_and_handling": [
+      "Other Information phenylketonurics: grape flavor contains phenylalanine 1.4 mg per chewable tablet bubblegum flavor contains phenylalanine 1.9 mg per chewable tablet safety sealed: do not use if the individual blister unit imprinted with Children's Claritin\u00ae is open or torn store between 20\u00b0 to 25\u00b0C (68\u00b0 to 77\u00b0F)"
+    ],
+    "inactive_ingredient": [
+      "Inactive ingredients Grape chewable tablets aspartame, citric acid anhydrous, colloidal silicon dioxide, D&C red No. 27 aluminum lake, FD&C blue No. 2 aluminum lake, flavor, magnesium stearate, mannitol, microcrystalline cellulose, sodium starch glycolate, stearic aicd Bubblegum chewable tablets aspartame, carmine, citric acid, colloidal silicon dioxide, flavor, magnesium stearate, mannitol, microcrystalline cellulose, sodium starch glycolate, stearic acid"
+    ],
+    "questions": ["Questions or comments? 1-800-CLARITIN (1-800-252-7484)"],
+    "package_label_principal_display_panel": [
+      "PRINCIPAL DISPLAY PANEL - 40 Chewable Tablet Blister Pack Carton VARIETY PACK ages 2 + years Non-Drowsy* Children's Claritin \u00ae Chewables loratadine chewable tablets 5 mg/antihistamine 24 Hour Non-Drowsy* Relief of: Sneezing Runny Nose Itchy, Watery Eyes Itchy Throat or Nose Indoor & Outdoor Allergies 20 Grape Flavored 20 Bubblegum Flavored *When taken as directed. See Drug Facts Panel. 40 CHEWABLE TABLETS Childrens Chewables 5mg"
+    ],
+    "set_id": "0371368b-dca6-af2f-e063-6394a90a0ac0",
+    "id": "4526df19-7a6e-0f19-e063-6394a90a3954",
+    "effective_time": "20251204",
+    "version": "2",
+    "openfda": {
+      "application_number": ["NDA021891"],
+      "brand_name": ["Claritin Chewable Grape and Bubblegum"],
+      "generic_name": ["LORATADINE"],
+      "manufacturer_name": ["Bayer HealthCare LLC."],
+      "product_ndc": ["11523-0123"],
+      "product_type": ["HUMAN OTC DRUG"],
+      "route": ["ORAL"],
+      "rxcui": ["665078", "668469"],
+      "spl_id": ["4526df19-7a6e-0f19-e063-6394a90a3954"],
+      "spl_set_id": ["0371368b-dca6-af2f-e063-6394a90a0ac0"],
+      "package_ndc": ["11523-0123-1"],
+      "is_original_packager": [true],
+      "upc": ["0000000000000"]
+    }
+  },
+  {
+    "spl_product_data_elements": [
+      "Children Claritin Allergy loratadine SORBITOL EDETATE DISODIUM MALTITOL LORATADINE LORATADINE GLYCERIN PHOSPHORIC ACID SUCRALOSE WATER SODIUM PHOSPHATE, MONOBASIC PROPYLENE GLYCOL SODIUM BENZOATE"
+    ],
+    "spl_unclassified_section": ["Drug Facts"],
+    "active_ingredient": ["Active ingredient (in each 5 mL teaspoonful) Loratadine 5 mg"],
+    "purpose": ["Purpose Antihistamine"],
+    "indications_and_usage": [
+      "Uses temporarily relieves these symptoms due to hay fever or other upper respiratory allergies: runny nose sneezing itchy, watery eyes itching of the nose or throat"
+    ],
+    "warnings": ["Warnings"],
+    "do_not_use": [
+      "Do not use if you have ever had an allergic reaction to this product or any of its ingredients."
+    ],
+    "ask_doctor": [
+      "Ask a doctor before use if you have liver or kidney disease. Your doctor should determine if you need a different dose."
+    ],
+    "when_using": [
+      "When using this product do not take more than directed. Taking more than directed may cause drowsiness."
+    ],
+    "stop_use": [
+      "Stop use and ask a doctor if an allergic reaction to this product occurs. Seek medical help right away."
+    ],
+    "pregnancy_or_breast_feeding": [
+      "If pregnant or breast-feeding, ask a health professional before use."
+    ],
+    "keep_out_of_reach_of_children": [
+      "Keep out of reach of children . In case of overdose, get medical help or contact a Poison Control Center right away."
+    ],
+    "ask_doctor_or_pharmacist": [""],
+    "dosage_and_administration": [
+      "Directions Use only with enclosed dosing cup adults and children 6 years and over: 10 mL daily; do not take more than 10 mL in 24 hours children 2 to under 6 years of age: 5 mL daily; do not take more than 5 mL in 24 hours children under 2 years of age: ask a doctor consumers with liver or kidney disease: ask a doctor"
+    ],
+    "other_safety_information": [
+      "each 5 mL contains : sodium 6 mg do not use if tape imprinted with \u201cSEALED FOR YOUR PROTECTION\u201d on top and bottom flaps of carton is not intact. store between 20\u00b0 and 25\u00b0C (68\u00b0 and 77\u00b0F)"
+    ],
+    "inactive_ingredient": [
+      "edetate disodium, flavor, glycerin, maltitol, monobasic sodium phosphate, phosphoric acid, propylene glycol, purified water, sodium benzoate, sorbitol, sucralose"
+    ],
+    "questions": ["Questions or comments? 1-800-CLARITIN (1-800-252-7484) or www.claritin.com"],
+    "package_label_principal_display_panel": ["PDP"],
+    "set_id": "170061e9-e529-4ff0-e054-00144ff8d46c",
+    "id": "352ebcfd-07bb-a60e-e063-6394a90a5d70",
+    "effective_time": "20250515",
+    "version": "18",
+    "openfda": {
+      "application_number": ["NDA020641"],
+      "brand_name": ["Children Claritin Allergy"],
+      "generic_name": ["LORATADINE"],
+      "manufacturer_name": ["Bayer HealthCare LLC."],
+      "product_ndc": ["11523-4360"],
+      "product_type": ["HUMAN OTC DRUG"],
+      "route": ["ORAL"],
+      "substance_name": ["LORATADINE"],
+      "rxcui": ["692783", "755476"],
+      "spl_id": ["352ebcfd-07bb-a60e-e063-6394a90a5d70"],
+      "spl_set_id": ["170061e9-e529-4ff0-e054-00144ff8d46c"],
+      "package_ndc": [
+        "11523-4360-5",
+        "11523-4360-2",
+        "11523-4360-6",
+        "11523-4360-4",
+        "11523-4360-7",
+        "11523-4360-3",
+        "11523-4360-1"
+      ],
+      "is_original_packager": [true],
+      "upc": ["0041100810991"],
+      "unii": ["7AJO3BO7QN"]
+    }
+  },
+  {
+    "spl_product_data_elements": [
+      "Claritin Allergy loratadine EDETATE DISODIUM SORBITOL MALTITOL LORATADINE LORATADINE GLYCERIN PHOSPHORIC ACID SUCRALOSE WATER SODIUM PHOSPHATE, MONOBASIC PROPYLENE GLYCOL SODIUM BENZOATE Clear, colorless to light yellow"
+    ],
+    "spl_unclassified_section": ["Drug Facts"],
+    "active_ingredient": ["Active ingredient (in each 5 mL teaspoonful) Loratadine 5 mg"],
+    "purpose": ["Purpose Antihistamine"],
+    "indications_and_usage": [
+      "Uses temporarily relieves these symptoms due to hay fever or other upper respiratory allergies: runny nose itchy, watery eyes sneezing itching of the nose or throat"
+    ],
+    "warnings": ["Warnings"],
+    "do_not_use": [
+      "Do not use if you have ever had an allergic reaction to this product or any of its ingredients."
+    ],
+    "ask_doctor": [
+      "Ask a doctor before use if you have liver or kidney disease. Your doctor should determine if you need a different dose."
+    ],
+    "when_using": [
+      "When using this product do not take more than directed. Taking more than directed may cause drowsiness."
+    ],
+    "stop_use": [
+      "Stop use and ask a doctor if an allergic reaction to this product occurs. Seek medical help right away."
+    ],
+    "pregnancy_or_breast_feeding": [
+      "If pregnant or breast-feeding, ask a health professional before use."
+    ],
+    "keep_out_of_reach_of_children": [
+      "Keep out of reach of children . In case of overdose, get medical help or contact a Poison Control Center right away."
+    ],
+    "dosage_and_administration": [
+      "Directions use only with enclosed dosing cup mL = milliliter Adults and children 6 years and over: 10 mL daily, do not take more than 10mL in 24 hours; children 2 to under 6 years of age: 5mL daily, do not take more than 5mL in 24 hours; children under 2 years of age: ask a doctor"
+    ],
+    "other_safety_information": [
+      "Other Information each 5 mL contains : sodium 5.5 mg do not use if tape imprinted with \u201cSEALED FOR YOUR PROTECTION\u201d on top and bottom flaps of carton is not intact. store between 20\u00b0 and 25\u00b0C (68\u00b0 and 77\u00b0F)"
+    ],
+    "inactive_ingredient": [
+      "edetate disodium, flavors, glycerin, maltitol, menthol, phosphoric acid, propylene glycol, purified water, sodium benzoate, sodium phosphate, sorbitol, sucralose"
+    ],
+    "questions": ["Questions or comments? 1-800-CLARITIN (1-800-252-7484)"],
+    "package_label_principal_display_panel": ["Carton"],
+    "set_id": "19afd658-8c67-af44-e063-6394a90abada",
+    "id": "4526da60-c33b-fb4a-e063-6294a90a8692",
+    "effective_time": "20251204",
+    "version": "2",
+    "openfda": {
+      "application_number": ["NDA020641"],
+      "brand_name": ["Claritin Allergy"],
+      "generic_name": ["LORATADINE"],
+      "manufacturer_name": ["Bayer HealthCare LLC."],
+      "product_ndc": ["11523-0101"],
+      "product_type": ["HUMAN OTC DRUG"],
+      "route": ["ORAL"],
+      "substance_name": ["LORATADINE"],
+      "rxcui": ["692783", "755476"],
+      "spl_id": ["4526da60-c33b-fb4a-e063-6294a90a8692"],
+      "spl_set_id": ["19afd658-8c67-af44-e063-6394a90abada"],
+      "package_ndc": ["11523-0101-1", "11523-0101-2", "11523-0101-3"],
+      "is_original_packager": [true],
+      "upc": ["0041100595416"],
+      "unii": ["7AJO3BO7QN"]
+    }
+  },
+  {
+    "spl_product_data_elements": [
+      "Claritin loratadine SILICON DIOXIDE MAGNESIUM STEARATE MANNITOL CELLULOSE, MICROCRYSTALLINE STEARIC ACID LORATADINE LORATADINE ASPARTAME Light to Medium Pink with a Slightly and/or Mottled Appearance Round (Flat Faced Beveled Edge) C"
+    ],
+    "spl_unclassified_section": ["Drug Facts"],
+    "active_ingredient": ["Active Ingredients Loratadine 5 mg"],
+    "purpose": ["Purpose Antihistamine"],
+    "indications_and_usage": [
+      "temporarily relieves these symptoms due to hay fever or other upper respiratory allergies: runny nose sneezing itchy, watery eyes itching of the nose or throat"
+    ],
+    "do_not_use": [
+      "Do Not Use Do not use if you have ever had an allergic reaction to this product or any of its ingredients."
+    ],
+    "ask_doctor": [
+      "AS a doctor before use if you have Ask a doctor before use if you have liver or kidney disease. Your doctor should determine if you need a different dose."
+    ],
+    "when_using": [
+      "When using this product When using this product do not take more than directed. Taking more than directed may cause drowsiness."
+    ],
+    "stop_use": [
+      "Stop use and ask a doctor if Stop use and ask a doctor if an allergic reaction to this product occurs. Seek medical help right away."
+    ],
+    "pregnancy_or_breast_feeding": [
+      "If pregnant or breast-feeding, ask a health professional before use."
+    ],
+    "keep_out_of_reach_of_children": [
+      "Keep out of reach of children Keep out of reach of children. In case of overdose, get medical help or contact a Poison Control Center right away."
+    ],
+    "dosage_and_administration": [
+      "Directions adults and children 6 years and over chew 2 tablets daily; not more than 2 tablets in 24 hours children 2 to under 6 years of age chew 1 tablet daily; not more than 1 tablet in 24 hours children under 2 years of age ask a doctor consumers with liver or kidney disease ask a doctor"
+    ],
+    "dosage_and_administration_table": [
+      "<table border=\"0\" width=\"100%\"><tbody><tr><td><paragraph>adults and children 6 years and over</paragraph></td><td><paragraph>chew 2 tablets daily; not more than 2 tablets in 24 hours</paragraph></td></tr><tr><td><paragraph>children 2 to under 6 years of age </paragraph></td><td>chew 1 tablet daily; not more than 1 tablet in 24 hours</td></tr><tr><td>children under 2 years of age</td><td><paragraph>ask a doctor</paragraph></td></tr><tr><td>consumers with liver or kidney disease</td><td><paragraph>ask a doctor</paragraph></td></tr></tbody></table>"
+    ],
+    "other_safety_information": [
+      "Other information phenylketonurics: contains phenylalanine 1.9 mg per tablet safety sealed: do not use if the individual blister unit imprinted with Children\u2019s Claritin\u00ae is open or torn store between 20\u00b0 to 25\u00b0C (68\u00b0 to 77\u00b0F)"
+    ],
+    "inactive_ingredient": [
+      "aspartame, carmine, citric acid, colloidal silicon dioxide, flavor, magnesium stearate, mannitol, microcrystalline cellulose, sodium starch glycolate, stearic acid"
+    ],
+    "questions": ["1-800-CLARITIN"],
+    "warnings": [""],
+    "package_label_principal_display_panel": [
+      "ages 2 years\u00ae and older Children's Claritin\u00ae Chewables loratadine 5 mg/antihistamine Indoor & Outdoor Allergies *When taken as directed. See Drug Facts Panel Non-Drowsy* 24 Hour Relief of: Sneezing Runny Nose Itchy, Watery Eyes Itchy Throat or Nose Bubblegum Flavored 10 Chewable Tablets 10-count carton"
+    ],
+    "set_id": "20938e05-bc3e-51aa-e054-00144ff88e88",
+    "id": "45370735-3f9c-a7f8-e063-6294a90aa0c6",
+    "effective_time": "20251205",
+    "version": "8",
+    "openfda": {
+      "application_number": ["NDA021891"],
+      "brand_name": ["Claritin"],
+      "generic_name": ["LORATADINE"],
+      "manufacturer_name": ["Bayer HealthCare LLC."],
+      "product_ndc": ["11523-4330"],
+      "product_type": ["HUMAN OTC DRUG"],
+      "route": ["ORAL"],
+      "substance_name": ["LORATADINE"],
+      "rxcui": ["665078", "668469"],
+      "spl_id": ["45370735-3f9c-a7f8-e063-6294a90aa0c6"],
+      "spl_set_id": ["20938e05-bc3e-51aa-e054-00144ff88e88"],
+      "package_ndc": ["11523-4330-1", "11523-4330-3", "11523-4330-4"],
+      "is_original_packager": [true],
+      "upc": ["0041100811127"],
+      "unii": ["7AJO3BO7QN"]
+    }
+  },
+  {
+    "spl_product_data_elements": [
+      "Claritin LORATADINE STARCH, CORN LACTOSE MONOHYDRATE MAGNESIUM STEARATE LORATADINE LORATADINE 458;Claritin10"
+    ],
+    "spl_unclassified_section": [
+      "Drug Facts",
+      "Other information \u2022 safety sealed: do not use if the individual blister unit imprinted with Claritin\u00ae is open or torn \u2022 store between 20\u00b0 to 25\u00b0 C (68\u00b0 to 77\u00b0 F) \u2022 protect from excessive moisture"
+    ],
+    "active_ingredient": [
+      "Active ingredient (in each tablet) Loratadine 10 mg Purpose Antihistamine"
+    ],
+    "purpose": ["Purpose Antihistamine"],
+    "indications_and_usage": [
+      "Uses Temporarily relieves these symptoms due to hay fever or other upper respiratory allergies: \u2022 runny nose \u2022 itchy, watery eyes \u2022 sneezing \u2022 itching of the nose or throat"
+    ],
+    "warnings": [
+      "Warnings Do not use if you have ever had an allergic reaction to this product or any of its ingredients. Ask a doctor before use if you have liver or kidney disease. Your doctor should determine if you need a different dose. When using this product do not take more than directed. Taking more than directed may cause drowsiness. Stop use and ask a doctor if an allergic reaction to this product occurs. Seek medical help right away. If pregnant or breast-feeding ask a health professional before use. Keep out of reach of children. In case of overdose, get medical help or contact a Poison Control Center right away."
+    ],
+    "ask_doctor": [
+      "Ask a doctor before use if you have liver or kidney disease. Your doctor should determine if you need a different dose."
+    ],
+    "when_using": [
+      "When using this product do not take more than directed. Taking more than directed may cause drowsiness."
+    ],
+    "stop_use": [
+      "Stop use and ask a doctor if an allergic reaction to this product occurs. Seek medical help right away."
+    ],
+    "pregnancy_or_breast_feeding": [
+      "If pregnant or breast-feeding ask a health professional before use."
+    ],
+    "keep_out_of_reach_of_children": [
+      "Keep out of reach of children. In case of overdose, get medical help or contact a Poison Control Center right away."
+    ],
+    "dosage_and_administration": [
+      "Directions adults and Children 12 years and older 1 tablet daily; not more than 1 tablet in 24 hours children under 6 years of age ask a doctor consumers with liver or kidney diseases Ask a doctor"
+    ],
+    "dosage_and_administration_table": [
+      "<table cellspacing=\"0\" cellpadding=\"0\" border=\"1\"><tbody><tr><td valign=\"top\"><paragraph>adults and Children 12 years and older</paragraph></td><td valign=\"top\"><paragraph>1 tablet daily; not more than 1 tablet in 24 hours</paragraph></td></tr><tr><td valign=\"top\"><paragraph>children under 6 years of age</paragraph></td><td valign=\"top\"><paragraph>ask a doctor</paragraph></td></tr><tr><td valign=\"top\"><paragraph>consumers with liver or kidney diseases</paragraph></td><td valign=\"top\"><paragraph>Ask a doctor</paragraph></td></tr></tbody></table>"
+    ],
+    "inactive_ingredient": [
+      "Inactive ingredients corn starch, lactose monohydrate, magnesium stearate"
+    ],
+    "questions": ["Questions or comments? 1-800-CLARITIN (1-800-252-7484) or www.claritin.com"],
+    "package_label_principal_display_panel": ["Package Labeling: Claritin"],
+    "set_id": "219ab9c4-d0c4-4256-ab64-66d0260886bd",
+    "id": "f5db88bd-8ea6-0df0-e053-2995a90a18b4",
+    "effective_time": "20230301",
+    "version": "3",
+    "openfda": {
+      "application_number": ["NDA019658"],
+      "brand_name": ["Claritin"],
+      "generic_name": ["LORATADINE"],
+      "manufacturer_name": ["Navajo Manufacturing Company Inc."],
+      "product_ndc": ["67751-153"],
+      "product_type": ["HUMAN OTC DRUG"],
+      "route": ["ORAL"],
+      "substance_name": ["LORATADINE"],
+      "rxcui": ["206805", "311372"],
+      "spl_id": ["f5db88bd-8ea6-0df0-e053-2995a90a18b4"],
+      "spl_set_id": ["219ab9c4-d0c4-4256-ab64-66d0260886bd"],
+      "package_ndc": ["67751-153-01"],
+      "original_packager_product_ndc": ["11523-7160"],
+      "unii": ["7AJO3BO7QN"]
+    }
+  },
+  {
+    "spl_product_data_elements": [
+      "Claritin Loratadine ANHYDROUS CITRIC ACID SILICON DIOXIDE D&C RED NO. 27 FD&C BLUE NO. 2 ALUMINUM OXIDE MAGNESIUM STEARATE MANNITOL CELLULOSE, MICROCRYSTALLINE STEARIC ACID SODIUM STARCH GLYCOLATE TYPE A POTATO LORATADINE LORATADINE ASPARTAME light to medium purple with a slightly speckled and/or mottled appearance flat faced beveled edge C Claritin Loratadine ANHYDROUS CITRIC ACID SILICON DIOXIDE MANNITOL MAGNESIUM STEARATE ASPARTAME LORATADINE LORATADINE CELLULOSE, MICROCRYSTALLINE FD&C BLUE NO. 2 SODIUM STARCH GLYCOLATE TYPE A POTATO D&C RED NO. 27 STEARIC ACID ALUMINUM OXIDE Light to medium purple with a slightly speckled and/or mottled appearance Flat Faced Beveled Edge C"
+    ],
+    "active_ingredient": ["Active ingredient (in each tablet) Loratadine 5 mg"],
+    "purpose": ["Purpose Antihistamine"],
+    "indications_and_usage": [
+      "Uses temporarily relieves these symptoms due to hay fever or other upper respiratory allergies: runny nose sneezing itchy, watery eyes itching of the nose or throat"
+    ],
+    "warnings": [
+      "Warnings Do not use if you have ever had an allergic reaction to this product or any of its ingredients. Ask a doctor before use if you have liver or kidney disease. Your doctor should determine if you need a different dose. When using this product do not take more than directed. Taking more than directed may cause drowsiness. Stop use and ask a doctor if an allergic reaction to this product occurs. Seek medical help right away. If pregnant or breast-feeding , ask a health professional before use. Keep out of reach of children. In case of overdose, get medical help or contact a Poison Control Center right away."
+    ],
+    "do_not_use": [
+      "Do not use if you have ever had an allergic reaction to this product or any of its ingredients."
+    ],
+    "ask_doctor": [
+      "Ask a doctor before use if you have liver or kidney disease. Your doctor should determine if you need a different dose."
+    ],
+    "when_using": [
+      "When using this product do not take more than directed. Taking more than directed may cause drowsiness."
+    ],
+    "stop_use": [
+      "Stop use and ask a doctor if an allergic reaction to this product occurs. Seek medical help right away."
+    ],
+    "pregnancy_or_breast_feeding": [
+      "If pregnant or breast-feeding , ask a health professional before use."
+    ],
+    "keep_out_of_reach_of_children": [
+      "Keep out of reach of children. In case of overdose, get medical help or contact a Poison Control Center right away."
+    ],
+    "dosage_and_administration": [
+      "Directions adults and children 6 years and over chew 2 tablets daily; not more than 2 tablets in 24 hours children 2 to under 6 years of age chew 1 tablet daily; not more than 1 tablet in 24 hours children under 2 years of age ask a doctor consumers with liver or kidney disease ask a doctor"
+    ],
+    "dosage_and_administration_table": [
+      "<table width=\"75%\"><col width=\"50%\" align=\"left\" valign=\"top\"/><col width=\"50%\" align=\"left\" valign=\"top\"/><tbody><tr styleCode=\"Botrule\"><td styleCode=\"Lrule Rrule\">adults and children 6 years and over</td><td styleCode=\"Rrule\">chew 2 tablets daily; not more than 2 tablets in 24 hours</td></tr><tr styleCode=\"Botrule\"><td styleCode=\"Lrule Rrule\">children 2 to under 6 years of age</td><td styleCode=\"Rrule\">chew 1 tablet daily; not more than 1 tablet in 24 hours</td></tr><tr styleCode=\"Botrule\"><td styleCode=\"Lrule Rrule\">children under 2 years of age</td><td styleCode=\"Rrule\">ask a doctor</td></tr><tr><td styleCode=\"Lrule Rrule\">consumers with liver or kidney disease</td><td styleCode=\"Rrule\">ask a doctor</td></tr></tbody></table>"
+    ],
+    "storage_and_handling": [
+      "Other information phenylketonurics: contains phenylalanine 1.4 mg per tablet safety sealed: do not use if the individual blister unit imprinted with Children's Claritin\u00ae is open or torn store between 20\u00b0 to 25\u00b0C (68\u00b0 to 77\u00b0F)"
+    ],
+    "inactive_ingredient": [
+      "Inactive ingredients aspartame, citric acid anhydrous, colloidal silicon dioxide, D&C red No. 27 aluminum lake, FD&C blue No. 2 aluminum lake, flavor, magnesium stearate, mannitol, microcrystalline cellulose, sodium starch glycolate, stearic acid"
+    ],
+    "questions": ["Questions or comments? 1-800-CLARITIN (1-800-252-7484) or www.claritin.com"],
+    "spl_unclassified_section": [
+      "Dist by: Bayer HealthCare LLC, Whippany, NJ 07981 Product of Ireland"
+    ],
+    "package_label_principal_display_panel": [
+      "PRINCIPAL DISPLAY PANEL - 10 Chewable Tablet Blister Pack Carton NDC 11523-4328-1 ages 2 years and older Children's Claritin \u00ae Allergy loratadine 5 mg/antihistamine Indoor & Outdoor Allergies Non-Drowsy* 24 Hour Relief of: Sneezing Runny Nose Itchy, Watery Eyes Itchy Throat or Nose 10 CHEWABLE TABLETS Grape Flavored Chewables *When taken as directed. See Drug Facts Panel. Carton Carton 2"
+    ],
+    "set_id": "37732ca2-b454-4215-91a2-c62e0f7a56af",
+    "id": "453703bf-d4b7-d090-e063-6394a90a7ebf",
+    "effective_time": "20251205",
+    "version": "14",
+    "openfda": {
+      "application_number": ["NDA021891"],
+      "brand_name": ["Claritin"],
+      "generic_name": ["LORATADINE"],
+      "manufacturer_name": ["Bayer HealthCare LLC."],
+      "product_ndc": ["11523-4328", "11523-4331"],
+      "product_type": ["HUMAN OTC DRUG"],
+      "route": ["ORAL"],
+      "substance_name": ["LORATADINE"],
+      "rxcui": ["665078", "668469"],
+      "spl_id": ["453703bf-d4b7-d090-e063-6394a90a7ebf"],
+      "spl_set_id": ["37732ca2-b454-4215-91a2-c62e0f7a56af"],
+      "package_ndc": [
+        "11523-4328-1",
+        "11523-4328-2",
+        "11523-4328-3",
+        "11523-4328-5",
+        "11523-4328-4",
+        "11523-4328-7",
+        "11523-4328-9",
+        "11523-4328-6",
+        "11523-4331-1",
+        "11523-4331-2",
+        "11523-4331-6"
+      ],
+      "is_original_packager": [true],
+      "upc": ["0041100810748"],
+      "unii": ["7AJO3BO7QN"]
+    }
+  },
+  {
+    "spl_product_data_elements": [
+      "Claritin loratadine LACTOSE MONOHYDRATE MICROCRYSTALLINE CELLULOSE MAGNESIUM STEARATE SODIUM STARCH GLYCOLATE TYPE A CORN LORATADINE LORATADINE Claritin;10;458"
+    ],
+    "spl_unclassified_section": ["Drug Facts", ""],
+    "active_ingredient": ["Active ingredient (in each tablet) Loratadine, 10 mg USP"],
+    "purpose": ["Purpose Antihistamine"],
+    "indications_and_usage": [
+      "Uses Temporarily relieves these symptoms due to hay fever or other upper respiratory allergies: \u25a0 runny nose \u25a0 sneezing \u25a0 itchy, watery eyes \u25a0 itching of the nose or throat"
+    ],
+    "warnings": [
+      "Warnings Do not use if you have ever had an allergic reaction to this product or any of its ingredients. Ask a doctor Ask a doctor before use if you have liver or kidney disease. Your doctor should determine if you need a different dose. When using this product When using this product do not take more than directed. Taking more than directed may cause drowsiness. Stop use Stop use and ask a doctor if an allergic reaction to this product occurs. Seek medical help right away. If pregnant or breast-feeding If pregnant or breast-feeding , ask a health professional before use. Keep out of reach of children Keep out of reach of children . In case of overdose, get medical help or contact a Poison Control Center right away (1-800-222-1222)."
+    ],
+    "do_not_use": [
+      "Do not use if you have ever had an allergic reaction to this product or any of its ingredients."
+    ],
+    "ask_doctor": [
+      "Ask a doctor Ask a doctor before use if you have liver or kidney disease. Your doctor should determine if you need a different dose."
+    ],
+    "when_using": [
+      "When using this product When using this product do not take more than directed. Taking more than directed may cause drowsiness."
+    ],
+    "stop_use": [
+      "Stop use Stop use and ask a doctor if an allergic reaction to this product occurs. Seek medical help right away."
+    ],
+    "pregnancy_or_breast_feeding": [
+      "If pregnant or breast-feeding If pregnant or breast-feeding , ask a health professional before use."
+    ],
+    "keep_out_of_reach_of_children": [
+      "Keep out of reach of children Keep out of reach of children . In case of overdose, get medical help or contact a Poison Control Center right away (1-800-222-1222)."
+    ],
+    "dosage_and_administration": [
+      "Directions Directions adults and children 6 years and over 1 tablet daily; not more than 1 tablet in 24 hours children under 6 years of age ask a doctor consumers with liver or kidney disease ask a doctor"
+    ],
+    "dosage_and_administration_table": [
+      "<table border=\"0\" width=\"100%\"><tbody><tr><td>adults and children 6 years and over</td><td>1 tablet daily; not more than 1 tablet in 24 hours</td></tr><tr><td>children under 6 years of age</td><td>ask a doctor</td></tr><tr><td>consumers with liver or kidney disease</td><td>ask a doctor</td></tr></tbody></table>"
+    ],
+    "other_safety_information": [
+      "Other information \u25a0 store at 20\u00ba -25\u00ba C (68\u00ba -77\u00ba F) (see USP Controlled Room Temperature)"
+    ],
+    "inactive_ingredient": [
+      "Inactive ingredients lactose monohydrate, magnesium stearate, microcrystalline cellulose, sodium starch glycolate"
+    ],
+    "questions": ["Questions or comments? 1-800-CLARITIN (1-800-252-7484) or www.claritin.com"],
+    "package_label_principal_display_panel": [
+      "Claritin 1 pouch claritin1",
+      "claritin20",
+      "claritin 25 claritin25"
+    ],
+    "set_id": "3c9ad1f8-e8ef-bcd0-e063-6394a90ac20e",
+    "id": "46fe1007-0c18-a3ba-e063-6394a90a7b11",
+    "effective_time": "20251228",
+    "version": "2",
+    "openfda": {
+      "application_number": ["ANDA075209"],
+      "brand_name": ["Claritin"],
+      "generic_name": ["LORATADINE"],
+      "manufacturer_name": ["Select Consumer Group"],
+      "product_ndc": ["85237-1630"],
+      "product_type": ["HUMAN OTC DRUG"],
+      "route": ["ORAL"],
+      "substance_name": ["LORATADINE"],
+      "rxcui": ["206805", "311372"],
+      "spl_id": ["46fe1007-0c18-a3ba-e063-6394a90a7b11"],
+      "spl_set_id": ["3c9ad1f8-e8ef-bcd0-e063-6394a90ac20e"],
+      "package_ndc": ["85237-1630-1", "85237-1630-3", "85237-1630-4"],
+      "original_packager_product_ndc": ["11523-0800"],
+      "unii": ["7AJO3BO7QN"]
+    }
+  },
+  {
+    "spl_product_data_elements": [
+      "Claritin-D 24 Hour Loratadine pseudoephedrine sulfate POLYSORBATE 80 FERROSOFERRIC OXIDE SODIUM LAURYL SULFATE LACTOSE MONOHYDRATE TALC GLYCERYL MONOSTEARATE CANDELILLA WAX HYPROMELLOSES ETHYLCELLULOSES MAGNESIUM STEARATE POLYETHYLENE GLYCOL, UNSPECIFIED SILICON DIOXIDE TITANIUM DIOXIDE LORATADINE LORATADINE PSEUDOEPHEDRINE SULFATE PSEUDOEPHEDRINE white to off-white Andrx;605"
+    ],
+    "spl_unclassified_section": ["Drug Facts"],
+    "active_ingredient": [
+      "Active ingredient (in each tablet) Purpose Loratadine 10 mg Antihistamine Pseudoephedrine sulfate 240 mg Nasal decongestant"
+    ],
+    "active_ingredient_table": [
+      "<table width=\"60%\"><col width=\"65%\" align=\"left\" valign=\"top\"/><col width=\"35%\" align=\"right\" valign=\"top\"/><thead><tr><th><content styleCode=\"italics\">Active ingredient (in each tablet)</content></th><th align=\"center\"><content styleCode=\"italics\">Purpose</content></th></tr></thead><tbody><tr><td>Loratadine 10 mg</td><td>Antihistamine</td></tr><tr><td>Pseudoephedrine sulfate 240 mg</td><td>Nasal decongestant</td></tr></tbody></table>"
+    ],
+    "purpose": [
+      "Active ingredient (in each tablet) Purpose Loratadine 10 mg Antihistamine Pseudoephedrine sulfate 240 mg Nasal decongestant"
+    ],
+    "purpose_table": [
+      "<table width=\"60%\"><col width=\"65%\" align=\"left\" valign=\"top\"/><col width=\"35%\" align=\"right\" valign=\"top\"/><thead><tr><th><content styleCode=\"italics\">Active ingredient (in each tablet)</content></th><th align=\"center\"><content styleCode=\"italics\">Purpose</content></th></tr></thead><tbody><tr><td>Loratadine 10 mg</td><td>Antihistamine</td></tr><tr><td>Pseudoephedrine sulfate 240 mg</td><td>Nasal decongestant</td></tr></tbody></table>"
+    ],
+    "indications_and_usage": [
+      "Uses temporarily relieves these symptoms due to hay fever or other upper respiratory allergies: sneezing itchy, watery eyes runny nose itching of the nose or throat temporarily relieves nasal congestion due to the common cold, hay fever or other upper respiratory allergies reduces swelling of nasal passages temporarily relieves sinus congestion and pressure temporarily restores freer breathing through the nose"
+    ],
+    "warnings": [
+      "Warnings Do not use if you have ever had an allergic reaction to this product or any of its ingredients if you are now taking a prescription monoamine oxidase inhibitor (MAOI) (certain drugs for depression, psychiatric, or emotional conditions, or Parkinson's disease), or for 2 weeks after stopping the MAOI drug. If you do not know if your prescription drug contains an MAOI, ask a doctor or pharmacist before taking this product. Ask a doctor before use if you have heart disease thyroid disease high blood pressure diabetes trouble urinating due to an enlarged prostate gland liver or kidney disease. Your doctor should determine if you need a different dose. When using this product do not take more than directed. Taking more than directed may cause drowsiness. Stop use and ask a doctor if an allergic reaction to this product occurs. Seek medical help right away. symptoms do not improve within 7 days or are accompanied by a fever nervousness, dizziness or sleeplessness occurs If pregnant or breast-feeding, ask a health professional before use. Keep out of reach of children. In case of overdose, get medical help or contact a Poison Control Center right away."
+    ],
+    "do_not_use": [
+      "Do not use if you have ever had an allergic reaction to this product or any of its ingredients if you are now taking a prescription monoamine oxidase inhibitor (MAOI) (certain drugs for depression, psychiatric, or emotional conditions, or Parkinson's disease), or for 2 weeks after stopping the MAOI drug. If you do not know if your prescription drug contains an MAOI, ask a doctor or pharmacist before taking this product."
+    ],
+    "ask_doctor": [
+      "Ask a doctor before use if you have heart disease thyroid disease high blood pressure diabetes trouble urinating due to an enlarged prostate gland liver or kidney disease. Your doctor should determine if you need a different dose."
+    ],
+    "when_using": [
+      "When using this product do not take more than directed. Taking more than directed may cause drowsiness."
+    ],
+    "stop_use": [
+      "Stop use and ask a doctor if an allergic reaction to this product occurs. Seek medical help right away. symptoms do not improve within 7 days or are accompanied by a fever nervousness, dizziness or sleeplessness occurs"
+    ],
+    "pregnancy_or_breast_feeding": [
+      "If pregnant or breast-feeding, ask a health professional before use."
+    ],
+    "keep_out_of_reach_of_children": [
+      "Keep out of reach of children. In case of overdose, get medical help or contact a Poison Control Center right away."
+    ],
+    "dosage_and_administration": [
+      "Directions do not divide, crush, chew or dissolve the tablet adults and children 12 years and over 1 tablet daily with a full glass of water; not more than 1 tablet in 24 hours children under 12 years of age ask a doctor consumers with liver or kidney disease ask a doctor"
+    ],
+    "dosage_and_administration_table": [
+      "<table width=\"80%\" styleCode=\"Noautorules\"><col width=\"40%\" align=\"left\" valign=\"top\"/><col width=\"60%\" align=\"left\" valign=\"top\"/><tbody><tr><td styleCode=\"Botrule Rrule\">adults and children 12 years and over</td><td styleCode=\"Botrule\">1 tablet daily with a full glass of water; not more than 1 tablet in 24 hours</td></tr><tr styleCode=\"Botrule\"><td styleCode=\"Rrule\">children under 12 years of age</td><td>ask a doctor</td></tr><tr><td styleCode=\"Rrule\">consumers with liver or kidney disease</td><td>ask a doctor</td></tr></tbody></table>"
+    ],
+    "storage_and_handling": [
+      "Other information store between 20\u00b0 to 25\u00b0C (68\u00b0 to 77\u00b0F) protect from light and store in a dry place"
+    ],
+    "inactive_ingredient": [
+      "Inactive ingredients black iron oxide, candelilla wax powder, Inactive ingredients colloidal silicon dioxide, glyceryl monostearate, hypromellose, lactose monohydrate, magnesium stearate, polyethylene glycol, polysorbate 80, propylene glycol, sodium lauryl sulfate, talc, titanium dioxide"
+    ],
+    "questions": ["Questions or comments? 1-800-CLARITIN (1-800-252-7484) or www.claritin.com"],
+    "package_label_principal_display_panel": [
+      "PRINCIPAL DISPLAY PANEL - 10 Tablet Blister Pack Carton Non-Drowsy * Claritin-D \u00ae pseudoephedrine sulfate 240 mg/nasal decongestant loratadine 10 mg/antihistamine Indoor & Outdoor Allergies Allergy & Congestion 24 Hour Relief of: Nasal & Sinus Congestion Due to Colds or Allergies Sneezing; Runny Nose; Itchy, Watery Eyes; Itchy Throat or Nose Due to Allergies * When taken as directed. See Drug Facts Panel. 5 EXTENDED RELEASE TABLETS FC008192_CLARITIN-D_CLARITIN-D24_Tablets"
+    ],
+    "set_id": "3ea6a90b-8cb1-46b0-9ff7-be7090245e53",
+    "id": "4526d9ef-02fb-338e-e063-6394a90af108",
+    "effective_time": "20251204",
+    "version": "9",
+    "openfda": {
+      "application_number": ["ANDA075706"],
+      "brand_name": ["Claritin-D 24 Hour"],
+      "generic_name": ["LORATADINE PSEUDOEPHEDRINE SULFATE"],
+      "manufacturer_name": ["Bayer HealthCare LLC."],
+      "product_ndc": ["11523-0102"],
+      "product_type": ["HUMAN OTC DRUG"],
+      "route": ["ORAL"],
+      "substance_name": ["LORATADINE", "PSEUDOEPHEDRINE SULFATE"],
+      "rxcui": ["1117562", "1242391"],
+      "spl_id": ["4526d9ef-02fb-338e-e063-6394a90af108"],
+      "spl_set_id": ["3ea6a90b-8cb1-46b0-9ff7-be7090245e53"],
+      "package_ndc": ["11523-0102-1", "11523-0102-2"],
+      "is_original_packager": [true],
+      "unii": ["7AJO3BO7QN", "Y9DL7QPE6B"]
+    }
+  }
+]

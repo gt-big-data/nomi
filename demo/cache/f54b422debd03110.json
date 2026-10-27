@@ -1,0 +1,78 @@
+[
+  {
+    "spl_product_data_elements": [
+      "TYLENOL Extra Strength Acetaminophen BENZYL ALCOHOL BUTYLPARABEN CARBOXYMETHYLCELLULOSE SODIUM, UNSPECIFIED FORM D&C YELLOW NO. 10 EDETATE CALCIUM DISODIUM FD&C BLUE NO. 1 FD&C RED NO. 40 GELATIN, UNSPECIFIED HYPROMELLOSE, UNSPECIFIED FERROSOFERRIC OXIDE MAGNESIUM STEARATE METHYLPARABEN POLYETHYLENE GLYCOL, UNSPECIFIED POLYSORBATE 80 POWDERED CELLULOSE PROPYLENE GLYCOL PROPYLPARABEN FERRIC OXIDE RED SODIUM LAURYL SULFATE SODIUM PROPIONATE SODIUM STARCH GLYCOLATE TYPE A TITANIUM DIOXIDE FERRIC OXIDE YELLOW ACETAMINOPHEN ACETAMINOPHEN TY;500"
+    ],
+    "spl_unclassified_section": ["Drug Facts"],
+    "active_ingredient": ["Active ingredient (in each gelcap) Acetaminophen 500 mg"],
+    "purpose": ["Purpose Pain reliever/fever reducer"],
+    "indications_and_usage": [
+      "Uses temporarily relieves minor aches and pains due to: headache muscular aches backache minor pain of arthritis the common cold toothache premenstrual and menstrual cramps temporarily reduces fever"
+    ],
+    "warnings": [
+      "Warnings Liver warning This product contains acetaminophen. Severe liver damage may occur if you take more than 4,000 mg of acetaminophen in 24 hours with other drugs containing acetaminophen 3 or more alcoholic drinks every day while using this product Allergy alert: acetaminophen may cause severe skin reactions. Symptoms may include: skin reddening blisters rash If a skin reaction occurs, stop use and seek medical help right away. Do not use with any other drug containing acetaminophen (prescription or nonprescription). If you are not sure whether a drug contains acetaminophen, ask a doctor or pharmacist. if you are allergic to acetaminophen or any of the inactive ingredients in this product Ask a doctor before use if you have liver disease Ask a doctor or pharmacist before use if you are taking the blood thinning drug warfarin Stop use and ask a doctor if pain gets worse or lasts more than 10 days fever gets worse or lasts more than 3 days new symptoms occur redness or swelling is present These could be signs of a serious condition. If pregnant or breast-feeding, ask a health professional before use. Keep out of reach of children. Overdose warning In case of overdose, get medical help or contact a Poison Control Center right away. (1-800-222-1222) Quick medical attention is critical for adults as well as for children even if you do not notice any signs or symptoms."
+    ],
+    "do_not_use": [
+      "Do not use with any other drug containing acetaminophen (prescription or nonprescription). If you are not sure whether a drug contains acetaminophen, ask a doctor or pharmacist. if you are allergic to acetaminophen or any of the inactive ingredients in this product"
+    ],
+    "ask_doctor": ["Ask a doctor before use if you have liver disease"],
+    "ask_doctor_or_pharmacist": [
+      "Ask a doctor or pharmacist before use if you are taking the blood thinning drug warfarin"
+    ],
+    "stop_use": [
+      "Stop use and ask a doctor if pain gets worse or lasts more than 10 days fever gets worse or lasts more than 3 days new symptoms occur redness or swelling is present These could be signs of a serious condition."
+    ],
+    "pregnancy_or_breast_feeding": [
+      "If pregnant or breast-feeding, ask a health professional before use."
+    ],
+    "keep_out_of_reach_of_children": ["Keep out of reach of children."],
+    "dosage_and_administration": [
+      "Directions do not take more than directed (see overdose warning ) adults and children 12 years and over take 2 gelcaps every 6 hours while symptoms last do not take more than 6 gelcaps in 24 hours, unless directed by a doctor do not use for more than 10 days unless directed by a doctor children under 12 years ask a doctor"
+    ],
+    "dosage_and_administration_table": [
+      "<table width=\"50%\" styleCode=\"Noautorules\"><col width=\"35%\" align=\"left\" valign=\"top\"/><col width=\"65%\" align=\"left\" valign=\"top\"/><tbody><tr><td styleCode=\"Toprule Rrule\">adults and children 12 years and over</td><td styleCode=\"Toprule\"><list listType=\"unordered\" styleCode=\"Square\"><item>take 2 gelcaps every 6 hours while symptoms last</item><item>do not take more than 6 gelcaps in 24 hours, unless directed by a doctor</item><item>do not use for more than 10 days unless directed by a doctor</item></list></td></tr><tr><td styleCode=\"Toprule Rrule\">children under 12 years</td><td styleCode=\"Toprule\">ask a doctor</td></tr></tbody></table>"
+    ],
+    "storage_and_handling": [
+      "Other information store between 20-25\u00b0C (68-77\u00b0F). Avoid high humidity. do not use if carton is opened. Do not use if foil inner seal imprinted with \"TYLENOL\" is broken or missing"
+    ],
+    "inactive_ingredient": [
+      "Inactive ingredients benzyl alcohol, butylparaben, carboxymethylcellulose sodium, D&C yellow no. 10, edetate calcium disodium, FD&C blue no. 1, FD&C red no. 40, gelatin, hypromellose, iron oxide, magnesium stearate, methylparaben, modified starch, polyethylene glycol, polysorbate 80, powdered cellulose, pregelatinized starch, propylene glycol, propylparaben, red iron oxide, sodium lauryl sulfate, sodium propionate, sodium starch glycolate, titanium dioxide, yellow iron oxide"
+    ],
+    "questions": [
+      "Questions or comments? call 1-877-895-3665 (toll-free) or 215-273-8755 (collect)"
+    ],
+    "package_label_principal_display_panel": [
+      "PRINCIPAL DISPLAY PANEL NDC 50580-488-24 Extra Strength TYLENOL \u00ae FOR ADULTS Acetaminophen Pain Reliever Fever Reducer RAPID RELEASE GELS Actual Size 24 Gelcaps* 500 mg each *Gelatin-Coated Tablets Principal Display Panel"
+    ],
+    "set_id": "1b164780-ec84-4187-8afa-6f8a0da550fc",
+    "id": "4eda2608-4d48-1af0-e063-6294a90a2c72",
+    "effective_time": "20260407",
+    "version": "18",
+    "openfda": {
+      "application_number": ["M013"],
+      "brand_name": ["TYLENOL Extra Strength"],
+      "generic_name": ["ACETAMINOPHEN"],
+      "manufacturer_name": ["Kenvue Brands LLC"],
+      "product_ndc": ["50580-488"],
+      "product_type": ["HUMAN OTC DRUG"],
+      "route": ["ORAL"],
+      "substance_name": ["ACETAMINOPHEN"],
+      "rxcui": ["198440", "209459"],
+      "spl_id": ["4eda2608-4d48-1af0-e063-6294a90a2c72"],
+      "spl_set_id": ["1b164780-ec84-4187-8afa-6f8a0da550fc"],
+      "package_ndc": [
+        "50580-488-10",
+        "50580-488-24",
+        "50580-488-25",
+        "50580-488-28",
+        "50580-488-01",
+        "50580-488-52",
+        "50580-488-02",
+        "50580-488-50",
+        "50580-488-22"
+      ],
+      "is_original_packager": [true],
+      "unii": ["362O9ITL9D"]
+    }
+  }
+]
