@@ -14,6 +14,15 @@ from .common_schema import (
     Provenance,
 )
 from .ingredient_dimensions_schema import IngredientDimensions, Rating, Modifier
+from .label_extraction_schema import (
+    LabelExtraction,
+    LabelActiveIngredient,
+    QuotedStatement,
+    MandatedWarning,
+    LabelAgeLimit,
+    LabelMaxDailyDose,
+    LabelFacts,
+)
 from .product_schema import Product, ActiveIngredient, InactiveIngredient
 from .score_record_schema import (
     ScoreRecord,
@@ -43,12 +52,19 @@ __all__ = [
     "HardStop",
     "InactiveIngredient",
     "IngredientDimensions",
+    "LabelActiveIngredient",
+    "LabelAgeLimit",
+    "LabelExtraction",
+    "LabelFacts",
+    "LabelMaxDailyDose",
+    "MandatedWarning",
     "MedicationType",
     "Modifier",
     "Persona",
     "Product",
     "Profile",
     "Provenance",
+    "QuotedStatement",
     "Rating",
     "ReviewStatus",
     "SchemaValidationError",

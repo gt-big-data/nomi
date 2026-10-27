@@ -1,0 +1,138 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "label-extraction.schema.json",
+  "title": "LabelExtraction",
+  "description": "Structured facts an LLM pulled from one OTC Drug Facts label (NOMI-032). Every fact quotes the label text it came from, so it can be checked against the rule extractor (NOMI-031) and shown as evidence.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["set_id", "model_id", "prompt_hash", "extracted_at", "facts"],
+  "properties": {
+    "set_id": {
+      "description": "DailyMed SPL set id of the label.",
+      "type": "string",
+      "minLength": 1
+    },
+    "model_id": {
+      "description": "Exact model id that produced the facts, e.g. 'claude-haiku-4-5'.",
+      "type": "string",
+      "minLength": 1
+    },
+    "prompt_hash": {
+      "description": "SHA-256 of the system prompt and output schema sent to the model, so results from different prompts are never mixed.",
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "extracted_at": {
+      "description": "When the extraction ran (ISO 8601).",
+      "type": "string",
+      "format": "date-time"
+    },
+    "facts": { "$ref": "#/$defs/label_facts" }
+  },
+  "$defs": {
+    "evidence": {
+      "title": "Evidence",
+      "description": "Exact text copied from the label that supports a fact.",
+      "type": "string",
+      "minLength": 1
+    },
+    "active_ingredient": {
+      "title": "LabelActiveIngredient",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "strength", "evidence"],
+      "properties": {
+        "name": { "type": "string", "minLength": 1 },
+        "strength": {
+          "description": "Strength per unit as printed, e.g. '325 mg'. Null if the label doesn't state one.",
+          "type": ["string", "null"]
+        },
+        "evidence": { "$ref": "#/$defs/evidence" }
+      }
+    },
+    "quoted": {
+      "title": "QuotedStatement",
+      "description": "One condition, situation or medicine the label names, in plain words, with its quote.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["text", "evidence"],
+      "properties": {
+        "text": { "type": "string", "minLength": 1 },
+        "evidence": { "$ref": "#/$defs/evidence" }
+      }
+    },
+    "mandated_warning": {
+      "title": "MandatedWarning",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["warning_id", "evidence"],
+      "properties": {
+        "warning_id": {
+          "description": "Warning id from pipeline/knowledge/mandated_warnings.yaml and the rule extractor.",
+          "type": "string",
+          "pattern": "^[a-z0-9_]+$"
+        },
+        "evidence": { "$ref": "#/$defs/evidence" }
+      }
+    },
+    "age_limit": {
+      "title": "LabelAgeLimit",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["action", "min_years", "under_years", "evidence"],
+      "properties": {
+        "action": { "type": "string", "enum": ["do_not_use", "ask_doctor"] },
+        "min_years": { "type": ["integer", "null"], "minimum": 0 },
+        "under_years": { "type": "integer", "minimum": 1 },
+        "evidence": { "$ref": "#/$defs/evidence" }
+      }
+    },
+    "max_daily_dose": {
+      "title": "LabelMaxDailyDose",
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["amount", "unit", "evidence"],
+      "properties": {
+        "amount": { "type": "number", "exclusiveMinimum": 0 },
+        "unit": { "type": "string", "minLength": 1 },
+        "evidence": { "$ref": "#/$defs/evidence" }
+      }
+    },
+    "label_facts": {
+      "title": "LabelFacts",
+      "description": "The nine extracted fields. An empty list means the label has nothing for that field.",
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "active_ingredients",
+        "uses",
+        "mandated_warnings",
+        "do_not_use",
+        "ask_doctor",
+        "drug_interactions",
+        "age_limits",
+        "max_daily_doses",
+        "allergens"
+      ],
+      "properties": {
+        "active_ingredients": { "type": "array", "items": { "$ref": "#/$defs/active_ingredient" } },
+        "uses": { "type": "array", "items": { "$ref": "#/$defs/quoted" } },
+        "mandated_warnings": { "type": "array", "items": { "$ref": "#/$defs/mandated_warning" } },
+        "do_not_use": { "type": "array", "items": { "$ref": "#/$defs/quoted" } },
+        "ask_doctor": {
+          "description": "Conditions that mean asking a doctor before use.",
+          "type": "array",
+          "items": { "$ref": "#/$defs/quoted" }
+        },
+        "drug_interactions": {
+          "description": "Medicines that mean asking a doctor or pharmacist before use.",
+          "type": "array",
+          "items": { "$ref": "#/$defs/quoted" }
+        },
+        "age_limits": { "type": "array", "items": { "$ref": "#/$defs/age_limit" } },
+        "max_daily_doses": { "type": "array", "items": { "$ref": "#/$defs/max_daily_dose" } },
+        "allergens": { "type": "array", "items": { "$ref": "#/$defs/quoted" } }
+      }
+    }
+  }
+}

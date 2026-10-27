@@ -14,6 +14,7 @@ from both Platform and Data Analysis.
 | `term-tables` | The scoring model as lookup tables: points per ingredient, dimension and persona, extra points for conditions and medications, hard stops, tier bands, citations | Scoring (NOMI-051) | App scoring engine (NOMI-060) |
 | `score-record` | The result of scoring one product for one profile: score, tier, contributions, hard stops, benchmark, alternatives, explanation | App and pipeline | Result screen, golden vectors (NOMI-057) |
 | `signal` | One row of FAERS evidence: ingredient, dimension, age band, sex, IC and IC025 | Evidence stage (NOMI-053) | Rating, dashboard |
+| `label-extraction` | Nine fields an LLM pulled from one Drug Facts label, each with its exact quote, plus model id and prompt hash | LLM extractor (NOMI-032) | Merge with rule facts (NOMI-045, 047) |
 
 The persona, dimension, condition and medication type lists are owned by `docs/scoring/dimensions.md`
 (NOMI-016). Change them there and here together.

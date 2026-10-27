@@ -393,12 +393,14 @@ name = "nomi-pipeline"
 version = "0.1.0"
 source = { editable = "pipeline" }
 dependencies = [
+    { name = "nomi-schema" },
     { name = "pydantic-settings" },
     { name = "typer" },
 ]
 
 [package.metadata]
 requires-dist = [
+    { name = "nomi-schema", editable = "packages/schema" },
     { name = "pydantic-settings", specifier = ">=2.6.1" },
     { name = "typer", specifier = ">=0.15.1" },
 ]

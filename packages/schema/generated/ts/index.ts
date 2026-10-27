@@ -2,6 +2,7 @@
 
 export type { Ndc11, Unii, Persona, Dimension, Condition, MedicationType, Severity, Tier, ReviewStatus, CitationSource, Citation, CitationId, CitationMap, Provenance } from "./common";
 export type { IngredientDimensions, Rating, Modifier } from "./ingredient-dimensions";
+export type { LabelExtraction, Evidence, LabelActiveIngredient, QuotedStatement, MandatedWarning, LabelAgeLimit, LabelMaxDailyDose, LabelFacts } from "./label-extraction";
 export type { Product, ActiveIngredient, InactiveIngredient } from "./product";
 export type { ScoreRecord, Profile, Contribution, TriggeredHardStop, Benchmark, Alternative, ExplanationLine } from "./score-record";
 export type { Signal } from "./signal";

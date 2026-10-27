@@ -1,0 +1,23 @@
+{
+  "set_id": "c1d0a1a6-0d6a-4b52-9d8a-6a6f1c1b0a01",
+  "model_id": "claude-haiku-4-5",
+  "prompt_hash": "3b8f0c6f1e0b8d9a4f6c2e1d7a5b3c9e0f1a2b3c4d5e6f708192a3b4c5d6e7f8",
+  "extracted_at": "2026-10-27T08:00:00Z",
+  "facts": {
+    "active_ingredients": [{ "name": "acetaminophen", "strength": "500 mg", "evidence": "Acetaminophen 500 mg" }],
+    "uses": [{ "text": "minor aches and pains", "evidence": "temporarily relieves minor aches and pains" }],
+    "mandated_warnings": [
+      { "warning_id": "liver_warning", "evidence": "Liver warning: This product contains acetaminophen." }
+    ],
+    "do_not_use": [
+      { "text": "with other acetaminophen products", "evidence": "with any other drug containing acetaminophen" }
+    ],
+    "ask_doctor": [{ "text": "liver disease", "evidence": "if the user has liver disease" }],
+    "drug_interactions": [{ "text": "warfarin", "evidence": "if the user is taking the blood thinning drug warfarin" }],
+    "age_limits": [
+      { "action": "do_not_use", "min_years": null, "under_years": 12, "evidence": "children under 12 years: do not use" }
+    ],
+    "max_daily_doses": [{ "amount": 6, "unit": "caplets", "evidence": "do not take more than 6 caplets in 24 hours" }],
+    "allergens": [{ "text": "acetaminophen", "evidence": "if you are allergic to acetaminophen" }]
+  }
+}
