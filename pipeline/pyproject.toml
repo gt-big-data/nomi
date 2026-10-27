@@ -7,6 +7,7 @@ dependencies = [
     "pydantic-settings>=2.6.1",
     "typer>=0.15.1",
 ]
+
 [project.scripts]
 pipeline = "nomi_pipeline.cli:main"
 

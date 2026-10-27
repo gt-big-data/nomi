@@ -20,3 +20,9 @@ def test_yes_env_file(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
     (tmp_path / ".env").write_text("R2_BUCKET=test-bucket-name\n")
     settings = Settings()
     assert settings.r2_bucket == "test-bucket-name"
+
+
+def test_log_level_is_case_insensitive(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+    monkeypatch.chdir(tmp_path)
+    monkeypatch.setenv("LOG_LEVEL", "debug")
+    assert Settings().log_level == "DEBUG"
