@@ -3,9 +3,11 @@ from pathlib import Path
 from pydantic import field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
+REPO_ROOT = Path(__file__).resolve().parents[3]
+
 
 class Settings(BaseSettings):
-    model_config = SettingsConfigDict(env_file=".env")
+    model_config = SettingsConfigDict(env_file=REPO_ROOT / ".env", extra="ignore")
     data_dir: Path = Path("data")
     log_level: str = "INFO"
 
@@ -14,6 +16,11 @@ class Settings(BaseSettings):
     r2_secret_access_key: str | None = None
     r2_bucket: str | None = None
     r2_endpoint: str | None = None
+
+    @field_validator("data_dir")
+    @classmethod
+    def _anchor_data_dir(cls, value: Path) -> Path:
+        return value if value.is_absolute() else REPO_ROOT / value
 
     @field_validator("log_level")
     @classmethod
