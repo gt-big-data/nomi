@@ -1,0 +1,19 @@
+{
+  "id": "stomach_bleeding_warning_02",
+  "text": "Stomach bleeding warning: This product contains an NSAID, which may cause severe stomach bleeding. The chance is higher if you • are age 60 or older • have had stomach ulcers or bleeding problems • take a blood thinning (anticoagulant) or steroid drug • take other drugs containing prescription or nonprescription NSAIDs [aspirin, ibuprofen, naproxen, or others] • have 3 or more alcoholic drinks every day while using this product • take more or for a longer time than directed",
+  "expected_warnings": ["stomach_bleeding_warning"],
+  "source": {
+    "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=006adf23-21ab-4a4e-aae9-c4e587777165",
+    "openfda_query_url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name%3A%22IBUPROFEN%22+AND+openfda.product_type%3A%22HUMAN+OTC+DRUG%22&limit=30",
+    "set_id": "006adf23-21ab-4a4e-aae9-c4e587777165",
+    "label_id": "ec4746b3-2707-40c5-bb70-58a42f46c249",
+    "version": "7",
+    "effective_time": "20250603",
+    "retrieved_on": "2026-10-22",
+    "brand_name": ["care one ibuprofen"],
+    "field": "warnings",
+    "item_index": 0,
+    "start": 300,
+    "end": 778
+  }
+}

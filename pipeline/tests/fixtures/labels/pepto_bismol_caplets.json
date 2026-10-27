@@ -1,0 +1,33 @@
+{
+  "set_id": "01b318d2-586d-4953-8f98-addc4e3cd441",
+  "id": "412bf829-d172-4747-e063-6294a90a10c5",
+  "effective_time": "20251015",
+  "version": "1",
+  "active_ingredient": ["Active ingredient (in each caplet) Bismuth subsalicylate 262 mg"],
+  "warnings": [
+    "Warnings Reye's syndrome: Children and teenagers who have or are recovering from chicken pox or flu-like symptoms should not use this product. When using this product, if changes in behavior with nausea and vomiting occur, consult a doctor because these symptoms could be an early sign of Reye's syndrome, a rare but serious illness. Allergy alert: Contains salicylate. Do not take if you are allergic to salicylates (including aspirin) taking other salicylate products Do not use if you have an ulcer a bleeding problem bloody or black stool Ask a doctor before use if you have fever mucus in the stool Ask a doctor or pharmacist before use if you are taking any drug for anticoagulation (thinning the blood) diabetes gout arthritis When using this product a temporary, but harmless, darkening of the stool and/or tongue may occur Stop use and ask a doctor if symptoms get worse or last more than 2 days ringing in the ears or loss of hearing occurs diarrhea lasts more than 2 days If pregnant or breast feeding, ask a health professional before use. Keep out of reach of children. In case of overdose, get medical help or contact a Poison Control Center right away."
+  ],
+  "do_not_use": ["Do not use if you have an ulcer a bleeding problem bloody or black stool"],
+  "ask_doctor": ["Ask a doctor before use if you have fever mucus in the stool"],
+  "ask_doctor_or_pharmacist": [
+    "Ask a doctor or pharmacist before use if you are taking any drug for anticoagulation (thinning the blood) diabetes gout arthritis"
+  ],
+  "stop_use": [
+    "Stop use and ask a doctor if symptoms get worse or last more than 2 days ringing in the ears or loss of hearing occurs diarrhea lasts more than 2 days"
+  ],
+  "pregnancy_or_breast_feeding": [
+    "If pregnant or breast feeding, ask a health professional before use."
+  ],
+  "dosage_and_administration": [
+    "Directions • swallow with water, do not chew • adults and children 12 years and over: 2 caplets (1 dose) every ½ hour or 4 caplets (2 doses) every hour as needed for diarrhea 2 caplets (1 dose) every ½ hour as needed for overindulgence (upset stomach, heartburn, indigestion, nausea) • do not exceed 8 doses (16 caplets) in 24 hours • use until diarrhea stops but not more than 2 days • children under 12 years: ask a doctor • drink plenty of clear fluids to help prevent dehydration caused by diarrhea"
+  ],
+  "inactive_ingredient": [
+    "Inactive ingredients calcium carbonate, D&C red No. 27 aluminum lake, magnesium stearate, mannitol, microcrystalline cellulose, polysorbate 80, povidone, silicon dioxide, sodium starch glycolate"
+  ],
+  "openfda": {
+    "brand_name": ["Pepto-Bismol"],
+    "generic_name": ["BISMUTH SUBSALICYLATE"],
+    "package_ndc": ["76420-490-24"],
+    "product_type": ["HUMAN OTC DRUG"]
+  }
+}

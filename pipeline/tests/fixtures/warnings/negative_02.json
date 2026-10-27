@@ -1,0 +1,19 @@
+{
+  "id": "negative_02",
+  "text": "Ask a doctor before use if stomach bleeding warning applies to you you have a history of stomach problems, such as heartburn you have high blood pressure, heart disease, liver cirrhosis, kidney disease, asthma, or had a stroke you are taking a diuretic you have problems or serious side effects from taking pain relievers or fever reducers",
+  "expected_warnings": [],
+  "source": {
+    "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=00653b7c-7099-487e-9a01-e89781c21323",
+    "openfda_query_url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name%3A%22IBUPROFEN%22+AND+openfda.product_type%3A%22HUMAN+OTC+DRUG%22&limit=30",
+    "set_id": "00653b7c-7099-487e-9a01-e89781c21323",
+    "label_id": "4bd1345d-d116-426e-825f-bbf29381746a",
+    "version": "17",
+    "effective_time": "20260429",
+    "retrieved_on": "2026-10-22",
+    "brand_name": ["Ibuprofen Dye Free"],
+    "field": "ask_doctor",
+    "item_index": 0,
+    "start": 0,
+    "end": 339
+  }
+}

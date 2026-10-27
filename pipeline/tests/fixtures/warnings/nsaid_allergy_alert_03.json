@@ -1,0 +1,19 @@
+{
+  "id": "nsaid_allergy_alert_03",
+  "text": "Allergy alert: Aspirin may cause a severe allergic reaction which may include: ■ hives ■ facial swelling ■ asthma (wheezing) ■ shock",
+  "expected_warnings": ["nsaid_allergy_alert"],
+  "source": {
+    "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=03876c71-60ec-3280-e063-6294a90a62dc",
+    "openfda_query_url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name%3A%22ASPIRIN%22+AND+openfda.product_type%3A%22HUMAN+OTC+DRUG%22&limit=30",
+    "set_id": "03876c71-60ec-3280-e063-6294a90a62dc",
+    "label_id": "285f424d-b50c-c734-e063-6394a90a9680",
+    "version": "2",
+    "effective_time": "20241203",
+    "retrieved_on": "2026-10-22",
+    "brand_name": ["HEB Effervescent Pain Relief"],
+    "field": "warnings",
+    "item_index": 0,
+    "start": 334,
+    "end": 466
+  }
+}

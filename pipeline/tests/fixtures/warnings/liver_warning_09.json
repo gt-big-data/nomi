@@ -1,0 +1,19 @@
+{
+  "id": "liver_warning_09",
+  "text": "Liver warning: This product contains acetaminophen. Severe liver damage may occur if you take more than 6 caplets in 24 hours, which is the maximum daily amount with other drugs containing acetaminophen 3 or more alcoholic drinks every day while using this product",
+  "expected_warnings": ["liver_warning"],
+  "source": {
+    "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=00fadd26-a6eb-dc5e-e063-6394a90a3cca",
+    "openfda_query_url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name%3A%22ACETAMINOPHEN%22+AND+openfda.product_type%3A%22HUMAN+OTC+DRUG%22&limit=30",
+    "set_id": "00fadd26-a6eb-dc5e-e063-6394a90a3cca",
+    "label_id": "0bb01cb6-e97d-773c-e063-6294a90af15f",
+    "version": "2",
+    "effective_time": "20231215",
+    "retrieved_on": "2026-10-22",
+    "brand_name": ["Tension Headache Pain Relieving Aid"],
+    "field": "warnings",
+    "item_index": 0,
+    "start": 192,
+    "end": 456
+  }
+}

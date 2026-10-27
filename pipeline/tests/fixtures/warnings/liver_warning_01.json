@@ -1,0 +1,19 @@
+{
+  "id": "liver_warning_01",
+  "text": "Liver warning: This product contains acetaminophen. Severe liver damage may occur if you take more than 4,000 mg of acetaminophen in 24 hours with other drugs containing acetaminophen 3 or more alcoholic drinks every day while using this product",
+  "expected_warnings": ["liver_warning"],
+  "source": {
+    "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0005aafa-08f8-4990-a54d-cc097195708f",
+    "openfda_query_url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name%3A%22ACETAMINOPHEN%22+AND+openfda.product_type%3A%22HUMAN+OTC+DRUG%22&limit=30",
+    "set_id": "0005aafa-08f8-4990-a54d-cc097195708f",
+    "label_id": "ee8e3aa2-8550-41c7-9911-0723b3fb2f87",
+    "version": "20",
+    "effective_time": "20260102",
+    "retrieved_on": "2026-10-22",
+    "brand_name": ["Pain Reliever Extra Strength"],
+    "field": "warnings",
+    "item_index": 0,
+    "start": 9,
+    "end": 254
+  }
+}

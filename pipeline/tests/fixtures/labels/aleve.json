@@ -1,0 +1,34 @@
+{
+  "set_id": "00ef5b30-71d0-4cb4-84a3-48c67d1cea2a",
+  "id": "4526b265-424f-3e71-e063-6294a90a21a8",
+  "effective_time": "20251204",
+  "version": "19",
+  "active_ingredient": [
+    "Active ingredient (in each tablet) Naproxen sodium 220 mg (naproxen 200 mg) (NSAID) nonsteroidal anti-inflammatory drug"
+  ],
+  "warnings": [""],
+  "dosage_and_administration": [
+    "Directions do not take more than directed the smallest effective dose should be used drink a full glass of water with each dose Adults and children 12 years and older take 1 tablet every 8 to 12 hours while symptoms last for the first dose you may take 2 tablets within the first hour do not exceed 2 tablets in any 8- to 12-hour period do not exceed 3 tablets in a 24-hour period Children under 12 years ask a doctor"
+  ],
+  "inactive_ingredient": [
+    "Inactive ingredients FD&C blue #2 lake, hypromellose, magnesium stearate, microcrystalline cellulose, polyethylene glycol, povidone, talc, titanium dioxide"
+  ],
+  "openfda": {
+    "brand_name": ["Aleve"],
+    "generic_name": ["NAPROXEN SODIUM"],
+    "package_ndc": [
+      "0280-6010-24",
+      "0280-6010-50",
+      "0280-6010-01",
+      "0280-6010-02",
+      "0280-6010-03",
+      "0280-6010-04",
+      "0280-6010-06",
+      "0280-6010-05",
+      "0280-6010-07",
+      "0280-6010-09",
+      "0280-6010-10"
+    ],
+    "product_type": ["HUMAN OTC DRUG"]
+  }
+}

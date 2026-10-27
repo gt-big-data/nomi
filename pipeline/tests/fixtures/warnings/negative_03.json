@@ -1,0 +1,19 @@
+{
+  "id": "negative_03",
+  "text": "If pregnant or breast-feeding, ask a health professional before use. It is especially important not to use aspirin during the last 3 months of pregnancy unless definitely directed to do so by a doctor because it may cause problems in the unborn child or complications during delivery.",
+  "expected_warnings": [],
+  "source": {
+    "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0058175f-3474-40c3-a046-6cfaec86d84b",
+    "openfda_query_url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name%3A%22ASPIRIN%22+AND+openfda.product_type%3A%22HUMAN+OTC+DRUG%22&limit=30",
+    "set_id": "0058175f-3474-40c3-a046-6cfaec86d84b",
+    "label_id": "008ee85b-5cac-45a6-a857-a828f8125175",
+    "version": "3",
+    "effective_time": "20240416",
+    "retrieved_on": "2026-10-22",
+    "brand_name": ["Low Dose Aspirin"],
+    "field": "pregnancy_or_breast_feeding",
+    "item_index": 0,
+    "start": 0,
+    "end": 284
+  }
+}

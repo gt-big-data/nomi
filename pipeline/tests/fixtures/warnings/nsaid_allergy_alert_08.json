@@ -1,0 +1,19 @@
+{
+  "id": "nsaid_allergy_alert_08",
+  "text": "Allergy alert Aspirin may cause a severe allergic reaction which may include: hives facial swelling asthma (wheezing) shock",
+  "expected_warnings": ["nsaid_allergy_alert"],
+  "source": {
+    "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=062e7b7b-d052-82b0-e063-6294a90a7cce",
+    "openfda_query_url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name%3A%22ASPIRIN%22+AND+openfda.product_type%3A%22HUMAN+OTC+DRUG%22&limit=30",
+    "set_id": "062e7b7b-d052-82b0-e063-6294a90a7cce",
+    "label_id": "24998221-f349-47cd-e063-6294a90a4de3",
+    "version": "2",
+    "effective_time": "20241016",
+    "retrieved_on": "2026-10-22",
+    "brand_name": ["ASPIRIN"],
+    "field": "warnings",
+    "item_index": 0,
+    "start": 333,
+    "end": 456
+  }
+}

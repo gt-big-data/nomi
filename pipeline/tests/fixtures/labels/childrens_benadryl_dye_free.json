@@ -1,0 +1,31 @@
+{
+  "set_id": "10d478ff-ddc6-45da-87ff-cfe1b2b07a8e",
+  "id": "27d44a57-0879-63ea-e063-6394a90ac4cf",
+  "effective_time": "20241127",
+  "version": "10",
+  "active_ingredient": ["Active ingredient (in each 5 mL) Diphenhydramine HCl 12.5 mg"],
+  "warnings": [
+    "Warnings Do not use to make a child sleepy with any other product containing diphenhydramine, even one used on skin Ask a doctor before use if the child has a breathing problem such as chronic bronchitis glaucoma Ask a doctor or pharmacist before use if the child is taking sedatives or tranquilizers When using this product marked drowsiness may occur sedatives and tranquilizers may increase drowsiness excitability may occur, especially in children Keep out of reach of children. In case of overdose, get medical help or contact a Poison Control Center right away. (1-800-222-1222)"
+  ],
+  "do_not_use": [
+    "Do not use to make a child sleepy with any other product containing diphenhydramine, even one used on skin"
+  ],
+  "ask_doctor": [
+    "Ask a doctor before use if the child has a breathing problem such as chronic bronchitis glaucoma"
+  ],
+  "ask_doctor_or_pharmacist": [
+    "Ask a doctor or pharmacist before use if the child is taking sedatives or tranquilizers"
+  ],
+  "dosage_and_administration": [
+    "Directions find right dose on chart below mL = milliliter take every 4 to 6 hours, or as directed by a doctor do not take more than 6 doses in 24 hours Age (yr) Dose (mL) children under 2 years do not use children 2 to 5 years do not use unless directed by a doctor children 6 to 11 years 5 mL to 10 mL Attention: use only enclosed dosing cup specifically designed for use with this product. Do not use any other dosing device."
+  ],
+  "inactive_ingredient": [
+    "Inactive ingredients anhydrous citric acid, carboxymethylcellulose sodium, flavors, glycerin, purified water, saccharin sodium, sodium benzoate, sodium citrate, sorbitol solution"
+  ],
+  "openfda": {
+    "brand_name": ["Childrens Benadryl DYE-FREE ALLERGY"],
+    "generic_name": ["DIPHENHYDRAMINE HYDROCHLORIDE"],
+    "package_ndc": ["50580-535-01", "50580-535-08", "50580-535-02"],
+    "product_type": ["HUMAN OTC DRUG"]
+  }
+}

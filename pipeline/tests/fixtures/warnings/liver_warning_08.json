@@ -1,0 +1,19 @@
+{
+  "id": "liver_warning_08",
+  "text": "Liver warning: This product contains acetaminophen. Severe liver damage may occur if your child takes: more than 5 doses in 24 hours, which is the maximum daily amount with other drugs containing acetaminophen",
+  "expected_warnings": ["liver_warning"],
+  "source": {
+    "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=00ec6518-b5e3-49d1-a342-139381c3bfd2",
+    "openfda_query_url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name%3A%22ACETAMINOPHEN%22+AND+openfda.product_type%3A%22HUMAN+OTC+DRUG%22&limit=30",
+    "set_id": "00ec6518-b5e3-49d1-a342-139381c3bfd2",
+    "label_id": "0b4657e8-afb1-4401-e063-6394a90ae9e1",
+    "version": "4",
+    "effective_time": "20231129",
+    "retrieved_on": "2026-10-22",
+    "brand_name": ["Childrens Pain Relief"],
+    "field": "warnings",
+    "item_index": 0,
+    "start": 9,
+    "end": 218
+  }
+}

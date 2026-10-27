@@ -1,0 +1,19 @@
+{
+  "id": "diphenhydramine_duplicate_use_warning_06",
+  "text": "Do not use • for children under 12 years of age • with any other product containing diphenhydramine, even one used on skin",
+  "expected_warnings": ["diphenhydramine_duplicate_use_warning"],
+  "source": {
+    "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=03f521f4-d35f-4f66-b3ad-7e58a244eb93",
+    "openfda_query_url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name%3A%22DIPHENHYDRAMINE+HYDROCHLORIDE%22+AND+openfda.product_type%3A%22HUMAN+OTC+DRUG%22&limit=30",
+    "set_id": "03f521f4-d35f-4f66-b3ad-7e58a244eb93",
+    "label_id": "03f521f4-d35f-4f66-b3ad-7e58a244eb93",
+    "version": "1",
+    "effective_time": "20171018",
+    "retrieved_on": "2026-10-22",
+    "brand_name": ["CVS Health Nighttime Sleep Aid"],
+    "field": "warnings",
+    "item_index": 0,
+    "start": 9,
+    "end": 131
+  }
+}

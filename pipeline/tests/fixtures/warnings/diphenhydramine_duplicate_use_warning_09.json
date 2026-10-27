@@ -1,0 +1,19 @@
+{
+  "id": "diphenhydramine_duplicate_use_warning_09",
+  "text": "Do not use 25 MG to make a child sleepy with any other product containing diphenhydramine, even one used on skin 50 MG to make a child sleepy with any other product containing diphenhydramine, including one applied topically",
+  "expected_warnings": ["diphenhydramine_duplicate_use_warning"],
+  "source": {
+    "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=04e70311-6412-4a20-84e3-f6e26d5f19ab",
+    "openfda_query_url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name%3A%22DIPHENHYDRAMINE+HYDROCHLORIDE%22+AND+openfda.product_type%3A%22HUMAN+OTC+DRUG%22&limit=30",
+    "set_id": "04e70311-6412-4a20-84e3-f6e26d5f19ab",
+    "label_id": "4b432cbb-d3d9-2f88-e063-6294a90a7ed5",
+    "version": "17",
+    "effective_time": "20260220",
+    "retrieved_on": "2026-10-22",
+    "brand_name": ["Diphenhydramine Hydrochloride"],
+    "field": "warnings",
+    "item_index": 0,
+    "start": 9,
+    "end": 233
+  }
+}
