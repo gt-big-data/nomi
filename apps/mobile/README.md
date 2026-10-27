@@ -25,10 +25,10 @@ Rules for this app:
 
 ## Design
 
-- **Figma library:** [Nomi - Asset Library](https://www.figma.com/design/wNvJ7Nwq6MEIUqKeHWHEd9) has the light and dark
+- **Figma library:** [Nomi Library](https://www.figma.com/design/wNvJ7Nwq6MEIUqKeHWHEd9) has the light and dark
   color tokens (including score tier colors), the type and spacing scales, the core components, and an accessibility
   checks page (NOMI-012).
-- **Screens:** [Nomi – App Design](https://www.figma.com/design/xay5w9vFOvEeJU6a6rzzp8) has every screen,
+- **Screens:** [Nomi Demo Prototype](https://www.figma.com/design/xay5w9vFOvEeJU6a6rzzp8) has every screen,
   with notes and data callouts (NOMI-013).
 
 ### Add the library to a Figma file
