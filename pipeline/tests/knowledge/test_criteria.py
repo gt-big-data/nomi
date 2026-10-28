@@ -53,7 +53,7 @@ def test_stopp_start_file_exists() -> None:
 
 def test_stopp_start_structure() -> None:
     """Verify top-level metadata and citation in stopp_start.yaml."""
-    with open(STOPP_START_PATH, "r", encoding="utf-8") as f:
+    with open(STOPP_START_PATH, encoding="utf-8") as f:
         data = yaml.safe_load(f)
 
     assert data["version"] == "3.0"
@@ -71,7 +71,7 @@ def test_stopp_start_structure() -> None:
 
 def test_stopp_start_entries() -> None:
     """Verify each criterion in stopp_start.yaml has valid fields and values."""
-    with open(STOPP_START_PATH, "r", encoding="utf-8") as f:
+    with open(STOPP_START_PATH, encoding="utf-8") as f:
         data = yaml.safe_load(f)
 
     seen_ids = set()
@@ -115,7 +115,7 @@ def test_acb_file_exists() -> None:
 
 def test_acb_structure() -> None:
     """Verify top-level metadata and citation in acb.yaml."""
-    with open(ACB_PATH, "r", encoding="utf-8") as f:
+    with open(ACB_PATH, encoding="utf-8") as f:
         data = yaml.safe_load(f)
 
     assert data["version"] == "2008"
@@ -133,7 +133,7 @@ def test_acb_structure() -> None:
 
 def test_acb_entries() -> None:
     """Verify each item in acb.yaml has valid fields, scores, and dimensions."""
-    with open(ACB_PATH, "r", encoding="utf-8") as f:
+    with open(ACB_PATH, encoding="utf-8") as f:
         data = yaml.safe_load(f)
 
     seen_ids = set()
