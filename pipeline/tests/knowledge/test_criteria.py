@@ -6,7 +6,7 @@ and have complete citation metadata.
 """
 
 from pathlib import Path
-import pytest
+
 import yaml
 
 CRITERIA_DIR = Path(__file__).resolve().parents[2] / "knowledge" / "criteria"
@@ -86,9 +86,9 @@ def test_stopp_start_entries() -> None:
         assert item.get("drug_class"), f"{cid} missing drug_class"
 
         ingredients = item.get("ingredients")
-        assert (
-            isinstance(ingredients, list) and len(ingredients) > 0
-        ), f"{cid} must have non-empty ingredients list"
+        assert isinstance(ingredients, list) and len(ingredients) > 0, (
+            f"{cid} must have non-empty ingredients list"
+        )
 
         persona = item.get("target_persona")
         assert persona in VALID_PERSONAS, f"{cid} has invalid persona: {persona}"
@@ -100,9 +100,9 @@ def test_stopp_start_entries() -> None:
         assert dim in VALID_DIMENSIONS, f"{cid} has invalid risk dimension: {dim}"
 
         rationale = item.get("clinical_rationale")
-        assert (
-            rationale and len(rationale.strip()) > 20
-        ), f"{cid} clinical rationale is too short or missing"
+        assert rationale and len(rationale.strip()) > 20, (
+            f"{cid} clinical rationale is too short or missing"
+        )
 
         assert item.get("original_reference"), f"{cid} missing original_reference"
 
@@ -152,9 +152,9 @@ def test_acb_entries() -> None:
         seen_ingredients.add(ingredient)
 
         score = item.get("acb_score")
-        assert (
-            isinstance(score, int) and 0 <= score <= 3
-        ), f"{iid} has invalid acb_score: {score} (must be 0-3)"
+        assert isinstance(score, int) and 0 <= score <= 3, (
+            f"{iid} has invalid acb_score: {score} (must be 0-3)"
+        )
         scores_present.add(score)
 
         persona = item.get("target_persona")
@@ -164,9 +164,9 @@ def test_acb_entries() -> None:
         assert dim in VALID_DIMENSIONS, f"{iid} has invalid risk dimension: {dim}"
 
         rationale = item.get("clinical_rationale")
-        assert (
-            rationale and len(rationale.strip()) > 20
-        ), f"{iid} clinical rationale is too short or missing"
+        assert rationale and len(rationale.strip()) > 20, (
+            f"{iid} clinical rationale is too short or missing"
+        )
 
         assert item.get("original_reference"), f"{iid} missing original_reference"
 
