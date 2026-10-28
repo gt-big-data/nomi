@@ -1,9 +1,11 @@
 """Link OTC ingredient FDA ids (UNII) to RxNorm ids and name synonyms (NOMI-019)."""
 
+import csv
 import re
 from collections import defaultdict
 from collections.abc import Iterable, Iterator
 from dataclasses import dataclass
+from pathlib import Path
 
 _NON_ALNUM = re.compile(r"[^a-z0-9]+")
 
@@ -116,3 +118,17 @@ def link_ingredients(
 
     linked = [row for unii in sorted(linked_uniis) for row in by_unii[unii]]
     return linked, unlinked
+
+
+UNLINKED_COLUMNS = ("unii", "ingredient_name", "reason")
+
+
+def write_unlinked_csv(rows: Iterable[UnlinkedRow], path: Path) -> None:
+    """Write unlinked ingredients and their reasons to a CSV, sorted so reruns match."""
+    path.parent.mkdir(parents=True, exist_ok=True)
+    ordered = sorted(rows, key=lambda row: (row.reason, row.unii, row.ingredient_name))
+    with path.open("w", encoding="utf-8", newline="") as file:
+        writer = csv.writer(file)
+        writer.writerow(UNLINKED_COLUMNS)
+        for row in ordered:
+            writer.writerow([row.unii, row.ingredient_name, row.reason])
