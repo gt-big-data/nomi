@@ -1,6 +1,5 @@
 from __future__ import annotations
 
-import io
 import zipfile
 from pathlib import Path
 from typing import cast
@@ -8,7 +7,6 @@ from unittest.mock import MagicMock
 
 import polars as pl
 import pytest
-
 from nomi_pipeline.config import Settings
 from nomi_pipeline.ingest._faers import TABLES, _read_table, ingest_faers
 
@@ -103,7 +101,9 @@ def test_all_seven_tables_written(tmp_path: Path, faers_zip: Path) -> None:
     ingest_faers(settings, reports_dir=tmp_path / "reports")
 
     for table in TABLES:
-        assert (tmp_path / "bronze" / "faers" / f"{table}.parquet").exists(), f"missing {table}.parquet"
+        assert (tmp_path / "bronze" / "faers" / f"{table}.parquet").exists(), (
+            f"missing {table}.parquet"
+        )
 
 
 def test_two_runs_produce_identical_output(tmp_path: Path, faers_zip: Path) -> None:

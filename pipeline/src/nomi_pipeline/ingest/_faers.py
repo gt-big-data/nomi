@@ -61,8 +61,12 @@ def ingest_faers(settings: Settings, reports_dir: Path | None = None) -> None:
         total = len(df)
         deduped = df.join(latest_primaryids, on="primaryid", how="inner").sort("primaryid")
         after = len(deduped)
-        log.info("%s: %d → %d rows after dedup (%d removed)", table_name, total, after, total - after)
-        stats.append({"table": table_name, "total": total, "after_dedup": after, "removed": total - after})
+        log.info(
+            "%s: %d → %d rows after dedup (%d removed)", table_name, total, after, total - after
+        )
+        stats.append(
+            {"table": table_name, "total": total, "after_dedup": after, "removed": total - after}
+        )
         deduped.write_parquet(out_dir / f"{table_name}.parquet")
 
     _write_report(stats, zips, reports_dir or REPO_ROOT / "pipeline" / "reports")
@@ -73,7 +77,11 @@ def _read_table(zip_path: Path, table: str) -> pl.DataFrame | None:
     try:
         with zipfile.ZipFile(zip_path) as z:
             match = next(
-                (n for n in z.namelist() if table.upper() in n.upper() and n.lower().endswith(".txt")),
+                (
+                    n
+                    for n in z.namelist()
+                    if table.upper() in n.upper() and n.lower().endswith(".txt")
+                ),
                 None,
             )
             if match is None:
@@ -94,9 +102,7 @@ def _read_table(zip_path: Path, table: str) -> pl.DataFrame | None:
         return None
 
 
-def _write_report(
-    stats: list[dict[str, object]], zips: list[Path], reports_dir: Path
-) -> None:
+def _write_report(stats: list[dict[str, object]], zips: list[Path], reports_dir: Path) -> None:
     reports_dir.mkdir(parents=True, exist_ok=True)
     lines = [
         "# FAERS dedup report",
