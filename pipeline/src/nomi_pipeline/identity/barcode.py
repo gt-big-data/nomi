@@ -16,11 +16,16 @@ class BarcodeResult(TypedDict):
     candidates: list[str]
 
 
-def _check_digit(first11: str) -> int:
-    """Returns the expected check digit of a UPC-A barcode, given its first 11 digits."""
-    odds = sum(int(d) for d in first11[0::2])  # positions 1, 3, 5, 7, 9, 11
-    evens = sum(int(d) for d in first11[1::2])  # positions 2, 4, 6, 8, 10
-    total = odds * 3 + evens
+# Trimmed explicitly: str.strip() and JS trim() disagree on some characters, e.g. the BOM.
+_TRIM = " \t\n\r\v\f\ufeff"
+
+
+def _check_digit(data: str) -> int:
+    """Returns the expected check digit of a UPC-A or EAN-13 barcode, given every digit but the last.
+
+    Digits are weighted 3, 1, 3, ... starting from the rightmost one.
+    """
+    total = sum(int(d) * (3 if i % 2 == 0 else 1) for i, d in enumerate(reversed(data)))
     return (10 - total % 10) % 10
 
 
@@ -33,14 +38,18 @@ def ndc_candidates(raw: str) -> BarcodeResult:
 
     Candidates is empty unless status is "ok".
     """
-    code = raw.strip()
+    code = raw.strip(_TRIM)
 
     # isascii() rejects other Unicode digits that isdigit() accepts.
     if not (code.isascii() and code.isdigit()):
         return _fail("invalid_format")
 
-    # EAN-13 with a leading 0.
-    if len(code) == 13 and code[0] == "0":
+    # EAN-13 with a leading 0 is a UPC-A. Any other valid EAN-13 is a real barcode, just not a drug.
+    if len(code) == 13:
+        if code[0] != "0":
+            if _check_digit(code[:12]) != int(code[12]):
+                return _fail("bad_check_digit")
+            return _fail("not_ndc_barcode")
         code = code[1:]
 
     if len(code) != 12:

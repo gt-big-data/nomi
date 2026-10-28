@@ -13,19 +13,20 @@ export interface BarcodeResult {
   candidates: string[];
 }
 
-/** Returns the expected check digit of a UPC-A barcode, given its first 11 digits. */
-function checkDigit(first11: string): number {
-  let odds = 0; // positions 1, 3, 5, 7, 9, 11
-  let evens = 0; // positions 2, 4, 6, 8, 10
-  for (let i = 0; i < 11; i++) {
-    if (i % 2 === 0) {
-      odds += Number(first11[i]);
-    } else {
-      evens += Number(first11[i]);
-    }
+// Trimmed explicitly: trim() and Python's str.strip() disagree on some characters, e.g. the BOM.
+const TRIM = /^[ \t\n\r\v\f\ufeff]+|[ \t\n\r\v\f\ufeff]+$/g;
+
+/**
+ * Returns the expected check digit of a UPC-A or EAN-13 barcode, given every digit but the last.
+ * Digits are weighted 3, 1, 3, ... starting from the rightmost one.
+ */
+function checkDigit(data: string): number {
+  let total = 0;
+  for (let i = 0; i < data.length; i++) {
+    const weight = i % 2 === 0 ? 3 : 1;
+    total += Number(data[data.length - 1 - i]) * weight;
   }
-  const total = odds * 3 + evens;
-  return (10 - total % 10) % 10;
+  return (10 - (total % 10)) % 10;
 }
 
 function fail(status: Status): BarcodeResult {
@@ -37,15 +38,21 @@ function fail(status: Status): BarcodeResult {
  * Candidates is empty unless status is "ok".
  */
 export function ndcCandidates(raw: string): BarcodeResult {
-  let code = raw.trim();
+  let code = raw.replace(TRIM, "");
 
   // Only ASCII 0-9.
   if (!/^[0-9]+$/.test(code)) {
     return fail("invalid_format");
   }
 
-  // EAN-13 which has a leading 0.
-  if (code.length === 13 && code[0] === "0") {
+  // EAN-13 with a leading 0 is a UPC-A. Any other valid EAN-13 is a real barcode, just not a drug.
+  if (code.length === 13) {
+    if (code[0] !== "0") {
+      if (checkDigit(code.slice(0, 12)) !== Number(code[12])) {
+        return fail("bad_check_digit");
+      }
+      return fail("not_ndc_barcode");
+    }
     code = code.slice(1);
   }
   if (code.length !== 12) {

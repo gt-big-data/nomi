@@ -226,9 +226,9 @@
     "candidates": []
   },
   {
-    "description": "13 digits not starting with 0",
+    "description": "13 digits not starting with 0 (non-drug EAN-13)",
     "input": "1350580449028",
-    "status": "invalid_format",
+    "status": "bad_check_digit",
     "candidates": []
   },
   {
@@ -258,6 +258,34 @@
   {
     "description": "Arabic-Indic digit",
     "input": "٣50580449028",
+    "status": "invalid_format",
+    "candidates": []
+  },
+  {
+    "description": "BOM before a valid drug barcode",
+    "input": "﻿350580449028",
+    "status": "ok",
+    "candidates": [
+      "05058044902",
+      "50580044902",
+      "50580449002"
+    ]
+  },
+  {
+    "description": "Valid non-drug EAN-13 (4006381333931)",
+    "input": "4006381333931",
+    "status": "not_ndc_barcode",
+    "candidates": []
+  },
+  {
+    "description": "Non-drug EAN-13 with bad check digit",
+    "input": "4006381333932",
+    "status": "bad_check_digit",
+    "candidates": []
+  },
+  {
+    "description": "Unit separator control character is not trimmed",
+    "input": "\u001f350580449028",
     "status": "invalid_format",
     "candidates": []
   }
