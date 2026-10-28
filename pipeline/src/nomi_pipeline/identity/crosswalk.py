@@ -66,7 +66,7 @@ def build_crosswalk(terms: Iterable[RxnormTerm]) -> list[CrosswalkRow]:
     for term in terms:
         if term.sab == "RXNORM" and term.tty == "IN":
             names[term.rxcui] = term.name
-        if term.sab == "MTHSPL" and _is_unii(term.code):
+        if term.sab == "MTHSPL" and term.tty == "SU" and _is_unii(term.code):
             uniis[term.rxcui].add(term.code)
         synonyms[term.rxcui].add(normalize_name(term.name))
 

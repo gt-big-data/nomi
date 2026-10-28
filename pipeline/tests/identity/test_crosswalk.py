@@ -64,3 +64,12 @@ def test_build_crosswalk_links_unii_to_rxcui_with_synonyms() -> None:
             synonyms=("acetaminophen", "paracetamol"),
         )
     ]
+
+
+def test_build_crosswalk_only_uses_su_rows_for_uniis() -> None:
+    lines = [
+        make_line("161", "RXNORM", "IN", "161", "Acetaminophen"),
+        make_line("161", "MTHSPL", "MTH_RXN_BD", "362O9ITL9D", "SOME PRODUCT"),
+    ]
+
+    assert build_crosswalk(parse_rxnconso(lines)) == []
