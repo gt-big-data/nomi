@@ -28,3 +28,10 @@ Polars, DuckDB, lxml, Pydantic. Tooling setup lands in NOMI-001.
 | `docs/` | Method write-ups, such as signal detection |
 
 The knowledge base is reviewed like code: every change is a PR with citations.
+
+## Identity resolution (NOMI-025)
+
+`uv run pipeline identity resolve` joins the bronze directory and SPL tables,
+writes `data/silver/product.parquet`, and reports every unresolved package in
+`pipeline/reports/identity_coverage.md`. See [input contracts and coverage methodology](docs/identity.md).
+The upstream ingestion interfaces are provisional until NOMI-009/010 merge.
