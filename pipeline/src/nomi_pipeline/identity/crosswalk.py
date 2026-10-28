@@ -1,0 +1,134 @@
+"""Link OTC ingredient FDA ids (UNII) to RxNorm ids and name synonyms (NOMI-019)."""
+
+import csv
+import re
+from collections import defaultdict
+from collections.abc import Iterable, Iterator
+from dataclasses import dataclass
+from pathlib import Path
+
+_NON_ALNUM = re.compile(r"[^a-z0-9]+")
+
+# RXNCONSO.RRF is pipe-delimited. These are the column positions we use.
+_RXCUI, _SAB, _TTY, _CODE, _STR, _SUPPRESS = 0, 11, 12, 13, 14, 16
+_MIN_COLUMNS = 17
+
+
+@dataclass(frozen=True)
+class RxnormTerm:
+    """One name or code for an RxNorm concept."""
+
+    rxcui: str
+    sab: str
+    tty: str
+    code: str
+    name: str
+
+
+@dataclass(frozen=True)
+class CrosswalkRow:
+    """One link between an FDA ingredient id (UNII) and an RxNorm ingredient."""
+
+    unii: str
+    rxcui: str
+    rxnorm_name: str
+    synonyms: tuple[str, ...]
+
+
+def normalize_name(name: str) -> str:
+    """Lowercase a name and collapse punctuation and spaces so spellings compare equal."""
+    return _NON_ALNUM.sub(" ", name.lower()).strip()
+
+
+def parse_rxnconso(lines: Iterable[str]) -> Iterator[RxnormTerm]:
+    """Yield the non-suppressed terms from RXNCONSO.RRF lines."""
+    for line in lines:
+        fields = line.rstrip("\n").split("|")
+        if len(fields) < _MIN_COLUMNS or fields[_SUPPRESS] != "N":
+            continue
+        yield RxnormTerm(
+            rxcui=fields[_RXCUI],
+            sab=fields[_SAB],
+            tty=fields[_TTY],
+            code=fields[_CODE],
+            name=fields[_STR],
+        )
+
+
+def _is_unii(code: str) -> bool:
+    return len(code) == 10 and code.isalnum()
+
+
+def build_crosswalk(terms: Iterable[RxnormTerm]) -> list[CrosswalkRow]:
+    """Link UNIIs to RxNorm ingredients (IN terms), with normalized name synonyms."""
+    names: dict[str, str] = {}
+    synonyms: dict[str, set[str]] = defaultdict(set)
+    uniis: dict[str, set[str]] = defaultdict(set)
+
+    for term in terms:
+        if term.sab == "RXNORM" and term.tty == "IN":
+            names[term.rxcui] = term.name
+        if term.sab == "MTHSPL" and term.tty == "SU" and _is_unii(term.code):
+            uniis[term.rxcui].add(term.code)
+        synonyms[term.rxcui].add(normalize_name(term.name))
+
+    rows = [
+        CrosswalkRow(unii, rxcui, name, tuple(sorted(synonyms[rxcui])))
+        for rxcui, name in names.items()
+        for unii in uniis.get(rxcui, set())
+    ]
+    return sorted(rows, key=lambda row: (row.unii, row.rxcui))
+
+
+@dataclass(frozen=True)
+class Ingredient:
+    """An OTC ingredient from the product data."""
+
+    unii: str
+    name: str
+
+
+@dataclass(frozen=True)
+class UnlinkedRow:
+    """An ingredient we could not link, with the reason."""
+
+    unii: str
+    ingredient_name: str
+    reason: str
+
+
+def link_ingredients(
+    ingredients: Iterable[Ingredient], crosswalk: Iterable[CrosswalkRow]
+) -> tuple[list[CrosswalkRow], list[UnlinkedRow]]:
+    """Split ingredients into linked crosswalk rows and unlinked ingredients with reasons."""
+    by_unii: dict[str, list[CrosswalkRow]] = defaultdict(list)
+    for row in crosswalk:
+        by_unii[row.unii.upper()].append(row)
+
+    linked_uniis: set[str] = set()
+    unlinked: list[UnlinkedRow] = []
+    for ingredient in ingredients:
+        unii = ingredient.unii.strip().upper()
+        if not unii:
+            unlinked.append(UnlinkedRow("", ingredient.name, "missing_unii"))
+        elif unii in by_unii:
+            linked_uniis.add(unii)
+        else:
+            unlinked.append(UnlinkedRow(unii, ingredient.name, "unii_not_in_rxnorm"))
+
+    linked = [row for unii in sorted(linked_uniis) for row in by_unii[unii]]
+    return linked, unlinked
+
+
+UNLINKED_COLUMNS = ("unii", "ingredient_name", "reason")
+
+
+def write_unlinked_csv(rows: Iterable[UnlinkedRow], path: Path) -> None:
+    """Write unlinked ingredients and their reasons to a CSV, sorted so reruns match."""
+    path.parent.mkdir(parents=True, exist_ok=True)
+    ordered = sorted(rows, key=lambda row: (row.reason, row.unii, row.ingredient_name))
+    with path.open("w", encoding="utf-8", newline="") as file:
+        writer = csv.writer(file)
+        writer.writerow(UNLINKED_COLUMNS)
+        for row in ordered:
+            writer.writerow([row.unii, row.ingredient_name, row.reason])
