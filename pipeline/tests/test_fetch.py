@@ -7,19 +7,18 @@ from typing import Any, cast
 from unittest.mock import MagicMock
 
 import pytest
-
 from nomi_pipeline.config import Settings
 from nomi_pipeline.fetch import _fetch_source, _sha256
 
 
-def _mock_settings(tmp_path: Path) -> Settings:
+def _mock_settings(tmp_path: Path) -> tuple[MagicMock, Settings]:
     m = MagicMock(spec=Settings)
     m.raw_dir = tmp_path / "raw"
     m.r2_bucket = "test-bucket"
-    return cast(Settings, m)
+    return m, cast(Settings, m)
 
 
-def _mock_client(manifest: dict[str, Any], file_contents: dict[str, bytes]) -> Any:
+def _mock_client(manifest: dict[str, Any], file_contents: dict[str, bytes]) -> MagicMock:
     client = MagicMock()
     client.get_object.return_value = {
         "Body": MagicMock(read=MagicMock(return_value=json.dumps(manifest).encode()))
@@ -38,8 +37,8 @@ def test_fetch_downloads_and_verifies(tmp_path: Path) -> None:
     manifest: dict[str, Any] = {
         "files": [{"key": "ndc/file.zip", "sha256": sha, "size_bytes": len(content)}]
     }
-    settings = _mock_settings(tmp_path)
-    settings.r2_client.return_value = _mock_client(manifest, {"ndc/file.zip": content})  # type: ignore[union-attr]
+    mock, settings = _mock_settings(tmp_path)
+    mock.r2_client.return_value = _mock_client(manifest, {"ndc/file.zip": content})
 
     _fetch_source("ndc", settings)
 
@@ -57,9 +56,9 @@ def test_already_fresh_skips_download(tmp_path: Path) -> None:
     local.parent.mkdir(parents=True)
     local.write_bytes(content)
 
-    settings = _mock_settings(tmp_path)
+    mock, settings = _mock_settings(tmp_path)
     client = _mock_client(manifest, {})
-    settings.r2_client.return_value = client  # type: ignore[union-attr]
+    mock.r2_client.return_value = client
 
     _fetch_source("ndc", settings)
 
@@ -71,8 +70,8 @@ def test_corrupted_file_raises_and_cleans_up(tmp_path: Path) -> None:
     manifest: dict[str, Any] = {
         "files": [{"key": "ndc/file.zip", "sha256": good_sha, "size_bytes": 7}]
     }
-    settings = _mock_settings(tmp_path)
-    settings.r2_client.return_value = _mock_client(manifest, {"ndc/file.zip": b"corrupt"})  # type: ignore[union-attr]
+    mock, settings = _mock_settings(tmp_path)
+    mock.r2_client.return_value = _mock_client(manifest, {"ndc/file.zip": b"corrupt"})
 
     with pytest.raises(RuntimeError, match="checksum mismatch"):
         _fetch_source("ndc", settings)

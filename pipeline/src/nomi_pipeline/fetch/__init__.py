@@ -5,7 +5,7 @@ from __future__ import annotations
 import hashlib
 import json
 import logging
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
 
@@ -75,12 +75,10 @@ def _fetch_source(source: str, settings: Settings) -> None:
         actual = _sha256(local)
         if actual != expected:
             local.unlink(missing_ok=True)
-            raise RuntimeError(
-                f"checksum mismatch for {key}: expected {expected}, got {actual}"
-            )
+            raise RuntimeError(f"checksum mismatch for {key}: expected {expected}, got {actual}")
         log.info("verified %s", key)
 
-    manifest["fetched_at"] = datetime.now(timezone.utc).isoformat()
+    manifest["fetched_at"] = datetime.now(UTC).isoformat()
     (dest / "manifest.json").write_text(json.dumps(manifest, indent=2))
     log.info("fetch complete: %s (%d files)", source, len(files))
 

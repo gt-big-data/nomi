@@ -20,7 +20,7 @@ import argparse
 import hashlib
 import json
 import sys
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 
 VALID_SOURCES = ("ndc", "dailymed-otc", "faers")
@@ -58,7 +58,7 @@ def mirror(source: str, local_dir: Path) -> None:
         client.upload_file(str(f), bucket, key)
         entries.append({"key": key, "sha256": digest, "size_bytes": size})
 
-    manifest = {"generated_at": datetime.now(timezone.utc).isoformat(), "files": entries}
+    manifest = {"generated_at": datetime.now(UTC).isoformat(), "files": entries}
     client.put_object(
         Bucket=bucket,
         Key=f"{source}/manifest.json",
