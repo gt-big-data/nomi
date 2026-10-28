@@ -478,5 +478,3 @@ Because FAERS represents spontaneous reporting without a true population denomin
    A statistical signal is recognized **only if the lower 95% confidence bound ($\text{IC}_{025}$) is strictly greater than 0**.
 2. **Stratification:** FAERS counts are stratified by age band (`0-11`, `12-17`, `18-64`, `65+`, matching `signal.schema.json`) and sex to prevent confounding.
 3. **Review flag only:** FAERS never sets or changes a severity. Reports are voluntary and have no denominator, so counts are not rates. A signal ($\text{IC}_{025} > 0$) only flags an ingredient and dimension for pharmacist review, and any severity change must then be cited to a label, monograph, criteria list, or publication.
-
-
