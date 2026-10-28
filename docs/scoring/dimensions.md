@@ -128,7 +128,7 @@ Every active ingredient in Nomi is scored across 15 standard risk dimensions. Ea
 
 ## 2. Severity Scale
 
-The severity scale rates the intrinsic hazard of an active ingredient on a given risk dimension for a specific persona or modifier profile. It uses a 4-tier integer scale (`0` to `3`), where non-zero ratings require verifiable citations (`fda_label`, `otc_monograph`, `stopp_start`, `acb`, `faers`, or `publication`).
+The severity scale rates the intrinsic hazard of an active ingredient on a given risk dimension for a specific persona or modifier profile. It uses a 4-tier integer scale (`0` to `3`), where non-zero ratings require verifiable citations (`fda_label`, `otc_monograph`, `stopp_start`, `acb`, `publication`, or `pharmacist_review`). FAERS never sets a severity; see the FAERS rules in section 5.
 
 ```
 Score 0 (Negligible / None)  ──>  0 points deducted     ──>  Green (>=75)
@@ -148,8 +148,7 @@ The active ingredient has no established biochemical mechanism, receptor affinit
 - No target receptor affinity or relevant enzyme inhibition (e.g. non-sedating second-generation antihistamines lack significant central $H_1$ receptor occupancy; non-NSAIDs lack COX-1 inhibition).
 - Normal therapeutic doses do not challenge hepatic, renal, or cardiovascular reserve in the specified persona.
 - **Anticholinergic Burden:** $\text{ACB} = 0$.
-- **Geriatric Consensus:** Excluded from AGS Beers Criteria and STOPP/START lists for this physiological category.
-- **Pharmacovigilance (FAERS):** Proportional Reporting Ratio ($\text{PRR} < 1.0$) or Bayesian Information Component lower bound ($\text{IC}_{025} \le 0$) — zero disproportionate reporting.
+- **Geriatric Consensus:** Not listed in STOPP/START for this physiological category.
 
 #### 2. FDA Label Indicators
 
@@ -176,7 +175,6 @@ The active ingredient is associated with minor, self-limiting, or low-incidence 
 - Physiological changes are transient, reversible upon drug clearance, and well-tolerated by individuals without severe underlying organ failure.
 - **Anticholinergic Burden:** $\text{ACB} = 1$ (weak anticholinergic activity).
 - **Hemodynamics:** Transient blood pressure shifts $< 5\text{ mmHg}$ systolic without end-organ compromise.
-- **Pharmacovigilance (FAERS):** Low-to-moderate signal ($\text{IC}_{025} > 0$) restricted entirely to non-serious preferred terms (e.g. mild nausea, xerostomia, transient headache, mild dyspepsia).
 
 #### 2. FDA Label Indicators
 
@@ -206,8 +204,7 @@ The active ingredient exerts direct physiological stress, reduces organ reserve,
 - Significant central or peripheral receptor occupancy (e.g. marked $H_1$ and muscarinic blockade, significant alpha-adrenergic vasoconstriction, or systemic COX-1 inhibition).
 - Produces clinically meaningful functional degradation: psychomotor slowing, reaction time deficits, impaired renal perfusion under hypovolemic conditions, or blunting of antihypertensive therapy.
 - **Anticholinergic Burden:** $\text{ACB} = 2$.
-- **Geriatric Consensus:** Listed in Beers Criteria or STOPP/START under "Use with Caution" or with specific clinical caveats (e.g. short-term use only, avoid in fall-prone individuals).
-- **Pharmacovigilance (FAERS):** Robust signal ($\text{IC}_{025} > 0.5$) for clinically significant adverse events (e.g. urinary retention, acute hypertensive urgency, bronchospasm, symptomatic ulceration).
+- **Geriatric Consensus:** Listed in STOPP/START with specific clinical caveats (e.g. short-term use only, avoid in fall-prone individuals).
 
 #### 2. FDA Label Indicators
 
@@ -231,7 +228,7 @@ The active ingredient exerts direct physiological stress, reduces organ reserve,
 
 ---
 
-### Score 3: High / Severe Hazard, Boxed Warning, or Contraindication
+### Score 3: High / Severe Hazard or Contraindication
 
 The active ingredient poses catastrophic risks: irreversible organ failure, severe hemorrhage, life-threatening toxicity, fetal injury/death, or severe neuropsychiatric collapse. Demands strict contraindication or absolute avoidance.
 
@@ -240,12 +237,11 @@ The active ingredient poses catastrophic risks: irreversible organ failure, seve
 - Toxic metabolite accumulation overwhelming protective reserves (e.g. acetaminophen NAPQI saturation depleting hepatic glutathione; extensive centrilobular necrosis).
 - Direct disruption of essential survival physiology (complete suppression of gastric protective prostaglandins with simultaneous platelet inactivation; irreversible ductus arteriosus closure in utero).
 - **Anticholinergic Burden:** $\text{ACB} = 3$ in geriatric populations (`adult_65_plus`).
-- **Geriatric Consensus:** Beers Criteria and STOPP/START absolute **"Avoid"** category (e.g. systemic NSAIDs in heart failure / stage 4–5 CKD; first-gen antihistamines in cognitive impairment/dementia).
-- **Pharmacovigilance (FAERS):** Disproportionality spikes ($\text{IC}_{025} > 1.5$) associated with MedDRA Designated Medical Events (DME) such as _Acute Hepatic Failure_, _Gastrointestinal Perforation_, _Reye's Syndrome_, or _Ventricular Fibrillation_.
+- **Geriatric Consensus:** A STOPP criterion that applies without caveats (e.g. systemic NSAIDs in heart failure / stage 4–5 CKD; first-gen antihistamines in cognitive impairment/dementia).
 
 #### 2. FDA Label Indicators
 
-- **Mandated Bold Boxed / Specific Organ Warnings**:
+- **Required Organ-Specific Warnings** (Drug Facts "Warnings" section):
   - _"Liver warning: This product contains acetaminophen. Severe liver damage may occur..."_
   - _"Stomach bleeding warning: This product contains an NSAID, which may cause severe stomach bleeding..."_
   - _"Reye's syndrome: Children and teenagers who have or are recovering from chicken pox or flu-like symptoms should not use this product."_
@@ -261,7 +257,7 @@ The active ingredient poses catastrophic risks: irreversible organ failure, seve
 | `liver`                     | **Tylenol Extra Strength** (Acetaminophen) | Baseline / Heavy Alcohol Use     | Exceeding $4,000\text{ mg/day}$ or combining with $\ge 3$ alcoholic drinks depletes glutathione, causing hepatocellular necrosis, fulminant hepatic failure, and death. |
 | `pediatric`                 | **Bayer Aspirin** (Aspirin)                | `child_6_11` / `teen_12_17`      | Mitochondrial toxicity in viral illnesses triggers Reye's syndrome: acute hepatic encephalopathy, cerebral edema, $>20\%$ mortality.                                    |
 | `gi_bleeding`               | **Aleve** (Naproxen Sodium)                | `adult_65_plus` or Ulcer History | Synergistic ulcerogenic risk in elderly gastric mucosa; causes unheralded acute upper gastrointestinal hemorrhage, perforation, and shock.                              |
-| `anticholinergic_cognitive` | **Benadryl** (Diphenhydramine)             | `adult_65_plus`                  | Crosses impaired blood-brain barrier; precipitates acute delirium, accelerates cognitive decline in dementia, causes acute urinary retention; Beers "Avoid".            |
+| `anticholinergic_cognitive` | **Benadryl** (Diphenhydramine)             | `adult_65_plus`                  | Crosses impaired blood-brain barrier; precipitates acute delirium, accelerates cognitive decline in dementia, causes acute urinary retention; STOPP D14 / ACB 3.          |
 | `pregnancy_lactation`       | **Advil** (Ibuprofen)                      | `pregnant` ($\ge 20$ weeks)      | Inhibits fetal renal prostaglandins causing oligohydramnios; premature constriction of the fetal ductus arteriosus causing pulmonary hypertension.                      |
 | `serotonergic_interactions` | **Delsym** (Dextromethorphan)              | Concurrent `maoi`                | Inhibits serotonin reuptake; combined with MAO inhibition triggers fatal hyperpyrexia, autonomic instability, and seizures.                                             |
 
@@ -274,8 +270,7 @@ The active ingredient poses catastrophic risks: irreversible organ failure, seve
 | **Severity Meaning**                 | No documented risk   | Mild / incidental / transient                     | Precautionary / organ stress                | Severe / life-threatening hazard                        |
 | **Typical FDA Label Wording**        | Absent               | _"When using: drowsiness / mild upset may occur"_ | _"Ask a doctor before use if you have [X]"_ | _"Liver warning"_, _"Stomach bleeding"_, _"Do not use"_ |
 | **ACB Score**                        | 0                    | 1                                                 | 2 (or 3 in younger adults)                  | 3 in older adults (`adult_65_plus`)                     |
-| **Beers / STOPP Category**           | Not listed           | Not listed / Informational                        | "Use with caution"                          | "Avoid"                                                 |
-| **FAERS Signal ($\text{IC}_{025}$)** | $\le 0$ (No signal)  | $> 0$ (Non-serious PTs)                           | $> 0.5$ (Serious events)                    | $> 1.5$ (Designated Medical Events)                     |
+| **STOPP Category**                   | Not listed           | Not listed / Informational                        | "Use with caution"                          | "Avoid"                                                 |
 | **Point Deduction**                  | 0 points             | 5 – 10 points                                     | 15 – 25 points                              | 35 – 50+ points (or Hard Stop)                          |
 | **Default Product Tier**             | Green ($\ge 75$)     | Green ($\ge 75$)                                  | Yellow ($50–74$)                            | Red ($< 50$)                                            |
 
@@ -307,7 +302,7 @@ Nomi defines 8 canonical personas representing distinct age bands, pharmacokinet
 ### 2. `adult_65_plus` (Older Adult / Geriatric)
 - **Age / Group:** 65 years and older.
 - **Physiology:** Age-related physiological decline: progressive reduction in renal clearance (GFR declining $\sim 1\text{ mL/min}$ per year after age 40); decreased hepatic blood flow; increased blood-brain barrier permeability; lower gastric prostaglandin synthesis; loss of total body water (higher volume of distribution for lipophilic drugs).
-- **Consensus Standards:** Guided by the **AGS Beers Criteria** and **STOPP/START** criteria.
+- **Consensus Standards:** Guided by the **STOPP/START** criteria (v3) and the **ACB** scale.
 - **High-Risk Dimensions:**
   - `anticholinergic_cognitive`: High risk of acute delirium, accelerated cognitive decline, and urinary retention ($\text{ACB} \ge 2$ automatically scored 3 / Avoid).
   - `sedation_falls`: Heightened ataxia, motor slowing, orthostatic hypotension, and hip fracture risk.
@@ -356,7 +351,7 @@ Nomi defines 8 canonical personas representing distinct age bands, pharmacokinet
 - **Physiology:** Expanded intravascular volume; altered plasma protein binding; transplacental drug transfer; fetal organogenesis in Trimester 1; fetal cardiovascular and renal development in Trimesters 2 and 3.
 - **High-Risk Dimensions:**
   - `pregnancy_lactation`: 
-    - **NSAIDs $\ge 20$ Weeks:** FDA Boxed Warning — risk of premature constriction of the fetal ductus arteriosus causing neonatal pulmonary hypertension; fetal renal impairment causing **oligohydramnios** (low amniotic fluid).
+    - **NSAIDs $\ge 20$ Weeks:** FDA-required label warning (2020) about the risk of premature constriction of the fetal ductus arteriosus causing neonatal pulmonary hypertension; fetal renal impairment causing **oligohydramnios** (low amniotic fluid).
     - **Decongestants (Oral Pseudoephedrine/Phenylephrine):** Risk of uterine artery vasoconstriction and fetal hypoperfusion.
 
 ---
@@ -384,13 +379,13 @@ If an interaction represents an absolute medical contraindication, the modifier 
 | # | Stable ID | Display Name | Affected Dimensions | Baseline Mechanism & Severity Change |
 |---|---|---|---|---|
 | 1 | `hypertension` | High Blood Pressure | `cardiovascular_bp`, `kidney` | Sympathomimetics (pseudoephedrine) stimulate $\alpha_1$ receptors, raising systemic vascular resistance (+2 severity); NSAIDs blunt endogenous vasodilatory prostaglandins, counteracting BP control (+1 severity). |
-| 2 | `heart_disease` | Cardiovascular / Ischemic Heart Disease | `cardiovascular_bp` | Adrenergic agonists increase myocardial oxygen demand and induce arrhythmias (+2 severity); NSAIDs increase sodium retention and exacerbate heart failure (+2 severity / Beers Avoid). |
+| 2 | `heart_disease` | Cardiovascular / Ischemic Heart Disease | `cardiovascular_bp` | Adrenergic agonists increase myocardial oxygen demand and induce arrhythmias (+2 severity); NSAIDs increase sodium retention and exacerbate heart failure (+2 severity / STOPP B19). |
 | 3 | `kidney_disease` | Chronic Kidney Disease (CKD) | `kidney`, `cardiovascular_bp` | Impaired renal clearance. NSAID inhibition of $PGE_2$/$PGI_2$ triggers hemodynamic acute renal failure (+2 severity or Hard Stop if severe CKD). |
 | 4 | `liver_disease` | Cirrhosis / Chronic Hepatic Impairment | `liver` | Impaired glucuronidation and depleted baseline glutathione stores. Lowers the threshold for acetaminophen hepatotoxicity (+2 severity). |
 | 5 | `stomach_ulcer_or_bleeding` | Peptic Ulcer Disease / GI Bleeding | `gi_bleeding` | Systemic COX-1 inhibition destroys gastric mucous bicarbonate barrier. Pre-existing ulcers face high perforation and catastrophic hemorrhage risks (+2 severity / Hard Stop for NSAIDs). |
 | 6 | `glaucoma` | Glaucoma (Closed-Angle) | `anticholinergic_cognitive` | Anticholinergic pupillary dilation (mydriasis) blocks aqueous humor outflow via trabecular meshwork, precipitating acute angle-closure glaucoma (+2 severity / Hard Stop). |
 | 7 | `enlarged_prostate` | Benign Prostatic Hyperplasia (BPH) | `anticholinergic_cognitive` | Anticholinergic detrusor relaxation combined with $\alpha_1$-mediated bladder neck constriction precipitates acute urinary retention (+2 severity). |
-| 8 | `asthma` | Asthma / Reactive Airway Disease | `pediatric`, `local_skin`, `respiratory` | Aspirin-Exacerbated Respiratory Disease (AERD): COX-1 inhibition diverts arachidonic acid to leukotrienes, inducing severe bronchospasm in susceptible asthmatics (+2 severity). |
+| 8 | `asthma` | Asthma / Reactive Airway Disease | None (hard stop) | Aspirin-Exacerbated Respiratory Disease (AERD): COX-1 inhibition diverts arachidonic acid to leukotrienes, inducing severe bronchospasm in susceptible asthmatics. There is no respiratory dimension, so this is a hard stop on aspirin and NSAIDs driven by the label's allergy alert, not a severity change. |
 | 9 | `diabetes` | Diabetes Mellitus | `cardiovascular_bp`, `excipients` | Sympathomimetics stimulate hepatic glycogenolysis; liquid/chewable formulas high in sugars can disrupt glycemic control (+1 severity). |
 | 10 | `thyroid_disease` | Hyperthyroidism / Thyroid Disease | `cardiovascular_bp` | Increased beta-adrenergic receptor sensitivity in hyperthyroidism causes marked tachycardia and dysrhythmias with sympathomimetics (+2 severity). |
 | 11 | `phenylketonuria` | Phenylketonuria (PKU) | `excipients` | Inability to metabolize phenylalanine. Any formulation containing aspartame excipients triggers toxic hyperphenylalaninemia (**Hard Stop**). |
@@ -425,12 +420,11 @@ Nomi enforces strict evidence grounding: **every non-zero severity rating (`1`, 
                                                  └──> otc_monograph (21 CFR / CARES Orders)
                                                   │
        Level 2: Clinical Consensus Guidelines     ├──> stopp_start (Version 3)
-                                                 ├──> acb (Anticholinergic Cognitive Burden)
-                                                 └──> publication (AGS Beers Criteria)
+                                                 └──> acb (Anticholinergic Cognitive Burden)
                                                   │
-       Level 3: Pharmacovigilance Disproportionality ─> faers (openFDA / BCPNN IC025 > 0)
+       Level 3: Pharmacovigilance (review flag only) ─> faers (openFDA / BCPNN IC025 > 0)
                                                   │
-       Level 4: Mechanistic & Clinical Literature ──> publication (DrugBank / PubMed / RCTs)
+       Level 4: Mechanistic & Clinical Literature ──> publication (PubMed / RCTs)
                                                   │
        Level 5: Clinical Expert Adjudication      └──> pharmacist_review (Peer-reviewed PR)
 ```
@@ -446,7 +440,7 @@ Nomi enforces strict evidence grounding: **every non-zero severity rating (`1`, 
 | `stopp_start` | **STOPP/START Criteria** | Validated clinical consensus criteria for potentially inappropriate medications in older adults. | Edition + Section/Rule ID (e.g. `STOPP_v3_Section_B4`). |
 | `acb` | **Anticholinergic Burden Scale** | Quantitative 0–3 scoring of anticholinergic cognitive impairment and delirium risk. | Scale citation + Version (e.g. `Boustani_2008_ACB_v2`). |
 | `faers` | **FDA Adverse Event Reporting System** | Post-marketing surveillance measuring reporting disproportionality ($IC_{025} > 0$) across age bands. | Quarter + MedDRA PT/SMQ code (e.g. `FAERS_2024Q2_PT_10019699`). |
-| `publication` | **Peer-Reviewed Journals / DrugBank** | Clinical trials, meta-analyses, pharmacokinetic profiles, and receptor affinities. | DOI (`10.xxxx/...`) or PubMed PMID. |
+| `publication` | **Peer-Reviewed Journals** | Clinical trials, meta-analyses, pharmacokinetic profiles, and receptor affinities. | DOI (`10.xxxx/...`) or PubMed PMID. |
 | `pharmacist_review` | **Nomi Clinical Panel Review** | Adjudicated clinical consensus from licensed faculty/pharmacists for ambiguous cases. | Review Queue Ticket ID + Reviewer Credential ID. |
 
 *(Note: **RxNorm / UMLS** provides the normalization infrastructure mapping brand names and FAERS reported drugs to standard FDA `UNII` codes).*
@@ -458,13 +452,13 @@ Nomi enforces strict evidence grounding: **every non-zero severity rating (`1`, 
 | Dimension | Primary Allowed Sources | Secondary / Supporting Sources | Expected Document Criteria / Signals |
 |---|---|---|---|
 | **`liver`** | `fda_label`, `otc_monograph` | `faers`, `publication` | DailyMed "Liver warning"; 21 CFR 201.326; FAERS MedDRA SMQ *Hepatic disorders* ($IC_{025} > 0$); CYP2E1 kinetics. |
-| **`gi_bleeding`** | `fda_label`, `otc_monograph` | `stopp_start`, `faers`, `publication` | DailyMed "Stomach bleeding warning"; STOPP Section A (Peptic ulcer/NSAIDs); FAERS SMQ *Gastrointestinal haemorrhage*. |
+| **`gi_bleeding`** | `fda_label`, `otc_monograph` | `stopp_start`, `faers`, `publication` | DailyMed "Stomach bleeding warning"; STOPP Sections F and H (GI, NSAIDs); FAERS SMQ *Gastrointestinal haemorrhage*. |
 | **`cardiovascular_bp`** | `fda_label`, `otc_monograph` | `stopp_start`, `faers`, `publication` | DailyMed "Heart disease / high blood pressure"; STOPP Section B (Hypertension/Heart Failure); FAERS PT *Hypertension*, *Tachycardia*. |
-| **`kidney`** | `fda_label`, `otc_monograph` | `stopp_start`, `faers`, `publication` | DailyMed "Kidney disease / taking a diuretic"; STOPP Section C (eGFR < 50); FAERS SMQ *Acute renal failure*. |
-| **`anticholinergic_cognitive`** | `acb`, `stopp_start` | `fda_label`, `publication` | ACB score 1–3; STOPP Section D (Cognitive impairment); Beers Criteria Table 6/7; DailyMed "glaucoma / enlarged prostate". |
+| **`kidney`** | `fda_label`, `otc_monograph` | `stopp_start`, `faers`, `publication` | DailyMed "Kidney disease / taking a diuretic"; STOPP Section E (renal); FAERS SMQ *Acute renal failure*. |
+| **`anticholinergic_cognitive`** | `acb`, `stopp_start` | `fda_label`, `publication` | ACB score 1–3; STOPP Sections D and M (CNS, antimuscarinic burden); DailyMed "glaucoma / enlarged prostate". |
 | **`sedation_falls`** | `fda_label`, `otc_monograph` | `stopp_start`, `publication`, `faers` | DailyMed "marked drowsiness / driving warning"; STOPP Section K (Fall risk); psychomotor driving impairment studies. |
-| **`serotonergic_interactions`** | `fda_label`, `otc_monograph` | `publication`, `faers`, `pharmacist_review` | DailyMed "Do not use with MAOI"; Boyer & Shannon diagnostic criteria; DrugBank 5-HT reuptake $K_i$; FAERS SMQ *Serotonin syndrome*. |
-| **`anticoagulant_bleeding`** | `fda_label`, `otc_monograph` | `stopp_start`, `publication`, `faers` | DailyMed "Ask a doctor if taking blood thinning / anticoagulant drug"; STOPP Section E (Anticoagulant + Antiplatelet/NSAID). |
+| **`serotonergic_interactions`** | `fda_label`, `otc_monograph` | `publication`, `faers`, `pharmacist_review` | DailyMed "Do not use with MAOI"; Boyer & Shannon diagnostic criteria; FAERS SMQ *Serotonin syndrome*. |
+| **`anticoagulant_bleeding`** | `fda_label`, `otc_monograph` | `stopp_start`, `publication`, `faers` | DailyMed "Ask a doctor if taking blood thinning / anticoagulant drug"; STOPP Section C (antiplatelet / anticoagulant). |
 | **`pediatric`** | `fda_label`, `otc_monograph` | `publication`, `faers` | DailyMed "Reye's syndrome", "Do not use under age X"; AAP Committee on Drugs policies; Age-stratified FAERS pediatric data. |
 | **`rebound_overuse`** | `fda_label`, `otc_monograph` | `publication`, `faers` | DailyMed "Do not use for more than 3 days / rebound congestion"; ICHD-3 Medication-Overuse Headache criteria. |
 | **`pregnancy_lactation`** | `fda_label`, `otc_monograph` | `publication`, `faers` | DailyMed "If pregnant or breast-feeding", FDA NSAID $\ge 20$ week warning; Briggs Drugs in Pregnancy; LactMed database. |
@@ -482,7 +476,7 @@ Because FAERS represents spontaneous reporting without a true population denomin
 1. **Information Component with Bayesian Shrinkage:**
    $$\text{IC} = \log_2\left(\frac{\text{Observed} + 0.5}{\text{Expected} + 0.5}\right)$$
    A statistical signal is recognized **only if the lower 95% confidence bound ($\text{IC}_{025}$) is strictly greater than 0**.
-2. **Stratification:** FAERS counts are stratified by age band (`under_2`, `child_2_5`, `child_6_11`, `teen_12_17`, `adult_18_64`, `adult_65_plus`) and sex to prevent confounding.
-3. **Role as Supporting Evidence:** FAERS alone cannot downgrade a drug without biological plausibility or an FDA label/consensus signal, but it is used to validate real-world adverse event severity and monitor post-marketing emergence.
+2. **Stratification:** FAERS counts are stratified by age band (`0-11`, `12-17`, `18-64`, `65+`, matching `signal.schema.json`) and sex to prevent confounding.
+3. **Review flag only:** FAERS never sets or changes a severity. Reports are voluntary and have no denominator, so counts are not rates. A signal ($\text{IC}_{025} > 0$) only flags an ingredient and dimension for pharmacist review, and any severity change must then be cited to a label, monograph, criteria list, or publication.
 
 
