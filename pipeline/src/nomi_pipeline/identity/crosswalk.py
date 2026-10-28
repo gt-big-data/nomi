@@ -76,3 +76,43 @@ def build_crosswalk(terms: Iterable[RxnormTerm]) -> list[CrosswalkRow]:
         for unii in uniis.get(rxcui, set())
     ]
     return sorted(rows, key=lambda row: (row.unii, row.rxcui))
+
+
+@dataclass(frozen=True)
+class Ingredient:
+    """An OTC ingredient from the product data."""
+
+    unii: str
+    name: str
+
+
+@dataclass(frozen=True)
+class UnlinkedRow:
+    """An ingredient we could not link, with the reason."""
+
+    unii: str
+    ingredient_name: str
+    reason: str
+
+
+def link_ingredients(
+    ingredients: Iterable[Ingredient], crosswalk: Iterable[CrosswalkRow]
+) -> tuple[list[CrosswalkRow], list[UnlinkedRow]]:
+    """Split ingredients into linked crosswalk rows and unlinked ingredients with reasons."""
+    by_unii: dict[str, list[CrosswalkRow]] = defaultdict(list)
+    for row in crosswalk:
+        by_unii[row.unii.upper()].append(row)
+
+    linked_uniis: set[str] = set()
+    unlinked: list[UnlinkedRow] = []
+    for ingredient in ingredients:
+        unii = ingredient.unii.strip().upper()
+        if not unii:
+            unlinked.append(UnlinkedRow("", ingredient.name, "missing_unii"))
+        elif unii in by_unii:
+            linked_uniis.add(unii)
+        else:
+            unlinked.append(UnlinkedRow(unii, ingredient.name, "unii_not_in_rxnorm"))
+
+    linked = [row for unii in sorted(linked_uniis) for row in by_unii[unii]]
+    return linked, unlinked
