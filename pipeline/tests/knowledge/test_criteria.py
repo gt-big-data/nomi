@@ -45,13 +45,13 @@ VALID_PERSONAS = {
 VALID_RECOMMENDATIONS = {"avoid", "caution", "consider"}
 
 
-def test_stopp_start_file_exists():
+def test_stopp_start_file_exists() -> None:
     """Verify that stopp_start.yaml exists and is non-empty."""
     assert STOPP_START_PATH.is_file(), f"Missing file: {STOPP_START_PATH}"
     assert STOPP_START_PATH.stat().st_size > 0, "stopp_start.yaml is empty"
 
 
-def test_stopp_start_structure():
+def test_stopp_start_structure() -> None:
     """Verify top-level metadata and citation in stopp_start.yaml."""
     with open(STOPP_START_PATH, "r", encoding="utf-8") as f:
         data = yaml.safe_load(f)
@@ -69,7 +69,7 @@ def test_stopp_start_structure():
     assert len(criteria) >= 40, f"Expected at least 40 criteria, found {len(criteria)}"
 
 
-def test_stopp_start_entries():
+def test_stopp_start_entries() -> None:
     """Verify each criterion in stopp_start.yaml has valid fields and values."""
     with open(STOPP_START_PATH, "r", encoding="utf-8") as f:
         data = yaml.safe_load(f)
@@ -86,9 +86,9 @@ def test_stopp_start_entries():
         assert item.get("drug_class"), f"{cid} missing drug_class"
 
         ingredients = item.get("ingredients")
-        assert isinstance(ingredients, list) and len(ingredients) > 0, (
-            f"{cid} must have non-empty ingredients list"
-        )
+        assert (
+            isinstance(ingredients, list) and len(ingredients) > 0
+        ), f"{cid} must have non-empty ingredients list"
 
         persona = item.get("target_persona")
         assert persona in VALID_PERSONAS, f"{cid} has invalid persona: {persona}"
@@ -100,20 +100,20 @@ def test_stopp_start_entries():
         assert dim in VALID_DIMENSIONS, f"{cid} has invalid risk dimension: {dim}"
 
         rationale = item.get("clinical_rationale")
-        assert rationale and len(rationale.strip()) > 20, (
-            f"{cid} clinical rationale is too short or missing"
-        )
+        assert (
+            rationale and len(rationale.strip()) > 20
+        ), f"{cid} clinical rationale is too short or missing"
 
         assert item.get("original_reference"), f"{cid} missing original_reference"
 
 
-def test_acb_file_exists():
+def test_acb_file_exists() -> None:
     """Verify that acb.yaml exists and is non-empty."""
     assert ACB_PATH.is_file(), f"Missing file: {ACB_PATH}"
     assert ACB_PATH.stat().st_size > 0, "acb.yaml is empty"
 
 
-def test_acb_structure():
+def test_acb_structure() -> None:
     """Verify top-level metadata and citation in acb.yaml."""
     with open(ACB_PATH, "r", encoding="utf-8") as f:
         data = yaml.safe_load(f)
@@ -131,7 +131,7 @@ def test_acb_structure():
     assert len(items) >= 20, f"Expected at least 20 ACB items, found {len(items)}"
 
 
-def test_acb_entries():
+def test_acb_entries() -> None:
     """Verify each item in acb.yaml has valid fields, scores, and dimensions."""
     with open(ACB_PATH, "r", encoding="utf-8") as f:
         data = yaml.safe_load(f)
@@ -152,9 +152,9 @@ def test_acb_entries():
         seen_ingredients.add(ingredient)
 
         score = item.get("acb_score")
-        assert isinstance(score, int) and 0 <= score <= 3, (
-            f"{iid} has invalid acb_score: {score} (must be 0-3)"
-        )
+        assert (
+            isinstance(score, int) and 0 <= score <= 3
+        ), f"{iid} has invalid acb_score: {score} (must be 0-3)"
         scores_present.add(score)
 
         persona = item.get("target_persona")
@@ -164,9 +164,9 @@ def test_acb_entries():
         assert dim in VALID_DIMENSIONS, f"{iid} has invalid risk dimension: {dim}"
 
         rationale = item.get("clinical_rationale")
-        assert rationale and len(rationale.strip()) > 20, (
-            f"{iid} clinical rationale is too short or missing"
-        )
+        assert (
+            rationale and len(rationale.strip()) > 20
+        ), f"{iid} clinical rationale is too short or missing"
 
         assert item.get("original_reference"), f"{iid} missing original_reference"
 
