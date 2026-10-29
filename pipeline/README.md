@@ -3,6 +3,29 @@
 Python pipeline that turns public FDA data into the dataset the app ships with. Python 3.12, uv,
 Polars, DuckDB, lxml, Pydantic. Tooling setup lands in NOMI-001.
 
+## Getting raw data
+
+Copy `.env.example` to `.env` and fill in your R2 read-only credentials, then:
+
+```bash
+uv run pipeline fetch all
+```
+
+This downloads `data/raw/ndc/`, `data/raw/dailymed-otc/`, and `data/raw/faers/` and verifies
+checksums. Already-fresh files are skipped. To fetch a single source:
+
+```bash
+uv run pipeline fetch ndc
+uv run pipeline fetch dailymed-otc
+uv run pipeline fetch faers
+```
+
+To mirror new source files into R2 for the first time (requires write credentials):
+
+```bash
+uv run python pipeline/scripts/mirror.py <source> /path/to/local/files
+```
+
 ## Stages
 
 | Stage | Package | Output |
