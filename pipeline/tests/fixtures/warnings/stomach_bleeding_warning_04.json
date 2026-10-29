@@ -1,0 +1,23 @@
+{
+  "id": "stomach_bleeding_warning_04",
+  "text": "Stomach bleeding warning: This product contains an NSAID, which may cause severe stomach bleeding. The chance is higher if you child: has had stomach ulcers or bleeding problems takes a blood thinning (anticoagulant) or steroid drug takes other drugs containing prescription or nonprescription NSAIDs (aspirin, ibuprofen, naproxen, or others) takes more or for a longer time than directed",
+  "expected_warnings": [
+    "stomach_bleeding_warning"
+  ],
+  "source": {
+    "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=00b7fc71-8cf0-4c12-a479-146408f7f91b",
+    "openfda_query_url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name%3A%22IBUPROFEN%22+AND+openfda.product_type%3A%22HUMAN+OTC+DRUG%22&limit=30",
+    "set_id": "00b7fc71-8cf0-4c12-a479-146408f7f91b",
+    "label_id": "ad449225-ed60-4c66-9fd6-34bef9a4b42e",
+    "version": "3",
+    "effective_time": "20220111",
+    "retrieved_on": "2026-10-22",
+    "brand_name": [
+      "Concentrated ibuprofen infants"
+    ],
+    "field": "warnings",
+    "item_index": 0,
+    "start": 286,
+    "end": 674
+  }
+}

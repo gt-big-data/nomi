@@ -1,0 +1,23 @@
+{
+  "id": "stomach_bleeding_warning_01",
+  "text": "Stomach bleeding warning: This product contains an NSAID, which may cause severe stomach bleeding. The chance is higher if you: take more or for a longer time than directed take a blood thinning (anticoagulant) or steroid drug have had stomach ulcers or bleeding problems have 3 or more alcoholic drinks every day while using this product are age 60 or older take other drugs containing prescription or nonprescription NSAIDs [aspirin, ibuprofen, naproxen, or others]",
+  "expected_warnings": [
+    "stomach_bleeding_warning"
+  ],
+  "source": {
+    "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=00653b7c-7099-487e-9a01-e89781c21323",
+    "openfda_query_url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name%3A%22IBUPROFEN%22+AND+openfda.product_type%3A%22HUMAN+OTC+DRUG%22&limit=30",
+    "set_id": "00653b7c-7099-487e-9a01-e89781c21323",
+    "label_id": "4bd1345d-d116-426e-825f-bbf29381746a",
+    "version": "17",
+    "effective_time": "20260429",
+    "retrieved_on": "2026-10-22",
+    "brand_name": [
+      "Ibuprofen Dye Free"
+    ],
+    "field": "warnings",
+    "item_index": 0,
+    "start": 286,
+    "end": 753
+  }
+}

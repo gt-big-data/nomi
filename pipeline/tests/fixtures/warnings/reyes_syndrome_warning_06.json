@@ -1,0 +1,24 @@
+{
+  "id": "reyes_syndrome_warning_06",
+  "text": "Reye's syndrome: Children and teenagers who have or are recovering from chicken pox or flu-like symptoms should not use this product. When using this product, if changes in behavior with nausea and vomiting occur, consult a doctor because these symptoms could be an early sign of",
+  "expected_warnings": [
+    "reyes_syndrome_warning"
+  ],
+  "source": {
+    "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=030bb176-08ae-6c68-e063-6394a90af527",
+    "openfda_query_url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name%3A%22BISMUTH+SUBSALICYLATE%22+AND+openfda.product_type%3A%22HUMAN+OTC+DRUG%22&limit=30",
+    "set_id": "030bb176-08ae-6c68-e063-6394a90af527",
+    "label_id": "296a4f68-fde1-5e90-e063-6394a90a96fb",
+    "version": "4",
+    "effective_time": "20241216",
+    "retrieved_on": "2026-10-22",
+    "brand_name": [
+      "Stomach Relief, Caseys 4good",
+      "Stomach Relief, 24-7 Life"
+    ],
+    "field": "warnings",
+    "item_index": 0,
+    "start": 36,
+    "end": 315
+  }
+}
