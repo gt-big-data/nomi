@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 warnings: 
   - id: liver_warning
     ingredients:
@@ -89,3 +90,6 @@ warnings:
       - "21 CFR § 341.72(c)(7)"
       - "OTC Monograph M012 § M012.72(c)(6)(iv)"
       - "OTC Monograph M012 § M012.72(c)(7)"
+=======
+Warnings:
+>>>>>>> origin/main

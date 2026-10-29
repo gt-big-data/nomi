@@ -22,26 +22,60 @@ BACKLOG = Path(__file__).with_name("backlog.md")
 WRITE_DELAY_SECONDS = 1.0
 
 MILESTONES = {
-    "S1": ("Sprint 1 (Oct 16-22)", "2026-10-22", "Foundations: repo, contracts, ADRs, raw data mirror, scanner, risk dimension definitions."),
-    "S2": ("Sprint 2 (Oct 23-29)", "2026-10-29", "Identity resolver, label sections, FAERS ingest, knowledge base for the demo aisles, core app screens."),
-    "S3": ("Sprint 3 (Oct 30-Nov 5)", "2026-11-05", "Label extraction, uses, rubric spec, dataset builder v1, on-device lookup and profiles."),
-    "S4": ("Sprint 4 (Nov 6-12)", "2026-11-12", "Scoring, benchmarks, alternatives, signals, on-device engine. Feature freeze Nov 12."),
-    "S5": ("Sprint 5 (Nov 13-19)", "2026-11-19", "Hardening, performance, blind test, rehearsals. Code freeze Nov 17, demo Nov 20."),
+    "S1": (
+        "Sprint 1 (Oct 16-22)",
+        "2026-10-22",
+        "Foundations: repo, contracts, ADRs, raw data mirror, scanner, risk dimension definitions.",
+    ),
+    "S2": (
+        "Sprint 2 (Oct 23-29)",
+        "2026-10-29",
+        "Identity resolver, label sections, FAERS ingest, knowledge base for the demo aisles, core app screens.",
+    ),
+    "S3": (
+        "Sprint 3 (Oct 30-Nov 5)",
+        "2026-11-05",
+        "Label extraction, uses, rubric spec, dataset builder v1, on-device lookup and profiles.",
+    ),
+    "S4": (
+        "Sprint 4 (Nov 6-12)",
+        "2026-11-12",
+        "Scoring, benchmarks, alternatives, signals, on-device engine. Feature freeze Nov 12.",
+    ),
+    "S5": (
+        "Sprint 5 (Nov 13-19)",
+        "2026-11-19",
+        "Hardening, performance, blind test, rehearsals. Code freeze Nov 17, demo Nov 20.",
+    ),
 }
 
 TEAMS = {
-    "platform": ("Platform", "7f7f7f", "Backend: data engineering, contracts, dataset build and release"),
-    "visualization": ("Visualization", "e377c2", "Frontend: app UI, scanner, on-device scoring, dashboards"),
-    "data-analysis": ("Data Analysis", "1f77b4", "Extraction, knowledge base, signals, scoring models"),
+    "platform": (
+        "Platform",
+        "7f7f7f",
+        "Backend: data engineering, contracts, dataset build and release",
+    ),
+    "visualization": (
+        "Visualization",
+        "e377c2",
+        "Frontend: app UI, scanner, on-device scoring, dashboards",
+    ),
+    "data-analysis": (
+        "Data Analysis",
+        "1f77b4",
+        "Extraction, knowledge base, signals, scoring models",
+    ),
     "cofounders": ("Cofounders", "8c564b", "Process, legal, clinical partnership, demo"),
     "all": ("Everyone", "0e8a16", "Every team member contributes"),
 }
 
 LABELS = {f"team:{key}": (color, description) for key, (_, color, description) in TEAMS.items()}
-LABELS.update({
-    "P0": ("b60205", "Blocks the demo"),
-    "P1": ("fbca04", "Should land in its sprint"),
-})
+LABELS.update(
+    {
+        "P0": ("b60205", "Blocks the demo"),
+        "P1": ("fbca04", "Should land in its sprint"),
+    }
+)
 
 HEADER_RE = re.compile(r"^## (NOMI-\d{3}): (.+)$")
 META_RE = re.compile(r"\*\*([\w ]+):\*\* ([^|]+)")
@@ -54,7 +88,12 @@ def parse_backlog(text):
     for line in text.splitlines():
         header = HEADER_RE.match(line)
         if header:
-            current = {"id": header.group(1), "title": header.group(2).strip(), "meta": None, "body": []}
+            current = {
+                "id": header.group(1),
+                "title": header.group(2).strip(),
+                "meta": None,
+                "body": [],
+            }
             tickets.append(current)
         elif current is None:
             continue
@@ -159,7 +198,9 @@ def validate(tickets):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--dry-run", action="store_true", help="print what would be created")
-    parser.add_argument("--only", help="comma-separated backlog IDs to sync, e.g. NOMI-007,NOMI-011")
+    parser.add_argument(
+        "--only", help="comma-separated backlog IDs to sync, e.g. NOMI-007,NOMI-011"
+    )
     args = parser.parse_args()
 
     tickets = parse_backlog(BACKLOG.read_text())
@@ -175,22 +216,36 @@ def main():
         print(f"\n{len(tickets)} issues, {len(LABELS)} labels, {len(MILESTONES)} milestones")
         return
 
-    existing_labels = {l["name"] for l in gh_json("label", "list", "--limit", "200", "--json", "name")}
+    existing_labels = {
+        label["name"] for label in gh_json("label", "list", "--limit", "200", "--json", "name")
+    }
     for name, (color, description) in LABELS.items():
         if name not in existing_labels:
             gh("label", "create", name, "--color", color, "--description", description)
             print(f"label      {name}")
 
-    existing_milestones = {m["title"] for m in gh_json("api", "repos/{owner}/{repo}/milestones?state=all&per_page=100")}
+    existing_milestones = {
+        m["title"] for m in gh_json("api", "repos/{owner}/{repo}/milestones?state=all&per_page=100")
+    }
     for title, due, description in MILESTONES.values():
         if title not in existing_milestones:
-            gh("api", "repos/{owner}/{repo}/milestones", "-f", f"title={title}",
-               "-f", f"due_on={due}T23:59:59Z", "-f", f"description={description}")
+            gh(
+                "api",
+                "repos/{owner}/{repo}/milestones",
+                "-f",
+                f"title={title}",
+                "-f",
+                f"due_on={due}T23:59:59Z",
+                "-f",
+                f"description={description}",
+            )
             print(f"milestone  {title}")
 
     backlog_id_re = re.compile(r"(?:\*\*Backlog ID:\*\* |<sub>)(NOMI-\d{3})")
     existing = {}
-    for issue in gh_json("issue", "list", "--state", "all", "--limit", "500", "--json", "number,title,body"):
+    for issue in gh_json(
+        "issue", "list", "--state", "all", "--limit", "500", "--json", "number,title,body"
+    ):
         found = backlog_id_re.search(issue["body"] or "")
         if found:
             existing[found.group(1)] = issue["number"]
@@ -199,8 +254,16 @@ def main():
     for t in tickets:
         if t["id"] in refs:
             continue
-        cmd = ["issue", "create", "--title", t["title"], "--body", issue_body(t, {}, blocks[t["id"]]),
-               "--milestone", MILESTONES[t["meta"]["sprint"]][0]]
+        cmd = [
+            "issue",
+            "create",
+            "--title",
+            t["title"],
+            "--body",
+            issue_body(t, {}, blocks[t["id"]]),
+            "--milestone",
+            MILESTONES[t["meta"]["sprint"]][0],
+        ]
         for label in labels_for(t):
             cmd += ["--label", label]
         url = gh(*cmd).strip()
@@ -214,9 +277,17 @@ def main():
     for t in tickets:
         if only and t["id"] not in only:
             continue
-        cmd = ["issue", "edit", refs[t["id"]].lstrip("#"), "--title", t["title"],
-               "--body", issue_body(t, refs, blocks[t["id"]]),
-               "--milestone", MILESTONES[t["meta"]["sprint"]][0]]
+        cmd = [
+            "issue",
+            "edit",
+            refs[t["id"]].lstrip("#"),
+            "--title",
+            t["title"],
+            "--body",
+            issue_body(t, refs, blocks[t["id"]]),
+            "--milestone",
+            MILESTONES[t["meta"]["sprint"]][0],
+        ]
         for label in labels_for(t):
             cmd += ["--add-label", label]
         for team in TEAMS:
