@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="urn:hl7-org:v3">
+   <setId root="33333333-3333-3333-3333-333333333333"/>
+   <versionNumber value="1"/>
+   <manufacturedProduct>
+      <manufacturedProduct>
+         <name>Kit Part A</name>
+         <ingredient classCode="ACTIB">
+            <quantity>
+               <numerator unit="mg" value="50"/>
+               <denominator unit="1" value="1"/>
+            </quantity>
+            <ingredientSubstance>
+               <code code="PARTAUNII1" codeSystem="2.16.840.1.113883.4.9"/>
+               <name>PART A ACTIVE</name>
+            </ingredientSubstance>
+         </ingredient>
+         <asContent>
+            <containerPackagedProduct>
+               <code code="11111-111-11" codeSystem="2.16.840.1.113883.6.69"/>
+            </containerPackagedProduct>
+         </asContent>
+      </manufacturedProduct>
+   </manufacturedProduct>
+   <manufacturedProduct>
+      <manufacturedProduct>
+         <name>Kit Part B</name>
+         <ingredient classCode="ACTIB">
+            <quantity>
+               <numerator unit="mg" value="75"/>
+               <denominator unit="1" value="1"/>
+            </quantity>
+            <ingredientSubstance>
+               <code code="PARTBUNII2" codeSystem="2.16.840.1.113883.4.9"/>
+               <name>PART B ACTIVE</name>
+            </ingredientSubstance>
+         </ingredient>
+         <asContent>
+            <containerPackagedProduct>
+               <code code="22222-222-22" codeSystem="2.16.840.1.113883.6.69"/>
+            </containerPackagedProduct>
+         </asContent>
+      </manufacturedProduct>
+   </manufacturedProduct>
+</document>
