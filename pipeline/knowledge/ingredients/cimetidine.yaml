@@ -1,0 +1,512 @@
+unii: 80061L1WGD
+name: cimetidine
+review_status: unreviewed
+ratings:
+- dimension: liver
+  persona: adult_18_64
+  severity: 0
+- dimension: liver
+  persona: adult_65_plus
+  severity: 0
+- dimension: liver
+  persona: teen_12_17
+  severity: 0
+- dimension: liver
+  persona: child_6_11
+  severity: 0
+- dimension: liver
+  persona: child_2_5
+  severity: 0
+- dimension: liver
+  persona: under_2
+  severity: 0
+- dimension: liver
+  persona: pregnant
+  severity: 0
+- dimension: liver
+  persona: breastfeeding
+  severity: 0
+- dimension: gi_bleeding
+  persona: adult_18_64
+  severity: 0
+- dimension: gi_bleeding
+  persona: adult_65_plus
+  severity: 0
+- dimension: gi_bleeding
+  persona: teen_12_17
+  severity: 0
+- dimension: gi_bleeding
+  persona: child_6_11
+  severity: 0
+- dimension: gi_bleeding
+  persona: child_2_5
+  severity: 0
+- dimension: gi_bleeding
+  persona: under_2
+  severity: 0
+- dimension: gi_bleeding
+  persona: pregnant
+  severity: 0
+- dimension: gi_bleeding
+  persona: breastfeeding
+  severity: 0
+- dimension: cardiovascular_bp
+  persona: adult_18_64
+  severity: 0
+- dimension: cardiovascular_bp
+  persona: adult_65_plus
+  severity: 0
+- dimension: cardiovascular_bp
+  persona: teen_12_17
+  severity: 0
+- dimension: cardiovascular_bp
+  persona: child_6_11
+  severity: 0
+- dimension: cardiovascular_bp
+  persona: child_2_5
+  severity: 0
+- dimension: cardiovascular_bp
+  persona: under_2
+  severity: 0
+- dimension: cardiovascular_bp
+  persona: pregnant
+  severity: 0
+- dimension: cardiovascular_bp
+  persona: breastfeeding
+  severity: 0
+- dimension: kidney
+  persona: adult_18_64
+  severity: 0
+- dimension: kidney
+  persona: adult_65_plus
+  severity: 1
+  citations:
+  - source: otc_monograph
+    document_id: 21 CFR 330.1
+    section: Ask a doctor before use if you have
+    quote: Ask a doctor before use if you have kidney disease.
+- dimension: kidney
+  persona: teen_12_17
+  severity: 0
+- dimension: kidney
+  persona: child_6_11
+  severity: 0
+- dimension: kidney
+  persona: child_2_5
+  severity: 0
+- dimension: kidney
+  persona: under_2
+  severity: 0
+- dimension: kidney
+  persona: pregnant
+  severity: 0
+- dimension: kidney
+  persona: breastfeeding
+  severity: 0
+- dimension: anticholinergic_cognitive
+  persona: adult_18_64
+  severity: 1
+  citations:
+  - source: acb
+    document_id: 10.2217/1745509X.4.3.311
+    section: 'Table 1: Possible Anticholinergics (Score 1)'
+    quote: Cimetidine is associated with acute confusional states, delirium, and cognitive
+      alterations in older adults due to central nervous system penetration.
+- dimension: anticholinergic_cognitive
+  persona: adult_65_plus
+  severity: 2
+  citations:
+  - source: acb
+    document_id: 10.2217/1745509X.4.3.311
+    section: 'Table 1: Possible Anticholinergics (Score 1)'
+    quote: Cimetidine is associated with acute confusional states, delirium, and cognitive
+      alterations in older adults due to central nervous system penetration.
+- dimension: anticholinergic_cognitive
+  persona: teen_12_17
+  severity: 1
+  citations:
+  - source: acb
+    document_id: 10.2217/1745509X.4.3.311
+    section: 'Table 1: Possible Anticholinergics (Score 1)'
+    quote: Cimetidine is associated with acute confusional states, delirium, and cognitive
+      alterations in older adults due to central nervous system penetration.
+- dimension: anticholinergic_cognitive
+  persona: child_6_11
+  severity: 0
+- dimension: anticholinergic_cognitive
+  persona: child_2_5
+  severity: 0
+- dimension: anticholinergic_cognitive
+  persona: under_2
+  severity: 0
+- dimension: anticholinergic_cognitive
+  persona: pregnant
+  severity: 1
+  citations:
+  - source: acb
+    document_id: 10.2217/1745509X.4.3.311
+    section: 'Table 1: Possible Anticholinergics (Score 1)'
+    quote: Cimetidine is associated with acute confusional states, delirium, and cognitive
+      alterations in older adults due to central nervous system penetration.
+- dimension: anticholinergic_cognitive
+  persona: breastfeeding
+  severity: 1
+  citations:
+  - source: acb
+    document_id: 10.2217/1745509X.4.3.311
+    section: 'Table 1: Possible Anticholinergics (Score 1)'
+    quote: Cimetidine is associated with acute confusional states, delirium, and cognitive
+      alterations in older adults due to central nervous system penetration.
+- dimension: sedation_falls
+  persona: adult_18_64
+  severity: 0
+- dimension: sedation_falls
+  persona: adult_65_plus
+  severity: 0
+- dimension: sedation_falls
+  persona: teen_12_17
+  severity: 0
+- dimension: sedation_falls
+  persona: child_6_11
+  severity: 0
+- dimension: sedation_falls
+  persona: child_2_5
+  severity: 0
+- dimension: sedation_falls
+  persona: under_2
+  severity: 0
+- dimension: sedation_falls
+  persona: pregnant
+  severity: 0
+- dimension: sedation_falls
+  persona: breastfeeding
+  severity: 0
+- dimension: serotonergic_interactions
+  persona: adult_18_64
+  severity: 0
+- dimension: serotonergic_interactions
+  persona: adult_65_plus
+  severity: 0
+- dimension: serotonergic_interactions
+  persona: teen_12_17
+  severity: 0
+- dimension: serotonergic_interactions
+  persona: child_6_11
+  severity: 0
+- dimension: serotonergic_interactions
+  persona: child_2_5
+  severity: 0
+- dimension: serotonergic_interactions
+  persona: under_2
+  severity: 0
+- dimension: serotonergic_interactions
+  persona: pregnant
+  severity: 0
+- dimension: serotonergic_interactions
+  persona: breastfeeding
+  severity: 0
+- dimension: anticoagulant_bleeding
+  persona: adult_18_64
+  severity: 2
+  citations:
+  - source: otc_monograph
+    document_id: 21 CFR 330.1
+    section: Warnings
+    quote: 'Ask a doctor or pharmacist before use if you are taking: theophylline
+      (oral asthma medicine); warfarin (blood thinning medicine); phenytoin (seizure
+      medicine).'
+- dimension: anticoagulant_bleeding
+  persona: adult_65_plus
+  severity: 2
+  citations:
+  - source: otc_monograph
+    document_id: 21 CFR 330.1
+    section: Warnings
+    quote: 'Ask a doctor or pharmacist before use if you are taking: theophylline
+      (oral asthma medicine); warfarin (blood thinning medicine); phenytoin (seizure
+      medicine).'
+- dimension: anticoagulant_bleeding
+  persona: teen_12_17
+  severity: 2
+  citations:
+  - source: otc_monograph
+    document_id: 21 CFR 330.1
+    section: Warnings
+    quote: 'Ask a doctor or pharmacist before use if you are taking: theophylline
+      (oral asthma medicine); warfarin (blood thinning medicine); phenytoin (seizure
+      medicine).'
+- dimension: anticoagulant_bleeding
+  persona: child_6_11
+  severity: 0
+- dimension: anticoagulant_bleeding
+  persona: child_2_5
+  severity: 0
+- dimension: anticoagulant_bleeding
+  persona: under_2
+  severity: 0
+- dimension: anticoagulant_bleeding
+  persona: pregnant
+  severity: 2
+  citations:
+  - source: otc_monograph
+    document_id: 21 CFR 330.1
+    section: Warnings
+    quote: 'Ask a doctor or pharmacist before use if you are taking: theophylline
+      (oral asthma medicine); warfarin (blood thinning medicine); phenytoin (seizure
+      medicine).'
+- dimension: anticoagulant_bleeding
+  persona: breastfeeding
+  severity: 2
+  citations:
+  - source: otc_monograph
+    document_id: 21 CFR 330.1
+    section: Warnings
+    quote: 'Ask a doctor or pharmacist before use if you are taking: theophylline
+      (oral asthma medicine); warfarin (blood thinning medicine); phenytoin (seizure
+      medicine).'
+- dimension: pediatric
+  persona: adult_18_64
+  severity: 0
+- dimension: pediatric
+  persona: adult_65_plus
+  severity: 0
+- dimension: pediatric
+  persona: teen_12_17
+  severity: 0
+- dimension: pediatric
+  persona: child_6_11
+  severity: 2
+  citations:
+  - source: otc_monograph
+    document_id: 21 CFR 330.1
+    section: Directions
+    quote: 'Children under 12 years of age: ask a doctor.'
+- dimension: pediatric
+  persona: child_2_5
+  severity: 2
+  citations:
+  - source: otc_monograph
+    document_id: 21 CFR 330.1
+    section: Directions
+    quote: 'Children under 12 years of age: ask a doctor.'
+- dimension: pediatric
+  persona: under_2
+  severity: 2
+  citations:
+  - source: otc_monograph
+    document_id: 21 CFR 330.1
+    section: Directions
+    quote: 'Children under 12 years of age: ask a doctor.'
+- dimension: pediatric
+  persona: pregnant
+  severity: 0
+- dimension: pediatric
+  persona: breastfeeding
+  severity: 0
+- dimension: rebound_overuse
+  persona: adult_18_64
+  severity: 1
+  citations:
+  - source: otc_monograph
+    document_id: 21 CFR 330.1
+    section: Warnings
+    quote: Do not use for more than 14 days unless directed by a doctor.
+- dimension: rebound_overuse
+  persona: adult_65_plus
+  severity: 1
+  citations:
+  - source: otc_monograph
+    document_id: 21 CFR 330.1
+    section: Warnings
+    quote: Do not use for more than 14 days unless directed by a doctor.
+- dimension: rebound_overuse
+  persona: teen_12_17
+  severity: 1
+  citations:
+  - source: otc_monograph
+    document_id: 21 CFR 330.1
+    section: Warnings
+    quote: Do not use for more than 14 days unless directed by a doctor.
+- dimension: rebound_overuse
+  persona: child_6_11
+  severity: 0
+- dimension: rebound_overuse
+  persona: child_2_5
+  severity: 0
+- dimension: rebound_overuse
+  persona: under_2
+  severity: 0
+- dimension: rebound_overuse
+  persona: pregnant
+  severity: 1
+  citations:
+  - source: otc_monograph
+    document_id: 21 CFR 330.1
+    section: Warnings
+    quote: Do not use for more than 14 days unless directed by a doctor.
+- dimension: rebound_overuse
+  persona: breastfeeding
+  severity: 1
+  citations:
+  - source: otc_monograph
+    document_id: 21 CFR 330.1
+    section: Warnings
+    quote: Do not use for more than 14 days unless directed by a doctor.
+- dimension: pregnancy_lactation
+  persona: adult_18_64
+  severity: 0
+- dimension: pregnancy_lactation
+  persona: adult_65_plus
+  severity: 0
+- dimension: pregnancy_lactation
+  persona: teen_12_17
+  severity: 0
+- dimension: pregnancy_lactation
+  persona: child_6_11
+  severity: 0
+- dimension: pregnancy_lactation
+  persona: child_2_5
+  severity: 0
+- dimension: pregnancy_lactation
+  persona: under_2
+  severity: 0
+- dimension: pregnancy_lactation
+  persona: pregnant
+  severity: 1
+  citations:
+  - source: otc_monograph
+    document_id: 21 CFR 201.63
+    section: Pregnancy/breast-feeding warning
+    quote: If pregnant or breast-feeding, ask a health professional before use.
+- dimension: pregnancy_lactation
+  persona: breastfeeding
+  severity: 1
+  citations:
+  - source: publication
+    document_id: 10.1542/peds.108.3.776
+    section: American Academy of Pediatrics Committee on Drugs
+    quote: Cimetidine is concentrated in breast milk and suppresses gastric acidity
+      in the nursing infant.
+- dimension: duplicate_dosing
+  persona: adult_18_64
+  severity: 0
+- dimension: duplicate_dosing
+  persona: adult_65_plus
+  severity: 0
+- dimension: duplicate_dosing
+  persona: teen_12_17
+  severity: 0
+- dimension: duplicate_dosing
+  persona: child_6_11
+  severity: 0
+- dimension: duplicate_dosing
+  persona: child_2_5
+  severity: 0
+- dimension: duplicate_dosing
+  persona: under_2
+  severity: 0
+- dimension: duplicate_dosing
+  persona: pregnant
+  severity: 0
+- dimension: duplicate_dosing
+  persona: breastfeeding
+  severity: 0
+- dimension: excipients
+  persona: adult_18_64
+  severity: 0
+- dimension: excipients
+  persona: adult_65_plus
+  severity: 0
+- dimension: excipients
+  persona: teen_12_17
+  severity: 0
+- dimension: excipients
+  persona: child_6_11
+  severity: 0
+- dimension: excipients
+  persona: child_2_5
+  severity: 0
+- dimension: excipients
+  persona: under_2
+  severity: 0
+- dimension: excipients
+  persona: pregnant
+  severity: 0
+- dimension: excipients
+  persona: breastfeeding
+  severity: 0
+- dimension: local_skin
+  persona: adult_18_64
+  severity: 0
+- dimension: local_skin
+  persona: adult_65_plus
+  severity: 0
+- dimension: local_skin
+  persona: teen_12_17
+  severity: 0
+- dimension: local_skin
+  persona: child_6_11
+  severity: 0
+- dimension: local_skin
+  persona: child_2_5
+  severity: 0
+- dimension: local_skin
+  persona: under_2
+  severity: 0
+- dimension: local_skin
+  persona: pregnant
+  severity: 0
+- dimension: local_skin
+  persona: breastfeeding
+  severity: 0
+- dimension: efficacy_evidence
+  persona: adult_18_64
+  severity: 0
+- dimension: efficacy_evidence
+  persona: adult_65_plus
+  severity: 0
+- dimension: efficacy_evidence
+  persona: teen_12_17
+  severity: 0
+- dimension: efficacy_evidence
+  persona: child_6_11
+  severity: 0
+- dimension: efficacy_evidence
+  persona: child_2_5
+  severity: 0
+- dimension: efficacy_evidence
+  persona: under_2
+  severity: 0
+- dimension: efficacy_evidence
+  persona: pregnant
+  severity: 0
+- dimension: efficacy_evidence
+  persona: breastfeeding
+  severity: 0
+modifiers:
+- dimension: anticoagulant_bleeding
+  medication_type: anticoagulants
+  severity_change: 2
+  citations:
+  - source: otc_monograph
+    document_id: 21 CFR 330.1
+    section: Warnings
+    quote: Ask a doctor or pharmacist before use if you are taking warfarin (blood
+      thinning medicine).
+- dimension: sedation_falls
+  medication_type: sedatives
+  severity_change: 1
+  citations:
+  - source: publication
+    document_id: 10.1007/BF00609559
+    section: Inhibition of Sedative Metabolism by Cimetidine
+    quote: Cimetidine markedly impairs microsomal oxidative elimination of benzodiazepines
+      and sedatives, prolonging psychomotor impairment.
+- dimension: kidney
+  condition: kidney_disease
+  severity_change: 1
+  citations:
+  - source: otc_monograph
+    document_id: 21 CFR 330.1
+    section: Ask a doctor before use if you have
+    quote: Ask a doctor before use if you have kidney disease.

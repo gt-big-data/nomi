@@ -1,0 +1,439 @@
+unii: G2M7P15E5P
+name: polyethylene glycol 3350
+review_status: unreviewed
+ratings:
+- dimension: liver
+  persona: adult_18_64
+  severity: 0
+- dimension: liver
+  persona: adult_65_plus
+  severity: 0
+- dimension: liver
+  persona: teen_12_17
+  severity: 0
+- dimension: liver
+  persona: child_6_11
+  severity: 0
+- dimension: liver
+  persona: child_2_5
+  severity: 0
+- dimension: liver
+  persona: under_2
+  severity: 0
+- dimension: liver
+  persona: pregnant
+  severity: 0
+- dimension: liver
+  persona: breastfeeding
+  severity: 0
+- dimension: gi_bleeding
+  persona: adult_18_64
+  severity: 0
+- dimension: gi_bleeding
+  persona: adult_65_plus
+  severity: 0
+- dimension: gi_bleeding
+  persona: teen_12_17
+  severity: 0
+- dimension: gi_bleeding
+  persona: child_6_11
+  severity: 0
+- dimension: gi_bleeding
+  persona: child_2_5
+  severity: 0
+- dimension: gi_bleeding
+  persona: under_2
+  severity: 0
+- dimension: gi_bleeding
+  persona: pregnant
+  severity: 0
+- dimension: gi_bleeding
+  persona: breastfeeding
+  severity: 0
+- dimension: cardiovascular_bp
+  persona: adult_18_64
+  severity: 0
+- dimension: cardiovascular_bp
+  persona: adult_65_plus
+  severity: 0
+- dimension: cardiovascular_bp
+  persona: teen_12_17
+  severity: 0
+- dimension: cardiovascular_bp
+  persona: child_6_11
+  severity: 0
+- dimension: cardiovascular_bp
+  persona: child_2_5
+  severity: 0
+- dimension: cardiovascular_bp
+  persona: under_2
+  severity: 0
+- dimension: cardiovascular_bp
+  persona: pregnant
+  severity: 0
+- dimension: cardiovascular_bp
+  persona: breastfeeding
+  severity: 0
+- dimension: kidney
+  persona: adult_18_64
+  severity: 0
+- dimension: kidney
+  persona: adult_65_plus
+  severity: 1
+  citations:
+  - source: fda_label
+    document_id: NDA 022015
+    section: Warnings - Ask a doctor before use if you have
+    quote: Ask a doctor before use if you have kidney disease.
+- dimension: kidney
+  persona: teen_12_17
+  severity: 0
+- dimension: kidney
+  persona: child_6_11
+  severity: 0
+- dimension: kidney
+  persona: child_2_5
+  severity: 0
+- dimension: kidney
+  persona: under_2
+  severity: 0
+- dimension: kidney
+  persona: pregnant
+  severity: 0
+- dimension: kidney
+  persona: breastfeeding
+  severity: 0
+- dimension: anticholinergic_cognitive
+  persona: adult_18_64
+  severity: 0
+- dimension: anticholinergic_cognitive
+  persona: adult_65_plus
+  severity: 0
+- dimension: anticholinergic_cognitive
+  persona: teen_12_17
+  severity: 0
+- dimension: anticholinergic_cognitive
+  persona: child_6_11
+  severity: 0
+- dimension: anticholinergic_cognitive
+  persona: child_2_5
+  severity: 0
+- dimension: anticholinergic_cognitive
+  persona: under_2
+  severity: 0
+- dimension: anticholinergic_cognitive
+  persona: pregnant
+  severity: 0
+- dimension: anticholinergic_cognitive
+  persona: breastfeeding
+  severity: 0
+- dimension: sedation_falls
+  persona: adult_18_64
+  severity: 0
+- dimension: sedation_falls
+  persona: adult_65_plus
+  severity: 0
+- dimension: sedation_falls
+  persona: teen_12_17
+  severity: 0
+- dimension: sedation_falls
+  persona: child_6_11
+  severity: 0
+- dimension: sedation_falls
+  persona: child_2_5
+  severity: 0
+- dimension: sedation_falls
+  persona: under_2
+  severity: 0
+- dimension: sedation_falls
+  persona: pregnant
+  severity: 0
+- dimension: sedation_falls
+  persona: breastfeeding
+  severity: 0
+- dimension: serotonergic_interactions
+  persona: adult_18_64
+  severity: 0
+- dimension: serotonergic_interactions
+  persona: adult_65_plus
+  severity: 0
+- dimension: serotonergic_interactions
+  persona: teen_12_17
+  severity: 0
+- dimension: serotonergic_interactions
+  persona: child_6_11
+  severity: 0
+- dimension: serotonergic_interactions
+  persona: child_2_5
+  severity: 0
+- dimension: serotonergic_interactions
+  persona: under_2
+  severity: 0
+- dimension: serotonergic_interactions
+  persona: pregnant
+  severity: 0
+- dimension: serotonergic_interactions
+  persona: breastfeeding
+  severity: 0
+- dimension: anticoagulant_bleeding
+  persona: adult_18_64
+  severity: 0
+- dimension: anticoagulant_bleeding
+  persona: adult_65_plus
+  severity: 0
+- dimension: anticoagulant_bleeding
+  persona: teen_12_17
+  severity: 0
+- dimension: anticoagulant_bleeding
+  persona: child_6_11
+  severity: 0
+- dimension: anticoagulant_bleeding
+  persona: child_2_5
+  severity: 0
+- dimension: anticoagulant_bleeding
+  persona: under_2
+  severity: 0
+- dimension: anticoagulant_bleeding
+  persona: pregnant
+  severity: 0
+- dimension: anticoagulant_bleeding
+  persona: breastfeeding
+  severity: 0
+- dimension: pediatric
+  persona: adult_18_64
+  severity: 0
+- dimension: pediatric
+  persona: adult_65_plus
+  severity: 0
+- dimension: pediatric
+  persona: teen_12_17
+  severity: 1
+  citations:
+  - source: fda_label
+    document_id: NDA 022015
+    section: Directions
+    quote: 'Children 16 years of age and under: ask a doctor.'
+- dimension: pediatric
+  persona: child_6_11
+  severity: 2
+  citations:
+  - source: fda_label
+    document_id: NDA 022015
+    section: Directions
+    quote: 'Children 16 years of age and under: ask a doctor.'
+- dimension: pediatric
+  persona: child_2_5
+  severity: 2
+  citations:
+  - source: fda_label
+    document_id: NDA 022015
+    section: Directions
+    quote: 'Children 16 years of age and under: ask a doctor.'
+- dimension: pediatric
+  persona: under_2
+  severity: 2
+  citations:
+  - source: fda_label
+    document_id: NDA 022015
+    section: Directions
+    quote: 'Children 16 years of age and under: ask a doctor.'
+- dimension: pediatric
+  persona: pregnant
+  severity: 0
+- dimension: pediatric
+  persona: breastfeeding
+  severity: 0
+- dimension: rebound_overuse
+  persona: adult_18_64
+  severity: 1
+  citations:
+  - source: fda_label
+    document_id: NDA 022015
+    section: Warnings - Stop use and ask a doctor if
+    quote: Do not use more than once a day. Do not use for more than 7 days unless
+      directed by a doctor. Frequent, prolonged, or excessive use may result in laxative
+      dependence or electrolyte imbalances.
+- dimension: rebound_overuse
+  persona: adult_65_plus
+  severity: 1
+  citations:
+  - source: fda_label
+    document_id: NDA 022015
+    section: Warnings - Stop use and ask a doctor if
+    quote: Do not use more than once a day. Do not use for more than 7 days unless
+      directed by a doctor. Frequent, prolonged, or excessive use may result in laxative
+      dependence or electrolyte imbalances.
+- dimension: rebound_overuse
+  persona: teen_12_17
+  severity: 1
+  citations:
+  - source: fda_label
+    document_id: NDA 022015
+    section: Warnings - Stop use and ask a doctor if
+    quote: Do not use more than once a day. Do not use for more than 7 days unless
+      directed by a doctor. Frequent, prolonged, or excessive use may result in laxative
+      dependence or electrolyte imbalances.
+- dimension: rebound_overuse
+  persona: child_6_11
+  severity: 0
+- dimension: rebound_overuse
+  persona: child_2_5
+  severity: 0
+- dimension: rebound_overuse
+  persona: under_2
+  severity: 0
+- dimension: rebound_overuse
+  persona: pregnant
+  severity: 0
+- dimension: rebound_overuse
+  persona: breastfeeding
+  severity: 0
+- dimension: pregnancy_lactation
+  persona: adult_18_64
+  severity: 0
+- dimension: pregnancy_lactation
+  persona: adult_65_plus
+  severity: 0
+- dimension: pregnancy_lactation
+  persona: teen_12_17
+  severity: 0
+- dimension: pregnancy_lactation
+  persona: child_6_11
+  severity: 0
+- dimension: pregnancy_lactation
+  persona: child_2_5
+  severity: 0
+- dimension: pregnancy_lactation
+  persona: under_2
+  severity: 0
+- dimension: pregnancy_lactation
+  persona: pregnant
+  severity: 1
+  citations:
+  - source: otc_monograph
+    document_id: 21 CFR 201.63
+    section: Pregnancy/breast-feeding warning
+    quote: If pregnant or breast-feeding, ask a health professional before use.
+- dimension: pregnancy_lactation
+  persona: breastfeeding
+  severity: 1
+  citations:
+  - source: otc_monograph
+    document_id: 21 CFR 201.63
+    section: Pregnancy/breast-feeding warning
+    quote: If pregnant or breast-feeding, ask a health professional before use.
+- dimension: duplicate_dosing
+  persona: adult_18_64
+  severity: 0
+- dimension: duplicate_dosing
+  persona: adult_65_plus
+  severity: 0
+- dimension: duplicate_dosing
+  persona: teen_12_17
+  severity: 0
+- dimension: duplicate_dosing
+  persona: child_6_11
+  severity: 0
+- dimension: duplicate_dosing
+  persona: child_2_5
+  severity: 0
+- dimension: duplicate_dosing
+  persona: under_2
+  severity: 0
+- dimension: duplicate_dosing
+  persona: pregnant
+  severity: 0
+- dimension: duplicate_dosing
+  persona: breastfeeding
+  severity: 0
+- dimension: excipients
+  persona: adult_18_64
+  severity: 0
+- dimension: excipients
+  persona: adult_65_plus
+  severity: 0
+- dimension: excipients
+  persona: teen_12_17
+  severity: 0
+- dimension: excipients
+  persona: child_6_11
+  severity: 0
+- dimension: excipients
+  persona: child_2_5
+  severity: 0
+- dimension: excipients
+  persona: under_2
+  severity: 0
+- dimension: excipients
+  persona: pregnant
+  severity: 0
+- dimension: excipients
+  persona: breastfeeding
+  severity: 0
+- dimension: local_skin
+  persona: adult_18_64
+  severity: 0
+- dimension: local_skin
+  persona: adult_65_plus
+  severity: 0
+- dimension: local_skin
+  persona: teen_12_17
+  severity: 0
+- dimension: local_skin
+  persona: child_6_11
+  severity: 0
+- dimension: local_skin
+  persona: child_2_5
+  severity: 0
+- dimension: local_skin
+  persona: under_2
+  severity: 0
+- dimension: local_skin
+  persona: pregnant
+  severity: 0
+- dimension: local_skin
+  persona: breastfeeding
+  severity: 0
+- dimension: efficacy_evidence
+  persona: adult_18_64
+  severity: 0
+- dimension: efficacy_evidence
+  persona: adult_65_plus
+  severity: 0
+- dimension: efficacy_evidence
+  persona: teen_12_17
+  severity: 0
+- dimension: efficacy_evidence
+  persona: child_6_11
+  severity: 0
+- dimension: efficacy_evidence
+  persona: child_2_5
+  severity: 0
+- dimension: efficacy_evidence
+  persona: under_2
+  severity: 0
+- dimension: efficacy_evidence
+  persona: pregnant
+  severity: 0
+- dimension: efficacy_evidence
+  persona: breastfeeding
+  severity: 0
+modifiers:
+- dimension: kidney
+  condition: kidney_disease
+  severity_change: 2
+  citations:
+  - source: fda_label
+    document_id: NDA 022015
+    section: Warnings
+    quote: Ask a doctor before use if you have kidney disease.
+- dimension: kidney
+  medication_type: diuretics
+  severity_change: 1
+  citations:
+  - source: fda_label
+    document_id: NDA 022015
+    section: Warnings
+    quote: Ask a doctor or pharmacist before use if you are taking a prescription
+      drug. Combining osmotic laxatives with diuretics increases the risk of dehydration,
+      fluid depletion, and renal hypoperfusion.
