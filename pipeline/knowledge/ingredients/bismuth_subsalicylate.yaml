@@ -2,581 +2,581 @@ unii: 62TEY51RR1
 name: bismuth subsalicylate
 review_status: unreviewed
 ratings:
-- dimension: liver
-  persona: adult_18_64
-  severity: 0
-- dimension: liver
-  persona: adult_65_plus
-  severity: 0
-- dimension: liver
-  persona: teen_12_17
-  severity: 0
-- dimension: liver
-  persona: child_6_11
-  severity: 0
-- dimension: liver
-  persona: child_2_5
-  severity: 0
-- dimension: liver
-  persona: under_2
-  severity: 0
-- dimension: liver
-  persona: pregnant
-  severity: 0
-- dimension: liver
-  persona: breastfeeding
-  severity: 0
-- dimension: gi_bleeding
-  persona: adult_18_64
-  severity: 2
-  citations:
-  - source: otc_monograph
-    document_id: 21 CFR 201.326
-    section: Warnings
-    quote: 'Ask a doctor before use if you have: ulcers; bleeding problems; stool
-      that is bloody or black.'
-- dimension: gi_bleeding
-  persona: adult_65_plus
-  severity: 3
-  citations:
-  - source: otc_monograph
-    document_id: 21 CFR 201.326
-    section: Warnings
-    quote: 'Ask a doctor before use if you have: ulcers; bleeding problems; stool
-      that is bloody or black.'
-- dimension: gi_bleeding
-  persona: teen_12_17
-  severity: 2
-  citations:
-  - source: otc_monograph
-    document_id: 21 CFR 201.326
-    section: Warnings
-    quote: 'Ask a doctor before use if you have: ulcers; bleeding problems; stool
-      that is bloody or black.'
-- dimension: gi_bleeding
-  persona: child_6_11
-  severity: 2
-  citations:
-  - source: otc_monograph
-    document_id: 21 CFR 201.326
-    section: Warnings
-    quote: 'Ask a doctor before use if you have: ulcers; bleeding problems; stool
-      that is bloody or black.'
-- dimension: gi_bleeding
-  persona: child_2_5
-  severity: 2
-  citations:
-  - source: otc_monograph
-    document_id: 21 CFR 201.326
-    section: Warnings
-    quote: 'Ask a doctor before use if you have: ulcers; bleeding problems; stool
-      that is bloody or black.'
-- dimension: gi_bleeding
-  persona: under_2
-  severity: 2
-  citations:
-  - source: otc_monograph
-    document_id: 21 CFR 201.326
-    section: Warnings
-    quote: 'Ask a doctor before use if you have: ulcers; bleeding problems; stool
-      that is bloody or black.'
-- dimension: gi_bleeding
-  persona: pregnant
-  severity: 3
-  citations:
-  - source: otc_monograph
-    document_id: 21 CFR 201.326
-    section: Warnings
-    quote: 'Ask a doctor before use if you have: ulcers; bleeding problems; stool
-      that is bloody or black.'
-- dimension: gi_bleeding
-  persona: breastfeeding
-  severity: 2
-  citations:
-  - source: otc_monograph
-    document_id: 21 CFR 201.326
-    section: Warnings
-    quote: 'Ask a doctor before use if you have: ulcers; bleeding problems; stool
-      that is bloody or black.'
-- dimension: cardiovascular_bp
-  persona: adult_18_64
-  severity: 0
-- dimension: cardiovascular_bp
-  persona: adult_65_plus
-  severity: 0
-- dimension: cardiovascular_bp
-  persona: teen_12_17
-  severity: 0
-- dimension: cardiovascular_bp
-  persona: child_6_11
-  severity: 0
-- dimension: cardiovascular_bp
-  persona: child_2_5
-  severity: 0
-- dimension: cardiovascular_bp
-  persona: under_2
-  severity: 0
-- dimension: cardiovascular_bp
-  persona: pregnant
-  severity: 0
-- dimension: cardiovascular_bp
-  persona: breastfeeding
-  severity: 0
-- dimension: kidney
-  persona: adult_18_64
-  severity: 0
-- dimension: kidney
-  persona: adult_65_plus
-  severity: 0
-- dimension: kidney
-  persona: teen_12_17
-  severity: 0
-- dimension: kidney
-  persona: child_6_11
-  severity: 0
-- dimension: kidney
-  persona: child_2_5
-  severity: 0
-- dimension: kidney
-  persona: under_2
-  severity: 0
-- dimension: kidney
-  persona: pregnant
-  severity: 0
-- dimension: kidney
-  persona: breastfeeding
-  severity: 0
-- dimension: anticholinergic_cognitive
-  persona: adult_18_64
-  severity: 0
-- dimension: anticholinergic_cognitive
-  persona: adult_65_plus
-  severity: 0
-- dimension: anticholinergic_cognitive
-  persona: teen_12_17
-  severity: 0
-- dimension: anticholinergic_cognitive
-  persona: child_6_11
-  severity: 0
-- dimension: anticholinergic_cognitive
-  persona: child_2_5
-  severity: 0
-- dimension: anticholinergic_cognitive
-  persona: under_2
-  severity: 0
-- dimension: anticholinergic_cognitive
-  persona: pregnant
-  severity: 0
-- dimension: anticholinergic_cognitive
-  persona: breastfeeding
-  severity: 0
-- dimension: sedation_falls
-  persona: adult_18_64
-  severity: 0
-- dimension: sedation_falls
-  persona: adult_65_plus
-  severity: 0
-- dimension: sedation_falls
-  persona: teen_12_17
-  severity: 0
-- dimension: sedation_falls
-  persona: child_6_11
-  severity: 0
-- dimension: sedation_falls
-  persona: child_2_5
-  severity: 0
-- dimension: sedation_falls
-  persona: under_2
-  severity: 0
-- dimension: sedation_falls
-  persona: pregnant
-  severity: 0
-- dimension: sedation_falls
-  persona: breastfeeding
-  severity: 0
-- dimension: serotonergic_interactions
-  persona: adult_18_64
-  severity: 0
-- dimension: serotonergic_interactions
-  persona: adult_65_plus
-  severity: 0
-- dimension: serotonergic_interactions
-  persona: teen_12_17
-  severity: 0
-- dimension: serotonergic_interactions
-  persona: child_6_11
-  severity: 0
-- dimension: serotonergic_interactions
-  persona: child_2_5
-  severity: 0
-- dimension: serotonergic_interactions
-  persona: under_2
-  severity: 0
-- dimension: serotonergic_interactions
-  persona: pregnant
-  severity: 0
-- dimension: serotonergic_interactions
-  persona: breastfeeding
-  severity: 0
-- dimension: anticoagulant_bleeding
-  persona: adult_18_64
-  severity: 2
-  citations:
-  - source: otc_monograph
-    document_id: 21 CFR 201.326
-    section: Warnings
-    quote: 'Ask a doctor or pharmacist before use if you are taking any drug for:
-      anticoagulation (thinning the blood); diabetes; gout; arthritis.'
-- dimension: anticoagulant_bleeding
-  persona: adult_65_plus
-  severity: 2
-  citations:
-  - source: otc_monograph
-    document_id: 21 CFR 201.326
-    section: Warnings
-    quote: 'Ask a doctor or pharmacist before use if you are taking any drug for:
-      anticoagulation (thinning the blood); diabetes; gout; arthritis.'
-- dimension: anticoagulant_bleeding
-  persona: teen_12_17
-  severity: 2
-  citations:
-  - source: otc_monograph
-    document_id: 21 CFR 201.326
-    section: Warnings
-    quote: 'Ask a doctor or pharmacist before use if you are taking any drug for:
-      anticoagulation (thinning the blood); diabetes; gout; arthritis.'
-- dimension: anticoagulant_bleeding
-  persona: child_6_11
-  severity: 2
-  citations:
-  - source: otc_monograph
-    document_id: 21 CFR 201.326
-    section: Warnings
-    quote: 'Ask a doctor or pharmacist before use if you are taking any drug for:
-      anticoagulation (thinning the blood); diabetes; gout; arthritis.'
-- dimension: anticoagulant_bleeding
-  persona: child_2_5
-  severity: 2
-  citations:
-  - source: otc_monograph
-    document_id: 21 CFR 201.326
-    section: Warnings
-    quote: 'Ask a doctor or pharmacist before use if you are taking any drug for:
-      anticoagulation (thinning the blood); diabetes; gout; arthritis.'
-- dimension: anticoagulant_bleeding
-  persona: under_2
-  severity: 2
-  citations:
-  - source: otc_monograph
-    document_id: 21 CFR 201.326
-    section: Warnings
-    quote: 'Ask a doctor or pharmacist before use if you are taking any drug for:
-      anticoagulation (thinning the blood); diabetes; gout; arthritis.'
-- dimension: anticoagulant_bleeding
-  persona: pregnant
-  severity: 2
-  citations:
-  - source: otc_monograph
-    document_id: 21 CFR 201.326
-    section: Warnings
-    quote: 'Ask a doctor or pharmacist before use if you are taking any drug for:
-      anticoagulation (thinning the blood); diabetes; gout; arthritis.'
-- dimension: anticoagulant_bleeding
-  persona: breastfeeding
-  severity: 2
-  citations:
-  - source: otc_monograph
-    document_id: 21 CFR 201.326
-    section: Warnings
-    quote: 'Ask a doctor or pharmacist before use if you are taking any drug for:
-      anticoagulation (thinning the blood); diabetes; gout; arthritis.'
-- dimension: pediatric
-  persona: adult_18_64
-  severity: 0
-- dimension: pediatric
-  persona: adult_65_plus
-  severity: 0
-- dimension: pediatric
-  persona: teen_12_17
-  severity: 3
-  citations:
-  - source: otc_monograph
-    document_id: 21 CFR 201.314
-    section: Reye's syndrome warning
-    quote: 'Reye''s syndrome: Children and teenagers who have or are recovering from
-      chicken pox or flu-like symptoms should not use this product.'
-- dimension: pediatric
-  persona: child_6_11
-  severity: 3
-  citations:
-  - source: otc_monograph
-    document_id: 21 CFR 201.314
-    section: Reye's syndrome warning
-    quote: 'Reye''s syndrome: Children and teenagers who have or are recovering from
-      chicken pox or flu-like symptoms should not use this product.'
-- dimension: pediatric
-  persona: child_2_5
-  severity: 3
-  citations:
-  - source: otc_monograph
-    document_id: 21 CFR 201.314
-    section: Reye's syndrome warning
-    quote: 'Reye''s syndrome: Children and teenagers who have or are recovering from
-      chicken pox or flu-like symptoms should not use this product.'
-- dimension: pediatric
-  persona: under_2
-  severity: 3
-  citations:
-  - source: otc_monograph
-    document_id: 21 CFR 201.314
-    section: Reye's syndrome warning
-    quote: 'Reye''s syndrome: Children and teenagers who have or are recovering from
-      chicken pox or flu-like symptoms should not use this product.'
-- dimension: pediatric
-  persona: pregnant
-  severity: 0
-- dimension: pediatric
-  persona: breastfeeding
-  severity: 0
-- dimension: rebound_overuse
-  persona: adult_18_64
-  severity: 0
-- dimension: rebound_overuse
-  persona: adult_65_plus
-  severity: 0
-- dimension: rebound_overuse
-  persona: teen_12_17
-  severity: 0
-- dimension: rebound_overuse
-  persona: child_6_11
-  severity: 0
-- dimension: rebound_overuse
-  persona: child_2_5
-  severity: 0
-- dimension: rebound_overuse
-  persona: under_2
-  severity: 0
-- dimension: rebound_overuse
-  persona: pregnant
-  severity: 0
-- dimension: rebound_overuse
-  persona: breastfeeding
-  severity: 0
-- dimension: pregnancy_lactation
-  persona: adult_18_64
-  severity: 0
-- dimension: pregnancy_lactation
-  persona: adult_65_plus
-  severity: 0
-- dimension: pregnancy_lactation
-  persona: teen_12_17
-  severity: 0
-- dimension: pregnancy_lactation
-  persona: child_6_11
-  severity: 0
-- dimension: pregnancy_lactation
-  persona: child_2_5
-  severity: 0
-- dimension: pregnancy_lactation
-  persona: under_2
-  severity: 0
-- dimension: pregnancy_lactation
-  persona: pregnant
-  severity: 3
-  citations:
-  - source: otc_monograph
-    document_id: 21 CFR 201.63
-    section: Pregnancy/breast-feeding warning
-    quote: If pregnant or breast-feeding, ask a health professional before use. It
-      is especially important not to use salicylate products at 20 weeks or later
-      in pregnancy.
-- dimension: pregnancy_lactation
-  persona: breastfeeding
-  severity: 2
-  citations:
-  - source: publication
-    document_id: 10.1542/peds.108.3.776
-    section: AAP Committee on Drugs
-    quote: Salicylates are excreted in human milk; avoidance is recommended during
-      lactation due to theoretical risk of Reye's syndrome and platelet dysfunction
-      in the infant.
-- dimension: duplicate_dosing
-  persona: adult_18_64
-  severity: 2
-  citations:
-  - source: otc_monograph
-    document_id: 21 CFR 201.326
-    section: Warnings
-    quote: Do not use if you are allergic to salicylates (including aspirin) or taking
-      other salicylate products.
-- dimension: duplicate_dosing
-  persona: adult_65_plus
-  severity: 2
-  citations:
-  - source: otc_monograph
-    document_id: 21 CFR 201.326
-    section: Warnings
-    quote: Do not use if you are allergic to salicylates (including aspirin) or taking
-      other salicylate products.
-- dimension: duplicate_dosing
-  persona: teen_12_17
-  severity: 2
-  citations:
-  - source: otc_monograph
-    document_id: 21 CFR 201.326
-    section: Warnings
-    quote: Do not use if you are allergic to salicylates (including aspirin) or taking
-      other salicylate products.
-- dimension: duplicate_dosing
-  persona: child_6_11
-  severity: 2
-  citations:
-  - source: otc_monograph
-    document_id: 21 CFR 201.326
-    section: Warnings
-    quote: Do not use if you are allergic to salicylates (including aspirin) or taking
-      other salicylate products.
-- dimension: duplicate_dosing
-  persona: child_2_5
-  severity: 2
-  citations:
-  - source: otc_monograph
-    document_id: 21 CFR 201.326
-    section: Warnings
-    quote: Do not use if you are allergic to salicylates (including aspirin) or taking
-      other salicylate products.
-- dimension: duplicate_dosing
-  persona: under_2
-  severity: 2
-  citations:
-  - source: otc_monograph
-    document_id: 21 CFR 201.326
-    section: Warnings
-    quote: Do not use if you are allergic to salicylates (including aspirin) or taking
-      other salicylate products.
-- dimension: duplicate_dosing
-  persona: pregnant
-  severity: 2
-  citations:
-  - source: otc_monograph
-    document_id: 21 CFR 201.326
-    section: Warnings
-    quote: Do not use if you are allergic to salicylates (including aspirin) or taking
-      other salicylate products.
-- dimension: duplicate_dosing
-  persona: breastfeeding
-  severity: 2
-  citations:
-  - source: otc_monograph
-    document_id: 21 CFR 201.326
-    section: Warnings
-    quote: Do not use if you are allergic to salicylates (including aspirin) or taking
-      other salicylate products.
-- dimension: excipients
-  persona: adult_18_64
-  severity: 0
-- dimension: excipients
-  persona: adult_65_plus
-  severity: 0
-- dimension: excipients
-  persona: teen_12_17
-  severity: 0
-- dimension: excipients
-  persona: child_6_11
-  severity: 0
-- dimension: excipients
-  persona: child_2_5
-  severity: 0
-- dimension: excipients
-  persona: under_2
-  severity: 0
-- dimension: excipients
-  persona: pregnant
-  severity: 0
-- dimension: excipients
-  persona: breastfeeding
-  severity: 0
-- dimension: local_skin
-  persona: adult_18_64
-  severity: 0
-- dimension: local_skin
-  persona: adult_65_plus
-  severity: 0
-- dimension: local_skin
-  persona: teen_12_17
-  severity: 0
-- dimension: local_skin
-  persona: child_6_11
-  severity: 0
-- dimension: local_skin
-  persona: child_2_5
-  severity: 0
-- dimension: local_skin
-  persona: under_2
-  severity: 0
-- dimension: local_skin
-  persona: pregnant
-  severity: 0
-- dimension: local_skin
-  persona: breastfeeding
-  severity: 0
-- dimension: efficacy_evidence
-  persona: adult_18_64
-  severity: 0
-- dimension: efficacy_evidence
-  persona: adult_65_plus
-  severity: 0
-- dimension: efficacy_evidence
-  persona: teen_12_17
-  severity: 0
-- dimension: efficacy_evidence
-  persona: child_6_11
-  severity: 0
-- dimension: efficacy_evidence
-  persona: child_2_5
-  severity: 0
-- dimension: efficacy_evidence
-  persona: under_2
-  severity: 0
-- dimension: efficacy_evidence
-  persona: pregnant
-  severity: 0
-- dimension: efficacy_evidence
-  persona: breastfeeding
-  severity: 0
+  - dimension: liver
+    persona: adult_18_64
+    severity: 0
+  - dimension: liver
+    persona: adult_65_plus
+    severity: 0
+  - dimension: liver
+    persona: teen_12_17
+    severity: 0
+  - dimension: liver
+    persona: child_6_11
+    severity: 0
+  - dimension: liver
+    persona: child_2_5
+    severity: 0
+  - dimension: liver
+    persona: under_2
+    severity: 0
+  - dimension: liver
+    persona: pregnant
+    severity: 0
+  - dimension: liver
+    persona: breastfeeding
+    severity: 0
+  - dimension: gi_bleeding
+    persona: adult_18_64
+    severity: 2
+    citations:
+      - source: otc_monograph
+        document_id: 21 CFR 201.326
+        section: Warnings
+        quote: "Ask a doctor before use if you have: ulcers; bleeding problems; stool
+          that is bloody or black."
+  - dimension: gi_bleeding
+    persona: adult_65_plus
+    severity: 3
+    citations:
+      - source: otc_monograph
+        document_id: 21 CFR 201.326
+        section: Warnings
+        quote: "Ask a doctor before use if you have: ulcers; bleeding problems; stool
+          that is bloody or black."
+  - dimension: gi_bleeding
+    persona: teen_12_17
+    severity: 2
+    citations:
+      - source: otc_monograph
+        document_id: 21 CFR 201.326
+        section: Warnings
+        quote: "Ask a doctor before use if you have: ulcers; bleeding problems; stool
+          that is bloody or black."
+  - dimension: gi_bleeding
+    persona: child_6_11
+    severity: 2
+    citations:
+      - source: otc_monograph
+        document_id: 21 CFR 201.326
+        section: Warnings
+        quote: "Ask a doctor before use if you have: ulcers; bleeding problems; stool
+          that is bloody or black."
+  - dimension: gi_bleeding
+    persona: child_2_5
+    severity: 2
+    citations:
+      - source: otc_monograph
+        document_id: 21 CFR 201.326
+        section: Warnings
+        quote: "Ask a doctor before use if you have: ulcers; bleeding problems; stool
+          that is bloody or black."
+  - dimension: gi_bleeding
+    persona: under_2
+    severity: 2
+    citations:
+      - source: otc_monograph
+        document_id: 21 CFR 201.326
+        section: Warnings
+        quote: "Ask a doctor before use if you have: ulcers; bleeding problems; stool
+          that is bloody or black."
+  - dimension: gi_bleeding
+    persona: pregnant
+    severity: 3
+    citations:
+      - source: otc_monograph
+        document_id: 21 CFR 201.326
+        section: Warnings
+        quote: "Ask a doctor before use if you have: ulcers; bleeding problems; stool
+          that is bloody or black."
+  - dimension: gi_bleeding
+    persona: breastfeeding
+    severity: 2
+    citations:
+      - source: otc_monograph
+        document_id: 21 CFR 201.326
+        section: Warnings
+        quote: "Ask a doctor before use if you have: ulcers; bleeding problems; stool
+          that is bloody or black."
+  - dimension: cardiovascular_bp
+    persona: adult_18_64
+    severity: 0
+  - dimension: cardiovascular_bp
+    persona: adult_65_plus
+    severity: 0
+  - dimension: cardiovascular_bp
+    persona: teen_12_17
+    severity: 0
+  - dimension: cardiovascular_bp
+    persona: child_6_11
+    severity: 0
+  - dimension: cardiovascular_bp
+    persona: child_2_5
+    severity: 0
+  - dimension: cardiovascular_bp
+    persona: under_2
+    severity: 0
+  - dimension: cardiovascular_bp
+    persona: pregnant
+    severity: 0
+  - dimension: cardiovascular_bp
+    persona: breastfeeding
+    severity: 0
+  - dimension: kidney
+    persona: adult_18_64
+    severity: 0
+  - dimension: kidney
+    persona: adult_65_plus
+    severity: 0
+  - dimension: kidney
+    persona: teen_12_17
+    severity: 0
+  - dimension: kidney
+    persona: child_6_11
+    severity: 0
+  - dimension: kidney
+    persona: child_2_5
+    severity: 0
+  - dimension: kidney
+    persona: under_2
+    severity: 0
+  - dimension: kidney
+    persona: pregnant
+    severity: 0
+  - dimension: kidney
+    persona: breastfeeding
+    severity: 0
+  - dimension: anticholinergic_cognitive
+    persona: adult_18_64
+    severity: 0
+  - dimension: anticholinergic_cognitive
+    persona: adult_65_plus
+    severity: 0
+  - dimension: anticholinergic_cognitive
+    persona: teen_12_17
+    severity: 0
+  - dimension: anticholinergic_cognitive
+    persona: child_6_11
+    severity: 0
+  - dimension: anticholinergic_cognitive
+    persona: child_2_5
+    severity: 0
+  - dimension: anticholinergic_cognitive
+    persona: under_2
+    severity: 0
+  - dimension: anticholinergic_cognitive
+    persona: pregnant
+    severity: 0
+  - dimension: anticholinergic_cognitive
+    persona: breastfeeding
+    severity: 0
+  - dimension: sedation_falls
+    persona: adult_18_64
+    severity: 0
+  - dimension: sedation_falls
+    persona: adult_65_plus
+    severity: 0
+  - dimension: sedation_falls
+    persona: teen_12_17
+    severity: 0
+  - dimension: sedation_falls
+    persona: child_6_11
+    severity: 0
+  - dimension: sedation_falls
+    persona: child_2_5
+    severity: 0
+  - dimension: sedation_falls
+    persona: under_2
+    severity: 0
+  - dimension: sedation_falls
+    persona: pregnant
+    severity: 0
+  - dimension: sedation_falls
+    persona: breastfeeding
+    severity: 0
+  - dimension: serotonergic_interactions
+    persona: adult_18_64
+    severity: 0
+  - dimension: serotonergic_interactions
+    persona: adult_65_plus
+    severity: 0
+  - dimension: serotonergic_interactions
+    persona: teen_12_17
+    severity: 0
+  - dimension: serotonergic_interactions
+    persona: child_6_11
+    severity: 0
+  - dimension: serotonergic_interactions
+    persona: child_2_5
+    severity: 0
+  - dimension: serotonergic_interactions
+    persona: under_2
+    severity: 0
+  - dimension: serotonergic_interactions
+    persona: pregnant
+    severity: 0
+  - dimension: serotonergic_interactions
+    persona: breastfeeding
+    severity: 0
+  - dimension: anticoagulant_bleeding
+    persona: adult_18_64
+    severity: 2
+    citations:
+      - source: otc_monograph
+        document_id: 21 CFR 201.326
+        section: Warnings
+        quote: "Ask a doctor or pharmacist before use if you are taking any drug for:
+          anticoagulation (thinning the blood); diabetes; gout; arthritis."
+  - dimension: anticoagulant_bleeding
+    persona: adult_65_plus
+    severity: 2
+    citations:
+      - source: otc_monograph
+        document_id: 21 CFR 201.326
+        section: Warnings
+        quote: "Ask a doctor or pharmacist before use if you are taking any drug for:
+          anticoagulation (thinning the blood); diabetes; gout; arthritis."
+  - dimension: anticoagulant_bleeding
+    persona: teen_12_17
+    severity: 2
+    citations:
+      - source: otc_monograph
+        document_id: 21 CFR 201.326
+        section: Warnings
+        quote: "Ask a doctor or pharmacist before use if you are taking any drug for:
+          anticoagulation (thinning the blood); diabetes; gout; arthritis."
+  - dimension: anticoagulant_bleeding
+    persona: child_6_11
+    severity: 2
+    citations:
+      - source: otc_monograph
+        document_id: 21 CFR 201.326
+        section: Warnings
+        quote: "Ask a doctor or pharmacist before use if you are taking any drug for:
+          anticoagulation (thinning the blood); diabetes; gout; arthritis."
+  - dimension: anticoagulant_bleeding
+    persona: child_2_5
+    severity: 2
+    citations:
+      - source: otc_monograph
+        document_id: 21 CFR 201.326
+        section: Warnings
+        quote: "Ask a doctor or pharmacist before use if you are taking any drug for:
+          anticoagulation (thinning the blood); diabetes; gout; arthritis."
+  - dimension: anticoagulant_bleeding
+    persona: under_2
+    severity: 2
+    citations:
+      - source: otc_monograph
+        document_id: 21 CFR 201.326
+        section: Warnings
+        quote: "Ask a doctor or pharmacist before use if you are taking any drug for:
+          anticoagulation (thinning the blood); diabetes; gout; arthritis."
+  - dimension: anticoagulant_bleeding
+    persona: pregnant
+    severity: 2
+    citations:
+      - source: otc_monograph
+        document_id: 21 CFR 201.326
+        section: Warnings
+        quote: "Ask a doctor or pharmacist before use if you are taking any drug for:
+          anticoagulation (thinning the blood); diabetes; gout; arthritis."
+  - dimension: anticoagulant_bleeding
+    persona: breastfeeding
+    severity: 2
+    citations:
+      - source: otc_monograph
+        document_id: 21 CFR 201.326
+        section: Warnings
+        quote: "Ask a doctor or pharmacist before use if you are taking any drug for:
+          anticoagulation (thinning the blood); diabetes; gout; arthritis."
+  - dimension: pediatric
+    persona: adult_18_64
+    severity: 0
+  - dimension: pediatric
+    persona: adult_65_plus
+    severity: 0
+  - dimension: pediatric
+    persona: teen_12_17
+    severity: 3
+    citations:
+      - source: otc_monograph
+        document_id: 21 CFR 201.314
+        section: Reye's syndrome warning
+        quote: "Reye's syndrome: Children and teenagers who have or are recovering from
+          chicken pox or flu-like symptoms should not use this product."
+  - dimension: pediatric
+    persona: child_6_11
+    severity: 3
+    citations:
+      - source: otc_monograph
+        document_id: 21 CFR 201.314
+        section: Reye's syndrome warning
+        quote: "Reye's syndrome: Children and teenagers who have or are recovering from
+          chicken pox or flu-like symptoms should not use this product."
+  - dimension: pediatric
+    persona: child_2_5
+    severity: 3
+    citations:
+      - source: otc_monograph
+        document_id: 21 CFR 201.314
+        section: Reye's syndrome warning
+        quote: "Reye's syndrome: Children and teenagers who have or are recovering from
+          chicken pox or flu-like symptoms should not use this product."
+  - dimension: pediatric
+    persona: under_2
+    severity: 3
+    citations:
+      - source: otc_monograph
+        document_id: 21 CFR 201.314
+        section: Reye's syndrome warning
+        quote: "Reye's syndrome: Children and teenagers who have or are recovering from
+          chicken pox or flu-like symptoms should not use this product."
+  - dimension: pediatric
+    persona: pregnant
+    severity: 0
+  - dimension: pediatric
+    persona: breastfeeding
+    severity: 0
+  - dimension: rebound_overuse
+    persona: adult_18_64
+    severity: 0
+  - dimension: rebound_overuse
+    persona: adult_65_plus
+    severity: 0
+  - dimension: rebound_overuse
+    persona: teen_12_17
+    severity: 0
+  - dimension: rebound_overuse
+    persona: child_6_11
+    severity: 0
+  - dimension: rebound_overuse
+    persona: child_2_5
+    severity: 0
+  - dimension: rebound_overuse
+    persona: under_2
+    severity: 0
+  - dimension: rebound_overuse
+    persona: pregnant
+    severity: 0
+  - dimension: rebound_overuse
+    persona: breastfeeding
+    severity: 0
+  - dimension: pregnancy_lactation
+    persona: adult_18_64
+    severity: 0
+  - dimension: pregnancy_lactation
+    persona: adult_65_plus
+    severity: 0
+  - dimension: pregnancy_lactation
+    persona: teen_12_17
+    severity: 0
+  - dimension: pregnancy_lactation
+    persona: child_6_11
+    severity: 0
+  - dimension: pregnancy_lactation
+    persona: child_2_5
+    severity: 0
+  - dimension: pregnancy_lactation
+    persona: under_2
+    severity: 0
+  - dimension: pregnancy_lactation
+    persona: pregnant
+    severity: 3
+    citations:
+      - source: otc_monograph
+        document_id: 21 CFR 201.63
+        section: Pregnancy/breast-feeding warning
+        quote: If pregnant or breast-feeding, ask a health professional before use. It
+          is especially important not to use salicylate products at 20 weeks or later
+          in pregnancy.
+  - dimension: pregnancy_lactation
+    persona: breastfeeding
+    severity: 2
+    citations:
+      - source: publication
+        document_id: 10.1542/peds.108.3.776
+        section: AAP Committee on Drugs
+        quote: Salicylates are excreted in human milk; avoidance is recommended during
+          lactation due to theoretical risk of Reye's syndrome and platelet dysfunction
+          in the infant.
+  - dimension: duplicate_dosing
+    persona: adult_18_64
+    severity: 2
+    citations:
+      - source: otc_monograph
+        document_id: 21 CFR 201.326
+        section: Warnings
+        quote: Do not use if you are allergic to salicylates (including aspirin) or taking
+          other salicylate products.
+  - dimension: duplicate_dosing
+    persona: adult_65_plus
+    severity: 2
+    citations:
+      - source: otc_monograph
+        document_id: 21 CFR 201.326
+        section: Warnings
+        quote: Do not use if you are allergic to salicylates (including aspirin) or taking
+          other salicylate products.
+  - dimension: duplicate_dosing
+    persona: teen_12_17
+    severity: 2
+    citations:
+      - source: otc_monograph
+        document_id: 21 CFR 201.326
+        section: Warnings
+        quote: Do not use if you are allergic to salicylates (including aspirin) or taking
+          other salicylate products.
+  - dimension: duplicate_dosing
+    persona: child_6_11
+    severity: 2
+    citations:
+      - source: otc_monograph
+        document_id: 21 CFR 201.326
+        section: Warnings
+        quote: Do not use if you are allergic to salicylates (including aspirin) or taking
+          other salicylate products.
+  - dimension: duplicate_dosing
+    persona: child_2_5
+    severity: 2
+    citations:
+      - source: otc_monograph
+        document_id: 21 CFR 201.326
+        section: Warnings
+        quote: Do not use if you are allergic to salicylates (including aspirin) or taking
+          other salicylate products.
+  - dimension: duplicate_dosing
+    persona: under_2
+    severity: 2
+    citations:
+      - source: otc_monograph
+        document_id: 21 CFR 201.326
+        section: Warnings
+        quote: Do not use if you are allergic to salicylates (including aspirin) or taking
+          other salicylate products.
+  - dimension: duplicate_dosing
+    persona: pregnant
+    severity: 2
+    citations:
+      - source: otc_monograph
+        document_id: 21 CFR 201.326
+        section: Warnings
+        quote: Do not use if you are allergic to salicylates (including aspirin) or taking
+          other salicylate products.
+  - dimension: duplicate_dosing
+    persona: breastfeeding
+    severity: 2
+    citations:
+      - source: otc_monograph
+        document_id: 21 CFR 201.326
+        section: Warnings
+        quote: Do not use if you are allergic to salicylates (including aspirin) or taking
+          other salicylate products.
+  - dimension: excipients
+    persona: adult_18_64
+    severity: 0
+  - dimension: excipients
+    persona: adult_65_plus
+    severity: 0
+  - dimension: excipients
+    persona: teen_12_17
+    severity: 0
+  - dimension: excipients
+    persona: child_6_11
+    severity: 0
+  - dimension: excipients
+    persona: child_2_5
+    severity: 0
+  - dimension: excipients
+    persona: under_2
+    severity: 0
+  - dimension: excipients
+    persona: pregnant
+    severity: 0
+  - dimension: excipients
+    persona: breastfeeding
+    severity: 0
+  - dimension: local_skin
+    persona: adult_18_64
+    severity: 0
+  - dimension: local_skin
+    persona: adult_65_plus
+    severity: 0
+  - dimension: local_skin
+    persona: teen_12_17
+    severity: 0
+  - dimension: local_skin
+    persona: child_6_11
+    severity: 0
+  - dimension: local_skin
+    persona: child_2_5
+    severity: 0
+  - dimension: local_skin
+    persona: under_2
+    severity: 0
+  - dimension: local_skin
+    persona: pregnant
+    severity: 0
+  - dimension: local_skin
+    persona: breastfeeding
+    severity: 0
+  - dimension: efficacy_evidence
+    persona: adult_18_64
+    severity: 0
+  - dimension: efficacy_evidence
+    persona: adult_65_plus
+    severity: 0
+  - dimension: efficacy_evidence
+    persona: teen_12_17
+    severity: 0
+  - dimension: efficacy_evidence
+    persona: child_6_11
+    severity: 0
+  - dimension: efficacy_evidence
+    persona: child_2_5
+    severity: 0
+  - dimension: efficacy_evidence
+    persona: under_2
+    severity: 0
+  - dimension: efficacy_evidence
+    persona: pregnant
+    severity: 0
+  - dimension: efficacy_evidence
+    persona: breastfeeding
+    severity: 0
 modifiers:
-- dimension: gi_bleeding
-  condition: stomach_ulcer_or_bleeding
-  severity_change: 2
-  citations:
-  - source: otc_monograph
-    document_id: 21 CFR 201.326
-    section: Warnings
-    quote: Ask a doctor before use if you have had ulcers or bleeding problems.
-- dimension: anticoagulant_bleeding
-  medication_type: anticoagulants
-  severity_change: 2
-  citations:
-  - source: otc_monograph
-    document_id: 21 CFR 201.326
-    section: Warnings
-    quote: Ask a doctor or pharmacist before use if you are taking any drug for anticoagulation
-      (thinning the blood).
-- dimension: anticoagulant_bleeding
-  medication_type: antiplatelets
-  severity_change: 2
-  citations:
-  - source: stopp_start
-    document_id: 10.1093/ageing/afad156
-    section: STOPP v3 Section C (Coagulation System), Criterion 3
-    quote: Concurrent salicylate or antiplatelet therapy elevates hemorrhagic diathesis
-      without therapeutic synergy.
-- dimension: kidney
-  condition: kidney_disease
-  severity_change: 1
-  citations:
-  - source: publication
-    document_id: 10.1007/BF01297059
-    section: Pharmacokinetics of Bismuth Subsalicylate
-    quote: Systemic salicylate absorption from bismuth subsalicylate is near 100%,
-      and renal impairment delays salicylate clearance and increases bismuth retention.
+  - dimension: gi_bleeding
+    condition: stomach_ulcer_or_bleeding
+    severity_change: 2
+    citations:
+      - source: otc_monograph
+        document_id: 21 CFR 201.326
+        section: Warnings
+        quote: Ask a doctor before use if you have had ulcers or bleeding problems.
+  - dimension: anticoagulant_bleeding
+    medication_type: anticoagulants
+    severity_change: 2
+    citations:
+      - source: otc_monograph
+        document_id: 21 CFR 201.326
+        section: Warnings
+        quote: Ask a doctor or pharmacist before use if you are taking any drug for anticoagulation
+          (thinning the blood).
+  - dimension: anticoagulant_bleeding
+    medication_type: antiplatelets
+    severity_change: 2
+    citations:
+      - source: stopp_start
+        document_id: 10.1093/ageing/afad156
+        section: STOPP v3 Section C (Coagulation System), Criterion 3
+        quote: Concurrent salicylate or antiplatelet therapy elevates hemorrhagic diathesis
+          without therapeutic synergy.
+  - dimension: kidney
+    condition: kidney_disease
+    severity_change: 1
+    citations:
+      - source: publication
+        document_id: 10.1007/BF01297059
+        section: Pharmacokinetics of Bismuth Subsalicylate
+        quote: Systemic salicylate absorption from bismuth subsalicylate is near 100%,
+          and renal impairment delays salicylate clearance and increases bismuth retention.
