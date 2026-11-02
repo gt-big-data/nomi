@@ -74,8 +74,7 @@ def test_held_out() -> None:
     matcher = FaersNameMatcher(SAMPLE_CANONICAL, SAMPLE_SYNONYMS, fuzzy_threshold=0.85)
     matched_results = matcher.match_batch(held_out_raw_names)
 
-    tp = 0
-    fp = 0
+    tp, fp = 0, 0
     for i in range(len(held_out)):
         match = matched_results[i]
         true_uniis = held_out_uniis[i].strip()
