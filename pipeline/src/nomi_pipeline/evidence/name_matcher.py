@@ -1,0 +1,261 @@
+import re
+from dataclasses import dataclass
+from collections.abc import Mapping, Iterable
+from typing import Literal
+import difflib
+
+
+@dataclass(frozen=True, slots=True)
+class MatchResult:
+    """A match result for a name matcher."""
+
+    raw_name: str
+    clean_name: str
+    uniis: tuple[str, ...]
+    method: Literal["exact", "rxnorm_synonym", "combination", "fuzzy", "unmapped"]
+    confidence: float
+
+    @property
+    def is_matched(self) -> bool:
+        """True if ingredients were found and not unmapped."""
+        return len(self.uniis) > 0 and self.method != "unmapped"
+
+
+# Matches:
+# - Simple doses: 500mg, 500 mg, 10ml, 0.5%, 325mcg, 2.5g
+# - Liquid concentration ratios: 160mg/5ml, 160 mg / 5 ml, 10mg/ml
+# - Combination/split strengths: 250-250-65mg, 325/200mg, 500/25 mg
+DOSAGE_PATTERN: re.Pattern[str] = re.compile(
+    r"\b"  # Word boundary
+    r"\d+(?:\.\d+)?"  # Number (e.g. 500, 0.5)
+    r"\s*"  # Optional space
+    r"(?:mg|mcg|ug|g|ml|oz|%)"  # Unit
+    r"(?:\s*/\s*\d*(?:\.\d+)?\s*(?:mg|mcg|ug|g|ml))?"  # Optional ratio divisor (/5ml, /ml)
+    r"\b"
+    r"|"
+    r"\b\d+(?:[-/]\d+)+\s*(?:mg|mcg|ug|g)?\b",  # Multi-ingredient doses (e.g. 250-250-65mg, 325/200)
+    re.IGNORECASE,
+)
+
+# Matches physical packaging and pharmaceutical delivery routes
+FORM_PATTERN: re.Pattern[str] = re.compile(
+    r"\b("
+    r"oral|topical|nasal|ophthalmic|rectal|"
+    r"tablet|tablets|tab|tabs|"
+    r"capsule|capsules|cap|caps|"
+    r"caplet|caplets|"
+    r"liqui-?gel|liqui-?gels|gelcap|gelcaps|"
+    r"liquid|solution|suspension|syrup|elixir|"
+    r"chewable|chewables|chews|gummy|gummies|"
+    r"drops|spray|mist|"
+    r"cream|ointment|gel|patch|lotion"
+    r")\b",
+    re.IGNORECASE,
+)
+
+# Matches extended-release kinetics and marketing strength tiers
+RELEASE_SPEC_PATTERN: re.Pattern[str] = re.compile(
+    r"\b("
+    # Release Kinetics abbreviations and words
+    r"er|xr|sr|cr|dr|ir|"
+    r"extended\s+release|delayed\s+release|immediate\s+release|"
+    r"sustained\s+release|controlled\s+release|"
+    # Marketing tiers (pure noise for ingredient matching)
+    r"extra\s+strength|maximum\s+strength|max\s+strength|regular\s+strength|"
+    r"ultra\s+strength|high\s+potency"
+    r")\b",
+    re.IGNORECASE,
+)
+
+# Matches combination delimiters between drug names:
+COMBINATION_DELIMITER_PATTERN: re.Pattern[str] = re.compile(
+    r"\s*(?:" r"[/+&,]|" r"\b(?:and|with|w/)\b" r")\s*",
+    re.IGNORECASE,
+)
+
+# Matches punctuation and noise
+CLEANUP_PATTERN: re.Pattern[str] = re.compile(r"[^\w\s/+\-&]")
+
+DELIMITER = " / "
+
+
+def normalize(raw_name: str) -> str:
+    """Run regex substitutions in order, collapsing whitespace at the end."""
+    s = raw_name.lower()
+    s1 = DOSAGE_PATTERN.sub("", s)
+    s2 = FORM_PATTERN.sub("", s1)
+    s3 = RELEASE_SPEC_PATTERN.sub("", s2)
+    s4 = COMBINATION_DELIMITER_PATTERN.sub(DELIMITER, s3)
+    s5 = CLEANUP_PATTERN.sub("", s4)
+    final = re.sub(r"\s+", " ", s5).strip(" /+\\-&")
+
+    return final
+
+
+UniiInput = str | Iterable[str]
+IngredientMapping = Mapping[str, UniiInput]
+
+
+class FaersNameMatcher:
+    def __init__(
+        self,
+        canonical_ingredients: IngredientMapping | None = None,
+        synonyms: IngredientMapping | None = None,
+        fuzzy_threshold: float = 0.85,
+    ) -> None:
+        self._canonical_index: dict[str, tuple[str, ...]] = {
+            normalize(name): self._normalize_uniis(unii)
+            for name, unii in (canonical_ingredients or {}).items()
+        }
+        self._synonym_index: dict[str, tuple[str, ...]] = {
+            normalize(name): self._normalize_uniis(unii)
+            for name, unii in (synonyms or {}).items()
+        }
+        self._all_names: list[str] = list(
+            set(self._canonical_index.keys()) | set(self._synonym_index.keys())
+        )
+        self.fuzzy_threshold = fuzzy_threshold
+
+    def _normalize_uniis(self, val: UniiInput) -> tuple[str, ...]:
+        """Normalize a UNII or iterable of UNIIs to a tuple of unique, sorted UNIIs."""
+        if isinstance(val, str):
+            return (val,)
+        elif isinstance(val, Iterable):
+            return tuple(sorted(set(val)))
+        else:
+            raise TypeError(f"Expected str or iterable of str, got {type(val)}")
+
+    def _match_exact(self, clean_name: str) -> tuple[str, ...] | None:
+        """Return UNIIs for exact matches of the clean name."""
+        return self._canonical_index.get(clean_name)
+
+    def _match_synonym(self, clean_name: str) -> tuple[str, ...] | None:
+        """Return UNIIs for synonym matches of the clean name."""
+        return self._synonym_index.get(clean_name)
+
+    def _match_combination(self, clean_name: str) -> tuple[str, ...] | None:
+        """Return UNIIS for combination matches of the clean name."""
+        # Split on delimiter
+        parts = [p.strip() for p in clean_name.split(DELIMITER) if p.strip()]
+
+        # Return None if no combination (only one active ingredient)
+        if len(parts) <= 1:
+            return None
+
+        # Match each part individually, and return None if any part fails to match
+        uniis: set[str] = set()
+        for part in parts:
+            match = self._match_exact(part) or self._match_synonym(part)
+            if not match:
+                return None
+            uniis.update(match)
+
+        return tuple(sorted(uniis))
+
+    def _match_fuzzy(self, clean_name: str) -> tuple[tuple[str, ...], float] | None:
+        """Return UNIIs for fuzzy matches of the clean name."""
+        # Skip fuzzy matching for very short names as they produce false positives easily
+        if len(clean_name) < 4:
+            return None
+
+        matches = difflib.get_close_matches(
+            clean_name, self._all_names, n=1, cutoff=self.fuzzy_threshold
+        )
+
+        # Return None if no match above threshold is found
+        if not matches:
+            return None
+
+        # Return UNIIs and score for best match
+        match = matches[0]
+        uniis = self._match_exact(match) or self._match_synonym(match)
+        if not uniis:
+            return None
+        score = difflib.SequenceMatcher(None, clean_name, match).ratio()
+        return (uniis, round(score, 3))
+
+    def match(self, raw_name: str) -> MatchResult:
+        """Match a raw name to UNIIs, returning a MatchResult with method and confidence."""
+        # Normalize raw name
+        clean_name = normalize(raw_name)
+
+        # If the clean name is empty, return unmapped result
+        if not clean_name:
+            return MatchResult(
+                raw_name=raw_name,
+                clean_name=clean_name,
+                uniis=(),
+                method="unmapped",
+                confidence=0.0,
+            )
+
+        # Check for exact match
+        uniis = self._match_exact(clean_name)
+        if uniis:
+            return MatchResult(
+                raw_name=raw_name,
+                clean_name=clean_name,
+                uniis=uniis,
+                method="exact",
+                confidence=1.0,
+            )
+
+        # Check for synonym match
+        uniis = self._match_synonym(clean_name)
+        if uniis:
+            return MatchResult(
+                raw_name=raw_name,
+                clean_name=clean_name,
+                uniis=uniis,
+                method="rxnorm_synonym",
+                confidence=1.0,
+            )
+
+        # Check for combination match
+        uniis = self._match_combination(clean_name)
+        if uniis:
+            return MatchResult(
+                raw_name=raw_name,
+                clean_name=clean_name,
+                uniis=uniis,
+                method="combination",
+                confidence=1.0,
+            )
+
+        # Check for fuzzy match
+        res = self._match_fuzzy(clean_name)
+        if res:
+            uniis, score = res
+            return MatchResult(
+                raw_name=raw_name,
+                clean_name=clean_name,
+                uniis=uniis,
+                method="fuzzy",
+                confidence=score,
+            )
+
+        # If no match is found, return unmapped result
+        return MatchResult(
+            raw_name=raw_name,
+            clean_name=clean_name,
+            uniis=(),
+            method="unmapped",
+            confidence=0.0,
+        )
+
+    def match_batch(self, raw_names: Iterable[str]) -> list[MatchResult]:
+        """Match a batch of raw names to UNIIs, returning a list of MatchResults."""
+        # Use a cache to avoid redundant matching for duplicate names in the batch
+        cache: dict[str, MatchResult] = {}
+        results: list[MatchResult] = []
+
+        # Iterate through batch
+        for raw_name in raw_names:
+            if raw_name in cache:
+                results.append(cache[raw_name])
+            else:
+                result = self.match(raw_name)
+                cache[raw_name] = result
+                results.append(result)
+
+        return results
