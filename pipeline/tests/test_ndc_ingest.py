@@ -27,7 +27,7 @@ def test_products_are_sorted_by_ndc11() -> None:
 
 def test_raises_error_when_invalid_json() -> None:
     with pytest.raises(NdcParseError):
-        parse_ndc_file(FIXTURES / "not_json.json")
+        parse_ndc_file(FIXTURES / "not_json.txt")
 
 
 def test_raises_error_when_results_key_missing() -> None:
