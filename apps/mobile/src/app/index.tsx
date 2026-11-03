@@ -1,18 +1,14 @@
-import { CameraView, useCameraPermissions } from "expo-camera";
 import * as Haptics from "expo-haptics";
 import { useState } from "react";
 import { Button, StyleSheet, Text, View } from "react-native";
+import { useCameraPermission } from "react-native-vision-camera";
+import { CodeScanner } from "react-native-vision-camera-barcode-scanner";
 
 export default function Scanner() {
-  const [permission, requestPermission] = useCameraPermissions();
+  const { hasPermission, requestPermission } = useCameraPermission();
   const [digits, setDigits] = useState<string | null>(null);
 
-  // Permission status is still loading.
-  if (!permission) {
-    return <View />;
-  }
-
-  if (!permission.granted) {
+  if (!hasPermission) {
     return (
       <View style={styles.center}>
         <Text>Nomi needs the camera to scan barcodes.</Text>
@@ -23,18 +19,20 @@ export default function Scanner() {
 
   return (
     <View style={styles.container}>
-      <CameraView
+      <CodeScanner
         style={StyleSheet.absoluteFill}
-        barcodeScannerSettings={{ barcodeTypes: ["upc_a", "ean13"] }}
-        // Stop scanning while a result is shown, so one box doesn't buzz repeatedly.
-        onBarcodeScanned={
-          digits
-            ? undefined
-            : ({ data }) => {
-                Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
-                setDigits(data);
-              }
-        }
+        isActive={true}
+        barcodeFormats={["upc-a", "ean-13"]}
+        onBarcodeScanned={(barcodes) => {
+          const value = barcodes[0]?.rawValue;
+          // Ignore scans while a result is shown, so one box doesn't buzz repeatedly.
+          if (digits || !value) {
+            return;
+          }
+          Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+          setDigits(value);
+        }}
+        onError={(error) => console.error("Scanner error:", error)}
       />
       {digits && (
         <View style={styles.result}>
