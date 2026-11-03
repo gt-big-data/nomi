@@ -1,0 +1,106 @@
+# Maps MedDRA Preferred Terms to event groups aligned with our 15 risk dimensions
+# Each event group can contain multiple PT patterns (exact match or contains)
+
+event_groups:
+  hepatic_disorders:
+    dimension: liver
+    description: Liver injury, hepatotoxicity, jaundice
+    pt_patterns:
+      - "hepatic failure"
+      - "jaundice"
+      - "liver injury"
+      - "hepatotoxicity"
+      - "hepatitis"
+      - "liver function test abnormal"
+      - "hepatic enzyme increased"
+      - "hypertransaminasaemia"
+
+  gastrointestinal_hemorrhage:
+    dimension: gi_bleeding
+    description: GI bleeding, ulcers, hemorrhage
+    pt_patterns:
+      - "gastrointestinal haemorrhage"
+      - "gastrointestinal hemorrhage"
+      - "upper gastrointestinal haemorrhage"
+      - "lower gastrointestinal haemorrhage"
+      - "melaena"
+      - "haematemesis"
+      - "peptic ulcer haemorrhage"
+      - "gastric ulcer"
+      - "duodenal ulcer"
+
+  cardiovascular_events:
+    dimension: cardiovascular_bp
+    description: Heart attack, stroke, hypertension, arrhythmia
+    pt_patterns:
+      - "myocardial infarction"
+      - "stroke"
+      - "hypertension"
+      - "cardiac arrest"
+      - "arrhythmia"
+      - "atrial fibrillation"
+      - "blood pressure increased"
+      - "tachycardia"
+      - "bradycardia"
+
+  renal_disorders:
+    dimension: kidney
+    description: Kidney injury, renal failure
+    pt_patterns:
+      - "acute kidney injury"
+      - "renal failure"
+      - "chronic kidney disease"
+      - "nephropathy"
+      - "renal impairment"
+      - "blood creatinine increased"
+
+  cognitive_impairment:
+    dimension: anticholinergic_cognitive
+    description: Confusion, delirium, memory impairment
+    pt_patterns:
+      - "confusional state"
+      - "delirium"
+      - "memory impairment"
+      - "cognitive disorder"
+      - "dementia"
+      - "amnesia"
+      - "disorientation"
+
+  falls_sedation:
+    dimension: sedation_falls
+    description: Falls, somnolence, dizziness
+    pt_patterns:
+      - "fall"
+      - "somnolence"
+      - "sedation"
+      - "dizziness"
+      - "syncope"
+      - "loss of consciousness"
+      - "balance disorder"
+
+  serotonin_syndrome:
+    dimension: serotonergic_interactions
+    description: Serotonin syndrome
+    pt_patterns:
+      - "serotonin syndrome"
+      - "neuroleptic malignant syndrome"
+
+  hemorrhage_coagulation:
+    dimension: anticoagulant_bleeding
+    description: Bleeding events, coagulation disorders
+    pt_patterns:
+      - "haemorrhage"
+      - "hemorrhage"
+      - "cerebral haemorrhage"
+      - "intracranial haemorrhage"
+      - "coagulopathy"
+      - "haematoma"
+      - "epistaxis"
+
+  pediatric_adverse_events:
+    dimension: pediatric
+    description: Events specific to or more common in children
+    pt_patterns:
+      - "reye's syndrome"
+      - "growth retardation"
+      - "developmental delay"
