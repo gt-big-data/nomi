@@ -1,0 +1,581 @@
+unii: TC2D6JAD40
+name: diphenhydramine hydrochloride
+ratings:
+  - dimension: liver
+    persona: adult_18_64
+    severity: 0
+  - dimension: liver
+    persona: adult_65_plus
+    severity: 0
+  - dimension: liver
+    persona: teen_12_17
+    severity: 0
+  - dimension: liver
+    persona: child_6_11
+    severity: 0
+  - dimension: liver
+    persona: child_2_5
+    severity: 0
+  - dimension: liver
+    persona: under_2
+    severity: 0
+  - dimension: liver
+    persona: pregnant
+    severity: 0
+  - dimension: liver
+    persona: breastfeeding
+    severity: 0
+  - dimension: gi_bleeding
+    persona: adult_18_64
+    severity: 0
+  - dimension: gi_bleeding
+    persona: adult_65_plus
+    severity: 0
+  - dimension: gi_bleeding
+    persona: teen_12_17
+    severity: 0
+  - dimension: gi_bleeding
+    persona: child_6_11
+    severity: 0
+  - dimension: gi_bleeding
+    persona: child_2_5
+    severity: 0
+  - dimension: gi_bleeding
+    persona: under_2
+    severity: 0
+  - dimension: gi_bleeding
+    persona: pregnant
+    severity: 0
+  - dimension: gi_bleeding
+    persona: breastfeeding
+    severity: 0
+  - dimension: cardiovascular_bp
+    persona: adult_18_64
+    severity: 0
+  - dimension: cardiovascular_bp
+    persona: adult_65_plus
+    severity: 0
+  - dimension: cardiovascular_bp
+    persona: teen_12_17
+    severity: 0
+  - dimension: cardiovascular_bp
+    persona: child_6_11
+    severity: 0
+  - dimension: cardiovascular_bp
+    persona: child_2_5
+    severity: 0
+  - dimension: cardiovascular_bp
+    persona: under_2
+    severity: 0
+  - dimension: cardiovascular_bp
+    persona: pregnant
+    severity: 0
+  - dimension: cardiovascular_bp
+    persona: breastfeeding
+    severity: 0
+  - dimension: kidney
+    persona: adult_18_64
+    severity: 0
+  - dimension: kidney
+    persona: adult_65_plus
+    severity: 0
+  - dimension: kidney
+    persona: teen_12_17
+    severity: 0
+  - dimension: kidney
+    persona: child_6_11
+    severity: 0
+  - dimension: kidney
+    persona: child_2_5
+    severity: 0
+  - dimension: kidney
+    persona: under_2
+    severity: 0
+  - dimension: kidney
+    persona: pregnant
+    severity: 0
+  - dimension: kidney
+    persona: breastfeeding
+    severity: 0
+  - dimension: anticholinergic_cognitive
+    persona: adult_18_64
+    severity: 2
+    citations:
+      - source: acb
+        document_id: Boustani_2008_ACB_2012_update
+        section: "2012 update, page 1: diphenhydramine, ACB score 3"
+        url: https://www.hii.iu.edu/resources/anticholinergic-cognitive-burden-scale.pdf
+      - source: fda_label
+        document_id: 702f9786-7ce9-43e4-921d-e1db09612127
+        section: "50569-3: Ask a doctor; glaucoma and enlarged prostate"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=702f9786-7ce9-43e4-921d-e1db09612127
+  - dimension: anticholinergic_cognitive
+    persona: adult_65_plus
+    severity: 3
+    citations:
+      - source: acb
+        document_id: Boustani_2008_ACB_2012_update
+        section: "2012 update, page 1: diphenhydramine, ACB score 3"
+        url: https://www.hii.iu.edu/resources/anticholinergic-cognitive-burden-scale.pdf
+      - source: stopp_start
+        document_id: STOPP_v3_D24
+        section: Appendix 1, STOPP D24
+        url: https://static-content.springer.com/esm/art%3A10.1007%2Fs41999-023-00777-y/MediaObjects/41999_2023_777_MOESM1_ESM.pdf
+  - dimension: anticholinergic_cognitive
+    persona: teen_12_17
+    severity: 2
+    citations:
+      - source: acb
+        document_id: Boustani_2008_ACB_2012_update
+        section: "2012 update, page 1: diphenhydramine, ACB score 3"
+        url: https://www.hii.iu.edu/resources/anticholinergic-cognitive-burden-scale.pdf
+      - source: fda_label
+        document_id: 702f9786-7ce9-43e4-921d-e1db09612127
+        section: "50569-3: Ask a doctor; glaucoma and enlarged prostate"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=702f9786-7ce9-43e4-921d-e1db09612127
+  - dimension: anticholinergic_cognitive
+    persona: child_6_11
+    severity: 2
+    citations:
+      - source: acb
+        document_id: Boustani_2008_ACB_2012_update
+        section: "2012 update, page 1: diphenhydramine, ACB score 3"
+        url: https://www.hii.iu.edu/resources/anticholinergic-cognitive-burden-scale.pdf
+      - source: fda_label
+        document_id: 702f9786-7ce9-43e4-921d-e1db09612127
+        section: "50569-3: Ask a doctor; glaucoma and enlarged prostate"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=702f9786-7ce9-43e4-921d-e1db09612127
+  - dimension: anticholinergic_cognitive
+    persona: child_2_5
+    severity: 2
+    citations:
+      - source: acb
+        document_id: Boustani_2008_ACB_2012_update
+        section: "2012 update, page 1: diphenhydramine, ACB score 3"
+        url: https://www.hii.iu.edu/resources/anticholinergic-cognitive-burden-scale.pdf
+      - source: fda_label
+        document_id: 702f9786-7ce9-43e4-921d-e1db09612127
+        section: "50569-3: Ask a doctor; glaucoma and enlarged prostate"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=702f9786-7ce9-43e4-921d-e1db09612127
+  - dimension: anticholinergic_cognitive
+    persona: under_2
+    severity: 2
+    citations:
+      - source: acb
+        document_id: Boustani_2008_ACB_2012_update
+        section: "2012 update, page 1: diphenhydramine, ACB score 3"
+        url: https://www.hii.iu.edu/resources/anticholinergic-cognitive-burden-scale.pdf
+      - source: fda_label
+        document_id: 702f9786-7ce9-43e4-921d-e1db09612127
+        section: "50569-3: Ask a doctor; glaucoma and enlarged prostate"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=702f9786-7ce9-43e4-921d-e1db09612127
+  - dimension: anticholinergic_cognitive
+    persona: pregnant
+    severity: 2
+    citations:
+      - source: acb
+        document_id: Boustani_2008_ACB_2012_update
+        section: "2012 update, page 1: diphenhydramine, ACB score 3"
+        url: https://www.hii.iu.edu/resources/anticholinergic-cognitive-burden-scale.pdf
+      - source: fda_label
+        document_id: 702f9786-7ce9-43e4-921d-e1db09612127
+        section: "50569-3: Ask a doctor; glaucoma and enlarged prostate"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=702f9786-7ce9-43e4-921d-e1db09612127
+  - dimension: anticholinergic_cognitive
+    persona: breastfeeding
+    severity: 2
+    citations:
+      - source: acb
+        document_id: Boustani_2008_ACB_2012_update
+        section: "2012 update, page 1: diphenhydramine, ACB score 3"
+        url: https://www.hii.iu.edu/resources/anticholinergic-cognitive-burden-scale.pdf
+      - source: fda_label
+        document_id: 702f9786-7ce9-43e4-921d-e1db09612127
+        section: "50569-3: Ask a doctor; glaucoma and enlarged prostate"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=702f9786-7ce9-43e4-921d-e1db09612127
+  - dimension: sedation_falls
+    persona: adult_18_64
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 702f9786-7ce9-43e4-921d-e1db09612127
+        section: "50567-7: When using; drowsiness and driving restrictions"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=702f9786-7ce9-43e4-921d-e1db09612127
+  - dimension: sedation_falls
+    persona: adult_65_plus
+    severity: 3
+    citations:
+      - source: stopp_start
+        document_id: STOPP_v3_D24
+        section: Appendix 1, STOPP D24
+        url: https://static-content.springer.com/esm/art%3A10.1007%2Fs41999-023-00777-y/MediaObjects/41999_2023_777_MOESM1_ESM.pdf
+      - source: fda_label
+        document_id: 702f9786-7ce9-43e4-921d-e1db09612127
+        section: "50567-7: When using; sedation and driving restrictions"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=702f9786-7ce9-43e4-921d-e1db09612127
+  - dimension: sedation_falls
+    persona: teen_12_17
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 702f9786-7ce9-43e4-921d-e1db09612127
+        section: "50567-7: When using; drowsiness and driving restrictions"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=702f9786-7ce9-43e4-921d-e1db09612127
+  - dimension: sedation_falls
+    persona: child_6_11
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 702f9786-7ce9-43e4-921d-e1db09612127
+        section: "50567-7: When using; drowsiness and driving restrictions"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=702f9786-7ce9-43e4-921d-e1db09612127
+  - dimension: sedation_falls
+    persona: child_2_5
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 702f9786-7ce9-43e4-921d-e1db09612127
+        section: "50567-7: When using; drowsiness and driving restrictions"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=702f9786-7ce9-43e4-921d-e1db09612127
+  - dimension: sedation_falls
+    persona: under_2
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 702f9786-7ce9-43e4-921d-e1db09612127
+        section: "50567-7: When using; drowsiness and driving restrictions"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=702f9786-7ce9-43e4-921d-e1db09612127
+  - dimension: sedation_falls
+    persona: pregnant
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 702f9786-7ce9-43e4-921d-e1db09612127
+        section: "50567-7: When using; drowsiness and driving restrictions"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=702f9786-7ce9-43e4-921d-e1db09612127
+  - dimension: sedation_falls
+    persona: breastfeeding
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 702f9786-7ce9-43e4-921d-e1db09612127
+        section: "50567-7: When using; drowsiness and driving restrictions"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=702f9786-7ce9-43e4-921d-e1db09612127
+  - dimension: serotonergic_interactions
+    persona: adult_18_64
+    severity: 0
+  - dimension: serotonergic_interactions
+    persona: adult_65_plus
+    severity: 0
+  - dimension: serotonergic_interactions
+    persona: teen_12_17
+    severity: 0
+  - dimension: serotonergic_interactions
+    persona: child_6_11
+    severity: 0
+  - dimension: serotonergic_interactions
+    persona: child_2_5
+    severity: 0
+  - dimension: serotonergic_interactions
+    persona: under_2
+    severity: 0
+  - dimension: serotonergic_interactions
+    persona: pregnant
+    severity: 0
+  - dimension: serotonergic_interactions
+    persona: breastfeeding
+    severity: 0
+  - dimension: anticoagulant_bleeding
+    persona: adult_18_64
+    severity: 0
+  - dimension: anticoagulant_bleeding
+    persona: adult_65_plus
+    severity: 0
+  - dimension: anticoagulant_bleeding
+    persona: teen_12_17
+    severity: 0
+  - dimension: anticoagulant_bleeding
+    persona: child_6_11
+    severity: 0
+  - dimension: anticoagulant_bleeding
+    persona: child_2_5
+    severity: 0
+  - dimension: anticoagulant_bleeding
+    persona: under_2
+    severity: 0
+  - dimension: anticoagulant_bleeding
+    persona: pregnant
+    severity: 0
+  - dimension: anticoagulant_bleeding
+    persona: breastfeeding
+    severity: 0
+  - dimension: pediatric
+    persona: adult_18_64
+    severity: 0
+  - dimension: pediatric
+    persona: adult_65_plus
+    severity: 0
+  - dimension: pediatric
+    persona: teen_12_17
+    severity: 0
+  - dimension: pediatric
+    persona: child_6_11
+    severity: 1
+    citations:
+      - source: fda_label
+        document_id: 702f9786-7ce9-43e4-921d-e1db09612127
+        section: "50567-7: When using; excitability in children"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=702f9786-7ce9-43e4-921d-e1db09612127
+  - dimension: pediatric
+    persona: child_2_5
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 10d478ff-ddc6-45da-87ff-cfe1b2b07a8e
+        section: "34068-7: Directions; ages 2 to 5 require a doctor"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=10d478ff-ddc6-45da-87ff-cfe1b2b07a8e
+  - dimension: pediatric
+    persona: under_2
+    severity: 3
+    citations:
+      - source: fda_label
+        document_id: 10d478ff-ddc6-45da-87ff-cfe1b2b07a8e
+        section: "34068-7: Directions; do not use under 2"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=10d478ff-ddc6-45da-87ff-cfe1b2b07a8e
+  - dimension: pediatric
+    persona: pregnant
+    severity: 0
+  - dimension: pediatric
+    persona: breastfeeding
+    severity: 0
+  - dimension: rebound_overuse
+    persona: adult_18_64
+    severity: 0
+  - dimension: rebound_overuse
+    persona: adult_65_plus
+    severity: 0
+  - dimension: rebound_overuse
+    persona: teen_12_17
+    severity: 0
+  - dimension: rebound_overuse
+    persona: child_6_11
+    severity: 0
+  - dimension: rebound_overuse
+    persona: child_2_5
+    severity: 0
+  - dimension: rebound_overuse
+    persona: under_2
+    severity: 0
+  - dimension: rebound_overuse
+    persona: pregnant
+    severity: 0
+  - dimension: rebound_overuse
+    persona: breastfeeding
+    severity: 0
+  - dimension: pregnancy_lactation
+    persona: adult_18_64
+    severity: 0
+  - dimension: pregnancy_lactation
+    persona: adult_65_plus
+    severity: 0
+  - dimension: pregnancy_lactation
+    persona: teen_12_17
+    severity: 0
+  - dimension: pregnancy_lactation
+    persona: child_6_11
+    severity: 0
+  - dimension: pregnancy_lactation
+    persona: child_2_5
+    severity: 0
+  - dimension: pregnancy_lactation
+    persona: under_2
+    severity: 0
+  - dimension: pregnancy_lactation
+    persona: pregnant
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 702f9786-7ce9-43e4-921d-e1db09612127
+        section: "53414-9: Pregnancy or breast-feeding"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=702f9786-7ce9-43e4-921d-e1db09612127
+  - dimension: pregnancy_lactation
+    persona: breastfeeding
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 702f9786-7ce9-43e4-921d-e1db09612127
+        section: "53414-9: Pregnancy or breast-feeding"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=702f9786-7ce9-43e4-921d-e1db09612127
+  - dimension: duplicate_dosing
+    persona: adult_18_64
+    severity: 3
+    citations:
+      - source: fda_label
+        document_id: 702f9786-7ce9-43e4-921d-e1db09612127
+        section: "50570-1: Do not use with another product containing this ingredient"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=702f9786-7ce9-43e4-921d-e1db09612127
+  - dimension: duplicate_dosing
+    persona: adult_65_plus
+    severity: 3
+    citations:
+      - source: fda_label
+        document_id: 702f9786-7ce9-43e4-921d-e1db09612127
+        section: "50570-1: Do not use with another product containing this ingredient"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=702f9786-7ce9-43e4-921d-e1db09612127
+  - dimension: duplicate_dosing
+    persona: teen_12_17
+    severity: 3
+    citations:
+      - source: fda_label
+        document_id: 702f9786-7ce9-43e4-921d-e1db09612127
+        section: "50570-1: Do not use with another product containing this ingredient"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=702f9786-7ce9-43e4-921d-e1db09612127
+  - dimension: duplicate_dosing
+    persona: child_6_11
+    severity: 3
+    citations:
+      - source: fda_label
+        document_id: 702f9786-7ce9-43e4-921d-e1db09612127
+        section: "50570-1: Do not use with another product containing this ingredient"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=702f9786-7ce9-43e4-921d-e1db09612127
+  - dimension: duplicate_dosing
+    persona: child_2_5
+    severity: 3
+    citations:
+      - source: fda_label
+        document_id: 702f9786-7ce9-43e4-921d-e1db09612127
+        section: "50570-1: Do not use with another product containing this ingredient"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=702f9786-7ce9-43e4-921d-e1db09612127
+  - dimension: duplicate_dosing
+    persona: under_2
+    severity: 3
+    citations:
+      - source: fda_label
+        document_id: 702f9786-7ce9-43e4-921d-e1db09612127
+        section: "50570-1: Do not use with another product containing this ingredient"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=702f9786-7ce9-43e4-921d-e1db09612127
+  - dimension: duplicate_dosing
+    persona: pregnant
+    severity: 3
+    citations:
+      - source: fda_label
+        document_id: 702f9786-7ce9-43e4-921d-e1db09612127
+        section: "50570-1: Do not use with another product containing this ingredient"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=702f9786-7ce9-43e4-921d-e1db09612127
+  - dimension: duplicate_dosing
+    persona: breastfeeding
+    severity: 3
+    citations:
+      - source: fda_label
+        document_id: 702f9786-7ce9-43e4-921d-e1db09612127
+        section: "50570-1: Do not use with another product containing this ingredient"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=702f9786-7ce9-43e4-921d-e1db09612127
+  - dimension: excipients
+    persona: adult_18_64
+    severity: 0
+  - dimension: excipients
+    persona: adult_65_plus
+    severity: 0
+  - dimension: excipients
+    persona: teen_12_17
+    severity: 0
+  - dimension: excipients
+    persona: child_6_11
+    severity: 0
+  - dimension: excipients
+    persona: child_2_5
+    severity: 0
+  - dimension: excipients
+    persona: under_2
+    severity: 0
+  - dimension: excipients
+    persona: pregnant
+    severity: 0
+  - dimension: excipients
+    persona: breastfeeding
+    severity: 0
+  - dimension: local_skin
+    persona: adult_18_64
+    severity: 0
+  - dimension: local_skin
+    persona: adult_65_plus
+    severity: 0
+  - dimension: local_skin
+    persona: teen_12_17
+    severity: 0
+  - dimension: local_skin
+    persona: child_6_11
+    severity: 0
+  - dimension: local_skin
+    persona: child_2_5
+    severity: 0
+  - dimension: local_skin
+    persona: under_2
+    severity: 0
+  - dimension: local_skin
+    persona: pregnant
+    severity: 0
+  - dimension: local_skin
+    persona: breastfeeding
+    severity: 0
+  - dimension: efficacy_evidence
+    persona: adult_18_64
+    severity: 0
+  - dimension: efficacy_evidence
+    persona: adult_65_plus
+    severity: 0
+  - dimension: efficacy_evidence
+    persona: teen_12_17
+    severity: 0
+  - dimension: efficacy_evidence
+    persona: child_6_11
+    severity: 0
+  - dimension: efficacy_evidence
+    persona: child_2_5
+    severity: 0
+  - dimension: efficacy_evidence
+    persona: under_2
+    severity: 0
+  - dimension: efficacy_evidence
+    persona: pregnant
+    severity: 0
+  - dimension: efficacy_evidence
+    persona: breastfeeding
+    severity: 0
+modifiers:
+  - dimension: anticholinergic_cognitive
+    condition: glaucoma
+    severity_change: 2
+    citations:
+      - source: fda_label
+        document_id: 702f9786-7ce9-43e4-921d-e1db09612127
+        section: "50569-3: Ask a doctor; glaucoma and enlarged prostate"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=702f9786-7ce9-43e4-921d-e1db09612127
+  - dimension: anticholinergic_cognitive
+    condition: enlarged_prostate
+    severity_change: 2
+    citations:
+      - source: fda_label
+        document_id: 702f9786-7ce9-43e4-921d-e1db09612127
+        section: "50569-3: Ask a doctor; glaucoma and enlarged prostate"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=702f9786-7ce9-43e4-921d-e1db09612127
+  - dimension: sedation_falls
+    medication_type: sedatives
+    severity_change: 1
+    citations:
+      - source: fda_label
+        document_id: 702f9786-7ce9-43e4-921d-e1db09612127
+        section: "50567-7: When using; alcohol, sedatives and tranquilizers"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=702f9786-7ce9-43e4-921d-e1db09612127
+  - dimension: sedation_falls
+    condition: heavy_alcohol_use
+    severity_change: 1
+    citations:
+      - source: fda_label
+        document_id: 702f9786-7ce9-43e4-921d-e1db09612127
+        section: "50567-7: When using; alcohol, sedatives and tranquilizers"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=702f9786-7ce9-43e4-921d-e1db09612127
+review_status: unreviewed
+notes:
+  Oral allergy use, including the cited pediatric liquid; not topical use. Sleep use retains the
+  product age restriction.
