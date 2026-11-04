@@ -1,0 +1,112 @@
+[
+  {
+    "unii": "TC2D6JAD40",
+    "name": "diphenhydramine hydrochloride",
+    "ratings": [
+      {
+        "dimension": "anticholinergic_cognitive",
+        "persona": "adult_18_64",
+        "severity": 2,
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "c0fa4e00-2bd1-4d16-810d-b55f3b827418",
+            "section": "SPL v4: Ask a doctor (50569-3)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=c0fa4e00-2bd1-4d16-810d-b55f3b827418"
+          }
+        ]
+      },
+      {
+        "dimension": "sedation_falls",
+        "persona": "adult_18_64",
+        "severity": 2,
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "c0fa4e00-2bd1-4d16-810d-b55f3b827418",
+            "section": "SPL v4: When using (50567-7)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=c0fa4e00-2bd1-4d16-810d-b55f3b827418"
+          }
+        ]
+      },
+      {
+        "dimension": "pediatric",
+        "persona": "adult_18_64",
+        "severity": 0
+      },
+      {
+        "dimension": "anticholinergic_cognitive",
+        "persona": "adult_65_plus",
+        "severity": 3,
+        "citations": [
+          {
+            "source": "publication",
+            "document_id": "10.1111/jgs.18372",
+            "section": "2023 AGS Beers Criteria, Table 2: first-generation antihistamines",
+            "url": "https://pubmed.ncbi.nlm.nih.gov/37139824/"
+          }
+        ]
+      },
+      {
+        "dimension": "sedation_falls",
+        "persona": "adult_65_plus",
+        "severity": 3,
+        "citations": [
+          {
+            "source": "publication",
+            "document_id": "10.1111/jgs.18372",
+            "section": "2023 AGS Beers Criteria, Table 2: first-generation antihistamines",
+            "url": "https://pubmed.ncbi.nlm.nih.gov/37139824/"
+          }
+        ]
+      },
+      {
+        "dimension": "pediatric",
+        "persona": "adult_65_plus",
+        "severity": 0
+      },
+      {
+        "dimension": "anticholinergic_cognitive",
+        "persona": "child_6_11",
+        "severity": 2,
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "c0fa4e00-2bd1-4d16-810d-b55f3b827418",
+            "section": "SPL v4: Ask a doctor (50569-3)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=c0fa4e00-2bd1-4d16-810d-b55f3b827418"
+          }
+        ]
+      },
+      {
+        "dimension": "sedation_falls",
+        "persona": "child_6_11",
+        "severity": 2,
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "c0fa4e00-2bd1-4d16-810d-b55f3b827418",
+            "section": "SPL v4: When using (50567-7)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=c0fa4e00-2bd1-4d16-810d-b55f3b827418"
+          }
+        ]
+      },
+      {
+        "dimension": "pediatric",
+        "persona": "child_6_11",
+        "severity": 1,
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "c0fa4e00-2bd1-4d16-810d-b55f3b827418",
+            "section": "SPL v4: When using (50567-7)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=c0fa4e00-2bd1-4d16-810d-b55f3b827418"
+          }
+        ]
+      }
+    ],
+    "modifiers": [],
+    "review_status": "unreviewed",
+    "notes": "Draft for this labeled formulation and the three example personas only. Other dimensions are unassessed, not zero. Numeric severities are draft interpretations of the cited evidence; second-person review is pending. Pediatric ratings are presentation-specific: a sleep-aid prohibition is not an allergy-tablet prohibition. Older-adult escalation uses the cited Beers publication, not an age claim from the label."
+  }
+]

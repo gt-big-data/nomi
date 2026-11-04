@@ -1,0 +1,165 @@
+[
+  {
+    "unii": "9TN87S3A3C",
+    "name": "naproxen sodium",
+    "ratings": [
+      {
+        "dimension": "gi_bleeding",
+        "persona": "adult_18_64",
+        "severity": 2,
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "1266393e-b55e-4e34-9710-0b87209f4158",
+            "section": "SPL v16: Warnings / Stomach bleeding warning (42229-5)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1266393e-b55e-4e34-9710-0b87209f4158"
+          }
+        ]
+      },
+      {
+        "dimension": "cardiovascular_bp",
+        "persona": "adult_18_64",
+        "severity": 2,
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "1266393e-b55e-4e34-9710-0b87209f4158",
+            "section": "SPL v16: Warnings / Heart attack and stroke warning (42229-5)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1266393e-b55e-4e34-9710-0b87209f4158"
+          }
+        ]
+      },
+      {
+        "dimension": "kidney",
+        "persona": "adult_18_64",
+        "severity": 2,
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "1266393e-b55e-4e34-9710-0b87209f4158",
+            "section": "SPL v16: Ask a doctor (50569-3)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1266393e-b55e-4e34-9710-0b87209f4158"
+          }
+        ]
+      },
+      {
+        "dimension": "pediatric",
+        "persona": "adult_18_64",
+        "severity": 0
+      },
+      {
+        "dimension": "gi_bleeding",
+        "persona": "adult_65_plus",
+        "severity": 3,
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "1266393e-b55e-4e34-9710-0b87209f4158",
+            "section": "SPL v16: Warnings / Stomach bleeding warning (42229-5)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1266393e-b55e-4e34-9710-0b87209f4158"
+          }
+        ]
+      },
+      {
+        "dimension": "cardiovascular_bp",
+        "persona": "adult_65_plus",
+        "severity": 2,
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "1266393e-b55e-4e34-9710-0b87209f4158",
+            "section": "SPL v16: Warnings / Heart attack and stroke warning (42229-5)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1266393e-b55e-4e34-9710-0b87209f4158"
+          }
+        ]
+      },
+      {
+        "dimension": "kidney",
+        "persona": "adult_65_plus",
+        "severity": 2,
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "1266393e-b55e-4e34-9710-0b87209f4158",
+            "section": "SPL v16: Ask a doctor (50569-3)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1266393e-b55e-4e34-9710-0b87209f4158"
+          }
+        ]
+      },
+      {
+        "dimension": "pediatric",
+        "persona": "adult_65_plus",
+        "severity": 0
+      },
+      {
+        "dimension": "gi_bleeding",
+        "persona": "child_6_11",
+        "severity": 2,
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "1266393e-b55e-4e34-9710-0b87209f4158",
+            "section": "SPL v16: Warnings / Stomach bleeding warning (42229-5)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1266393e-b55e-4e34-9710-0b87209f4158"
+          }
+        ]
+      },
+      {
+        "dimension": "cardiovascular_bp",
+        "persona": "child_6_11",
+        "severity": 2,
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "1266393e-b55e-4e34-9710-0b87209f4158",
+            "section": "SPL v16: Warnings / Heart attack and stroke warning (42229-5)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1266393e-b55e-4e34-9710-0b87209f4158"
+          }
+        ]
+      },
+      {
+        "dimension": "kidney",
+        "persona": "child_6_11",
+        "severity": 2,
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "1266393e-b55e-4e34-9710-0b87209f4158",
+            "section": "SPL v16: Ask a doctor (50569-3)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1266393e-b55e-4e34-9710-0b87209f4158"
+          }
+        ]
+      },
+      {
+        "dimension": "pediatric",
+        "persona": "child_6_11",
+        "severity": 2,
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "1266393e-b55e-4e34-9710-0b87209f4158",
+            "section": "SPL v16: Directions (34068-7)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1266393e-b55e-4e34-9710-0b87209f4158"
+          }
+        ]
+      }
+    ],
+    "modifiers": [
+      {
+        "dimension": "cardiovascular_bp",
+        "condition": "hypertension",
+        "severity_change": 1,
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "1266393e-b55e-4e34-9710-0b87209f4158",
+            "section": "SPL v16: Ask a doctor (50569-3)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1266393e-b55e-4e34-9710-0b87209f4158"
+          }
+        ]
+      }
+    ],
+    "review_status": "unreviewed",
+    "notes": "Draft for this labeled formulation and the three example personas only. Other dimensions are unassessed, not zero. Numeric severities are draft interpretations of the cited evidence; second-person review is pending."
+  }
+]

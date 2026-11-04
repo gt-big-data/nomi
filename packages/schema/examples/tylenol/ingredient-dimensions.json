@@ -1,0 +1,73 @@
+[
+  {
+    "unii": "362O9ITL9D",
+    "name": "acetaminophen",
+    "ratings": [
+      {
+        "dimension": "liver",
+        "persona": "adult_18_64",
+        "severity": 3,
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "59773893-09a8-47a2-943a-e9ea9da4458a",
+            "section": "SPL v24: Warnings / Liver warning",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=59773893-09a8-47a2-943a-e9ea9da4458a"
+          }
+        ]
+      },
+      {
+        "dimension": "pediatric",
+        "persona": "adult_18_64",
+        "severity": 0
+      },
+      {
+        "dimension": "liver",
+        "persona": "adult_65_plus",
+        "severity": 3,
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "59773893-09a8-47a2-943a-e9ea9da4458a",
+            "section": "SPL v24: Warnings / Liver warning",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=59773893-09a8-47a2-943a-e9ea9da4458a"
+          }
+        ]
+      },
+      {
+        "dimension": "pediatric",
+        "persona": "adult_65_plus",
+        "severity": 0
+      },
+      {
+        "dimension": "liver",
+        "persona": "child_6_11",
+        "severity": 3,
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "59773893-09a8-47a2-943a-e9ea9da4458a",
+            "section": "SPL v24: Warnings / Liver warning",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=59773893-09a8-47a2-943a-e9ea9da4458a"
+          }
+        ]
+      },
+      {
+        "dimension": "pediatric",
+        "persona": "child_6_11",
+        "severity": 2,
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "59773893-09a8-47a2-943a-e9ea9da4458a",
+            "section": "SPL v24: Directions (34068-7)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=59773893-09a8-47a2-943a-e9ea9da4458a"
+          }
+        ]
+      }
+    ],
+    "modifiers": [],
+    "review_status": "unreviewed",
+    "notes": "Draft for this labeled formulation and the three example personas only. Other dimensions are unassessed, not zero. Numeric severities are draft interpretations of the cited evidence; second-person review is pending."
+  }
+]

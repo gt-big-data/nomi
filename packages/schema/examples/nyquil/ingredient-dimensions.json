@@ -1,0 +1,231 @@
+[
+  {
+    "unii": "9D2RTI9KYH",
+    "name": "dextromethorphan hydrobromide",
+    "ratings": [
+      {
+        "dimension": "serotonergic_interactions",
+        "persona": "adult_18_64",
+        "severity": 0,
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "efe4e649-7514-32dd-e053-2995a90a0492",
+            "section": "SPL v13: Do not use (50570-1), MAOI interaction warning",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=efe4e649-7514-32dd-e053-2995a90a0492"
+          }
+        ]
+      },
+      {
+        "dimension": "serotonergic_interactions",
+        "persona": "adult_65_plus",
+        "severity": 0,
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "efe4e649-7514-32dd-e053-2995a90a0492",
+            "section": "SPL v13: Do not use (50570-1), MAOI interaction warning",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=efe4e649-7514-32dd-e053-2995a90a0492"
+          }
+        ]
+      },
+      {
+        "dimension": "serotonergic_interactions",
+        "persona": "child_6_11",
+        "severity": 0,
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "efe4e649-7514-32dd-e053-2995a90a0492",
+            "section": "SPL v13: Do not use (50570-1), MAOI interaction warning",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=efe4e649-7514-32dd-e053-2995a90a0492"
+          }
+        ]
+      }
+    ],
+    "modifiers": [],
+    "review_status": "unreviewed",
+    "notes": "Draft for this labeled formulation and the three example personas only. No example profile takes an MAOI, so no serotonergic interaction points apply here. Other medication profiles and unlisted dimensions are unassessed, not zero. Second-person review is pending."
+  },
+  {
+    "unii": "V9BI9B5YI2",
+    "name": "doxylamine succinate",
+    "ratings": [
+      {
+        "dimension": "anticholinergic_cognitive",
+        "persona": "adult_18_64",
+        "severity": 2,
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "efe4e649-7514-32dd-e053-2995a90a0492",
+            "section": "SPL v13: Ask a doctor (50569-3)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=efe4e649-7514-32dd-e053-2995a90a0492"
+          }
+        ]
+      },
+      {
+        "dimension": "sedation_falls",
+        "persona": "adult_18_64",
+        "severity": 2,
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "efe4e649-7514-32dd-e053-2995a90a0492",
+            "section": "SPL v13: When using (50567-7)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=efe4e649-7514-32dd-e053-2995a90a0492"
+          }
+        ]
+      },
+      {
+        "dimension": "pediatric",
+        "persona": "adult_18_64",
+        "severity": 0
+      },
+      {
+        "dimension": "anticholinergic_cognitive",
+        "persona": "adult_65_plus",
+        "severity": 3,
+        "citations": [
+          {
+            "source": "publication",
+            "document_id": "10.1111/jgs.18372",
+            "section": "2023 AGS Beers Criteria, Table 2: first-generation antihistamines",
+            "url": "https://pubmed.ncbi.nlm.nih.gov/37139824/"
+          }
+        ]
+      },
+      {
+        "dimension": "sedation_falls",
+        "persona": "adult_65_plus",
+        "severity": 3,
+        "citations": [
+          {
+            "source": "publication",
+            "document_id": "10.1111/jgs.18372",
+            "section": "2023 AGS Beers Criteria, Table 2: first-generation antihistamines",
+            "url": "https://pubmed.ncbi.nlm.nih.gov/37139824/"
+          }
+        ]
+      },
+      {
+        "dimension": "pediatric",
+        "persona": "adult_65_plus",
+        "severity": 0
+      },
+      {
+        "dimension": "anticholinergic_cognitive",
+        "persona": "child_6_11",
+        "severity": 2,
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "efe4e649-7514-32dd-e053-2995a90a0492",
+            "section": "SPL v13: Ask a doctor (50569-3)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=efe4e649-7514-32dd-e053-2995a90a0492"
+          }
+        ]
+      },
+      {
+        "dimension": "sedation_falls",
+        "persona": "child_6_11",
+        "severity": 2,
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "efe4e649-7514-32dd-e053-2995a90a0492",
+            "section": "SPL v13: When using (50567-7)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=efe4e649-7514-32dd-e053-2995a90a0492"
+          }
+        ]
+      },
+      {
+        "dimension": "pediatric",
+        "persona": "child_6_11",
+        "severity": 2,
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "efe4e649-7514-32dd-e053-2995a90a0492",
+            "section": "SPL v13: Directions (34068-7)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=efe4e649-7514-32dd-e053-2995a90a0492"
+          }
+        ]
+      }
+    ],
+    "modifiers": [],
+    "review_status": "unreviewed",
+    "notes": "Draft for this labeled formulation and the three example personas only. Other dimensions are unassessed, not zero. Numeric severities are draft interpretations of the cited evidence; second-person review is pending. Pediatric ratings are presentation-specific: a sleep-aid prohibition is not an allergy-tablet prohibition. Older-adult escalation uses the cited Beers publication, not an age claim from the label."
+  },
+  {
+    "unii": "362O9ITL9D",
+    "name": "acetaminophen",
+    "ratings": [
+      {
+        "dimension": "liver",
+        "persona": "adult_18_64",
+        "severity": 3,
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "efe4e649-7514-32dd-e053-2995a90a0492",
+            "section": "SPL v13: Warnings / Liver warning",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=efe4e649-7514-32dd-e053-2995a90a0492"
+          }
+        ]
+      },
+      {
+        "dimension": "pediatric",
+        "persona": "adult_18_64",
+        "severity": 0
+      },
+      {
+        "dimension": "liver",
+        "persona": "adult_65_plus",
+        "severity": 3,
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "efe4e649-7514-32dd-e053-2995a90a0492",
+            "section": "SPL v13: Warnings / Liver warning",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=efe4e649-7514-32dd-e053-2995a90a0492"
+          }
+        ]
+      },
+      {
+        "dimension": "pediatric",
+        "persona": "adult_65_plus",
+        "severity": 0
+      },
+      {
+        "dimension": "liver",
+        "persona": "child_6_11",
+        "severity": 3,
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "efe4e649-7514-32dd-e053-2995a90a0492",
+            "section": "SPL v13: Warnings / Liver warning",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=efe4e649-7514-32dd-e053-2995a90a0492"
+          }
+        ]
+      },
+      {
+        "dimension": "pediatric",
+        "persona": "child_6_11",
+        "severity": 2,
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "efe4e649-7514-32dd-e053-2995a90a0492",
+            "section": "SPL v13: Directions (34068-7)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=efe4e649-7514-32dd-e053-2995a90a0492"
+          }
+        ]
+      }
+    ],
+    "modifiers": [],
+    "review_status": "unreviewed",
+    "notes": "Draft for this labeled formulation and the three example personas only. Other dimensions are unassessed, not zero. Numeric severities are draft interpretations of the cited evidence; second-person review is pending."
+  }
+]

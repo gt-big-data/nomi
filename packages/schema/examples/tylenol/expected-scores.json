@@ -1,0 +1,204 @@
+[
+  {
+    "ndc11": "50580044905",
+    "profile": {
+      "persona": "adult_18_64",
+      "conditions": [],
+      "medication_types": []
+    },
+    "score": 82,
+    "tier": "green",
+    "contributions": [
+      {
+        "dimension": "liver",
+        "points": 18,
+        "ingredient_uniis": ["362O9ITL9D"],
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "59773893-09a8-47a2-943a-e9ea9da4458a",
+            "section": "SPL v24: Warnings / Liver warning",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=59773893-09a8-47a2-943a-e9ea9da4458a"
+          }
+        ]
+      }
+    ],
+    "hard_stops_triggered": [],
+    "benchmark": null,
+    "alternatives": [],
+    "explanation": [
+      {
+        "template_id": "NOMI-015_fixture_draft",
+        "text": "Draft test fixture using six points per severity level; not a finalized Nomi score.",
+        "citations": []
+      },
+      {
+        "template_id": "NOMI-015_liver",
+        "text": "The label warns of serious liver harm with excess acetaminophen, overlapping products, or heavy alcohol use.",
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "59773893-09a8-47a2-943a-e9ea9da4458a",
+            "section": "SPL v24: Warnings / Liver warning",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=59773893-09a8-47a2-943a-e9ea9da4458a"
+          }
+        ]
+      }
+    ],
+    "review_status": "unreviewed",
+    "provenance": {
+      "schema_version": "0.1.0",
+      "dataset_version": "NOMI-015-draft",
+      "rubric_version": "NOMI-015-fixture-draft-6-points-per-severity",
+      "code_commit": "aa8d723e99fb22853023d8f66e54e3dbe04f52a1",
+      "generated_at": "2026-10-29T17:44:37Z"
+    }
+  },
+  {
+    "ndc11": "50580044905",
+    "profile": {
+      "persona": "adult_65_plus",
+      "conditions": ["hypertension"],
+      "medication_types": []
+    },
+    "score": 82,
+    "tier": "green",
+    "contributions": [
+      {
+        "dimension": "liver",
+        "points": 18,
+        "ingredient_uniis": ["362O9ITL9D"],
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "59773893-09a8-47a2-943a-e9ea9da4458a",
+            "section": "SPL v24: Warnings / Liver warning",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=59773893-09a8-47a2-943a-e9ea9da4458a"
+          }
+        ]
+      }
+    ],
+    "hard_stops_triggered": [],
+    "benchmark": null,
+    "alternatives": [],
+    "explanation": [
+      {
+        "template_id": "NOMI-015_fixture_draft",
+        "text": "Draft test fixture using six points per severity level; not a finalized Nomi score.",
+        "citations": []
+      },
+      {
+        "template_id": "NOMI-015_liver",
+        "text": "The label warns of serious liver harm with excess acetaminophen, overlapping products, or heavy alcohol use.",
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "59773893-09a8-47a2-943a-e9ea9da4458a",
+            "section": "SPL v24: Warnings / Liver warning",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=59773893-09a8-47a2-943a-e9ea9da4458a"
+          }
+        ]
+      }
+    ],
+    "review_status": "unreviewed",
+    "provenance": {
+      "schema_version": "0.1.0",
+      "dataset_version": "NOMI-015-draft",
+      "rubric_version": "NOMI-015-fixture-draft-6-points-per-severity",
+      "code_commit": "aa8d723e99fb22853023d8f66e54e3dbe04f52a1",
+      "generated_at": "2026-10-29T17:44:37Z"
+    }
+  },
+  {
+    "ndc11": "50580044905",
+    "profile": {
+      "persona": "child_6_11",
+      "conditions": [],
+      "medication_types": []
+    },
+    "score": 70,
+    "tier": "yellow",
+    "contributions": [
+      {
+        "dimension": "liver",
+        "points": 18,
+        "ingredient_uniis": ["362O9ITL9D"],
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "59773893-09a8-47a2-943a-e9ea9da4458a",
+            "section": "SPL v24: Warnings / Liver warning",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=59773893-09a8-47a2-943a-e9ea9da4458a"
+          }
+        ]
+      },
+      {
+        "dimension": "pediatric",
+        "points": 12,
+        "ingredient_uniis": ["362O9ITL9D"],
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "59773893-09a8-47a2-943a-e9ea9da4458a",
+            "section": "SPL v24: Directions (34068-7)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=59773893-09a8-47a2-943a-e9ea9da4458a"
+          }
+        ]
+      }
+    ],
+    "hard_stops_triggered": [],
+    "benchmark": null,
+    "alternatives": [],
+    "explanation": [
+      {
+        "template_id": "NOMI-015_fixture_draft",
+        "text": "Draft test fixture using six points per severity level; not a finalized Nomi score.",
+        "citations": []
+      },
+      {
+        "template_id": "NOMI-015_liver",
+        "text": "The label warns of serious liver harm with excess acetaminophen, overlapping products, or heavy alcohol use.",
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "59773893-09a8-47a2-943a-e9ea9da4458a",
+            "section": "SPL v24: Warnings / Liver warning",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=59773893-09a8-47a2-943a-e9ea9da4458a"
+          }
+        ]
+      },
+      {
+        "template_id": "NOMI-015_pediatric",
+        "text": "Follow the formulation-specific child directions: medical advice, an age restriction, or an excitability warning.",
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "59773893-09a8-47a2-943a-e9ea9da4458a",
+            "section": "SPL v24: Directions (34068-7)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=59773893-09a8-47a2-943a-e9ea9da4458a"
+          }
+        ]
+      },
+      {
+        "template_id": "NOMI-015_child_directions",
+        "text": "For children younger than 12, this Tylenol presentation requires medical advice.",
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "59773893-09a8-47a2-943a-e9ea9da4458a",
+            "section": "SPL v24: Directions (34068-7)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=59773893-09a8-47a2-943a-e9ea9da4458a"
+          }
+        ]
+      }
+    ],
+    "review_status": "unreviewed",
+    "provenance": {
+      "schema_version": "0.1.0",
+      "dataset_version": "NOMI-015-draft",
+      "rubric_version": "NOMI-015-fixture-draft-6-points-per-severity",
+      "code_commit": "aa8d723e99fb22853023d8f66e54e3dbe04f52a1",
+      "generated_at": "2026-10-29T17:44:37Z"
+    }
+  }
+]

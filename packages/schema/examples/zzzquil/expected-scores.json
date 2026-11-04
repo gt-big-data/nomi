@@ -1,0 +1,290 @@
+[
+  {
+    "ndc11": "84126031604",
+    "profile": {
+      "persona": "adult_18_64",
+      "conditions": [],
+      "medication_types": []
+    },
+    "score": 76,
+    "tier": "green",
+    "contributions": [
+      {
+        "dimension": "anticholinergic_cognitive",
+        "points": 12,
+        "ingredient_uniis": ["TC2D6JAD40"],
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "1d608c94-1651-f318-e063-6294a90aa11e",
+            "section": "SPL v4: Ask a doctor (50569-3)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1d608c94-1651-f318-e063-6294a90aa11e"
+          }
+        ]
+      },
+      {
+        "dimension": "sedation_falls",
+        "points": 12,
+        "ingredient_uniis": ["TC2D6JAD40"],
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "c0fa4e00-2bd1-4d16-810d-b55f3b827418",
+            "section": "SPL v4: When using (50567-7)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=c0fa4e00-2bd1-4d16-810d-b55f3b827418"
+          }
+        ]
+      }
+    ],
+    "hard_stops_triggered": [],
+    "benchmark": null,
+    "alternatives": [],
+    "explanation": [
+      {
+        "template_id": "NOMI-015_fixture_draft",
+        "text": "Draft test fixture using six points per severity level; not a finalized Nomi score.",
+        "citations": []
+      },
+      {
+        "template_id": "NOMI-015_anticholinergic_cognitive",
+        "text": "Anticholinergic precautions apply; the older-adult draft also uses the cited Beers criteria.",
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "1d608c94-1651-f318-e063-6294a90aa11e",
+            "section": "SPL v4: Ask a doctor (50569-3)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1d608c94-1651-f318-e063-6294a90aa11e"
+          }
+        ]
+      },
+      {
+        "template_id": "NOMI-015_sedation_falls",
+        "text": "Sedation is a concern; the older-adult draft also accounts for falls evidence.",
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "c0fa4e00-2bd1-4d16-810d-b55f3b827418",
+            "section": "SPL v4: When using (50567-7)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=c0fa4e00-2bd1-4d16-810d-b55f3b827418"
+          }
+        ]
+      }
+    ],
+    "review_status": "unreviewed",
+    "provenance": {
+      "schema_version": "0.1.0",
+      "dataset_version": "NOMI-015-draft",
+      "rubric_version": "NOMI-015-fixture-draft-6-points-per-severity",
+      "code_commit": "aa8d723e99fb22853023d8f66e54e3dbe04f52a1",
+      "generated_at": "2026-10-29T17:44:37Z"
+    }
+  },
+  {
+    "ndc11": "84126031604",
+    "profile": {
+      "persona": "adult_65_plus",
+      "conditions": ["hypertension"],
+      "medication_types": []
+    },
+    "score": 64,
+    "tier": "yellow",
+    "contributions": [
+      {
+        "dimension": "anticholinergic_cognitive",
+        "points": 18,
+        "ingredient_uniis": ["TC2D6JAD40"],
+        "citations": [
+          {
+            "source": "publication",
+            "document_id": "10.1111/jgs.18372",
+            "section": "2023 AGS Beers Criteria, Table 2: first-generation antihistamines",
+            "url": "https://pubmed.ncbi.nlm.nih.gov/37139824/"
+          }
+        ]
+      },
+      {
+        "dimension": "sedation_falls",
+        "points": 18,
+        "ingredient_uniis": ["TC2D6JAD40"],
+        "citations": [
+          {
+            "source": "publication",
+            "document_id": "10.1111/jgs.18372",
+            "section": "2023 AGS Beers Criteria, Table 2: first-generation antihistamines",
+            "url": "https://pubmed.ncbi.nlm.nih.gov/37139824/"
+          }
+        ]
+      }
+    ],
+    "hard_stops_triggered": [],
+    "benchmark": null,
+    "alternatives": [],
+    "explanation": [
+      {
+        "template_id": "NOMI-015_fixture_draft",
+        "text": "Draft test fixture using six points per severity level; not a finalized Nomi score.",
+        "citations": []
+      },
+      {
+        "template_id": "NOMI-015_anticholinergic_cognitive",
+        "text": "Anticholinergic precautions apply; the older-adult draft also uses the cited Beers criteria.",
+        "citations": [
+          {
+            "source": "publication",
+            "document_id": "10.1111/jgs.18372",
+            "section": "2023 AGS Beers Criteria, Table 2: first-generation antihistamines",
+            "url": "https://pubmed.ncbi.nlm.nih.gov/37139824/"
+          }
+        ]
+      },
+      {
+        "template_id": "NOMI-015_sedation_falls",
+        "text": "Sedation is a concern; the older-adult draft also accounts for falls evidence.",
+        "citations": [
+          {
+            "source": "publication",
+            "document_id": "10.1111/jgs.18372",
+            "section": "2023 AGS Beers Criteria, Table 2: first-generation antihistamines",
+            "url": "https://pubmed.ncbi.nlm.nih.gov/37139824/"
+          }
+        ]
+      }
+    ],
+    "review_status": "unreviewed",
+    "provenance": {
+      "schema_version": "0.1.0",
+      "dataset_version": "NOMI-015-draft",
+      "rubric_version": "NOMI-015-fixture-draft-6-points-per-severity",
+      "code_commit": "aa8d723e99fb22853023d8f66e54e3dbe04f52a1",
+      "generated_at": "2026-10-29T17:44:37Z"
+    }
+  },
+  {
+    "ndc11": "84126031604",
+    "profile": {
+      "persona": "child_6_11",
+      "conditions": [],
+      "medication_types": []
+    },
+    "score": 58,
+    "tier": "red",
+    "contributions": [
+      {
+        "dimension": "pediatric",
+        "points": 18,
+        "ingredient_uniis": ["TC2D6JAD40"],
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "1d608c94-1651-f318-e063-6294a90aa11e",
+            "section": "SPL v4: Directions (34068-7)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1d608c94-1651-f318-e063-6294a90aa11e"
+          }
+        ]
+      },
+      {
+        "dimension": "anticholinergic_cognitive",
+        "points": 12,
+        "ingredient_uniis": ["TC2D6JAD40"],
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "1d608c94-1651-f318-e063-6294a90aa11e",
+            "section": "SPL v4: Ask a doctor (50569-3)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1d608c94-1651-f318-e063-6294a90aa11e"
+          }
+        ]
+      },
+      {
+        "dimension": "sedation_falls",
+        "points": 12,
+        "ingredient_uniis": ["TC2D6JAD40"],
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "c0fa4e00-2bd1-4d16-810d-b55f3b827418",
+            "section": "SPL v4: When using (50567-7)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=c0fa4e00-2bd1-4d16-810d-b55f3b827418"
+          }
+        ]
+      }
+    ],
+    "hard_stops_triggered": [
+      {
+        "id": "hs_zzzquil_under_12",
+        "message": "This ZzzQuil label prohibits use below age 12."
+      }
+    ],
+    "benchmark": null,
+    "alternatives": [],
+    "explanation": [
+      {
+        "template_id": "NOMI-015_fixture_draft",
+        "text": "Draft test fixture using six points per severity level; not a finalized Nomi score.",
+        "citations": []
+      },
+      {
+        "template_id": "NOMI-015_pediatric",
+        "text": "Follow the formulation-specific child directions: medical advice, an age restriction, or an excitability warning.",
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "1d608c94-1651-f318-e063-6294a90aa11e",
+            "section": "SPL v4: Directions (34068-7)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1d608c94-1651-f318-e063-6294a90aa11e"
+          }
+        ]
+      },
+      {
+        "template_id": "NOMI-015_anticholinergic_cognitive",
+        "text": "Anticholinergic precautions apply; the older-adult draft also uses the cited Beers criteria.",
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "1d608c94-1651-f318-e063-6294a90aa11e",
+            "section": "SPL v4: Ask a doctor (50569-3)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1d608c94-1651-f318-e063-6294a90aa11e"
+          }
+        ]
+      },
+      {
+        "template_id": "NOMI-015_sedation_falls",
+        "text": "Sedation is a concern; the older-adult draft also accounts for falls evidence.",
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "c0fa4e00-2bd1-4d16-810d-b55f3b827418",
+            "section": "SPL v4: When using (50567-7)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=c0fa4e00-2bd1-4d16-810d-b55f3b827418"
+          }
+        ]
+      },
+      {
+        "template_id": "NOMI-015_child_directions",
+        "text": "Children younger than 12 must not use this ZzzQuil presentation.",
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "1d608c94-1651-f318-e063-6294a90aa11e",
+            "section": "SPL v4: Directions (34068-7)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1d608c94-1651-f318-e063-6294a90aa11e"
+          },
+          {
+            "source": "fda_label",
+            "document_id": "1d608c94-1651-f318-e063-6294a90aa11e",
+            "section": "SPL v4: Do not use (50570-1)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1d608c94-1651-f318-e063-6294a90aa11e"
+          }
+        ]
+      }
+    ],
+    "review_status": "unreviewed",
+    "provenance": {
+      "schema_version": "0.1.0",
+      "dataset_version": "NOMI-015-draft",
+      "rubric_version": "NOMI-015-fixture-draft-6-points-per-severity",
+      "code_commit": "aa8d723e99fb22853023d8f66e54e3dbe04f52a1",
+      "generated_at": "2026-10-29T17:44:37Z"
+    }
+  }
+]

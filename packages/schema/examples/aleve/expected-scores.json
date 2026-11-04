@@ -1,0 +1,366 @@
+[
+  {
+    "ndc11": "00280608020",
+    "profile": {
+      "persona": "adult_18_64",
+      "conditions": [],
+      "medication_types": []
+    },
+    "score": 64,
+    "tier": "yellow",
+    "contributions": [
+      {
+        "dimension": "cardiovascular_bp",
+        "points": 12,
+        "ingredient_uniis": ["9TN87S3A3C"],
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "1266393e-b55e-4e34-9710-0b87209f4158",
+            "section": "SPL v16: Warnings / Heart attack and stroke warning (42229-5)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1266393e-b55e-4e34-9710-0b87209f4158"
+          }
+        ]
+      },
+      {
+        "dimension": "gi_bleeding",
+        "points": 12,
+        "ingredient_uniis": ["9TN87S3A3C"],
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "1266393e-b55e-4e34-9710-0b87209f4158",
+            "section": "SPL v16: Warnings / Stomach bleeding warning (42229-5)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1266393e-b55e-4e34-9710-0b87209f4158"
+          }
+        ]
+      },
+      {
+        "dimension": "kidney",
+        "points": 12,
+        "ingredient_uniis": ["9TN87S3A3C"],
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "1266393e-b55e-4e34-9710-0b87209f4158",
+            "section": "SPL v16: Ask a doctor (50569-3)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1266393e-b55e-4e34-9710-0b87209f4158"
+          }
+        ]
+      }
+    ],
+    "hard_stops_triggered": [],
+    "benchmark": null,
+    "alternatives": [],
+    "explanation": [
+      {
+        "template_id": "NOMI-015_fixture_draft",
+        "text": "Draft test fixture using six points per severity level; not a finalized Nomi score.",
+        "citations": []
+      },
+      {
+        "template_id": "NOMI-015_cardiovascular_bp",
+        "text": "Naproxen carries cardiovascular warnings; people with high blood pressure should consult a doctor.",
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "1266393e-b55e-4e34-9710-0b87209f4158",
+            "section": "SPL v16: Warnings / Heart attack and stroke warning (42229-5)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1266393e-b55e-4e34-9710-0b87209f4158"
+          }
+        ]
+      },
+      {
+        "template_id": "NOMI-015_gi_bleeding",
+        "text": "The NSAID label warns of stomach bleeding, with greater risk at older ages.",
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "1266393e-b55e-4e34-9710-0b87209f4158",
+            "section": "SPL v16: Warnings / Stomach bleeding warning (42229-5)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1266393e-b55e-4e34-9710-0b87209f4158"
+          }
+        ]
+      },
+      {
+        "template_id": "NOMI-015_kidney",
+        "text": "The label calls for medical advice when kidney disease is present.",
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "1266393e-b55e-4e34-9710-0b87209f4158",
+            "section": "SPL v16: Ask a doctor (50569-3)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1266393e-b55e-4e34-9710-0b87209f4158"
+          }
+        ]
+      }
+    ],
+    "review_status": "unreviewed",
+    "provenance": {
+      "schema_version": "0.1.0",
+      "dataset_version": "NOMI-015-draft",
+      "rubric_version": "NOMI-015-fixture-draft-6-points-per-severity",
+      "code_commit": "aa8d723e99fb22853023d8f66e54e3dbe04f52a1",
+      "generated_at": "2026-10-29T17:44:37Z"
+    }
+  },
+  {
+    "ndc11": "00280608020",
+    "profile": {
+      "persona": "adult_65_plus",
+      "conditions": ["hypertension"],
+      "medication_types": []
+    },
+    "score": 52,
+    "tier": "yellow",
+    "contributions": [
+      {
+        "dimension": "cardiovascular_bp",
+        "points": 18,
+        "ingredient_uniis": ["9TN87S3A3C"],
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "1266393e-b55e-4e34-9710-0b87209f4158",
+            "section": "SPL v16: Warnings / Heart attack and stroke warning (42229-5)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1266393e-b55e-4e34-9710-0b87209f4158"
+          },
+          {
+            "source": "fda_label",
+            "document_id": "1266393e-b55e-4e34-9710-0b87209f4158",
+            "section": "SPL v16: Ask a doctor (50569-3)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1266393e-b55e-4e34-9710-0b87209f4158"
+          }
+        ]
+      },
+      {
+        "dimension": "gi_bleeding",
+        "points": 18,
+        "ingredient_uniis": ["9TN87S3A3C"],
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "1266393e-b55e-4e34-9710-0b87209f4158",
+            "section": "SPL v16: Warnings / Stomach bleeding warning (42229-5)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1266393e-b55e-4e34-9710-0b87209f4158"
+          }
+        ]
+      },
+      {
+        "dimension": "kidney",
+        "points": 12,
+        "ingredient_uniis": ["9TN87S3A3C"],
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "1266393e-b55e-4e34-9710-0b87209f4158",
+            "section": "SPL v16: Ask a doctor (50569-3)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1266393e-b55e-4e34-9710-0b87209f4158"
+          }
+        ]
+      }
+    ],
+    "hard_stops_triggered": [],
+    "benchmark": null,
+    "alternatives": [],
+    "explanation": [
+      {
+        "template_id": "NOMI-015_fixture_draft",
+        "text": "Draft test fixture using six points per severity level; not a finalized Nomi score.",
+        "citations": []
+      },
+      {
+        "template_id": "NOMI-015_cardiovascular_bp",
+        "text": "Naproxen carries cardiovascular warnings; people with high blood pressure should consult a doctor.",
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "1266393e-b55e-4e34-9710-0b87209f4158",
+            "section": "SPL v16: Warnings / Heart attack and stroke warning (42229-5)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1266393e-b55e-4e34-9710-0b87209f4158"
+          },
+          {
+            "source": "fda_label",
+            "document_id": "1266393e-b55e-4e34-9710-0b87209f4158",
+            "section": "SPL v16: Ask a doctor (50569-3)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1266393e-b55e-4e34-9710-0b87209f4158"
+          }
+        ]
+      },
+      {
+        "template_id": "NOMI-015_gi_bleeding",
+        "text": "The NSAID label warns of stomach bleeding, with greater risk at older ages.",
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "1266393e-b55e-4e34-9710-0b87209f4158",
+            "section": "SPL v16: Warnings / Stomach bleeding warning (42229-5)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1266393e-b55e-4e34-9710-0b87209f4158"
+          }
+        ]
+      },
+      {
+        "template_id": "NOMI-015_kidney",
+        "text": "The label calls for medical advice when kidney disease is present.",
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "1266393e-b55e-4e34-9710-0b87209f4158",
+            "section": "SPL v16: Ask a doctor (50569-3)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1266393e-b55e-4e34-9710-0b87209f4158"
+          }
+        ]
+      }
+    ],
+    "review_status": "unreviewed",
+    "provenance": {
+      "schema_version": "0.1.0",
+      "dataset_version": "NOMI-015-draft",
+      "rubric_version": "NOMI-015-fixture-draft-6-points-per-severity",
+      "code_commit": "aa8d723e99fb22853023d8f66e54e3dbe04f52a1",
+      "generated_at": "2026-10-29T17:44:37Z"
+    }
+  },
+  {
+    "ndc11": "00280608020",
+    "profile": {
+      "persona": "child_6_11",
+      "conditions": [],
+      "medication_types": []
+    },
+    "score": 52,
+    "tier": "yellow",
+    "contributions": [
+      {
+        "dimension": "cardiovascular_bp",
+        "points": 12,
+        "ingredient_uniis": ["9TN87S3A3C"],
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "1266393e-b55e-4e34-9710-0b87209f4158",
+            "section": "SPL v16: Warnings / Heart attack and stroke warning (42229-5)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1266393e-b55e-4e34-9710-0b87209f4158"
+          }
+        ]
+      },
+      {
+        "dimension": "gi_bleeding",
+        "points": 12,
+        "ingredient_uniis": ["9TN87S3A3C"],
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "1266393e-b55e-4e34-9710-0b87209f4158",
+            "section": "SPL v16: Warnings / Stomach bleeding warning (42229-5)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1266393e-b55e-4e34-9710-0b87209f4158"
+          }
+        ]
+      },
+      {
+        "dimension": "kidney",
+        "points": 12,
+        "ingredient_uniis": ["9TN87S3A3C"],
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "1266393e-b55e-4e34-9710-0b87209f4158",
+            "section": "SPL v16: Ask a doctor (50569-3)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1266393e-b55e-4e34-9710-0b87209f4158"
+          }
+        ]
+      },
+      {
+        "dimension": "pediatric",
+        "points": 12,
+        "ingredient_uniis": ["9TN87S3A3C"],
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "1266393e-b55e-4e34-9710-0b87209f4158",
+            "section": "SPL v16: Directions (34068-7)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1266393e-b55e-4e34-9710-0b87209f4158"
+          }
+        ]
+      }
+    ],
+    "hard_stops_triggered": [],
+    "benchmark": null,
+    "alternatives": [],
+    "explanation": [
+      {
+        "template_id": "NOMI-015_fixture_draft",
+        "text": "Draft test fixture using six points per severity level; not a finalized Nomi score.",
+        "citations": []
+      },
+      {
+        "template_id": "NOMI-015_cardiovascular_bp",
+        "text": "Naproxen carries cardiovascular warnings; people with high blood pressure should consult a doctor.",
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "1266393e-b55e-4e34-9710-0b87209f4158",
+            "section": "SPL v16: Warnings / Heart attack and stroke warning (42229-5)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1266393e-b55e-4e34-9710-0b87209f4158"
+          }
+        ]
+      },
+      {
+        "template_id": "NOMI-015_gi_bleeding",
+        "text": "The NSAID label warns of stomach bleeding, with greater risk at older ages.",
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "1266393e-b55e-4e34-9710-0b87209f4158",
+            "section": "SPL v16: Warnings / Stomach bleeding warning (42229-5)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1266393e-b55e-4e34-9710-0b87209f4158"
+          }
+        ]
+      },
+      {
+        "template_id": "NOMI-015_kidney",
+        "text": "The label calls for medical advice when kidney disease is present.",
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "1266393e-b55e-4e34-9710-0b87209f4158",
+            "section": "SPL v16: Ask a doctor (50569-3)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1266393e-b55e-4e34-9710-0b87209f4158"
+          }
+        ]
+      },
+      {
+        "template_id": "NOMI-015_pediatric",
+        "text": "Follow the formulation-specific child directions: medical advice, an age restriction, or an excitability warning.",
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "1266393e-b55e-4e34-9710-0b87209f4158",
+            "section": "SPL v16: Directions (34068-7)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1266393e-b55e-4e34-9710-0b87209f4158"
+          }
+        ]
+      },
+      {
+        "template_id": "NOMI-015_child_directions",
+        "text": "For children younger than 12, this Aleve presentation requires medical advice.",
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "1266393e-b55e-4e34-9710-0b87209f4158",
+            "section": "SPL v16: Directions (34068-7)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1266393e-b55e-4e34-9710-0b87209f4158"
+          }
+        ]
+      }
+    ],
+    "review_status": "unreviewed",
+    "provenance": {
+      "schema_version": "0.1.0",
+      "dataset_version": "NOMI-015-draft",
+      "rubric_version": "NOMI-015-fixture-draft-6-points-per-severity",
+      "code_commit": "aa8d723e99fb22853023d8f66e54e3dbe04f52a1",
+      "generated_at": "2026-10-29T17:44:37Z"
+    }
+  }
+]
