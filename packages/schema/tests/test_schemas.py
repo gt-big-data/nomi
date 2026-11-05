@@ -3,17 +3,19 @@
 import json
 from pathlib import Path
 
+import nomi_schema
 import pytest
 from jsonschema import Draft202012Validator
-
-import nomi_schema
 from nomi_schema import SchemaValidationError, validate
 
 ROOT = Path(__file__).resolve().parent.parent
 SCHEMA_DIR = ROOT / "schemas"
 SAMPLES = ROOT / "fixtures" / "schema-samples"
 
-SCHEMAS = {p.name.removesuffix(".schema.json"): json.loads(p.read_text()) for p in SCHEMA_DIR.glob("*.schema.json")}
+SCHEMAS = {
+    p.name.removesuffix(".schema.json"): json.loads(p.read_text())
+    for p in SCHEMA_DIR.glob("*.schema.json")
+}
 DOMAIN_SCHEMAS = sorted(name for name in SCHEMAS if name != "common")
 INVALID = sorted((SAMPLES / "invalid").glob("*.json"))
 

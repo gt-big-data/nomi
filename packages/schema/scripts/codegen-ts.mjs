@@ -31,7 +31,9 @@ for (const file of files) {
   await writeFile(join(outDir, `${moduleName}.ts`), ts);
 
   // Types this schema owns: its own title (unless it only holds $defs) and its $defs titles.
-  const owned = Object.values(schema.$defs ?? {}).map((d) => d.title).filter(Boolean);
+  const owned = Object.values(schema.$defs ?? {})
+    .map((d) => d.title)
+    .filter(Boolean);
   if (schema.type) owned.unshift(schema.title);
   exports.push(`export type { ${owned.join(", ")} } from "./${moduleName}";`);
 }

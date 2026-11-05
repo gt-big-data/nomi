@@ -5,11 +5,19 @@ on:
     paths:
       - "packages/schema/**"
       - ".github/workflows/schema.yml"
+      # Dependency bumps (black, isort, json-schema-to-typescript) can change generated output.
+      - "uv.lock"
+      - "pnpm-lock.yaml"
+      - "pyproject.toml"
   push:
     branches: [main]
     paths:
       - "packages/schema/**"
       - ".github/workflows/schema.yml"
+      # Dependency bumps (black, isort, json-schema-to-typescript) can change generated output.
+      - "uv.lock"
+      - "pnpm-lock.yaml"
+      - "pyproject.toml"
 
 permissions:
   contents: read
@@ -26,27 +34,23 @@ jobs:
       run:
         working-directory: packages/schema
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
-      - uses: pnpm/action-setup@v4
+      - uses: pnpm/action-setup@v6
+      - uses: actions/setup-node@v7
         with:
-          package_json_file: packages/schema/package.json
-
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 22
+          node-version-file: .nvmrc
           cache: pnpm
-          cache-dependency-path: packages/schema/pnpm-lock.yaml
 
-      - uses: astral-sh/setup-uv@v5
+      - uses: astral-sh/setup-uv@v7
         with:
           enable-cache: true
-          cache-dependency-glob: packages/schema/uv.lock
 
       - name: Install dependencies
+        working-directory: .
         run: |
           pnpm install --frozen-lockfile
-          uv sync --frozen
+          uv sync --locked
 
       - name: Schemas, samples and Pydantic models
         run: uv run pytest

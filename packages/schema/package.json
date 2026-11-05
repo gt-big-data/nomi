@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "description": "Nomi shared data contracts: JSON Schemas and generated TypeScript types.",
-  "packageManager": "pnpm@11.17.0",
   "type": "module",
   "main": "generated/ts/index.ts",
   "types": "generated/ts/index.ts",
