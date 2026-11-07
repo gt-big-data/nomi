@@ -7,6 +7,7 @@ from typing import Any, cast
 from unittest.mock import MagicMock
 
 import pytest
+from botocore.exceptions import ClientError
 from nomi_pipeline.config import Settings
 from nomi_pipeline.fetch import _fetch_source, _sha256
 
@@ -83,3 +84,13 @@ def test_sha256_correctness(tmp_path: Path) -> None:
     f = tmp_path / "f.bin"
     f.write_bytes(b"hello world")
     assert _sha256(f) == hashlib.sha256(b"hello world").hexdigest()
+
+
+def test_missing_manifest_explains_mirroring(tmp_path: Path) -> None:
+    mock, settings = _mock_settings(tmp_path)
+    client = MagicMock()
+    client.get_object.side_effect = ClientError({"Error": {"Code": "NoSuchKey"}}, "GetObject")
+    mock.r2_client.return_value = client
+
+    with pytest.raises(RuntimeError, match="Has it been mirrored"):
+        _fetch_source("faers", settings)

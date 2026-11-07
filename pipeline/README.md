@@ -20,7 +20,8 @@ uv run pipeline fetch dailymed-otc
 uv run pipeline fetch faers
 ```
 
-To mirror new source files into R2 for the first time (requires write credentials):
+To mirror new source files into R2 (requires write credentials). New files are added to the
+existing manifest, so you can upload just the latest FAERS quarter:
 
 ```bash
 uv run python pipeline/scripts/mirror.py <source> /path/to/local/files

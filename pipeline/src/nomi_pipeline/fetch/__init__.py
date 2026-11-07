@@ -10,6 +10,7 @@ from pathlib import Path
 from typing import Any
 
 import typer
+from botocore.exceptions import ClientError
 
 from nomi_pipeline.config import Settings
 
@@ -17,6 +18,7 @@ app = typer.Typer(help="Download raw sources from R2 into data/raw/.")
 log = logging.getLogger(__name__)
 
 SOURCES = ("ndc", "dailymed-otc", "faers")
+MANIFEST_NAME = "manifest.json"
 
 
 @app.command(name="all")
@@ -55,7 +57,15 @@ def _fetch_source(source: str, settings: Settings) -> None:
     dest.mkdir(parents=True, exist_ok=True)
 
     log.info("fetching manifest for %s", source)
-    obj = client.get_object(Bucket=bucket, Key=f"{source}/manifest.json")
+    try:
+        obj = client.get_object(Bucket=bucket, Key=f"{source}/{MANIFEST_NAME}")
+    except ClientError as e:
+        if e.response.get("Error", {}).get("Code") in ("NoSuchKey", "404"):
+            raise RuntimeError(
+                f"no {MANIFEST_NAME} for {source} in R2. Has it been mirrored? "
+                "See 'Getting raw data' in pipeline/README.md."
+            ) from e
+        raise
     manifest: dict[str, Any] = json.loads(obj["Body"].read())
 
     files: list[dict[str, Any]] = manifest.get("files", [])
@@ -79,7 +89,7 @@ def _fetch_source(source: str, settings: Settings) -> None:
         log.info("verified %s", key)
 
     manifest["fetched_at"] = datetime.now(UTC).isoformat()
-    (dest / "manifest.json").write_text(json.dumps(manifest, indent=2))
+    (dest / MANIFEST_NAME).write_text(json.dumps(manifest, indent=2))
     log.info("fetch complete: %s (%d files)", source, len(files))
 
 
