@@ -14,6 +14,7 @@ from __future__ import annotations
 
 import argparse
 import shutil
+import time
 import urllib.error
 import urllib.request
 from datetime import UTC, datetime
@@ -30,15 +31,20 @@ DAILYMED_URL = (
 )
 FAERS_URL = "https://fis.fda.gov/content/Exports/faers_ascii_{year}q{quarter}.zip"
 FAERS_FIRST_YEAR = 2014
+TIMEOUT = 120
+ATTEMPTS = 4
 
 
 def _remote_size(url: str) -> int | None:
     """Return the file size, or None if the server says it does not exist."""
-    request = urllib.request.Request(url, method="HEAD")
+    # fis.fda.gov sends no Content-Length on HEAD, so ask for one byte and read Content-Range.
+    request = urllib.request.Request(url, headers={"Range": "bytes=0-0"})
     try:
-        with urllib.request.urlopen(request, timeout=60) as response:
-            length = response.headers.get("Content-Length")
-            return int(length) if length else -1
+        with urllib.request.urlopen(request, timeout=TIMEOUT) as response:
+            content_range = response.headers.get("Content-Range", "")
+            if "/" in content_range:
+                return int(content_range.rsplit("/", 1)[1])
+            return int(response.headers["Content-Length"])
     except urllib.error.HTTPError as e:
         if e.code == 404:
             return None
@@ -55,8 +61,18 @@ def _download(url: str, dest: Path) -> bool:
         return True
     print(f"downloading {dest.name} ({size / 2**20:,.0f} MB)")
     tmp = dest.with_suffix(dest.suffix + ".partial")
-    with urllib.request.urlopen(url, timeout=60) as response, tmp.open("wb") as f:
-        shutil.copyfileobj(response, f, length=1 << 20)
+    for attempt in range(1, ATTEMPTS + 1):
+        try:
+            with urllib.request.urlopen(url, timeout=TIMEOUT) as response, tmp.open("wb") as f:
+                shutil.copyfileobj(response, f, length=1 << 20)
+            break
+        except (TimeoutError, ConnectionError, urllib.error.URLError) as e:
+            if attempt == ATTEMPTS:
+                raise
+            print(f"  attempt {attempt} failed ({e}), retrying in {5 * attempt}s")
+            time.sleep(5 * attempt)
+    if tmp.stat().st_size != size:
+        raise RuntimeError(f"{dest.name}: got {tmp.stat().st_size} bytes, expected {size}")
     tmp.replace(dest)
     return True
 
