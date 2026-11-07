@@ -511,6 +511,7 @@ dependencies = [
     { name = "fsspec" },
     { name = "huggingface-hub" },
     { name = "pydantic-settings" },
+    { name = "truststore" },
     { name = "typer" },
 ]
 
@@ -519,6 +520,7 @@ requires-dist = [
     { name = "fsspec", specifier = ">=2024.6" },
     { name = "huggingface-hub", specifier = ">=0.34" },
     { name = "pydantic-settings", specifier = ">=2.6.1" },
+    { name = "truststore", specifier = ">=0.10" },
     { name = "typer", specifier = ">=0.15.1" },
 ]
 

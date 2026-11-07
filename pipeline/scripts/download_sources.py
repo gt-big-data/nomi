@@ -19,6 +19,11 @@ import urllib.request
 from datetime import UTC, datetime
 from pathlib import Path
 
+import truststore
+
+# Use the OS certificate store; python.org builds and campus proxies fail with the default one.
+truststore.inject_into_ssl()
+
 NDC_URL = "https://download.open.fda.gov/drug/ndc/drug-ndc-0001-of-0001.json.zip"
 DAILYMED_URL = (
     "https://dailymed-data.nlm.nih.gov/public-release-files/dm_spl_release_human_otc_part{n}.zip"
