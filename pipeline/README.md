@@ -5,7 +5,8 @@ Polars, DuckDB, lxml, Pydantic. Tooling setup lands in NOMI-001.
 
 ## Getting raw data
 
-Copy `.env.example` to `.env` and fill in your R2 read-only credentials, then:
+Raw data lives in the Hugging Face dataset [`nomi-bdbi-gt/nomi-raw-data`](https://huggingface.co/datasets/nomi-bdbi-gt/nomi-raw-data)
+(see ADR-0003). Copy `.env.example` to `.env`, then:
 
 ```bash
 uv run pipeline fetch all
@@ -20,12 +21,30 @@ uv run pipeline fetch dailymed-otc
 uv run pipeline fetch faers
 ```
 
-To mirror new source files into R2 (requires write credentials). New files are added to the
-existing manifest, so you can upload just the latest FAERS quarter:
+While the dataset is private, log in once with `hf auth login` or set `HF_TOKEN` in `.env`.
+`RAW_STORE` can be any fsspec URL (`hf://`, `s3://`, a local folder), and can pin a snapshot
+with `@<commit>` after the dataset name.
+
+### Mirroring new data
+
+Only needed when a source updates. You need write access to the dataset and `HF_TOKEN` set.
+Mirroring adds files to the existing manifest, so you can upload just the latest FAERS quarter.
 
 ```bash
-uv run python pipeline/scripts/mirror.py <source> /path/to/local/files
+uv run python pipeline/scripts/download_sources.py faers ~/nomi-downloads/faers
+uv run python pipeline/scripts/mirror.py faers ~/nomi-downloads/faers
 ```
+
+DailyMed is about 34 GB, almost all product images. Strip it to label XML (about 300 MB) first:
+
+```bash
+uv run python pipeline/scripts/download_sources.py dailymed-otc ~/nomi-downloads/dailymed
+uv run python pipeline/scripts/slim_dailymed.py ~/nomi-downloads/dailymed ~/nomi-downloads/dailymed-xml
+uv run python pipeline/scripts/mirror.py dailymed-otc ~/nomi-downloads/dailymed-xml
+```
+
+Only public FDA and NLM files go in this dataset. Never mirror RxNorm (UMLS license), user data,
+or anything we produce.
 
 ## Stages
 
@@ -37,7 +56,7 @@ uv run python pipeline/scripts/mirror.py <source> /path/to/local/files
 | extract | `nomi_pipeline.extract` | `data/silver/label_facts.parquet`: warnings, uses, age limits, max dose |
 | evidence | `nomi_pipeline.evidence` | `data/gold/signal.parquet`: FAERS signals by risk dimension |
 | score | `nomi_pipeline.score` | Term tables, product scores, benchmarks, alternatives |
-| build | `nomi_pipeline.build` | `data/build/nomi.sqlite` and manifest, published to R2 |
+| build | `nomi_pipeline.build` | `data/build/nomi.sqlite` and manifest, published to R2 (NOMI-038) |
 
 ## Other folders
 

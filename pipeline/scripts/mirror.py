@@ -1,18 +1,15 @@
-"""Upload a local directory of raw files to R2 and update manifest.json.
+"""Upload a local directory of raw files to the raw data store and update manifest.json.
 
 Run this after downloading new files from the public URLs. Files are added to the existing
 manifest, so you can mirror just the new FAERS quarter without losing the older ones.
-Requires write credentials in .env (R2_ACCESS_KEY_ID with Object Read & Write permission).
+Requires RAW_STORE and a write-scoped HF_TOKEN in .env (see ADR-0003).
 
 Usage:
     uv run python pipeline/scripts/mirror.py ndc /path/to/ndc/files
-    uv run python pipeline/scripts/mirror.py dailymed-otc /path/to/dailymed/files
+    uv run python pipeline/scripts/mirror.py dailymed-otc /path/to/slimmed/dailymed  (see slim_dailymed.py)
     uv run python pipeline/scripts/mirror.py faers /path/to/faers/files
 
-Where to get the files:
-    ndc:          https://open.fda.gov/apis/drug/ndc/  (bulk download JSON)
-    dailymed-otc: https://dailymed.nlm.nih.gov/dailymed/spl-resources-all-drug-labels.cfm
-    faers:        https://www.fda.gov/drugs/...faers-latest-quarterly-data-files (ASCII ZIPs)
+Get the files with download_sources.py.
 """
 
 from __future__ import annotations

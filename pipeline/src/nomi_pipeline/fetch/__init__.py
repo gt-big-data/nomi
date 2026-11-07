@@ -1,4 +1,7 @@
-"""Download raw sources from the R2 mirror into data/raw/ with checksums (NOMI-008)."""
+"""Download raw sources from the raw data store into data/raw/ with checksums (NOMI-008).
+
+The store is any fsspec URL in RAW_STORE, normally the Hugging Face dataset (see ADR-0003).
+"""
 
 from __future__ import annotations
 
@@ -10,11 +13,12 @@ from pathlib import Path
 from typing import Any
 
 import typer
-from botocore.exceptions import ClientError
+from fsspec import AbstractFileSystem
+from fsspec.core import url_to_fs
 
 from nomi_pipeline.config import Settings
 
-app = typer.Typer(help="Download raw sources from R2 into data/raw/.")
+app = typer.Typer(help="Download raw sources from the raw data store into data/raw/.")
 log = logging.getLogger(__name__)
 
 SOURCES = ("ndc", "dailymed-otc", "faers")
@@ -23,7 +27,7 @@ MANIFEST_NAME = "manifest.json"
 
 @app.command(name="all")
 def fetch_all() -> None:
-    """Fetch all raw sources from R2."""
+    """Fetch all raw sources."""
     settings = Settings()
     for source in SOURCES:
         _fetch_source(source, settings)
@@ -37,7 +41,7 @@ def fetch_ndc() -> None:
 
 @app.command(name="dailymed-otc")
 def fetch_dailymed_otc() -> None:
-    """Fetch DailyMed OTC labels."""
+    """Fetch DailyMed OTC labels (XML only)."""
     _fetch_source("dailymed-otc", Settings())
 
 
@@ -47,31 +51,38 @@ def fetch_faers() -> None:
     _fetch_source("faers", Settings())
 
 
+def open_store(settings: Settings) -> tuple[AbstractFileSystem, str]:
+    """Return the filesystem and root path for RAW_STORE."""
+    if not settings.raw_store:
+        raise RuntimeError("RAW_STORE not configured. Copy .env.example to .env and fill it in.")
+    options: dict[str, Any] = {}
+    if settings.hf_token and settings.raw_store.startswith("hf://"):
+        options["token"] = settings.hf_token
+    fs, root = url_to_fs(settings.raw_store, **options)
+    return fs, root.rstrip("/")
+
+
 def _fetch_source(source: str, settings: Settings) -> None:
-    bucket = settings.r2_bucket
-    if not bucket:
-        raise RuntimeError("R2_BUCKET not configured. Copy .env.example to .env and fill it in.")
-    client = settings.r2_client()
+    fs, root = open_store(settings)
 
     dest = settings.raw_dir / source
     dest.mkdir(parents=True, exist_ok=True)
 
     log.info("fetching manifest for %s", source)
-    try:
-        obj = client.get_object(Bucket=bucket, Key=f"{source}/{MANIFEST_NAME}")
-    except ClientError as e:
-        if e.response.get("Error", {}).get("Code") in ("NoSuchKey", "404"):
-            raise RuntimeError(
-                f"no {MANIFEST_NAME} for {source} in R2. Has it been mirrored? "
-                "See 'Getting raw data' in pipeline/README.md."
-            ) from e
-        raise
-    manifest: dict[str, Any] = json.loads(obj["Body"].read())
+    manifest_path = f"{root}/{source}/{MANIFEST_NAME}"
+    if not fs.exists(manifest_path):
+        raise RuntimeError(
+            f"no {MANIFEST_NAME} for {source} in {settings.raw_store}. Has it been mirrored? "
+            "See 'Getting raw data' in pipeline/README.md."
+        )
+    manifest: dict[str, Any] = json.loads(fs.cat_file(manifest_path))
 
     files: list[dict[str, Any]] = manifest.get("files", [])
     for entry in files:
         key: str = entry["key"]
         expected: str = entry["sha256"]
+        if not key.startswith(f"{source}/") or ".." in Path(key).parts:
+            raise RuntimeError(f"manifest key {key!r} is outside {source}/")
         local = settings.raw_dir / key
         local.parent.mkdir(parents=True, exist_ok=True)
 
@@ -80,7 +91,7 @@ def _fetch_source(source: str, settings: Settings) -> None:
             continue
 
         log.info("downloading %s", key)
-        client.download_file(bucket, key, str(local))
+        fs.get_file(f"{root}/{key}", str(local))
 
         actual = _sha256(local)
         if actual != expected:
