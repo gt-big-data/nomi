@@ -1,0 +1,126 @@
+{
+  "meta": {
+    "disclaimer": "Do not rely on openFDA to make decisions regarding medical care.",
+    "last_updated": "2026-10-30"
+  },
+  "results": [
+    {
+      "product_ndc": "76176-135",
+      "generic_name": "Menthol, Camphor, Eucalyptus Oil",
+      "labeler_name": "NINGBO LIYUAN DAILY CHEMICAL PRODUCTS CO., LTD.",
+      "brand_name": "Vaporizing Chest Rub",
+      "active_ingredients": [
+        { "name": "CAMPHOR (SYNTHETIC)", "strength": "4.7 g/100g" },
+        { "name": "MENTHOL, UNSPECIFIED FORM", "strength": "1 g/100g" },
+        { "name": "EUCALYPTUS OIL", "strength": "1 g/100g" }
+      ],
+      "finished": true,
+      "packaging": [
+        {
+          "package_ndc": "76176-135-01",
+          "description": "113 g in 1 BOTTLE, PLASTIC (76176-135-01)",
+          "marketing_start_date": "20261001",
+          "sample": false
+        }
+      ],
+      "listing_expiration_date": "20271231",
+      "openfda": {},
+      "marketing_category": "OTC MONOGRAPH DRUG",
+      "dosage_form": "OINTMENT",
+      "spl_id": "5e2e190d-83ae-79ea-e063-6394a90adabf",
+      "product_type": "HUMAN OTC DRUG",
+      "route": ["TOPICAL"],
+      "marketing_start_date": "20261001",
+      "product_id": "76176-135_5e2e190d-83ae-79ea-e063-6394a90adabf",
+      "application_number": "M012",
+      "brand_name_base": "Vaporizing Chest Rub"
+    },
+    {
+      "product_ndc": "0363-0710",
+      "generic_name": "Diphenhydramine hydrochloride",
+      "labeler_name": "WALGREEN CO.",
+      "brand_name": "childrens Allergy Dye Free Wal Dryl",
+      "active_ingredients": [
+        { "name": "DIPHENHYDRAMINE HYDROCHLORIDE", "strength": "12.5 mg/5mL" }
+      ],
+      "finished": true,
+      "packaging": [
+        {
+          "package_ndc": "0363-0710-08",
+          "description": "1 BOTTLE in 1 CARTON (0363-0710-08)  / 236 mL in 1 BOTTLE",
+          "marketing_start_date": "20170831",
+          "sample": false
+        }
+      ],
+      "listing_expiration_date": "20261231",
+      "openfda": {
+        "spl_set_id": ["4e64e040-1662-4dc9-b33f-3e119e0b3f7b"]
+      },
+      "marketing_category": "OTC MONOGRAPH DRUG",
+      "dosage_form": "LIQUID",
+      "spl_id": "446b34c1-f13a-24dd-e063-6294a90a4e79",
+      "product_type": "HUMAN OTC DRUG",
+      "route": ["ORAL"],
+      "marketing_start_date": "20170831",
+      "product_id": "0363-0710_446b34c1-f13a-24dd-e063-6294a90a4e79",
+      "application_number": "M012",
+      "brand_name_base": "childrens Allergy Dye Free Wal Dryl"
+    },
+    {
+      "product_ndc": "76282-768",
+      "generic_name": "Paclitaxel protein-bound particles",
+      "labeler_name": "EXELAN PHARMACEUTICALS INC.",
+      "brand_name": "Paclitaxel 100mg per vial",
+      "active_ingredients": [{ "name": "PACLITAXEL", "strength": "100 mg/20mL" }],
+      "finished": true,
+      "packaging": [
+        {
+          "package_ndc": "76282-768-09",
+          "description": "1 VIAL, SINGLE-DOSE in 1 CARTON (76282-768-09)  / 20 mL in 1 VIAL, SINGLE-DOSE",
+          "marketing_start_date": "20260811",
+          "sample": false
+        }
+      ],
+      "listing_expiration_date": "20271231",
+      "openfda": {
+        "spl_set_id": ["135502ff-002c-4a29-ba93-60855cf44f31"]
+      },
+      "marketing_category": "ANDA",
+      "dosage_form": "INJECTION, POWDER, LYOPHILIZED, FOR SUSPENSION",
+      "spl_id": "94c07774-2008-4ba9-bc92-1c723dcc5b25",
+      "product_type": "HUMAN PRESCRIPTION DRUG",
+      "route": ["INTRAVENOUS"],
+      "marketing_start_date": "20260811",
+      "product_id": "76282-768_94c07774-2008-4ba9-bc92-1c723dcc5b25",
+      "application_number": "ANDA209657",
+      "brand_name_base": "Paclitaxel 100mg per vial"
+    },
+    {
+      "product_ndc": "99999-001",
+      "generic_name": "Test Bad NDC Product",
+      "labeler_name": "TEST LABELER",
+      "brand_name": "Test Bad NDC OTC",
+      "active_ingredients": [{ "name": "TEST ACTIVE", "strength": "10 mg" }],
+      "finished": true,
+      "packaging": [
+        {
+          "package_ndc": "not-a-real-ndc",
+          "description": "bad package code for testing",
+          "marketing_start_date": "20261001",
+          "sample": false
+        }
+      ],
+      "listing_expiration_date": "20271231",
+      "openfda": {},
+      "marketing_category": "OTC MONOGRAPH DRUG",
+      "dosage_form": "TABLET",
+      "spl_id": "00000000-0000-0000-0000-000000000000",
+      "product_type": "HUMAN OTC DRUG",
+      "route": ["ORAL"],
+      "marketing_start_date": "20261001",
+      "product_id": "99999-001_00000000-0000-0000-0000-000000000000",
+      "application_number": "M999",
+      "brand_name_base": "Test Bad NDC OTC"
+    }
+  ]
+}

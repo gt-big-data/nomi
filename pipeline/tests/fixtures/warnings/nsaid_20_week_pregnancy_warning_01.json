@@ -1,0 +1,19 @@
+{
+  "id": "nsaid_20_week_pregnancy_warning_01",
+  "text": "It is especially important not to use aspirin at 20 weeks or later in pregnancy unless definitely directed to do so by a doctor because it may cause problems in the unborn child or complications during delivery.",
+  "expected_warnings": ["nsaid_20_week_pregnancy_warning"],
+  "source": {
+    "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0425c6a8-a3ea-24ad-e063-6294a90ae15a",
+    "openfda_query_url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name%3A%22ASPIRIN%22+AND+openfda.product_type%3A%22HUMAN+OTC+DRUG%22&limit=100",
+    "set_id": "0425c6a8-a3ea-24ad-e063-6294a90ae15a",
+    "label_id": "2969de2e-dde5-8daa-e063-6394a90a5009",
+    "version": "2",
+    "effective_time": "20241216",
+    "retrieved_on": "2026-11-08",
+    "brand_name": ["Extra Strength Headache, Caseys 4good"],
+    "field": "warnings",
+    "item_index": 0,
+    "start": 3262,
+    "end": 3473
+  }
+}

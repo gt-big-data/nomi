@@ -1,0 +1,383 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet href="http://www.accessdata.fda.gov/spl/stylesheet/spl.xsl" type="text/xsl"?>
+<document xmlns="urn:hl7-org:v3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:hl7-org:v3 http://www.accessdata.fda.gov/spl/schema/spl.xsd">
+   <id root="c2b5661f-05af-40c1-9635-42e649b20488"/>
+   <code code="34390-5" codeSystem="2.16.840.1.113883.6.1" displayName="HUMAN OTC DRUG LABEL"/>
+   <title>ECO-SAVE LAVENDER HAND SOAP</title>
+   <effectiveTime value="20091201"/>
+   <setId root="412112ef-8834-4f13-a27a-319514260f89"/>
+   <versionNumber value="1"/>
+   <author>
+      <time/>
+      <assignedEntity>
+         <representedOrganization>
+            <id extension="527983808" root="1.3.6.1.4.1.519.1"/>
+            <name>NINGBO CLEANER DAILY USED PRODUCTS</name>
+            <assignedEntity>
+               <assignedOrganization>
+                  <assignedEntity>
+                     <assignedOrganization>
+                        <id extension="527983808" root="1.3.6.1.4.1.519.1"/>
+                        <name>NINGBO CLEANER DAILY USED PRODUCTS</name>
+                     </assignedOrganization>
+                     <performance>
+                        <actDefinition>
+                           <code code="C43360" codeSystem="2.16.840.1.113883.3.26.1.1" displayName="manufacture"/>
+                        </actDefinition>
+                     </performance>
+                  </assignedEntity>
+               </assignedOrganization>
+            </assignedEntity>
+         </representedOrganization>
+      </assignedEntity>
+   </author>
+   <component>
+      <structuredBody>
+         <component>
+            <section>
+               <id root="c8cee24d-7bb0-4a46-9cc2-702a8d5b4278"/>
+               <code code="48780-1" codeSystem="2.16.840.1.113883.6.1" displayName="SPL listing data elements section"/>
+               <effectiveTime value="20091201"/>
+               <subject>
+                  <manufacturedProduct>
+                     <manufacturedProduct>
+                        <code code="18018-502" codeSystem="2.16.840.1.113883.6.69"/>
+                        <name>ECOSAVE LAVENDER ANTIBACTERIAL HAND SOAP<suffix/>
+                        </name>
+                        <formCode code="C47916" codeSystem="2.16.840.1.113883.3.26.1.1" displayName="KIT"/>
+                        <asEntityWithGeneric>
+                           <genericMedicine>
+                              <name>TRICLOSAN</name>
+                           </genericMedicine>
+                        </asEntityWithGeneric>
+                        <asContent>
+                           <quantity>
+                              <numerator value="1" unit="1">
+                                 <translation code="C48504" codeSystem="2.16.840.1.113883.3.26.1.1" displayName="KIT"/>
+                              </numerator>
+                              <denominator value="1"/>
+                           </quantity>
+                           <containerPackagedProduct>
+                              <code code="18018-502-34" codeSystem="2.16.840.1.113883.6.69"/>
+                              <formCode code="C43198" codeSystem="2.16.840.1.113883.3.26.1.1" displayName="PACKAGE, COMBINATION"/>
+                           </containerPackagedProduct>
+                        </asContent>
+                        <part>
+                           <quantity>
+                              <numerator value="1000" unit="mL"/>
+                              <denominator value="1"/>
+                           </quantity>
+                           <partProduct>
+                              <code code="18018-502" codeSystem="2.16.840.1.113883.6.69"/>
+                              <name>ECOSAVE LAVENDER ANTIBACTERIAL HAND SOAP<suffix/>
+                              </name>
+                              <formCode code="C42953" codeSystem="2.16.840.1.113883.3.26.1.1" displayName="LIQUID"/>
+                              <asEntityWithGeneric>
+                                 <genericMedicine>
+                                    <name>ANTIBACTERIAL SOAP</name>
+                                 </genericMedicine>
+                              </asEntityWithGeneric>
+                              <ingredient classCode="ACTIB">
+                                 <quantity>
+                                    <numerator value=".04" unit="mL"/>
+                                    <denominator value="100" unit="mL"/>
+                                 </quantity>
+                                 <ingredientSubstance>
+                                    <code code="4NM5039Y5X" codeSystem="2.16.840.1.113883.4.9"/>
+                                    <name>TRICLOSAN</name>
+                                    <activeMoiety>
+                                       <activeMoiety>
+                                          <code code="4NM5039Y5X" codeSystem="2.16.840.1.113883.4.9"/>
+                                          <name>TRICLOSAN</name>
+                                       </activeMoiety>
+                                    </activeMoiety>
+                                 </ingredientSubstance>
+                              </ingredient>
+                              <ingredient classCode="IACT">
+                                 <ingredientSubstance>
+                                    <code code="059QF0KO0R" codeSystem="2.16.840.1.113883.4.9"/>
+                                    <name>WATER</name>
+                                 </ingredientSubstance>
+                              </ingredient>
+                              <ingredient classCode="IACT">
+                                 <ingredientSubstance>
+                                    <code code="451W47IQ8X" codeSystem="2.16.840.1.113883.4.9"/>
+                                    <name>SODIUM CHLORIDE</name>
+                                 </ingredientSubstance>
+                              </ingredient>
+                              <ingredient classCode="IACT">
+                                 <ingredientSubstance>
+                                    <code code="2968PHW8QP" codeSystem="2.16.840.1.113883.4.9"/>
+                                    <name>CITRIC ACID MONOHYDRATE</name>
+                                 </ingredientSubstance>
+                              </ingredient>
+                              <ingredient classCode="IACT">
+                                 <ingredientSubstance>
+                                    <code code="7FLD91C86K" codeSystem="2.16.840.1.113883.4.9"/>
+                                    <name>EDETATE DISODIUM</name>
+                                 </ingredientSubstance>
+                              </ingredient>
+                              <asContent>
+                                 <quantity>
+                                    <numerator value="1000" unit="mL"/>
+                                    <denominator value="1"/>
+                                 </quantity>
+                                 <containerPackagedProduct>
+                                    <code/>
+                                    <formCode code="C43200" codeSystem="2.16.840.1.113883.3.26.1.1" displayName="POUCH"/>
+                                 </containerPackagedProduct>
+                              </asContent>
+                           </partProduct>
+                           <subjectOf>
+                              <marketingAct>
+                                 <code code="C53292" codeSystem="2.16.840.1.113883.3.26.1.1"/>
+                                 <statusCode code="active"/>
+                                 <effectiveTime>
+                                    <low value="20091201"/>
+                                 </effectiveTime>
+                              </marketingAct>
+                           </subjectOf>
+                           <subjectOf>
+                              <approval>
+                                 <id extension="part333" root="2.16.840.1.113883.3.149"/>
+                                 <code code="C73604" codeSystem="2.16.840.1.113883.3.26.1.1" displayName="OTC monograph not final"/>
+                                 <author>
+                                    <territorialAuthority>
+                                       <territory>
+                                          <code code="USA" codeSystem="2.16.840.1.113883.5.28"/>
+                                       </territory>
+                                    </territorialAuthority>
+                                 </author>
+                              </approval>
+                           </subjectOf>
+                           <consumedIn>
+                              <substanceAdministration>
+                                 <routeCode code="C38304" codeSystem="2.16.840.1.113883.3.26.1.1" displayName="TOPICAL"/>
+                              </substanceAdministration>
+                           </consumedIn>
+                        </part>
+                        <part>
+                           <quantity>
+                              <numerator value="237" unit="mL"/>
+                              <denominator value="1"/>
+                           </quantity>
+                           <partProduct>
+                              <code code="18018-502" codeSystem="2.16.840.1.113883.6.69"/>
+                              <name>ECOSAVE LAVENDER ANTIBACTERIAL HAND SOAP<suffix/>
+                              </name>
+                              <formCode code="C42953" codeSystem="2.16.840.1.113883.3.26.1.1" displayName="LIQUID"/>
+                              <asEntityWithGeneric>
+                                 <genericMedicine>
+                                    <name>ANTIBACTERIAL SOAP</name>
+                                 </genericMedicine>
+                              </asEntityWithGeneric>
+                              <ingredient classCode="ACTIB">
+                                 <quantity>
+                                    <numerator value=".04" unit="mL"/>
+                                    <denominator value="100" unit="mL"/>
+                                 </quantity>
+                                 <ingredientSubstance>
+                                    <code code="4NM5039Y5X" codeSystem="2.16.840.1.113883.4.9"/>
+                                    <name>TRICLOSAN</name>
+                                    <activeMoiety>
+                                       <activeMoiety>
+                                          <code code="4NM5039Y5X" codeSystem="2.16.840.1.113883.4.9"/>
+                                          <name>TRICLOSAN</name>
+                                       </activeMoiety>
+                                    </activeMoiety>
+                                 </ingredientSubstance>
+                              </ingredient>
+                              <ingredient classCode="IACT">
+                                 <ingredientSubstance>
+                                    <code code="059QF0KO0R" codeSystem="2.16.840.1.113883.4.9"/>
+                                    <name>WATER</name>
+                                 </ingredientSubstance>
+                              </ingredient>
+                              <ingredient classCode="IACT">
+                                 <ingredientSubstance>
+                                    <code code="451W47IQ8X" codeSystem="2.16.840.1.113883.4.9"/>
+                                    <name>SODIUM CHLORIDE</name>
+                                 </ingredientSubstance>
+                              </ingredient>
+                              <ingredient classCode="IACT">
+                                 <ingredientSubstance>
+                                    <code code="2968PHW8QP" codeSystem="2.16.840.1.113883.4.9"/>
+                                    <name>CITRIC ACID MONOHYDRATE</name>
+                                 </ingredientSubstance>
+                              </ingredient>
+                              <ingredient classCode="IACT">
+                                 <ingredientSubstance>
+                                    <code code="7FLD91C86K" codeSystem="2.16.840.1.113883.4.9"/>
+                                    <name>EDETATE DISODIUM</name>
+                                 </ingredientSubstance>
+                              </ingredient>
+                              <asContent>
+                                 <quantity>
+                                    <numerator value="237" unit="mL"/>
+                                    <denominator value="1"/>
+                                 </quantity>
+                                 <containerPackagedProduct>
+                                    <code/>
+                                    <formCode code="C43174" codeSystem="2.16.840.1.113883.3.26.1.1" displayName="BOTTLE, PUMP"/>
+                                 </containerPackagedProduct>
+                              </asContent>
+                           </partProduct>
+                           <subjectOf>
+                              <marketingAct>
+                                 <code code="C53292" codeSystem="2.16.840.1.113883.3.26.1.1"/>
+                                 <statusCode code="active"/>
+                                 <effectiveTime>
+                                    <low value="20091201"/>
+                                 </effectiveTime>
+                              </marketingAct>
+                           </subjectOf>
+                           <subjectOf>
+                              <approval>
+                                 <id extension="part333" root="2.16.840.1.113883.3.149"/>
+                                 <code code="C73604" codeSystem="2.16.840.1.113883.3.26.1.1" displayName="OTC monograph not final"/>
+                                 <author>
+                                    <territorialAuthority>
+                                       <territory>
+                                          <code code="USA" codeSystem="2.16.840.1.113883.5.28"/>
+                                       </territory>
+                                    </territorialAuthority>
+                                 </author>
+                              </approval>
+                           </subjectOf>
+                           <consumedIn>
+                              <substanceAdministration>
+                                 <routeCode code="C38304" codeSystem="2.16.840.1.113883.3.26.1.1" displayName="TOPICAL"/>
+                              </substanceAdministration>
+                           </consumedIn>
+                        </part>
+                     </manufacturedProduct>
+                     <subjectOf>
+                        <marketingAct>
+                           <code code="C53292" codeSystem="2.16.840.1.113883.3.26.1.1"/>
+                           <statusCode code="active"/>
+                           <effectiveTime>
+                              <low value="20091201"/>
+                           </effectiveTime>
+                        </marketingAct>
+                     </subjectOf>
+                     <subjectOf>
+                        <approval>
+                           <id extension="part333" root="2.16.840.1.113883.3.149"/>
+                           <code code="C73604" codeSystem="2.16.840.1.113883.3.26.1.1" displayName="OTC monograph not final"/>
+                           <author>
+                              <territorialAuthority>
+                                 <territory>
+                                    <code code="USA" codeSystem="2.16.840.1.113883.5.28"/>
+                                 </territory>
+                              </territorialAuthority>
+                           </author>
+                        </approval>
+                     </subjectOf>
+                  </manufacturedProduct>
+               </subject>
+            </section>
+         </component>
+         <component>
+            <section>
+               <id root="6c2bfe88-5d79-47c3-8f43-b44e733ca7a5"/>
+               <code code="42229-5" codeSystem="2.16.840.1.113883.6.1" displayName="SPL UNCLASSIFIED SECTION"/>
+               <text>
+                  <paragraph>Drug Facts</paragraph>
+               </text>
+               <effectiveTime value="20091201"/>
+            </section>
+         </component>
+         <component>
+            <section>
+               <id root="bc82b8e2-6513-4cb3-8a5b-378a19218d44"/>
+               <code code="55106-9" codeSystem="2.16.840.1.113883.6.1" displayName="OTC - ACTIVE INGREDIENT SECTION"/>
+               <title>Active Ingredients</title>
+               <text>
+                  <paragraph>Triclosan .04%</paragraph>
+               </text>
+               <effectiveTime value="20091201"/>
+            </section>
+         </component>
+         <component>
+            <section>
+               <id root="69b98315-d976-40a0-ab79-5a15d30122e0"/>
+               <code code="55105-1" codeSystem="2.16.840.1.113883.6.1" displayName="OTC - PURPOSE SECTION"/>
+               <title>Purpose</title>
+               <text>
+                  <paragraph>Antibacterial</paragraph>
+               </text>
+               <effectiveTime value="20091201"/>
+            </section>
+         </component>
+         <component>
+            <section>
+               <id root="b58157e1-9cdd-4c99-99e8-af19d0aebd20"/>
+               <code code="34071-1" codeSystem="2.16.840.1.113883.6.1" displayName="WARNINGS SECTION"/>
+               <title>Warnings</title>
+               <text>
+                  <paragraph>For external use only</paragraph>
+               </text>
+               <effectiveTime value="20091201"/>
+               <component>
+                  <section>
+                     <id root="bb353ec6-304f-439e-9170-54457f36d7fe"/>
+                     <code code="50567-7" codeSystem="2.16.840.1.113883.6.1" displayName="OTC - WHEN USING SECTION"/>
+                     <text>
+                        <paragraph>Avoid contact with eyes. If contact occurs, rinse thoroughly with water. Stop use and ask a doctor if irritation or redness develops.</paragraph>
+                     </text>
+                  </section>
+               </component>
+               <component>
+                  <section>
+                     <id root="f2c657e7-c8b2-4940-bbda-7e9d7d6cca02"/>
+                     <code code="50565-1" codeSystem="2.16.840.1.113883.6.1" displayName="OTC - KEEP OUT OF REACH OF CHILDREN SECTION"/>
+                     <text>
+                        <paragraph>Keep away from children, except under adult supervision. If swallowed, get medical help or contact a Posion Control Center right away.</paragraph>
+                     </text>
+                  </section>
+               </component>
+            </section>
+         </component>
+         <component>
+            <section>
+               <id root="43bc2686-64ee-404a-8422-08df31ccba2e"/>
+               <code code="34068-7" codeSystem="2.16.840.1.113883.6.1" displayName="DOSAGE &amp; ADMINISTRATION SECTION"/>
+               <text>
+                  <paragraph>Wet hands. Apply palmful to hands. Scrub thoroughly. Rinse.</paragraph>
+               </text>
+               <effectiveTime value="20091201"/>
+            </section>
+         </component>
+         <component>
+            <section>
+               <id root="41ee3c9c-eb44-4e62-a76b-30b8da476fa3"/>
+               <code code="51727-6" codeSystem="2.16.840.1.113883.6.1" displayName="INACTIVE INGREDIENT SECTION"/>
+               <title>Inactive Ingredients</title>
+               <text>
+                  <paragraph>water, polyoxyethylene fatty alcohol sodium sulfate, dehyton KE, Sodium Chloride, cocoamidopropyalamine oxide, fragrance, coconut oil diethanolamide, citric acid, disodium EDTA, kathon, FD and C red 33, FD and C blue 1<br/>
+                  </paragraph>
+               </text>
+               <effectiveTime value="20091201"/>
+            </section>
+         </component>
+         <component>
+            <section>
+               <id root="afc3941f-e360-4422-862a-fafcf594b9b6"/>
+               <code code="51945-4" codeSystem="2.16.840.1.113883.6.1" displayName="PACKAGE LABEL.PRINCIPAL DISPLAY PANEL"/>
+               <text>
+                  <paragraph>artwork<renderMultiMedia referencedObject="MM1"/>
+                  </paragraph>
+               </text>
+               <effectiveTime value="20091201"/>
+               <component>
+                  <observationMedia classCode="OBS" moodCode="EVN" ID="MM1">
+                     <text>PACKAGE LABEL</text>
+                     <value xsi:type="ED" mediaType="image/jpeg">
+                        <reference value="ecosave-ls.jpg"/>
+                     </value>
+                  </observationMedia>
+               </component>
+            </section>
+         </component>
+      </structuredBody>
+   </component>
+</document>

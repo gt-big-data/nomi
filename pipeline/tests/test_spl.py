@@ -1,0 +1,167 @@
+import re
+import shutil
+import zipfile
+from pathlib import Path
+from unittest.mock import ANY
+
+import pytest
+from nomi_pipeline.ingest.spl import ParseError, collect_labels, parse_label, parse_label_bytes
+
+FIXTURES = Path(__file__).parent / "fixtures" / "spl"
+
+
+def test_parses_products_from_ibuprofen_fixture() -> None:
+    label = parse_label(FIXTURES / "ibuprofen_otc.xml")
+
+    assert len(label.products) == 2
+    ndcs = {product.ndc11 for product in label.products}
+    assert ndcs == {"57344021203", "57344021205"}
+    for product in label.products:
+        assert product.spl_set_id == "4aba1bf2-8146-04fa-e063-6294a90a8a21"
+        assert product.spl_version == 2
+
+
+def test_parses_ingredients_from_ibuprofen_fixture() -> None:
+    label = parse_label(FIXTURES / "ibuprofen_otc.xml")
+
+    assert len(label.ingredients) == 11
+
+    active = [i for i in label.ingredients if i.role == "active"]
+    assert len(active) == 1
+    assert active[0].name == "IBUPROFEN"
+    assert active[0].unii == "WK2XYI10QM"
+    assert active[0].strength == 200
+    assert active[0].unit == "mg"
+
+    inactive = [i for i in label.ingredients if i.role == "inactive"]
+    assert len(inactive) == 10
+
+
+def test_raises_parse_error_when_set_id_missing() -> None:
+    with pytest.raises(ParseError):
+        parse_label(FIXTURES / "missing_set_id.xml")
+
+
+def test_raises_parse_error_when_xml_invalid() -> None:
+    with pytest.raises(ParseError):
+        parse_label(FIXTURES / "not_xml.xml")
+
+
+def test_inactive_ingredient_without_unii_is_null_not_a_failure() -> None:
+    label = parse_label(FIXTURES / "missing_unii.xml")
+
+    inactive = [i for i in label.ingredients if i.role == "inactive"]
+    assert len(inactive) == 1
+    assert inactive[0].name == "MYSTERY INGREDIENT"
+    assert inactive[0].unii is None
+
+
+def test_malformed_package_ndc_is_skipped_not_a_file_failure() -> None:
+    label = parse_label(FIXTURES / "malformed_ndc.xml")
+
+    assert len(label.products) == 1
+    assert label.products[0].ndc11 == "12345067890"
+
+
+def test_two_products_on_one_label_get_distinct_product_index() -> None:
+    label = parse_label(FIXTURES / "kit_two_products.xml")
+
+    assert len(label.products) == 2
+    indices = {product.product_index for product in label.products}
+    assert indices == {0, 1}
+
+    part_a = next(p for p in label.products if p.product_name == "Kit Part A")
+    part_b = next(p for p in label.products if p.product_name == "Kit Part B")
+    assert part_a.product_index != part_b.product_index
+
+    ingredient_a = next(i for i in label.ingredients if i.name == "PART A ACTIVE")
+    ingredient_b = next(i for i in label.ingredients if i.name == "PART B ACTIVE")
+    assert ingredient_a.product_index == part_a.product_index
+    assert ingredient_b.product_index == part_b.product_index
+
+
+def test_collect_labels_gathers_rows_and_tracks_failures(tmp_path: Path) -> None:
+    shutil.copy(FIXTURES / "ibuprofen_otc.xml", tmp_path / "ibuprofen_otc.xml")
+    shutil.copy(FIXTURES / "not_xml.xml", tmp_path / "not_xml.xml")
+
+    result = collect_labels(tmp_path)
+
+    assert len(result.products) == 2
+    assert len(result.ingredients) == 11
+    assert len(result.failures) == 1
+    assert result.failures[0]["file"] == "not_xml.xml"
+    assert result.files_processed == 2
+
+
+def test_collect_labels_handles_empty_directory(tmp_path: Path) -> None:
+    result = collect_labels(tmp_path)
+
+    assert result.products == []
+    assert result.ingredients == []
+    assert result.failures == []
+    assert result.files_processed == 0
+
+
+def test_collect_labels_reads_zipped_parts_from_fetch(tmp_path: Path) -> None:
+    # pipeline fetch delivers DailyMed as dm_spl_release_human_otc_partN.xml.zip (ADR-0003).
+    with zipfile.ZipFile(tmp_path / "dm_spl_release_human_otc_part1.xml.zip", "w") as z:
+        z.write(FIXTURES / "ibuprofen_otc.xml", "20261104_set-a.xml")
+        z.write(FIXTURES / "not_xml.xml", "20261104_set-b.xml")
+
+    result = collect_labels(tmp_path)
+
+    assert result.files_processed == 2
+    assert len(result.products) > 0
+    assert result.failures == [
+        {"file": "dm_spl_release_human_otc_part1.xml.zip/20261104_set-b.xml", "error": ANY}
+    ]
+
+
+def test_non_numeric_version_is_a_parse_error_not_a_crash() -> None:
+    xml = (FIXTURES / "ibuprofen_otc.xml").read_bytes()
+    broken = re.sub(rb'(<versionNumber value=")[^"]*', rb"\1x", xml, count=1)
+    with pytest.raises(ParseError):
+        parse_label_bytes(broken, "broken.xml")
+
+
+def test_collect_labels_keeps_only_the_latest_version_of_a_label(tmp_path: Path) -> None:
+    xml = (FIXTURES / "ibuprofen_otc.xml").read_bytes()
+    version = int(re.search(rb'<versionNumber value="(\d+)"', xml).group(1))  # type: ignore[union-attr]
+    older = re.sub(rb'(<versionNumber value=")\d+', rb"\g<1>%d" % (version - 1), xml, count=1)
+    (tmp_path / "a_new.xml").write_bytes(xml)
+    (tmp_path / "b_old.xml").write_bytes(older)
+
+    result = collect_labels(tmp_path)
+
+    assert result.files_processed == 2
+    assert result.superseded == 1
+    assert {p.spl_version for p in result.products} == {version}
+    assert len(result.products) == 2
+
+
+def test_active_by_reference_is_active() -> None:
+    # Real label: acetaminophen is ACTIR (strength given by reference), not ACTIB.
+    label = parse_label(FIXTURES / "actir_acetaminophen.xml")
+
+    active = [i for i in label.ingredients if i.role == "active"]
+    assert [(i.name, i.class_code, i.strength, i.unit) for i in active] == [
+        ("ACETAMINOPHEN", "ACTIR", 325, "mg")
+    ]
+    # Per 1 tablet adds nothing, so it is not stored.
+    assert active[0].per_amount is None
+
+
+def test_kit_parts_keep_their_ingredients_and_not_their_packages() -> None:
+    # Real kit: two pouches of triclosan soap, each a part with its own ingredients.
+    label = parse_label(FIXTURES / "kit_parts_triclosan_soap.xml")
+
+    assert [p.ndc11 for p in label.products] == ["18018050234"]
+    active = [i for i in label.ingredients if i.role == "active"]
+    assert [(i.name, i.part_index) for i in active] == [("TRICLOSAN", 0), ("TRICLOSAN", 1)]
+    # A concentration keeps its denominator, so it doesn't read as a dose.
+    assert (active[0].strength, active[0].unit, active[0].per_amount, active[0].per_unit) == (
+        0.04,
+        "mL",
+        100,
+        "mL",
+    )
