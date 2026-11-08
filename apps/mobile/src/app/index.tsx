@@ -1,18 +1,32 @@
 import * as Haptics from "expo-haptics";
-import { useState } from "react";
-import { Button, StyleSheet, Text, View } from "react-native";
+import { useEffect, useState } from "react";
+import { AppState, Button, Linking, StyleSheet, Text, View } from "react-native";
 import { useCameraPermission } from "react-native-vision-camera";
 import { CodeScanner } from "react-native-vision-camera-barcode-scanner";
 
 export default function Scanner() {
-  const { hasPermission, requestPermission } = useCameraPermission();
+  const { hasPermission, canRequestPermission, requestPermission } = useCameraPermission();
   const [digits, setDigits] = useState<string | null>(null);
+  const [appActive, setAppActive] = useState(AppState.currentState === "active");
+
+  // Turn the camera off while the app is in the background.
+  useEffect(() => {
+    const subscription = AppState.addEventListener("change", (state) =>
+      setAppActive(state === "active"),
+    );
+    return () => subscription.remove();
+  }, []);
 
   if (!hasPermission) {
     return (
       <View style={styles.center}>
         <Text>Nomi needs the camera to scan barcodes.</Text>
-        <Button title="Allow camera" onPress={requestPermission} />
+        {canRequestPermission ? (
+          <Button title="Allow camera" onPress={requestPermission} />
+        ) : (
+          // Once the user has said no, the system won't ask again; only Settings can change it.
+          <Button title="Open Settings" onPress={() => Linking.openSettings()} />
+        )}
       </View>
     );
   }
@@ -21,11 +35,11 @@ export default function Scanner() {
     <View style={styles.container}>
       <CodeScanner
         style={StyleSheet.absoluteFill}
-        isActive={true}
+        // Pause while a result is shown, so one box doesn't buzz repeatedly.
+        isActive={appActive && !digits}
         barcodeFormats={["upc-a", "ean-13"]}
         onBarcodeScanned={(barcodes) => {
           const value = barcodes[0]?.rawValue;
-          // Ignore scans while a result is shown, so one box doesn't buzz repeatedly.
           if (digits || !value) {
             return;
           }

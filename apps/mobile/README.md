@@ -47,9 +47,26 @@ scanning runs on-device and works offline. `expo-camera` uses Apple's scanner on
 
 With a free Apple ID, the app expires after 7 days. Run step 4 again to reinstall it.
 
+Free Apple IDs can't share a bundle identifier. If Xcode says `org.gtbigdata.nomi` is unavailable, pick
+your own and pass it in step 4, for example `NOMI_IOS_BUNDLE_ID=com.yourname.nomi npx expo run:ios --device`.
+Don't commit it.
+
 ### Android
 
-From `apps/mobile`, with an Android phone connected, run `npx expo run:android`.
+1. Install [Android Studio](https://developer.android.com/studio) and let it install the Android SDK.
+2. On the phone, turn on Developer options (tap Settings → About phone → Build number seven times), then
+   turn on USB debugging.
+3. Plug in the phone and accept the debugging prompt. Run `pnpm install` from the repo root, then from
+   `apps/mobile` run:
+
+   ```bash
+   npx expo run:android --device
+   ```
+
+### Checks
+
+From the repo root, `pnpm typecheck` type-checks the app and `pnpm test` runs the barcode parser tests
+(NOMI-007). CI runs both.
 
 ## Design
 
