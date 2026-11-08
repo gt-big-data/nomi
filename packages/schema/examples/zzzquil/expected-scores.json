@@ -1,0 +1,362 @@
+[
+  {
+    "ndc11": "84126031604",
+    "profile": {
+      "persona": "adult_18_64",
+      "conditions": [],
+      "medication_types": []
+    },
+    "score": 70,
+    "tier": "yellow",
+    "contributions": [
+      {
+        "dimension": "anticholinergic_cognitive",
+        "points": 15,
+        "ingredient_uniis": ["TC2D6JAD40"],
+        "citations": [
+          {
+            "source": "acb",
+            "document_id": "Boustani_2008_ACB_2012_update",
+            "section": "2012 update, page 1: diphenhydramine, ACB score 3",
+            "url": "https://www.hii.iu.edu/resources/anticholinergic-cognitive-burden-scale.pdf"
+          },
+          {
+            "source": "fda_label",
+            "document_id": "1d608c94-1651-f318-e063-6294a90aa11e",
+            "section": "SPL v4: Ask a doctor (50569-3)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1d608c94-1651-f318-e063-6294a90aa11e"
+          }
+        ]
+      },
+      {
+        "dimension": "sedation_falls",
+        "points": 15,
+        "ingredient_uniis": ["TC2D6JAD40"],
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "1d608c94-1651-f318-e063-6294a90aa11e",
+            "section": "SPL v4: Purpose (55105-1)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1d608c94-1651-f318-e063-6294a90aa11e",
+            "quote": "Nighttime sleep-aid"
+          },
+          {
+            "source": "fda_label",
+            "document_id": "1d608c94-1651-f318-e063-6294a90aa11e",
+            "section": "SPL v4: Ask a doctor or pharmacist (50568-5)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1d608c94-1651-f318-e063-6294a90aa11e",
+            "quote": "taking sedatives or tranquilizers"
+          }
+        ]
+      }
+    ],
+    "hard_stops_triggered": [],
+    "benchmark": null,
+    "alternatives": [],
+    "explanation": [
+      {
+        "template_id": "NOMI-015_fixture_draft",
+        "text": "Draft test fixture using 5, 15 and 51 points for severity 1, 2 and 3; not a finalized Nomi score.",
+        "citations": []
+      },
+      {
+        "template_id": "NOMI-015_anticholinergic_cognitive",
+        "text": "Diphenhydramine scores 3 on the Anticholinergic Cognitive Burden scale; the label says to ask a doctor first with glaucoma or an enlarged prostate.",
+        "citations": [
+          {
+            "source": "acb",
+            "document_id": "Boustani_2008_ACB_2012_update",
+            "section": "2012 update, page 1: diphenhydramine, ACB score 3",
+            "url": "https://www.hii.iu.edu/resources/anticholinergic-cognitive-burden-scale.pdf"
+          },
+          {
+            "source": "fda_label",
+            "document_id": "1d608c94-1651-f318-e063-6294a90aa11e",
+            "section": "SPL v4: Ask a doctor (50569-3)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1d608c94-1651-f318-e063-6294a90aa11e"
+          }
+        ]
+      },
+      {
+        "template_id": "NOMI-015_sedation_falls",
+        "text": "This sleep aid causes sleepiness; ask a doctor or pharmacist first if you take sedatives or tranquilizers.",
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "1d608c94-1651-f318-e063-6294a90aa11e",
+            "section": "SPL v4: Purpose (55105-1)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1d608c94-1651-f318-e063-6294a90aa11e",
+            "quote": "Nighttime sleep-aid"
+          },
+          {
+            "source": "fda_label",
+            "document_id": "1d608c94-1651-f318-e063-6294a90aa11e",
+            "section": "SPL v4: Ask a doctor or pharmacist (50568-5)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1d608c94-1651-f318-e063-6294a90aa11e",
+            "quote": "taking sedatives or tranquilizers"
+          }
+        ]
+      }
+    ],
+    "review_status": "unreviewed",
+    "provenance": {
+      "schema_version": "0.1.0",
+      "dataset_version": "NOMI-015-draft",
+      "rubric_version": "NOMI-015-fixture-draft-5-15-51-points",
+      "code_commit": "aa8d723e99fb22853023d8f66e54e3dbe04f52a1",
+      "generated_at": "2026-10-29T17:44:37Z"
+    }
+  },
+  {
+    "ndc11": "84126031604",
+    "profile": {
+      "persona": "adult_65_plus",
+      "conditions": ["hypertension"],
+      "medication_types": []
+    },
+    "score": 0,
+    "tier": "red",
+    "contributions": [
+      {
+        "dimension": "anticholinergic_cognitive",
+        "points": 51,
+        "ingredient_uniis": ["TC2D6JAD40"],
+        "citations": [
+          {
+            "source": "publication",
+            "document_id": "10.1111/jgs.18372",
+            "section": "2023 AGS Beers Criteria, Table 2: first-generation antihistamines",
+            "url": "https://pubmed.ncbi.nlm.nih.gov/37139824/"
+          }
+        ]
+      },
+      {
+        "dimension": "sedation_falls",
+        "points": 51,
+        "ingredient_uniis": ["TC2D6JAD40"],
+        "citations": [
+          {
+            "source": "stopp_start",
+            "document_id": "STOPP_v3_K6",
+            "section": "Appendix 1, STOPP K6",
+            "url": "https://static-content.springer.com/esm/art%3A10.1007%2Fs41999-023-00777-y/MediaObjects/41999_2023_777_MOESM1_ESM.pdf",
+            "quote": "First generation antihistamines in patients with recurrent falls (may impair sensorium)"
+          },
+          {
+            "source": "stopp_start",
+            "document_id": "STOPP_v3_D25",
+            "section": "Appendix 1, STOPP D25",
+            "url": "https://static-content.springer.com/esm/art%3A10.1007%2Fs41999-023-00777-y/MediaObjects/41999_2023_777_MOESM1_ESM.pdf",
+            "quote": "First-generation antihistamines for insomnia"
+          }
+        ]
+      }
+    ],
+    "hard_stops_triggered": [],
+    "benchmark": null,
+    "alternatives": [],
+    "explanation": [
+      {
+        "template_id": "NOMI-015_fixture_draft",
+        "text": "Draft test fixture using 5, 15 and 51 points for severity 1, 2 and 3; not a finalized Nomi score.",
+        "citations": []
+      },
+      {
+        "template_id": "NOMI-015_anticholinergic_cognitive",
+        "text": "The 2023 Beers Criteria list first-generation antihistamines as anticholinergic drugs for older adults to avoid.",
+        "citations": [
+          {
+            "source": "publication",
+            "document_id": "10.1111/jgs.18372",
+            "section": "2023 AGS Beers Criteria, Table 2: first-generation antihistamines",
+            "url": "https://pubmed.ncbi.nlm.nih.gov/37139824/"
+          }
+        ]
+      },
+      {
+        "template_id": "NOMI-015_sedation_falls",
+        "text": "STOPP v3 advises against first-generation antihistamines for insomnia, and in older adults who fall.",
+        "citations": [
+          {
+            "source": "stopp_start",
+            "document_id": "STOPP_v3_K6",
+            "section": "Appendix 1, STOPP K6",
+            "url": "https://static-content.springer.com/esm/art%3A10.1007%2Fs41999-023-00777-y/MediaObjects/41999_2023_777_MOESM1_ESM.pdf",
+            "quote": "First generation antihistamines in patients with recurrent falls (may impair sensorium)"
+          },
+          {
+            "source": "stopp_start",
+            "document_id": "STOPP_v3_D25",
+            "section": "Appendix 1, STOPP D25",
+            "url": "https://static-content.springer.com/esm/art%3A10.1007%2Fs41999-023-00777-y/MediaObjects/41999_2023_777_MOESM1_ESM.pdf",
+            "quote": "First-generation antihistamines for insomnia"
+          }
+        ]
+      }
+    ],
+    "review_status": "unreviewed",
+    "provenance": {
+      "schema_version": "0.1.0",
+      "dataset_version": "NOMI-015-draft",
+      "rubric_version": "NOMI-015-fixture-draft-5-15-51-points",
+      "code_commit": "aa8d723e99fb22853023d8f66e54e3dbe04f52a1",
+      "generated_at": "2026-10-29T17:44:37Z"
+    }
+  },
+  {
+    "ndc11": "84126031604",
+    "profile": {
+      "persona": "child_6_11",
+      "conditions": [],
+      "medication_types": []
+    },
+    "score": 19,
+    "tier": "red",
+    "contributions": [
+      {
+        "dimension": "pediatric",
+        "points": 51,
+        "ingredient_uniis": ["TC2D6JAD40"],
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "1d608c94-1651-f318-e063-6294a90aa11e",
+            "section": "SPL v4: Directions (34068-7)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1d608c94-1651-f318-e063-6294a90aa11e"
+          }
+        ]
+      },
+      {
+        "dimension": "anticholinergic_cognitive",
+        "points": 15,
+        "ingredient_uniis": ["TC2D6JAD40"],
+        "citations": [
+          {
+            "source": "acb",
+            "document_id": "Boustani_2008_ACB_2012_update",
+            "section": "2012 update, page 1: diphenhydramine, ACB score 3",
+            "url": "https://www.hii.iu.edu/resources/anticholinergic-cognitive-burden-scale.pdf"
+          },
+          {
+            "source": "fda_label",
+            "document_id": "1d608c94-1651-f318-e063-6294a90aa11e",
+            "section": "SPL v4: Ask a doctor (50569-3)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1d608c94-1651-f318-e063-6294a90aa11e"
+          }
+        ]
+      },
+      {
+        "dimension": "sedation_falls",
+        "points": 15,
+        "ingredient_uniis": ["TC2D6JAD40"],
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "1d608c94-1651-f318-e063-6294a90aa11e",
+            "section": "SPL v4: Purpose (55105-1)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1d608c94-1651-f318-e063-6294a90aa11e",
+            "quote": "Nighttime sleep-aid"
+          },
+          {
+            "source": "fda_label",
+            "document_id": "1d608c94-1651-f318-e063-6294a90aa11e",
+            "section": "SPL v4: Ask a doctor or pharmacist (50568-5)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1d608c94-1651-f318-e063-6294a90aa11e",
+            "quote": "taking sedatives or tranquilizers"
+          }
+        ]
+      }
+    ],
+    "hard_stops_triggered": [
+      {
+        "id": "hs_zzzquil_under_12",
+        "message": "This ZzzQuil label prohibits use below age 12."
+      }
+    ],
+    "benchmark": null,
+    "alternatives": [],
+    "explanation": [
+      {
+        "template_id": "NOMI-015_fixture_draft",
+        "text": "Draft test fixture using 5, 15 and 51 points for severity 1, 2 and 3; not a finalized Nomi score.",
+        "citations": []
+      },
+      {
+        "template_id": "NOMI-015_pediatric",
+        "text": "Follow the formulation-specific child directions: medical advice, an age restriction, or an excitability warning.",
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "1d608c94-1651-f318-e063-6294a90aa11e",
+            "section": "SPL v4: Directions (34068-7)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1d608c94-1651-f318-e063-6294a90aa11e"
+          }
+        ]
+      },
+      {
+        "template_id": "NOMI-015_anticholinergic_cognitive",
+        "text": "Diphenhydramine scores 3 on the Anticholinergic Cognitive Burden scale; the label says to ask a doctor first with glaucoma or an enlarged prostate.",
+        "citations": [
+          {
+            "source": "acb",
+            "document_id": "Boustani_2008_ACB_2012_update",
+            "section": "2012 update, page 1: diphenhydramine, ACB score 3",
+            "url": "https://www.hii.iu.edu/resources/anticholinergic-cognitive-burden-scale.pdf"
+          },
+          {
+            "source": "fda_label",
+            "document_id": "1d608c94-1651-f318-e063-6294a90aa11e",
+            "section": "SPL v4: Ask a doctor (50569-3)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1d608c94-1651-f318-e063-6294a90aa11e"
+          }
+        ]
+      },
+      {
+        "template_id": "NOMI-015_sedation_falls",
+        "text": "This sleep aid causes sleepiness; ask a doctor or pharmacist first if you take sedatives or tranquilizers.",
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "1d608c94-1651-f318-e063-6294a90aa11e",
+            "section": "SPL v4: Purpose (55105-1)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1d608c94-1651-f318-e063-6294a90aa11e",
+            "quote": "Nighttime sleep-aid"
+          },
+          {
+            "source": "fda_label",
+            "document_id": "1d608c94-1651-f318-e063-6294a90aa11e",
+            "section": "SPL v4: Ask a doctor or pharmacist (50568-5)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1d608c94-1651-f318-e063-6294a90aa11e",
+            "quote": "taking sedatives or tranquilizers"
+          }
+        ]
+      },
+      {
+        "template_id": "NOMI-015_child_directions",
+        "text": "Children younger than 12 must not use this ZzzQuil presentation.",
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "1d608c94-1651-f318-e063-6294a90aa11e",
+            "section": "SPL v4: Directions (34068-7)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1d608c94-1651-f318-e063-6294a90aa11e"
+          },
+          {
+            "source": "fda_label",
+            "document_id": "1d608c94-1651-f318-e063-6294a90aa11e",
+            "section": "SPL v4: Do not use (50570-1)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1d608c94-1651-f318-e063-6294a90aa11e"
+          }
+        ]
+      }
+    ],
+    "review_status": "unreviewed",
+    "provenance": {
+      "schema_version": "0.1.0",
+      "dataset_version": "NOMI-015-draft",
+      "rubric_version": "NOMI-015-fixture-draft-5-15-51-points",
+      "code_commit": "aa8d723e99fb22853023d8f66e54e3dbe04f52a1",
+      "generated_at": "2026-10-29T17:44:37Z"
+    }
+  }
+]

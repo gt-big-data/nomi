@@ -1,0 +1,22 @@
+{
+  "ndc11": "79903029710",
+  "spl_set_id": "c0fa4e00-2bd1-4d16-810d-b55f3b827418",
+  "spl_version": 4,
+  "brand_name": "Equate Allergy Relief",
+  "generic_name": "diphenhydramine hydrochloride",
+  "labeler": "WALMART INC.",
+  "dosage_form": "TABLET",
+  "marketing_category": "otc_monograph_drug",
+  "otc_category": "antihistamines",
+  "uses": ["nasal_allergy", "runny_nose", "sneezing"],
+  "scope": "in_scope",
+  "ingredients": [
+    {
+      "unii": "TC2D6JAD40",
+      "name": "diphenhydramine hydrochloride",
+      "strength": 25,
+      "unit": "mg"
+    }
+  ],
+  "review_status": "unreviewed"
+}

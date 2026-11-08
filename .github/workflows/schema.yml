@@ -5,6 +5,8 @@ on:
     paths:
       - "packages/schema/**"
       - ".github/workflows/schema.yml"
+      # tests/test_examples.py checks the examples against these ratings.
+      - "pipeline/knowledge/ingredients/**"
       # Dependency bumps (black, isort, json-schema-to-typescript) can change generated output.
       - "uv.lock"
       - "pnpm-lock.yaml"
@@ -14,6 +16,8 @@ on:
     paths:
       - "packages/schema/**"
       - ".github/workflows/schema.yml"
+      # tests/test_examples.py checks the examples against these ratings.
+      - "pipeline/knowledge/ingredients/**"
       # Dependency bumps (black, isort, json-schema-to-typescript) can change generated output.
       - "uv.lock"
       - "pnpm-lock.yaml"

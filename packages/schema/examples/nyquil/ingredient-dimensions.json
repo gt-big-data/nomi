@@ -1,0 +1,402 @@
+[
+  {
+    "unii": "9D2RTI9KYH",
+    "name": "dextromethorphan hydrobromide",
+    "ratings": [
+      {
+        "dimension": "serotonergic_interactions",
+        "persona": "adult_18_64",
+        "severity": 0,
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "efe4e649-7514-32dd-e053-2995a90a0492",
+            "section": "SPL v13: Do not use (50570-1), MAOI interaction warning",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=efe4e649-7514-32dd-e053-2995a90a0492"
+          }
+        ]
+      },
+      {
+        "dimension": "serotonergic_interactions",
+        "persona": "adult_65_plus",
+        "severity": 0,
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "efe4e649-7514-32dd-e053-2995a90a0492",
+            "section": "SPL v13: Do not use (50570-1), MAOI interaction warning",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=efe4e649-7514-32dd-e053-2995a90a0492"
+          }
+        ]
+      },
+      {
+        "dimension": "serotonergic_interactions",
+        "persona": "child_6_11",
+        "severity": 0,
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "efe4e649-7514-32dd-e053-2995a90a0492",
+            "section": "SPL v13: Do not use (50570-1), MAOI interaction warning",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=efe4e649-7514-32dd-e053-2995a90a0492"
+          }
+        ]
+      },
+      {
+        "dimension": "rebound_overuse",
+        "persona": "adult_18_64",
+        "severity": 1,
+        "citations": [
+          {
+            "source": "publication",
+            "document_id": "PMID:22526529",
+            "section": "Abstract and Results: supratherapeutic-dose effects and abuse liability",
+            "url": "https://pubmed.ncbi.nlm.nih.gov/22526529/"
+          }
+        ]
+      },
+      {
+        "dimension": "rebound_overuse",
+        "persona": "adult_65_plus",
+        "severity": 0
+      },
+      {
+        "dimension": "rebound_overuse",
+        "persona": "child_6_11",
+        "severity": 0
+      }
+    ],
+    "modifiers": [
+      {
+        "dimension": "serotonergic_interactions",
+        "medication_type": "maoi",
+        "severity_change": 3,
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "efe4e649-7514-32dd-e053-2995a90a0492",
+            "section": "SPL v13: Do not use (50570-1)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=efe4e649-7514-32dd-e053-2995a90a0492",
+            "quote": "prescription monoamine oxidase inhibitor (MAOI)"
+          }
+        ]
+      },
+      {
+        "dimension": "serotonergic_interactions",
+        "medication_type": "ssri_snri",
+        "severity_change": 2,
+        "citations": [
+          {
+            "source": "publication",
+            "document_id": "10.1111/j.1365-2125.2010.03747.x",
+            "section": "Systematic review: serotonin toxicity with interacting medicines; overdose case evidence",
+            "url": "https://doi.org/10.1111/j.1365-2125.2010.03747.x"
+          }
+        ]
+      }
+    ],
+    "review_status": "unreviewed",
+    "notes": "Draft for this labeled formulation and the three example personas only. No example profile takes an MAOI, so no serotonergic interaction points apply here. Dimensions not listed count as 0 in the expected scores. Second-person review is pending."
+  },
+  {
+    "unii": "V9BI9B5YI2",
+    "name": "doxylamine succinate",
+    "ratings": [
+      {
+        "dimension": "anticholinergic_cognitive",
+        "persona": "adult_18_64",
+        "severity": 2,
+        "citations": [
+          {
+            "source": "acb",
+            "document_id": "Boustani_2008_ACB_2012_update",
+            "section": "2012 update, page 1: doxylamine, ACB score 3",
+            "url": "https://www.hii.iu.edu/resources/anticholinergic-cognitive-burden-scale.pdf"
+          },
+          {
+            "source": "fda_label",
+            "document_id": "efe4e649-7514-32dd-e053-2995a90a0492",
+            "section": "SPL v13: Ask a doctor (50569-3)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=efe4e649-7514-32dd-e053-2995a90a0492"
+          }
+        ]
+      },
+      {
+        "dimension": "sedation_falls",
+        "persona": "adult_18_64",
+        "severity": 2,
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "efe4e649-7514-32dd-e053-2995a90a0492",
+            "section": "SPL v13: When using (50567-7)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=efe4e649-7514-32dd-e053-2995a90a0492"
+          }
+        ]
+      },
+      {
+        "dimension": "pediatric",
+        "persona": "adult_18_64",
+        "severity": 0
+      },
+      {
+        "dimension": "anticholinergic_cognitive",
+        "persona": "adult_65_plus",
+        "severity": 3,
+        "citations": [
+          {
+            "source": "publication",
+            "document_id": "10.1111/jgs.18372",
+            "section": "2023 AGS Beers Criteria, Table 2: first-generation antihistamines",
+            "url": "https://pubmed.ncbi.nlm.nih.gov/37139824/"
+          }
+        ]
+      },
+      {
+        "dimension": "sedation_falls",
+        "persona": "adult_65_plus",
+        "severity": 3,
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "efe4e649-7514-32dd-e053-2995a90a0492",
+            "section": "SPL v13: When using (50567-7)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=efe4e649-7514-32dd-e053-2995a90a0492",
+            "quote": "marked drowsiness may occur"
+          },
+          {
+            "source": "stopp_start",
+            "document_id": "STOPP_v3_K6",
+            "section": "Appendix 1, STOPP K6",
+            "url": "https://static-content.springer.com/esm/art%3A10.1007%2Fs41999-023-00777-y/MediaObjects/41999_2023_777_MOESM1_ESM.pdf",
+            "quote": "First generation antihistamines in patients with recurrent falls (may impair sensorium)"
+          }
+        ]
+      },
+      {
+        "dimension": "pediatric",
+        "persona": "adult_65_plus",
+        "severity": 0
+      },
+      {
+        "dimension": "anticholinergic_cognitive",
+        "persona": "child_6_11",
+        "severity": 2,
+        "citations": [
+          {
+            "source": "acb",
+            "document_id": "Boustani_2008_ACB_2012_update",
+            "section": "2012 update, page 1: doxylamine, ACB score 3",
+            "url": "https://www.hii.iu.edu/resources/anticholinergic-cognitive-burden-scale.pdf"
+          },
+          {
+            "source": "fda_label",
+            "document_id": "efe4e649-7514-32dd-e053-2995a90a0492",
+            "section": "SPL v13: Ask a doctor (50569-3)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=efe4e649-7514-32dd-e053-2995a90a0492"
+          }
+        ]
+      },
+      {
+        "dimension": "sedation_falls",
+        "persona": "child_6_11",
+        "severity": 2,
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "efe4e649-7514-32dd-e053-2995a90a0492",
+            "section": "SPL v13: When using (50567-7)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=efe4e649-7514-32dd-e053-2995a90a0492"
+          }
+        ]
+      },
+      {
+        "dimension": "pediatric",
+        "persona": "child_6_11",
+        "severity": 2,
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "efe4e649-7514-32dd-e053-2995a90a0492",
+            "section": "SPL v13: Directions (34068-7)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=efe4e649-7514-32dd-e053-2995a90a0492"
+          }
+        ]
+      }
+    ],
+    "modifiers": [
+      {
+        "dimension": "anticholinergic_cognitive",
+        "condition": "glaucoma",
+        "severity_change": 2,
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "efe4e649-7514-32dd-e053-2995a90a0492",
+            "section": "SPL v13: Ask a doctor (50569-3)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=efe4e649-7514-32dd-e053-2995a90a0492",
+            "quote": "glaucoma"
+          }
+        ]
+      },
+      {
+        "dimension": "anticholinergic_cognitive",
+        "condition": "enlarged_prostate",
+        "severity_change": 2,
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "efe4e649-7514-32dd-e053-2995a90a0492",
+            "section": "SPL v13: Ask a doctor (50569-3)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=efe4e649-7514-32dd-e053-2995a90a0492",
+            "quote": "trouble urinating due to enlarged prostate gland"
+          }
+        ]
+      },
+      {
+        "dimension": "sedation_falls",
+        "medication_type": "sedatives",
+        "severity_change": 1,
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "efe4e649-7514-32dd-e053-2995a90a0492",
+            "section": "SPL v13: Ask a doctor or pharmacist (50568-5)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=efe4e649-7514-32dd-e053-2995a90a0492",
+            "quote": "taking sedatives or tranquilizers"
+          }
+        ]
+      },
+      {
+        "dimension": "sedation_falls",
+        "condition": "heavy_alcohol_use",
+        "severity_change": 1,
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "efe4e649-7514-32dd-e053-2995a90a0492",
+            "section": "SPL v13: When using (50567-7)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=efe4e649-7514-32dd-e053-2995a90a0492",
+            "quote": "avoid alcoholic drinks"
+          }
+        ]
+      }
+    ],
+    "review_status": "unreviewed",
+    "notes": "Draft for this labeled formulation and the three example personas only. Dimensions not listed count as 0 in the expected scores. Numeric severities are draft interpretations of the cited evidence; second-person review is pending. Pediatric ratings follow this label's directions. The older-adult anticholinergic rating uses the cited Beers publication; the older-adult sedation rating of 3 follows the knowledge base, and no STOPP criterion applies to this profile without a caveat (see examples/README.md)."
+  },
+  {
+    "unii": "362O9ITL9D",
+    "name": "acetaminophen",
+    "ratings": [
+      {
+        "dimension": "liver",
+        "persona": "adult_18_64",
+        "severity": 3,
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "efe4e649-7514-32dd-e053-2995a90a0492",
+            "section": "SPL v13: Warnings / Liver warning",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=efe4e649-7514-32dd-e053-2995a90a0492"
+          }
+        ]
+      },
+      {
+        "dimension": "pediatric",
+        "persona": "adult_18_64",
+        "severity": 0
+      },
+      {
+        "dimension": "liver",
+        "persona": "adult_65_plus",
+        "severity": 3,
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "efe4e649-7514-32dd-e053-2995a90a0492",
+            "section": "SPL v13: Warnings / Liver warning",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=efe4e649-7514-32dd-e053-2995a90a0492"
+          }
+        ]
+      },
+      {
+        "dimension": "pediatric",
+        "persona": "adult_65_plus",
+        "severity": 0
+      },
+      {
+        "dimension": "liver",
+        "persona": "child_6_11",
+        "severity": 3,
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "efe4e649-7514-32dd-e053-2995a90a0492",
+            "section": "SPL v13: Warnings / Liver warning",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=efe4e649-7514-32dd-e053-2995a90a0492"
+          }
+        ]
+      },
+      {
+        "dimension": "pediatric",
+        "persona": "child_6_11",
+        "severity": 2,
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "efe4e649-7514-32dd-e053-2995a90a0492",
+            "section": "SPL v13: Directions (34068-7)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=efe4e649-7514-32dd-e053-2995a90a0492"
+          }
+        ]
+      }
+    ],
+    "modifiers": [
+      {
+        "dimension": "liver",
+        "condition": "liver_disease",
+        "severity_change": 2,
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "efe4e649-7514-32dd-e053-2995a90a0492",
+            "section": "SPL v13: Ask a doctor (50569-3)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=efe4e649-7514-32dd-e053-2995a90a0492",
+            "quote": "liver disease"
+          }
+        ]
+      },
+      {
+        "dimension": "liver",
+        "condition": "heavy_alcohol_use",
+        "severity_change": 2,
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "efe4e649-7514-32dd-e053-2995a90a0492",
+            "section": "SPL v13: Warnings / Liver warning",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=efe4e649-7514-32dd-e053-2995a90a0492",
+            "quote": "3 or more alcoholic drinks every day while using this product"
+          }
+        ]
+      },
+      {
+        "dimension": "anticoagulant_bleeding",
+        "medication_type": "anticoagulants",
+        "severity_change": 2,
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "efe4e649-7514-32dd-e053-2995a90a0492",
+            "section": "SPL v13: Ask a doctor or pharmacist (50568-5)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=efe4e649-7514-32dd-e053-2995a90a0492",
+            "quote": "taking the blood thinning drug warfarin"
+          }
+        ]
+      }
+    ],
+    "review_status": "unreviewed",
+    "notes": "Draft for this labeled formulation and the three example personas only. Dimensions not listed count as 0 in the expected scores. Numeric severities are draft interpretations of the cited evidence; second-person review is pending."
+  }
+]
