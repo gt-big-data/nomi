@@ -4,7 +4,7 @@ from typer.testing import CliRunner
 runner = CliRunner()
 
 STAGES = ["fetch", "ingest", "identity", "extract", "evidence", "score", "build"]
-PLACEHOLDER_STAGES = ["ingest", "identity", "extract", "evidence", "score", "build"]
+PLACEHOLDER_STAGES = ["identity", "extract", "evidence", "score", "build"]
 
 
 def test_help_stages() -> None:
