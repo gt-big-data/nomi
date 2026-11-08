@@ -77,3 +77,11 @@ def ingest_ndc() -> None:
     )
     if combined.bad_ndcs:
         log.warning(f"Bad NDCs: {', '.join(combined.bad_ndcs[:20])}")
+
+
+@app.command(name="faers")
+def ingest_faers() -> None:
+    """Load and deduplicate FAERS adverse event reports since 2014."""
+    from nomi_pipeline.ingest._faers import ingest_faers as _run
+
+    _run(Settings())
