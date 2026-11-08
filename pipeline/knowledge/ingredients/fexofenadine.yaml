@@ -78,7 +78,7 @@ ratings:
     severity: 0
   - dimension: kidney
     persona: adult_65_plus
-    severity: 1
+    severity: 2
     citations:
       - source: fda_label
         document_id: 81c1dcbb-28b3-4ad5-9f3d-9ccc16ddd173

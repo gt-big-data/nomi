@@ -257,10 +257,20 @@ ratings:
     severity: 0
   - dimension: rebound_overuse
     persona: pregnant
-    severity: 0
+    severity: 1
+    citations:
+      - source: publication
+        document_id: PMID:22526529
+        section: "Abstract and Results: supratherapeutic-dose effects and abuse liability"
+        url: https://pubmed.ncbi.nlm.nih.gov/22526529/
   - dimension: rebound_overuse
     persona: breastfeeding
-    severity: 0
+    severity: 1
+    citations:
+      - source: publication
+        document_id: PMID:22526529
+        section: "Abstract and Results: supratherapeutic-dose effects and abuse liability"
+        url: https://pubmed.ncbi.nlm.nih.gov/22526529/
   - dimension: pregnancy_lactation
     persona: adult_18_64
     severity: 0

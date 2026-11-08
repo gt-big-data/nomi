@@ -78,7 +78,13 @@ ratings:
     severity: 0
   - dimension: kidney
     persona: adult_65_plus
-    severity: 0
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: a33f2704-d350-428b-b467-91f4775ce17f
+        section: "34068-7: Directions; adults 65 and over ask a doctor"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=a33f2704-d350-428b-b467-91f4775ce17f
+        quote: "adults 65 years of age and older ask a doctor"
   - dimension: kidney
     persona: teen_12_17
     severity: 0
@@ -408,7 +414,7 @@ ratings:
         url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=a33f2704-d350-428b-b467-91f4775ce17f
   - dimension: pregnancy_lactation
     persona: breastfeeding
-    severity: 2
+    severity: 3
     citations:
       - source: fda_label
         document_id: a33f2704-d350-428b-b467-91f4775ce17f

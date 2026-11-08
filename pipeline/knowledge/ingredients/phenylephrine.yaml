@@ -244,22 +244,22 @@ ratings:
     severity: 0
   - dimension: pediatric
     persona: child_6_11
-    severity: 1
+    severity: 2
     citations:
       - source: fda_label
-        document_id: 4dfd46e4-b9f9-464d-aa47-e8fa9e526a5d
-        section: "34068-7: Directions; dose for 6 to 11"
-        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=4dfd46e4-b9f9-464d-aa47-e8fa9e526a5d
-        quote: "6 to 11 years 10 mL"
+        document_id: 2ca08917-1a75-4365-8520-c083e6a4225a
+        section: "34068-7: Directions; under 12 ask a doctor"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=2ca08917-1a75-4365-8520-c083e6a4225a
+        quote: "children under 12 years ask a doctor"
   - dimension: pediatric
     persona: child_2_5
-    severity: 3
+    severity: 2
     citations:
       - source: fda_label
-        document_id: 4dfd46e4-b9f9-464d-aa47-e8fa9e526a5d
-        section: "34068-7: Directions; under 4 do not use"
-        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=4dfd46e4-b9f9-464d-aa47-e8fa9e526a5d
-        quote: "under 4 years do not use"
+        document_id: 2ca08917-1a75-4365-8520-c083e6a4225a
+        section: "34068-7: Directions; under 12 ask a doctor"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=2ca08917-1a75-4365-8520-c083e6a4225a
+        quote: "children under 12 years ask a doctor"
   - dimension: pediatric
     persona: under_2
     severity: 3

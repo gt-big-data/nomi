@@ -319,8 +319,13 @@ ratings:
         url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=c05d7e27-6821-468f-b27d-9c0b02a07b0f
   - dimension: pregnancy_lactation
     persona: breastfeeding
-    severity: 3
+    severity: 2
     citations:
+      - source: fda_label
+        document_id: c05d7e27-6821-468f-b27d-9c0b02a07b0f
+        section: "53414-9: Pregnancy or breast-feeding"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=c05d7e27-6821-468f-b27d-9c0b02a07b0f
+        quote: "ask a health professional before use"
       - source: publication
         document_id: PMID:12848771
         section: "Abstract; Aljazaf et al., Br J Clin Pharmacol 2003"
