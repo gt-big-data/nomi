@@ -218,8 +218,9 @@ def test_label_and_directory_must_agree_on_ingredient_count() -> None:
     ndc, labels, ingredients, barcode = sources()
     ndc[0]["active_ingredients"] = ["ACETAMINOPHEN", "CAFFEINE"]
     assert Resolver(ndc, labels, ingredients).resolve(barcode).status == "ingredient_conflict"
-    for none_listed in ([], None):
-        ndc[0]["active_ingredients"] = none_listed
+    none_listed: list[list[str] | None] = [[], None]
+    for listed in none_listed:
+        ndc[0]["active_ingredients"] = listed
         assert Resolver(ndc, labels, ingredients).resolve(barcode).status == "resolved"
 
 
