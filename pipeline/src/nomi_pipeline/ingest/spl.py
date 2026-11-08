@@ -1,3 +1,5 @@
+import zipfile
+from collections.abc import Iterator
 from dataclasses import dataclass, field
 from pathlib import Path
 
@@ -6,6 +8,9 @@ from lxml import etree
 from nomi_pipeline.ingest._ndc import normalize_ndc
 
 NS = {"hl7": "urn:hl7-org:v3"}
+# A few real labels nest tables deeper than lxml's default limit of 256, so allow huge trees,
+# but never resolve entities or touch the network.
+PARSER = etree.XMLParser(huge_tree=True, resolve_entities=False, no_network=True)
 
 
 class ParseError(Exception):
@@ -37,26 +42,39 @@ class IngredientRow:
 
 @dataclass
 class ParsedLabel:
+    set_id: str = ""
+    version: int = 0
     products: list[ProductRow] = field(default_factory=list)
     ingredients: list[IngredientRow] = field(default_factory=list)
 
 
 def parse_label(path: Path) -> ParsedLabel:
+    return parse_label_bytes(path.read_bytes(), path.name)
+
+
+def parse_label_bytes(data: bytes, name: str) -> ParsedLabel:
+    """Parse one SPL document. name is only used in error messages."""
     try:
-        tree = etree.parse(str(path))
-    except etree.XMLSyntaxError as e:
-        raise ParseError(f"{path.name}: invalid XML ({e})") from e
-    root = tree.getroot()
+        return _parse(data, name)
+    except ParseError:
+        raise
+    except (etree.XMLSyntaxError, ValueError, TypeError) as e:
+        # Bad XML or a non-numeric value fails this one label, not the whole run.
+        raise ParseError(f"{name}: {e}") from e
+
+
+def _parse(data: bytes, name: str) -> ParsedLabel:
+    root = etree.fromstring(data, parser=PARSER)
 
     set_id_el = root.find("hl7:setId", namespaces=NS)
     version_el = root.find("hl7:versionNumber", namespaces=NS)
     if set_id_el is None or version_el is None:
-        raise ParseError(f"{path.name}: missing setID or versionNumber")
+        raise ParseError(f"{name}: missing setID or versionNumber")
 
     set_id = set_id_el.get("root")
     version = int(version_el.get("value"))
 
-    label = ParsedLabel()
+    label = ParsedLabel(set_id=set_id, version=version)
 
     manufactured_products = root.findall(
         ".//hl7:manufacturedProduct/hl7:manufacturedProduct", namespaces=NS
@@ -155,17 +173,40 @@ class IngestResult:
     ingredients: list[IngredientRow] = field(default_factory=list)
     failures: list[dict[str, str]] = field(default_factory=list)
     files_processed: int = 0
+    superseded: int = 0
 
 
 def collect_labels(raw_dir: Path) -> IngestResult:
+    """Parse every label in raw_dir: loose *.xml files and the *.xml.zip parts from fetch.
+
+    The DailyMed release can hold several versions of one label (set id); only the highest
+    version is kept, since ingredient rows don't record which version they came from.
+    """
     result = IngestResult()
-    for path in sorted(raw_dir.glob("*.xml")):
+    latest: dict[str, ParsedLabel] = {}
+    for name, data in _label_documents(raw_dir):
         result.files_processed += 1
         try:
-            label = parse_label(path)
+            label = parse_label_bytes(data, name)
         except ParseError as e:
-            result.failures.append({"file": path.name, "error": str(e)})
+            result.failures.append({"file": name, "error": str(e)})
             continue
+        kept = latest.get(label.set_id)
+        if kept is None or label.version > kept.version:
+            latest[label.set_id] = label
+        if kept is not None:
+            result.superseded += 1
+    for label in latest.values():
         result.products.extend(label.products)
         result.ingredients.extend(label.ingredients)
     return result
+
+
+def _label_documents(raw_dir: Path) -> Iterator[tuple[str, bytes]]:
+    for path in sorted(raw_dir.glob("*.xml")):
+        yield path.name, path.read_bytes()
+    for path in sorted(raw_dir.glob("*.xml.zip")):
+        with zipfile.ZipFile(path) as z:
+            for member in sorted(z.namelist()):
+                if member.endswith(".xml"):
+                    yield f"{path.name}/{member}", z.read(member)

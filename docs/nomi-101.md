@@ -100,7 +100,8 @@ Steps 1 to 5 happen in our **pipeline** (Python, runs on our machines). Step 6 h
 | **Uses** | What a product is for (pain, sleep, nasal allergy, heartburn...). Alternatives must share a use. |
 | **Bronze / silver / gold** | Pipeline data layers: bronze is raw data in tables, silver is cleaned and joined, gold is final outputs. All under `data/` and never committed. |
 | **Parquet / DuckDB / Polars** | Parquet is the table file format we use. Polars is the Python dataframe library. DuckDB lets you run SQL over Parquet files. |
-| **R2** | Cloudflare's file storage (free tier) where we mirror raw data and publish datasets. |
+| **R2** | Cloudflare's file storage (free tier) where we will publish the app dataset. |
+| **Raw dataset** | Our Hugging Face dataset holding exact copies of the public FDA and NLM sources the pipeline reads. See ADR-0003. |
 | **Expo / dev build** | Expo is the React Native framework for the app. A dev build is a custom build installed on your phone (needed because our camera library doesn't run in the Expo Go app). |
 | **ADR** | Architecture Decision Record: a short doc recording a decision and why. In `docs/adr/`. |
 

@@ -32,3 +32,4 @@ def ingest_spl() -> None:
         rate = 0.0
 
     log.info(f"{successful} / {result.files_processed} labels parsed ({rate:.1f}%)")
+    log.info(f"{result.superseded} older or duplicate label versions dropped")
