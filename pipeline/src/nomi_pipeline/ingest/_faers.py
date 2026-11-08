@@ -43,20 +43,27 @@ def ingest_faers(settings: Settings, reports_dir: Path | None = None) -> None:
                 df = _read_table(zf, table)
                 if df is not None and len(df) > 0:
                     (staging / table).mkdir(parents=True, exist_ok=True)
+                    df = df.with_columns(pl.lit(zf.stem).alias("quarter"))
                     df.write_parquet(staging / table / f"{zf.stem}.parquet")
             deleted |= _read_deleted_caseids(zf)
 
         if not (staging / "demo").exists():
             raise ValueError("No DEMO data found in any FAERS ZIP.")
 
-        # Keep only the latest version of each case, and drop cases FDA has deleted.
-        latest_primaryids = (
+        # Keep only the latest version of each case, and drop cases FDA has deleted. FDA
+        # sometimes ships the same report again in a later quarter, so the winner is a
+        # (primaryid, quarter) pair: joining on primaryid alone would keep both copies.
+        latest = (
             _scan(staging / "demo")
             .with_columns(pl.col("caseversion").cast(pl.Int32, strict=False))
             .filter(~pl.col("caseid").is_in(list(deleted)))
-            .sort(["caseid", "caseversion", "primaryid"], descending=True, nulls_last=True)
+            .sort(
+                ["caseid", "caseversion", "quarter", "primaryid"],
+                descending=True,
+                nulls_last=True,
+            )
             .unique(subset=["caseid"], keep="first", maintain_order=True)
-            .select("primaryid")
+            .select("primaryid", "quarter")
             .collect()
         )
         log.info("%d cases deleted by FDA were dropped", len(deleted))
@@ -69,7 +76,7 @@ def ingest_faers(settings: Settings, reports_dir: Path | None = None) -> None:
             source = _scan(staging / table_name)
             total = source.select(pl.len()).collect().item()
             out = out_dir / f"{table_name}.parquet"
-            source.join(latest_primaryids.lazy(), on="primaryid", how="semi").sink_parquet(out)
+            source.join(latest.lazy(), on=["primaryid", "quarter"], how="semi").sink_parquet(out)
             after = pl.scan_parquet(out).select(pl.len()).collect().item()
             log.info(
                 "%s: %d → %d rows after dedup (%d removed)",
