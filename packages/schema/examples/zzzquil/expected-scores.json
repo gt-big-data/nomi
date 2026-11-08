@@ -67,7 +67,7 @@
       },
       {
         "template_id": "NOMI-015_sedation_falls",
-        "text": "This antihistamine causes drowsiness; avoid alcohol and take care driving.",
+        "text": "This sleep aid causes sleepiness; ask a doctor or pharmacist first if you take sedatives or tranquilizers.",
         "citations": [
           {
             "source": "fda_label",
@@ -163,7 +163,7 @@
       },
       {
         "template_id": "NOMI-015_sedation_falls",
-        "text": "STOPP v3 flags first-generation antihistamines in older adults, including for people who fall.",
+        "text": "STOPP v3 advises against first-generation antihistamines for insomnia, and in older adults who fall.",
         "citations": [
           {
             "source": "stopp_start",
@@ -289,7 +289,7 @@
       },
       {
         "template_id": "NOMI-015_sedation_falls",
-        "text": "This antihistamine causes drowsiness; avoid alcohol and take care driving.",
+        "text": "This sleep aid causes sleepiness; ask a doctor or pharmacist first if you take sedatives or tranquilizers.",
         "citations": [
           {
             "source": "fda_label",

@@ -147,7 +147,7 @@
       },
       {
         "template_id": "NOMI-015_sedation_falls",
-        "text": "STOPP v3 flags first-generation antihistamines in older adults, including for people who fall.",
+        "text": "STOPP v3 advises against first-generation antihistamines as first-line allergy treatment, and in older adults who fall.",
         "citations": [
           {
             "source": "stopp_start",

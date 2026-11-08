@@ -171,6 +171,13 @@
         "ingredient_uniis": ["V9BI9B5YI2"],
         "citations": [
           {
+            "source": "fda_label",
+            "document_id": "efe4e649-7514-32dd-e053-2995a90a0492",
+            "section": "SPL v13: When using (50567-7)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=efe4e649-7514-32dd-e053-2995a90a0492",
+            "quote": "marked drowsiness may occur"
+          },
+          {
             "source": "stopp_start",
             "document_id": "STOPP_v3_K6",
             "section": "Appendix 1, STOPP K6",
@@ -215,8 +222,15 @@
       },
       {
         "template_id": "NOMI-015_sedation_falls",
-        "text": "STOPP v3 flags first-generation antihistamines in older adults, including for people who fall.",
+        "text": "The label warns that marked drowsiness may occur, and STOPP v3 advises against first-generation antihistamines in older adults who fall.",
         "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "efe4e649-7514-32dd-e053-2995a90a0492",
+            "section": "SPL v13: When using (50567-7)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=efe4e649-7514-32dd-e053-2995a90a0492",
+            "quote": "marked drowsiness may occur"
+          },
           {
             "source": "stopp_start",
             "document_id": "STOPP_v3_K6",

@@ -123,8 +123,13 @@ def label_forbids_age(ingredients: list[dict[str, Any]], persona: str) -> bool:
     )
 
 
-def modifier_key(m: dict[str, Any]) -> tuple[str, str, int]:
-    return (m["dimension"], m.get("condition") or m["medication_type"], m["severity_change"])
+def modifier_key(m: dict[str, Any]) -> tuple[str, str, int, tuple[str, ...]]:
+    return (
+        m["dimension"],
+        m.get("condition") or m["medication_type"],
+        m["severity_change"],
+        tuple(sorted(m.get("personas", []))),
+    )
 
 
 def tier(score: int, hard_stops: list[Any]) -> str:
@@ -213,20 +218,27 @@ def test_ratings_match_the_knowledge_base(name: str) -> None:
 def test_label_citations_point_at_this_label(name: str) -> None:
     folder = EXAMPLES / name
     product = read(folder, "product")
-    for ingredient in read(folder, "ingredient-dimensions"):
-        for item in ingredient["ratings"] + ingredient.get("modifiers", []):
-            for citation in item.get("citations", []):
-                if citation["source"] != "fda_label":
-                    assert citation.get("url"), citation
-                    continue
-                assert citation["document_id"] == product["spl_set_id"], citation
-                prefix = f"SPL v{product['spl_version']}: "
-                assert citation["section"].startswith(prefix), citation
-                section = citation["section"].removeprefix(prefix)
-                codes = [code for code in SECTIONS if f"({code})" in section]
-                assert len(codes) <= 1, citation
-                if codes:
-                    assert section.startswith(SECTIONS[codes[0]]), citation
+    items = [
+        item
+        for ingredient in read(folder, "ingredient-dimensions")
+        for item in ingredient["ratings"] + ingredient.get("modifiers", [])
+    ]
+    for score in read(folder, "expected-scores"):
+        items += score["contributions"] + score["explanation"]
+    for item in items:
+        for citation in item.get("citations", []):
+            if citation["source"] != "fda_label":
+                assert citation.get("url"), citation
+                continue
+            assert citation["document_id"] == product["spl_set_id"], citation
+            prefix = f"SPL v{product['spl_version']}: "
+            assert citation["section"].startswith(prefix), citation
+            section = citation["section"].removeprefix(prefix)
+            codes = [code for code in SECTIONS if f"({code})" in section]
+            # A section without a code must be a Warnings subsection, like the liver warning.
+            assert len(codes) == 1 or (not codes and section.startswith("Warnings / ")), citation
+            if codes:
+                assert section.startswith(SECTIONS[codes[0]]), citation
 
 
 def test_label_overrides_are_still_needed() -> None:

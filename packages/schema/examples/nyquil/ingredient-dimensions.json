@@ -152,6 +152,13 @@
         "severity": 3,
         "citations": [
           {
+            "source": "fda_label",
+            "document_id": "efe4e649-7514-32dd-e053-2995a90a0492",
+            "section": "SPL v13: When using (50567-7)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=efe4e649-7514-32dd-e053-2995a90a0492",
+            "quote": "marked drowsiness may occur"
+          },
+          {
             "source": "stopp_start",
             "document_id": "STOPP_v3_K6",
             "section": "Appendix 1, STOPP K6",
@@ -264,7 +271,7 @@
       }
     ],
     "review_status": "unreviewed",
-    "notes": "Draft for this labeled formulation and the three example personas only. Dimensions not listed count as 0 in the expected scores. Numeric severities are draft interpretations of the cited evidence; second-person review is pending. Pediatric ratings are presentation-specific: a sleep-aid prohibition is not an allergy-tablet prohibition. Older-adult escalation uses the cited Beers publication, not an age claim from the label."
+    "notes": "Draft for this labeled formulation and the three example personas only. Dimensions not listed count as 0 in the expected scores. Numeric severities are draft interpretations of the cited evidence; second-person review is pending. Pediatric ratings follow this label's directions. The older-adult anticholinergic rating uses the cited Beers publication; the older-adult sedation rating of 3 follows the knowledge base, and no STOPP criterion applies to this profile without a caveat (see examples/README.md)."
   },
   {
     "unii": "362O9ITL9D",

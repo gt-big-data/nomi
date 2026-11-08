@@ -38,18 +38,30 @@ and regenerate these records when the rubric is set. They are not production gol
 Two questions for the rubric owner before #29 builds on these numbers:
 
 - **Named label warnings.** The rubric lists both the liver warning and the stomach bleeding
-  warning as severity 3 indicators. Tylenol's liver warning is rated 3 for everyone, but Aleve's
-  stomach bleeding and heart attack and stroke warnings are rated 2 for adults and children and 3
-  for adults 65+, following the rubric's own severity 3 example ("Aleve, `adult_65_plus` or ulcer
-  history"). So Tylenol is red (49) for a healthy adult and Aleve is yellow (55).
+  warning as severity 3 indicators. Tylenol's liver warning is rated 3 for everyone. Aleve's
+  stomach bleeding warning is rated 2 for adults and children and 3 for adults 65+, following the
+  rubric's own severity 3 example ("Aleve, `adult_65_plus` or ulcer history"); its heart attack and
+  stroke warning is rated 2 for every profile and reaches 3 for adults 65+ only through the
+  hypertension modifier. So Tylenol is red (49) for a healthy adult and Aleve is yellow (55).
 - **Spread.** With 51 points for a severity 3, every adult 65+ record except Tylenol clamps to 0,
   so the fixtures cannot rank those products against each other.
+- **NyQuil sedation for adults 65+.** Doxylamine's `sedation_falls` rating of 3 for adults 65+
+  follows the knowledge base. The rubric asks for a STOPP criterion that applies without caveats,
+  and none does for this profile: K6 needs recurrent falls and D25 is for insomnia. The record
+  cites K6 and the label's "marked drowsiness may occur". The score does not change (it is 0
+  either way), but the rating may be 2 under the rubric.
+- **Modifier values.** The `sedatives` modifier on `sedation_falls` is +1 in the knowledge base
+  and these fixtures, but the rubric's table says +2, and the rubric's table has no
+  `heavy_alcohol_use` row for `sedation_falls`. Aleve's modifiers cite only its own label, so it
+  has no `anticoagulant_bleeding` rating or modifier, and its `diuretics` and `kidney_disease`
+  modifiers leave out `cardiovascular_bp`, all of which the rubric lists for NSAIDs.
 
 Pediatric ratings apply to the specific presentation and must not be generalized to every product
 containing that ingredient. Dimensions not listed count as 0. The older-adult antihistamine
 ratings of 3 rest on published criteria, not on the labels alone: `anticholinergic_cognitive` on the
 2023 AGS Beers Criteria, and `sedation_falls` on STOPP v3 K6 ("first generation antihistamines in
-patients with recurrent falls"), plus D24 (allergy) or D25 (insomnia) where the product fits.
+patients with recurrent falls"), plus D24 (allergy) or D25 (insomnia) where the product fits. NyQuil has no such fit; see
+the open question above.
 Modifiers cite each product's own label, except dextromethorphan's SSRI modifier, which cites a
 published review. For diphenhydramine, doxylamine and dextromethorphan their values match the
 knowledge base. Aleve's hypertension modifier applies to `cardiovascular_bp` and `kidney`, as the
@@ -59,15 +71,16 @@ rubric's condition table says for NSAIDs.
 
 `tests/test_examples.py` checks that:
 
-- every label citation points at this product's own label and version, and names a known Drug
-  Facts section with its matching LOINC code;
-
+- every label citation, in the ingredient ratings and the expected scores, points at this
+  product's own label and version and names a known Drug Facts section, with its matching LOINC
+  code where it gives one (Warnings subsections such as "Warnings / Liver warning" may omit it);
 - every file validates against the #2 schemas;
-- each expected score, contribution, citation, explanation, tier and hard stop follows from the
-  ingredient ratings and modifiers under the convention above;
+- each expected score, contribution, tier and hard stop, and the citations of each scored
+  dimension's explanation, follow from the ingredient ratings and modifiers under the convention
+  above (explanation wording is not checked);
 - ingredients that have a file in `pipeline/knowledge/ingredients` (dextromethorphan, doxylamine,
-  diphenhydramine) match it for the three profiles, ratings and modifiers alike. The two exceptions come from the product's own
-  label and are listed in `LABEL_OVERRIDES`: ZzzQuil says "children under 12 yrs do not use" (3),
+  diphenhydramine) match it for the three profiles, ratings and modifiers alike. The two
+  exceptions come from the product's own label and are listed in `LABEL_OVERRIDES`: ZzzQuil says "children under 12 yrs do not use" (3),
   and NyQuil says "children 4 to under 12 yrs ask a doctor" (2). A test fails if an override stops
   being needed.
 
