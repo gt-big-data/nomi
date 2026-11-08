@@ -4,7 +4,7 @@ from typer.testing import CliRunner
 runner = CliRunner()
 
 STAGES = ["fetch", "ingest", "identity", "extract", "evidence", "score", "build"]
-PLACEHOLDER_STAGES = ["identity", "extract", "evidence", "score", "build"]
+PLACEHOLDER_STAGES = ["identity", "extract", "score", "build"]
 
 
 def test_help_stages() -> None:
@@ -33,3 +33,9 @@ def test_ingest_commands_available() -> None:
     assert result.exit_code == 0
     for cmd in ("faers",):
         assert cmd in result.stdout
+
+
+def test_evidence_commands_available() -> None:
+    result = runner.invoke(app, ["evidence", "--help"])
+    assert result.exit_code == 0
+    assert "pairs" in result.stdout
