@@ -129,7 +129,7 @@ def test_a_padded_ndc11_must_also_match_the_scanned_digits() -> None:
     # 12345-0678-9 and 12345-678-09 both pad to 12345067809, but their barcodes differ. Scanning
     # the label-only 12345-0678-9 must not return the directory's 12345-678-09.
     ndc, labels, ingredients, _ = sources("12345-678-09")
-    label_only = {**labels[0], "spl_set_id": "kit-label", "ndc_raw": "12345-0678-9"}
+    label_only = {**labels[0], "spl_set_id": "label-b", "ndc_raw": "12345-0678-9"}
     _, scan = package_codes("12345-0678-9")
     assert Resolver(ndc, labels + [label_only], ingredients).resolve(scan).status == "not_found"
     assert Resolver(ndc, labels, ingredients).resolve(scan).status == "not_found"

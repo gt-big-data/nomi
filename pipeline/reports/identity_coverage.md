@@ -7,8 +7,8 @@ Sample packages are left out. This measures the lookup, not real-world box scans
 A scored package resolves when it is the only package, in the directory or on the labels,
 whose own NDC has the barcode's 10 digits, its label is the one the directory names (or,
 when the directory names none, the only label listing it), it is not a kit, the label's
-active ingredients are complete and agree in number with the directory's, and the directory
-gives a brand and generic name.
+active ingredients are complete and agree in number with the directory's (when the directory
+lists any), and the directory gives a brand and generic name.
 
 **Scored packages resolved: 64265 of 65418 (98.24%).** Target 95%: met.
 

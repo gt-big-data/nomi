@@ -13,12 +13,15 @@ It reads `ndc.parquet`, `spl_products.parquet` and `spl_ingredients.parquet` fro
 
 ## How a barcode resolves
 
-1. The barcode parser (`identity/barcode.py`, NOMI-007) gives up to three NDC11 candidates.
+1. The barcode parser (`identity/barcode.py`, NOMI-007) checks the barcode; the resolver uses the
+   10 NDC digits it carries.
 2. Exactly one real package, in the NDC directory or on any label, may have the scanned 10 digits
    as its own NDC, and it must be in the directory. Matching on the digits, not just the NDC11,
    matters because two different NDC10s can pad to one NDC11 (`12345-0678-9` and `12345-678-09`).
-   Checking the labels too stops a box whose NDC is only on a label (for example a kit part) from
-   resolving to a different directory package.
+   Checking the labels too stops a box whose NDC is only on a label from resolving to a different
+   directory package. This only covers packages in `spl_products`: the SPL ingest leaves out the
+   package codes of kit parts, so a kit part is not protected this way. None of today's kit-part
+   codes shares its digits with another package.
 3. The package's label product comes from `spl_products`. When the directory names a label
    (`spl_set_id`), only that label is accepted. Without one, the package must be on exactly one
    label.
@@ -27,7 +30,8 @@ It reads `ndc.parquet`, `spl_products.parquet` and `spl_ingredients.parquet` fro
    one version of each label, so no version check is needed here.
 5. Every ingredient must meet the product schema: a UNII, name, unit and positive strength, and
    `per_amount` and `per_unit` together with a positive amount.
-6. The label must list as many active ingredients as the directory does.
+6. The label must list as many active ingredients as the directory does, when the directory lists
+   any (about 1% of directory rows list none, and then the check is skipped).
 7. The directory must give a brand name and a generic name, as the product schema requires.
 
 | Status | Meaning |
@@ -36,8 +40,8 @@ It reads `ndc.parquet`, `spl_products.parquet` and `spl_ingredients.parquet` fro
 | `homeopathic` | Homeopathic, with no label in the OTC download; identified from the directory only |
 | `invalid_format`, `bad_check_digit`, `not_ndc_barcode` | The barcode parser rejected it |
 | `not_found` | No directory package has the scanned digits (it may be on a label only) |
-| `ambiguous_ndc` | The same 10 digits split two ways are two real packages; this never happens in today's data |
-| `missing_label` | In the directory but on no OTC label |
+| `ambiguous_ndc` | The same 10 digits split two ways are two real packages; this never happens for today's directory packages |
+| `missing_label` | In the directory, but no OTC label lists it with the scanned digits |
 | `label_mismatch` | On a label, but not the one the directory names |
 | `ambiguous_label` | On several labels and the directory names none, or listed twice on the named label |
 | `missing_ingredients` | The label product lists no active ingredients |
