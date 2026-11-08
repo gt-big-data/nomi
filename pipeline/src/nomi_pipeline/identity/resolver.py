@@ -30,6 +30,7 @@ Status = (
         "kit",
         "invalid_ingredients",
         "ingredient_conflict",
+        "missing_name",
     ]
 )
 
@@ -109,11 +110,19 @@ class Resolver:
         parsed = ndc_candidates(barcode)
         if parsed["status"] != "ok":
             return Resolution(parsed["status"])
+        # A candidate is a real package if the directory or any label lists it. A box whose own
+        # NDC is only on a label must not resolve to another split of the same digits.
         matches = tuple(
-            sorted(c for c in dict.fromkeys(parsed["candidates"]) if c in self.directory)
+            sorted(
+                c
+                for c in dict.fromkeys(parsed["candidates"])
+                if c in self.directory or c in self.labels
+            )
         )
-        if len(matches) != 1:
-            return Resolution("not_found" if not matches else "ambiguous_ndc", matches)
+        if len(matches) > 1:
+            return Resolution("ambiguous_ndc", matches)
+        if not matches or matches[0] not in self.directory:
+            return Resolution("not_found", matches)
         ndc11 = matches[0]
         listing = self.directory[ndc11]
         set_id = listing.get("spl_set_id")
@@ -148,9 +157,13 @@ class Resolver:
             return Resolution("invalid_ingredients", matches)
         listed = listing.get("active_ingredients")
         if listed is not None and len(listed) != len(ingredients):
-            # The label and the directory disagree on what is in the box.
+            # The label and the directory disagree on what is in the box. On today's data every case
+            # comes from the bronze directory splitting an ingredient name at ";".
             return Resolution("ingredient_conflict", matches)
 
+        if not (listing.get("brand_name") and listing.get("generic_name")):
+            # The product schema requires both names.
+            return Resolution("missing_name", matches)
         product: Row = {
             "ndc11": ndc11,
             "spl_set_id": label["spl_set_id"],
@@ -256,9 +269,10 @@ def coverage_report(results: list[Row]) -> str:
         "barcode it would carry (`3` + NDC10 + check digit), which is then resolved like a scan.",
         "Sample packages are left out. This measures the lookup, not real-world box scans.",
         "",
-        "A scored package resolves when its barcode matches only that package, its label is the one",
-        "the directory names (or, when the directory names none, the only label listing it), and the",
-        "label's active ingredients are complete and agree in number with the directory's.",
+        "A scored package resolves when its barcode matches only that package in the directory and",
+        "on the labels, its label is the one the directory names (or, when the directory names none,",
+        "the only label listing it), it is not a kit, the label's active ingredients are complete and",
+        "agree in number with the directory's, and the directory gives a brand and generic name.",
         "",
         f"**Scored packages resolved: {correct} of {total} ({rate:.2%}).** "
         f"Target {TARGET:.0%}: {'met' if total and rate >= TARGET else 'not met'}.",

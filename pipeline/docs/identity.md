@@ -14,8 +14,10 @@ It reads `ndc.parquet`, `spl_products.parquet` and `spl_ingredients.parquet` fro
 ## How a barcode resolves
 
 1. The barcode parser (`identity/barcode.py`, NOMI-007) gives up to three NDC11 candidates.
-2. Exactly one candidate must be in the NDC directory. Since a package's own NDC is always one of
-   its barcode's candidates, a single match is always the right package.
+2. Exactly one candidate may be a real package, in the NDC directory or on any label, and it must
+   be in the directory. A box's own NDC is always one of its barcode's candidates, so checking the
+   labels too stops a box whose NDC is only on a label from resolving to another split of the
+   same digits.
 3. The package's label product comes from `spl_products`. When the directory names a label
    (`spl_set_id`), only that label is accepted. Without one, the package must be on exactly one
    label.
@@ -25,21 +27,23 @@ It reads `ndc.parquet`, `spl_products.parquet` and `spl_ingredients.parquet` fro
 5. Every ingredient must meet the product schema: a UNII, name, unit and positive strength, and
    `per_amount` and `per_unit` together with a positive amount.
 6. The label must list as many active ingredients as the directory does.
+7. The directory must give a brand name and a generic name, as the product schema requires.
 
 | Status | Meaning |
 | --- | --- |
 | `resolved` | All of the above hold; the product is written to `product.parquet` |
 | `homeopathic` | Homeopathic, with no label in the OTC download; identified from the directory only |
 | `invalid_format`, `bad_check_digit`, `not_ndc_barcode` | The barcode parser rejected it |
-| `not_found` | No candidate is in the directory |
-| `ambiguous_ndc` | Two candidates are real packages: the same 10 digits split two ways |
+| `not_found` | No candidate is in the directory (it may be on a label only) |
+| `ambiguous_ndc` | Two candidates are real packages, in the directory or on a label: the same 10 digits split two ways |
 | `missing_label` | In the directory but on no OTC label |
 | `label_mismatch` | On a label, but not the one the directory names |
-| `ambiguous_label` | On several labels, and the directory does not name one |
+| `ambiguous_label` | On several labels and the directory names none, or listed twice on the named label |
 | `missing_ingredients` | The label product lists no active ingredients |
 | `kit` | A kit; ingredients are per part, which the product record cannot hold yet |
 | `invalid_ingredients` | An ingredient breaks the product schema's rules |
-| `ingredient_conflict` | The label and the directory list a different number of actives |
+| `ingredient_conflict` | The label and the directory list a different number of actives; today every case is the bronze directory splitting a name at ";" |
+| `missing_name` | The directory gives no brand or generic name |
 | `invalid_package_ndc`, `ndc_mismatch` | The directory's own package NDC is malformed or disagrees with its NDC11 |
 
 ## Outputs
@@ -48,8 +52,7 @@ It reads `ndc.parquet`, `spl_products.parquet` and `spl_ingredients.parquet` fro
 `spl_set_id`, `spl_version`, `brand_name`, `generic_name`, `labeler`, `dosage_form`,
 `marketing_category` (as the schema's enum value) and `ingredients`. `otc_category`, `uses` and
 `scope` are added by NOMI-026 and NOMI-047, so this file does not yet pass the product schema;
-NOMI-026 should validate the final records. A few labels also have an empty generic name, which
-the schema rejects. Homeopathic packages without a label (status
+NOMI-026 should validate the final records. Homeopathic packages without a label (status
 `homeopathic`) cannot be valid product records yet; NOMI-026 can build them from
 `identity_results.parquet` and the directory. The few homeopathic packages that do match a label
 resolve like any other package and appear here.

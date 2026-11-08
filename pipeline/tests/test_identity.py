@@ -112,6 +112,27 @@ def test_missing_and_ambiguous_candidates() -> None:
     assert len(result.matches) == 2
 
 
+def test_a_package_only_on_a_label_blocks_another_split() -> None:
+    # The box is 12345-678-90, on a label but not in the directory. The directory's 01234-5678-90
+    # shares its digits; returning it would be a different product.
+    ndc, labels, ingredients, _ = sources()
+    other, box = package_codes("12345-678-90")
+    labels.append({**labels[0], "spl_set_id": "label-b", "ndc11": other, "ndc_raw": "12345-678-90"})
+    result = Resolver(ndc, labels, ingredients).resolve(box)
+    assert result.status == "ambiguous_ndc"
+    assert len(result.matches) == 2
+    # A package on a label only is not found: the directory supplies the product's names.
+    assert Resolver([], labels[1:], ingredients).resolve(box).status == "not_found"
+
+
+def test_names_are_required() -> None:
+    ndc, labels, ingredients, barcode = sources()
+    for name in ("brand_name", "generic_name"):
+        for empty in ("", None):
+            broken = [{**ndc[0], name: empty}]
+            assert Resolver(broken, labels, ingredients).resolve(barcode).status == "missing_name"
+
+
 def test_parser_errors_pass_through() -> None:
     ndc, labels, ingredients, barcode = sources()
     resolver = Resolver(ndc, labels, ingredients)
@@ -132,6 +153,11 @@ def test_label_and_ingredient_failures() -> None:
         {"unit": None},
         {"per_amount": 5.0},
         {"per_amount": 0.0, "per_unit": "mL"},
+        {"per_unit": "mL"},
+        {"unii": None},
+        {"unii": ""},
+        {"name": None},
+        {"name": ""},
     ):
         broken = [{**ingredients[0], **bad}]
         assert Resolver(ndc, labels, broken).resolve(barcode).status == "invalid_ingredients"
@@ -285,3 +311,28 @@ def test_cli_fails_below_target_but_keeps_diagnostics(tmp_path: Path, monkeypatc
     write_bronze(tmp_path / "bronze", ndc, labels, ingredients)
     result = CliRunner().invoke(app, ["identity", "resolve", "--report", str(report)])
     assert result.exit_code == 0, result.output
+
+
+@pytest.mark.parametrize(("resolved", "exit_code"), [(19, 0), (18, 1)])
+def test_cli_exit_code_follows_the_95_percent_target(
+    tmp_path: Path, monkeypatch: Any, resolved: int, exit_code: int
+) -> None:
+    from nomi_pipeline.cli import app
+    from typer.testing import CliRunner
+
+    base_ndc, base_labels, base_ingredients, _ = sources()
+    ndc, labels, ingredients = [], [], []
+    for i in range(20):
+        ndc_raw = f"1234-{5000 + i}-90"
+        ndc11, _ = package_codes(ndc_raw)
+        ndc.append({**base_ndc[0], "ndc11": ndc11, "ndc_raw": ndc_raw})
+        if i < resolved:
+            labels.append(
+                {**base_labels[0], "ndc11": ndc11, "ndc_raw": ndc_raw, "product_index": i}
+            )
+            ingredients.append({**base_ingredients[0], "product_index": i})
+    write_bronze(tmp_path / "bronze", ndc, labels, ingredients)
+    monkeypatch.setenv("DATA_DIR", str(tmp_path))
+    report = tmp_path / "coverage.md"
+    result = CliRunner().invoke(app, ["identity", "resolve", "--report", str(report)])
+    assert result.exit_code == exit_code, result.output
