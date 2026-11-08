@@ -5,8 +5,8 @@ barcode it would carry (`3` + NDC10 + check digit), which is then resolved like 
 Sample packages are left out. This measures the lookup, not real-world box scans.
 
 A scored package resolves when its barcode matches only that package, its label is the one
-the directory names, and the label's active ingredients are complete and agree in number
-with the directory's.
+the directory names (or, when the directory names none, the only label listing it), and the
+label's active ingredients are complete and agree in number with the directory's.
 
 **Scored packages resolved: 63878 of 65418 (97.65%).** Target 95%: met.
 

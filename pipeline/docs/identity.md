@@ -48,7 +48,8 @@ It reads `ndc.parquet`, `spl_products.parquet` and `spl_ingredients.parquet` fro
 `spl_set_id`, `spl_version`, `brand_name`, `generic_name`, `labeler`, `dosage_form`,
 `marketing_category` (as the schema's enum value) and `ingredients`. `otc_category`, `uses` and
 `scope` are added by NOMI-026 and NOMI-047, so this file does not yet pass the product schema;
-NOMI-026 should validate the final records. Homeopathic packages without a label (status
+NOMI-026 should validate the final records. A few labels also have an empty generic name, which
+the schema rejects. Homeopathic packages without a label (status
 `homeopathic`) cannot be valid product records yet; NOMI-026 can build them from
 `identity_results.parquet` and the directory. The few homeopathic packages that do match a label
 resolve like any other package and appear here.

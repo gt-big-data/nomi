@@ -118,6 +118,8 @@ def test_parser_errors_pass_through() -> None:
     assert resolver.resolve("garbage").status == "invalid_format"
     wrong = barcode[:-1] + str((int(barcode[-1]) + 1) % 10)
     assert resolver.resolve(wrong).status == "bad_check_digit"
+    # A valid UPC-A that does not start with 3 is a real barcode, just not a drug's.
+    assert resolver.resolve("012345678905").status == "not_ndc_barcode"
 
 
 def test_label_and_ingredient_failures() -> None:
@@ -185,12 +187,17 @@ def test_unknown_marketing_category_maps_to_other() -> None:
 
 
 def test_homeopathic_products_are_identified_without_a_product() -> None:
-    ndc, _, _, barcode = sources()
+    ndc, labels, ingredients, barcode = sources()
     ndc[0]["marketing_category"] = "UNAPPROVED HOMEOPATHIC"
     result = Resolver(ndc, [], []).resolve(barcode)
     assert result.status == "homeopathic"
     # No label, so no ingredients: it cannot be a schema-valid product record.
     assert result.product is None
+    # With a label it resolves like any other package.
+    labelled = Resolver(ndc, labels, ingredients).resolve(barcode)
+    assert labelled.status == "resolved"
+    assert labelled.product is not None
+    assert labelled.product["marketing_category"] == "unapproved_homeopathic"
 
 
 def test_coverage_keeps_every_miss_and_skips_samples() -> None:
