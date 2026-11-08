@@ -1,0 +1,551 @@
+unii: K89MJ0S5VY
+name: oxymetazoline hydrochloride
+ratings:
+  - dimension: liver
+    persona: adult_18_64
+    severity: 0
+  - dimension: liver
+    persona: adult_65_plus
+    severity: 0
+  - dimension: liver
+    persona: teen_12_17
+    severity: 0
+  - dimension: liver
+    persona: child_6_11
+    severity: 0
+  - dimension: liver
+    persona: child_2_5
+    severity: 0
+  - dimension: liver
+    persona: under_2
+    severity: 0
+  - dimension: liver
+    persona: pregnant
+    severity: 0
+  - dimension: liver
+    persona: breastfeeding
+    severity: 0
+  - dimension: gi_bleeding
+    persona: adult_18_64
+    severity: 0
+  - dimension: gi_bleeding
+    persona: adult_65_plus
+    severity: 0
+  - dimension: gi_bleeding
+    persona: teen_12_17
+    severity: 0
+  - dimension: gi_bleeding
+    persona: child_6_11
+    severity: 0
+  - dimension: gi_bleeding
+    persona: child_2_5
+    severity: 0
+  - dimension: gi_bleeding
+    persona: under_2
+    severity: 0
+  - dimension: gi_bleeding
+    persona: pregnant
+    severity: 0
+  - dimension: gi_bleeding
+    persona: breastfeeding
+    severity: 0
+  - dimension: cardiovascular_bp
+    persona: adult_18_64
+    severity: 1
+    citations:
+      - source: fda_label
+        document_id: 89c165ba-3ad5-49b5-a5bb-423dc8e15bad
+        section: "50569-3: Ask a doctor; heart disease and high blood pressure"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=89c165ba-3ad5-49b5-a5bb-423dc8e15bad
+  - dimension: cardiovascular_bp
+    persona: adult_65_plus
+    severity: 1
+    citations:
+      - source: fda_label
+        document_id: 89c165ba-3ad5-49b5-a5bb-423dc8e15bad
+        section: "50569-3: Ask a doctor; heart disease and high blood pressure"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=89c165ba-3ad5-49b5-a5bb-423dc8e15bad
+  - dimension: cardiovascular_bp
+    persona: teen_12_17
+    severity: 1
+    citations:
+      - source: fda_label
+        document_id: 89c165ba-3ad5-49b5-a5bb-423dc8e15bad
+        section: "50569-3: Ask a doctor; heart disease and high blood pressure"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=89c165ba-3ad5-49b5-a5bb-423dc8e15bad
+  - dimension: cardiovascular_bp
+    persona: child_6_11
+    severity: 1
+    citations:
+      - source: fda_label
+        document_id: 89c165ba-3ad5-49b5-a5bb-423dc8e15bad
+        section: "50569-3: Ask a doctor; heart disease and high blood pressure"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=89c165ba-3ad5-49b5-a5bb-423dc8e15bad
+  - dimension: cardiovascular_bp
+    persona: child_2_5
+    severity: 1
+    citations:
+      - source: fda_label
+        document_id: 89c165ba-3ad5-49b5-a5bb-423dc8e15bad
+        section: "50569-3: Ask a doctor; heart disease and high blood pressure"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=89c165ba-3ad5-49b5-a5bb-423dc8e15bad
+  - dimension: cardiovascular_bp
+    persona: under_2
+    severity: 1
+    citations:
+      - source: fda_label
+        document_id: 89c165ba-3ad5-49b5-a5bb-423dc8e15bad
+        section: "50569-3: Ask a doctor; heart disease and high blood pressure"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=89c165ba-3ad5-49b5-a5bb-423dc8e15bad
+  - dimension: cardiovascular_bp
+    persona: pregnant
+    severity: 1
+    citations:
+      - source: fda_label
+        document_id: 89c165ba-3ad5-49b5-a5bb-423dc8e15bad
+        section: "50569-3: Ask a doctor; heart disease and high blood pressure"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=89c165ba-3ad5-49b5-a5bb-423dc8e15bad
+  - dimension: cardiovascular_bp
+    persona: breastfeeding
+    severity: 1
+    citations:
+      - source: fda_label
+        document_id: 89c165ba-3ad5-49b5-a5bb-423dc8e15bad
+        section: "50569-3: Ask a doctor; heart disease and high blood pressure"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=89c165ba-3ad5-49b5-a5bb-423dc8e15bad
+  - dimension: kidney
+    persona: adult_18_64
+    severity: 0
+  - dimension: kidney
+    persona: adult_65_plus
+    severity: 0
+  - dimension: kidney
+    persona: teen_12_17
+    severity: 0
+  - dimension: kidney
+    persona: child_6_11
+    severity: 0
+  - dimension: kidney
+    persona: child_2_5
+    severity: 0
+  - dimension: kidney
+    persona: under_2
+    severity: 0
+  - dimension: kidney
+    persona: pregnant
+    severity: 0
+  - dimension: kidney
+    persona: breastfeeding
+    severity: 0
+  - dimension: anticholinergic_cognitive
+    persona: adult_18_64
+    severity: 0
+  - dimension: anticholinergic_cognitive
+    persona: adult_65_plus
+    severity: 0
+  - dimension: anticholinergic_cognitive
+    persona: teen_12_17
+    severity: 0
+  - dimension: anticholinergic_cognitive
+    persona: child_6_11
+    severity: 0
+  - dimension: anticholinergic_cognitive
+    persona: child_2_5
+    severity: 0
+  - dimension: anticholinergic_cognitive
+    persona: under_2
+    severity: 0
+  - dimension: anticholinergic_cognitive
+    persona: pregnant
+    severity: 0
+  - dimension: anticholinergic_cognitive
+    persona: breastfeeding
+    severity: 0
+  - dimension: sedation_falls
+    persona: adult_18_64
+    severity: 0
+  - dimension: sedation_falls
+    persona: adult_65_plus
+    severity: 0
+  - dimension: sedation_falls
+    persona: teen_12_17
+    severity: 0
+  - dimension: sedation_falls
+    persona: child_6_11
+    severity: 0
+  - dimension: sedation_falls
+    persona: child_2_5
+    severity: 0
+  - dimension: sedation_falls
+    persona: under_2
+    severity: 0
+  - dimension: sedation_falls
+    persona: pregnant
+    severity: 0
+  - dimension: sedation_falls
+    persona: breastfeeding
+    severity: 0
+  - dimension: serotonergic_interactions
+    persona: adult_18_64
+    severity: 0
+  - dimension: serotonergic_interactions
+    persona: adult_65_plus
+    severity: 0
+  - dimension: serotonergic_interactions
+    persona: teen_12_17
+    severity: 0
+  - dimension: serotonergic_interactions
+    persona: child_6_11
+    severity: 0
+  - dimension: serotonergic_interactions
+    persona: child_2_5
+    severity: 0
+  - dimension: serotonergic_interactions
+    persona: under_2
+    severity: 0
+  - dimension: serotonergic_interactions
+    persona: pregnant
+    severity: 0
+  - dimension: serotonergic_interactions
+    persona: breastfeeding
+    severity: 0
+  - dimension: anticoagulant_bleeding
+    persona: adult_18_64
+    severity: 0
+  - dimension: anticoagulant_bleeding
+    persona: adult_65_plus
+    severity: 0
+  - dimension: anticoagulant_bleeding
+    persona: teen_12_17
+    severity: 0
+  - dimension: anticoagulant_bleeding
+    persona: child_6_11
+    severity: 0
+  - dimension: anticoagulant_bleeding
+    persona: child_2_5
+    severity: 0
+  - dimension: anticoagulant_bleeding
+    persona: under_2
+    severity: 0
+  - dimension: anticoagulant_bleeding
+    persona: pregnant
+    severity: 0
+  - dimension: anticoagulant_bleeding
+    persona: breastfeeding
+    severity: 0
+  - dimension: pediatric
+    persona: adult_18_64
+    severity: 0
+  - dimension: pediatric
+    persona: adult_65_plus
+    severity: 0
+  - dimension: pediatric
+    persona: teen_12_17
+    severity: 0
+  - dimension: pediatric
+    persona: child_6_11
+    severity: 0
+  - dimension: pediatric
+    persona: child_2_5
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 89c165ba-3ad5-49b5-a5bb-423dc8e15bad
+        section: "34068-7: Directions; under 6 ask a doctor"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=89c165ba-3ad5-49b5-a5bb-423dc8e15bad
+  - dimension: pediatric
+    persona: under_2
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 89c165ba-3ad5-49b5-a5bb-423dc8e15bad
+        section: "34068-7: Directions; under 6 ask a doctor"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=89c165ba-3ad5-49b5-a5bb-423dc8e15bad
+  - dimension: pediatric
+    persona: pregnant
+    severity: 0
+  - dimension: pediatric
+    persona: breastfeeding
+    severity: 0
+  - dimension: rebound_overuse
+    persona: adult_18_64
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 89c165ba-3ad5-49b5-a5bb-423dc8e15bad
+        section: "50567-7: When using; 3-day limit and recurrent or worsening congestion"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=89c165ba-3ad5-49b5-a5bb-423dc8e15bad
+  - dimension: rebound_overuse
+    persona: adult_65_plus
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 89c165ba-3ad5-49b5-a5bb-423dc8e15bad
+        section: "50567-7: When using; 3-day limit and recurrent or worsening congestion"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=89c165ba-3ad5-49b5-a5bb-423dc8e15bad
+  - dimension: rebound_overuse
+    persona: teen_12_17
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 89c165ba-3ad5-49b5-a5bb-423dc8e15bad
+        section: "50567-7: When using; 3-day limit and recurrent or worsening congestion"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=89c165ba-3ad5-49b5-a5bb-423dc8e15bad
+  - dimension: rebound_overuse
+    persona: child_6_11
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 89c165ba-3ad5-49b5-a5bb-423dc8e15bad
+        section: "50567-7: When using; 3-day limit and recurrent or worsening congestion"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=89c165ba-3ad5-49b5-a5bb-423dc8e15bad
+  - dimension: rebound_overuse
+    persona: child_2_5
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 89c165ba-3ad5-49b5-a5bb-423dc8e15bad
+        section: "50567-7: When using; 3-day limit and recurrent or worsening congestion"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=89c165ba-3ad5-49b5-a5bb-423dc8e15bad
+  - dimension: rebound_overuse
+    persona: under_2
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 89c165ba-3ad5-49b5-a5bb-423dc8e15bad
+        section: "50567-7: When using; 3-day limit and recurrent or worsening congestion"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=89c165ba-3ad5-49b5-a5bb-423dc8e15bad
+  - dimension: rebound_overuse
+    persona: pregnant
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 89c165ba-3ad5-49b5-a5bb-423dc8e15bad
+        section: "50567-7: When using; 3-day limit and recurrent or worsening congestion"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=89c165ba-3ad5-49b5-a5bb-423dc8e15bad
+  - dimension: rebound_overuse
+    persona: breastfeeding
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 89c165ba-3ad5-49b5-a5bb-423dc8e15bad
+        section: "50567-7: When using; 3-day limit and recurrent or worsening congestion"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=89c165ba-3ad5-49b5-a5bb-423dc8e15bad
+  - dimension: pregnancy_lactation
+    persona: adult_18_64
+    severity: 0
+  - dimension: pregnancy_lactation
+    persona: adult_65_plus
+    severity: 0
+  - dimension: pregnancy_lactation
+    persona: teen_12_17
+    severity: 0
+  - dimension: pregnancy_lactation
+    persona: child_6_11
+    severity: 0
+  - dimension: pregnancy_lactation
+    persona: child_2_5
+    severity: 0
+  - dimension: pregnancy_lactation
+    persona: under_2
+    severity: 0
+  - dimension: pregnancy_lactation
+    persona: pregnant
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 89c165ba-3ad5-49b5-a5bb-423dc8e15bad
+        section: "53414-9: Pregnancy or breast-feeding"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=89c165ba-3ad5-49b5-a5bb-423dc8e15bad
+  - dimension: pregnancy_lactation
+    persona: breastfeeding
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 89c165ba-3ad5-49b5-a5bb-423dc8e15bad
+        section: "53414-9: Pregnancy or breast-feeding"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=89c165ba-3ad5-49b5-a5bb-423dc8e15bad
+  - dimension: duplicate_dosing
+    persona: adult_18_64
+    severity: 0
+  - dimension: duplicate_dosing
+    persona: adult_65_plus
+    severity: 0
+  - dimension: duplicate_dosing
+    persona: teen_12_17
+    severity: 0
+  - dimension: duplicate_dosing
+    persona: child_6_11
+    severity: 0
+  - dimension: duplicate_dosing
+    persona: child_2_5
+    severity: 0
+  - dimension: duplicate_dosing
+    persona: under_2
+    severity: 0
+  - dimension: duplicate_dosing
+    persona: pregnant
+    severity: 0
+  - dimension: duplicate_dosing
+    persona: breastfeeding
+    severity: 0
+  - dimension: excipients
+    persona: adult_18_64
+    severity: 0
+  - dimension: excipients
+    persona: adult_65_plus
+    severity: 0
+  - dimension: excipients
+    persona: teen_12_17
+    severity: 0
+  - dimension: excipients
+    persona: child_6_11
+    severity: 0
+  - dimension: excipients
+    persona: child_2_5
+    severity: 0
+  - dimension: excipients
+    persona: under_2
+    severity: 0
+  - dimension: excipients
+    persona: pregnant
+    severity: 0
+  - dimension: excipients
+    persona: breastfeeding
+    severity: 0
+  - dimension: local_skin
+    persona: adult_18_64
+    severity: 1
+    citations:
+      - source: fda_label
+        document_id: 89c165ba-3ad5-49b5-a5bb-423dc8e15bad
+        section: "50567-7: When using; temporary burning and stinging"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=89c165ba-3ad5-49b5-a5bb-423dc8e15bad
+  - dimension: local_skin
+    persona: adult_65_plus
+    severity: 1
+    citations:
+      - source: fda_label
+        document_id: 89c165ba-3ad5-49b5-a5bb-423dc8e15bad
+        section: "50567-7: When using; temporary burning and stinging"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=89c165ba-3ad5-49b5-a5bb-423dc8e15bad
+  - dimension: local_skin
+    persona: teen_12_17
+    severity: 1
+    citations:
+      - source: fda_label
+        document_id: 89c165ba-3ad5-49b5-a5bb-423dc8e15bad
+        section: "50567-7: When using; temporary burning and stinging"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=89c165ba-3ad5-49b5-a5bb-423dc8e15bad
+  - dimension: local_skin
+    persona: child_6_11
+    severity: 1
+    citations:
+      - source: fda_label
+        document_id: 89c165ba-3ad5-49b5-a5bb-423dc8e15bad
+        section: "50567-7: When using; temporary burning and stinging"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=89c165ba-3ad5-49b5-a5bb-423dc8e15bad
+  - dimension: local_skin
+    persona: child_2_5
+    severity: 1
+    citations:
+      - source: fda_label
+        document_id: 89c165ba-3ad5-49b5-a5bb-423dc8e15bad
+        section: "50567-7: When using; temporary burning and stinging"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=89c165ba-3ad5-49b5-a5bb-423dc8e15bad
+  - dimension: local_skin
+    persona: under_2
+    severity: 1
+    citations:
+      - source: fda_label
+        document_id: 89c165ba-3ad5-49b5-a5bb-423dc8e15bad
+        section: "50567-7: When using; temporary burning and stinging"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=89c165ba-3ad5-49b5-a5bb-423dc8e15bad
+  - dimension: local_skin
+    persona: pregnant
+    severity: 1
+    citations:
+      - source: fda_label
+        document_id: 89c165ba-3ad5-49b5-a5bb-423dc8e15bad
+        section: "50567-7: When using; temporary burning and stinging"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=89c165ba-3ad5-49b5-a5bb-423dc8e15bad
+  - dimension: local_skin
+    persona: breastfeeding
+    severity: 1
+    citations:
+      - source: fda_label
+        document_id: 89c165ba-3ad5-49b5-a5bb-423dc8e15bad
+        section: "50567-7: When using; temporary burning and stinging"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=89c165ba-3ad5-49b5-a5bb-423dc8e15bad
+  - dimension: efficacy_evidence
+    persona: adult_18_64
+    severity: 0
+  - dimension: efficacy_evidence
+    persona: adult_65_plus
+    severity: 0
+  - dimension: efficacy_evidence
+    persona: teen_12_17
+    severity: 0
+  - dimension: efficacy_evidence
+    persona: child_6_11
+    severity: 0
+  - dimension: efficacy_evidence
+    persona: child_2_5
+    severity: 0
+  - dimension: efficacy_evidence
+    persona: under_2
+    severity: 0
+  - dimension: efficacy_evidence
+    persona: pregnant
+    severity: 0
+  - dimension: efficacy_evidence
+    persona: breastfeeding
+    severity: 0
+modifiers:
+  - dimension: cardiovascular_bp
+    condition: hypertension
+    severity_change: 1
+    citations:
+      - source: fda_label
+        document_id: 89c165ba-3ad5-49b5-a5bb-423dc8e15bad
+        section: "50569-3: Ask a doctor; cardiovascular, thyroid and diabetes conditions"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=89c165ba-3ad5-49b5-a5bb-423dc8e15bad
+  - dimension: cardiovascular_bp
+    condition: heart_disease
+    severity_change: 1
+    citations:
+      - source: fda_label
+        document_id: 89c165ba-3ad5-49b5-a5bb-423dc8e15bad
+        section: "50569-3: Ask a doctor; cardiovascular, thyroid and diabetes conditions"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=89c165ba-3ad5-49b5-a5bb-423dc8e15bad
+  - dimension: cardiovascular_bp
+    condition: thyroid_disease
+    severity_change: 1
+    citations:
+      - source: fda_label
+        document_id: 89c165ba-3ad5-49b5-a5bb-423dc8e15bad
+        section: "50569-3: Ask a doctor; cardiovascular, thyroid and diabetes conditions"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=89c165ba-3ad5-49b5-a5bb-423dc8e15bad
+  - dimension: cardiovascular_bp
+    condition: diabetes
+    severity_change: 1
+    citations:
+      - source: fda_label
+        document_id: 89c165ba-3ad5-49b5-a5bb-423dc8e15bad
+        section: "50569-3: Ask a doctor; cardiovascular, thyroid and diabetes conditions"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=89c165ba-3ad5-49b5-a5bb-423dc8e15bad
+  - dimension: anticholinergic_cognitive
+    condition: enlarged_prostate
+    severity_change: 2
+    citations:
+      - source: fda_label
+        document_id: 89c165ba-3ad5-49b5-a5bb-423dc8e15bad
+        section: "50569-3: Ask a doctor; enlarged prostate"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=89c165ba-3ad5-49b5-a5bb-423dc8e15bad
+        quote: "trouble urinating due to an enlarged prostate gland"
+review_status: unreviewed
+notes:
+  Intranasal 0.05% decongestant, not ophthalmic use. Local irritation is mapped to local_skin. The
+  under-6 label requires a doctor rather than stating an absolute contraindication. The enlarged-
+  prostate warning is a modifier on anticholinergic_cognitive, which owns urinary retention in the
+  rubric.

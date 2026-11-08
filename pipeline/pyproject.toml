@@ -1,0 +1,22 @@
+[project]
+name = "nomi-pipeline"
+version = "0.1.0"
+description = "Nomi data and scoring pipeline"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "fsspec>=2024.6",
+    "huggingface-hub>=0.34",
+    "pydantic-settings>=2.6.1",
+    "polars>=1.17.0",
+    "pyyaml>=6.0",
+    "truststore>=0.10",
+    "typer>=0.15.1",
+    "lxml>=5.3.0",
+]
+
+[project.scripts]
+pipeline = "nomi_pipeline.cli:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"

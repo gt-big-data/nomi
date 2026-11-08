@@ -36,7 +36,7 @@ packages/
   schema/          Shared data contracts (JSON Schema), reference products, test vectors
 pipeline/          Python data and scoring pipeline
   src/nomi_pipeline/
-    fetch/         Raw data from the R2 mirror
+    fetch/         Raw data from the Hugging Face mirror
     ingest/        NDC directory, DailyMed labels, FAERS, RxNorm
     identity/      Barcode parsing and product resolution
     extract/       Label fact extraction (rules and LLM)
@@ -57,8 +57,11 @@ data/              Local pipeline data (gitignored)
 
 ## Getting started
 
-Tooling setup (pnpm, uv, linters, CI) lands in NOMI-001. Until then, see `planning/README.md` for the
-sprint plan and the GitHub issues for what to pick up.
+```bash
+pnpm install && uv sync && uv run pre-commit install
+```
+
+See `CONTRIBUTING.md` for prerequisites and the PR workflow, and `planning/README.md` for the sprint plan.
 
 ## Data and privacy
 

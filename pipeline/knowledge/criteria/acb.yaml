@@ -1,0 +1,97 @@
+version: "2008"
+source: "acb"
+citation:
+  document_id: "10.2217/1745509X.4.3.311"
+  title: "Impact of anticholinergics on the aging brain: a review and practical application (Boustani et al., Aging Health, 2008)"
+  url: "https://doi.org/10.2217/1745509X.4.3.311"
+
+# Scores are from the original 2008 list, as reprinted in the Boustani 2008 column of
+# Ramos et al. 2022, Tables 1 to 3 (https://pmc.ncbi.nlm.nih.gov/articles/PMC8876932/).
+# The 2008 list has no score 0 and no score 2 OTC entries. Doxylamine, dimenhydrinate and
+# the second-generation antihistamines are not on it; first-generation antihistamines are
+# covered by STOPP D14, D24, D25, K6 and M1 in stopp_start.yaml.
+items:
+  # ACB score 3: Definite anticholinergic burden
+
+  - id: "acb_diphenhydramine"
+    ingredient: "diphenhydramine"
+    drug_class: "first_gen_antihistamine"
+    acb_score: 3
+    target_persona: "adult_65_plus"
+    risk_dimension: "anticholinergic_cognitive"
+    clinical_rationale: "Potent central and peripheral competitive muscarinic receptor antagonist with high lipid solubility; readily penetrates the blood-brain barrier causing delirium, memory impairment, psychomotor slowing, acute urinary retention, and increased dementia risk in older adults."
+    original_reference: "Boustani et al. 2008, ACB score 3"
+
+  - id: "acb_chlorpheniramine"
+    ingredient: "chlorpheniramine"
+    drug_class: "first_gen_antihistamine"
+    acb_score: 3
+    target_persona: "adult_65_plus"
+    risk_dimension: "anticholinergic_cognitive"
+    clinical_rationale: "Alkylamine-derivative first-generation antihistamine with pronounced central anticholinergic properties; frequently incorporated into OTC multi-symptom cold products, producing cognitive slowing, dry mouth, blurred vision, and elevated fall hazard."
+    original_reference: "Boustani et al. 2008, ACB score 3"
+
+  - id: "acb_brompheniramine"
+    ingredient: "brompheniramine"
+    drug_class: "first_gen_antihistamine"
+    acb_score: 3
+    target_persona: "adult_65_plus"
+    risk_dimension: "anticholinergic_cognitive"
+    clinical_rationale: "First-generation alkylamine antihistamine with substantial central antimuscarinic receptor affinity; contributes to acute confusional states, excessive drowsiness, and impaired executive functioning in geriatric individuals."
+    original_reference: "Boustani et al. 2008, ACB score 3"
+
+  - id: "acb_clemastine"
+    ingredient: "clemastine"
+    drug_class: "first_gen_antihistamine"
+    acb_score: 3
+    target_persona: "adult_65_plus"
+    risk_dimension: "anticholinergic_cognitive"
+    clinical_rationale: "Ethanolamine-class H1 antihistamine with marked antimuscarinic effects; exhibits prolonged duration of central nervous system depression, ataxia, and anticholinergic toxicity in older people."
+    original_reference: "Boustani et al. 2008, ACB score 3"
+
+  - id: "acb_meclizine"
+    ingredient: "meclizine"
+    drug_class: "first_gen_antihistamine"
+    acb_score: 3
+    target_persona: "adult_65_plus"
+    risk_dimension: "anticholinergic_cognitive"
+    clinical_rationale: "Piperazine-derivative first-generation antiemetic and antihistamine with long-acting central antimuscarinic actions; indicated for motion sickness or vertigo, causing extended cognitive dulling and postural imbalance in older adults."
+    original_reference: "Boustani et al. 2008, ACB score 3"
+
+  - id: "acb_scopolamine"
+    ingredient: "scopolamine"
+    drug_class: "antimuscarinic"
+    acb_score: 3
+    target_persona: "adult_65_plus"
+    risk_dimension: "anticholinergic_cognitive"
+    clinical_rationale: "Prototypical competitive muscarinic antagonist crossing the blood-brain barrier with high central affinity; known precipitant of acute toxic delirium, hallucinations, memory impairment, and severe pupillary dilation in elderly users."
+    original_reference: "Boustani et al. 2008, ACB score 3"
+
+  - id: "acb_oxybutynin"
+    ingredient: "oxybutynin"
+    drug_class: "antimuscarinic"
+    acb_score: 3
+    target_persona: "adult_65_plus"
+    risk_dimension: "anticholinergic_cognitive"
+    clinical_rationale: "Tertiary amine muscarinic antagonist that crosses the blood-brain barrier; sold OTC as a transdermal patch, and systemic anticholinergic exposure remains clinically meaningful in older adults."
+    original_reference: "Boustani et al. 2008, ACB score 3"
+
+  # ACB score 1: Possible anticholinergic burden
+
+  - id: "acb_cimetidine"
+    ingredient: "cimetidine"
+    drug_class: "h2_receptor_antagonist"
+    acb_score: 1
+    target_persona: "adult_65_plus"
+    risk_dimension: "anticholinergic_cognitive"
+    clinical_rationale: "First-generation H2 blocker capable of crossing the blood-brain barrier and demonstrating modest antimuscarinic binding; associated with mild reversible confusion, somnolence, and extensive hepatic CYP-mediated drug interactions in older patients."
+    original_reference: "Boustani et al. 2008, ACB score 1"
+
+  - id: "acb_loperamide"
+    ingredient: "loperamide"
+    drug_class: "antidiarrheal"
+    acb_score: 1
+    target_persona: "adult_65_plus"
+    risk_dimension: "anticholinergic_cognitive"
+    clinical_rationale: "Synthetic peripheral mu-opioid receptor agonist designed to reduce intestinal motility; presents secondary weak anticholinergic-like bowel slowing and is designated on certain consensus scales as conferring possible low anticholinergic burden."
+    original_reference: "Boustani et al. 2008, ACB score 1"
