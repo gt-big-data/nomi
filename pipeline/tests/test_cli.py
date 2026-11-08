@@ -31,5 +31,5 @@ def test_fetch_commands_available() -> None:
 def test_ingest_commands_available() -> None:
     result = runner.invoke(app, ["ingest", "--help"])
     assert result.exit_code == 0
-    for cmd in ("faers", "ndc", "dailymed-otc"):
+    for cmd in ("faers",):
         assert cmd in result.stdout

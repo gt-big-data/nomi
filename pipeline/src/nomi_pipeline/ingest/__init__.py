@@ -17,15 +17,3 @@ def ingest_faers() -> None:
     from nomi_pipeline.ingest._faers import ingest_faers as _run
 
     _run(Settings())
-
-
-@app.command(name="ndc")
-def ingest_ndc() -> None:
-    """Load the openFDA NDC directory (not yet implemented)."""
-    log.info("ingest ndc is not implemented yet")
-
-
-@app.command(name="dailymed-otc")
-def ingest_dailymed_otc() -> None:
-    """Load DailyMed OTC labels (not yet implemented)."""
-    log.info("ingest dailymed-otc is not implemented yet")

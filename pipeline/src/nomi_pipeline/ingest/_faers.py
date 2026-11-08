@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import io
 import logging
+import shutil
 import zipfile
 from pathlib import Path
 
@@ -17,7 +18,11 @@ TABLES = ("demo", "drug", "reac", "outc", "rpsr", "ther", "indi")
 
 
 def ingest_faers(settings: Settings, reports_dir: Path | None = None) -> None:
-    """Read all FAERS ZIPs, deduplicate by latest caseversion, write bronze Parquet."""
+    """Read all FAERS ZIPs, deduplicate by latest caseversion, write bronze Parquet.
+
+    The ASCII files are about 17 GB uncompressed, so each quarter is staged to Parquet on
+    its own and the dedup runs lazily over the staged files, one table at a time.
+    """
     raw_dir = settings.raw_dir / "faers"
     out_dir = settings.bronze_dir / "faers"
     out_dir.mkdir(parents=True, exist_ok=True)
@@ -28,48 +33,85 @@ def ingest_faers(settings: Settings, reports_dir: Path | None = None) -> None:
             f"No FAERS ZIP files found in {raw_dir}. Run 'pipeline fetch faers' first."
         )
 
-    frames: dict[str, list[pl.DataFrame]] = {t: [] for t in TABLES}
-    for zf in zips:
-        log.info("reading %s", zf.name)
-        for table in TABLES:
-            df = _read_table(zf, table)
-            if df is not None and len(df) > 0:
-                frames[table].append(df)
+    staging = out_dir / "_staging"
+    shutil.rmtree(staging, ignore_errors=True)
+    deleted: set[str] = set()
+    try:
+        for zf in zips:
+            log.info("reading %s", zf.name)
+            for table in TABLES:
+                df = _read_table(zf, table)
+                if df is not None and len(df) > 0:
+                    (staging / table).mkdir(parents=True, exist_ok=True)
+                    df.write_parquet(staging / table / f"{zf.stem}.parquet")
+            deleted |= _read_deleted_caseids(zf)
 
-    if not frames["demo"]:
-        raise ValueError("No DEMO data found in any FAERS ZIP.")
+        if not (staging / "demo").exists():
+            raise ValueError("No DEMO data found in any FAERS ZIP.")
 
-    tables: dict[str, pl.DataFrame] = {
-        t: pl.concat(frames[t], how="diagonal") for t in TABLES if frames[t]
-    }
-
-    # Keep only the latest version of each case using primaryid from DEMO
-    latest_primaryids = (
-        tables["demo"]
-        .with_columns(pl.col("caseversion").cast(pl.Int32, strict=False))
-        .sort("caseversion", descending=True)
-        .unique(subset=["caseid"], keep="first")
-        .select("primaryid")
-    )
-
-    stats: list[dict[str, object]] = []
-    for table_name in TABLES:
-        if table_name not in tables:
-            log.warning("no data found for table %s", table_name)
-            continue
-        df = tables[table_name]
-        total = len(df)
-        deduped = df.join(latest_primaryids, on="primaryid", how="inner").sort("primaryid")
-        after = len(deduped)
-        log.info(
-            "%s: %d → %d rows after dedup (%d removed)", table_name, total, after, total - after
+        # Keep only the latest version of each case, and drop cases FDA has deleted.
+        latest_primaryids = (
+            _scan(staging / "demo")
+            .with_columns(pl.col("caseversion").cast(pl.Int32, strict=False))
+            .filter(~pl.col("caseid").is_in(list(deleted)))
+            .sort(["caseid", "caseversion", "primaryid"], descending=True, nulls_last=True)
+            .unique(subset=["caseid"], keep="first", maintain_order=True)
+            .select("primaryid")
+            .collect()
         )
-        stats.append(
-            {"table": table_name, "total": total, "after_dedup": after, "removed": total - after}
-        )
-        deduped.write_parquet(out_dir / f"{table_name}.parquet")
+        log.info("%d cases deleted by FDA were dropped", len(deleted))
+
+        stats: list[dict[str, object]] = []
+        for table_name in TABLES:
+            if not (staging / table_name).exists():
+                log.warning("no data found for table %s", table_name)
+                continue
+            source = _scan(staging / table_name)
+            total = source.select(pl.len()).collect().item()
+            out = out_dir / f"{table_name}.parquet"
+            source.join(latest_primaryids.lazy(), on="primaryid", how="semi").sink_parquet(out)
+            after = pl.scan_parquet(out).select(pl.len()).collect().item()
+            log.info(
+                "%s: %d → %d rows after dedup (%d removed)",
+                table_name,
+                total,
+                after,
+                total - after,
+            )
+            stats.append(
+                {
+                    "table": table_name,
+                    "total": total,
+                    "after_dedup": after,
+                    "removed": total - after,
+                }
+            )
+    finally:
+        shutil.rmtree(staging, ignore_errors=True)
 
     _write_report(stats, zips, reports_dir or REPO_ROOT / "pipeline" / "reports")
+
+
+def _scan(folder: Path) -> pl.LazyFrame:
+    # Columns change between FAERS years, so line the quarters up by name.
+    return pl.concat([pl.scan_parquet(f) for f in sorted(folder.glob("*.parquet"))], how="diagonal")
+
+
+def _read_deleted_caseids(zip_path: Path) -> set[str]:
+    """Case ids FDA removed, from the Deleted/DELETE*.txt file in quarters since 2019."""
+    try:
+        with zipfile.ZipFile(zip_path) as z:
+            names = [
+                n for n in z.namelist() if "DELETE" in n.upper() and n.lower().endswith(".txt")
+            ]
+            return {
+                line.strip().strip("$")
+                for n in names
+                for line in z.read(n).decode("latin-1").splitlines()
+                if line.strip().strip("$").isdigit()
+            }
+    except zipfile.BadZipFile:
+        return set()
 
 
 def _read_table(zip_path: Path, table: str) -> pl.DataFrame | None:

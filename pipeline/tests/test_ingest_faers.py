@@ -144,3 +144,29 @@ def test_dedup_report_written(tmp_path: Path, faers_zip: Path) -> None:
     report = reports_dir / "faers-dedup.md"
     assert report.exists()
     assert "demo" in report.read_text()
+
+
+def test_cases_deleted_by_fda_are_dropped(tmp_path: Path, faers_zip: Path) -> None:
+    with zipfile.ZipFile(faers_zip, "a") as z:
+        z.writestr("Deleted/DELETE24Q1.txt", "101\n")
+    ingest_faers(_mock_settings(tmp_path), reports_dir=tmp_path / "reports")
+
+    demo = pl.read_parquet(tmp_path / "bronze" / "faers" / "demo.parquet")
+    drug = pl.read_parquet(tmp_path / "bronze" / "faers" / "drug.parquet")
+    assert demo["primaryid"].to_list() == ["1002"]
+    assert drug["primaryid"].to_list() == ["1002"]
+
+
+def test_columns_that_change_between_quarters_are_kept(tmp_path: Path, faers_zip: Path) -> None:
+    later = faers_zip.with_name("faers_ascii_2024q2.zip")
+    with zipfile.ZipFile(later, "w") as z:
+        z.writestr(
+            "ASCII/DEMO24Q2.txt",
+            "primaryid$caseid$caseversion$age$age_cod$sex$wt\n2001$200$1$50$YR$F$70\n",
+        )
+    ingest_faers(_mock_settings(tmp_path), reports_dir=tmp_path / "reports")
+
+    demo = pl.read_parquet(tmp_path / "bronze" / "faers" / "demo.parquet")
+    assert set(demo["primaryid"].to_list()) == {"1002", "1003", "2001"}
+    assert "wt" in demo.columns
+    assert not (tmp_path / "bronze" / "faers" / "_staging").exists()
