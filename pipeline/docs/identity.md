@@ -9,7 +9,7 @@ uv run pipeline identity resolve
 It reads `ndc.parquet`, `spl_products.parquet` and `spl_ingredients.parquet` from
 `Settings.bronze_dir` and writes `product.parquet` and `identity_results.parquet` to
 `Settings.silver_dir`, plus the report at `pipeline/reports/identity_coverage.md`
-(`--report PATH` to change it). It exits 1 below 90% coverage, after writing everything.
+(`--report PATH` to change it). It exits 1 below 95% coverage, after writing everything.
 
 ## How a barcode resolves
 
@@ -47,9 +47,11 @@ It reads `ndc.parquet`, `spl_products.parquet` and `spl_ingredients.parquet` fro
 `product.parquet` holds only `resolved` packages, with the product schema's field names: `ndc11`,
 `spl_set_id`, `spl_version`, `brand_name`, `generic_name`, `labeler`, `dosage_form`,
 `marketing_category` (as the schema's enum value) and `ingredients`. `otc_category`, `uses` and
-`scope` are added by NOMI-026 and NOMI-047. Homeopathic packages have no label and so cannot be
-valid product records yet; NOMI-026 can build them from `identity_results.parquet` (status
-`homeopathic`) and the directory.
+`scope` are added by NOMI-026 and NOMI-047, so this file does not yet pass the product schema;
+NOMI-026 should validate the final records. Homeopathic packages without a label (status
+`homeopathic`) cannot be valid product records yet; NOMI-026 can build them from
+`identity_results.parquet` and the directory. The few homeopathic packages that do match a label
+resolve like any other package and appear here.
 
 `identity_results.parquet` has one row per package: its barcode, status and directory matches.
 

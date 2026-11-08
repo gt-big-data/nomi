@@ -246,6 +246,7 @@ def coverage_report(results: list[Row]) -> str:
     correct, total = coverage(results)
     rate = correct / total if total else 0.0
     found = sum(r["status"] in {"resolved", "homeopathic"} for r in results)
+    full = sum(r["status"] == "resolved" for r in results)
     scored = Counter(r["status"] for r in results if not is_homeopathic(r))
     homeopathic = Counter(r["status"] for r in results if is_homeopathic(r))
     lines = [
@@ -264,7 +265,9 @@ def coverage_report(results: list[Row]) -> str:
         "",
         "Homeopathic products are not scored, so they are counted apart. Counting them as found when",
         "the directory identifies them, all packages: "
-        f"{found} of {len(results)} ({found / len(results) if results else 0:.2%}).",
+        f"{found} of {len(results)} ({found / len(results) if results else 0:.2%}). "
+        "With a full product record (label and ingredients), all packages: "
+        f"{full} of {len(results)} ({full / len(results) if results else 0:.2%}).",
         "",
         "| Status | Scored packages | Homeopathic packages |",
         "| --- | ---: | ---: |",

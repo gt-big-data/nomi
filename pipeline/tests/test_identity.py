@@ -217,6 +217,7 @@ def test_coverage_keeps_every_miss_and_skips_samples() -> None:
     report = coverage_report(results)
     assert "Scored packages resolved: 1 of 3 (33.33%)" in report
     assert "all packages: 2 of 4 (50.00%)" in report
+    assert "With a full product record (label and ingredients), all packages: 1 of 4" in report
     assert "not met" in report
     assert "| invalid |" in report
     assert "| 99999-0000-1 |" in report
@@ -224,6 +225,11 @@ def test_coverage_keeps_every_miss_and_skips_samples() -> None:
     assert "66666-0000-1" not in report
     assert "## Every homeopathic miss" in report
     assert "not met" in coverage_report([])
+    # The target is 95%: 19 of 20 meets it, 18 of 20 does not.
+    for hits, verdict in ((19, "Target 95%: met"), (18, "Target 95%: not met")):
+        rows = [{**results[0], "status": "resolved"}] * hits
+        rows += [{**results[0], "status": "not_found"}] * (20 - hits)
+        assert verdict in coverage_report(rows)
 
 
 def write_bronze(folder: Path, ndc: Rows, labels: Rows, ingredients: Rows) -> None:

@@ -11,7 +11,7 @@ with the directory's.
 **Scored packages resolved: 63878 of 65418 (97.65%).** Target 95%: met.
 
 Homeopathic products are not scored, so they are counted apart. Counting them as found when
-the directory identifies them, all packages: 89216 of 92247 (96.71%).
+the directory identifies them, all packages: 89216 of 92247 (96.71%). With a full product record (label and ingredients), all packages: 63880 of 92247 (69.25%).
 
 | Status | Scored packages | Homeopathic packages |
 | --- | ---: | ---: |
