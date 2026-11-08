@@ -1,3 +1,4 @@
+import json
 import zipfile
 from pathlib import Path
 
@@ -53,3 +54,50 @@ def test_reads_the_zipped_file_from_fetch(tmp_path: Path) -> None:
         z.write(FIXTURES / "sample.json", "drug-ndc-0001-of-0001.json")
 
     assert parse_ndc_file(zipped).products == parse_ndc_file(FIXTURES / "sample.json").products
+
+
+def _write_records(path: Path, records: list[dict[str, object]]) -> Path:
+    path.write_text(json.dumps({"results": records}))
+    return path
+
+
+def _record(product_ndc: str, package_ndcs: list[str], **extra: object) -> dict[str, object]:
+    return {
+        "product_type": "HUMAN OTC DRUG",
+        "product_ndc": product_ndc,
+        "spl_id": f"spl-{product_ndc}",
+        "finished": True,
+        "packaging": [{"package_ndc": n, "description": "1 BOTTLE"} for n in package_ndcs],
+        **extra,
+    }
+
+
+def test_keeps_ingredients_and_one_row_per_ndc(tmp_path: Path) -> None:
+    ingredients = [{"name": "IBUPROFEN", "strength": "200 mg/1"}]
+    result = parse_ndc_file(
+        _write_records(
+            tmp_path / "ndc.json",
+            [
+                _record("72043-2500", ["72043-2500-1"], active_ingredients=ingredients),
+                _record("72043-2500", ["72043-2500-1"], active_ingredients=ingredients),
+            ],
+        )
+    )
+
+    assert [row.ndc11 for row in result.products] == ["72043250001"]
+    assert result.duplicate_ndcs == 1
+    assert result.products[0].active_ingredients == ["IBUPROFEN"]
+    assert result.products[0].active_strengths == ["200 mg/1"]
+
+
+def test_skips_unfinished_and_unpackaged_records(tmp_path: Path) -> None:
+    result = parse_ndc_file(
+        _write_records(
+            tmp_path / "ndc.json",
+            [_record("0363-0710", ["0363-0710-08"], finished=False), _record("0363-0711", [])],
+        )
+    )
+
+    assert result.products == []
+    assert result.skipped_unfinished == 1
+    assert result.records_without_packages == 1

@@ -7,7 +7,7 @@ import polars as pl
 import typer
 
 from nomi_pipeline.config import Settings
-from nomi_pipeline.ingest.ndc import NdcResult, compute_stats, parse_ndc_file
+from nomi_pipeline.ingest.ndc import NdcResult, compute_stats, dedupe_and_sort, parse_ndc_file
 from nomi_pipeline.ingest.spl import collect_labels
 
 app = typer.Typer(help="Load raw sources into typed bronze tables")
@@ -43,16 +43,26 @@ def ingest_ndc() -> None:
     settings = Settings()
     raw_dir = settings.raw_dir / "ndc"
 
+    # pipeline fetch delivers drug-ndc-0001-of-0001.json.zip. A loose .json is used only when there
+    # is no zip, so unzipping next to it doesn't count every product twice.
+    files = sorted(raw_dir.glob("*.json.zip")) or sorted(
+        f for f in raw_dir.glob("*.json") if f.name != "manifest.json"
+    )
+    if not files:
+        log.error(f"No NDC directory file in {raw_dir}; run `pipeline fetch` first")
+        raise typer.Exit(1)
+
     combined = NdcResult()
-    # pipeline fetch delivers drug-ndc-0001-of-0001.json.zip; loose .json files work too.
-    files = sorted(raw_dir.glob("*.json.zip")) + sorted(raw_dir.glob("*.json"))
-    for json_file in (f for f in files if f.name != "manifest.json"):
+    for json_file in files:
         file_result = parse_ndc_file(json_file)
         combined.products.extend(file_result.products)
         combined.total_records += file_result.total_records
         combined.skipped_bad_ndc += file_result.skipped_bad_ndc
-
-    combined.products.sort(key=lambda row: row.ndc11)
+        combined.bad_ndcs.extend(file_result.bad_ndcs)
+        combined.skipped_unfinished += file_result.skipped_unfinished
+        combined.records_without_packages += file_result.records_without_packages
+        combined.duplicate_ndcs += file_result.duplicate_ndcs
+    dedupe_and_sort(combined)
 
     settings.bronze_dir.mkdir(parents=True, exist_ok=True)
     pl.DataFrame(combined.products).write_parquet(settings.bronze_dir / "ndc.parquet")
@@ -64,3 +74,5 @@ def ingest_ndc() -> None:
         f"{len(combined.products)} rows written from {combined.total_records} records "
         f"({combined.skipped_bad_ndc} bad NDCs skipped)"
     )
+    if combined.bad_ndcs:
+        log.warning(f"Bad NDCs: {', '.join(combined.bad_ndcs[:20])}")

@@ -1,4 +1,5 @@
 import shutil
+import zipfile
 from pathlib import Path
 
 import polars as pl
@@ -65,3 +66,31 @@ def test_ingest_ndc_writes_parquet_and_stats(
     stats = json.loads((bronze / "ndc.stats.json").read_text())
     assert stats["total_rows"] == 2
     assert stats["skipped_bad_ndc"] == 1
+
+
+def test_ingest_ndc_fails_without_input(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> None:
+    use_env_file(monkeypatch, None)
+    monkeypatch.setenv("DATA_DIR", str(tmp_path))
+    (tmp_path / "raw" / "ndc").mkdir(parents=True)
+
+    result = runner.invoke(app, ["ingest", "ndc"])
+
+    assert result.exit_code == 1
+    assert not (tmp_path / "bronze" / "ndc.parquet").exists()
+
+
+def test_ingest_ndc_ignores_loose_json_next_to_the_zip(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    use_env_file(monkeypatch, None)
+    monkeypatch.setenv("DATA_DIR", str(tmp_path))
+    raw_ndc = tmp_path / "raw" / "ndc"
+    raw_ndc.mkdir(parents=True)
+    with zipfile.ZipFile(raw_ndc / "drug-ndc-0001-of-0001.json.zip", "w") as z:
+        z.write(NDC_FIXTURES / "sample.json", "drug-ndc-0001-of-0001.json")
+    shutil.copy(NDC_FIXTURES / "sample.json", raw_ndc / "drug-ndc-0001-of-0001.json")
+
+    result = runner.invoke(app, ["ingest", "ndc"])
+
+    assert result.exit_code == 0, result.output
+    assert len(pl.read_parquet(tmp_path / "bronze" / "ndc.parquet")) == 2

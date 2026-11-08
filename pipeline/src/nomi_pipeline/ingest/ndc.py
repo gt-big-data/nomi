@@ -34,13 +34,38 @@ class NdcRow:
     route: str
     spl_id: str
     spl_set_id: str | None
+    # Fallback for identity resolution when a product has no spl_set_id.
+    active_ingredients: list[str]
+    active_strengths: list[str]
+    package_description: str
+    marketing_end_date: str | None
+    sample: bool
 
 
 @dataclass
 class NdcResult:
     products: list[NdcRow] = field(default_factory=list)
     skipped_bad_ndc: int = 0
+    bad_ndcs: list[str] = field(default_factory=list)
+    skipped_unfinished: int = 0
+    records_without_packages: int = 0
+    duplicate_ndcs: int = 0
     total_records: int = 0
+
+
+def dedupe_and_sort(result: NdcResult) -> None:
+    """Sort by ndc11 and keep one row per ndc11, so the table is keyed by NDC.
+
+    openFDA occasionally lists one package under two records that differ only in dates.
+    """
+    result.products.sort(key=lambda row: (row.ndc11, row.product_ndc, row.spl_id))
+    unique: list[NdcRow] = []
+    for row in result.products:
+        if unique and unique[-1].ndc11 == row.ndc11:
+            result.duplicate_ndcs += 1
+            continue
+        unique.append(row)
+    result.products = unique
 
 
 def parse_ndc_file(path: Path) -> NdcResult:
@@ -60,6 +85,13 @@ def parse_ndc_file(path: Path) -> NdcResult:
         result.total_records += 1
         if record.get("product_type") != "HUMAN OTC DRUG":
             continue
+        # Unfinished records are bulk ingredients, never sold to a shopper.
+        if record.get("finished") is False:
+            result.skipped_unfinished += 1
+            continue
+        if not record.get("packaging"):
+            result.records_without_packages += 1
+            continue
 
         openfda = record.get("openfda", {})
         spl_set_ids = openfda.get("spl_set_id", [])
@@ -68,8 +100,8 @@ def parse_ndc_file(path: Path) -> NdcResult:
         else:
             spl_set_id = None
 
-        route_list = record.get("route", [])
-        route = route_list[0] if route_list else ""
+        route = ", ".join(record.get("route", []))
+        ingredients = record.get("active_ingredients", [])
 
         for package in record.get("packaging", []):
             ndc_raw = package.get("package_ndc")
@@ -80,6 +112,7 @@ def parse_ndc_file(path: Path) -> NdcResult:
                 ndc11 = normalize_ndc(ndc_raw)
             except ValueError:
                 result.skipped_bad_ndc += 1
+                result.bad_ndcs.append(ndc_raw)
                 continue
 
             result.products.append(
@@ -95,10 +128,16 @@ def parse_ndc_file(path: Path) -> NdcResult:
                     route=route,
                     spl_id=record.get("spl_id", ""),
                     spl_set_id=spl_set_id,
+                    active_ingredients=[i.get("name", "") for i in ingredients],
+                    active_strengths=[i.get("strength", "") for i in ingredients],
+                    package_description=package.get("description", ""),
+                    marketing_end_date=package.get("marketing_end_date")
+                    or record.get("marketing_end_date"),
+                    sample=bool(package.get("sample", False)),
                 )
             )
 
-    result.products.sort(key=lambda row: row.ndc11)
+    dedupe_and_sort(result)
     return result
 
 
@@ -109,7 +148,7 @@ def compute_stats(result: NdcResult) -> dict[str, Any]:
         null_count = 0
         for row in result.products:
             value = getattr(row, f.name)
-            if value is None or value == "":
+            if value is None or value == "" or value == []:
                 null_count += 1
 
         null_rates[f.name] = null_count / total if total > 0 else 0.0
@@ -118,5 +157,8 @@ def compute_stats(result: NdcResult) -> dict[str, Any]:
         "total_rows": total,
         "total_records_seen": result.total_records,
         "skipped_bad_ndc": result.skipped_bad_ndc,
+        "skipped_unfinished": result.skipped_unfinished,
+        "records_without_packages": result.records_without_packages,
+        "duplicate_ndcs": result.duplicate_ndcs,
         "null_rates": null_rates,
     }
