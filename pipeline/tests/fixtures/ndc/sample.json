@@ -71,9 +71,7 @@
       "generic_name": "Paclitaxel protein-bound particles",
       "labeler_name": "EXELAN PHARMACEUTICALS INC.",
       "brand_name": "Paclitaxel 100mg per vial",
-      "active_ingredients": [
-        { "name": "PACLITAXEL", "strength": "100 mg/20mL" }
-      ],
+      "active_ingredients": [{ "name": "PACLITAXEL", "strength": "100 mg/20mL" }],
       "finished": true,
       "packaging": [
         {
@@ -102,9 +100,7 @@
       "generic_name": "Test Bad NDC Product",
       "labeler_name": "TEST LABELER",
       "brand_name": "Test Bad NDC OTC",
-      "active_ingredients": [
-        { "name": "TEST ACTIVE", "strength": "10 mg" }
-      ],
+      "active_ingredients": [{ "name": "TEST ACTIVE", "strength": "10 mg" }],
       "finished": true,
       "packaging": [
         {

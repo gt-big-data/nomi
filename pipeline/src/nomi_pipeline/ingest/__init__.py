@@ -34,6 +34,7 @@ def ingest_spl() -> None:
         rate = 0.0
 
     log.info(f"{successful} / {result.files_processed} labels parsed ({rate:.1f}%)")
+    log.info(f"{result.superseded} older or duplicate label versions dropped")
 
 
 @app.command(name="ndc")
@@ -43,7 +44,9 @@ def ingest_ndc() -> None:
     raw_dir = settings.raw_dir / "ndc"
 
     combined = NdcResult()
-    for json_file in sorted(raw_dir.glob("*.json")):
+    # pipeline fetch delivers drug-ndc-0001-of-0001.json.zip; loose .json files work too.
+    files = sorted(raw_dir.glob("*.json.zip")) + sorted(raw_dir.glob("*.json"))
+    for json_file in (f for f in files if f.name != "manifest.json"):
         file_result = parse_ndc_file(json_file)
         combined.products.extend(file_result.products)
         combined.total_records += file_result.total_records

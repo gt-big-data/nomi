@@ -150,21 +150,21 @@ One ticket = one person, one week. New to the project? Read `docs/nomi-101.md`. 
 
 ---
 
-## NOMI-008: Mirror raw data to R2 and build fetch
+## NOMI-008: Mirror raw data and build fetch
 **Team:** platform | **Priority:** P0 | **Sprint:** S1 | **Depends on:** NOMI-001 (same sprint), NOMI-006 (same sprint), NOMI-020 (same sprint)
 
 **Goal:** Let any developer get all raw data with one command.
 
-**Deliverable:** An R2 bucket with `ndc/`, `dailymed-otc/` and `faers/`, plus `uv run pipeline fetch <source>`
+**Deliverable:** A Hugging Face dataset with `ndc/`, `dailymed-otc/` and `faers/` (ADR-0003), plus `uv run pipeline fetch <source>`
 
 **Tasks**
-- [ ] Mirror each source to R2 with a checksum `manifest.json`
-- [ ] Use a read-only team token; keep write keys in GitHub Actions secrets
+- [ ] Mirror each source with a checksum `manifest.json`
+- [ ] Keep the write token out of the repo; add it to GitHub Actions secrets as `HF_TOKEN`
 - [ ] Build `pipeline fetch` to download into `data/raw/` and verify checksums
 
 **Done when:** A new member gets all raw data with one command using `pipeline/README.md`, and a corrupted file is caught by a test.
 
-**Notes:** R2 is Cloudflare's file storage. Never commit data or credentials.
+**Notes:** Originally planned for R2; moved to Hugging Face because the raw data is ~37 GB (ADR-0003). Never commit data or credentials.
 
 ---
 
@@ -350,7 +350,7 @@ One ticket = one person, one week. New to the project? Read `docs/nomi-101.md`. 
 
 **Tasks**
 - [ ] Apply for a free UMLS license; never share the credentials
-- [ ] Mirror RxNorm to R2, fetchable with `uv run pipeline fetch rxnorm`
+- [ ] Keep RxNorm out of the public raw dataset (UMLS license forbids redistribution); store it privately, fetchable with `uv run pipeline fetch rxnorm`
 - [ ] Build the crosswalk from one command
 - [ ] Export unlinked ingredients with a reason
 

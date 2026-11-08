@@ -1,8 +1,11 @@
+import re
 import shutil
+import zipfile
 from pathlib import Path
+from unittest.mock import ANY
 
 import pytest
-from nomi_pipeline.ingest.spl import ParseError, collect_labels, parse_label
+from nomi_pipeline.ingest.spl import ParseError, collect_labels, parse_label, parse_label_bytes
 
 FIXTURES = Path(__file__).parent / "fixtures" / "spl"
 
@@ -97,3 +100,40 @@ def test_collect_labels_handles_empty_directory(tmp_path: Path) -> None:
     assert result.ingredients == []
     assert result.failures == []
     assert result.files_processed == 0
+
+
+def test_collect_labels_reads_zipped_parts_from_fetch(tmp_path: Path) -> None:
+    # pipeline fetch delivers DailyMed as dm_spl_release_human_otc_partN.xml.zip (ADR-0003).
+    with zipfile.ZipFile(tmp_path / "dm_spl_release_human_otc_part1.xml.zip", "w") as z:
+        z.write(FIXTURES / "ibuprofen_otc.xml", "20261104_set-a.xml")
+        z.write(FIXTURES / "not_xml.xml", "20261104_set-b.xml")
+
+    result = collect_labels(tmp_path)
+
+    assert result.files_processed == 2
+    assert len(result.products) > 0
+    assert result.failures == [
+        {"file": "dm_spl_release_human_otc_part1.xml.zip/20261104_set-b.xml", "error": ANY}
+    ]
+
+
+def test_non_numeric_version_is_a_parse_error_not_a_crash() -> None:
+    xml = (FIXTURES / "ibuprofen_otc.xml").read_bytes()
+    broken = re.sub(rb'(<versionNumber value=")[^"]*', rb"\1x", xml, count=1)
+    with pytest.raises(ParseError):
+        parse_label_bytes(broken, "broken.xml")
+
+
+def test_collect_labels_keeps_only_the_latest_version_of_a_label(tmp_path: Path) -> None:
+    xml = (FIXTURES / "ibuprofen_otc.xml").read_bytes()
+    version = int(re.search(rb'<versionNumber value="(\d+)"', xml).group(1))  # type: ignore[union-attr]
+    older = re.sub(rb'(<versionNumber value=")\d+', rb"\g<1>%d" % (version - 1), xml, count=1)
+    (tmp_path / "a_new.xml").write_bytes(xml)
+    (tmp_path / "b_old.xml").write_bytes(older)
+
+    result = collect_labels(tmp_path)
+
+    assert result.files_processed == 2
+    assert result.superseded == 1
+    assert {p.spl_version for p in result.products} == {version}
+    assert len(result.products) == 2

@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from pathlib import Path
 
 from pydantic import field_validator
@@ -11,6 +13,11 @@ class Settings(BaseSettings):
     data_dir: Path = Path("data")
     log_level: str = "INFO"
 
+    # Raw data store for fetch and mirror (ADR-0003); the public dataset unless overridden
+    raw_store: str | None = "hf://datasets/nomi-bdbi-gt/nomi-raw-data"
+    hf_token: str | None = None
+
+    # Cloudflare R2, reserved for publishing the app dataset (NOMI-038)
     r2_account_id: str | None = None
     r2_access_key_id: str | None = None
     r2_secret_access_key: str | None = None

@@ -1,4 +1,5 @@
 import json
+import zipfile
 from dataclasses import dataclass, field, fields
 from pathlib import Path
 from typing import Any
@@ -8,6 +9,16 @@ from nomi_pipeline.ingest._ndc import normalize_ndc
 
 class NdcParseError(Exception):
     """Raised when the NDC directory file cannot be parsed."""
+
+
+def _read_json_text(path: Path) -> str:
+    if not path.name.endswith(".zip"):
+        return path.read_text()
+    with zipfile.ZipFile(path) as z:
+        members = [n for n in z.namelist() if n.endswith(".json")]
+        if len(members) != 1:
+            raise NdcParseError(f"{path.name}: expected one .json file, found {len(members)}")
+        return z.read(members[0]).decode()
 
 
 @dataclass
@@ -33,9 +44,10 @@ class NdcResult:
 
 
 def parse_ndc_file(path: Path) -> NdcResult:
+    """Parse an openFDA NDC JSON file, or the .json.zip that pipeline fetch delivers."""
     try:
-        data = json.loads(path.read_text())
-    except json.JSONDecodeError as e:
+        data = json.loads(_read_json_text(path))
+    except (json.JSONDecodeError, zipfile.BadZipFile) as e:
         raise NdcParseError(f"{path.name}: invalid JSON ({e})") from e
 
     records = data.get("results")

@@ -1,3 +1,4 @@
+import zipfile
 from pathlib import Path
 
 import pytest
@@ -44,3 +45,11 @@ def test_compute_stats_counts_rows_and_null_rates() -> None:
     assert stats["skipped_bad_ndc"] == 1
     assert stats["null_rates"]["spl_set_id"] == 0.5
     assert stats["null_rates"]["ndc11"] == 0.0
+
+
+def test_reads_the_zipped_file_from_fetch(tmp_path: Path) -> None:
+    zipped = tmp_path / "drug-ndc-0001-of-0001.json.zip"
+    with zipfile.ZipFile(zipped, "w") as z:
+        z.write(FIXTURES / "sample.json", "drug-ndc-0001-of-0001.json")
+
+    assert parse_ndc_file(zipped).products == parse_ndc_file(FIXTURES / "sample.json").products
