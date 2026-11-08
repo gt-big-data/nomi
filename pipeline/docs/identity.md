@@ -14,26 +14,44 @@ It reads `ndc.parquet`, `spl_products.parquet` and `spl_ingredients.parquet` fro
 ## How a barcode resolves
 
 1. The barcode parser (`identity/barcode.py`, NOMI-007) gives up to three NDC11 candidates.
-2. Exactly one candidate must be in the NDC directory. Two or more is `ambiguous_ndc`: the same
-   10 digits split two ways are two real packages, and the barcode cannot tell them apart.
-3. The package's label product comes from `spl_products` (latest version of each label). If the
-   package is on more than one label, the directory's `spl_set_id` picks one; otherwise it is
-   `ambiguous_label`.
+2. Exactly one candidate must be in the NDC directory. Since a package's own NDC is always one of
+   its barcode's candidates, a single match is always the right package.
+3. The package's label product comes from `spl_products`. When the directory names a label
+   (`spl_set_id`), only that label is accepted. Without one, the package must be on exactly one
+   label.
 4. Active ingredients come from `spl_ingredients` for that label's `(spl_set_id, product_index)`,
-   not the set id alone, because one label can hold products with different strengths.
-5. Every ingredient needs a UNII, name, unit and a positive strength, or the result is
-   `invalid_ingredients`.
-
-Other outcomes are kept, never guessed:
+   not the set id alone, because one label can hold products with different strengths. Bronze keeps
+   one version of each label, so no version check is needed here.
+5. Every ingredient must meet the product schema: a UNII, name, unit and positive strength, and
+   `per_amount` and `per_unit` together with a positive amount.
+6. The label must list as many active ingredients as the directory does.
 
 | Status | Meaning |
 | --- | --- |
+| `resolved` | All of the above hold; the product is written to `product.parquet` |
+| `homeopathic` | Homeopathic, with no label in the OTC download; identified from the directory only |
+| `invalid_format`, `bad_check_digit`, `not_ndc_barcode` | The barcode parser rejected it |
 | `not_found` | No candidate is in the directory |
-| `missing_label` | The package is in the directory but on no OTC label |
+| `ambiguous_ndc` | Two candidates are real packages: the same 10 digits split two ways |
+| `missing_label` | In the directory but on no OTC label |
+| `label_mismatch` | On a label, but not the one the directory names |
+| `ambiguous_label` | On several labels, and the directory does not name one |
 | `missing_ingredients` | The label product lists no active ingredients |
 | `kit` | A kit; ingredients are per part, which the product record cannot hold yet |
-| `homeopathic` | Homeopathic, with no label in the OTC download; identified from the directory only |
+| `invalid_ingredients` | An ingredient breaks the product schema's rules |
+| `ingredient_conflict` | The label and the directory list a different number of actives |
 | `invalid_package_ndc`, `ndc_mismatch` | The directory's own package NDC is malformed or disagrees with its NDC11 |
+
+## Outputs
+
+`product.parquet` holds only `resolved` packages, with the product schema's field names: `ndc11`,
+`spl_set_id`, `spl_version`, `brand_name`, `generic_name`, `labeler`, `dosage_form`,
+`marketing_category` (as the schema's enum value) and `ingredients`. `otc_category`, `uses` and
+`scope` are added by NOMI-026 and NOMI-047. Homeopathic packages have no label and so cannot be
+valid product records yet; NOMI-026 can build them from `identity_results.parquet` (status
+`homeopathic`) and the directory.
+
+`identity_results.parquet` has one row per package: its barcode, status and directory matches.
 
 ## Coverage
 
@@ -41,12 +59,10 @@ Each package in the directory gets the barcode it would carry (`3` + NDC10 + che
 from the dashed NDC10 (NDC11 padding cannot be undone safely), and is resolved like a scan.
 Sample packages are skipped, since they are not sold.
 
-Homeopathic products are shown as "not evaluated by FDA" and not scored (system design 5.2). Their
-labels are not in DailyMed's OTC download, so they are kept in `product.parquet` with no
-ingredients and counted apart from the 90% target.
+The target is 95% of scored packages, from system design 5.2 and section 8; the ticket's sprint
+milestone was 90%. Homeopathic products are not scored (system design 5.2), so they are reported
+apart, with their own list of misses and an overall figure that counts them as found when the
+directory identifies them.
 
 This measures the lookup, not real boxes: store-brand barcodes that do not follow the `3` + NDC
 pattern need the overrides and name search in system design 5.2.
-
-`product.parquet` is the identity stage only. OTC category, scope (NOMI-026) and uses (NOMI-047)
-are added later.

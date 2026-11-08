@@ -30,6 +30,7 @@ def sources(ndc_raw: str = "1234-5678-90") -> tuple[Rows, Rows, Rows, str]:
             "dosage_form": "TABLET",
             "route": "ORAL",
             "marketing_category": "OTC MONOGRAPH DRUG",
+            "active_ingredients": ["ACETAMINOPHEN"],
             "sample": False,
         }
     ]
@@ -79,6 +80,9 @@ def test_each_layout_and_ean_resolves(ndc_raw: str, ndc11: str) -> None:
         assert result.product is not None
         assert result.product["ndc11"] == ndc11
         assert result.product["brand_name"] == "Fixture"
+        assert result.product["labeler"] == "Labeler"
+        assert result.product["marketing_category"] == "otc_monograph_drug"
+        assert result.product["spl_version"] == 3
         assert result.product["ingredients"] == [
             {
                 "unii": "362O9ITL9D",
@@ -120,9 +124,13 @@ def test_label_and_ingredient_failures() -> None:
     ndc, labels, ingredients, barcode = sources()
     assert Resolver(ndc, [], ingredients).resolve(barcode).status == "missing_label"
     assert Resolver(ndc, labels, []).resolve(barcode).status == "missing_ingredients"
-    inactive = [{**ingredients[0], "role": "inactive"}]
-    assert Resolver(ndc, labels, inactive).resolve(barcode).status == "missing_ingredients"
-    for bad in ({"strength": 0.0}, {"strength": None}, {"unit": None}, {"per_amount": 5.0}):
+    for bad in (
+        {"strength": 0.0},
+        {"strength": None},
+        {"unit": None},
+        {"per_amount": 5.0},
+        {"per_amount": 0.0, "per_unit": "mL"},
+    ):
         broken = [{**ingredients[0], **bad}]
         assert Resolver(ndc, labels, broken).resolve(barcode).status == "invalid_ingredients"
     kit = [{**ingredients[0], "part_index": 1}]
@@ -154,21 +162,35 @@ def test_ingredients_come_from_the_packages_own_product() -> None:
     assert [i["strength"] for i in result.product["ingredients"]] == [500.0]
 
 
-def test_only_the_latest_label_version_counts() -> None:
+def test_label_must_be_the_one_the_directory_names() -> None:
     ndc, labels, ingredients, barcode = sources()
-    other_ndc11, _ = package_codes("1234-5679-90")
-    # Version 4 no longer lists this package, so the old version must not resolve it.
-    labels.append({**labels[0], "spl_version": 4, "ndc11": other_ndc11})
-    assert Resolver(ndc, labels, ingredients).resolve(barcode).status == "missing_label"
+    ndc[0]["spl_set_id"] = "label-z"
+    assert Resolver(ndc, labels, ingredients).resolve(barcode).status == "label_mismatch"
 
 
-def test_homeopathic_products_resolve_without_ingredients() -> None:
+def test_label_and_directory_must_agree_on_ingredient_count() -> None:
+    ndc, labels, ingredients, barcode = sources()
+    ndc[0]["active_ingredients"] = ["ACETAMINOPHEN", "CAFFEINE"]
+    assert Resolver(ndc, labels, ingredients).resolve(barcode).status == "ingredient_conflict"
+    ndc[0]["active_ingredients"] = None
+    assert Resolver(ndc, labels, ingredients).resolve(barcode).status == "resolved"
+
+
+def test_unknown_marketing_category_maps_to_other() -> None:
+    ndc, labels, ingredients, barcode = sources()
+    ndc[0]["marketing_category"] = "UNAPPROVED MEDICAL GAS"
+    result = Resolver(ndc, labels, ingredients).resolve(barcode)
+    assert result.product is not None
+    assert result.product["marketing_category"] == "other"
+
+
+def test_homeopathic_products_are_identified_without_a_product() -> None:
     ndc, _, _, barcode = sources()
     ndc[0]["marketing_category"] = "UNAPPROVED HOMEOPATHIC"
     result = Resolver(ndc, [], []).resolve(barcode)
     assert result.status == "homeopathic"
-    assert result.product is not None
-    assert result.product["ingredients"] == []
+    # No label, so no ingredients: it cannot be a schema-valid product record.
+    assert result.product is None
 
 
 def test_coverage_keeps_every_miss_and_skips_samples() -> None:
@@ -185,7 +207,7 @@ def test_coverage_keeps_every_miss_and_skips_samples() -> None:
         },
     ]
     products, results = evaluate(Resolver(ndc, labels, ingredients))
-    assert [p["ndc11"] for p in products] == ["01234567890", "66666000001"]
+    assert [p["ndc11"] for p in products] == ["01234567890"]
     assert {r["expected_ndc11"]: r["status"] for r in results} == {
         "01234567890": "resolved",
         "99999000001": "invalid_package_ndc",
@@ -193,11 +215,14 @@ def test_coverage_keeps_every_miss_and_skips_samples() -> None:
         "66666000001": "homeopathic",
     }
     report = coverage_report(results)
-    assert "Correct: 1 of 3 (33.33%)" in report
+    assert "Scored packages resolved: 1 of 3 (33.33%)" in report
+    assert "all packages: 2 of 4 (50.00%)" in report
     assert "not met" in report
     assert "| invalid |" in report
     assert "| 99999-0000-1 |" in report
+    # Identified homeopathic packages are not misses; unidentified ones get their own list.
     assert "66666-0000-1" not in report
+    assert "## Every homeopathic miss" in report
     assert "not met" in coverage_report([])
 
 
