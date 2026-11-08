@@ -78,7 +78,8 @@ profile, which is why no health data needs to leave it.
 | Published meta-analyses | Effect sizes for the personalized model | Manual | Facts reused, text not copied |
 | All of Us (research) | Real-world outcomes with denominators | Per study | Data use agreement; aggregate results only |
 
-Raw downloads are mirrored once to R2 and pulled with `uv run pipeline fetch`. Raw data is never
+Raw downloads are mirrored to a Hugging Face dataset (ADR-0003; DailyMed as label XML only) and
+pulled with `uv run pipeline fetch`. Raw data is never
 committed to git.
 
 ## 5. Pipeline
@@ -87,7 +88,7 @@ committed to git.
 
 | Stage | Input | Output | Notes |
 |---|---|---|---|
-| fetch | R2 mirror | `data/raw/` with checksums | One command per source |
+| fetch | Hugging Face raw dataset | `data/raw/` with checksums | One command per source |
 | ingest | raw files | `data/bronze/*.parquet` | Typed tables; latest label version per set id; FAERS dedup by latest `caseversion` per `caseid` |
 | identify | NDC directory, labels | `data/silver/product.parquet` | Package NDC to label to ingredients; OTC category; scope flags |
 | extract | label sections | `data/silver/label_facts.parquet` | Rules plus LLM, see 5.3 |
@@ -352,7 +353,8 @@ the reviewer's credentials.
 
 | Item | Cost |
 |---|---|
-| Cloudflare R2 (raw data, datasets, CDN) | Free tier: 10 GB storage, no download fees |
+| Hugging Face dataset (raw sources) | Free for public datasets |
+| Cloudflare R2 (app datasets, CDN) | Free tier: 10 GB storage, no download fees |
 | GitHub Actions and Pages | Free for public repos |
 | Supabase | Free tier |
 | LLM label extraction | Under $50 per full run, a few runs per year |
