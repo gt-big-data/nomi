@@ -14,10 +14,11 @@ It reads `ndc.parquet`, `spl_products.parquet` and `spl_ingredients.parquet` fro
 ## How a barcode resolves
 
 1. The barcode parser (`identity/barcode.py`, NOMI-007) gives up to three NDC11 candidates.
-2. Exactly one candidate may be a real package, in the NDC directory or on any label, and it must
-   be in the directory. A box's own NDC is always one of its barcode's candidates, so checking the
-   labels too stops a box whose NDC is only on a label from resolving to another split of the
-   same digits.
+2. Exactly one real package, in the NDC directory or on any label, may have the scanned 10 digits
+   as its own NDC, and it must be in the directory. Matching on the digits, not just the NDC11,
+   matters because two different NDC10s can pad to one NDC11 (`12345-0678-9` and `12345-678-09`).
+   Checking the labels too stops a box whose NDC is only on a label (for example a kit part) from
+   resolving to a different directory package.
 3. The package's label product comes from `spl_products`. When the directory names a label
    (`spl_set_id`), only that label is accepted. Without one, the package must be on exactly one
    label.
@@ -34,15 +35,15 @@ It reads `ndc.parquet`, `spl_products.parquet` and `spl_ingredients.parquet` fro
 | `resolved` | All of the above hold; the product is written to `product.parquet` |
 | `homeopathic` | Homeopathic, with no label in the OTC download; identified from the directory only |
 | `invalid_format`, `bad_check_digit`, `not_ndc_barcode` | The barcode parser rejected it |
-| `not_found` | No candidate is in the directory (it may be on a label only) |
-| `ambiguous_ndc` | Two candidates are real packages, in the directory or on a label: the same 10 digits split two ways |
+| `not_found` | No directory package has the scanned digits (it may be on a label only) |
+| `ambiguous_ndc` | The same 10 digits split two ways are two real packages; this never happens in today's data |
 | `missing_label` | In the directory but on no OTC label |
 | `label_mismatch` | On a label, but not the one the directory names |
 | `ambiguous_label` | On several labels and the directory names none, or listed twice on the named label |
 | `missing_ingredients` | The label product lists no active ingredients |
 | `kit` | A kit; ingredients are per part, which the product record cannot hold yet |
 | `invalid_ingredients` | An ingredient breaks the product schema's rules |
-| `ingredient_conflict` | The label and the directory list a different number of actives; today every case is the bronze directory splitting a name at ";" |
+| `ingredient_conflict` | The label and the directory list a different number of actives; today every case is an ingredient name containing ";", which openFDA's directory splits in two |
 | `missing_name` | The directory gives no brand or generic name |
 | `invalid_package_ndc`, `ndc_mismatch` | The directory's own package NDC is malformed or disagrees with its NDC11 |
 

@@ -125,6 +125,22 @@ def test_a_package_only_on_a_label_blocks_another_split() -> None:
     assert Resolver([], labels[1:], ingredients).resolve(box).status == "not_found"
 
 
+def test_a_padded_ndc11_must_also_match_the_scanned_digits() -> None:
+    # 12345-0678-9 and 12345-678-09 both pad to 12345067809, but their barcodes differ. Scanning
+    # the label-only 12345-0678-9 must not return the directory's 12345-678-09.
+    ndc, labels, ingredients, _ = sources("12345-678-09")
+    label_only = {**labels[0], "spl_set_id": "kit-label", "ndc_raw": "12345-0678-9"}
+    _, scan = package_codes("12345-0678-9")
+    assert Resolver(ndc, labels + [label_only], ingredients).resolve(scan).status == "not_found"
+    assert Resolver(ndc, labels, ingredients).resolve(scan).status == "not_found"
+    # The directory package's own barcode still resolves, to its own label only.
+    _, own = package_codes("12345-678-09")
+    result = Resolver(ndc, labels + [label_only], ingredients).resolve(own)
+    assert result.status == "resolved"
+    assert result.product is not None
+    assert result.product["spl_set_id"] == "label-a"
+
+
 def test_names_are_required() -> None:
     ndc, labels, ingredients, barcode = sources()
     for name in ("brand_name", "generic_name"):
@@ -183,7 +199,9 @@ def test_ingredients_come_from_the_packages_own_product() -> None:
     # One label, two products with different strengths: join on product index, not set id.
     ndc, labels, ingredients, barcode = sources()
     other_ndc11, _ = package_codes("1234-5679-90")
-    labels.append({**labels[0], "product_index": 1, "ndc11": other_ndc11})
+    labels.append(
+        {**labels[0], "product_index": 1, "ndc11": other_ndc11, "ndc_raw": "1234-5679-90"}
+    )
     ingredients.append({**ingredients[0], "product_index": 1, "strength": 325.0})
     result = Resolver(ndc, labels, ingredients).resolve(barcode)
     assert result.product is not None

@@ -94,14 +94,21 @@ class Resolver:
         self, ndc: Iterable[Row], products: Iterable[Row], ingredients: Iterable[Row]
     ) -> None:
         self.directory: dict[str, Row] = {}
+        # The 10 digits printed in a barcode -> the NDC11s of real packages with those digits.
+        # Two different NDC10s can pad to one NDC11 (12345-0678-9 and 12345-678-09), so a
+        # package only matches a scan when its own digits are the scanned ones.
+        self.packages: dict[str, set[str]] = defaultdict(set)
         for row in ndc:
-            self.directory.setdefault(row["ndc11"], row)
+            if self.directory.setdefault(row["ndc11"], row) is row:
+                self.packages[digits(row.get("ndc_raw"))].add(row["ndc11"])
         # One label product can list many packages; one package can appear on more than one label.
-        self.labels: dict[str, list[Row]] = defaultdict(list)
+        self.labels: dict[tuple[str, str], list[Row]] = defaultdict(list)
         for row in products:
             entry = {k: row[k] for k in ("spl_set_id", "spl_version", "product_index")}
-            if entry not in self.labels[row["ndc11"]]:
-                self.labels[row["ndc11"]].append(entry)
+            key = (digits(row.get("ndc_raw")), row["ndc11"])
+            if entry not in self.labels[key]:
+                self.labels[key].append(entry)
+                self.packages[key[0]].add(row["ndc11"])
         self.ingredients: dict[tuple[str, int], list[Row]] = defaultdict(list)
         for row in ingredients:
             self.ingredients[(row["spl_set_id"], row["product_index"])].append(row)
@@ -110,24 +117,22 @@ class Resolver:
         parsed = ndc_candidates(barcode)
         if parsed["status"] != "ok":
             return Resolution(parsed["status"])
-        # A candidate is a real package if the directory or any label lists it. A box whose own
-        # NDC is only on a label must not resolve to another split of the same digits.
-        matches = tuple(
-            sorted(
-                c
-                for c in dict.fromkeys(parsed["candidates"])
-                if c in self.directory or c in self.labels
-            )
-        )
+        # The 4-4-2 candidate is "0" + the scanned 10 digits.
+        scanned = parsed["candidates"][0][1:]
+        # A real package, in the directory or on any label, whose own digits were scanned. A box
+        # that is only on a label must not resolve to a directory package with other digits.
+        matches = tuple(sorted(self.packages.get(scanned, set())))
         if len(matches) > 1:
             return Resolution("ambiguous_ndc", matches)
-        if not matches or matches[0] not in self.directory:
-            return Resolution("not_found", matches)
+        if not matches:
+            return Resolution("not_found")
         ndc11 = matches[0]
-        listing = self.directory[ndc11]
+        listing = self.directory.get(ndc11)
+        if listing is None or digits(listing.get("ndc_raw")) != scanned:
+            return Resolution("not_found", matches)
         set_id = listing.get("spl_set_id")
 
-        labels = self.labels.get(ndc11, [])
+        labels = self.labels.get((scanned, ndc11), [])
         if set_id is not None and labels:
             # The directory names the package's label; never accept or pick a different one.
             chosen = [label for label in labels if label["spl_set_id"] == set_id]
@@ -158,7 +163,7 @@ class Resolver:
         listed = listing.get("active_ingredients")
         if listed is not None and len(listed) != len(ingredients):
             # The label and the directory disagree on what is in the box. On today's data every case
-            # comes from the bronze directory splitting an ingredient name at ";".
+            # is an ingredient name containing ";", which openFDA's directory splits in two.
             return Resolution("ingredient_conflict", matches)
 
         if not (listing.get("brand_name") and listing.get("generic_name")):
@@ -176,6 +181,10 @@ class Resolver:
             "ingredients": ingredients,
         }
         return Resolution("resolved", matches, product)
+
+
+def digits(ndc_raw: str | None) -> str:
+    return (ndc_raw or "").replace("-", "")
 
 
 def positive(value: Any) -> bool:
@@ -269,10 +278,11 @@ def coverage_report(results: list[Row]) -> str:
         "barcode it would carry (`3` + NDC10 + check digit), which is then resolved like a scan.",
         "Sample packages are left out. This measures the lookup, not real-world box scans.",
         "",
-        "A scored package resolves when its barcode matches only that package in the directory and",
-        "on the labels, its label is the one the directory names (or, when the directory names none,",
-        "the only label listing it), it is not a kit, the label's active ingredients are complete and",
-        "agree in number with the directory's, and the directory gives a brand and generic name.",
+        "A scored package resolves when it is the only package, in the directory or on the labels,",
+        "whose own NDC has the barcode's 10 digits, its label is the one the directory names (or,",
+        "when the directory names none, the only label listing it), it is not a kit, the label's",
+        "active ingredients are complete and agree in number with the directory's, and the directory",
+        "gives a brand and generic name.",
         "",
         f"**Scored packages resolved: {correct} of {total} ({rate:.2%}).** "
         f"Target {TARGET:.0%}: {'met' if total and rate >= TARGET else 'not met'}.",
