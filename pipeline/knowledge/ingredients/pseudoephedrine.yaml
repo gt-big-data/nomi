@@ -253,6 +253,7 @@ ratings:
         document_id: c05d7e27-6821-468f-b27d-9c0b02a07b0f
         section: "34068-7: Directions; do not use under 6"
         url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=c05d7e27-6821-468f-b27d-9c0b02a07b0f
+        quote: "children under 6 years do not use this product"
   - dimension: pediatric
     persona: under_2
     severity: 3
@@ -261,6 +262,7 @@ ratings:
         document_id: c05d7e27-6821-468f-b27d-9c0b02a07b0f
         section: "34068-7: Directions; do not use under 6"
         url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=c05d7e27-6821-468f-b27d-9c0b02a07b0f
+        quote: "children under 6 years do not use this product"
   - dimension: pediatric
     persona: pregnant
     severity: 0
@@ -478,5 +480,6 @@ modifiers:
         url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=c05d7e27-6821-468f-b27d-9c0b02a07b0f
         quote: "trouble urinating due to an enlarged prostate gland"
 review_status: unreviewed
-notes: Oral nasal-decongestant use; other routes are not covered. The enlarged-prostate warning is a
-  modifier on anticholinergic_cognitive, which owns urinary retention in the rubric.
+notes: Oral nasal-decongestant use; other routes are not covered. Under 6 is 3 because 47 of the 53
+  single-ingredient labels that dose children say do not use under 6. The enlarged-prostate warning
+  is a modifier on anticholinergic_cognitive, which owns urinary retention in the rubric.
