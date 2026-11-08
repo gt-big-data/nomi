@@ -161,7 +161,8 @@ class Resolver:
             # Bad strengths must never pass as a resolved product.
             return Resolution("invalid_ingredients", matches)
         listed = listing.get("active_ingredients")
-        if listed is not None and len(listed) != len(ingredients):
+        # Bronze stores "none listed" as an empty list; then there is nothing to compare.
+        if listed and len(listed) != len(ingredients):
             # The label and the directory disagree on what is in the box. On today's data every case
             # is an ingredient name containing ";", which openFDA's directory splits in two.
             return Resolution("ingredient_conflict", matches)

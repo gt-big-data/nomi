@@ -9,7 +9,7 @@ uv run pipeline identity resolve
 It reads `ndc.parquet`, `spl_products.parquet` and `spl_ingredients.parquet` from
 `Settings.bronze_dir` and writes `product.parquet` and `identity_results.parquet` to
 `Settings.silver_dir`, plus the report at `pipeline/reports/identity_coverage.md`
-(`--report PATH` to change it). It exits 1 below 95% coverage, after writing everything.
+(`--report PATH` to change it). It exits 1 below 95% coverage (or with no scored packages), after writing everything.
 
 ## How a barcode resolves
 
@@ -31,7 +31,7 @@ It reads `ndc.parquet`, `spl_products.parquet` and `spl_ingredients.parquet` fro
 5. Every ingredient must meet the product schema: a UNII, name, unit and positive strength, and
    `per_amount` and `per_unit` together with a positive amount.
 6. The label must list as many active ingredients as the directory does, when the directory lists
-   any (about 1% of directory rows list none, and then the check is skipped).
+   any (about 1% of directory rows list none, stored as an empty list, and then the check is skipped).
 7. The directory must give a brand name and a generic name, as the product schema requires.
 
 | Status | Meaning |

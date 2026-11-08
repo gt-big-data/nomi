@@ -218,8 +218,9 @@ def test_label_and_directory_must_agree_on_ingredient_count() -> None:
     ndc, labels, ingredients, barcode = sources()
     ndc[0]["active_ingredients"] = ["ACETAMINOPHEN", "CAFFEINE"]
     assert Resolver(ndc, labels, ingredients).resolve(barcode).status == "ingredient_conflict"
-    ndc[0]["active_ingredients"] = None
-    assert Resolver(ndc, labels, ingredients).resolve(barcode).status == "resolved"
+    for none_listed in ([], None):
+        ndc[0]["active_ingredients"] = none_listed
+        assert Resolver(ndc, labels, ingredients).resolve(barcode).status == "resolved"
 
 
 def test_unknown_marketing_category_maps_to_other() -> None:
