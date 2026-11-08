@@ -170,3 +170,18 @@ def test_columns_that_change_between_quarters_are_kept(tmp_path: Path, faers_zip
     assert set(demo["primaryid"].to_list()) == {"1002", "1003", "2001"}
     assert "wt" in demo.columns
     assert not (tmp_path / "bronze" / "faers" / "_staging").exists()
+
+
+def test_report_shipped_again_in_a_later_quarter_is_kept_once(
+    tmp_path: Path, faers_zip: Path
+) -> None:
+    # FDA sometimes republishes the same report (same primaryid and caseversion) later.
+    _make_zip(faers_zip.with_name("faers_ascii_2024q2.zip"), quarter="24Q2")
+    ingest_faers(_mock_settings(tmp_path), reports_dir=tmp_path / "reports")
+
+    bronze = tmp_path / "bronze" / "faers"
+    demo = pl.read_parquet(bronze / "demo.parquet")
+    drug = pl.read_parquet(bronze / "drug.parquet")
+    assert sorted(demo["primaryid"].to_list()) == ["1002", "1003"]
+    assert sorted(drug["primaryid"].to_list()) == ["1002", "1003"]
+    assert set(demo["quarter"]) == {"faers_ascii_2024q2"}
