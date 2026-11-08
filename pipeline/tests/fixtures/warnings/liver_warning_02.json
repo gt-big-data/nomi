@@ -1,0 +1,19 @@
+{
+  "id": "liver_warning_02",
+  "text": "Liver warning: This product contains acetaminophen. Severe liver damage may occur if you take • more than 4,000 mg of acetaminophen in 24 hours • with other drugs containing acetaminophen • 3 or more alcoholic drinks every day while using this product",
+  "expected_warnings": ["liver_warning"],
+  "source": {
+    "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=00146b91-008d-4b16-95b0-6077f98821be",
+    "openfda_query_url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name%3A%22ACETAMINOPHEN%22+AND+openfda.product_type%3A%22HUMAN+OTC+DRUG%22&limit=30",
+    "set_id": "00146b91-008d-4b16-95b0-6077f98821be",
+    "label_id": "9bd24daa-3c59-4608-b967-d4fe2640358b",
+    "version": "3",
+    "effective_time": "20241024",
+    "retrieved_on": "2026-10-22",
+    "brand_name": ["basic care acetaminophen"],
+    "field": "warnings",
+    "item_index": 0,
+    "start": 9,
+    "end": 260
+  }
+}

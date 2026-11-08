@@ -1,0 +1,19 @@
+{
+  "id": "negative_06",
+  "text": "Ask a doctor or pharmacist before use if you are taking sedatives or tranquilizers",
+  "expected_warnings": [],
+  "source": {
+    "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=070e556b-e083-452f-8a7c-aca92470dd61",
+    "openfda_query_url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name%3A%22DIPHENHYDRAMINE%22+AND+openfda.product_type%3A%22HUMAN+OTC+DRUG%22&limit=60",
+    "set_id": "070e556b-e083-452f-8a7c-aca92470dd61",
+    "label_id": "1c298805-036e-4cd1-87cc-1d2e413043b8",
+    "version": "5",
+    "effective_time": "20251224",
+    "retrieved_on": "2026-11-08",
+    "brand_name": ["Pharbedryl"],
+    "field": "ask_doctor",
+    "item_index": 0,
+    "start": 157,
+    "end": 239
+  }
+}

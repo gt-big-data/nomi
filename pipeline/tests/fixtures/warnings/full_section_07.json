@@ -1,0 +1,19 @@
+{
+  "id": "full_section_07",
+  "text": "Warnings Keep out of the reach of children under 6 years of age. If more than used for brushing is accidentally swallowed, get medical help or contact a Poison Control Center right away.",
+  "expected_warnings": ["fluoride_accidental_swallowing_warning"],
+  "source": {
+    "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=042817f9-675f-056a-e063-6394a90a2d97",
+    "openfda_query_url": "https://api.fda.gov/drug/label.json?search=set_id%3A%22042817f9-675f-056a-e063-6394a90a2d97%22&limit=1",
+    "set_id": "042817f9-675f-056a-e063-6394a90a2d97",
+    "label_id": "0428288d-4048-e853-e063-6294a90adb0c",
+    "version": "1",
+    "effective_time": "20230830",
+    "retrieved_on": "2026-11-08",
+    "brand_name": ["UNITED Asutra TC Kit Colgate"],
+    "field": "warnings",
+    "item_index": 0,
+    "start": 0,
+    "end": 186
+  }
+}
