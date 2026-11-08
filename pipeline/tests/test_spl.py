@@ -63,7 +63,7 @@ def test_malformed_package_ndc_is_skipped_not_a_file_failure() -> None:
     assert label.products[0].ndc11 == "12345067890"
 
 
-def test_multi_product_kit_assigns_distinct_product_index() -> None:
+def test_two_products_on_one_label_get_distinct_product_index() -> None:
     label = parse_label(FIXTURES / "kit_two_products.xml")
 
     assert len(label.products) == 2
@@ -137,3 +137,31 @@ def test_collect_labels_keeps_only_the_latest_version_of_a_label(tmp_path: Path)
     assert result.superseded == 1
     assert {p.spl_version for p in result.products} == {version}
     assert len(result.products) == 2
+
+
+def test_active_by_reference_is_active() -> None:
+    # Real label: acetaminophen is ACTIR (strength given by reference), not ACTIB.
+    label = parse_label(FIXTURES / "actir_acetaminophen.xml")
+
+    active = [i for i in label.ingredients if i.role == "active"]
+    assert [(i.name, i.class_code, i.strength, i.unit) for i in active] == [
+        ("ACETAMINOPHEN", "ACTIR", 325, "mg")
+    ]
+    # Per 1 tablet adds nothing, so it is not stored.
+    assert active[0].per_amount is None
+
+
+def test_kit_parts_keep_their_ingredients_and_not_their_packages() -> None:
+    # Real kit: two pouches of triclosan soap, each a part with its own ingredients.
+    label = parse_label(FIXTURES / "kit_parts_triclosan_soap.xml")
+
+    assert [p.ndc11 for p in label.products] == ["18018050234"]
+    active = [i for i in label.ingredients if i.role == "active"]
+    assert [(i.name, i.part_index) for i in active] == [("TRICLOSAN", 0), ("TRICLOSAN", 1)]
+    # A concentration keeps its denominator, so it doesn't read as a dose.
+    assert (active[0].strength, active[0].unit, active[0].per_amount, active[0].per_unit) == (
+        0.04,
+        "mL",
+        100,
+        "mL",
+    )

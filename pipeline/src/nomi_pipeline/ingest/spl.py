@@ -31,7 +31,11 @@ class ProductRow:
 class IngredientRow:
     spl_set_id: str
     product_index: int
+    # Kits list their contents as parts; None for an ingredient of the product itself.
+    part_index: int | None
     role: str
+    # The SPL classCode: ACTIB, ACTIM, ACTIR (active), IACT (inactive), and a few rarer ones.
+    class_code: str | None
     unii: str | None
     name: str
     strength: float | None = None
@@ -46,6 +50,10 @@ class ParsedLabel:
     version: int = 0
     products: list[ProductRow] = field(default_factory=list)
     ingredients: list[IngredientRow] = field(default_factory=list)
+
+
+# Active by basis of strength, by moiety, or by reference to another substance.
+ACTIVE_CLASS_CODES = ("ACTIB", "ACTIM", "ACTIR")
 
 
 def parse_label(path: Path) -> ParsedLabel:
@@ -68,10 +76,10 @@ def _parse(data: bytes, name: str) -> ParsedLabel:
 
     set_id_el = root.find("hl7:setId", namespaces=NS)
     version_el = root.find("hl7:versionNumber", namespaces=NS)
-    if set_id_el is None or version_el is None:
+    set_id = set_id_el.get("root") if set_id_el is not None else None
+    if not set_id or version_el is None:
         raise ParseError(f"{name}: missing setID or versionNumber")
 
-    set_id = set_id_el.get("root")
     version = int(version_el.get("value"))
 
     label = ParsedLabel(set_id=set_id, version=version)
@@ -87,10 +95,12 @@ def _parse(data: bytes, name: str) -> ParsedLabel:
         else:
             product_name = ""
 
+        # Only the product's own packages: a kit's parts have package codes of their own.
         code_elements = product_el.findall(
-            ".//hl7:containerPackagedProduct/hl7:code", namespaces=NS
+            "hl7:asContent//hl7:containerPackagedProduct/hl7:code", namespaces=NS
         )
 
+        seen: set[str] = set()
         for code_el in code_elements:
             ndc_raw = code_el.get("code")
             if not ndc_raw:
@@ -99,6 +109,10 @@ def _parse(data: bytes, name: str) -> ParsedLabel:
                 ndc11 = normalize_ndc(ndc_raw)
             except ValueError:
                 continue
+            # Some labels repeat one NDC at two packaging levels (a carton and its bottle).
+            if ndc11 in seen:
+                continue
+            seen.add(ndc11)
 
             label.products.append(
                 ProductRow(
@@ -111,60 +125,58 @@ def _parse(data: bytes, name: str) -> ParsedLabel:
                 )
             )
 
-        ingredient_elements = product_el.findall("hl7:ingredient", namespaces=NS)
-        for ingredient_el in ingredient_elements:
-            class_code = ingredient_el.get("classCode")
-            if class_code in ("ACTIB", "ACTIM"):  # noqa: SIM108
-                role = "active"
-            else:
-                role = "inactive"
-
-            substance_el = ingredient_el.find("hl7:ingredientSubstance", namespaces=NS)
-            unii = None
-            ingredient_name = ""
-            if substance_el is not None:
-                code_el = substance_el.find("hl7:code", namespaces=NS)
-                if code_el is not None:
-                    unii = code_el.get("code")
-                name_el = substance_el.find("hl7:name", namespaces=NS)
-                if name_el is not None and name_el.text:
-                    ingredient_name = name_el.text.strip()
-
-            strength = None
-            unit = None
-            per_amount = None
-            per_unit = None
-            if role == "active":
-                quantity_el = ingredient_el.find("hl7:quantity", namespaces=NS)
-                if quantity_el is not None:
-                    numerator_el = quantity_el.find("hl7:numerator", namespaces=NS)
-                    if numerator_el is not None:
-                        strength = float(numerator_el.get("value"))
-                        unit = numerator_el.get("unit")
-
-                    denominator_el = quantity_el.find("hl7:denominator", namespaces=NS)
-                    if denominator_el is not None and denominator_el.get("value") not in (
-                        None,
-                        "1",
-                    ):
-                        per_amount = float(denominator_el.get("value"))
-                        per_unit = denominator_el.get("unit")
-
-            label.ingredients.append(
-                IngredientRow(
-                    spl_set_id=set_id,
-                    product_index=index,
-                    role=role,
-                    unii=unii,
-                    name=ingredient_name,
-                    strength=strength,
-                    unit=unit,
-                    per_amount=per_amount,
-                    per_unit=per_unit,
-                )
-            )
+        for ingredient_el in product_el.findall("hl7:ingredient", namespaces=NS):
+            label.ingredients.append(_ingredient(ingredient_el, set_id, index, None))
+        parts = product_el.findall("hl7:part/hl7:partProduct", namespaces=NS)
+        for part_index, part_el in enumerate(parts):
+            for ingredient_el in part_el.findall("hl7:ingredient", namespaces=NS):
+                label.ingredients.append(_ingredient(ingredient_el, set_id, index, part_index))
 
     return label
+
+
+def _ingredient(
+    ingredient_el: etree._Element, set_id: str, index: int, part_index: int | None
+) -> IngredientRow:
+    class_code = ingredient_el.get("classCode")
+    role = "active" if class_code in ACTIVE_CLASS_CODES else "inactive"
+
+    substance_el = ingredient_el.find("hl7:ingredientSubstance", namespaces=NS)
+    unii = None
+    ingredient_name = ""
+    if substance_el is not None:
+        code_el = substance_el.find("hl7:code", namespaces=NS)
+        if code_el is not None:
+            unii = code_el.get("code")
+        name_el = substance_el.find("hl7:name", namespaces=NS)
+        if name_el is not None and name_el.text:
+            ingredient_name = name_el.text.strip()
+
+    row = IngredientRow(
+        spl_set_id=set_id,
+        product_index=index,
+        part_index=part_index,
+        role=role,
+        class_code=class_code,
+        unii=unii,
+        name=ingredient_name,
+    )
+    quantity_el = ingredient_el.find("hl7:quantity", namespaces=NS)
+    if role == "active" and quantity_el is not None:
+        numerator_el = quantity_el.find("hl7:numerator", namespaces=NS)
+        if numerator_el is not None:
+            row.strength = float(numerator_el.get("value"))
+            row.unit = numerator_el.get("unit")
+
+        # "per 1 tablet" has unit "1" and adds nothing; "per 1 mL" or "per 5 mL" must be kept,
+        # or a concentration would read as a dose.
+        denominator_el = quantity_el.find("hl7:denominator", namespaces=NS)
+        if denominator_el is not None and denominator_el.get("value") is not None:
+            per_unit = denominator_el.get("unit")
+            if not (denominator_el.get("value") == "1" and per_unit in (None, "1")):
+                row.per_amount = float(denominator_el.get("value"))
+                row.per_unit = per_unit
+    return row
 
 
 @dataclass
