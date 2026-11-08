@@ -9,13 +9,11 @@ from pathlib import Path
 from typing import Any
 
 import pytest
-import yaml
 from jsonschema import Draft202012Validator
+from nomi_pipeline.extract.mandated_warnings import find_warnings, load_catalogue, normalize
 
 PIPELINE = Path(__file__).resolve().parents[2]
-WARNINGS: list[dict[str, Any]] = yaml.safe_load(
-    (PIPELINE / "knowledge/mandated_warnings.yaml").read_text(encoding="utf-8")
-)["warnings"]
+WARNINGS = load_catalogue()
 FIXTURES: list[dict[str, Any]] = [
     json.loads(path.read_text(encoding="utf-8"))
     for path in sorted((PIPELINE / "tests/fixtures/warnings").glob("*.json"))
@@ -26,18 +24,6 @@ COMMON = json.loads(
 )
 DIMENSIONS = set(COMMON["$defs"]["dimension"]["enum"])
 CITATION = Draft202012Validator({**COMMON, "$ref": "#/$defs/citation"})
-
-
-def normalize(text: str) -> str:
-    """Lowercase, straighten quotes, and keep only letters, digits and apostrophes."""
-    text = text.lower().replace("’", "'").replace("‘", "'")
-    return " ".join(re.sub(r"[^a-z0-9']+", " ", text).split())
-
-
-def find_warnings(text: str) -> set[str]:
-    """The catalogue's matching rule: any wording variant appears in the normalized text."""
-    label = normalize(text)
-    return {w["id"] for w in WARNINGS if any(normalize(v) in label for v in w["wording_variants"])}
 
 
 def test_catalogue_has_at_least_ten_unique_warnings() -> None:
@@ -59,9 +45,16 @@ def test_warning_entry(warning: dict[str, Any]) -> None:
         assert not problems, problems
 
 
-def test_wording_variants_are_unique_to_one_warning() -> None:
-    owners = Counter(normalize(v) for w in WARNINGS for v in set(w["wording_variants"]))
-    assert [v for v, n in owners.items() if n > 1] == []
+def test_no_variant_contains_another_warnings_variant() -> None:
+    # Otherwise text with one warning would also report the other.
+    variants = [(w["id"], normalize(v)) for w in WARNINGS for v in w["wording_variants"]]
+    clashes = [(a, b) for a, va in variants for b, vb in variants if a != b and vb in va]
+    assert clashes == []
+
+
+def test_normalize_ignores_punctuation_quotes_and_accents() -> None:
+    assert normalize("Reye’s syndrome:\n• Children") == "reye's syndrome children"
+    assert normalize("Hígado") == "higado"
 
 
 def test_fixtures_are_well_formed() -> None:
@@ -78,6 +71,13 @@ def test_fixtures_are_well_formed() -> None:
 
 def test_at_least_five_negatives() -> None:
     assert sum(fixture["expected_warnings"] == [] for fixture in FIXTURES) >= 5
+
+
+def test_full_warnings_sections_with_several_warnings() -> None:
+    # Whole Warnings sections, so recall is measured on real layouts, not hand-cropped spans.
+    full = [f for f in FIXTURES if f["id"].startswith("full_section_")]
+    assert len(full) >= 5
+    assert sum(len(f["expected_warnings"]) >= 2 for f in full) >= 5
 
 
 def test_every_warning_covered_at_least_twice() -> None:
