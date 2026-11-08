@@ -1,9 +1,7 @@
 {
   "id": "nsaid_aspirin_sensitivity_allergy_alert_01",
   "text": "Allergy alert: Ibuprofen may cause a severe allergic reaction, especially in people allergic to aspirin.",
-  "expected_warnings": [
-    "nsaid_aspirin_sensitivity_allergy_alert"
-  ],
+  "expected_warnings": ["nsaid_aspirin_sensitivity_allergy_alert"],
   "source": {
     "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=02889717-204c-463b-8506-4c5cf18c77d3",
     "openfda_query_url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name%3A%22IBUPROFEN%22+AND+openfda.product_type%3A%22HUMAN+OTC+DRUG%22&limit=60",
@@ -12,9 +10,7 @@
     "version": "6",
     "effective_time": "20250303",
     "retrieved_on": "2026-11-08",
-    "brand_name": [
-      "ibuprofen"
-    ],
+    "brand_name": ["ibuprofen"],
     "field": "warnings",
     "item_index": 0,
     "start": 9,

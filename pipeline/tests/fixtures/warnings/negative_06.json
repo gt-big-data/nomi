@@ -10,9 +10,7 @@
     "version": "5",
     "effective_time": "20251224",
     "retrieved_on": "2026-11-08",
-    "brand_name": [
-      "Pharbedryl"
-    ],
+    "brand_name": ["Pharbedryl"],
     "field": "ask_doctor",
     "item_index": 0,
     "start": 157,

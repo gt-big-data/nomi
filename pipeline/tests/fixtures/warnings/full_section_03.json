@@ -1,11 +1,7 @@
 {
   "id": "full_section_03",
   "text": "Warnings Liver warning: This product contains acetaminophen. Severe liver damage may occur if you take: more than 4,000 mg of acetaminophen in 24 hours with other drugs containing acetaminophen 3 or more alcoholic drinks every day while using this product Allergy alert: Acetaminophen may cause severe skin reactions. Symptoms may inclide: skin reddening blisters rash If a skin reaction occurs, stop use and seek medical help right away. Sore throat warning: If sore throat is severe, persists for more than 2 days, is accompanied or followed by fever, headache, rash, nausea, or vomiting, consult a doctor promptly. Do not use if you are now taking a prescription monoamine oxidase inhibitor (MAOI) (certain drugs for depression, psychiatric or emotional conditions, or Parkinson's disease) or for 2 weeks after stopping the MAOI drug. If you do not know if your prescription drug contains an MAOI, ask a doctor or pharmacist before taking this product. with any other drug containing acetaminophen (prescription or non-prescription). If you are not sure whether a drug contains acetaminophen, ask a doctor or pharmacist. Ask a doctor before use if you have liver disease heart disease diabetes high blood pressure thyroid disease trouble urinating due to an enlarged prostate gland cough that occurs with too much phlegm (mucus) persistent or chronic cough such as occurs with smoking, asthma, or emphysema Ask a doctor or pharmacist before use if you are taking the blood thinning drug warfarin. When using this product, do not exceed recommended dosage Stop use and ask a doctor if nervousness, dizziness, or sleeplessness occur pain, cough, or nasal congestion gets worse or lasts more than 7 days fever gets worse or lasts more than 3 days redness or swelling is present new symptoms occur cough comes back or occurs with a rash or headache that lasts. These could be signs of a serious condition. If pregnant or breast-feeding, ask a health professional before use. Keep out of reach of children. Overdose warning: Taking more than the recommended dose (overdose) may cause liver damage. In case of overdose, get medical help or contact a Poison Control Center (1-800-222-1222) right away. Quick medical attention is critical for adults as well as for children even if you do not notice any signs or symptoms.",
-  "expected_warnings": [
-    "acetaminophen_skin_reaction_alert",
-    "liver_warning",
-    "maoi_warning"
-  ],
+  "expected_warnings": ["acetaminophen_skin_reaction_alert", "liver_warning", "maoi_warning"],
   "source": {
     "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0044c53c-11dd-41a9-a5d9-622dd8b1c144",
     "openfda_query_url": "https://api.fda.gov/drug/label.json?search=set_id%3A%220044c53c-11dd-41a9-a5d9-622dd8b1c144%22&limit=1",
@@ -14,9 +10,7 @@
     "version": "3",
     "effective_time": "20240327",
     "retrieved_on": "2026-11-08",
-    "brand_name": [
-      "Daytime Cold and Flu"
-    ],
+    "brand_name": ["Daytime Cold and Flu"],
     "field": "warnings",
     "item_index": 0,
     "start": 0,

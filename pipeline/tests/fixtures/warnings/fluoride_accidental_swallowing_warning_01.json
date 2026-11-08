@@ -1,9 +1,7 @@
 {
   "id": "fluoride_accidental_swallowing_warning_01",
   "text": "Keep out of reach of children under 6 years of age. If more than used for brushing is accidentally swallowed, get medical help or contact a Poison Control Center right away.",
-  "expected_warnings": [
-    "fluoride_accidental_swallowing_warning"
-  ],
+  "expected_warnings": ["fluoride_accidental_swallowing_warning"],
   "source": {
     "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0028f88d-a9fe-4cfa-a6c6-168f9689b5f6",
     "openfda_query_url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name%3A%22SODIUM+FLUORIDE%22+AND+openfda.product_type%3A%22HUMAN+OTC+DRUG%22&limit=60",
@@ -12,9 +10,7 @@
     "version": "2",
     "effective_time": "20260109",
     "retrieved_on": "2026-11-08",
-    "brand_name": [
-      "Prime Tooth Care Hami Melon"
-    ],
+    "brand_name": ["Prime Tooth Care Hami Melon"],
     "field": "warnings",
     "item_index": 0,
     "start": 71,
