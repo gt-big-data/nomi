@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 import zipfile
 from pathlib import Path
 from typing import cast
@@ -9,6 +10,7 @@ import polars as pl
 import pytest
 from nomi_pipeline.config import Settings
 from nomi_pipeline.evidence._faers_pairs import (
+    COLUMNS,
     _clean_demographics,
     _load_event_groups,
     _map_event_groups,
@@ -31,6 +33,7 @@ DRUG = """\
 primaryid$caseid$drug_seq$role_cod$drugname
 1001$100$1$PS$IBUPROFEN
 1002$100$1$PS$IBUPROFEN
+1002$100$4$SS$Ibuprofen
 1002$100$2$C$ASPIRIN
 1002$100$3$I$WARFARIN
 1003$101$1$SS$ACETAMINOPHEN
@@ -42,10 +45,10 @@ primaryid$caseid$drug_seq$role_cod$drugname
 REAC = """\
 primaryid$caseid$pt
 1001$100$NAUSEA
-1002$100$GASTROINTESTINAL HEMORRHAGE
+1002$100$GASTROINTESTINAL HAEMORRHAGE
 1002$100$FALL
 1003$101$HEPATIC FAILURE
-1004$102$STROKE
+1004$102$CEREBROVASCULAR ACCIDENT
 1005$103$DIZZINESS
 1006$104$HEADACHE
 """
@@ -189,13 +192,13 @@ def test_event_group_mapping(tmp_path: Path) -> None:
         {
             "primaryid": ["1", "2", "3", "4"],
             "pt": [
-                "Gastrointestinal hemorrhage",
+                "Gastrointestinal haemorrhage",
                 "Fall",
                 "Hepatic failure",
                 "Unknown reaction",
             ],
             "pt_lower": [
-                "gastrointestinal hemorrhage",
+                "gastrointestinal haemorrhage",
                 "fall",
                 "hepatic failure",
                 "unknown reaction",
@@ -207,7 +210,7 @@ def test_event_group_mapping(tmp_path: Path) -> None:
         "event_groups": {
             "gastrointestinal_hemorrhage": {
                 "dimension": "gi_bleeding",
-                "pt_patterns": ["gastrointestinal hemorrhage"],
+                "pt_patterns": ["gastrointestinal haemorrhage"],
             },
             "falls_sedation": {"dimension": "sedation_falls", "pt_patterns": ["fall"]},
             "hepatic_disorders": {"dimension": "liver", "pt_patterns": ["hepatic failure"]},
@@ -232,8 +235,7 @@ def test_final_schema(faers_bronze: Path, tmp_path: Path) -> None:
     pairs = pl.read_parquet(tmp_path / "silver" / "faers_pairs.parquet")
 
     # Check schema
-    expected_columns = {"primaryid", "drugname", "role_cod", "pt", "event_group", "age_band", "sex"}
-    assert set(pairs.columns) == expected_columns
+    assert pairs.columns == COLUMNS
 
     # Check that we have data
     assert len(pairs) > 0
@@ -256,19 +258,16 @@ def test_report_written(faers_bronze: Path, tmp_path: Path) -> None:
     assert "Age Bands" in content
 
 
-def test_deduplication(faers_bronze: Path, tmp_path: Path) -> None:
-    """Test that duplicate (primaryid, drugname, pt) combinations are removed."""
-    settings = _mock_settings(tmp_path)
-    build_faers_pairs(settings, reports_dir=tmp_path / "reports")
+def test_one_row_per_report_drug_and_reaction(faers_bronze: Path, tmp_path: Path) -> None:
+    # Report 1002 lists ibuprofen as both PS and SS; it counts once, as PS.
+    build_faers_pairs(_mock_settings(tmp_path), reports_dir=tmp_path / "reports")
 
     pairs = pl.read_parquet(tmp_path / "silver" / "faers_pairs.parquet")
 
-    # Check for duplicates on key columns
-    unique_keys = pairs.select(
-        ["primaryid", "drugname", "pt", "age_band", "sex", "role_cod", "event_group"]
-    ).unique()
-
-    assert len(unique_keys) == len(pairs), "Found duplicate rows in output"
+    assert pairs.select("primaryid", "drugname", "pt").is_unique().all()
+    ibuprofen = pairs.filter((pl.col("primaryid") == "1002") & (pl.col("drugname") == "IBUPROFEN"))
+    assert sorted(ibuprofen["pt"]) == ["FALL", "GASTROINTESTINAL HAEMORRHAGE"]
+    assert set(ibuprofen["role_cod"]) == {"PS"}
 
 
 def test_load_event_groups(tmp_path: Path) -> None:
@@ -302,3 +301,41 @@ def test_sex_comes_from_either_faers_column() -> None:
     )
     sexes = dict(_clean_demographics(demo).select(["primaryid", "sex"]).iter_rows())
     assert sexes == {"1": "F", "2": "M", "3": "unknown"}
+
+
+def test_a_pt_in_two_groups_is_an_error() -> None:
+    pairs = pl.DataFrame({"pt_lower": ["fall"]})
+    groups = {
+        "event_groups": {
+            "a": {"dimension": "sedation_falls", "pt_patterns": ["fall"]},
+            "b": {"dimension": "pediatric", "pt_patterns": ["Fall"]},
+        }
+    }
+    with pytest.raises(ValueError, match="two event groups"):
+        _map_event_groups(pairs, groups)
+
+
+def test_event_groups_use_schema_dimensions() -> None:
+    from nomi_pipeline.config import REPO_ROOT
+
+    common = json.loads(
+        (REPO_ROOT / "packages/schema/schemas/common.schema.json").read_text(encoding="utf-8")
+    )
+    dimensions = set(common["$defs"]["dimension"]["enum"])
+    groups = _load_event_groups(REPO_ROOT / "pipeline/knowledge/faers_event_groups.yaml")
+    assert {g["dimension"] for g in groups["event_groups"].values()} <= dimensions
+
+
+def test_age_group_fills_in_a_missing_age() -> None:
+    demo = pl.DataFrame(
+        {
+            "primaryid": ["1", "2", "3", "4"],
+            "age": [None, None, "40", None],
+            "age_cod": [None, None, "YR", None],
+            "age_grp": ["E", "C", "E", None],
+            "sex": ["F", "F", "F", "F"],
+        }
+    )
+    bands = _clean_demographics(demo)["age_band"].to_list()
+    # A real age wins over the age group.
+    assert bands == ["65+", "0-11", "18-64", "unknown"]

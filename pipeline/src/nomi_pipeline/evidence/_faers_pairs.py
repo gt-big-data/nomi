@@ -31,23 +31,12 @@ def build_faers_pairs(settings: Settings, reports_dir: Path | None = None) -> No
     event_groups_path = REPO_ROOT / "pipeline" / "knowledge" / "faers_event_groups.yaml"
     event_groups = _load_event_groups(event_groups_path)
 
-    # Primary and secondary suspect drugs only
-    suspect_drugs = drug.filter(pl.col("role_cod").is_in(["PS", "SS"])).select(
-        ["primaryid", "drugname", "role_cod"]
-    )
-
-    pairs = suspect_drugs.join(_clean_demographics(demo), on="primaryid", how="inner").join(
-        reac.select(["primaryid", "pt"]).with_columns(
-            pl.col("pt").str.to_lowercase().alias("pt_lower")
-        ),
-        on="primaryid",
-        how="inner",
-    )
+    suspect_drugs = drug.filter(pl.col("role_cod").is_in(["PS", "SS"]))
+    pairs = _pairs(suspect_drugs, _clean_demographics(demo), reac)
     pairs = _map_event_groups(pairs, event_groups)
 
-    columns = ["primaryid", "drugname", "role_cod", "pt", "event_group", "age_band", "sex"]
     output_path = silver_dir / "faers_pairs.parquet"
-    pairs.select(columns).unique(subset=columns).sink_parquet(output_path)
+    pairs.select(COLUMNS).sink_parquet(output_path)
 
     counts = {
         "demo": demo.select(pl.len()).collect().item(),
@@ -60,17 +49,65 @@ def build_faers_pairs(settings: Settings, reports_dir: Path | None = None) -> No
     _write_report(counts, final, reports_dir or REPO_ROOT / "pipeline" / "reports")
 
 
+# One row per (primaryid, drugname, pt), so counting rows counts reports.
+COLUMNS = [
+    "primaryid",
+    "quarter",
+    "drugname",
+    "prod_ai",
+    "role_cod",
+    "pt",
+    "event_group",
+    "age_band",
+    "sex",
+]
+
+
+def _pairs[Frame: (pl.DataFrame, pl.LazyFrame)](
+    suspect_drugs: Frame, demographics: Frame, reac: Frame
+) -> Frame:
+    """Join suspect drugs, demographics and reactions into one row per drug and reaction."""
+    present = suspect_drugs.collect_schema().names()
+    prod_ai = pl.col("prod_ai") if "prod_ai" in present else pl.lit(None, dtype=pl.String)
+    # A report can list one drug as both primary and secondary suspect; keep it once, as PS.
+    drugs = (
+        suspect_drugs.with_columns(
+            pl.col("drugname").str.strip_chars().str.to_uppercase(),
+            prod_ai.str.strip_chars().str.to_uppercase().alias("prod_ai"),
+        )
+        .group_by(["primaryid", "drugname"])
+        .agg(pl.col("role_cod").min(), pl.col("prod_ai").drop_nulls().first())
+    )
+    reactions = (
+        reac.select("primaryid", "pt")
+        .unique()
+        .with_columns(pl.col("pt").str.to_lowercase().alias("pt_lower"))
+    )
+    return drugs.join(demographics, on="primaryid", how="inner").join(
+        reactions, on="primaryid", how="inner"
+    )
+
+
+# FAERS age_grp codes, used when a report has no age: neonate, infant, child, adolescent,
+# adult, elderly.
+AGE_GROUP_BANDS = {"N": "0-11", "I": "0-11", "C": "0-11", "T": "12-17", "A": "18-64", "E": "65+"}
+
+
 def _clean_demographics[Frame: (pl.DataFrame, pl.LazyFrame)](demo: Frame) -> Frame:
     """Convert age/age_cod to age_band and standardize sex."""
     # FAERS renamed gndr_cod to sex in 2014; quarters from both eras sit in one table.
     present = demo.collect_schema().names()
     sex_columns = [pl.col(c) for c in ("sex", "gndr_cod") if c in present]
     sex_raw = pl.coalesce(sex_columns) if sex_columns else pl.lit(None, dtype=pl.String)
+    age_grp = pl.col("age_grp") if "age_grp" in present else pl.lit(None, dtype=pl.String)
+    quarter = pl.col("quarter") if "quarter" in present else pl.lit(None, dtype=pl.String)
     demo = demo.with_columns(
         [
             pl.col("age").cast(pl.Float64, strict=False).alias("age_numeric"),
             pl.col("age_cod").str.to_lowercase().alias("age_unit"),
             sex_raw.str.to_uppercase().alias("sex_raw"),
+            age_grp.str.strip_chars().str.to_uppercase().alias("age_grp_code"),
+            quarter.alias("quarter"),
         ]
     )
 
@@ -95,7 +132,11 @@ def _clean_demographics[Frame: (pl.DataFrame, pl.LazyFrame)](demo: Frame) -> Fra
     # Map to age_band matching signal.schema.json: "0-11", "12-17", "18-64", "65+"
     demo = demo.with_columns(
         pl.when(pl.col("age_years").is_null())
-        .then(pl.lit("unknown"))
+        .then(
+            pl.col("age_grp_code")
+            .replace_strict(AGE_GROUP_BANDS, default="unknown", return_dtype=pl.String)
+            .fill_null("unknown")
+        )
         .when(pl.col("age_years") < 12)
         .then(pl.lit("0-11"))
         .when(pl.col("age_years") < 18)
@@ -114,7 +155,7 @@ def _clean_demographics[Frame: (pl.DataFrame, pl.LazyFrame)](demo: Frame) -> Fra
         .alias("sex")
     )
 
-    return demo.select(["primaryid", "age_band", "sex"])
+    return demo.select(["primaryid", "quarter", "age_band", "sex"])
 
 
 def _load_event_groups(path: Path) -> dict[str, Any]:
@@ -129,14 +170,14 @@ def _map_event_groups[Frame: (pl.DataFrame, pl.LazyFrame)](
 ) -> Frame:
     """Map PT to event_group using pattern matching."""
     # Build mapping from PT patterns to event group names
-    pt_to_group = {}
+    pt_to_group: dict[str, str] = {}
     for group_name, group_data in event_groups["event_groups"].items():
         for pattern in group_data["pt_patterns"]:
+            if pattern.lower() in pt_to_group:
+                raise ValueError(f"PT {pattern!r} is in two event groups")
             pt_to_group[pattern.lower()] = group_name
 
-    # Add event_group column
-    # For MVP: exact match on lowercase PT
-    # TODO: Later support contains/regex matching
+    # Exact match on the lowercased PT.
     pairs = pairs.with_columns(
         pl.col("pt_lower")
         .replace_strict(pt_to_group, default=None, return_dtype=pl.String)
@@ -161,7 +202,9 @@ def _write_report(counts: dict[str, int], pairs: pl.LazyFrame, reports_dir: Path
         "",
         "## Filtering Steps",
         f"- DRUG records after PS/SS filter: {counts['suspect']:,}",
-        f"- Final pairs (drug × reaction × demographics): {total:,}",
+        f"- Final pairs (one per report, drug and reaction): {total:,}",
+        f"- Reports with at least one pair: "
+        f"{pairs.select(pl.col('primaryid').n_unique()).collect().item():,}",
         "",
         "## Demographics Breakdown",
         "### Age Bands",
@@ -179,8 +222,8 @@ def _write_report(counts: dict[str, int], pairs: pl.LazyFrame, reports_dir: Path
     event_counts = _counts(pairs, "event_group")
     mapped = event_counts.filter(pl.col("event_group").is_not_null())["count"].sum()
     share = 100 * mapped / total if total else 0.0
-    lines.append(f"- Reactions mapped to event groups: {mapped:,} ({share:.1f}%)")
-    lines.append(f"- Reactions not mapped: {total - mapped:,}")
+    lines.append(f"- Pairs whose reaction maps to an event group: {mapped:,} ({share:.1f}%)")
+    lines.append(f"- Pairs not mapped: {total - mapped:,}")
     lines.append("")
     for row in event_counts.iter_rows(named=True):
         group = row["event_group"] or "(unmapped)"

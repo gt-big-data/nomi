@@ -1,46 +1,72 @@
-# Maps MedDRA Preferred Terms to event groups aligned with our 15 risk dimensions
-# Each event group can contain multiple PT patterns (exact match or contains)
+# Maps MedDRA Preferred Terms (PTs) to event groups aligned with our risk dimensions.
+# A reaction belongs to a group when its PT equals one of the group's pt_patterns, ignoring
+# case. MedDRA uses British spelling ("haemorrhage"), and every PT here appears in the FAERS
+# data. Cancers, infections and other PTs that only share a word with a group are left out.
 
 event_groups:
   hepatic_disorders:
     dimension: liver
-    description: Liver injury, hepatotoxicity, jaundice
+    description: Liver injury, hepatotoxicity, jaundice, raised liver enzymes
     pt_patterns:
-      - "hepatic failure"
-      - "jaundice"
+      - "drug-induced liver injury"
       - "liver injury"
       - "hepatotoxicity"
+      - "hepatocellular injury"
+      - "hepatic cytolysis"
       - "hepatitis"
+      - "hepatic failure"
+      - "acute hepatic failure"
+      - "liver disorder"
+      - "hepatic function abnormal"
+      - "jaundice"
+      - "cholestasis"
+      - "hyperbilirubinaemia"
+      - "blood bilirubin increased"
       - "liver function test abnormal"
+      - "liver function test increased"
       - "hepatic enzyme increased"
+      - "transaminases increased"
       - "hypertransaminasaemia"
+      - "alanine aminotransferase increased"
+      - "aspartate aminotransferase increased"
 
   gastrointestinal_hemorrhage:
     dimension: gi_bleeding
-    description: GI bleeding, ulcers, hemorrhage
+    description: GI bleeding and peptic ulcers
     pt_patterns:
       - "gastrointestinal haemorrhage"
-      - "gastrointestinal hemorrhage"
       - "upper gastrointestinal haemorrhage"
       - "lower gastrointestinal haemorrhage"
+      - "gastric haemorrhage"
+      - "rectal haemorrhage"
+      - "haematochezia"
       - "melaena"
       - "haematemesis"
+      - "diarrhoea haemorrhagic"
       - "peptic ulcer haemorrhage"
       - "gastric ulcer"
       - "duodenal ulcer"
+      - "duodenal ulcer perforation"
 
   cardiovascular_events:
     dimension: cardiovascular_bp
-    description: Heart attack, stroke, hypertension, arrhythmia
+    description: Heart attack, stroke, raised blood pressure, arrhythmia
     pt_patterns:
       - "myocardial infarction"
-      - "stroke"
+      - "acute myocardial infarction"
+      - "cerebrovascular accident"
+      - "ischaemic stroke"
+      - "cerebral infarction"
+      - "transient ischaemic attack"
       - "hypertension"
+      - "hypertensive crisis"
+      - "blood pressure increased"
+      - "blood pressure systolic increased"
       - "cardiac arrest"
       - "arrhythmia"
       - "atrial fibrillation"
-      - "blood pressure increased"
       - "tachycardia"
+      - "ventricular tachycardia"
       - "bradycardia"
 
   renal_disorders:
@@ -49,9 +75,15 @@ event_groups:
     pt_patterns:
       - "acute kidney injury"
       - "renal failure"
+      - "renal failure acute"
       - "chronic kidney disease"
-      - "nephropathy"
       - "renal impairment"
+      - "renal injury"
+      - "renal disorder"
+      - "nephropathy"
+      - "nephropathy toxic"
+      - "tubulointerstitial nephritis"
+      - "renal tubular necrosis"
       - "blood creatinine increased"
 
   cognitive_impairment:
@@ -76,6 +108,7 @@ event_groups:
       - "dizziness"
       - "syncope"
       - "loss of consciousness"
+      - "depressed level of consciousness"
       - "balance disorder"
 
   serotonin_syndrome:
@@ -83,17 +116,20 @@ event_groups:
     description: Serotonin syndrome
     pt_patterns:
       - "serotonin syndrome"
-      - "neuroleptic malignant syndrome"
 
   hemorrhage_coagulation:
     dimension: anticoagulant_bleeding
-    description: Bleeding events, coagulation disorders
+    description: Bleeding events, coagulation disorders, raised INR
     pt_patterns:
       - "haemorrhage"
-      - "hemorrhage"
+      - "internal haemorrhage"
       - "cerebral haemorrhage"
-      - "intracranial haemorrhage"
+      - "haemorrhage intracranial"
+      - "subdural haematoma"
+      - "subarachnoid haemorrhage"
+      - "haemorrhagic stroke"
       - "coagulopathy"
+      - "international normalised ratio increased"
       - "haematoma"
       - "epistaxis"
 
