@@ -1,6 +1,6 @@
 # 0003: Mirror raw data to a Hugging Face dataset
 
-**Status:** proposed
+**Status:** accepted
 **Date:** 2026-11-06
 **Deciders:** Shreyas Shrestha, platform team
 
@@ -12,17 +12,18 @@ from the same files. Measured sizes:
 | Source | Size |
 |---|---|
 | openFDA NDC directory | 26 MB |
-| FAERS quarterly ASCII files, 2014 onward | about 2.8 GB, growing about 250 MB a year |
-| DailyMed OTC release (11 parts) | about 34 GB, but label XML is under 1% of it |
+| FAERS quarterly ASCII files, 2014 onward | about 2.9 GB, growing about 250 MB a year |
+| DailyMed OTC release (12 parts) | about 34 GB, but label XML is under 1% of it |
 
 R2's free tier is 10 GB and we have no budget. All three sources are US government works in the
 public domain, so we do not need private storage for them.
 
 ## Decision
 
-- Mirror raw sources to a Hugging Face dataset repo, starting private and made public once the
-  license audit (NOMI-006) and the dataset card are done.
-- Store DailyMed as label XML only (about 300 MB), stripped from the release zips by
+- Mirror raw sources to a public Hugging Face dataset,
+  [nomi-bdbi-gt/nomi-raw-data](https://huggingface.co/datasets/nomi-bdbi-gt/nomi-raw-data), with
+  the card in `docs/data/raw-dataset-card.md`.
+- Store DailyMed as label XML only (about 350 MB), stripped from the release zips by
   `pipeline/scripts/slim_dailymed.py`. Product images are dropped.
 - `fetch` and `mirror` use fsspec, and the store location is one setting: `RAW_STORE`. Moving to
   R2, S3 or GCS later is a copy plus a one-line change.

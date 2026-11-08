@@ -2,7 +2,7 @@
 
 Run this after downloading new files from the public URLs. Files are added to the existing
 manifest, so you can mirror just the new FAERS quarter without losing the older ones.
-Requires RAW_STORE and a write-scoped HF_TOKEN in .env (see ADR-0003).
+Requires RAW_STORE and write access: `hf auth login` or a write-scoped HF_TOKEN (see ADR-0003).
 
 Usage:
     uv run python pipeline/scripts/mirror.py ndc /path/to/ndc/files

@@ -21,13 +21,14 @@ uv run pipeline fetch dailymed-otc
 uv run pipeline fetch faers
 ```
 
-While the dataset is private, log in once with `hf auth login` or set `HF_TOKEN` in `.env`.
+The dataset is public, so no token is needed to fetch.
 `RAW_STORE` can be any fsspec URL (`hf://`, `s3://`, a local folder), and can pin a snapshot
 with `@<commit>` after the dataset name.
 
 ### Mirroring new data
 
-Only needed when a source updates. You need write access to the dataset and `HF_TOKEN` set.
+Only needed when a source updates. You need write access to the dataset: run
+`hf auth login` once or set a write-scoped `HF_TOKEN` in `.env`.
 Mirroring adds files to the existing manifest, so you can upload just the latest FAERS quarter.
 
 ```bash
@@ -35,7 +36,7 @@ uv run python pipeline/scripts/download_sources.py faers ~/nomi-downloads/faers
 uv run python pipeline/scripts/mirror.py faers ~/nomi-downloads/faers
 ```
 
-DailyMed is about 34 GB, almost all product images. Strip it to label XML (about 300 MB) first:
+DailyMed is about 34 GB, almost all product images. Strip it to label XML (about 350 MB) first:
 
 ```bash
 uv run python pipeline/scripts/download_sources.py dailymed-otc ~/nomi-downloads/dailymed
