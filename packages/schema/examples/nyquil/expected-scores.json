@@ -28,6 +28,12 @@
         "ingredient_uniis": ["V9BI9B5YI2"],
         "citations": [
           {
+            "source": "acb",
+            "document_id": "Boustani_2008_ACB_2012_update",
+            "section": "2012 update, page 1: doxylamine, ACB score 3",
+            "url": "https://www.hii.iu.edu/resources/anticholinergic-cognitive-burden-scale.pdf"
+          },
+          {
             "source": "fda_label",
             "document_id": "efe4e649-7514-32dd-e053-2995a90a0492",
             "section": "SPL v13: Ask a doctor (50569-3)",
@@ -85,8 +91,14 @@
       },
       {
         "template_id": "NOMI-015_anticholinergic_cognitive",
-        "text": "This antihistamine has anticholinergic effects; the label says to ask a doctor first with glaucoma or an enlarged prostate.",
+        "text": "Doxylamine scores 3 on the Anticholinergic Cognitive Burden scale; the label says to ask a doctor first with glaucoma or an enlarged prostate.",
         "citations": [
+          {
+            "source": "acb",
+            "document_id": "Boustani_2008_ACB_2012_update",
+            "section": "2012 update, page 1: doxylamine, ACB score 3",
+            "url": "https://www.hii.iu.edu/resources/anticholinergic-cognitive-burden-scale.pdf"
+          },
           {
             "source": "fda_label",
             "document_id": "efe4e649-7514-32dd-e053-2995a90a0492",
@@ -279,6 +291,12 @@
         "ingredient_uniis": ["V9BI9B5YI2"],
         "citations": [
           {
+            "source": "acb",
+            "document_id": "Boustani_2008_ACB_2012_update",
+            "section": "2012 update, page 1: doxylamine, ACB score 3",
+            "url": "https://www.hii.iu.edu/resources/anticholinergic-cognitive-burden-scale.pdf"
+          },
+          {
             "source": "fda_label",
             "document_id": "efe4e649-7514-32dd-e053-2995a90a0492",
             "section": "SPL v13: Ask a doctor (50569-3)",
@@ -336,8 +354,14 @@
       },
       {
         "template_id": "NOMI-015_anticholinergic_cognitive",
-        "text": "This antihistamine has anticholinergic effects; the label says to ask a doctor first with glaucoma or an enlarged prostate.",
+        "text": "Doxylamine scores 3 on the Anticholinergic Cognitive Burden scale; the label says to ask a doctor first with glaucoma or an enlarged prostate.",
         "citations": [
+          {
+            "source": "acb",
+            "document_id": "Boustani_2008_ACB_2012_update",
+            "section": "2012 update, page 1: doxylamine, ACB score 3",
+            "url": "https://www.hii.iu.edu/resources/anticholinergic-cognitive-burden-scale.pdf"
+          },
           {
             "source": "fda_label",
             "document_id": "efe4e649-7514-32dd-e053-2995a90a0492",

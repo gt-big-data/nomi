@@ -62,12 +62,15 @@ containing that ingredient. Dimensions not listed count as 0. The older-adult an
 ratings of 3 rest on published criteria, not on the labels alone: `anticholinergic_cognitive` on the
 2023 AGS Beers Criteria, and `sedation_falls` on STOPP v3 K6 ("first generation antihistamines in
 patients with recurrent falls"), plus D24 (allergy) or D25 (insomnia) where the product fits. NyQuil has no such fit; see
-the open question above.
+the open question above. The
+`anticholinergic_cognitive` ratings of 2 for adults and children cite the ACB scale (both
+antihistamines score 3), as the knowledge base does, alongside the label.
 Modifiers cite each product's own label, except dextromethorphan's SSRI modifier, which carries the
 knowledge base's citation of a published review of dextromethorphan serotonin toxicity (Monte
 2010); a source naming SSRIs directly would be better. For diphenhydramine, doxylamine and dextromethorphan their values match the
 knowledge base. Aleve's hypertension modifier applies to `cardiovascular_bp` and `kidney`, as the
-rubric's condition table says for NSAIDs.
+rubric's condition table says for NSAIDs; the label line it cites names high blood pressure, not
+the kidneys.
 
 ## Consistency checks
 
@@ -81,8 +84,10 @@ rubric's condition table says for NSAIDs.
   dimension's explanation, follow from the ingredient ratings and modifiers under the convention
   above (explanation wording is not checked);
 - ingredients that have a file in `pipeline/knowledge/ingredients` (dextromethorphan, doxylamine,
-  diphenhydramine) match it for the three profiles, ratings and modifiers alike. The two
-  exceptions come from the product's own label and are listed in `LABEL_OVERRIDES`: ZzzQuil says "children under 12 yrs do not use" (3),
+  diphenhydramine) match it for the three profiles: rating severities, and each modifier's
+  dimension, condition or medication, value and personas (citations are not compared). The two
+  exceptions come from the product's own label and are listed in `LABEL_OVERRIDES`: ZzzQuil
+  says "children under 12 yrs do not use" (3),
   and NyQuil says "children 4 to under 12 yrs ask a doctor" (2). A test fails if an override stops
   being needed.
 

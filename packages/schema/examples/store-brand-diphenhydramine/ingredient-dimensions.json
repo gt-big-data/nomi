@@ -9,6 +9,12 @@
         "severity": 2,
         "citations": [
           {
+            "source": "acb",
+            "document_id": "Boustani_2008_ACB_2012_update",
+            "section": "2012 update, page 1: diphenhydramine, ACB score 3",
+            "url": "https://www.hii.iu.edu/resources/anticholinergic-cognitive-burden-scale.pdf"
+          },
+          {
             "source": "fda_label",
             "document_id": "c0fa4e00-2bd1-4d16-810d-b55f3b827418",
             "section": "SPL v4: Ask a doctor (50569-3)",
@@ -78,6 +84,12 @@
         "persona": "child_6_11",
         "severity": 2,
         "citations": [
+          {
+            "source": "acb",
+            "document_id": "Boustani_2008_ACB_2012_update",
+            "section": "2012 update, page 1: diphenhydramine, ACB score 3",
+            "url": "https://www.hii.iu.edu/resources/anticholinergic-cognitive-burden-scale.pdf"
+          },
           {
             "source": "fda_label",
             "document_id": "c0fa4e00-2bd1-4d16-810d-b55f3b827418",

@@ -108,6 +108,12 @@
         "severity": 2,
         "citations": [
           {
+            "source": "acb",
+            "document_id": "Boustani_2008_ACB_2012_update",
+            "section": "2012 update, page 1: doxylamine, ACB score 3",
+            "url": "https://www.hii.iu.edu/resources/anticholinergic-cognitive-burden-scale.pdf"
+          },
+          {
             "source": "fda_label",
             "document_id": "efe4e649-7514-32dd-e053-2995a90a0492",
             "section": "SPL v13: Ask a doctor (50569-3)",
@@ -177,6 +183,12 @@
         "persona": "child_6_11",
         "severity": 2,
         "citations": [
+          {
+            "source": "acb",
+            "document_id": "Boustani_2008_ACB_2012_update",
+            "section": "2012 update, page 1: doxylamine, ACB score 3",
+            "url": "https://www.hii.iu.edu/resources/anticholinergic-cognitive-burden-scale.pdf"
+          },
           {
             "source": "fda_label",
             "document_id": "efe4e649-7514-32dd-e053-2995a90a0492",

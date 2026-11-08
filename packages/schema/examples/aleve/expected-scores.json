@@ -210,7 +210,7 @@
       },
       {
         "template_id": "NOMI-015_kidney",
-        "text": "The label calls for medical advice when kidney disease is present.",
+        "text": "The label says to ask a doctor before use with kidney disease or high blood pressure.",
         "citations": [
           {
             "source": "fda_label",

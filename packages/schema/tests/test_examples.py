@@ -181,6 +181,8 @@ def test_expected_scores_follow_from_the_ratings(name: str) -> None:
         assert score["tier"] == tier(score["score"], stops)
         # One explanation per contribution, citing the same sources.
         explained = {e["template_id"]: e["citations"] for e in score["explanation"]}
+        extra = {"NOMI-015_fixture_draft", "NOMI-015_child_directions"}
+        assert explained.keys() - extra == {f"NOMI-015_{c['dimension']}" for c in expected}
         for contribution in expected:
             assert explained[f"NOMI-015_{contribution['dimension']}"] == contribution["citations"]
 
