@@ -24,16 +24,16 @@
 - unknown: 14,863,951
 
 ## Event Group Coverage
-- Pairs whose reaction maps to an event group: 8,965,139 (8.1%)
-- Pairs not mapped: 101,656,704
+- Pairs whose reaction maps to an event group: 9,033,872 (8.2%)
+- Pairs not mapped: 101,587,971
 
-- (unmapped): 101,656,704
+- (unmapped): 101,587,971
 - falls_sedation: 1,985,762
 - cardiovascular_events: 1,782,992
-- hepatic_disorders: 1,519,663
+- hepatic_disorders: 1,546,425
 - renal_disorders: 1,494,610
 - cognitive_impairment: 1,021,196
-- gastrointestinal_hemorrhage: 639,420
-- hemorrhage_coagulation: 442,239
+- gastrointestinal_hemorrhage: 679,334
+- hemorrhage_coagulation: 444,296
 - pediatric_adverse_events: 39,930
 - serotonin_syndrome: 39,327
