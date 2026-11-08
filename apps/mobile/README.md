@@ -23,6 +23,51 @@ Rules for this app:
 - Barcodes are read on the device with Google ML Kit, so scanning works offline (NOMI-011).
 - Uses a development build (camera and ML Kit libraries don't run in Expo Go).
 
+## Barcode scanning
+
+**Library:** [react-native-vision-camera](https://github.com/mrousavy/react-native-vision-camera) with
+`react-native-vision-camera-barcode-scanner`. We chose it because it uses Google ML Kit on both iOS and Android, so
+scanning runs on-device and works offline. `expo-camera` uses Apple's scanner on iOS instead of ML Kit.
+
+## Build and run
+
+### iPhone (needs a Mac with Xcode)
+
+1. Install the latest Xcode.
+2. In Xcode, open Settings → Accounts, sign in with your Apple ID (a free one works), click "Manage Certificates",
+   then click + → "Apple Development".
+3. On the iPhone, turn on Settings → Privacy & Security → Developer Mode.
+4. Plug in and unlock the iPhone. Run `pnpm install` from the repo root, then from `apps/mobile` run:
+
+   ```bash
+   npx expo run:ios --device
+   ```
+
+5. On the iPhone, open Settings → General → VPN & Device Management and trust your Apple ID.
+
+With a free Apple ID, the app expires after 7 days. Run step 4 again to reinstall it.
+
+Free Apple IDs can't share a bundle identifier. If Xcode says `org.gtbigdata.nomi` is unavailable, pick
+your own and pass it in step 4, for example `NOMI_IOS_BUNDLE_ID=com.yourname.nomi npx expo run:ios --device`.
+Don't commit it.
+
+### Android
+
+1. Install [Android Studio](https://developer.android.com/studio) and let it install the Android SDK.
+2. On the phone, turn on Developer options (tap Settings → About phone → Build number seven times), then
+   turn on USB debugging.
+3. Plug in the phone and accept the debugging prompt. Run `pnpm install` from the repo root, then from
+   `apps/mobile` run:
+
+   ```bash
+   npx expo run:android --device
+   ```
+
+### Checks
+
+From the repo root, `pnpm typecheck` type-checks the app and `pnpm test` runs the barcode parser tests
+(NOMI-007). CI runs both.
+
 ## Design
 
 - **Figma library:** [Nomi Library](https://www.figma.com/design/wNvJ7Nwq6MEIUqKeHWHEd9) has the light and dark
