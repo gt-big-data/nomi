@@ -32,7 +32,7 @@ only (product packaging images removed).
 
 | Folder | Source | Publisher | Contents | Update cadence |
 |---|---|---|---|---|
-| `ndc/` | [openFDA NDC directory](https://open.fda.gov/apis/drug/ndc/) | US Food and Drug Administration | 1 JSON file, every listed drug product | Daily |
+| `ndc/` | [openFDA NDC directory](https://open.fda.gov/apis/drug/ndc/) | US Food and Drug Administration | 1 JSON file, every listed drug product | Weekly |
 | `dailymed-otc/` | [DailyMed human OTC label release](https://dailymed.nlm.nih.gov/dailymed/spl-resources-all-drug-labels.cfm) | US National Library of Medicine | 12 zips, 89,770 SPL label XMLs | Monthly |
 | `faers/` | [FAERS quarterly data files](https://fis.fda.gov/extensions/FPD-QDE-FAERS/FPD-QDE-FAERS.html) | US Food and Drug Administration | 51 quarterly ASCII zips, 2014Q1 to 2026Q3 | Quarterly |
 

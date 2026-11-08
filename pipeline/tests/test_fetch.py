@@ -59,6 +59,18 @@ def test_already_fresh_skips_download(tmp_path: Path) -> None:
     assert local.read_bytes() == content
 
 
+def test_stale_local_file_is_replaced(tmp_path: Path) -> None:
+    settings = _settings(tmp_path)
+    _seed(settings, {"ndc/file.zip": b"new data"})
+    local = tmp_path / "raw" / "ndc" / "file.zip"
+    local.parent.mkdir(parents=True)
+    local.write_bytes(b"old data")
+
+    _fetch_source("ndc", settings)
+
+    assert local.read_bytes() == b"new data"
+
+
 def test_corrupted_file_raises_and_cleans_up(tmp_path: Path) -> None:
     settings = _settings(tmp_path)
     manifest = {
@@ -70,6 +82,20 @@ def test_corrupted_file_raises_and_cleans_up(tmp_path: Path) -> None:
         _fetch_source("ndc", settings)
 
     assert not (tmp_path / "raw" / "ndc" / "file.zip").exists()
+    assert not (tmp_path / "raw" / "ndc" / "file.zip.partial").exists()
+
+
+def test_failed_fetch_leaves_no_manifest(tmp_path: Path) -> None:
+    settings = _settings(tmp_path)
+    (tmp_path / "raw" / "ndc").mkdir(parents=True)
+    (tmp_path / "raw" / "ndc" / "manifest.json").write_text("{}")
+    manifest = {"files": [{"key": "ndc/file.zip", "sha256": "wrong"}]}
+    _seed(settings, {"ndc/file.zip": b"data"}, manifest)
+
+    with pytest.raises(RuntimeError):
+        _fetch_source("ndc", settings)
+
+    assert not (tmp_path / "raw" / "ndc" / "manifest.json").exists()
 
 
 def test_missing_manifest_explains_mirroring(tmp_path: Path) -> None:

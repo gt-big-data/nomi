@@ -48,6 +48,7 @@ This covers raw inputs only. Publishing the app's SQLite dataset (NOMI-038) stil
 - Every mirror is a commit, so a build can pin an exact snapshot with `RAW_STORE=...@<commit>`.
 - Our sources are publicly inspectable, which supports the "evidence, not a black box" goal.
 - The SPL ingest (NOMI-010) must read XML from the slimmed `*.xml.zip` files.
-- We depend on Hugging Face storage policy, which has changed before. The fsspec setting and the
-  manifest of original URLs and checksums keep us able to move or rebuild.
+- We depend on Hugging Face storage policy, which has changed before. The fsspec setting, the
+  per-source checksum manifests and `download_sources.py` (which records every original URL) keep us
+  able to move or rebuild.
 - Anything published is effectively permanent, so the "public sources only" rule must hold.

@@ -4,6 +4,7 @@ import io
 import zipfile
 from pathlib import Path
 
+import pytest
 from nomi_pipeline.fetch.dailymed import slim_otc_release
 
 
@@ -35,3 +36,16 @@ def test_slim_keeps_only_label_xml(tmp_path: Path) -> None:
         assert z.namelist() == ["20261104_set-a.xml", "20261104_set-b.xml"]
         assert z.read("20261104_set-b.xml") == b"<document>b</document>"
     assert not dest.with_suffix(".zip.partial").exists()
+
+
+def test_slim_corrupt_inner_zip_leaves_no_output(tmp_path: Path) -> None:
+    src = tmp_path / "dm_spl_release_human_otc_part1.zip"
+    with zipfile.ZipFile(src, "w") as outer:
+        outer.writestr("otc/20261104_set-a.zip", b"not a zip")
+    dest = tmp_path / "out.xml.zip"
+
+    with pytest.raises(zipfile.BadZipFile):
+        slim_otc_release(src, dest)
+
+    assert not dest.exists()
+    assert not (tmp_path / "out.xml.zip.partial").exists()

@@ -28,14 +28,15 @@ def main() -> None:
 
     logging.basicConfig(level="INFO", format="%(levelname)s %(name)s: %(message)s")
     args.dest_dir.mkdir(parents=True, exist_ok=True)
-    total = 0
+    total = slimmed = 0
     for part in parts:
         dest = args.dest_dir / part.name.replace(".zip", ".xml.zip")
         if dest.exists():
             print(f"skipping {part.name}, {dest.name} already exists")
             continue
         total += slim_otc_release(part, dest)
-    print(f"done: {total} labels from {len(parts)} parts")
+        slimmed += 1
+    print(f"done: {total} labels from {slimmed} new parts ({len(parts) - slimmed} skipped)")
 
 
 if __name__ == "__main__":

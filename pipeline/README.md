@@ -21,7 +21,7 @@ uv run pipeline fetch dailymed-otc
 uv run pipeline fetch faers
 ```
 
-The dataset is public, so no token is needed to fetch.
+The dataset is public, so no token or `.env` is needed to fetch; `RAW_STORE` defaults to it.
 `RAW_STORE` can be any fsspec URL (`hf://`, `s3://`, a local folder), and can pin a snapshot
 with `@<commit>` after the dataset name.
 
@@ -29,7 +29,9 @@ with `@<commit>` after the dataset name.
 
 Only needed when a source updates. You need write access to the dataset: run
 `hf auth login` once or set a write-scoped `HF_TOKEN` in `.env`.
-Mirroring adds files to the existing manifest, so you can upload just the latest FAERS quarter.
+Mirroring adds files to the existing manifest and skips files that haven't changed, so rerunning it
+on the whole FAERS folder uploads only the new quarter. Only files named like the source's own files
+are uploaded (never `.partial` downloads or dotfiles). Mirror with `RAW_STORE` unpinned (no `@<commit>`).
 
 ```bash
 uv run python pipeline/scripts/download_sources.py faers ~/nomi-downloads/faers
