@@ -1,0 +1,23 @@
+{
+  "id": "maoi_warning_02",
+  "text": "Do not use if you are now taking a prescription monoamine oxidase inhibitor (MAOI) (certain drugs for depression, psychiatric or emotional conditions, or Parkinson’s disease), or for 2 weeks after stopping the MAOI drug.",
+  "expected_warnings": [
+    "maoi_warning"
+  ],
+  "source": {
+    "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0153294d-7f52-4d92-8db8-daeca3e29a3b",
+    "openfda_query_url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name%3A%22PHENYLEPHRINE%22+AND+openfda.product_type%3A%22HUMAN+OTC+DRUG%22&limit=60",
+    "set_id": "0153294d-7f52-4d92-8db8-daeca3e29a3b",
+    "label_id": "9fc2ece9-cf33-429f-938e-1e96d1cbdb54",
+    "version": "21",
+    "effective_time": "20260306",
+    "retrieved_on": "2026-11-08",
+    "brand_name": [
+      "Nasal Decongestant PE"
+    ],
+    "field": "do_not_use",
+    "item_index": 0,
+    "start": 0,
+    "end": 220
+  }
+}

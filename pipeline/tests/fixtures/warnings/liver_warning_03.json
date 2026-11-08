@@ -1,9 +1,7 @@
 {
   "id": "liver_warning_03",
   "text": "Liver warning: This product contains acetaminophen. Severe liver damage may occur if you take more than 6 tablets in 24 hours, which is the maximum daily amount with other drugs containing acetaminophen 3 or more alcoholic drinks every day while using this product",
-  "expected_warnings": [
-    "liver_warning"
-  ],
+  "expected_warnings": ["liver_warning"],
   "source": {
     "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0035a4fd-8dd5-4534-a1b5-f510d637f721",
     "openfda_query_url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name%3A%22ACETAMINOPHEN%22+AND+openfda.product_type%3A%22HUMAN+OTC+DRUG%22&limit=30",
@@ -12,9 +10,7 @@
     "version": "3",
     "effective_time": "20240124",
     "retrieved_on": "2026-10-22",
-    "brand_name": [
-      "Acetaminophen"
-    ],
+    "brand_name": ["Acetaminophen"],
     "field": "warnings",
     "item_index": 0,
     "start": 9,

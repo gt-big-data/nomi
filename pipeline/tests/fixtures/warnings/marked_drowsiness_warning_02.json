@@ -1,0 +1,23 @@
+{
+  "id": "marked_drowsiness_warning_02",
+  "text": "marked drowsiness may occur avoid alcoholic drinks be careful when driving a motor vehicle or operating machinery alcohol, sedatives and tranquilizers may increase drowsiness",
+  "expected_warnings": [
+    "marked_drowsiness_warning"
+  ],
+  "source": {
+    "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=025f6622-a6db-4a5c-aebd-5d54172fa4a1",
+    "openfda_query_url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name%3A%22DOXYLAMINE%22+AND+openfda.product_type%3A%22HUMAN+OTC+DRUG%22&limit=60",
+    "set_id": "025f6622-a6db-4a5c-aebd-5d54172fa4a1",
+    "label_id": "a3fdb0ff-3efb-4907-8a18-119f8992db2c",
+    "version": "1",
+    "effective_time": "20240418",
+    "retrieved_on": "2026-11-08",
+    "brand_name": [
+      "Nighttime Cold and Flu Relief"
+    ],
+    "field": "when_using",
+    "item_index": 0,
+    "start": 71,
+    "end": 245
+  }
+}

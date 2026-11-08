@@ -10,9 +10,7 @@
     "version": "20",
     "effective_time": "20260102",
     "retrieved_on": "2026-10-22",
-    "brand_name": [
-      "Pain Reliever Extra Strength"
-    ],
+    "brand_name": ["Pain Reliever Extra Strength"],
     "field": "ask_doctor",
     "item_index": 0,
     "start": 0,

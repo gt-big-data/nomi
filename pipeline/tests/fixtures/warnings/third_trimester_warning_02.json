@@ -1,0 +1,23 @@
+{
+  "id": "third_trimester_warning_02",
+  "text": "It is especially important not to use aspirin during the last 3 months of pregnancy unless definitely directed to do so by a doctor because it may cause problems in the unborn child or complications during delivery.",
+  "expected_warnings": [
+    "third_trimester_warning"
+  ],
+  "source": {
+    "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=00d9ab0d-ff25-784f-e063-6294a90a8497",
+    "openfda_query_url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name%3A%22ASPIRIN%22+AND+openfda.product_type%3A%22HUMAN+OTC+DRUG%22&limit=60",
+    "set_id": "00d9ab0d-ff25-784f-e063-6294a90a8497",
+    "label_id": "55f373b7-0c70-b19c-e063-6294a90a82d2",
+    "version": "6",
+    "effective_time": "20260706",
+    "retrieved_on": "2026-11-08",
+    "brand_name": [
+      "Rapidol Aspirin"
+    ],
+    "field": "warnings",
+    "item_index": 0,
+    "start": 1932,
+    "end": 2147
+  }
+}

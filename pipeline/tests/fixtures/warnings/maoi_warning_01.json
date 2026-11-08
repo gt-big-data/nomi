@@ -1,0 +1,23 @@
+{
+  "id": "maoi_warning_01",
+  "text": "Do not use if you are now taking a prescription monoamine oxidase inhibitor (MAOI) (certain drugs for depression, psychiatric, or emotional conditions, or Parkinson’s disease), or for 2 weeks after stopping the MAOI drug.",
+  "expected_warnings": [
+    "maoi_warning"
+  ],
+  "source": {
+    "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0166322e-7dbb-4658-a5c5-1d0525bb7655",
+    "openfda_query_url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name%3A%22DEXTROMETHORPHAN%22+AND+openfda.product_type%3A%22HUMAN+OTC+DRUG%22&limit=60",
+    "set_id": "0166322e-7dbb-4658-a5c5-1d0525bb7655",
+    "label_id": "07838a85-4ddc-470d-a344-001587f2d904",
+    "version": "4",
+    "effective_time": "20240628",
+    "retrieved_on": "2026-11-08",
+    "brand_name": [
+      "ACTIDOM DMX"
+    ],
+    "field": "warnings",
+    "item_index": 0,
+    "start": 9,
+    "end": 230
+  }
+}

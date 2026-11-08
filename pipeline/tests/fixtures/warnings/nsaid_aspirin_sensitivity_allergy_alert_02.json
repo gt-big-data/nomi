@@ -1,0 +1,23 @@
+{
+  "id": "nsaid_aspirin_sensitivity_allergy_alert_02",
+  "text": "Allergy alert: Naproxen sodium may cause a severe allergic reaction, especially in people allergic to aspirin.",
+  "expected_warnings": [
+    "nsaid_aspirin_sensitivity_allergy_alert"
+  ],
+  "source": {
+    "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=002052df-83ac-4efd-926c-b60a8f64cec4",
+    "openfda_query_url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name%3A%22NAPROXEN+SODIUM%22+AND+openfda.product_type%3A%22HUMAN+OTC+DRUG%22&limit=60",
+    "set_id": "002052df-83ac-4efd-926c-b60a8f64cec4",
+    "label_id": "3441a647-8818-4c13-9ba8-6a012e46b508",
+    "version": "1",
+    "effective_time": "20181214",
+    "retrieved_on": "2026-11-08",
+    "brand_name": [
+      "Naproxen Sodium 220mg"
+    ],
+    "field": "warnings",
+    "item_index": 0,
+    "start": 9,
+    "end": 119
+  }
+}

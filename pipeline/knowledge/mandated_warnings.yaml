@@ -1,21 +1,27 @@
-<<<<<<< HEAD
-warnings: 
+# FDA-mandated OTC warnings (NOMI-017), for the rule-based label extractor (NOMI-031).
+#
+# A warning is found on a label when any wording variant appears in the label text after both
+# are normalized: lowercased, curly quotes made straight, and every character other than letters,
+# digits and apostrophes treated as a space. Variants are the shortest wording that is unique to
+# the warning, so headings with or without a colon and bulleted lists still match.
+#
+# dimensions and citations[].source use the ids in packages/schema/schemas/common.schema.json.
+# A warning with no matching risk dimension (the allergy alert) has an empty list.
+warnings:
   - id: liver_warning
     ingredients:
       - acetaminophen
-    dimension: liver
+    dimensions: [liver]
     wording_variants:
-      - "Liver warning: This product contains acetaminophen. Severe liver damage may occur if you take"
-      - "Liver warning: This product contains acetaminophen. Severe liver damage may occur if your child takes"
-      - "Liver warning: This product contains acetaminophen. Severe liver damage may occur if"
-    citations: 
-      - "21 CFR § 201.326(a)(1)(iii)(A)"
-      - "21 CFR § 201.326(a)(1)(iv)(A)(1)"
-      - "21 CFR § 201.326(a)(1)(v)(A)"
-      - "OTC Monograph M013 § M013.50(c)(1)(iii)(A)"
-      - "OTC Monograph M013 § M013.50(c)(2)(iii)(A)"
-      - "OTC Monograph M013 § M013.50(c)(3)(iii)(A)"
- 
+      - "Liver warning: This product contains acetaminophen"
+    citations:
+      - source: otc_monograph
+        document_id: "21 CFR 201.326"
+        section: "(a)(1)(iii)(A), (a)(1)(iv)(A)(1), (a)(1)(v)(A)"
+        url: "https://www.ecfr.gov/current/title-21/section-201.326"
+      - source: otc_monograph
+        document_id: "OTC Monograph M013"
+        section: "M013.50(c)(1)(iii)(A), (c)(2)(iii)(A), (c)(3)(iii)(A)"
 
   - id: stomach_bleeding_warning
     ingredients:
@@ -27,20 +33,19 @@ warnings:
       - choline salicylate
       - magnesium salicylate
       - sodium salicylate
-    dimension: stomach
+    dimensions: [gi_bleeding]
     wording_variants:
-      - "Stomach bleeding warning: This product contains an NSAID, which may cause severe stomach bleeding. The chance is higher if you"
-      - "Stomach bleeding warning: This product contains an NSAID, which may cause severe stomach bleeding. The chance is higher if your child"
-      - "Stomach bleeding warning: This product contains an NSAID, which may cause severe stomach bleeding. The chance is higher if the user"
+      - "Stomach bleeding warning: This product contains an NSAID"
     citations:
-      - "21 CFR § 201.326(a)(2)(iii)(A)"
-      - "21 CFR § 201.326(a)(2)(iv)(A)(1)"
-      - "21 CFR § 201.326(a)(2)(v)(A)"
-      - "OTC Monograph M013 § M013.50(c)(1)(v)(A)"
-      - "OTC Monograph M013 § M013.50(c)(2)(v)(A)"
-      - "OTC Monograph M013 § M013.50(c)(3)(v)(A)"
+      - source: otc_monograph
+        document_id: "21 CFR 201.326"
+        section: "(a)(2)(iii)(A), (a)(2)(iv)(A)(1), (a)(2)(v)(A)"
+        url: "https://www.ecfr.gov/current/title-21/section-201.326"
+      - source: otc_monograph
+        document_id: "OTC Monograph M013"
+        section: "M013.50(c)(1)(v)(A), (c)(2)(v)(A), (c)(3)(v)(A)"
 
-
+  # Allergies are checked against the profile, not scored on a dimension (NOMI-035).
   - id: nsaid_allergy_alert
     ingredients:
       - aspirin
@@ -48,7 +53,7 @@ warnings:
       - choline salicylate
       - magnesium salicylate
       - sodium salicylate
-    dimension: allergy
+    dimensions: []
     wording_variants:
       - "Allergy alert: Aspirin may cause a severe allergic reaction"
       - "Allergy alert: Carbaspirin calcium may cause a severe allergic reaction"
@@ -56,11 +61,32 @@ warnings:
       - "Allergy alert: Magnesium salicylate may cause a severe allergic reaction"
       - "Allergy alert: Sodium salicylate may cause a severe allergic reaction"
     citations:
-      - "21 CFR § 201.66(c)(5)(ii)(B)"
-      - "OTC Monograph M013 § M013.50(c)(1)(v)(E)(1)"
-      - "OTC Monograph M013 § M013.50(c)(2)(v)(E)(1)"
-      - "OTC Monograph M013 § M013.50(c)(3)(v)(D)(1)"
+      - source: otc_monograph
+        document_id: "21 CFR 201.66"
+        section: "(c)(5)(ii)(B)"
+        url: "https://www.ecfr.gov/current/title-21/section-201.66"
+      - source: otc_monograph
+        document_id: "OTC Monograph M013"
+        section: "M013.50(c)(1)(v)(E)(1), (c)(2)(v)(E)(1), (c)(3)(v)(D)(1)"
 
+  # Ibuprofen and naproxen are sold under approved applications, not a monograph, so their
+  # alert wording is cited from a label. 21 CFR 201.66 only sets the "Allergy alert:" heading.
+  - id: nsaid_aspirin_sensitivity_allergy_alert
+    ingredients:
+      - ibuprofen
+      - naproxen sodium
+    dimensions: []
+    wording_variants:
+      - "may cause a severe allergic reaction, especially in people allergic to aspirin"
+    citations:
+      - source: otc_monograph
+        document_id: "21 CFR 201.66"
+        section: "(c)(5)(ii)(B)"
+        url: "https://www.ecfr.gov/current/title-21/section-201.66"
+      - source: fda_label
+        document_id: "02889717-204c-463b-8506-4c5cf18c77d3"
+        section: "Warnings"
+        url: "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=02889717-204c-463b-8506-4c5cf18c77d3"
 
   - id: reyes_syndrome_warning
     ingredients:
@@ -70,26 +96,97 @@ warnings:
       - magnesium salicylate
       - sodium salicylate
       - bismuth subsalicylate
-    dimension: pediatric
+    dimensions: [pediatric]
     wording_variants:
-      - "Reye's syndrome: Children and teenagers who have or are recovering from chicken pox or flu-like symptoms should not use this product."
+      - "Reye's syndrome: Children and teenagers who have or are recovering from chicken pox"
     citations:
-      - "21 CFR § 201.314(h)(1)"
-      - "21 CFR § 201.66(c)(5)(ii)(A)"
-
+      - source: otc_monograph
+        document_id: "21 CFR 201.314"
+        section: "(h)(1)"
+        url: "https://www.ecfr.gov/current/title-21/section-201.314"
+      - source: otc_monograph
+        document_id: "21 CFR 201.66"
+        section: "(c)(5)(ii)(A)"
+        url: "https://www.ecfr.gov/current/title-21/section-201.66"
 
   - id: diphenhydramine_duplicate_use_warning
     ingredients:
       - diphenhydramine hydrochloride
       - diphenhydramine citrate
-    dimension: overdose
+    dimensions: [duplicate_dosing]
     wording_variants:
-      - "Do not use with any other product containing diphenhydramine, even one used on skin"
+      - "any other product containing diphenhydramine, even one used on skin"
     citations:
-      - "21 CFR § 341.72(c)(6)(iv)"
-      - "21 CFR § 341.72(c)(7)"
-      - "OTC Monograph M012 § M012.72(c)(6)(iv)"
-      - "OTC Monograph M012 § M012.72(c)(7)"
-=======
-Warnings:
->>>>>>> origin/main
+      - source: otc_monograph
+        document_id: "21 CFR 341.72"
+        section: "(c)(6)(iv), (c)(7)"
+        url: "https://www.ecfr.gov/current/title-21/section-341.72"
+      - source: otc_monograph
+        document_id: "OTC Monograph M012"
+        section: "M012.72(c)(6)(iv), (c)(7)"
+
+  - id: marked_drowsiness_warning
+    ingredients:
+      - diphenhydramine citrate
+      - diphenhydramine hydrochloride
+      - doxylamine succinate
+    dimensions: [sedation_falls]
+    wording_variants:
+      - "marked drowsiness may occur"
+      - "May cause marked drowsiness"
+    citations:
+      - source: otc_monograph
+        document_id: "21 CFR 341.72"
+        section: "(c)(4)"
+        url: "https://www.ecfr.gov/current/title-21/section-341.72"
+
+  - id: third_trimester_warning
+    ingredients:
+      - aspirin
+      - carbaspirin calcium
+    dimensions: [pregnancy_lactation]
+    wording_variants:
+      - "It is especially important not to use aspirin during the last 3 months of pregnancy"
+      - "It is especially important not to use carbaspirin calcium during the last 3 months of pregnancy"
+    citations:
+      - source: otc_monograph
+        document_id: "21 CFR 201.63"
+        section: "(e)"
+        url: "https://www.ecfr.gov/current/title-21/section-201.63"
+
+  # Dextromethorphan and nasal decongestants carry the same MAOI wording, so it is one warning.
+  # With an MAOI, dextromethorphan risks serotonin syndrome and decongestants a blood pressure spike.
+  - id: maoi_warning
+    ingredients:
+      - dextromethorphan
+      - dextromethorphan hydrobromide
+      - phenylephrine bitartrate
+      - phenylephrine hydrochloride
+      - pseudoephedrine hydrochloride
+      - pseudoephedrine sulfate
+    dimensions: [serotonergic_interactions, cardiovascular_bp]
+    wording_variants:
+      - "taking a prescription monoamine oxidase inhibitor (MAOI)"
+    citations:
+      - source: otc_monograph
+        document_id: "21 CFR 341.74"
+        section: "(c)(4)(v), (c)(4)(vi)"
+        url: "https://www.ecfr.gov/current/title-21/section-341.74"
+      - source: otc_monograph
+        document_id: "21 CFR 341.80"
+        section: "(c)(1)(i)(d), (c)(1)(ii)(d)"
+        url: "https://www.ecfr.gov/current/title-21/section-341.80"
+
+  - id: fluoride_accidental_swallowing_warning
+    ingredients:
+      - sodium fluoride
+      - stannous fluoride
+    dimensions: [pediatric]
+    wording_variants:
+      - "If more than used for brushing is accidentally swallowed"
+      - "If more than used for rinsing is accidentally swallowed"
+    citations:
+      - source: otc_monograph
+        document_id: "21 CFR 355.50"
+        section: "(c)(1), (c)(2)"
+        url: "https://www.ecfr.gov/current/title-21/section-355.50"
