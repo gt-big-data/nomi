@@ -534,8 +534,18 @@ modifiers:
         document_id: 89c165ba-3ad5-49b5-a5bb-423dc8e15bad
         section: "50569-3: Ask a doctor; cardiovascular, thyroid and diabetes conditions"
         url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=89c165ba-3ad5-49b5-a5bb-423dc8e15bad
+  - dimension: anticholinergic_cognitive
+    condition: enlarged_prostate
+    severity_change: 2
+    citations:
+      - source: fda_label
+        document_id: 89c165ba-3ad5-49b5-a5bb-423dc8e15bad
+        section: "50569-3: Ask a doctor; enlarged prostate"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=89c165ba-3ad5-49b5-a5bb-423dc8e15bad
+        quote: "trouble urinating due to an enlarged prostate gland"
 review_status: unreviewed
 notes:
   Intranasal 0.05% decongestant, not ophthalmic use. Local irritation is mapped to local_skin. The
-  under-6 label requires a doctor rather than stating an absolute contraindication. Enlarged-prostate
-  warnings require label-level handling because adrenergic urinary retention has no matching dimension.
+  under-6 label requires a doctor rather than stating an absolute contraindication. The enlarged-
+  prostate warning is a modifier on anticholinergic_cognitive, which owns urinary retention in the
+  rubric.

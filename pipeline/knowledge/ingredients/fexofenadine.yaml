@@ -78,7 +78,13 @@ ratings:
     severity: 0
   - dimension: kidney
     persona: adult_65_plus
-    severity: 0
+    severity: 1
+    citations:
+      - source: fda_label
+        document_id: 81c1dcbb-28b3-4ad5-9f3d-9ccc16ddd173
+        section: "34068-7: Directions; adults 65 and over ask a doctor"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=81c1dcbb-28b3-4ad5-9f3d-9ccc16ddd173
+        quote: "adults 65 years of age and older ask a doctor"
   - dimension: kidney
     persona: teen_12_17
     severity: 0

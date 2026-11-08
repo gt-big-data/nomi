@@ -244,28 +244,31 @@ ratings:
     severity: 0
   - dimension: pediatric
     persona: child_6_11
-    severity: 2
+    severity: 1
     citations:
       - source: fda_label
-        document_id: 2ca08917-1a75-4365-8520-c083e6a4225a
-        section: "34068-7: Directions; under 12 ask a doctor"
-        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=2ca08917-1a75-4365-8520-c083e6a4225a
+        document_id: 4dfd46e4-b9f9-464d-aa47-e8fa9e526a5d
+        section: "34068-7: Directions; dose for 6 to 11"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=4dfd46e4-b9f9-464d-aa47-e8fa9e526a5d
+        quote: "6 to 11 years 10 mL"
   - dimension: pediatric
     persona: child_2_5
-    severity: 2
+    severity: 3
     citations:
       - source: fda_label
-        document_id: 2ca08917-1a75-4365-8520-c083e6a4225a
-        section: "34068-7: Directions; under 12 ask a doctor"
-        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=2ca08917-1a75-4365-8520-c083e6a4225a
+        document_id: 4dfd46e4-b9f9-464d-aa47-e8fa9e526a5d
+        section: "34068-7: Directions; under 4 do not use"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=4dfd46e4-b9f9-464d-aa47-e8fa9e526a5d
+        quote: "under 4 years do not use"
   - dimension: pediatric
     persona: under_2
-    severity: 2
+    severity: 3
     citations:
       - source: fda_label
-        document_id: 2ca08917-1a75-4365-8520-c083e6a4225a
-        section: "34068-7: Directions; under 12 ask a doctor"
-        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=2ca08917-1a75-4365-8520-c083e6a4225a
+        document_id: 4dfd46e4-b9f9-464d-aa47-e8fa9e526a5d
+        section: "34068-7: Directions; under 4 do not use"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=4dfd46e4-b9f9-464d-aa47-e8fa9e526a5d
+        quote: "under 4 years do not use"
   - dimension: pediatric
     persona: pregnant
     severity: 0
@@ -507,7 +510,15 @@ modifiers:
         document_id: 2ca08917-1a75-4365-8520-c083e6a4225a
         section: "50570-1: Do not use with MAOIs or within 2 weeks of stopping"
         url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=2ca08917-1a75-4365-8520-c083e6a4225a
+  - dimension: anticholinergic_cognitive
+    condition: enlarged_prostate
+    severity_change: 2
+    citations:
+      - source: fda_label
+        document_id: 2ca08917-1a75-4365-8520-c083e6a4225a
+        section: "50569-3: Ask a doctor; enlarged prostate"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=2ca08917-1a75-4365-8520-c083e6a4225a
+        quote: "trouble urinating due to an enlarged prostate gland"
 review_status: unreviewed
-notes:
-  Oral nasal-decongestant use; other routes are not covered. Enlarged-prostate warnings require label-level
-  handling because adrenergic urinary retention has no matching dimension.
+notes: Oral nasal-decongestant use; other routes are not covered. The enlarged-prostate warning is a
+  modifier on anticholinergic_cognitive, which owns urinary retention in the rubric.

@@ -320,20 +320,27 @@ ratings:
     severity: 0
   - dimension: pediatric
     persona: child_6_11
-    severity: 1
+    severity: 2
     citations:
+      - source: fda_label
+        document_id: 702f9786-7ce9-43e4-921d-e1db09612127
+        section: "50570-1: Do not use to make a child sleepy"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=702f9786-7ce9-43e4-921d-e1db09612127
+        quote: "to make a child sleepy"
       - source: fda_label
         document_id: 702f9786-7ce9-43e4-921d-e1db09612127
         section: "50567-7: When using; excitability in children"
         url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=702f9786-7ce9-43e4-921d-e1db09612127
+        quote: "excitability may occur, especially in children"
   - dimension: pediatric
     persona: child_2_5
-    severity: 2
+    severity: 3
     citations:
       - source: fda_label
-        document_id: 10d478ff-ddc6-45da-87ff-cfe1b2b07a8e
-        section: "34068-7: Directions; ages 2 to 5 require a doctor"
-        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=10d478ff-ddc6-45da-87ff-cfe1b2b07a8e
+        document_id: 702f9786-7ce9-43e4-921d-e1db09612127
+        section: "34068-7: Directions; under 6 do not use"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=702f9786-7ce9-43e4-921d-e1db09612127
+        quote: "children under 6 years do not use"
   - dimension: pediatric
     persona: under_2
     severity: 3

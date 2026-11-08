@@ -319,12 +319,13 @@ ratings:
         url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=c05d7e27-6821-468f-b27d-9c0b02a07b0f
   - dimension: pregnancy_lactation
     persona: breastfeeding
-    severity: 2
+    severity: 3
     citations:
-      - source: fda_label
-        document_id: c05d7e27-6821-468f-b27d-9c0b02a07b0f
-        section: "53414-9: Pregnancy or breast-feeding"
-        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=c05d7e27-6821-468f-b27d-9c0b02a07b0f
+      - source: publication
+        document_id: PMID:12848771
+        section: "Abstract; Aljazaf et al., Br J Clin Pharmacol 2003"
+        url: https://doi.org/10.1046/j.1365-2125.2003.01822.x
+        quote: "A single dose of pseudoephedrine significantly reduced milk production."
   - dimension: duplicate_dosing
     persona: adult_18_64
     severity: 0
@@ -462,7 +463,15 @@ modifiers:
         document_id: c05d7e27-6821-468f-b27d-9c0b02a07b0f
         section: "50570-1: Do not use with MAOIs or within 2 weeks of stopping"
         url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=c05d7e27-6821-468f-b27d-9c0b02a07b0f
+  - dimension: anticholinergic_cognitive
+    condition: enlarged_prostate
+    severity_change: 2
+    citations:
+      - source: fda_label
+        document_id: c05d7e27-6821-468f-b27d-9c0b02a07b0f
+        section: "50569-3: Ask a doctor; enlarged prostate"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=c05d7e27-6821-468f-b27d-9c0b02a07b0f
+        quote: "trouble urinating due to an enlarged prostate gland"
 review_status: unreviewed
-notes:
-  Oral nasal-decongestant use; other routes are not covered. Enlarged-prostate warnings require label-level
-  handling because adrenergic urinary retention has no matching dimension.
+notes: Oral nasal-decongestant use; other routes are not covered. The enlarged-prostate warning is a
+  modifier on anticholinergic_cognitive, which owns urinary retention in the rubric.
