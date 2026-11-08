@@ -166,7 +166,7 @@
       "conditions": [],
       "medication_types": []
     },
-    "score": 70,
+    "score": 64,
     "tier": "yellow",
     "contributions": [
       {
@@ -183,21 +183,22 @@
         ]
       },
       {
-        "dimension": "sedation_falls",
+        "dimension": "pediatric",
         "points": 12,
         "ingredient_uniis": ["TC2D6JAD40"],
         "citations": [
           {
             "source": "fda_label",
             "document_id": "c0fa4e00-2bd1-4d16-810d-b55f3b827418",
-            "section": "SPL v4: When using (50567-7)",
-            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=c0fa4e00-2bd1-4d16-810d-b55f3b827418"
+            "section": "SPL v4: Do not use (50570-1)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=c0fa4e00-2bd1-4d16-810d-b55f3b827418",
+            "quote": "to make a child sleepy"
           }
         ]
       },
       {
-        "dimension": "pediatric",
-        "points": 6,
+        "dimension": "sedation_falls",
+        "points": 12,
         "ingredient_uniis": ["TC2D6JAD40"],
         "citations": [
           {
@@ -231,20 +232,21 @@
         ]
       },
       {
-        "template_id": "NOMI-015_sedation_falls",
-        "text": "Sedation is a concern; the older-adult draft also accounts for falls evidence.",
+        "template_id": "NOMI-015_pediatric",
+        "text": "Follow the formulation-specific child directions: medical advice, an age restriction, or an excitability warning.",
         "citations": [
           {
             "source": "fda_label",
             "document_id": "c0fa4e00-2bd1-4d16-810d-b55f3b827418",
-            "section": "SPL v4: When using (50567-7)",
-            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=c0fa4e00-2bd1-4d16-810d-b55f3b827418"
+            "section": "SPL v4: Do not use (50570-1)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=c0fa4e00-2bd1-4d16-810d-b55f3b827418",
+            "quote": "to make a child sleepy"
           }
         ]
       },
       {
-        "template_id": "NOMI-015_pediatric",
-        "text": "Follow the formulation-specific child directions: medical advice, an age restriction, or an excitability warning.",
+        "template_id": "NOMI-015_sedation_falls",
+        "text": "Sedation is a concern; the older-adult draft also accounts for falls evidence.",
         "citations": [
           {
             "source": "fda_label",

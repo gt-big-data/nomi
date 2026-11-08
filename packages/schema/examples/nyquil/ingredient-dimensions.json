@@ -41,6 +41,29 @@
             "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=efe4e649-7514-32dd-e053-2995a90a0492"
           }
         ]
+      },
+      {
+        "dimension": "rebound_overuse",
+        "persona": "adult_18_64",
+        "severity": 1,
+        "citations": [
+          {
+            "source": "publication",
+            "document_id": "PMID:22526529",
+            "section": "Abstract and Results: supratherapeutic-dose effects and abuse liability",
+            "url": "https://pubmed.ncbi.nlm.nih.gov/22526529/"
+          }
+        ]
+      },
+      {
+        "dimension": "rebound_overuse",
+        "persona": "adult_65_plus",
+        "severity": 0
+      },
+      {
+        "dimension": "rebound_overuse",
+        "persona": "child_6_11",
+        "severity": 0
       }
     ],
     "modifiers": [],

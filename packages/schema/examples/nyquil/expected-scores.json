@@ -6,7 +6,7 @@
       "conditions": [],
       "medication_types": []
     },
-    "score": 58,
+    "score": 52,
     "tier": "yellow",
     "contributions": [
       {
@@ -45,6 +45,19 @@
             "document_id": "efe4e649-7514-32dd-e053-2995a90a0492",
             "section": "SPL v13: When using (50567-7)",
             "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=efe4e649-7514-32dd-e053-2995a90a0492"
+          }
+        ]
+      },
+      {
+        "dimension": "rebound_overuse",
+        "points": 6,
+        "ingredient_uniis": ["9D2RTI9KYH"],
+        "citations": [
+          {
+            "source": "publication",
+            "document_id": "PMID:22526529",
+            "section": "Abstract and Results: supratherapeutic-dose effects and abuse liability",
+            "url": "https://pubmed.ncbi.nlm.nih.gov/22526529/"
           }
         ]
       }
@@ -91,6 +104,18 @@
             "document_id": "efe4e649-7514-32dd-e053-2995a90a0492",
             "section": "SPL v13: When using (50567-7)",
             "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=efe4e649-7514-32dd-e053-2995a90a0492"
+          }
+        ]
+      },
+      {
+        "template_id": "NOMI-015_rebound_overuse",
+        "text": "High doses of dextromethorphan are misused; the adult draft counts that risk.",
+        "citations": [
+          {
+            "source": "publication",
+            "document_id": "PMID:22526529",
+            "section": "Abstract and Results: supratherapeutic-dose effects and abuse liability",
+            "url": "https://pubmed.ncbi.nlm.nih.gov/22526529/"
           }
         ]
       }
@@ -248,7 +273,7 @@
       {
         "dimension": "pediatric",
         "points": 12,
-        "ingredient_uniis": ["V9BI9B5YI2", "362O9ITL9D"],
+        "ingredient_uniis": ["362O9ITL9D", "V9BI9B5YI2"],
         "citations": [
           {
             "source": "fda_label",

@@ -94,13 +94,14 @@
       {
         "dimension": "pediatric",
         "persona": "child_6_11",
-        "severity": 1,
+        "severity": 2,
         "citations": [
           {
             "source": "fda_label",
             "document_id": "c0fa4e00-2bd1-4d16-810d-b55f3b827418",
-            "section": "SPL v4: When using (50567-7)",
-            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=c0fa4e00-2bd1-4d16-810d-b55f3b827418"
+            "section": "SPL v4: Do not use (50570-1)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=c0fa4e00-2bd1-4d16-810d-b55f3b827418",
+            "quote": "to make a child sleepy"
           }
         ]
       }

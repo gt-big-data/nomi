@@ -9,6 +9,8 @@ dependencies = ["pydantic>=2.7", "jsonschema>=4.23"]
 dev = [
   "datamodel-code-generator>=0.26",
   "pytest>=8.3",
+  # tests/test_examples.py reads pipeline/knowledge/ingredients.
+  "pyyaml>=6.0",
 ]
 
 [build-system]
