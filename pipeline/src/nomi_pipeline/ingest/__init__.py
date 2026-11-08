@@ -23,7 +23,8 @@ def ingest_spl() -> None:
 
     pl.DataFrame(result.products).write_parquet(settings.bronze_dir / "spl_products.parquet")
     pl.DataFrame(result.ingredients).write_parquet(settings.bronze_dir / "spl_ingredients.parquet")
-    pl.DataFrame(result.failures).write_parquet(settings.bronze_dir / "spl_parse_failures.parquet")
+    failures = pl.DataFrame(result.failures, schema={"file": pl.String, "error": pl.String})
+    failures.write_parquet(settings.bronze_dir / "spl_parse_failures.parquet")
 
     successful = result.files_processed - len(result.failures)
     if result.files_processed > 0:  # noqa: SIM108
