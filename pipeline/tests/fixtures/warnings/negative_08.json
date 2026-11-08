@@ -1,0 +1,19 @@
+{
+  "id": "negative_08",
+  "text": "Warnings Allergy alert: Do not use if you are allergic to famotidine or other acid reducers",
+  "expected_warnings": [],
+  "source": {
+    "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=018b02e8-1005-4736-a4fc-962881f52adf",
+    "openfda_query_url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name%3A%22FAMOTIDINE%22+AND+openfda.product_type%3A%22HUMAN+OTC+DRUG%22&limit=100",
+    "set_id": "018b02e8-1005-4736-a4fc-962881f52adf",
+    "label_id": "7c87bb9a-900d-48e3-9c09-8815aeff2504",
+    "version": "7",
+    "effective_time": "20250315",
+    "retrieved_on": "2026-11-08",
+    "brand_name": ["Famotidine"],
+    "field": "warnings",
+    "item_index": 0,
+    "start": 0,
+    "end": 91
+  }
+}

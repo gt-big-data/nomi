@@ -1,0 +1,19 @@
+{
+  "id": "third_trimester_warning_03",
+  "text": "It is especially important not to use ibuprofen during the last 3 months of pregnancy unless definitely directed to do so by a doctor because it may cause problems in the unborn child or complications during delivery.",
+  "expected_warnings": ["third_trimester_warning"],
+  "source": {
+    "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=016299ef-ad40-46fd-acfc-e74ffee3d9b4",
+    "openfda_query_url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name%3A%22IBUPROFEN%22+AND+openfda.product_type%3A%22HUMAN+OTC+DRUG%22&limit=100",
+    "set_id": "016299ef-ad40-46fd-acfc-e74ffee3d9b4",
+    "label_id": "2790ee9d-7db5-427c-ad2b-394dfaa55f9f",
+    "version": "3",
+    "effective_time": "20221121",
+    "retrieved_on": "2026-11-08",
+    "brand_name": ["Ibuprofen"],
+    "field": "warnings",
+    "item_index": 0,
+    "start": 2291,
+    "end": 2508
+  }
+}

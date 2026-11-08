@@ -1,0 +1,19 @@
+{
+  "id": "fluoride_accidental_swallowing_warning_03",
+  "text": "If you accidentally swallow more than used for brushing, seek professional assistance or contact a poison control center right away.",
+  "expected_warnings": ["fluoride_accidental_swallowing_warning"],
+  "source": {
+    "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=05a9cee1-bd6e-6b93-e063-6294a90a5c10",
+    "openfda_query_url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name%3A%22SODIUM+FLUORIDE%22+AND+openfda.product_type%3A%22HUMAN+OTC+DRUG%22&limit=100",
+    "set_id": "05a9cee1-bd6e-6b93-e063-6294a90a5c10",
+    "label_id": "2aabeb4e-96e5-aa53-e063-6294a90a98f6",
+    "version": "2",
+    "effective_time": "20250101",
+    "retrieved_on": "2026-11-08",
+    "brand_name": ["EUTHYMOL Extraordinary Pink Whitening"],
+    "field": "warnings",
+    "item_index": 0,
+    "start": 117,
+    "end": 249
+  }
+}
