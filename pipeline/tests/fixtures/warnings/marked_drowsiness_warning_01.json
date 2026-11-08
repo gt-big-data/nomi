@@ -1,0 +1,19 @@
+{
+  "id": "marked_drowsiness_warning_01",
+  "text": "marked drowsiness may occur ■ excitability may occur, especially in children ■ sedatives and tranquilizers may increase drowsiness",
+  "expected_warnings": ["marked_drowsiness_warning"],
+  "source": {
+    "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0035e6a4-b3ef-4e0b-aa7f-7453dd065f4d",
+    "openfda_query_url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name%3A%22DIPHENHYDRAMINE%22+AND+openfda.product_type%3A%22HUMAN+OTC+DRUG%22&limit=60",
+    "set_id": "0035e6a4-b3ef-4e0b-aa7f-7453dd065f4d",
+    "label_id": "448524ca-2fda-44ab-b1f8-edf8db006713",
+    "version": "1",
+    "effective_time": "20250122",
+    "retrieved_on": "2026-11-08",
+    "brand_name": ["Childrens Allergy Relief"],
+    "field": "when_using",
+    "item_index": 0,
+    "start": 26,
+    "end": 156
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "id": "negative_04",
+  "text": "Keep out of reach of children.",
+  "expected_warnings": [],
+  "source": {
+    "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=00689aa5-ed39-4c9a-92b8-105d2c0e2e15",
+    "openfda_query_url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name%3A%22DIPHENHYDRAMINE+HYDROCHLORIDE%22+AND+openfda.product_type%3A%22HUMAN+OTC+DRUG%22&limit=30",
+    "set_id": "00689aa5-ed39-4c9a-92b8-105d2c0e2e15",
+    "label_id": "52d0fea6-91c1-c0ad-e063-6294a90ad3ca",
+    "version": "10",
+    "effective_time": "20260527",
+    "retrieved_on": "2026-10-22",
+    "brand_name": ["Childrens Delsym Cough Plus Cold Night Time"],
+    "field": "keep_out_of_reach_of_children",
+    "item_index": 0,
+    "start": 0,
+    "end": 30
+  }
+}

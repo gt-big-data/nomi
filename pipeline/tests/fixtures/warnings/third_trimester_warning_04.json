@@ -1,0 +1,19 @@
+{
+  "id": "third_trimester_warning_04",
+  "text": "It is especially important not to use naproxen sodium during the last 3 months of pregnancy unless definitely directed to do so by a doctor because it may cause problems in the unborn child or complications during delivery.",
+  "expected_warnings": ["third_trimester_warning"],
+  "source": {
+    "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=002052df-83ac-4efd-926c-b60a8f64cec4",
+    "openfda_query_url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name%3A%22NAPROXEN+SODIUM%22+AND+openfda.product_type%3A%22HUMAN+OTC+DRUG%22&limit=100",
+    "set_id": "002052df-83ac-4efd-926c-b60a8f64cec4",
+    "label_id": "3441a647-8818-4c13-9ba8-6a012e46b508",
+    "version": "1",
+    "effective_time": "20181214",
+    "retrieved_on": "2026-11-08",
+    "brand_name": ["Naproxen Sodium 220mg"],
+    "field": "warnings",
+    "item_index": 0,
+    "start": 2406,
+    "end": 2629
+  }
+}

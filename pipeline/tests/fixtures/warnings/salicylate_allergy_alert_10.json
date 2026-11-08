@@ -1,0 +1,19 @@
+{
+  "id": "salicylate_allergy_alert_10",
+  "text": "Allergy alert: Aspirin may cause severe allergic reactions which may include: ■ hives ■ facial swelling ■ shock ■ asthma (wheezing) Stomach bleeding warning: This product contains an NSAID , which may cause severe stomach bleeding.",
+  "expected_warnings": ["salicylate_allergy_alert", "stomach_bleeding_warning"],
+  "source": {
+    "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=00d9ab0d-ff25-784f-e063-6294a90a8497",
+    "openfda_query_url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name%3A%22ASPIRIN%22+AND+openfda.product_type%3A%22HUMAN+OTC+DRUG%22&limit=100",
+    "set_id": "00d9ab0d-ff25-784f-e063-6294a90a8497",
+    "label_id": "55f373b7-0c70-b19c-e063-6294a90a82d2",
+    "version": "6",
+    "effective_time": "20260706",
+    "retrieved_on": "2026-11-08",
+    "brand_name": ["Rapidol Aspirin"],
+    "field": "warnings",
+    "item_index": 0,
+    "start": 334,
+    "end": 565
+  }
+}
