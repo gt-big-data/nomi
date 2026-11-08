@@ -6,6 +6,10 @@
 # a space. Variants are the shortest wording unique to the warning, so headings with or without a
 # colon, bullets and small grammar differences ("an NSAID" / "a NSAID") still match.
 #
+# ingredients lists the drugs the warning is required for. Other labels may print the same
+# wording (many antihistamine combinations say "marked drowsiness may occur"), and the
+# extractor still records it there.
+#
 # dimensions and citations[].source use the ids in packages/schema/schemas/common.schema.json.
 # Allergy alerts have no dimension: allergies are checked against the profile (NOMI-035).
 # Warnings required through approved applications rather than a regulation cite a label.
@@ -31,7 +35,8 @@ warnings:
       - acetaminophen
     dimensions: []
     wording_variants:
-      - "Acetaminophen may cause severe skin reactions"
+      - "may cause severe skin reactions"
+      - "may cause severe skin or severe allergic reactions"
     citations:
       - source: fda_label
         document_id: "0005aafa-08f8-4990-a54d-cc097195708f"
@@ -67,6 +72,8 @@ warnings:
     dimensions: [cardiovascular_bp]
     wording_variants:
       - "increase the risk of heart attack, heart failure, and stroke"
+      # Older ibuprofen labels.
+      - "the risk of heart attack or stroke may increase"
     citations:
       - source: fda_label
         document_id: "00653b7c-7099-487e-9a01-e89781c21323"
@@ -83,6 +90,7 @@ warnings:
     dimensions: []
     wording_variants:
       - "Aspirin may cause a severe allergic reaction"
+      - "Aspirin may cause severe allergic reaction"
       - "Aspirin (NSAID) may cause a severe allergic reaction"
       - "Aspirin (NSAIDs) may cause a severe allergic reaction"
       - "Carbaspirin calcium may cause a severe allergic reaction"
@@ -128,6 +136,7 @@ warnings:
     dimensions: [pediatric]
     wording_variants:
       - "Children and teenagers who have or are recovering from chicken pox"
+      - "Children and teenagers who have or are recovering from chickenpox"
     citations:
       - source: otc_monograph
         document_id: "21 CFR 201.314"
@@ -174,23 +183,36 @@ warnings:
         section: "(c)(4), (c)(6)(iii)"
         url: "https://www.ecfr.gov/current/title-21/section-341.72"
 
+  # 21 CFR 201.63(e) sets this for aspirin; older ibuprofen and naproxen labels carry the same
+  # sentence. Labels are moving to the 20 week wording below, so a product has one or the other.
   - id: third_trimester_warning
     ingredients:
       - aspirin
       - carbaspirin calcium
+      - ibuprofen
+      - naproxen sodium
     dimensions: [pregnancy_lactation]
     wording_variants:
       - "not to use aspirin during the last 3 months of pregnancy"
       - "not to use carbaspirin calcium during the last 3 months of pregnancy"
+      - "not to use ibuprofen during the last 3 months of pregnancy"
+      - "not to use naproxen sodium during the last 3 months of pregnancy"
     citations:
       - source: otc_monograph
         document_id: "21 CFR 201.63"
         section: "(e)"
         url: "https://www.ecfr.gov/current/title-21/section-201.63"
+      - source: fda_label
+        document_id: "016299ef-ad40-46fd-acfc-e74ffee3d9b4"
+        section: "Warnings"
+        url: "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=016299ef-ad40-46fd-acfc-e74ffee3d9b4"
 
-  # FDA asked for this on OTC NSAID labels in 2020 (low amniotic fluid); cited from a label.
+  # FDA asked for this on OTC NSAID labels, aspirin included, in 2020 (low amniotic fluid);
+  # cited from labels.
   - id: nsaid_20_week_pregnancy_warning
     ingredients:
+      - aspirin
+      - carbaspirin calcium
       - ibuprofen
       - naproxen sodium
     dimensions: [pregnancy_lactation]
@@ -201,6 +223,10 @@ warnings:
         document_id: "00653b7c-7099-487e-9a01-e89781c21323"
         section: "Warnings"
         url: "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=00653b7c-7099-487e-9a01-e89781c21323"
+      - source: fda_label
+        document_id: "0425c6a8-a3ea-24ad-e063-6294a90ae15a"
+        section: "Warnings"
+        url: "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0425c6a8-a3ea-24ad-e063-6294a90ae15a"
 
   # Dextromethorphan, nasal decongestants and ephedrine bronchodilators carry the same MAOI
   # wording, so it is one warning. With an MAOI, dextromethorphan risks serotonin syndrome and
@@ -219,7 +245,7 @@ warnings:
       - racephedrine hydrochloride
     dimensions: [serotonergic_interactions, cardiovascular_bp]
     wording_variants:
-      - "taking a prescription monoamine oxidase inhibitor (MAOI)"
+      - "prescription monoamine oxidase inhibitor (MAOI)"
     citations:
       - source: otc_monograph
         document_id: "21 CFR 341.74"
@@ -244,6 +270,8 @@ warnings:
     wording_variants:
       - "If more than used for brushing is accidentally swallowed"
       - "If more than used for rinsing is accidentally swallowed"
+      # Not the 355.50 wording, but common on toothpaste labels.
+      - "If you accidentally swallow more than used for brushing"
     citations:
       - source: otc_monograph
         document_id: "21 CFR 355.50"

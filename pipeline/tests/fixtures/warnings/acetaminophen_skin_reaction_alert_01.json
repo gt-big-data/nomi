@@ -1,0 +1,19 @@
+{
+  "id": "acetaminophen_skin_reaction_alert_01",
+  "text": "Severe liver damage may occur if you take: more than 6 caplets in 24 hours, which is the maximum daily amount for this product with other drugs containing acetaminophen 3 or more alcoholic drinks every day while using this product Allergy alert Acetaminophen may cause severe skin or severe allergic reactions.",
+  "expected_warnings": ["liver_warning", "acetaminophen_skin_reaction_alert"],
+  "source": {
+    "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=048c4b03-1cf4-b724-e063-6294a90a1cad",
+    "openfda_query_url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name%3A%22ACETAMINOPHEN%22+AND+openfda.product_type%3A%22HUMAN+OTC+DRUG%22&limit=100",
+    "set_id": "048c4b03-1cf4-b724-e063-6294a90a1cad",
+    "label_id": "285fd0a2-df05-22b1-e063-6394a90a6962",
+    "version": "2",
+    "effective_time": "20241203",
+    "retrieved_on": "2026-11-08",
+    "brand_name": ["Buscapina"],
+    "field": "warnings",
+    "item_index": 0,
+    "start": 61,
+    "end": 371
+  }
+}

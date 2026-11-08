@@ -57,6 +57,13 @@ def test_normalize_ignores_punctuation_quotes_and_accents() -> None:
     assert normalize("Hígado") == "higado"
 
 
+def test_variants_start_at_a_word() -> None:
+    catalogue = [{"id": "x", "wording_variants": ["liver damage"]}]
+    assert find_warnings("Severe liver damage may occur", catalogue) == {"x"}
+    assert find_warnings("deliver damages", catalogue) == set()
+    assert find_warnings("Severe liver damage may occur", []) == set()
+
+
 def test_fixtures_are_well_formed() -> None:
     assert len(FIXTURES) >= 50
     known = {w["id"] for w in WARNINGS}

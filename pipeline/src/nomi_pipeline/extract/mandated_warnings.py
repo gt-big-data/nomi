@@ -33,9 +33,13 @@ def normalize(text: str) -> str:
 
 def find_warnings(text: str, catalogue: list[dict[str, Any]] | None = None) -> set[str]:
     """Ids of the catalogued warnings whose wording appears in text."""
-    label = normalize(text)
+    # A variant must start at a word, so "liver" can't match inside "deliver". It may end inside
+    # one, so "reaction" still matches "reactions".
+    label = f" {normalize(text)}"
+    if catalogue is None:
+        catalogue = load_catalogue()
     return {
         w["id"]
-        for w in catalogue or load_catalogue()
-        if any(normalize(v) in label for v in w["wording_variants"])
+        for w in catalogue
+        if any(f" {normalize(v)}" in label for v in w["wording_variants"])
     }

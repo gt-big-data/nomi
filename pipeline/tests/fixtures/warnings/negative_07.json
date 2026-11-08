@@ -1,0 +1,19 @@
+{
+  "id": "negative_07",
+  "text": "Warnings Do not use if you have ever had an allergic reaction to this product or any of its ingredients Ask a doctor before use if you have liver or kidney disease. Your doctor should determine if you need a different dose. When using this product do not take more than directed. Taking more than directed may cause drowsiness. Stop use and ask a doctor if an allergic reaction to this product occurs. Seek medical help right away. If pregnant or breast-feeding, ask a health professional before use. Keep out of reach of children. In case of overdose, get medical help or contact a Poison Control Center right away. (1-800-222-1222)",
+  "expected_warnings": [],
+  "source": {
+    "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0038bc38-c205-4d8d-ab78-1abbcd76829e",
+    "openfda_query_url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name%3A%22LORATADINE%22+AND+openfda.product_type%3A%22HUMAN+OTC+DRUG%22&limit=100",
+    "set_id": "0038bc38-c205-4d8d-ab78-1abbcd76829e",
+    "label_id": "4fd50f17-7237-4659-bad6-a9e6189fa37c",
+    "version": "15",
+    "effective_time": "20260225",
+    "retrieved_on": "2026-11-08",
+    "brand_name": ["allergy relief"],
+    "field": "warnings",
+    "item_index": 0,
+    "start": 0,
+    "end": 633
+  }
+}
