@@ -58,19 +58,18 @@ Four questions for the rubric owner before #29 builds on these numbers:
 no `antiplatelets`, `ssri_snri` or `blood_pressure_medications` modifiers.
 
 Pediatric ratings apply to the specific presentation and must not be generalized to every product
-containing that ingredient. Dimensions not listed count as 0. The older-adult antihistamine
-ratings of 3 rest on published criteria, not on the labels alone: `anticholinergic_cognitive` on the
-2023 AGS Beers Criteria, and `sedation_falls` on STOPP v3 K6 ("first generation antihistamines in
-patients with recurrent falls"), plus D24 (allergy) or D25 (insomnia) where the product fits. NyQuil has no such fit; see
-the open question above. The
-`anticholinergic_cognitive` ratings of 2 for adults and children cite the ACB scale (both
-antihistamines score 3), as the knowledge base does, alongside the label.
-Modifiers cite each product's own label, except dextromethorphan's SSRI modifier, which carries the
-knowledge base's citation of a published review of dextromethorphan serotonin toxicity (Monte
-2010); a source naming SSRIs directly would be better. For diphenhydramine, doxylamine and dextromethorphan their values match the
-knowledge base. Aleve's hypertension modifier applies to `cardiovascular_bp` and `kidney`, as the
-rubric's condition table says for NSAIDs; the label line it cites names high blood pressure, not
-the kidneys.
+containing that ingredient. Dimensions not listed count as 0. The older-adult antihistamine ratings
+of 3 rest on published criteria, not on the labels alone: `anticholinergic_cognitive` on the 2023
+AGS Beers Criteria, and `sedation_falls` on STOPP v3 K6 ("first generation antihistamines in
+patients with recurrent falls"), plus D24 (allergy) or D25 (insomnia) where the product fits. NyQuil
+has no such fit; see the open question above. The `anticholinergic_cognitive` ratings of 2 for
+adults and children cite the ACB scale (both antihistamines score 3), as the knowledge base does,
+alongside the label. Modifiers cite each product's own label, except dextromethorphan's SSRI
+modifier, which carries the knowledge base's citation of a published review of dextromethorphan
+serotonin toxicity (Monte 2010); a source naming SSRIs directly would be better. For
+diphenhydramine, doxylamine and dextromethorphan their values match the knowledge base. Aleve's
+hypertension modifier applies to `cardiovascular_bp` and `kidney`, as the rubric's condition table
+says for NSAIDs; the label line it cites names high blood pressure, not the kidneys.
 
 ## Consistency checks
 
