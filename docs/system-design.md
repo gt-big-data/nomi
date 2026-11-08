@@ -106,7 +106,8 @@ produced it. Stages skip work when their inputs haven't changed.
 ### 5.2 Identity resolution
 
 - A drug UPC-A barcode is `3` + NDC10 + check digit. The NDC10 can be split 4-4-2, 5-3-2 or 5-4-1, so
-  the parser emits three NDC11 candidates; only one exists in FDA data.
+  the parser emits three NDC11 candidates. Lookups match the barcode's exact 10 digits, because two
+  NDC10s can pad to the same NDC11.
 - The same parser exists in Python (pipeline) and TypeScript (app), tested against one shared fixture file.
 - Coverage is measured on barcodes generated from every package in the NDC directory, where the
   correct answer is known. Target: 95% or higher.
@@ -213,8 +214,8 @@ One SQLite file, `nomi.sqlite`, target 20 MB compressed or less.
 | Table | Key columns | Purpose |
 |---|---|---|
 | `meta` | dataset_version, model_version, rubric_version, built_at | Provenance shown in the app |
-| `products` | ndc11 (PK), set_id, brand, generic, form, category, scope_flag, review_status | Barcode lookup |
-| `product_ingredients` | ndc11, unii, strength, unit | Ingredients per product |
+| `products` | package_ndc (PK, dashed NDC10), ndc10 (indexed), ndc11, set_id, brand, generic, form, category, scope_flag, review_status | Barcode lookup |
+| `product_ingredients` | package_ndc, unii, strength, unit | Ingredients per product |
 | `ingredients` | unii (PK), name | Display names |
 | `product_uses` | ndc11, use | For benchmarks and alternatives |
 | `label_warnings` | ndc11, warning_code | Mandated warnings found on the label |
@@ -226,6 +227,9 @@ One SQLite file, `nomi.sqlite`, target 20 MB compressed or less.
 | `templates` | id, dimension, severity, text | Explanation sentences |
 | `products_fts` | FTS5 over brand, generic, ingredient names | Offline name search |
 | `interactions` | class_a, class_b, severity, citation_id | Medicine Cabinet checks |
+
+Tables listed above as keyed by ndc11 (`product_uses`, `label_warnings`, `hard_stops`, `alternatives`)
+should key by `package_ndc` when they are built, because two packages can share an ndc11.
 
 ### 7.2 Distribution and updates
 
@@ -253,7 +257,8 @@ apps/mobile/src/
 
 1. The app opens straight to the camera (react-native-vision-camera).
 2. Google ML Kit detects UPC-A or EAN-13 on the device; the phone vibrates.
-3. The barcode parser produces three NDC11 candidates; one indexed query finds the product.
+3. The barcode parser checks the barcode; one indexed query finds the product whose NDC10 has exactly
+   the barcode's 10 digits (not the NDC11 candidates, since two NDC10s can pad to one NDC11).
 4. The scoring engine sums term-table points for the active profile, applies hard stops, and computes the benchmark percentile.
 5. The result screen shows the score, tier, who it's for, the dimension breakdown with citations, the explanation and alternatives.
 
