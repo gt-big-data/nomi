@@ -7,3 +7,4 @@ A decision is accepted when it is merged.
 |---|---|---|
 | 0001 | Architecture and ML approach | NOMI-003 |
 | 0002 | Privacy: health data stays on the device | NOMI-003 |
+| 0003 | Mirror raw data to a Hugging Face dataset | NOMI-008 |
