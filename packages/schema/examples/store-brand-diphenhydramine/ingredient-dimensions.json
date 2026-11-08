@@ -53,10 +53,18 @@
         "severity": 3,
         "citations": [
           {
-            "source": "publication",
-            "document_id": "10.1111/jgs.18372",
-            "section": "2023 AGS Beers Criteria, Table 2: first-generation antihistamines",
-            "url": "https://pubmed.ncbi.nlm.nih.gov/37139824/"
+            "source": "stopp_start",
+            "document_id": "STOPP_v3_K6",
+            "section": "Appendix 1, STOPP K6",
+            "url": "https://static-content.springer.com/esm/art%3A10.1007%2Fs41999-023-00777-y/MediaObjects/41999_2023_777_MOESM1_ESM.pdf",
+            "quote": "First generation antihistamines in patients with recurrent falls (may impair sensorium)"
+          },
+          {
+            "source": "stopp_start",
+            "document_id": "STOPP_v3_D24",
+            "section": "Appendix 1, STOPP D24",
+            "url": "https://static-content.springer.com/esm/art%3A10.1007%2Fs41999-023-00777-y/MediaObjects/41999_2023_777_MOESM1_ESM.pdf",
+            "quote": "First-generation antihistamines as first-line treatment for allergy or pruritus"
           }
         ]
       },

@@ -35,19 +35,32 @@ Tylenol is red (49) for a healthy adult because of its liver warning. That is wh
 implies and needs a decision from the rubric owner. Change `POINTS` in `tests/test_examples.py`
 and regenerate these records when the rubric is set. They are not production golden vectors.
 
-Aleve's `gi_bleeding` is 2 for adults and children and 3 for adults 65+, following the rubric's
-own severity 3 example ("Aleve, `adult_65_plus` or ulcer history"), even though the rubric also
-lists the stomach bleeding warning as a severity 3 indicator.
+Two questions for the rubric owner before #29 builds on these numbers:
+
+- **Named label warnings.** The rubric lists both the liver warning and the stomach bleeding
+  warning as severity 3 indicators. Tylenol's liver warning is rated 3 for everyone, but Aleve's
+  stomach bleeding and heart attack and stroke warnings are rated 2 for adults and children and 3
+  for adults 65+, following the rubric's own severity 3 example ("Aleve, `adult_65_plus` or ulcer
+  history"). So Tylenol is red (49) for a healthy adult and Aleve is yellow (55).
+- **Spread.** With 51 points for a severity 3, every adult 65+ record except Tylenol clamps to 0,
+  so the fixtures cannot rank those products against each other.
 
 Pediatric ratings apply to the specific presentation and must not be generalized to every product
 containing that ingredient. Dimensions not listed count as 0. The older-adult antihistamine
-ratings of 3 rest on the 2023 AGS Beers Criteria (first-generation antihistamines), not on the
-labels alone. Modifiers cite each product's own label; for diphenhydramine, doxylamine and
-dextromethorphan their values match the knowledge base.
+ratings of 3 rest on published criteria, not on the labels alone: `anticholinergic_cognitive` on the
+2023 AGS Beers Criteria, and `sedation_falls` on STOPP v3 K6 ("first generation antihistamines in
+patients with recurrent falls"), plus D24 (allergy) or D25 (insomnia) where the product fits.
+Modifiers cite each product's own label, except dextromethorphan's SSRI modifier, which cites a
+published review. For diphenhydramine, doxylamine and dextromethorphan their values match the
+knowledge base. Aleve's hypertension modifier applies to `cardiovascular_bp` and `kidney`, as the
+rubric's condition table says for NSAIDs.
 
 ## Consistency checks
 
 `tests/test_examples.py` checks that:
+
+- every label citation points at this product's own label and version, and names a known Drug
+  Facts section with its matching LOINC code;
 
 - every file validates against the #2 schemas;
 - each expected score, contribution, citation, explanation, tier and hard stop follows from the
@@ -55,7 +68,8 @@ dextromethorphan their values match the knowledge base.
 - ingredients that have a file in `pipeline/knowledge/ingredients` (dextromethorphan, doxylamine,
   diphenhydramine) match it for the three profiles, ratings and modifiers alike. The two exceptions come from the product's own
   label and are listed in `LABEL_OVERRIDES`: ZzzQuil says "children under 12 yrs do not use" (3),
-  and NyQuil says "children 4 to under 12 yrs ask a doctor" (2).
+  and NyQuil says "children 4 to under 12 yrs ask a doctor" (2). A test fails if an override stops
+  being needed.
 
 Acetaminophen and naproxen are not in the knowledge base yet (#98); add them to the check once
 they are.

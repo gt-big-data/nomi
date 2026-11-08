@@ -35,6 +35,26 @@ LABEL_OVERRIDES = {
 }
 
 
+# Hard stops each record must carry, by product and persona.
+HARD_STOPS = {
+    ("zzzquil", "child_6_11"): [
+        {"id": "hs_zzzquil_under_12", "message": "This ZzzQuil label prohibits use below age 12."}
+    ],
+}
+
+# Drug Facts sections (LOINC codes) that label citations may name.
+SECTIONS = {
+    "34068-7": "Directions",
+    "42229-5": "Warnings / ",
+    "50567-7": "When using",
+    "50568-5": "Ask a doctor or pharmacist",
+    "50569-3": "Ask a doctor",
+    "50570-1": "Do not use",
+    "53414-9": "Pregnancy or breast-feeding",
+    "55105-1": "Purpose",
+}
+
+
 def read(folder: Path, name: str) -> Any:
     return json.loads((folder / f"{name}.json").read_text(encoding="utf-8"))
 
@@ -80,27 +100,42 @@ def expected_contributions(
     for dimension, by_unii in found.items():
         top = max(severity for severity, _ in by_unii.values())
         uniis = sorted(u for u, (severity, _) in by_unii.items() if severity == top)
-        citations: list[dict[str, Any]] = []
+        sources: list[dict[str, Any]] = []
         for unii in uniis:
-            citations += [c for c in by_unii[unii][1] if c not in citations]
+            sources += [c for c in by_unii[unii][1] if c not in sources]
         out.append(
             {
                 "dimension": dimension,
                 "points": POINTS[top],
                 "ingredient_uniis": uniis,
-                "citations": citations,
+                "citations": sources,
             }
         )
     return sorted(out, key=lambda c: (-c["points"], c["dimension"]))
 
 
-def expected_hard_stops(ingredients: list[dict[str, Any]], persona: str) -> bool:
+def label_forbids_age(ingredients: list[dict[str, Any]], persona: str) -> bool:
     # The only hard stop the fixtures use: the product's label says do not use at this age.
     return any(
         r["dimension"] == "pediatric" and r["persona"] == persona and r["severity"] == 3
         for ingredient in ingredients
         for r in ingredient["ratings"]
     )
+
+
+def modifier_key(m: dict[str, Any]) -> tuple[str, str, int]:
+    return (m["dimension"], m.get("condition") or m["medication_type"], m["severity_change"])
+
+
+def tier(score: int, hard_stops: list[Any]) -> str:
+    if hard_stops:
+        return "red"
+    return "green" if score >= 75 else "yellow" if score >= 50 else "red"
+
+
+def test_a_hard_stop_makes_any_score_red() -> None:
+    assert tier(100, [{"id": "x"}]) == "red"
+    assert [tier(s, []) for s in (75, 74, 50, 49)] == ["green", "yellow", "yellow", "red"]
 
 
 @pytest.mark.parametrize("name", PRODUCTS)
@@ -133,10 +168,11 @@ def test_expected_scores_follow_from_the_ratings(name: str) -> None:
         expected = expected_contributions(ingredients, score["profile"])
         assert score["contributions"] == expected, score["profile"]
         assert score["score"] == max(0, 100 - sum(c["points"] for c in expected))
-        stops = expected_hard_stops(ingredients, score["profile"]["persona"])
-        assert bool(score["hard_stops_triggered"]) == stops, score["profile"]
-        band = "green" if score["score"] >= 75 else "yellow" if score["score"] >= 50 else "red"
-        assert score["tier"] == ("red" if stops else band)
+        persona = score["profile"]["persona"]
+        stops = HARD_STOPS.get((name, persona), [])
+        assert score["hard_stops_triggered"] == stops, persona
+        assert bool(stops) == label_forbids_age(ingredients, persona)
+        assert score["tier"] == tier(score["score"], stops)
         # One explanation per contribution, citing the same sources.
         explained = {e["template_id"]: e["citations"] for e in score["explanation"]}
         for contribution in expected:
@@ -168,13 +204,33 @@ def test_ratings_match_the_knowledge_base(name: str) -> None:
         differ = {k: (actual[k], v) for k, v in expected.items() if k in actual and actual[k] != v}
         assert (missing, differ) == ({}, {}), ingredient["name"]
 
-        def key(m: dict[str, Any]) -> tuple[str, str, int]:
-            return (
-                m["dimension"],
-                m.get("condition") or m["medication_type"],
-                m["severity_change"],
-            )
-
-        assert sorted(map(key, ingredient.get("modifiers", []))) == sorted(
-            map(key, entry.get("modifiers", []))
+        assert sorted(map(modifier_key, ingredient.get("modifiers", []))) == sorted(
+            map(modifier_key, entry.get("modifiers", []))
         ), ingredient["name"]
+
+
+@pytest.mark.parametrize("name", PRODUCTS)
+def test_label_citations_point_at_this_label(name: str) -> None:
+    folder = EXAMPLES / name
+    product = read(folder, "product")
+    for ingredient in read(folder, "ingredient-dimensions"):
+        for item in ingredient["ratings"] + ingredient.get("modifiers", []):
+            for citation in item.get("citations", []):
+                if citation["source"] != "fda_label":
+                    assert citation.get("url"), citation
+                    continue
+                assert citation["document_id"] == product["spl_set_id"], citation
+                prefix = f"SPL v{product['spl_version']}: "
+                assert citation["section"].startswith(prefix), citation
+                section = citation["section"].removeprefix(prefix)
+                codes = [code for code in SECTIONS if f"({code})" in section]
+                assert len(codes) <= 1, citation
+                if codes:
+                    assert section.startswith(SECTIONS[codes[0]]), citation
+
+
+def test_label_overrides_are_still_needed() -> None:
+    kb = knowledge_base()
+    for (_, unii, dimension, persona), severity in LABEL_OVERRIDES.items():
+        ratings = {(r["dimension"], r["persona"]): r["severity"] for r in kb[unii]["ratings"]}
+        assert ratings[(dimension, persona)] != severity

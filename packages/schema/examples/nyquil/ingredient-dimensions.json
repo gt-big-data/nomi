@@ -89,7 +89,8 @@
           {
             "source": "publication",
             "document_id": "10.1111/j.1365-2125.2010.03747.x",
-            "section": "Systematic review: serotonin toxicity with interacting medicines; overdose case evidence"
+            "section": "Systematic review: serotonin toxicity with interacting medicines; overdose case evidence",
+            "url": "https://doi.org/10.1111/j.1365-2125.2010.03747.x"
           }
         ]
       }
@@ -151,10 +152,11 @@
         "severity": 3,
         "citations": [
           {
-            "source": "publication",
-            "document_id": "10.1111/jgs.18372",
-            "section": "2023 AGS Beers Criteria, Table 2: first-generation antihistamines",
-            "url": "https://pubmed.ncbi.nlm.nih.gov/37139824/"
+            "source": "stopp_start",
+            "document_id": "STOPP_v3_K6",
+            "section": "Appendix 1, STOPP K6",
+            "url": "https://static-content.springer.com/esm/art%3A10.1007%2Fs41999-023-00777-y/MediaObjects/41999_2023_777_MOESM1_ESM.pdf",
+            "quote": "First generation antihistamines in patients with recurrent falls (may impair sensorium)"
           }
         ]
       },

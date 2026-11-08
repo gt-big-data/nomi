@@ -47,7 +47,7 @@
       },
       {
         "template_id": "NOMI-015_anticholinergic_cognitive",
-        "text": "Anticholinergic precautions apply; the older-adult draft also uses the cited Beers criteria.",
+        "text": "This antihistamine has anticholinergic effects; the label says to ask a doctor first with glaucoma or an enlarged prostate.",
         "citations": [
           {
             "source": "fda_label",
@@ -59,7 +59,7 @@
       },
       {
         "template_id": "NOMI-015_sedation_falls",
-        "text": "Sedation is a concern; the older-adult draft also accounts for falls evidence.",
+        "text": "This antihistamine causes drowsiness; avoid alcohol and take care driving.",
         "citations": [
           {
             "source": "fda_label",
@@ -108,10 +108,18 @@
         "ingredient_uniis": ["TC2D6JAD40"],
         "citations": [
           {
-            "source": "publication",
-            "document_id": "10.1111/jgs.18372",
-            "section": "2023 AGS Beers Criteria, Table 2: first-generation antihistamines",
-            "url": "https://pubmed.ncbi.nlm.nih.gov/37139824/"
+            "source": "stopp_start",
+            "document_id": "STOPP_v3_K6",
+            "section": "Appendix 1, STOPP K6",
+            "url": "https://static-content.springer.com/esm/art%3A10.1007%2Fs41999-023-00777-y/MediaObjects/41999_2023_777_MOESM1_ESM.pdf",
+            "quote": "First generation antihistamines in patients with recurrent falls (may impair sensorium)"
+          },
+          {
+            "source": "stopp_start",
+            "document_id": "STOPP_v3_D24",
+            "section": "Appendix 1, STOPP D24",
+            "url": "https://static-content.springer.com/esm/art%3A10.1007%2Fs41999-023-00777-y/MediaObjects/41999_2023_777_MOESM1_ESM.pdf",
+            "quote": "First-generation antihistamines as first-line treatment for allergy or pruritus"
           }
         ]
       }
@@ -127,7 +135,7 @@
       },
       {
         "template_id": "NOMI-015_anticholinergic_cognitive",
-        "text": "Anticholinergic precautions apply; the older-adult draft also uses the cited Beers criteria.",
+        "text": "The 2023 Beers Criteria list first-generation antihistamines as anticholinergic drugs for older adults to avoid.",
         "citations": [
           {
             "source": "publication",
@@ -139,13 +147,21 @@
       },
       {
         "template_id": "NOMI-015_sedation_falls",
-        "text": "Sedation is a concern; the older-adult draft also accounts for falls evidence.",
+        "text": "STOPP v3 flags first-generation antihistamines in older adults, including for people who fall.",
         "citations": [
           {
-            "source": "publication",
-            "document_id": "10.1111/jgs.18372",
-            "section": "2023 AGS Beers Criteria, Table 2: first-generation antihistamines",
-            "url": "https://pubmed.ncbi.nlm.nih.gov/37139824/"
+            "source": "stopp_start",
+            "document_id": "STOPP_v3_K6",
+            "section": "Appendix 1, STOPP K6",
+            "url": "https://static-content.springer.com/esm/art%3A10.1007%2Fs41999-023-00777-y/MediaObjects/41999_2023_777_MOESM1_ESM.pdf",
+            "quote": "First generation antihistamines in patients with recurrent falls (may impair sensorium)"
+          },
+          {
+            "source": "stopp_start",
+            "document_id": "STOPP_v3_D24",
+            "section": "Appendix 1, STOPP D24",
+            "url": "https://static-content.springer.com/esm/art%3A10.1007%2Fs41999-023-00777-y/MediaObjects/41999_2023_777_MOESM1_ESM.pdf",
+            "quote": "First-generation antihistamines as first-line treatment for allergy or pruritus"
           }
         ]
       }
@@ -228,7 +244,7 @@
       },
       {
         "template_id": "NOMI-015_anticholinergic_cognitive",
-        "text": "Anticholinergic precautions apply; the older-adult draft also uses the cited Beers criteria.",
+        "text": "This antihistamine has anticholinergic effects; the label says to ask a doctor first with glaucoma or an enlarged prostate.",
         "citations": [
           {
             "source": "fda_label",
@@ -260,7 +276,7 @@
       },
       {
         "template_id": "NOMI-015_sedation_falls",
-        "text": "Sedation is a concern; the older-adult draft also accounts for falls evidence.",
+        "text": "This antihistamine causes drowsiness; avoid alcohol and take care driving.",
         "citations": [
           {
             "source": "fda_label",
