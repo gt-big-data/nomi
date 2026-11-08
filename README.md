@@ -36,7 +36,7 @@ packages/
   schema/          Shared data contracts (JSON Schema), reference products, test vectors
 pipeline/          Python data and scoring pipeline
   src/nomi_pipeline/
-    fetch/         Raw data from the R2 mirror
+    fetch/         Raw data from the Hugging Face mirror
     ingest/        NDC directory, DailyMed labels, FAERS, RxNorm
     identity/      Barcode parsing and product resolution
     extract/       Label fact extraction (rules and LLM)

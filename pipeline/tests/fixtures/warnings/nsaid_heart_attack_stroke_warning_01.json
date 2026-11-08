@@ -1,0 +1,19 @@
+{
+  "id": "nsaid_heart_attack_stroke_warning_01",
+  "text": "When using this product ¬ take with food or milk if stomach upset occurs ¬ the risk of heart attack or stroke may increase if you use more than directed or for longer than directed",
+  "expected_warnings": ["nsaid_heart_attack_stroke_warning"],
+  "source": {
+    "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=119263b5-c3b7-46dc-a3bd-9893bfd24628",
+    "openfda_query_url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name%3A%22IBUPROFEN%22+AND+openfda.product_type%3A%22HUMAN+OTC+DRUG%22&limit=100",
+    "set_id": "119263b5-c3b7-46dc-a3bd-9893bfd24628",
+    "label_id": "28ef5535-36c5-ed54-e063-6394a90aefc6",
+    "version": "6",
+    "effective_time": "20241210",
+    "retrieved_on": "2026-11-08",
+    "brand_name": ["Assured Ibuprofen"],
+    "field": "when_using",
+    "item_index": 0,
+    "start": 0,
+    "end": 180
+  }
+}

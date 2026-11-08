@@ -1,0 +1,19 @@
+{
+  "id": "reyes_syndrome_warning_05",
+  "text": "Reye's Syndrome: Children and teenagers who have or are recovering from chicken pox or flu-like symptoms should not use this product. When using this product, if changes in behaviour with nausea and vomiting occur, consult a doctor because these symptoms could be an early sign of",
+  "expected_warnings": ["reyes_syndrome_warning"],
+  "source": {
+    "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0277d4d7-c254-4eea-8f2e-4936d015a80f",
+    "openfda_query_url": "https://api.fda.gov/drug/label.json?search=openfda.generic_name%3A%22BISMUTH+SUBSALICYLATE%22+AND+openfda.product_type%3A%22HUMAN+OTC+DRUG%22&limit=30",
+    "set_id": "0277d4d7-c254-4eea-8f2e-4936d015a80f",
+    "label_id": "db44dd7d-e9b0-42db-bb07-1ed50a4a1441",
+    "version": "3",
+    "effective_time": "20241226",
+    "retrieved_on": "2026-10-22",
+    "brand_name": ["HEB Stomach Relief Cherry"],
+    "field": "warnings",
+    "item_index": 0,
+    "start": 9,
+    "end": 289
+  }
+}
