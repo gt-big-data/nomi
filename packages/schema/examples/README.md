@@ -35,7 +35,7 @@ Tylenol is red (49) for a healthy adult because of its liver warning. That is wh
 implies and needs a decision from the rubric owner. Change `POINTS` in `tests/test_examples.py`
 and regenerate these records when the rubric is set. They are not production golden vectors.
 
-Two questions for the rubric owner before #29 builds on these numbers:
+Four questions for the rubric owner before #29 builds on these numbers:
 
 - **Named label warnings.** The rubric lists both the liver warning and the stomach bleeding
   warning as severity 3 indicators. Tylenol's liver warning is rated 3 for everyone. Aleve's
@@ -54,7 +54,8 @@ Two questions for the rubric owner before #29 builds on these numbers:
   and these fixtures, but the rubric's table says +2, and the rubric's table has no
   `heavy_alcohol_use` row for `sedation_falls`. Aleve's modifiers cite only its own label, so it
   has no `anticoagulant_bleeding` rating or modifier, and its `diuretics` and `kidney_disease`
-  modifiers leave out `cardiovascular_bp`, all of which the rubric lists for NSAIDs.
+  modifiers leave out `cardiovascular_bp`, all of which the rubric lists for NSAIDs. It also has
+no `antiplatelets`, `ssri_snri` or `blood_pressure_medications` modifiers.
 
 Pediatric ratings apply to the specific presentation and must not be generalized to every product
 containing that ingredient. Dimensions not listed count as 0. The older-adult antihistamine
@@ -62,8 +63,9 @@ ratings of 3 rest on published criteria, not on the labels alone: `anticholinerg
 2023 AGS Beers Criteria, and `sedation_falls` on STOPP v3 K6 ("first generation antihistamines in
 patients with recurrent falls"), plus D24 (allergy) or D25 (insomnia) where the product fits. NyQuil has no such fit; see
 the open question above.
-Modifiers cite each product's own label, except dextromethorphan's SSRI modifier, which cites a
-published review. For diphenhydramine, doxylamine and dextromethorphan their values match the
+Modifiers cite each product's own label, except dextromethorphan's SSRI modifier, which carries the
+knowledge base's citation of a published review of dextromethorphan serotonin toxicity (Monte
+2010); a source naming SSRIs directly would be better. For diphenhydramine, doxylamine and dextromethorphan their values match the
 knowledge base. Aleve's hypertension modifier applies to `cardiovascular_bp` and `kidney`, as the
 rubric's condition table says for NSAIDs.
 

@@ -60,7 +60,7 @@
       },
       {
         "template_id": "NOMI-015_cardiovascular_bp",
-        "text": "Naproxen carries cardiovascular warnings; people with high blood pressure should consult a doctor.",
+        "text": "The label warns that NSAIDs like naproxen increase the risk of heart attack, heart failure and stroke.",
         "citations": [
           {
             "source": "fda_label",
@@ -311,7 +311,7 @@
       },
       {
         "template_id": "NOMI-015_cardiovascular_bp",
-        "text": "Naproxen carries cardiovascular warnings; people with high blood pressure should consult a doctor.",
+        "text": "The label warns that NSAIDs like naproxen increase the risk of heart attack, heart failure and stroke.",
         "citations": [
           {
             "source": "fda_label",

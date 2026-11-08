@@ -42,7 +42,8 @@ HARD_STOPS = {
     ],
 }
 
-# Drug Facts sections (LOINC codes) that label citations may name.
+# Drug Facts sections (LOINC codes) that label citations may name. Labels code Warnings
+# subsections such as "Stomach bleeding warning" as 42229-5 (SPL unclassified section).
 SECTIONS = {
     "34068-7": "Directions",
     "42229-5": "Warnings / ",
