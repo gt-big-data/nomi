@@ -287,3 +287,18 @@ def test_load_event_groups(tmp_path: Path) -> None:
     assert "description" in first_group
     assert "pt_patterns" in first_group
     assert isinstance(first_group["pt_patterns"], list)
+
+
+def test_sex_comes_from_either_faers_column() -> None:
+    # 2014 quarters use gndr_cod, later ones sex; the bronze table holds both.
+    demo = pl.DataFrame(
+        {
+            "primaryid": ["1", "2", "3"],
+            "age": ["40", "40", "40"],
+            "age_cod": ["YR", "YR", "YR"],
+            "gndr_cod": ["F", None, None],
+            "sex": [None, "M", None],
+        }
+    )
+    sexes = dict(_clean_demographics(demo).select(["primaryid", "sex"]).iter_rows())
+    assert sexes == {"1": "F", "2": "M", "3": "unknown"}
