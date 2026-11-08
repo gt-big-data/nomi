@@ -12,40 +12,52 @@ the cited DailyMed SPLs. Uses and OTC categories are Nomi groupings.
 ## Draft scoring convention
 
 The rubric (`docs/rubric/v0.md`) and term tables are not in the repository yet. These expected
-scores use the provisional `NOMI-015-fixture-draft-6-points-per-severity` convention:
+scores use the provisional `NOMI-015-fixture-draft-5-15-51-points` convention:
 
-- Apply matching modifiers, capping each ingredient/dimension severity at 3.
-- Within each dimension, take the maximum severity across active ingredients.
-- Deduct six points per severity level; clamp the total score to 0-100.
+- Apply matching modifiers, capping each ingredient/dimension severity at 3. A modifier on a
+  dimension the ingredient does not rate starts from 0.
+- Within each dimension, take the highest severity across active ingredients. This is a deliberate
+  simplification: system design 6.2 also allows a stacking penalty when two ingredients hit the
+  same dimension, which the rubric has not defined yet.
+- Deduct 5, 15 or 51 points for severity 1, 2 or 3; clamp the total score to 0-100.
 - Use the bands in `docs/system-design.md`: green 75+, yellow 50-74, red below 50.
 - Leave out `duplicate_dosing`: the same ingredient in two products is flagged by the Medicine
   Cabinet, not the single-product score (`docs/system-design.md`, section 6.2).
-- An explicit label prohibition forces a red tier without changing the score.
-  Here this applies to ZzzQuil for the child profile. Its rule ID is local to
-  this fixture until production hard-stop tables exist.
+- A label "do not use" at the profile's age (a pediatric severity 3) is a hard stop and forces red.
+  Here this applies to ZzzQuil for the child profile. Its rule ID is local to this fixture until
+  production hard-stop tables exist.
 
-Six points is a fixture assumption, not an FDA value or an approved Nomi rubric. The point ranges in
-`docs/scoring/dimensions.md` (5-10, 15-25 and 35-50+ per severity) were not used because they
-conflict with that file's own tier column: one severity 3 at 35 points scores 65, which is yellow,
-not red. Settle that in the rubric, then change `POINTS_PER_SEVERITY` in `tests/test_examples.py`
-and regenerate these records. They are not production golden vectors.
+The points come from the summary table in `docs/scoring/dimensions.md`: the low end of the
+severity 1 (5-10) and severity 2 (15-25) ranges, and 51 for severity 3 ("35-50+"), so that one
+severity 3 is red as the table's tier column says. The table cannot be met exactly: no value in
+15-25 makes a single severity 2 yellow. With these values every product here is yellow or red;
+Tylenol is red (49) for a healthy adult because of its liver warning. That is what the rubric table
+implies and needs a decision from the rubric owner. Change `POINTS` in `tests/test_examples.py`
+and regenerate these records when the rubric is set. They are not production golden vectors.
+
+Aleve's `gi_bleeding` is 2 for adults and children and 3 for adults 65+, following the rubric's
+own severity 3 example ("Aleve, `adult_65_plus` or ulcer history"), even though the rubric also
+lists the stomach bleeding warning as a severity 3 indicator.
 
 Pediatric ratings apply to the specific presentation and must not be generalized to every product
-containing that ingredient. Unlisted dimensions count as 0. The older-adult antihistamine ratings
-of 3 rest on the 2023 AGS Beers Criteria (first-generation antihistamines), not on the labels alone.
+containing that ingredient. Dimensions not listed count as 0. The older-adult antihistamine
+ratings of 3 rest on the 2023 AGS Beers Criteria (first-generation antihistamines), not on the
+labels alone. Modifiers cite each product's own label; for diphenhydramine, doxylamine and
+dextromethorphan their values match the knowledge base.
 
 ## Consistency checks
 
 `tests/test_examples.py` checks that:
 
 - every file validates against the #2 schemas;
-- each expected score follows from the ingredient ratings under the convention above;
+- each expected score, contribution, citation, explanation, tier and hard stop follows from the
+  ingredient ratings and modifiers under the convention above;
 - ingredients that have a file in `pipeline/knowledge/ingredients` (dextromethorphan, doxylamine,
-  diphenhydramine) match it for the three profiles. The two exceptions come from the product's own
+  diphenhydramine) match it for the three profiles, ratings and modifiers alike. The two exceptions come from the product's own
   label and are listed in `LABEL_OVERRIDES`: ZzzQuil says "children under 12 yrs do not use" (3),
   and NyQuil says "children 4 to under 12 yrs ask a doctor" (2).
 
-Acetaminophen and naproxen are not in the knowledge base yet (NOMI-034); add them to the check once
+Acetaminophen and naproxen are not in the knowledge base yet (#98); add them to the check once
 they are.
 
 ## Review

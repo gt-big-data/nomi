@@ -6,12 +6,12 @@
       "conditions": [],
       "medication_types": []
     },
-    "score": 64,
+    "score": 55,
     "tier": "yellow",
     "contributions": [
       {
         "dimension": "cardiovascular_bp",
-        "points": 12,
+        "points": 15,
         "ingredient_uniis": ["9TN87S3A3C"],
         "citations": [
           {
@@ -24,7 +24,7 @@
       },
       {
         "dimension": "gi_bleeding",
-        "points": 12,
+        "points": 15,
         "ingredient_uniis": ["9TN87S3A3C"],
         "citations": [
           {
@@ -37,7 +37,7 @@
       },
       {
         "dimension": "kidney",
-        "points": 12,
+        "points": 15,
         "ingredient_uniis": ["9TN87S3A3C"],
         "citations": [
           {
@@ -55,7 +55,7 @@
     "explanation": [
       {
         "template_id": "NOMI-015_fixture_draft",
-        "text": "Draft test fixture using six points per severity level; not a finalized Nomi score.",
+        "text": "Draft test fixture using 5, 15 and 51 points for severity 1, 2 and 3; not a finalized Nomi score.",
         "citations": []
       },
       {
@@ -99,7 +99,7 @@
     "provenance": {
       "schema_version": "0.1.0",
       "dataset_version": "NOMI-015-draft",
-      "rubric_version": "NOMI-015-fixture-draft-6-points-per-severity",
+      "rubric_version": "NOMI-015-fixture-draft-5-15-51-points",
       "code_commit": "aa8d723e99fb22853023d8f66e54e3dbe04f52a1",
       "generated_at": "2026-10-29T17:44:37Z"
     }
@@ -111,12 +111,12 @@
       "conditions": ["hypertension"],
       "medication_types": []
     },
-    "score": 52,
-    "tier": "yellow",
+    "score": 0,
+    "tier": "red",
     "contributions": [
       {
         "dimension": "cardiovascular_bp",
-        "points": 18,
+        "points": 51,
         "ingredient_uniis": ["9TN87S3A3C"],
         "citations": [
           {
@@ -135,7 +135,7 @@
       },
       {
         "dimension": "gi_bleeding",
-        "points": 18,
+        "points": 51,
         "ingredient_uniis": ["9TN87S3A3C"],
         "citations": [
           {
@@ -148,7 +148,7 @@
       },
       {
         "dimension": "kidney",
-        "points": 12,
+        "points": 15,
         "ingredient_uniis": ["9TN87S3A3C"],
         "citations": [
           {
@@ -166,7 +166,7 @@
     "explanation": [
       {
         "template_id": "NOMI-015_fixture_draft",
-        "text": "Draft test fixture using six points per severity level; not a finalized Nomi score.",
+        "text": "Draft test fixture using 5, 15 and 51 points for severity 1, 2 and 3; not a finalized Nomi score.",
         "citations": []
       },
       {
@@ -216,7 +216,7 @@
     "provenance": {
       "schema_version": "0.1.0",
       "dataset_version": "NOMI-015-draft",
-      "rubric_version": "NOMI-015-fixture-draft-6-points-per-severity",
+      "rubric_version": "NOMI-015-fixture-draft-5-15-51-points",
       "code_commit": "aa8d723e99fb22853023d8f66e54e3dbe04f52a1",
       "generated_at": "2026-10-29T17:44:37Z"
     }
@@ -228,12 +228,12 @@
       "conditions": [],
       "medication_types": []
     },
-    "score": 52,
-    "tier": "yellow",
+    "score": 40,
+    "tier": "red",
     "contributions": [
       {
         "dimension": "cardiovascular_bp",
-        "points": 12,
+        "points": 15,
         "ingredient_uniis": ["9TN87S3A3C"],
         "citations": [
           {
@@ -246,7 +246,7 @@
       },
       {
         "dimension": "gi_bleeding",
-        "points": 12,
+        "points": 15,
         "ingredient_uniis": ["9TN87S3A3C"],
         "citations": [
           {
@@ -259,7 +259,7 @@
       },
       {
         "dimension": "kidney",
-        "points": 12,
+        "points": 15,
         "ingredient_uniis": ["9TN87S3A3C"],
         "citations": [
           {
@@ -272,7 +272,7 @@
       },
       {
         "dimension": "pediatric",
-        "points": 12,
+        "points": 15,
         "ingredient_uniis": ["9TN87S3A3C"],
         "citations": [
           {
@@ -290,7 +290,7 @@
     "explanation": [
       {
         "template_id": "NOMI-015_fixture_draft",
-        "text": "Draft test fixture using six points per severity level; not a finalized Nomi score.",
+        "text": "Draft test fixture using 5, 15 and 51 points for severity 1, 2 and 3; not a finalized Nomi score.",
         "citations": []
       },
       {
@@ -358,7 +358,7 @@
     "provenance": {
       "schema_version": "0.1.0",
       "dataset_version": "NOMI-015-draft",
-      "rubric_version": "NOMI-015-fixture-draft-6-points-per-severity",
+      "rubric_version": "NOMI-015-fixture-draft-5-15-51-points",
       "code_commit": "aa8d723e99fb22853023d8f66e54e3dbe04f52a1",
       "generated_at": "2026-10-29T17:44:37Z"
     }

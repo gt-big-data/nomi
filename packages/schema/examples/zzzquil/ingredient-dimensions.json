@@ -23,9 +23,17 @@
         "citations": [
           {
             "source": "fda_label",
-            "document_id": "c0fa4e00-2bd1-4d16-810d-b55f3b827418",
-            "section": "SPL v4: When using (50567-7)",
-            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=c0fa4e00-2bd1-4d16-810d-b55f3b827418"
+            "document_id": "1d608c94-1651-f318-e063-6294a90aa11e",
+            "section": "SPL v4: Purpose (55106-9)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1d608c94-1651-f318-e063-6294a90aa11e",
+            "quote": "Nighttime sleep-aid"
+          },
+          {
+            "source": "fda_label",
+            "document_id": "1d608c94-1651-f318-e063-6294a90aa11e",
+            "section": "SPL v4: Ask a doctor or pharmacist (50568-5)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1d608c94-1651-f318-e063-6294a90aa11e",
+            "quote": "taking sedatives or tranquilizers"
           }
         ]
       },
@@ -85,9 +93,17 @@
         "citations": [
           {
             "source": "fda_label",
-            "document_id": "c0fa4e00-2bd1-4d16-810d-b55f3b827418",
-            "section": "SPL v4: When using (50567-7)",
-            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=c0fa4e00-2bd1-4d16-810d-b55f3b827418"
+            "document_id": "1d608c94-1651-f318-e063-6294a90aa11e",
+            "section": "SPL v4: Purpose (55106-9)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1d608c94-1651-f318-e063-6294a90aa11e",
+            "quote": "Nighttime sleep-aid"
+          },
+          {
+            "source": "fda_label",
+            "document_id": "1d608c94-1651-f318-e063-6294a90aa11e",
+            "section": "SPL v4: Ask a doctor or pharmacist (50568-5)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1d608c94-1651-f318-e063-6294a90aa11e",
+            "quote": "taking sedatives or tranquilizers"
           }
         ]
       },
@@ -105,8 +121,65 @@
         ]
       }
     ],
-    "modifiers": [],
+    "modifiers": [
+      {
+        "dimension": "anticholinergic_cognitive",
+        "condition": "glaucoma",
+        "severity_change": 2,
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "1d608c94-1651-f318-e063-6294a90aa11e",
+            "section": "SPL v4: Ask a doctor (50569-3)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1d608c94-1651-f318-e063-6294a90aa11e",
+            "quote": "glaucoma"
+          }
+        ]
+      },
+      {
+        "dimension": "anticholinergic_cognitive",
+        "condition": "enlarged_prostate",
+        "severity_change": 2,
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "1d608c94-1651-f318-e063-6294a90aa11e",
+            "section": "SPL v4: Ask a doctor (50569-3)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1d608c94-1651-f318-e063-6294a90aa11e",
+            "quote": "difficulty in urination due to enlargement of the prostate gland"
+          }
+        ]
+      },
+      {
+        "dimension": "sedation_falls",
+        "medication_type": "sedatives",
+        "severity_change": 1,
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "1d608c94-1651-f318-e063-6294a90aa11e",
+            "section": "SPL v4: Ask a doctor or pharmacist (50568-5)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1d608c94-1651-f318-e063-6294a90aa11e",
+            "quote": "taking sedatives or tranquilizers"
+          }
+        ]
+      },
+      {
+        "dimension": "sedation_falls",
+        "condition": "heavy_alcohol_use",
+        "severity_change": 1,
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "1d608c94-1651-f318-e063-6294a90aa11e",
+            "section": "SPL v4: When using (50567-7)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1d608c94-1651-f318-e063-6294a90aa11e",
+            "quote": "avoid alcoholic beverages"
+          }
+        ]
+      }
+    ],
     "review_status": "unreviewed",
-    "notes": "Draft for this labeled formulation and the three example personas only. Other dimensions are unassessed, not zero. Numeric severities are draft interpretations of the cited evidence; second-person review is pending. Pediatric ratings are presentation-specific: a sleep-aid prohibition is not an allergy-tablet prohibition. Older-adult escalation uses the cited Beers publication, not an age claim from the label."
+    "notes": "Draft for this labeled formulation and the three example personas only. Dimensions not listed count as 0 in the expected scores. Numeric severities are draft interpretations of the cited evidence; second-person review is pending. Pediatric ratings are presentation-specific: a sleep-aid prohibition is not an allergy-tablet prohibition. Older-adult escalation uses the cited Beers publication, not an age claim from the label."
   }
 ]

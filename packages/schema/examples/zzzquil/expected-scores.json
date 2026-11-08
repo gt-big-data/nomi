@@ -6,12 +6,12 @@
       "conditions": [],
       "medication_types": []
     },
-    "score": 76,
-    "tier": "green",
+    "score": 70,
+    "tier": "yellow",
     "contributions": [
       {
         "dimension": "anticholinergic_cognitive",
-        "points": 12,
+        "points": 15,
         "ingredient_uniis": ["TC2D6JAD40"],
         "citations": [
           {
@@ -24,14 +24,22 @@
       },
       {
         "dimension": "sedation_falls",
-        "points": 12,
+        "points": 15,
         "ingredient_uniis": ["TC2D6JAD40"],
         "citations": [
           {
             "source": "fda_label",
-            "document_id": "c0fa4e00-2bd1-4d16-810d-b55f3b827418",
-            "section": "SPL v4: When using (50567-7)",
-            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=c0fa4e00-2bd1-4d16-810d-b55f3b827418"
+            "document_id": "1d608c94-1651-f318-e063-6294a90aa11e",
+            "section": "SPL v4: Purpose (55106-9)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1d608c94-1651-f318-e063-6294a90aa11e",
+            "quote": "Nighttime sleep-aid"
+          },
+          {
+            "source": "fda_label",
+            "document_id": "1d608c94-1651-f318-e063-6294a90aa11e",
+            "section": "SPL v4: Ask a doctor or pharmacist (50568-5)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1d608c94-1651-f318-e063-6294a90aa11e",
+            "quote": "taking sedatives or tranquilizers"
           }
         ]
       }
@@ -42,7 +50,7 @@
     "explanation": [
       {
         "template_id": "NOMI-015_fixture_draft",
-        "text": "Draft test fixture using six points per severity level; not a finalized Nomi score.",
+        "text": "Draft test fixture using 5, 15 and 51 points for severity 1, 2 and 3; not a finalized Nomi score.",
         "citations": []
       },
       {
@@ -63,9 +71,17 @@
         "citations": [
           {
             "source": "fda_label",
-            "document_id": "c0fa4e00-2bd1-4d16-810d-b55f3b827418",
-            "section": "SPL v4: When using (50567-7)",
-            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=c0fa4e00-2bd1-4d16-810d-b55f3b827418"
+            "document_id": "1d608c94-1651-f318-e063-6294a90aa11e",
+            "section": "SPL v4: Purpose (55106-9)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1d608c94-1651-f318-e063-6294a90aa11e",
+            "quote": "Nighttime sleep-aid"
+          },
+          {
+            "source": "fda_label",
+            "document_id": "1d608c94-1651-f318-e063-6294a90aa11e",
+            "section": "SPL v4: Ask a doctor or pharmacist (50568-5)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1d608c94-1651-f318-e063-6294a90aa11e",
+            "quote": "taking sedatives or tranquilizers"
           }
         ]
       }
@@ -74,7 +90,7 @@
     "provenance": {
       "schema_version": "0.1.0",
       "dataset_version": "NOMI-015-draft",
-      "rubric_version": "NOMI-015-fixture-draft-6-points-per-severity",
+      "rubric_version": "NOMI-015-fixture-draft-5-15-51-points",
       "code_commit": "aa8d723e99fb22853023d8f66e54e3dbe04f52a1",
       "generated_at": "2026-10-29T17:44:37Z"
     }
@@ -86,12 +102,12 @@
       "conditions": ["hypertension"],
       "medication_types": []
     },
-    "score": 64,
-    "tier": "yellow",
+    "score": 0,
+    "tier": "red",
     "contributions": [
       {
         "dimension": "anticholinergic_cognitive",
-        "points": 18,
+        "points": 51,
         "ingredient_uniis": ["TC2D6JAD40"],
         "citations": [
           {
@@ -104,7 +120,7 @@
       },
       {
         "dimension": "sedation_falls",
-        "points": 18,
+        "points": 51,
         "ingredient_uniis": ["TC2D6JAD40"],
         "citations": [
           {
@@ -122,7 +138,7 @@
     "explanation": [
       {
         "template_id": "NOMI-015_fixture_draft",
-        "text": "Draft test fixture using six points per severity level; not a finalized Nomi score.",
+        "text": "Draft test fixture using 5, 15 and 51 points for severity 1, 2 and 3; not a finalized Nomi score.",
         "citations": []
       },
       {
@@ -154,7 +170,7 @@
     "provenance": {
       "schema_version": "0.1.0",
       "dataset_version": "NOMI-015-draft",
-      "rubric_version": "NOMI-015-fixture-draft-6-points-per-severity",
+      "rubric_version": "NOMI-015-fixture-draft-5-15-51-points",
       "code_commit": "aa8d723e99fb22853023d8f66e54e3dbe04f52a1",
       "generated_at": "2026-10-29T17:44:37Z"
     }
@@ -166,12 +182,12 @@
       "conditions": [],
       "medication_types": []
     },
-    "score": 58,
+    "score": 19,
     "tier": "red",
     "contributions": [
       {
         "dimension": "pediatric",
-        "points": 18,
+        "points": 51,
         "ingredient_uniis": ["TC2D6JAD40"],
         "citations": [
           {
@@ -184,7 +200,7 @@
       },
       {
         "dimension": "anticholinergic_cognitive",
-        "points": 12,
+        "points": 15,
         "ingredient_uniis": ["TC2D6JAD40"],
         "citations": [
           {
@@ -197,14 +213,22 @@
       },
       {
         "dimension": "sedation_falls",
-        "points": 12,
+        "points": 15,
         "ingredient_uniis": ["TC2D6JAD40"],
         "citations": [
           {
             "source": "fda_label",
-            "document_id": "c0fa4e00-2bd1-4d16-810d-b55f3b827418",
-            "section": "SPL v4: When using (50567-7)",
-            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=c0fa4e00-2bd1-4d16-810d-b55f3b827418"
+            "document_id": "1d608c94-1651-f318-e063-6294a90aa11e",
+            "section": "SPL v4: Purpose (55106-9)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1d608c94-1651-f318-e063-6294a90aa11e",
+            "quote": "Nighttime sleep-aid"
+          },
+          {
+            "source": "fda_label",
+            "document_id": "1d608c94-1651-f318-e063-6294a90aa11e",
+            "section": "SPL v4: Ask a doctor or pharmacist (50568-5)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1d608c94-1651-f318-e063-6294a90aa11e",
+            "quote": "taking sedatives or tranquilizers"
           }
         ]
       }
@@ -220,7 +244,7 @@
     "explanation": [
       {
         "template_id": "NOMI-015_fixture_draft",
-        "text": "Draft test fixture using six points per severity level; not a finalized Nomi score.",
+        "text": "Draft test fixture using 5, 15 and 51 points for severity 1, 2 and 3; not a finalized Nomi score.",
         "citations": []
       },
       {
@@ -253,9 +277,17 @@
         "citations": [
           {
             "source": "fda_label",
-            "document_id": "c0fa4e00-2bd1-4d16-810d-b55f3b827418",
-            "section": "SPL v4: When using (50567-7)",
-            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=c0fa4e00-2bd1-4d16-810d-b55f3b827418"
+            "document_id": "1d608c94-1651-f318-e063-6294a90aa11e",
+            "section": "SPL v4: Purpose (55106-9)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1d608c94-1651-f318-e063-6294a90aa11e",
+            "quote": "Nighttime sleep-aid"
+          },
+          {
+            "source": "fda_label",
+            "document_id": "1d608c94-1651-f318-e063-6294a90aa11e",
+            "section": "SPL v4: Ask a doctor or pharmacist (50568-5)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1d608c94-1651-f318-e063-6294a90aa11e",
+            "quote": "taking sedatives or tranquilizers"
           }
         ]
       },
@@ -282,7 +314,7 @@
     "provenance": {
       "schema_version": "0.1.0",
       "dataset_version": "NOMI-015-draft",
-      "rubric_version": "NOMI-015-fixture-draft-6-points-per-severity",
+      "rubric_version": "NOMI-015-fixture-draft-5-15-51-points",
       "code_commit": "aa8d723e99fb22853023d8f66e54e3dbe04f52a1",
       "generated_at": "2026-10-29T17:44:37Z"
     }

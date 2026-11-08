@@ -66,9 +66,36 @@
         "severity": 0
       }
     ],
-    "modifiers": [],
+    "modifiers": [
+      {
+        "dimension": "serotonergic_interactions",
+        "medication_type": "maoi",
+        "severity_change": 3,
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "efe4e649-7514-32dd-e053-2995a90a0492",
+            "section": "SPL v13: Do not use (50570-1)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=efe4e649-7514-32dd-e053-2995a90a0492",
+            "quote": "prescription monoamine oxidase inhibitor (MAOI)"
+          }
+        ]
+      },
+      {
+        "dimension": "serotonergic_interactions",
+        "medication_type": "ssri_snri",
+        "severity_change": 2,
+        "citations": [
+          {
+            "source": "publication",
+            "document_id": "10.1111/j.1365-2125.2010.03747.x",
+            "section": "Systematic review: serotonin toxicity with interacting medicines; overdose case evidence"
+          }
+        ]
+      }
+    ],
     "review_status": "unreviewed",
-    "notes": "Draft for this labeled formulation and the three example personas only. No example profile takes an MAOI, so no serotonergic interaction points apply here. Other medication profiles and unlisted dimensions are unassessed, not zero. Second-person review is pending."
+    "notes": "Draft for this labeled formulation and the three example personas only. No example profile takes an MAOI, so no serotonergic interaction points apply here. Dimensions not listed count as 0 in the expected scores. Second-person review is pending."
   },
   {
     "unii": "V9BI9B5YI2",
@@ -176,9 +203,66 @@
         ]
       }
     ],
-    "modifiers": [],
+    "modifiers": [
+      {
+        "dimension": "anticholinergic_cognitive",
+        "condition": "glaucoma",
+        "severity_change": 2,
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "efe4e649-7514-32dd-e053-2995a90a0492",
+            "section": "SPL v13: Ask a doctor (50569-3)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=efe4e649-7514-32dd-e053-2995a90a0492",
+            "quote": "glaucoma"
+          }
+        ]
+      },
+      {
+        "dimension": "anticholinergic_cognitive",
+        "condition": "enlarged_prostate",
+        "severity_change": 2,
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "efe4e649-7514-32dd-e053-2995a90a0492",
+            "section": "SPL v13: Ask a doctor (50569-3)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=efe4e649-7514-32dd-e053-2995a90a0492",
+            "quote": "trouble urinating due to enlarged prostate gland"
+          }
+        ]
+      },
+      {
+        "dimension": "sedation_falls",
+        "medication_type": "sedatives",
+        "severity_change": 1,
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "efe4e649-7514-32dd-e053-2995a90a0492",
+            "section": "SPL v13: Ask a doctor or pharmacist (50568-5)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=efe4e649-7514-32dd-e053-2995a90a0492",
+            "quote": "taking sedatives or tranquilizers"
+          }
+        ]
+      },
+      {
+        "dimension": "sedation_falls",
+        "condition": "heavy_alcohol_use",
+        "severity_change": 1,
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "efe4e649-7514-32dd-e053-2995a90a0492",
+            "section": "SPL v13: When using (50567-7)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=efe4e649-7514-32dd-e053-2995a90a0492",
+            "quote": "avoid alcoholic drinks"
+          }
+        ]
+      }
+    ],
     "review_status": "unreviewed",
-    "notes": "Draft for this labeled formulation and the three example personas only. Other dimensions are unassessed, not zero. Numeric severities are draft interpretations of the cited evidence; second-person review is pending. Pediatric ratings are presentation-specific: a sleep-aid prohibition is not an allergy-tablet prohibition. Older-adult escalation uses the cited Beers publication, not an age claim from the label."
+    "notes": "Draft for this labeled formulation and the three example personas only. Dimensions not listed count as 0 in the expected scores. Numeric severities are draft interpretations of the cited evidence; second-person review is pending. Pediatric ratings are presentation-specific: a sleep-aid prohibition is not an allergy-tablet prohibition. Older-adult escalation uses the cited Beers publication, not an age claim from the label."
   },
   {
     "unii": "362O9ITL9D",
@@ -247,8 +331,51 @@
         ]
       }
     ],
-    "modifiers": [],
+    "modifiers": [
+      {
+        "dimension": "liver",
+        "condition": "liver_disease",
+        "severity_change": 2,
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "efe4e649-7514-32dd-e053-2995a90a0492",
+            "section": "SPL v13: Ask a doctor (50569-3)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=efe4e649-7514-32dd-e053-2995a90a0492",
+            "quote": "liver disease"
+          }
+        ]
+      },
+      {
+        "dimension": "liver",
+        "condition": "heavy_alcohol_use",
+        "severity_change": 2,
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "efe4e649-7514-32dd-e053-2995a90a0492",
+            "section": "SPL v13: Warnings / Liver warning",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=efe4e649-7514-32dd-e053-2995a90a0492",
+            "quote": "3 or more alcoholic drinks every day while using this product"
+          }
+        ]
+      },
+      {
+        "dimension": "anticoagulant_bleeding",
+        "medication_type": "anticoagulants",
+        "severity_change": 2,
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "efe4e649-7514-32dd-e053-2995a90a0492",
+            "section": "SPL v13: Ask a doctor or pharmacist (50568-5)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=efe4e649-7514-32dd-e053-2995a90a0492",
+            "quote": "taking the blood thinning drug warfarin"
+          }
+        ]
+      }
+    ],
     "review_status": "unreviewed",
-    "notes": "Draft for this labeled formulation and the three example personas only. Other dimensions are unassessed, not zero. Numeric severities are draft interpretations of the cited evidence; second-person review is pending."
+    "notes": "Draft for this labeled formulation and the three example personas only. Dimensions not listed count as 0 in the expected scores. Numeric severities are draft interpretations of the cited evidence; second-person review is pending."
   }
 ]

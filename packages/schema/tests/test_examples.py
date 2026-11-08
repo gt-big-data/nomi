@@ -19,8 +19,9 @@ PROFILES = [
     {"persona": "child_6_11", "conditions": [], "medication_types": []},
 ]
 
-# Draft fixture convention (see examples/README.md), not the rubric.
-POINTS_PER_SEVERITY = 6
+# Draft fixture convention (see examples/README.md), from the docs/scoring/dimensions.md summary
+# table: the low end of the 1 and 2 ranges, and 51 for 3 (inside "35-50+") so a 3 is red.
+POINTS = {1: 5, 2: 15, 3: 51}
 # Duplicate ingredients across products are the Medicine Cabinet's job, not the single-product
 # score (docs/system-design.md, section 6.2).
 NOT_SCORED = {"duplicate_dosing"}
@@ -43,34 +44,63 @@ def knowledge_base() -> dict[str, dict[str, Any]]:
     return {entry["unii"]: entry for entry in files}
 
 
-def draft_points(ingredients: list[dict[str, Any]], profile: dict[str, Any]) -> dict[str, Any]:
-    """Points and contributing UNIIs per dimension under the draft fixture convention."""
-    severities: dict[str, dict[str, int]] = {}
+def applies(modifier: dict[str, Any], profile: dict[str, Any]) -> bool:
+    return (
+        modifier.get("condition") in profile["conditions"]
+        or modifier.get("medication_type") in profile["medication_types"]
+    ) and profile["persona"] in modifier.get("personas", [profile["persona"]])
+
+
+def expected_contributions(
+    ingredients: list[dict[str, Any]], profile: dict[str, Any]
+) -> list[dict[str, Any]]:
+    """Contributions under the draft convention, largest first.
+
+    Each ingredient's severity is its rating plus matching modifiers, capped at 3 (an unrated
+    dimension counts as 0). Each dimension costs the points of its highest severity; the
+    citations are those of the ingredients at that severity.
+    """
+    # dimension -> unii -> (severity, citations)
+    found: dict[str, dict[str, tuple[int, list[dict[str, Any]]]]] = {}
     for ingredient in ingredients:
-        for rating in ingredient["ratings"]:
-            if rating["persona"] != profile["persona"] or rating["dimension"] in NOT_SCORED:
-                continue
-            change = sum(
-                m["severity_change"]
-                for m in ingredient.get("modifiers", [])
-                if m["dimension"] == rating["dimension"]
-                and (
-                    m.get("condition") in profile["conditions"]
-                    or m.get("medication_type") in profile["medication_types"]
-                )
-                and profile["persona"] in m.get("personas", [profile["persona"]])
-            )
-            severity = min(3, rating["severity"] + change)
-            if severity:
-                severities.setdefault(rating["dimension"], {})[ingredient["unii"]] = severity
-    out = {}
-    for dimension, by_unii in severities.items():
-        top = max(by_unii.values())
-        out[dimension] = {
-            "points": top * POINTS_PER_SEVERITY,
-            "ingredient_uniis": sorted(u for u, s in by_unii.items() if s == top),
+        ratings = {
+            r["dimension"]: r for r in ingredient["ratings"] if r["persona"] == profile["persona"]
         }
-    return out
+        modifiers = [m for m in ingredient.get("modifiers", []) if applies(m, profile)]
+        for dimension in ratings.keys() | {m["dimension"] for m in modifiers}:
+            if dimension in NOT_SCORED:
+                continue
+            rating = ratings.get(dimension, {"severity": 0})
+            used = [m for m in modifiers if m["dimension"] == dimension]
+            severity = min(3, rating["severity"] + sum(m["severity_change"] for m in used))
+            if severity:
+                citations = rating.get("citations", []) + [c for m in used for c in m["citations"]]
+                found.setdefault(dimension, {})[ingredient["unii"]] = (severity, citations)
+    out = []
+    for dimension, by_unii in found.items():
+        top = max(severity for severity, _ in by_unii.values())
+        uniis = sorted(u for u, (severity, _) in by_unii.items() if severity == top)
+        citations: list[dict[str, Any]] = []
+        for unii in uniis:
+            citations += [c for c in by_unii[unii][1] if c not in citations]
+        out.append(
+            {
+                "dimension": dimension,
+                "points": POINTS[top],
+                "ingredient_uniis": uniis,
+                "citations": citations,
+            }
+        )
+    return sorted(out, key=lambda c: (-c["points"], c["dimension"]))
+
+
+def expected_hard_stops(ingredients: list[dict[str, Any]], persona: str) -> bool:
+    # The only hard stop the fixtures use: the product's label says do not use at this age.
+    return any(
+        r["dimension"] == "pediatric" and r["persona"] == persona and r["severity"] == 3
+        for ingredient in ingredients
+        for r in ingredient["ratings"]
+    )
 
 
 @pytest.mark.parametrize("name", PRODUCTS)
@@ -92,9 +122,6 @@ def test_reference_product_validates(name: str) -> None:
     for score in scores:
         validate("score-record", score)
         assert score["ndc11"] == product["ndc11"]
-        assert score["score"] == max(0, 100 - sum(c["points"] for c in score["contributions"]))
-        band = "green" if score["score"] >= 75 else "yellow" if score["score"] >= 50 else "red"
-        assert score["tier"] == ("red" if score["hard_stops_triggered"] else band)
     assert [score["profile"] for score in scores] == PROFILES
 
 
@@ -103,14 +130,17 @@ def test_expected_scores_follow_from_the_ratings(name: str) -> None:
     folder = EXAMPLES / name
     ingredients = read(folder, "ingredient-dimensions")
     for score in read(folder, "expected-scores"):
-        recorded = {
-            c["dimension"]: {
-                "points": c["points"],
-                "ingredient_uniis": sorted(c["ingredient_uniis"]),
-            }
-            for c in score["contributions"]
-        }
-        assert recorded == draft_points(ingredients, score["profile"]), score["profile"]
+        expected = expected_contributions(ingredients, score["profile"])
+        assert score["contributions"] == expected, score["profile"]
+        assert score["score"] == max(0, 100 - sum(c["points"] for c in expected))
+        stops = expected_hard_stops(ingredients, score["profile"]["persona"])
+        assert bool(score["hard_stops_triggered"]) == stops, score["profile"]
+        band = "green" if score["score"] >= 75 else "yellow" if score["score"] >= 50 else "red"
+        assert score["tier"] == ("red" if stops else band)
+        # One explanation per contribution, citing the same sources.
+        explained = {e["template_id"]: e["citations"] for e in score["explanation"]}
+        for contribution in expected:
+            assert explained[f"NOMI-015_{contribution['dimension']}"] == contribution["citations"]
 
 
 @pytest.mark.parametrize("name", PRODUCTS)
@@ -137,3 +167,14 @@ def test_ratings_match_the_knowledge_base(name: str) -> None:
         missing = {k: v for k, v in expected.items() if v and k not in actual}
         differ = {k: (actual[k], v) for k, v in expected.items() if k in actual and actual[k] != v}
         assert (missing, differ) == ({}, {}), ingredient["name"]
+
+        def key(m: dict[str, Any]) -> tuple[str, str, int]:
+            return (
+                m["dimension"],
+                m.get("condition") or m["medication_type"],
+                m["severity_change"],
+            )
+
+        assert sorted(map(key, ingredient.get("modifiers", []))) == sorted(
+            map(key, entry.get("modifiers", []))
+        ), ingredient["name"]
