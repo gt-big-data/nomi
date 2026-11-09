@@ -84,7 +84,7 @@ ratings:
       - source: fda_label
         document_id: e6401e0a-8612-42e8-bf89-2d67243f28dc
         section: Ask a doctor before use if you have
-        quote: 'Ask a doctor before use if you have: kidney disease'
+        quote: "Ask a doctor before use if you have: kidney disease"
   - dimension: kidney
     persona: teen_12_17
     severity: 0
@@ -109,30 +109,30 @@ ratings:
     citations:
       - source: acb
         document_id: 10.2217/1745509X.4.3.311
-        section: 'Table 1: Possible Anticholinergics (Score 1)'
-        quote: 'Score 1: Drugs with serum anticholinergic activity or in vitro affinity
+        section: "Table 1: Possible Anticholinergics (Score 1)"
+        quote: "Score 1: Drugs with serum anticholinergic activity or in vitro affinity
           to muscarinic receptors, but no known clinically relevant negative cognitive
-          effects'
+          effects"
   - dimension: anticholinergic_cognitive
     persona: adult_65_plus
     severity: 2
     citations:
       - source: acb
         document_id: 10.2217/1745509X.4.3.311
-        section: 'Table 1: Possible Anticholinergics (Score 1)'
-        quote: 'Score 1: Drugs with serum anticholinergic activity or in vitro affinity
+        section: "Table 1: Possible Anticholinergics (Score 1)"
+        quote: "Score 1: Drugs with serum anticholinergic activity or in vitro affinity
           to muscarinic receptors, but no known clinically relevant negative cognitive
-          effects'
+          effects"
   - dimension: anticholinergic_cognitive
     persona: teen_12_17
     severity: 1
     citations:
       - source: acb
         document_id: 10.2217/1745509X.4.3.311
-        section: 'Table 1: Possible Anticholinergics (Score 1)'
-        quote: 'Score 1: Drugs with serum anticholinergic activity or in vitro affinity
+        section: "Table 1: Possible Anticholinergics (Score 1)"
+        quote: "Score 1: Drugs with serum anticholinergic activity or in vitro affinity
           to muscarinic receptors, but no known clinically relevant negative cognitive
-          effects'
+          effects"
   - dimension: anticholinergic_cognitive
     persona: child_6_11
     severity: 0
@@ -148,20 +148,20 @@ ratings:
     citations:
       - source: acb
         document_id: 10.2217/1745509X.4.3.311
-        section: 'Table 1: Possible Anticholinergics (Score 1)'
-        quote: 'Score 1: Drugs with serum anticholinergic activity or in vitro affinity
+        section: "Table 1: Possible Anticholinergics (Score 1)"
+        quote: "Score 1: Drugs with serum anticholinergic activity or in vitro affinity
           to muscarinic receptors, but no known clinically relevant negative cognitive
-          effects'
+          effects"
   - dimension: anticholinergic_cognitive
     persona: breastfeeding
     severity: 1
     citations:
       - source: acb
         document_id: 10.2217/1745509X.4.3.311
-        section: 'Table 1: Possible Anticholinergics (Score 1)'
-        quote: 'Score 1: Drugs with serum anticholinergic activity or in vitro affinity
+        section: "Table 1: Possible Anticholinergics (Score 1)"
+        quote: "Score 1: Drugs with serum anticholinergic activity or in vitro affinity
           to muscarinic receptors, but no known clinically relevant negative cognitive
-          effects'
+          effects"
   - dimension: sedation_falls
     persona: adult_18_64
     severity: 0
@@ -245,20 +245,20 @@ ratings:
     severity: 0
   - dimension: pediatric
     persona: child_6_11
-    severity: 2
-    citations:
-      - source: fda_label
-        document_id: e6401e0a-8612-42e8-bf89-2d67243f28dc
-        section: Directions
-        quote: 'children under 12 years of age: ask a doctor'
-  - dimension: pediatric
-    persona: child_2_5
     severity: 2
     citations:
       - source: fda_label
         document_id: e6401e0a-8612-42e8-bf89-2d67243f28dc
         section: Directions
-        quote: 'children under 12 years of age: ask a doctor'
+        quote: "children under 12 years of age: ask a doctor"
+  - dimension: pediatric
+    persona: child_2_5
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: e6401e0a-8612-42e8-bf89-2d67243f28dc
+        section: Directions
+        quote: "children under 12 years of age: ask a doctor"
   - dimension: pediatric
     persona: under_2
     severity: 2
@@ -266,7 +266,7 @@ ratings:
       - source: fda_label
         document_id: e6401e0a-8612-42e8-bf89-2d67243f28dc
         section: Directions
-        quote: 'children under 12 years of age: ask a doctor'
+        quote: "children under 12 years of age: ask a doctor"
   - dimension: pediatric
     persona: pregnant
     severity: 0
@@ -280,8 +280,8 @@ ratings:
       - source: fda_label
         document_id: e6401e0a-8612-42e8-bf89-2d67243f28dc
         section: Stop use and ask a doctor if
-        quote: 'Stop use and ask a doctor if: you need to take this product for more
-          than 14 days'
+        quote: "Stop use and ask a doctor if: you need to take this product for more
+          than 14 days"
   - dimension: rebound_overuse
     persona: adult_65_plus
     severity: 1
@@ -289,8 +289,8 @@ ratings:
       - source: fda_label
         document_id: e6401e0a-8612-42e8-bf89-2d67243f28dc
         section: Stop use and ask a doctor if
-        quote: 'Stop use and ask a doctor if: you need to take this product for more
-          than 14 days'
+        quote: "Stop use and ask a doctor if: you need to take this product for more
+          than 14 days"
   - dimension: rebound_overuse
     persona: teen_12_17
     severity: 1
@@ -298,8 +298,8 @@ ratings:
       - source: fda_label
         document_id: e6401e0a-8612-42e8-bf89-2d67243f28dc
         section: Stop use and ask a doctor if
-        quote: 'Stop use and ask a doctor if: you need to take this product for more
-          than 14 days'
+        quote: "Stop use and ask a doctor if: you need to take this product for more
+          than 14 days"
   - dimension: rebound_overuse
     persona: child_6_11
     severity: 0
@@ -316,8 +316,8 @@ ratings:
       - source: fda_label
         document_id: e6401e0a-8612-42e8-bf89-2d67243f28dc
         section: Stop use and ask a doctor if
-        quote: 'Stop use and ask a doctor if: you need to take this product for more
-          than 14 days'
+        quote: "Stop use and ask a doctor if: you need to take this product for more
+          than 14 days"
   - dimension: rebound_overuse
     persona: breastfeeding
     severity: 1
@@ -325,8 +325,8 @@ ratings:
       - source: fda_label
         document_id: e6401e0a-8612-42e8-bf89-2d67243f28dc
         section: Stop use and ask a doctor if
-        quote: 'Stop use and ask a doctor if: you need to take this product for more
-          than 14 days'
+        quote: "Stop use and ask a doctor if: you need to take this product for more
+          than 14 days"
   - dimension: pregnancy_lactation
     persona: adult_18_64
     severity: 0
@@ -483,4 +483,4 @@ modifiers:
       - source: fda_label
         document_id: e6401e0a-8612-42e8-bf89-2d67243f28dc
         section: Ask a doctor before use if you have
-        quote: 'Ask a doctor before use if you have: kidney disease'
+        quote: "Ask a doctor before use if you have: kidney disease"

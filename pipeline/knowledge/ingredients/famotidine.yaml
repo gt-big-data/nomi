@@ -84,7 +84,7 @@ ratings:
       - source: fda_label
         document_id: 54f4086f-e443-4e7e-8c7e-94e152e1c256
         section: Ask a doctor before use if you have
-        quote: 'Ask a doctor before use if you have: kidney disease'
+        quote: "Ask a doctor before use if you have: kidney disease"
   - dimension: kidney
     persona: teen_12_17
     severity: 0
@@ -215,7 +215,7 @@ ratings:
       - source: fda_label
         document_id: 54f4086f-e443-4e7e-8c7e-94e152e1c256
         section: Directions
-        quote: 'children under 12 years of age: ask a doctor'
+        quote: "children under 12 years of age: ask a doctor"
   - dimension: pediatric
     persona: child_2_5
     severity: 2
@@ -223,7 +223,7 @@ ratings:
       - source: fda_label
         document_id: 54f4086f-e443-4e7e-8c7e-94e152e1c256
         section: Directions
-        quote: 'children under 12 years of age: ask a doctor'
+        quote: "children under 12 years of age: ask a doctor"
   - dimension: pediatric
     persona: under_2
     severity: 2
@@ -231,7 +231,7 @@ ratings:
       - source: fda_label
         document_id: 54f4086f-e443-4e7e-8c7e-94e152e1c256
         section: Directions
-        quote: 'children under 12 years of age: ask a doctor'
+        quote: "children under 12 years of age: ask a doctor"
   - dimension: pediatric
     persona: pregnant
     severity: 0
@@ -245,8 +245,8 @@ ratings:
       - source: fda_label
         document_id: 54f4086f-e443-4e7e-8c7e-94e152e1c256
         section: Stop use and ask a doctor if
-        quote: 'Stop use and ask a doctor if: you need to take this product for more
-          than 14 days'
+        quote: "Stop use and ask a doctor if: you need to take this product for more
+          than 14 days"
   - dimension: rebound_overuse
     persona: adult_65_plus
     severity: 1
@@ -254,8 +254,8 @@ ratings:
       - source: fda_label
         document_id: 54f4086f-e443-4e7e-8c7e-94e152e1c256
         section: Stop use and ask a doctor if
-        quote: 'Stop use and ask a doctor if: you need to take this product for more
-          than 14 days'
+        quote: "Stop use and ask a doctor if: you need to take this product for more
+          than 14 days"
   - dimension: rebound_overuse
     persona: teen_12_17
     severity: 1
@@ -263,8 +263,8 @@ ratings:
       - source: fda_label
         document_id: 54f4086f-e443-4e7e-8c7e-94e152e1c256
         section: Stop use and ask a doctor if
-        quote: 'Stop use and ask a doctor if: you need to take this product for more
-          than 14 days'
+        quote: "Stop use and ask a doctor if: you need to take this product for more
+          than 14 days"
   - dimension: rebound_overuse
     persona: child_6_11
     severity: 0
@@ -281,8 +281,8 @@ ratings:
       - source: fda_label
         document_id: 54f4086f-e443-4e7e-8c7e-94e152e1c256
         section: Stop use and ask a doctor if
-        quote: 'Stop use and ask a doctor if: you need to take this product for more
-          than 14 days'
+        quote: "Stop use and ask a doctor if: you need to take this product for more
+          than 14 days"
   - dimension: rebound_overuse
     persona: breastfeeding
     severity: 1
@@ -290,8 +290,8 @@ ratings:
       - source: fda_label
         document_id: 54f4086f-e443-4e7e-8c7e-94e152e1c256
         section: Stop use and ask a doctor if
-        quote: 'Stop use and ask a doctor if: you need to take this product for more
-          than 14 days'
+        quote: "Stop use and ask a doctor if: you need to take this product for more
+          than 14 days"
   - dimension: pregnancy_lactation
     persona: adult_18_64
     severity: 0
@@ -430,4 +430,4 @@ modifiers:
       - source: fda_label
         document_id: 54f4086f-e443-4e7e-8c7e-94e152e1c256
         section: Ask a doctor before use if you have
-        quote: 'Ask a doctor before use if you have: kidney disease'
+        quote: "Ask a doctor before use if you have: kidney disease"

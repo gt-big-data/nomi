@@ -33,12 +33,12 @@ ratings:
       - source: otc_monograph
         document_id: 21 CFR 201.326
         section: Stomach bleeding warning
-        quote: 'This product contains an NSAID, which may cause severe stomach bleeding.
+        quote: "This product contains an NSAID, which may cause severe stomach bleeding.
           The chance is higher if you: are age 60 or older; have had stomach ulcers
           or bleeding problems; take a blood thinning (anticoagulant) or steroid drug;
           take other drugs containing prescription or nonprescription NSAIDs; have
           3 or more alcoholic drinks every day while using this product; take more
-          or for a longer time than directed.'
+          or for a longer time than directed."
   - dimension: gi_bleeding
     persona: adult_65_plus
     severity: 3
@@ -46,12 +46,12 @@ ratings:
       - source: otc_monograph
         document_id: 21 CFR 201.326
         section: Stomach bleeding warning
-        quote: 'This product contains an NSAID, which may cause severe stomach bleeding.
+        quote: "This product contains an NSAID, which may cause severe stomach bleeding.
           The chance is higher if you: are age 60 or older; have had stomach ulcers
           or bleeding problems; take a blood thinning (anticoagulant) or steroid drug;
           take other drugs containing prescription or nonprescription NSAIDs; have
           3 or more alcoholic drinks every day while using this product; take more
-          or for a longer time than directed.'
+          or for a longer time than directed."
   - dimension: gi_bleeding
     persona: teen_12_17
     severity: 2
@@ -59,12 +59,12 @@ ratings:
       - source: otc_monograph
         document_id: 21 CFR 201.326
         section: Stomach bleeding warning
-        quote: 'This product contains an NSAID, which may cause severe stomach bleeding.
+        quote: "This product contains an NSAID, which may cause severe stomach bleeding.
           The chance is higher if you: are age 60 or older; have had stomach ulcers
           or bleeding problems; take a blood thinning (anticoagulant) or steroid drug;
           take other drugs containing prescription or nonprescription NSAIDs; have
           3 or more alcoholic drinks every day while using this product; take more
-          or for a longer time than directed.'
+          or for a longer time than directed."
   - dimension: gi_bleeding
     persona: child_6_11
     severity: 2
@@ -72,12 +72,12 @@ ratings:
       - source: otc_monograph
         document_id: 21 CFR 201.326
         section: Stomach bleeding warning
-        quote: 'This product contains an NSAID, which may cause severe stomach bleeding.
+        quote: "This product contains an NSAID, which may cause severe stomach bleeding.
           The chance is higher if you: are age 60 or older; have had stomach ulcers
           or bleeding problems; take a blood thinning (anticoagulant) or steroid drug;
           take other drugs containing prescription or nonprescription NSAIDs; have
           3 or more alcoholic drinks every day while using this product; take more
-          or for a longer time than directed.'
+          or for a longer time than directed."
   - dimension: gi_bleeding
     persona: child_2_5
     severity: 2
@@ -85,12 +85,12 @@ ratings:
       - source: otc_monograph
         document_id: 21 CFR 201.326
         section: Stomach bleeding warning
-        quote: 'This product contains an NSAID, which may cause severe stomach bleeding.
+        quote: "This product contains an NSAID, which may cause severe stomach bleeding.
           The chance is higher if you: are age 60 or older; have had stomach ulcers
           or bleeding problems; take a blood thinning (anticoagulant) or steroid drug;
           take other drugs containing prescription or nonprescription NSAIDs; have
           3 or more alcoholic drinks every day while using this product; take more
-          or for a longer time than directed.'
+          or for a longer time than directed."
   - dimension: gi_bleeding
     persona: under_2
     severity: 2
@@ -98,12 +98,12 @@ ratings:
       - source: otc_monograph
         document_id: 21 CFR 201.326
         section: Stomach bleeding warning
-        quote: 'This product contains an NSAID, which may cause severe stomach bleeding.
+        quote: "This product contains an NSAID, which may cause severe stomach bleeding.
           The chance is higher if you: are age 60 or older; have had stomach ulcers
           or bleeding problems; take a blood thinning (anticoagulant) or steroid drug;
           take other drugs containing prescription or nonprescription NSAIDs; have
           3 or more alcoholic drinks every day while using this product; take more
-          or for a longer time than directed.'
+          or for a longer time than directed."
   - dimension: gi_bleeding
     persona: pregnant
     severity: 2
@@ -111,12 +111,12 @@ ratings:
       - source: otc_monograph
         document_id: 21 CFR 201.326
         section: Stomach bleeding warning
-        quote: 'This product contains an NSAID, which may cause severe stomach bleeding.
+        quote: "This product contains an NSAID, which may cause severe stomach bleeding.
           The chance is higher if you: are age 60 or older; have had stomach ulcers
           or bleeding problems; take a blood thinning (anticoagulant) or steroid drug;
           take other drugs containing prescription or nonprescription NSAIDs; have
           3 or more alcoholic drinks every day while using this product; take more
-          or for a longer time than directed.'
+          or for a longer time than directed."
   - dimension: gi_bleeding
     persona: breastfeeding
     severity: 2
@@ -124,12 +124,12 @@ ratings:
       - source: otc_monograph
         document_id: 21 CFR 201.326
         section: Stomach bleeding warning
-        quote: 'This product contains an NSAID, which may cause severe stomach bleeding.
+        quote: "This product contains an NSAID, which may cause severe stomach bleeding.
           The chance is higher if you: are age 60 or older; have had stomach ulcers
           or bleeding problems; take a blood thinning (anticoagulant) or steroid drug;
           take other drugs containing prescription or nonprescription NSAIDs; have
           3 or more alcoholic drinks every day while using this product; take more
-          or for a longer time than directed.'
+          or for a longer time than directed."
   - dimension: cardiovascular_bp
     persona: adult_18_64
     severity: 2
@@ -137,9 +137,9 @@ ratings:
       - source: fda_label
         document_id: a3745850-3e32-4884-b315-161bcb9996ed
         section: Heart attack and stroke warning
-        quote: 'Heart attack and stroke warning: NSAIDs, except aspirin, increase
+        quote: "Heart attack and stroke warning: NSAIDs, except aspirin, increase
           the risk of heart attack, heart failure, and stroke. These can be fatal.
-          The risk is higher if you use more than directed or for longer than directed.'
+          The risk is higher if you use more than directed or for longer than directed."
   - dimension: cardiovascular_bp
     persona: adult_65_plus
     severity: 2
@@ -147,9 +147,9 @@ ratings:
       - source: fda_label
         document_id: a3745850-3e32-4884-b315-161bcb9996ed
         section: Heart attack and stroke warning
-        quote: 'Heart attack and stroke warning: NSAIDs, except aspirin, increase
+        quote: "Heart attack and stroke warning: NSAIDs, except aspirin, increase
           the risk of heart attack, heart failure, and stroke. These can be fatal.
-          The risk is higher if you use more than directed or for longer than directed.'
+          The risk is higher if you use more than directed or for longer than directed."
   - dimension: cardiovascular_bp
     persona: teen_12_17
     severity: 1
@@ -157,9 +157,9 @@ ratings:
       - source: fda_label
         document_id: a3745850-3e32-4884-b315-161bcb9996ed
         section: Heart attack and stroke warning
-        quote: 'Heart attack and stroke warning: NSAIDs, except aspirin, increase
+        quote: "Heart attack and stroke warning: NSAIDs, except aspirin, increase
           the risk of heart attack, heart failure, and stroke. These can be fatal.
-          The risk is higher if you use more than directed or for longer than directed.'
+          The risk is higher if you use more than directed or for longer than directed."
   - dimension: cardiovascular_bp
     persona: child_6_11
     severity: 0
@@ -176,9 +176,9 @@ ratings:
       - source: fda_label
         document_id: a3745850-3e32-4884-b315-161bcb9996ed
         section: Heart attack and stroke warning
-        quote: 'Heart attack and stroke warning: NSAIDs, except aspirin, increase
+        quote: "Heart attack and stroke warning: NSAIDs, except aspirin, increase
           the risk of heart attack, heart failure, and stroke. These can be fatal.
-          The risk is higher if you use more than directed or for longer than directed.'
+          The risk is higher if you use more than directed or for longer than directed."
   - dimension: cardiovascular_bp
     persona: breastfeeding
     severity: 0
@@ -189,8 +189,8 @@ ratings:
       - source: fda_label
         document_id: a3745850-3e32-4884-b315-161bcb9996ed
         section: Ask a doctor before use if
-        quote: 'Ask a doctor before use if you have: high blood pressure, heart disease,
-          liver cirrhosis, kidney disease, asthma, or are taking a diuretic.'
+        quote: "Ask a doctor before use if you have: high blood pressure, heart disease,
+          liver cirrhosis, kidney disease, asthma, or are taking a diuretic."
   - dimension: kidney
     persona: adult_65_plus
     severity: 2
@@ -198,8 +198,8 @@ ratings:
       - source: fda_label
         document_id: a3745850-3e32-4884-b315-161bcb9996ed
         section: Ask a doctor before use if
-        quote: 'Ask a doctor before use if you have: high blood pressure, heart disease,
-          liver cirrhosis, kidney disease, asthma, or are taking a diuretic.'
+        quote: "Ask a doctor before use if you have: high blood pressure, heart disease,
+          liver cirrhosis, kidney disease, asthma, or are taking a diuretic."
   - dimension: kidney
     persona: teen_12_17
     severity: 0
@@ -330,7 +330,7 @@ ratings:
       - source: fda_label
         document_id: a3745850-3e32-4884-b315-161bcb9996ed
         section: Directions
-        quote: 'children under 12 years: ask a doctor'
+        quote: "children under 12 years: ask a doctor"
   - dimension: pediatric
     persona: child_2_5
     severity: 2
@@ -338,7 +338,7 @@ ratings:
       - source: fda_label
         document_id: a3745850-3e32-4884-b315-161bcb9996ed
         section: Directions
-        quote: 'children under 12 years: ask a doctor'
+        quote: "children under 12 years: ask a doctor"
   - dimension: pediatric
     persona: under_2
     severity: 2
@@ -346,7 +346,7 @@ ratings:
       - source: fda_label
         document_id: a3745850-3e32-4884-b315-161bcb9996ed
         section: Directions
-        quote: 'children under 12 years: ask a doctor'
+        quote: "children under 12 years: ask a doctor"
   - dimension: pediatric
     persona: pregnant
     severity: 0
@@ -416,8 +416,8 @@ ratings:
       - source: fda_label
         document_id: a3745850-3e32-4884-b315-161bcb9996ed
         section: Warnings
-        quote: 'Ask a doctor or pharmacist before use if you are taking: any other
-          drug containing prescription or nonprescription NSAIDs.'
+        quote: "Ask a doctor or pharmacist before use if you are taking: any other
+          drug containing prescription or nonprescription NSAIDs."
   - dimension: duplicate_dosing
     persona: adult_65_plus
     severity: 2
@@ -425,8 +425,8 @@ ratings:
       - source: fda_label
         document_id: a3745850-3e32-4884-b315-161bcb9996ed
         section: Warnings
-        quote: 'Ask a doctor or pharmacist before use if you are taking: any other
-          drug containing prescription or nonprescription NSAIDs.'
+        quote: "Ask a doctor or pharmacist before use if you are taking: any other
+          drug containing prescription or nonprescription NSAIDs."
   - dimension: duplicate_dosing
     persona: teen_12_17
     severity: 2
@@ -434,8 +434,8 @@ ratings:
       - source: fda_label
         document_id: a3745850-3e32-4884-b315-161bcb9996ed
         section: Warnings
-        quote: 'Ask a doctor or pharmacist before use if you are taking: any other
-          drug containing prescription or nonprescription NSAIDs.'
+        quote: "Ask a doctor or pharmacist before use if you are taking: any other
+          drug containing prescription or nonprescription NSAIDs."
   - dimension: duplicate_dosing
     persona: child_6_11
     severity: 2
@@ -443,8 +443,8 @@ ratings:
       - source: fda_label
         document_id: a3745850-3e32-4884-b315-161bcb9996ed
         section: Warnings
-        quote: 'Ask a doctor or pharmacist before use if you are taking: any other
-          drug containing prescription or nonprescription NSAIDs.'
+        quote: "Ask a doctor or pharmacist before use if you are taking: any other
+          drug containing prescription or nonprescription NSAIDs."
   - dimension: duplicate_dosing
     persona: child_2_5
     severity: 2
@@ -452,8 +452,8 @@ ratings:
       - source: fda_label
         document_id: a3745850-3e32-4884-b315-161bcb9996ed
         section: Warnings
-        quote: 'Ask a doctor or pharmacist before use if you are taking: any other
-          drug containing prescription or nonprescription NSAIDs.'
+        quote: "Ask a doctor or pharmacist before use if you are taking: any other
+          drug containing prescription or nonprescription NSAIDs."
   - dimension: duplicate_dosing
     persona: under_2
     severity: 2
@@ -461,8 +461,8 @@ ratings:
       - source: fda_label
         document_id: a3745850-3e32-4884-b315-161bcb9996ed
         section: Warnings
-        quote: 'Ask a doctor or pharmacist before use if you are taking: any other
-          drug containing prescription or nonprescription NSAIDs.'
+        quote: "Ask a doctor or pharmacist before use if you are taking: any other
+          drug containing prescription or nonprescription NSAIDs."
   - dimension: duplicate_dosing
     persona: pregnant
     severity: 2
@@ -470,8 +470,8 @@ ratings:
       - source: fda_label
         document_id: a3745850-3e32-4884-b315-161bcb9996ed
         section: Warnings
-        quote: 'Ask a doctor or pharmacist before use if you are taking: any other
-          drug containing prescription or nonprescription NSAIDs.'
+        quote: "Ask a doctor or pharmacist before use if you are taking: any other
+          drug containing prescription or nonprescription NSAIDs."
   - dimension: duplicate_dosing
     persona: breastfeeding
     severity: 2
@@ -479,8 +479,8 @@ ratings:
       - source: fda_label
         document_id: a3745850-3e32-4884-b315-161bcb9996ed
         section: Warnings
-        quote: 'Ask a doctor or pharmacist before use if you are taking: any other
-          drug containing prescription or nonprescription NSAIDs.'
+        quote: "Ask a doctor or pharmacist before use if you are taking: any other
+          drug containing prescription or nonprescription NSAIDs."
   - dimension: excipients
     persona: adult_18_64
     severity: 0
@@ -561,7 +561,7 @@ modifiers:
       - source: otc_monograph
         document_id: 21 CFR 201.326
         section: Stomach bleeding warning
-        quote: 'The chance is higher if you: have had stomach ulcers or bleeding problems.'
+        quote: "The chance is higher if you: have had stomach ulcers or bleeding problems."
   - dimension: gi_bleeding
     medication_type: corticosteroids
     severity_change: 2
@@ -569,7 +569,7 @@ modifiers:
       - source: otc_monograph
         document_id: 21 CFR 201.326
         section: Stomach bleeding warning
-        quote: 'The chance is higher if you: take a blood thinning (anticoagulant) or steroid drug.'
+        quote: "The chance is higher if you: take a blood thinning (anticoagulant) or steroid drug."
   - dimension: gi_bleeding
     medication_type: anticoagulants
     severity_change: 2
@@ -577,7 +577,7 @@ modifiers:
       - source: otc_monograph
         document_id: 21 CFR 201.326
         section: Stomach bleeding warning
-        quote: 'The chance is higher if you: take a blood thinning (anticoagulant) or steroid drug.'
+        quote: "The chance is higher if you: take a blood thinning (anticoagulant) or steroid drug."
   - dimension: cardiovascular_bp
     condition: hypertension
     severity_change: 1
@@ -585,7 +585,7 @@ modifiers:
       - source: fda_label
         document_id: a3745850-3e32-4884-b315-161bcb9996ed
         section: Ask a doctor before use if
-        quote: 'Ask a doctor before use if you have: high blood pressure, heart disease.'
+        quote: "Ask a doctor before use if you have: high blood pressure, heart disease."
   - dimension: cardiovascular_bp
     condition: heart_disease
     severity_change: 2
@@ -602,7 +602,7 @@ modifiers:
       - source: fda_label
         document_id: a3745850-3e32-4884-b315-161bcb9996ed
         section: Ask a doctor before use if
-        quote: 'Ask a doctor before use if you have: kidney disease.'
+        quote: "Ask a doctor before use if you have: kidney disease."
   - dimension: anticoagulant_bleeding
     medication_type: anticoagulants
     severity_change: 2
@@ -610,8 +610,8 @@ modifiers:
       - source: otc_monograph
         document_id: 21 CFR 201.326
         section: Stomach bleeding warning
-        quote: 'The chance is higher if you: take a blood thinning (anticoagulant)
-          or steroid drug.'
+        quote: "The chance is higher if you: take a blood thinning (anticoagulant)
+          or steroid drug."
   - dimension: gi_bleeding
     condition: heavy_alcohol_use
     severity_change: 2
@@ -619,5 +619,5 @@ modifiers:
       - source: otc_monograph
         document_id: 21 CFR 201.326
         section: Stomach bleeding warning
-        quote: 'The chance is higher if you: have 3 or more alcoholic drinks every
-          day while using this product.'
+        quote: "The chance is higher if you: have 3 or more alcoholic drinks every
+          day while using this product."

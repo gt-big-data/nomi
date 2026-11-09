@@ -236,8 +236,8 @@ ratings:
       - source: fda_label
         document_id: 01da76d0-1979-4c45-9d39-c72ae4e4ffe2
         section: Directions
-        quote: 'children 6 to 11 years: take 1 tablet after the first loose stool;
-          1/2 tablet after each subsequent loose stool'
+        quote: "children 6 to 11 years: take 1 tablet after the first loose stool;
+          1/2 tablet after each subsequent loose stool"
   - dimension: pediatric
     persona: child_2_5
     severity: 2
@@ -245,7 +245,7 @@ ratings:
       - source: fda_label
         document_id: 01da76d0-1979-4c45-9d39-c72ae4e4ffe2
         section: Directions
-        quote: 'children 2 to 5 years: ask a doctor'
+        quote: "children 2 to 5 years: ask a doctor"
   - dimension: pediatric
     persona: under_2
     severity: 3

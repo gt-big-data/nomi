@@ -207,7 +207,7 @@ ratings:
       - source: fda_label
         document_id: d69ce3d4-7ca4-4fe3-b49e-6655e48d6963
         section: Directions
-        quote: 'children 16 years of age and under: ask a doctor'
+        quote: "children 16 years of age and under: ask a doctor"
   - dimension: pediatric
     persona: child_6_11
     severity: 2
@@ -215,7 +215,7 @@ ratings:
       - source: fda_label
         document_id: d69ce3d4-7ca4-4fe3-b49e-6655e48d6963
         section: Directions
-        quote: 'children 16 years of age and under: ask a doctor'
+        quote: "children 16 years of age and under: ask a doctor"
   - dimension: pediatric
     persona: child_2_5
     severity: 2
@@ -223,7 +223,7 @@ ratings:
       - source: fda_label
         document_id: d69ce3d4-7ca4-4fe3-b49e-6655e48d6963
         section: Directions
-        quote: 'children 16 years of age and under: ask a doctor'
+        quote: "children 16 years of age and under: ask a doctor"
   - dimension: pediatric
     persona: under_2
     severity: 2
@@ -231,7 +231,7 @@ ratings:
       - source: fda_label
         document_id: d69ce3d4-7ca4-4fe3-b49e-6655e48d6963
         section: Directions
-        quote: 'children 16 years of age and under: ask a doctor'
+        quote: "children 16 years of age and under: ask a doctor"
   - dimension: pediatric
     persona: pregnant
     severity: 0
@@ -418,7 +418,7 @@ modifiers:
       - source: fda_label
         document_id: d69ce3d4-7ca4-4fe3-b49e-6655e48d6963
         section: Warnings - Do not use if you have
-        quote: 'Do not use if you have kidney disease, except under the advice and supervision of a doctor.'
+        quote: "Do not use if you have kidney disease, except under the advice and supervision of a doctor."
   - dimension: kidney
     medication_type: diuretics
     severity_change: 1

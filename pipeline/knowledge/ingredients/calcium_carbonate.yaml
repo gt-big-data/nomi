@@ -84,7 +84,7 @@ ratings:
       - source: fda_label
         document_id: 9bc5c5de-8d61-4edf-83d2-a1e797c2d24a
         section: Ask a doctor before use if you have
-        quote: 'Ask a doctor before use if you have: kidney disease'
+        quote: "Ask a doctor before use if you have: kidney disease"
   - dimension: kidney
     persona: teen_12_17
     severity: 0

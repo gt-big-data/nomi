@@ -84,7 +84,7 @@ ratings:
       - source: fda_label
         document_id: 5faf2ed0-dd71-17c9-e053-2a91aa0ab75a
         section: Ask a doctor before use if you have
-        quote: 'Ask a doctor before use if you have: kidney disease'
+        quote: "Ask a doctor before use if you have: kidney disease"
   - dimension: kidney
     persona: teen_12_17
     severity: 0
@@ -218,7 +218,7 @@ ratings:
       - source: otc_monograph
         document_id: M007
         section: Directions - pediatric dosing
-        quote: 'children under 6 years: ask a doctor'
+        quote: "children under 6 years: ask a doctor"
   - dimension: pediatric
     persona: under_2
     severity: 2
@@ -226,7 +226,7 @@ ratings:
       - source: otc_monograph
         document_id: M007
         section: Directions - pediatric dosing
-        quote: 'children under 2 years: ask a doctor'
+        quote: "children under 2 years: ask a doctor"
   - dimension: pediatric
     persona: pregnant
     severity: 0
@@ -410,7 +410,7 @@ modifiers:
       - source: fda_label
         document_id: 5faf2ed0-dd71-17c9-e053-2a91aa0ab75a
         section: Ask a doctor before use if you have
-        quote: 'Ask a doctor before use if you have: kidney disease'
+        quote: "Ask a doctor before use if you have: kidney disease"
   - dimension: kidney
     medication_type: diuretics
     severity_change: 1

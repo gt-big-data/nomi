@@ -213,8 +213,8 @@ ratings:
       - source: fda_label
         document_id: 61f67858-ba2f-449b-8b30-c15cdaf49222
         section: Warnings
-        quote: 'children under 18 years of age: ask a doctor before use. Heartburn
-          in children may sometimes be caused by a more serious condition.'
+        quote: "children under 18 years of age: ask a doctor before use. Heartburn
+          in children may sometimes be caused by a more serious condition."
   - dimension: pediatric
     persona: child_6_11
     severity: 2
@@ -222,8 +222,8 @@ ratings:
       - source: fda_label
         document_id: 61f67858-ba2f-449b-8b30-c15cdaf49222
         section: Warnings
-        quote: 'children under 18 years of age: ask a doctor before use. Heartburn
-          in children may sometimes be caused by a more serious condition.'
+        quote: "children under 18 years of age: ask a doctor before use. Heartburn
+          in children may sometimes be caused by a more serious condition."
   - dimension: pediatric
     persona: child_2_5
     severity: 2
@@ -231,8 +231,8 @@ ratings:
       - source: fda_label
         document_id: 61f67858-ba2f-449b-8b30-c15cdaf49222
         section: Warnings
-        quote: 'children under 18 years of age: ask a doctor before use. Heartburn
-          in children may sometimes be caused by a more serious condition.'
+        quote: "children under 18 years of age: ask a doctor before use. Heartburn
+          in children may sometimes be caused by a more serious condition."
   - dimension: pediatric
     persona: under_2
     severity: 2
@@ -240,8 +240,8 @@ ratings:
       - source: fda_label
         document_id: 61f67858-ba2f-449b-8b30-c15cdaf49222
         section: Warnings
-        quote: 'children under 18 years of age: ask a doctor before use. Heartburn
-          in children may sometimes be caused by a more serious condition.'
+        quote: "children under 18 years of age: ask a doctor before use. Heartburn
+          in children may sometimes be caused by a more serious condition."
   - dimension: pediatric
     persona: pregnant
     severity: 0
