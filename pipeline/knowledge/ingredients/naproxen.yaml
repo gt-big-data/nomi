@@ -616,15 +616,22 @@ modifiers:
         document_id: a3745850-3e32-4884-b315-161bcb9996ed
         section: Ask a doctor before use if
         quote: "Ask a doctor before use if you have: kidney disease."
-  - dimension: anticoagulant_bleeding
-    medication_type: anticoagulants
+  - dimension: kidney
+    condition: hypertension
+    severity_change: 1
+    citations:
+      - source: fda_label
+        document_id: a3745850-3e32-4884-b315-161bcb9996ed
+        section: Ask a doctor before use if
+        quote: "Ask a doctor before use if you have: high blood pressure, heart disease, liver cirrhosis, kidney disease, asthma, or are taking a diuretic."
+  - dimension: kidney
+    medication_type: diuretics
     severity_change: 2
     citations:
-      - source: otc_monograph
-        document_id: 21 CFR 201.326
-        section: Stomach bleeding warning
-        quote: "The chance is higher if you: take a blood thinning (anticoagulant)
-          or steroid drug."
+      - source: fda_label
+        document_id: a3745850-3e32-4884-b315-161bcb9996ed
+        section: Ask a doctor before use if
+        quote: "Ask a doctor before use if you have: high blood pressure, heart disease, liver cirrhosis, kidney disease, asthma, or are taking a diuretic."
   - dimension: gi_bleeding
     condition: heavy_alcohol_use
     severity_change: 2
