@@ -3,7 +3,8 @@
  *
  * Names follow the Figma variables: `color/tier/low/mark` in Figma is `colors.tier.low.mark` here.
  * If you change a value, change it in Figma too, so design and code stay the same.
- * Components should never use a color, size or font that isn't in this file.
+ * Components should never use a color, size or font that isn't in this file. `borderWidth`,
+ * `minHeight` and `opacity` aren't Figma variables yet.
  */
 
 export type ColorScheme = "light" | "dark";
@@ -39,9 +40,9 @@ export type Colors = {
   };
   tier: {
     /** Low risk (score 75+) */
-    low: { mark: string; text: string; tint: string; on: string };
-    /** Use with care (score 50–74) */
-    care: { mark: string; text: string; tint: string };
+    low: { mark: string; text: string; tint: string };
+    /** Use with caution (score 50–74) */
+    moderate: { mark: string; text: string; tint: string };
     /** High risk (score under 50) */
     high: { mark: string; text: string; tint: string };
     /** Hard stop: “Do not use” */
@@ -49,34 +50,41 @@ export type Colors = {
     /** Not scored (homeopathic or out of scope) */
     none: { mark: string; text: string; tint: string };
   };
+  /**
+   * Destructive buttons, like "Delete all my data". Its own token so tier colors stay for risk
+   * only, even though it's red.
+   */
+  destructive: { fill: string; on: string };
 };
 
 export const colors: Record<ColorScheme, Colors> = {
   light: {
     bg: { canvas: "#F6F5F9", surface: "#FFFFFF", camera: "#0F0C15" },
-    border: { subtle: "#E7E4EE" },
+    border: { subtle: "#D6D1E0" },
     text: { primary: "#17131F", secondary: "#5E5869" },
     brand: { primary: "#5A21B5", onPrimary: "#FFFFFF", tint: "#EFE8FB", text: "#5A21B5" },
     tier: {
-      low: { mark: "#005733", text: "#005733", tint: "#E3F5EC", on: "#FFFFFF" },
-      care: { mark: "#C77A04", text: "#8A5300", tint: "#FEF5E6" },
+      low: { mark: "#005733", text: "#005733", tint: "#E3F5EC" },
+      moderate: { mark: "#C77A04", text: "#8A5300", tint: "#FEF5E6" },
       high: { mark: "#D41852", text: "#B5103F", tint: "#FCE9EB" },
       stop: { fill: "#B5103F", on: "#FFFFFF" },
       none: { mark: "#857F90", text: "#5E5869", tint: "#EEECF2" },
     },
+    destructive: { fill: "#B5103F", on: "#FFFFFF" },
   },
   dark: {
     bg: { canvas: "#121018", surface: "#1E1A26", camera: "#0F0C15" },
-    border: { subtle: "#2E2838" },
+    border: { subtle: "#3A3346" },
     text: { primary: "#F4F1FA", secondary: "#A9A2B6" },
     brand: { primary: "#7B4CE0", onPrimary: "#FFFFFF", tint: "#2A2140", text: "#C9B3F5" },
     tier: {
-      low: { mark: "#1EA987", text: "#3CC79C", tint: "#102C25", on: "#06231A" },
-      care: { mark: "#FCD08D", text: "#FCD08D", tint: "#33260F" },
+      low: { mark: "#1EA987", text: "#3CC79C", tint: "#102C25" },
+      moderate: { mark: "#FCD08D", text: "#FCD08D", tint: "#33260F" },
       high: { mark: "#D8152F", text: "#FF8A93", tint: "#2E1519" },
       stop: { fill: "#D8152F", on: "#FFFFFF" },
       none: { mark: "#6E6878", text: "#A9A2B6", tint: "#2A2633" },
     },
+    destructive: { fill: "#D8152F", on: "#FFFFFF" },
   },
 };
 
@@ -101,12 +109,29 @@ export const radius = {
   pill: 999,
 } as const;
 
-/** Inter, loaded by `useNomiFonts()` (fonts.ts). */
+/** Border widths in points. Cards and rows use `card`; buttons and chips use `control`. */
+export const borderWidth = {
+  card: 1,
+  control: 1.5,
+} as const;
+
+/** Minimum heights in points, so controls stay easy to tap. */
+export const minHeight = {
+  /** 48 is the Android minimum tap size (iOS asks for 44). */
+  chip: 48,
+  button: 52,
+} as const;
+
+/** Opacity for anything being pressed. */
+export const opacity = {
+  pressed: 0.7,
+} as const;
+
+/** Inter, loaded by `useNomiFonts()` (fonts.ts). Three weights: regular, semibold and bold. */
 export const fontFamily = {
   regular: "Inter_400Regular",
   semiBold: "Inter_600SemiBold",
   bold: "Inter_700Bold",
-  extraBold: "Inter_800ExtraBold",
 } as const;
 
 export type TextStyleToken = {
@@ -115,72 +140,62 @@ export type TextStyleToken = {
   lineHeight: number;
   letterSpacing: number;
   textTransform?: "uppercase";
+  /** Same-width digits, so a score doesn't shift when it changes. */
+  fontVariant?: "tabular-nums"[];
 };
 
 /** Figma letter spacing is a percent of the font size; React Native wants points. */
 const tracking = (fontSize: number, percent: number) => +((fontSize * percent) / 100).toFixed(2);
 
-/** Type scale (Figma text styles). Sizes and line heights in points. */
+/**
+ * Type scale (Figma text styles). Sizes and line heights in points.
+ *
+ * Six sizes (46, 28, 20, 15, 13, 11) and three weights, so screens don't get busy.
+ */
 export const typography = {
   /** Score number in the large ring */
   scoreLarge: {
-    fontFamily: fontFamily.extraBold,
+    fontFamily: fontFamily.bold,
     fontSize: 46,
     lineHeight: 48,
     letterSpacing: tracking(46, -3),
+    fontVariant: ["tabular-nums"],
   },
   /** Score number in dots and list rows */
   scoreSmall: {
-    fontFamily: fontFamily.extraBold,
-    fontSize: 16,
+    fontFamily: fontFamily.bold,
+    fontSize: 15,
     lineHeight: 20,
     letterSpacing: 0,
+    fontVariant: ["tabular-nums"],
   },
-  /** Tab titles */
+  /** Tab titles, product name on the result */
   titleLarge: {
-    fontFamily: fontFamily.extraBold,
-    fontSize: 30,
-    lineHeight: 36,
-    letterSpacing: tracking(30, -2),
+    fontFamily: fontFamily.bold,
+    fontSize: 28,
+    lineHeight: 34,
+    letterSpacing: tracking(28, -2),
   },
-  /** Product name, screen headings */
-  titleMedium: {
-    fontFamily: fontFamily.extraBold,
-    fontSize: 24,
-    lineHeight: 30,
-    letterSpacing: tracking(24, -1),
-  },
-  /** Sheet titles */
-  titleSmall: { fontFamily: fontFamily.extraBold, fontSize: 20, lineHeight: 26, letterSpacing: 0 },
-  /** Hard-stop message, nav titles */
-  headline: { fontFamily: fontFamily.bold, fontSize: 17, lineHeight: 24, letterSpacing: 0 },
-  /** Paragraphs, the bottom line */
+  /** Screen headings, sheet titles, section headings */
+  titleSmall: { fontFamily: fontFamily.bold, fontSize: 20, lineHeight: 26, letterSpacing: 0 },
+  /** Paragraphs, the bottom line, risk sentences */
   body: { fontFamily: fontFamily.regular, fontSize: 15, lineHeight: 22, letterSpacing: 0 },
-  /** Row titles, risk factor names */
+  /** Row titles, risk factor names, chips */
   bodyStrong: { fontFamily: fontFamily.semiBold, fontSize: 15, lineHeight: 22, letterSpacing: 0 },
-  /** Secondary paragraphs */
-  callout: { fontFamily: fontFamily.regular, fontSize: 14, lineHeight: 20, letterSpacing: 0 },
-  /** Chips, person pill */
-  calloutStrong: {
-    fontFamily: fontFamily.semiBold,
-    fontSize: 14,
-    lineHeight: 20,
-    letterSpacing: 0,
-  },
+  /** Button labels */
+  button: { fontFamily: fontFamily.bold, fontSize: 15, lineHeight: 20, letterSpacing: 0 },
   /** Row subtitles, details */
   footnote: { fontFamily: fontFamily.regular, fontSize: 13, lineHeight: 18, letterSpacing: 0 },
   /** Citation chips, tab labels, review status */
-  caption: { fontFamily: fontFamily.semiBold, fontSize: 12, lineHeight: 16, letterSpacing: 0 },
+  caption: { fontFamily: fontFamily.semiBold, fontSize: 13, lineHeight: 18, letterSpacing: 0 },
   /** Section labels and tier labels (all caps) */
   label: {
-    fontFamily: fontFamily.extraBold,
+    fontFamily: fontFamily.semiBold,
     fontSize: 11,
     lineHeight: 14,
     letterSpacing: tracking(11, 6),
     textTransform: "uppercase",
   },
-  /** Button labels */
-  button: { fontFamily: fontFamily.bold, fontSize: 16, lineHeight: 20, letterSpacing: 0 },
 } satisfies Record<string, TextStyleToken>;
 
 export type TypographyName = keyof typeof typography;

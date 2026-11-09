@@ -1,9 +1,10 @@
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 
-import { tierText, type UiTier, useIconScale, useTheme } from "@/theme";
+import { borderWidth, tierText, type UiTier, useIconScale, useTextScale, useTheme } from "@/theme";
 
 import { Icon } from "./Icon";
 import { ScoreBadge } from "./ScoreBadge";
+import { spokenLabel, Tappable } from "./Tappable";
 
 type ProductRowProps = {
   /** product.brand_name */
@@ -17,6 +18,9 @@ type ProductRowProps = {
   /** Open the product's result. The chevron only shows when the row can be tapped. */
   onPress?: () => void;
 };
+
+/** From this text size up, the score dot moves above the title so long names don't break mid-word. */
+const STACK_AT = 1.5;
 
 /**
  * A product in History, Cabinet, Search and Compare.
@@ -35,6 +39,7 @@ type ProductRowProps = {
 export function ProductRow({ title, subtitle, tier, score, onPress }: ProductRowProps) {
   const { colors, radius, space, text } = useTheme();
   const k = useIconScale();
+  const stacked = useTextScale() >= STACK_AT;
 
   const scoreText =
     tier === "stop"
@@ -42,7 +47,7 @@ export function ProductRow({ title, subtitle, tier, score, onPress }: ProductRow
       : tier === "none"
         ? "Not scored"
         : `Score ${score ?? 0}, ${tierText[tier]}`;
-  const label = [title, scoreText, subtitle].filter(Boolean).join(". ");
+  const label = spokenLabel([title, scoreText, subtitle]);
 
   const row = [
     styles.row,
@@ -55,42 +60,49 @@ export function ProductRow({ title, subtitle, tier, score, onPress }: ProductRow
       paddingVertical: space[12],
     },
   ];
-  const content = (
-    <>
-      <ScoreBadge tier={tier} score={score} size="small" />
-      <View style={[styles.stack, { gap: space[2] }]}>
-        <Text style={[text("bodyStrong"), { color: colors.text.primary }]}>{title}</Text>
-        {subtitle ? (
-          <Text style={[text("footnote"), { color: colors.text.secondary }]}>{subtitle}</Text>
-        ) : null}
+  const badge = <ScoreBadge tier={tier} score={score} size="small" />;
+  const chevron = onPress ? (
+    <Icon name="chevron" size={18 * k} color={colors.text.secondary} strokeWidth={1.5 * k} />
+  ) : null;
+  const words = (
+    <View style={[styles.stack, { gap: space[2] }]}>
+      <Text style={[text("bodyStrong"), { color: colors.text.primary }]}>{title}</Text>
+      {subtitle ? (
+        <Text style={[text("footnote"), { color: colors.text.secondary }]}>{subtitle}</Text>
+      ) : null}
+    </View>
+  );
+  // Large text: the dot and chevron share the top line, so the name gets the full width.
+  const content = stacked ? (
+    <View style={[styles.stack, { gap: space[8] }]}>
+      <View style={styles.topLine}>
+        {badge}
+        {chevron}
       </View>
-      {onPress && (
-        <Icon name="chevron" size={18 * k} color={colors.text.secondary} strokeWidth={1.5 * k} />
-      )}
+      {words}
+    </View>
+  ) : (
+    <>
+      {badge}
+      {words}
+      {chevron}
     </>
   );
 
-  if (!onPress) {
-    return (
-      <View accessible accessibilityRole="text" accessibilityLabel={label} style={row}>
-        {content}
-      </View>
-    );
-  }
   return (
-    <Pressable
-      onPress={onPress}
-      accessibilityRole="button"
-      accessibilityLabel={label}
-      style={({ pressed }) => [...row, pressed && styles.pressed]}
-    >
+    <Tappable onPress={onPress} accessibilityLabel={label} style={row}>
       {content}
-    </Pressable>
+    </Tappable>
   );
 }
 
 const styles = StyleSheet.create({
-  row: { flexDirection: "row", alignItems: "center", borderWidth: 1, alignSelf: "stretch" },
+  row: {
+    flexDirection: "row",
+    alignItems: "center",
+    borderWidth: borderWidth.card,
+    alignSelf: "stretch",
+  },
   stack: { flex: 1 },
-  pressed: { opacity: 0.85 },
+  topLine: { flexDirection: "row", alignItems: "center", justifyContent: "space-between" },
 });

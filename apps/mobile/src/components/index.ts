@@ -8,6 +8,8 @@ export type { IconName } from "./Icon";
 export { Icon } from "./Icon";
 export { OptionChip } from "./OptionChip";
 export { ProductRow } from "./ProductRow";
+export type { RiskCitation } from "./RiskFactorRow";
 export { RiskFactorRow } from "./RiskFactorRow";
+export { RiskSeverityLabel } from "./RiskSeverityLabel";
 export { ScoreBadge } from "./ScoreBadge";
 export { TierLabel } from "./TierLabel";

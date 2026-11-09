@@ -1,105 +1,123 @@
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 
-import { type Colors, type RiskSeverity, riskSeverity, useTheme } from "@/theme";
+import { borderWidth, riskSeverity, severityText, useTheme } from "@/theme";
+
+import { CitationChip, type CitationSource } from "./CitationChip";
+import { spokenLabel, Tappable } from "./Tappable";
+import { RiskSeverityLabel } from "./RiskSeverityLabel";
+
+/** One of the contribution's citations[]. Leave out `onPress` when there's nothing to open. */
+export type RiskCitation = { source: CitationSource; onPress?: () => void };
 
 type RiskFactorRowProps = {
   /** The dimension's display name, e.g. "Memory & thinking" (from contributions[].dimension). */
   factor: string;
-  /** One short line on why, e.g. "Strong anticholinergic (ACB score 3)". */
+  /** One plain-language sentence on why, e.g. "Can cause confusion and memory problems." */
   detail: string;
-  /** contributions[].points: points this risk took off the score. */
+  /** contributions[].points: points this risk took off the score. Sets the High/Moderate/Low label. */
   points: number;
-  /** The largest points value on the screen, so bars are drawn relative to it. */
-  maxPoints: number;
+  /** contributions[].citations, shown as chips so the source is visible without tapping. */
+  citations: RiskCitation[];
+  /**
+   * Also show "−38 pts", for people who want the numbers. Off by default: the design doc picked
+   * the Plain list, where the words come first.
+   */
+  showPoints?: boolean;
   /** Open the risk factor detail screen. */
   onPress?: () => void;
 };
 
-function severityColors(c: Colors, severity: RiskSeverity) {
-  switch (severity) {
-    case "high":
-      return { text: c.tier.high.text, bar: c.tier.high.mark };
-    case "moderate":
-      return { text: c.tier.care.text, bar: c.tier.care.mark };
-    case "low":
-      return { text: c.text.secondary, bar: c.tier.none.mark };
-  }
-}
-
 /**
- * One item from score-record.contributions[]. Show them largest first.
+ * One item from score-record.contributions[], as a Plain list row (docs/design/score-visualization.md):
+ * a High/Moderate/Low label, one plain-language sentence, and its sources. Show them largest first.
  *
  * @example
  * ```tsx
  * <RiskFactorRow
  *   factor="Memory & thinking"
- *   detail="Strong anticholinergic (ACB score 3)"
+ *   detail="Can cause confusion and memory problems, especially after 65."
  *   points={38}
- *   maxPoints={38}
+ *   citations={[{ source: "acb" }, { source: "fda_label", onPress: openLabel }]}
  *   onPress={openFactor}
  * />
  * ```
  */
-export function RiskFactorRow({ factor, detail, points, maxPoints, onPress }: RiskFactorRowProps) {
+export function RiskFactorRow({
+  factor,
+  detail,
+  points,
+  citations,
+  showPoints = false,
+  onPress,
+}: RiskFactorRowProps) {
   const { colors, radius, space, text } = useTheme();
-  const s = severityColors(colors, riskSeverity(points));
-  const share = maxPoints > 0 ? Math.min(1, points / maxPoints) : 0;
-  const card = [
-    styles.card,
-    {
-      backgroundColor: colors.bg.surface,
-      borderColor: colors.border.subtle,
-      borderRadius: radius.md,
-      gap: space[8],
-      padding: space[16],
-    },
-  ];
-  const content = (
+  const severity = riskSeverity(points);
+  const accessibilityLabel = spokenLabel([
+    `${severityText[severity]} risk: ${factor}`,
+    detail,
+    showPoints && `Minus ${points} points`,
+  ]);
+
+  const body = (
     <>
-      <View style={[styles.top, { gap: space[8] }]}>
-        <Text style={[text("bodyStrong"), styles.factor, { color: colors.text.primary }]}>
-          {factor}
-        </Text>
-        <Text style={[text("calloutStrong"), { color: s.text }]}>−{points} pts</Text>
+      {/* Wraps the points under the label when text is large, instead of running off the card. */}
+      <View style={[styles.labelRow, { gap: space[8] }]}>
+        <RiskSeverityLabel severity={severity} />
+        {showPoints && (
+          <Text style={[text("footnote"), styles.points, { color: colors.text.secondary }]}>
+            −{points} pts
+          </Text>
+        )}
       </View>
-      <Text style={[text("footnote"), { color: colors.text.secondary }]}>{detail}</Text>
-      <View style={[styles.track, { backgroundColor: colors.bg.canvas }]}>
-        <View style={[styles.fill, { backgroundColor: s.bar, width: `${share * 100}%` }]} />
-      </View>
+      <Text style={[text("bodyStrong"), styles.title, { color: colors.text.primary }]}>
+        {factor}
+      </Text>
+      <Text style={[text("body"), { color: colors.text.primary }]}>{detail}</Text>
     </>
   );
-  const accessibilityLabel = `${factor}, minus ${points} points. ${detail}`;
 
-  if (!onPress) {
-    return (
-      <View
-        accessible
-        accessibilityRole="text"
-        accessibilityLabel={accessibilityLabel}
-        style={card}
-      >
-        {content}
-      </View>
-    );
-  }
   return (
-    <Pressable
-      onPress={onPress}
-      accessibilityRole="button"
-      accessibilityLabel={accessibilityLabel}
-      accessibilityHint="Shows why, and the sources"
-      style={({ pressed }) => [...card, pressed && styles.pressed]}
+    <View
+      style={[
+        styles.card,
+        {
+          backgroundColor: colors.bg.surface,
+          borderColor: colors.border.subtle,
+          borderRadius: radius.md,
+          gap: space[12],
+          padding: space[16],
+        },
+      ]}
     >
-      {content}
-    </Pressable>
+      {/* The chips sit outside this group, so screen readers can reach each source on its own. */}
+      <Tappable
+        onPress={onPress}
+        accessibilityLabel={accessibilityLabel}
+        accessibilityHint="Shows more about this risk"
+        style={{ gap: space[8] }}
+      >
+        {body}
+      </Tappable>
+      {citations.length > 0 && (
+        <View style={[styles.chips, { gap: space[8] }]}>
+          {citations.map((c, i) => (
+            <CitationChip key={`${c.source}-${i}`} source={c.source} onPress={c.onPress} />
+          ))}
+        </View>
+      )}
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  card: { borderWidth: 1, alignSelf: "stretch" },
-  top: { flexDirection: "row", alignItems: "center" },
-  factor: { flex: 1 },
-  track: { height: 8, borderRadius: 4, overflow: "hidden" },
-  fill: { height: 8, borderRadius: 4, minWidth: 8 },
-  pressed: { opacity: 0.85 },
+  card: { borderWidth: borderWidth.card, alignSelf: "stretch" },
+  labelRow: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
+  points: { flexShrink: 0 },
+  title: { minWidth: 0 },
+  chips: { flexDirection: "row", flexWrap: "wrap" },
 });

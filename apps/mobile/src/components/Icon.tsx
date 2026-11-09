@@ -13,8 +13,8 @@ import TriangleAlert from "lucide-react-native/icons/triangle-alert";
  */
 const icons = {
   checkCircle: CircleCheck, // Low risk, "All clear" banner
-  alert: TriangleAlert, // Use with care, danger and warning banners
-  octagon: OctagonAlert, // High risk
+  triangleAlert: TriangleAlert, // Use with caution, warning banners
+  octagonAlert: OctagonAlert, // High risk, danger banners
   stop: Ban, // Do not use
   dash: CircleMinus, // Not scored
   info: Info, // Info banner

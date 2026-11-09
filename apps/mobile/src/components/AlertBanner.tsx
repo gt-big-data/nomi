@@ -1,8 +1,9 @@
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 
 import { type Colors, useIconScale, useTheme } from "@/theme";
 
 import { Icon, type IconName } from "./Icon";
+import { spokenLabel, Tappable } from "./Tappable";
 
 /**
  * How serious it is, not just that something happened:
@@ -31,9 +32,10 @@ const spoken: Record<AlertType, string> = {
   success: "All clear",
 };
 
+/** Danger uses the octagon (like High risk), so it differs from warning by shape, not just color. */
 const icons: Record<AlertType, IconName> = {
-  danger: "alert",
-  warning: "alert",
+  danger: "octagonAlert",
+  warning: "triangleAlert",
   info: "info",
   success: "checkCircle",
 };
@@ -43,7 +45,7 @@ function typeColors(c: Colors, type: AlertType) {
     case "danger":
       return { background: c.tier.high.tint, accent: c.tier.high.text };
     case "warning":
-      return { background: c.tier.care.tint, accent: c.tier.care.text };
+      return { background: c.tier.moderate.tint, accent: c.tier.moderate.text };
     case "info":
       return { background: c.brand.tint, accent: c.brand.text };
     case "success":
@@ -70,7 +72,7 @@ export function AlertBanner({ type, title, body, onPress }: AlertBannerProps) {
   const { colors, radius, space, text } = useTheme();
   const c = typeColors(colors, type);
   const iconScale = useIconScale();
-  const label = [`${spoken[type]}: ${title}`, body].filter(Boolean).join(". ");
+  const label = spokenLabel([`${spoken[type]}: ${title}`, body]);
 
   const box = [
     styles.box,
@@ -96,27 +98,14 @@ export function AlertBanner({ type, title, body, onPress }: AlertBannerProps) {
     </>
   );
 
-  if (!onPress) {
-    return (
-      <View accessible accessibilityRole="text" accessibilityLabel={label} style={box}>
-        {content}
-      </View>
-    );
-  }
   return (
-    <Pressable
-      onPress={onPress}
-      accessibilityRole="button"
-      accessibilityLabel={label}
-      style={({ pressed }) => [...box, pressed && styles.pressed]}
-    >
+    <Tappable onPress={onPress} accessibilityLabel={label} style={box}>
       {content}
-    </Pressable>
+    </Tappable>
   );
 }
 
 const styles = StyleSheet.create({
   box: { flexDirection: "row", alignItems: "flex-start", alignSelf: "stretch" },
   stack: { flex: 1 },
-  pressed: { opacity: 0.85 },
 });

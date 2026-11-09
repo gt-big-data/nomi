@@ -1,14 +1,13 @@
-import { StyleSheet, Text, View } from "react-native";
+import { tierColors, tierText, type UiTier, useTheme } from "@/theme";
 
-import { tierColors, tierText, type UiTier, useIconScale, useTheme } from "@/theme";
-
-import { Icon, type IconName } from "./Icon";
+import type { IconName } from "./Icon";
+import { Pill } from "./Pill";
 
 /** Each tier has its own icon shape, so tiers can be told apart without color. */
 const icons: Record<UiTier, IconName> = {
   low: "checkCircle",
-  moderate: "alert",
-  high: "octagon",
+  moderate: "triangleAlert",
+  high: "octagonAlert",
   stop: "stop",
   none: "dash",
 };
@@ -16,48 +15,37 @@ const icons: Record<UiTier, IconName> = {
 type TierLabelProps = {
   /** From `uiTier()`. */
   tier: UiTier;
+  /** `center` to sit under the score ring. This may be deprecated in the future,
+   * depending on whether the score ring/dial is dropped.
+   * Defaults to `start` (left, as in lists). */
+  align?: "start" | "center";
 };
 
 /**
- * The tier word in a pill: Low risk, Use with care, High risk, Do not use, Not scored.
+ * The whole product's result in a pill: Low risk, Use with caution, High risk, Do not use, Not
+ * scored. For one risk inside a result, use `RiskSeverityLabel`.
  *
  * @example
  * ```tsx
- * <TierLabel tier="moderate" /> // shows "Use with care"
+ * <TierLabel tier="moderate" /> // shows "Use with caution"
+ *
+ * // Under the score ring
+ * <ScoreBadge tier={tier} score={record.score} />
+ * <TierLabel tier={tier} align="center" />
  * ```
  */
-export function TierLabel({ tier }: TierLabelProps) {
-  const { colors, radius, space, text } = useTheme();
-  const k = useIconScale();
+export function TierLabel({ tier, align }: TierLabelProps) {
+  const { colors } = useTheme();
   const isStop = tier === "stop";
   const c = tierColors(colors, tier);
-  const background = isStop ? colors.tier.stop.fill : c.tint;
-  const foreground = isStop ? colors.tier.stop.on : c.text;
-
   return (
-    <View
-      accessible
-      accessibilityRole="text"
-      accessibilityLabel={tierText[tier]}
-      style={[
-        styles.pill,
-        {
-          backgroundColor: background,
-          borderRadius: radius.pill,
-          gap: space[4],
-          paddingVertical: space[4],
-          paddingLeft: space[8],
-          paddingRight: space[12],
-        },
-      ]}
-    >
-      <Icon name={icons[tier]} size={14 * k} color={foreground} strokeWidth={1.4 * k} />
-      <Text style={[text("label"), styles.shrink, { color: foreground }]}>{tierText[tier]}</Text>
-    </View>
+    <Pill
+      icon={icons[tier]}
+      label={tierText[tier]}
+      textStyle="label"
+      background={isStop ? colors.tier.stop.fill : c.tint}
+      foreground={isStop ? colors.tier.stop.on : c.text}
+      align={align}
+    />
   );
 }
-
-const styles = StyleSheet.create({
-  pill: { flexDirection: "row", alignItems: "center", alignSelf: "flex-start", maxWidth: "100%" },
-  shrink: { flexShrink: 1 },
-});

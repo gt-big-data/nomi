@@ -1,9 +1,9 @@
 import { Pressable, StyleSheet, Text } from "react-native";
 
-import { type Colors, useIconScale, useTheme } from "@/theme";
+import { type Colors, minHeight, opacity, useIconScale, useTheme } from "@/theme";
 
 import { Icon } from "./Icon";
-export type ButtonType = "primary" | "secondary" | "outline" | "ghost" | "success" | "danger";
+export type ButtonType = "primary" | "secondary" | "ghost" | "destructive";
 
 type ButtonProps = {
   /** What it does, verb first, e.g. "See safer alternative". */
@@ -24,27 +24,25 @@ function typeColors(c: Colors, type: ButtonType) {
       return { background: c.brand.primary, foreground: c.brand.onPrimary };
     case "secondary":
       return { background: c.brand.tint, foreground: c.brand.text };
-    case "outline":
-      return { background: c.bg.surface, foreground: c.text.primary, border: c.border.subtle };
     case "ghost":
       return { background: undefined, foreground: c.brand.text };
-    case "success":
-      return { background: c.tier.low.mark, foreground: c.tier.low.on };
-    case "danger":
-      return { background: c.tier.stop.fill, foreground: c.tier.stop.on };
+    case "destructive":
+      return { background: c.destructive.fill, foreground: c.destructive.on };
   }
 }
 
 /**
- * Full-width action, at least 52 points tall. Grows taller with large text instead of clipping.
+ * Full-width action, at least `minHeight.button` (52) points tall. Grows taller with large text
+ * instead of clipping.
  *
  * Types, from most to least emphasis:
  * - `primary` (default): the one main action on a screen. Brand purple. Use one per screen.
  * - `secondary`: the next most likely action. Purple text on a light purple tint.
- * - `outline`: a low-emphasis choice, with a border, e.g. "Check it for someone else".
  * - `ghost`: text only, for skipping or dismissing, e.g. "Not now".
- * - `success`: adds a safer pick, e.g. "Add Claritin to Mom’s cabinet". Low-risk green.
- * - `danger`: destructive actions only, e.g. "Delete all my data". Do-not-use red.
+ * - `destructive`: deletes or can't be undone, e.g. "Delete all my data". Red. Confirm first.
+ *
+ * Green and red stay for risk, so there's no green button: use `primary` or `secondary` for
+ * adding a safer pick.
  *
  * Screen readers hear the label as a button. Add `accessibilityHint` when the result of tapping
  * isn't obvious from the label. With `gem`, they also hear "Premium" and, unless you pass your
@@ -60,7 +58,7 @@ function typeColors(c: Colors, type: ButtonType) {
  * <Button type="secondary" label="Add to Mom’s cabinet" onPress={addToCabinet} />
  * <Button type="ghost" label="Not now" onPress={dismiss} />
  * <Button
- *   type="danger"
+ *   type="destructive"
  *   label="Delete all my data"
  *   onPress={confirmDelete}
  *   accessibilityHint="Asks you to confirm first"
@@ -94,7 +92,6 @@ export function Button({
           paddingHorizontal: space[20],
           paddingVertical: space[16],
         },
-        c.border !== undefined && { borderColor: c.border, borderWidth: 1.5 },
         pressed && styles.pressed,
       ]}
     >
@@ -108,12 +105,12 @@ export function Button({
 
 const styles = StyleSheet.create({
   button: {
-    minHeight: 52,
+    minHeight: minHeight.button,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
     alignSelf: "stretch",
   },
   label: { flexShrink: 1, textAlign: "center" },
-  pressed: { opacity: 0.85 },
+  pressed: { opacity: opacity.pressed },
 });

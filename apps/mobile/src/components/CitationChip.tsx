@@ -1,8 +1,6 @@
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import { useTheme } from "@/theme";
 
-import { useIconScale, useTheme } from "@/theme";
-
-import { Icon } from "./Icon";
+import { Pill } from "./Pill";
 
 /** Same values as `CitationSource` in @nomi/schema (citation.source). */
 export type CitationSource =
@@ -45,57 +43,19 @@ type CitationChipProps = {
  * ```
  */
 export function CitationChip({ source, onPress }: CitationChipProps) {
-  const { colors, radius, space, text } = useTheme();
-  const k = useIconScale();
+  const { colors } = useTheme();
   const displayText = citationSourceText[source];
-  const pill = [
-    styles.pill,
-    {
-      backgroundColor: colors.brand.tint,
-      borderRadius: radius.pill,
-      gap: space[4],
-      paddingVertical: space[4],
-      paddingLeft: space[8],
-      paddingRight: 10,
-    },
-  ];
-  const content = (
-    <>
-      <Icon name="doc" size={14 * k} color={colors.brand.text} strokeWidth={1.17 * k} />
-      <Text style={[text("caption"), styles.shrink, { color: colors.brand.text }]}>
-        {displayText}
-      </Text>
-    </>
-  );
-
-  if (!onPress) {
-    return (
-      <View
-        accessible
-        accessibilityRole="text"
-        accessibilityLabel={`Source: ${displayText}`}
-        style={pill}
-      >
-        {content}
-      </View>
-    );
-  }
   return (
-    <Pressable
-      onPress={onPress}
-      accessibilityRole="link"
+    <Pill
+      icon="doc"
+      label={displayText}
+      textStyle="caption"
+      background={colors.brand.tint}
+      foreground={colors.brand.text}
       accessibilityLabel={`Source: ${displayText}`}
+      onPress={onPress}
+      role="link"
       accessibilityHint="Opens the source"
-      hitSlop={10}
-      style={({ pressed }) => [...pill, pressed && styles.pressed]}
-    >
-      {content}
-    </Pressable>
+    />
   );
 }
-
-const styles = StyleSheet.create({
-  pill: { flexDirection: "row", alignItems: "center", alignSelf: "flex-start", maxWidth: "100%" },
-  shrink: { flexShrink: 1 },
-  pressed: { opacity: 0.7 },
-});

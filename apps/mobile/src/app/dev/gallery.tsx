@@ -1,7 +1,7 @@
 import { type ReactNode, useState } from "react";
-import { ActivityIndicator, ScrollView, StyleSheet, Text, View } from "react-native";
+import { ScrollView, StyleSheet, Text, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { Stack, useLocalSearchParams } from "expo-router";
+import { Redirect, Stack, useLocalSearchParams } from "expo-router";
 
 import {
   AlertBanner,
@@ -13,18 +13,27 @@ import {
   OptionChip,
   ProductRow,
   RiskFactorRow,
+  RiskSeverityLabel,
   ScoreBadge,
   TierLabel,
 } from "@/components";
-import { type ColorScheme, ThemeProvider, type UiTier, useNomiFonts, useTheme } from "@/theme";
+import { type ColorScheme, type RiskSeverity, ThemeProvider, type UiTier, useTheme } from "@/theme";
 
 /**
  * Shows every core component in every state.
  * Open /dev/gallery, or /dev/gallery?scheme=dark&scale=2 to start in dark mode at 200% text.
  */
-export default function GalleryScreen() {
+/**
+ * Only in development builds. In a release build, /dev/gallery sends you to the home screen, so
+ * people can't open it from a link.
+ */
+export default function GalleryRoute() {
+  if (!__DEV__) return <Redirect href="/" />;
+  return <GalleryScreen />;
+}
+
+function GalleryScreen() {
   const params = useLocalSearchParams<{ scheme?: string; scale?: string }>();
-  const fontsReady = useNomiFonts();
   // What the link asks for, until someone taps a chip.
   const fromLink: SchemeChoice =
     params.scheme === "light" || params.scheme === "dark" ? params.scheme : "system";
@@ -37,11 +46,7 @@ export default function GalleryScreen() {
     <ThemeProvider scheme={scheme === "system" ? undefined : scheme} textScale={scale}>
       {/* The gallery leaves room for the status bar itself, so it has no header. */}
       <Stack.Screen options={{ headerShown: false }} />
-      {fontsReady ? (
-        <Gallery scheme={scheme} onScheme={setScheme} scale={scale} onScale={setScale} />
-      ) : (
-        <Loading />
-      )}
+      <Gallery scheme={scheme} onScheme={setScheme} scale={scale} onScale={setScale} />
     </ThemeProvider>
   );
 }
@@ -63,13 +68,13 @@ const scoreExamples: { tier: UiTier; score: number }[] = [
   { tier: "none", score: 0 },
 ];
 
+const severities: RiskSeverity[] = ["high", "moderate", "low"];
+
 const buttonExamples: { type: ButtonType; label: string }[] = [
   { type: "primary", label: "See safer alternative" },
   { type: "secondary", label: "Add to Mom’s cabinet" },
-  { type: "outline", label: "Check it for someone else" },
   { type: "ghost", label: "Not now" },
-  { type: "success", label: "Add Claritin to Mom’s cabinet" },
-  { type: "danger", label: "Delete all my data" },
+  { type: "destructive", label: "Delete all my data" },
 ];
 
 const ageGroups = ["Under 2", "2–5", "6–11", "12–17", "18–64", "65+"];
@@ -125,7 +130,7 @@ function Gallery({
         >
           Component gallery
         </Text>
-        <Text style={[text("callout"), { color: colors.text.secondary }]}>
+        <Text style={[text("body"), { color: colors.text.secondary }]}>
           Shows every core component in every state.
         </Text>
         <Group label="Theme">
@@ -151,8 +156,8 @@ function Gallery({
           ))}
         </Group>
         <Text style={[text("footnote"), { color: colors.text.secondary }]}>
-          Text size previews large text on the web. On a phone, also try the system text size
-          setting.
+          Text size previews large text without changing the phone's setting. Also try the system
+          text size setting.
         </Text>
       </View>
 
@@ -164,7 +169,7 @@ function Gallery({
           {scoreExamples.map((e) => (
             <View key={e.tier} style={[styles.center, { gap: space[8] }]}>
               <ScoreBadge tier={e.tier} score={e.score} size="large" />
-              <TierLabel tier={e.tier} />
+              <TierLabel tier={e.tier} align="center" />
             </View>
           ))}
         </Wrap>
@@ -177,11 +182,16 @@ function Gallery({
 
       <Section
         title="Tier label"
-        about="The tier word with its own icon shape, so tiers never depend on color alone."
+        about="The tier word with its own icon shape, so tiers never depend on color alone. The risk severity label below is for one risk on a risk row."
       >
         <Wrap>
           {scoreExamples.map((e) => (
             <TierLabel key={e.tier} tier={e.tier} />
+          ))}
+        </Wrap>
+        <Wrap>
+          {severities.map((s) => (
+            <RiskSeverityLabel key={s} severity={s} />
           ))}
         </Wrap>
       </Section>
@@ -236,27 +246,37 @@ function Gallery({
 
       <Section
         title="Risk factor row"
-        about="One per contributions[] item, largest first. High is 15+ points, Moderate 5–14, Low under 5."
+        about="One per contributions[] item, largest first, with its sources. High is 51+ points, Moderate 15–50, Low under 15. The last row shows the optional points."
       >
         <RiskFactorRow
           factor="Memory & thinking"
-          detail="Strong anticholinergic (ACB score 3)"
-          points={38}
-          maxPoints={38}
+          detail="Can cause confusion and memory problems, especially after 65."
+          points={51}
+          citations={[
+            { source: "acb", onPress: noop },
+            { source: "stopp_start", onPress: noop },
+          ]}
           onPress={noop}
         />
         <RiskFactorRow
           factor="Drowsiness & falls"
-          detail="Sedating; next-day drowsiness"
-          points={14}
-          maxPoints={38}
+          detail="Makes you sleepy, and the drowsiness can last into the next day."
+          points={15}
+          citations={[{ source: "fda_label", onPress: noop }]}
           onPress={noop}
         />
         <RiskFactorRow
           factor="Newer options work as well"
-          detail="Older antihistamine"
-          points={4}
-          maxPoints={38}
+          detail="This is an older antihistamine; newer ones cause less drowsiness."
+          points={5}
+          citations={[{ source: "publication" }]}
+        />
+        <RiskFactorRow
+          factor="Drowsiness & falls"
+          detail="Makes you sleepy, and the drowsiness can last into the next day."
+          points={15}
+          citations={[{ source: "fda_label", onPress: noop }]}
+          showPoints
           onPress={noop}
         />
       </Section>
@@ -345,18 +365,9 @@ function Wrap({ children }: { children: ReactNode }) {
   return <View style={[styles.wrap, { gap: space[8] }]}>{children}</View>;
 }
 
-function Loading() {
-  const { colors } = useTheme();
-  return (
-    <View style={[styles.loading, { backgroundColor: colors.bg.canvas }]}>
-      <ActivityIndicator color={colors.brand.primary} />
-    </View>
-  );
-}
-
 const styles = StyleSheet.create({
   page: { width: "100%", maxWidth: 640, alignSelf: "center" },
   wrap: { flexDirection: "row", flexWrap: "wrap", alignItems: "center" },
-  center: { alignItems: "center" },
-  loading: { flex: 1, alignItems: "center", justifyContent: "center" },
+  // maxWidth keeps a long tier label inside the screen at large text, so it wraps.
+  center: { alignItems: "center", maxWidth: "100%" },
 });

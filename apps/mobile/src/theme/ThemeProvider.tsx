@@ -19,7 +19,7 @@ export type Theme = {
   radius: typeof radius;
   /**
    * Extra text scale on top of the phone's own text size setting. Always 1 in the app; the
-   * gallery raises it to preview large text on the web, where there is no system setting.
+   * gallery raises it to preview large text without changing the phone's setting.
    */
   textScale: number;
   /**
@@ -130,7 +130,20 @@ export function useTheme(): Theme {
  * ```
  */
 export function useIconScale(max = 1.5): number {
+  return Math.min(max, Math.max(1, useTextScale()));
+}
+
+/**
+ * How large text is right now: the phone's text size setting times the gallery preview
+ * (1 = normal). Use it to change a layout once text gets large, so long words don't break.
+ *
+ * @example
+ * ```tsx
+ * const stacked = useTextScale() >= 1.5; // put the score dot above the title
+ * ```
+ */
+export function useTextScale(): number {
   const { fontScale } = useWindowDimensions();
   const { textScale } = useTheme();
-  return Math.min(max, Math.max(1, fontScale * textScale));
+  return fontScale * textScale;
 }

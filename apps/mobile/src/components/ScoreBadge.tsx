@@ -45,7 +45,7 @@ export function ScoreBadge({ tier, score = 0, size = "large" }: ScoreBadgeProps)
       : tier === "none"
         ? "Not scored"
         : `Score ${value} out of 100`;
-  const a11y = { accessible: true, accessibilityRole: "image" as const, accessibilityLabel: label };
+  const a11y = { accessible: true, accessibilityRole: "text" as const, accessibilityLabel: label };
 
   if (size === "small") {
     if (tier === "stop") {

@@ -1,6 +1,6 @@
 import { Pressable, StyleSheet, Text } from "react-native";
 
-import { useTheme } from "@/theme";
+import { borderWidth, minHeight, opacity, useTheme } from "@/theme";
 
 type OptionChipProps = {
   /** The answer as shown, e.g. "65+" or "High blood pressure". */
@@ -65,7 +65,7 @@ export function OptionChip({ label, selected, onPress, mode = "multi" }: OptionC
         {
           backgroundColor: background,
           borderColor: border,
-          // 20 = a full pill at the normal 40pt height, and a rounded box if large text wraps.
+          // Rounded, not a full pill, so the chip still looks right if large text wraps.
           borderRadius: radius.lg,
           paddingHorizontal: space[16],
           paddingVertical: space[8],
@@ -73,19 +73,19 @@ export function OptionChip({ label, selected, onPress, mode = "multi" }: OptionC
         pressed && styles.pressed,
       ]}
     >
-      <Text style={[text("calloutStrong"), { color: foreground }]}>{label}</Text>
+      <Text style={[text("bodyStrong"), { color: foreground }]}>{label}</Text>
     </Pressable>
   );
 }
 
 const styles = StyleSheet.create({
-  // Same 1.5 border on and off, so the chip doesn't change size when it's tapped.
+  // Same border on and off, so the chip doesn't change size when it's tapped.
   chip: {
-    borderWidth: 1.5,
+    borderWidth: borderWidth.control,
     alignSelf: "flex-start",
     maxWidth: "100%",
-    minHeight: 40,
+    minHeight: minHeight.chip,
     justifyContent: "center",
   },
-  pressed: { opacity: 0.8 },
+  pressed: { opacity: opacity.pressed },
 });
