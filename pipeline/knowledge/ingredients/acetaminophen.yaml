@@ -9,9 +9,10 @@ ratings:
       - source: otc_monograph
         document_id: 21 CFR 201.326
         section: Liver warning
-        quote: This product contains acetaminophen. Severe liver damage may occur if you
-          take more than 4,000 mg of acetaminophen in 24 hours, with other drugs containing
-          acetaminophen, or 3 or more alcoholic drinks every day.
+        quote: 'This product contains acetaminophen. Severe liver damage may occur
+          if you take: more than 4,000 mg of acetaminophen in 24 hours; with other
+          drugs containing acetaminophen; 3 or more alcoholic drinks every day while
+          using this product.'
   - dimension: liver
     persona: adult_65_plus
     severity: 3
@@ -19,9 +20,10 @@ ratings:
       - source: otc_monograph
         document_id: 21 CFR 201.326
         section: Liver warning
-        quote: This product contains acetaminophen. Severe liver damage may occur if you
-          take more than 4,000 mg of acetaminophen in 24 hours, with other drugs containing
-          acetaminophen, or 3 or more alcoholic drinks every day.
+        quote: 'This product contains acetaminophen. Severe liver damage may occur
+          if you take: more than 4,000 mg of acetaminophen in 24 hours; with other
+          drugs containing acetaminophen; 3 or more alcoholic drinks every day while
+          using this product.'
   - dimension: liver
     persona: teen_12_17
     severity: 3
@@ -29,9 +31,10 @@ ratings:
       - source: otc_monograph
         document_id: 21 CFR 201.326
         section: Liver warning
-        quote: This product contains acetaminophen. Severe liver damage may occur if you
-          take more than 4,000 mg of acetaminophen in 24 hours, with other drugs containing
-          acetaminophen, or 3 or more alcoholic drinks every day.
+        quote: 'This product contains acetaminophen. Severe liver damage may occur
+          if you take: more than 4,000 mg of acetaminophen in 24 hours; with other
+          drugs containing acetaminophen; 3 or more alcoholic drinks every day while
+          using this product.'
   - dimension: liver
     persona: child_6_11
     severity: 3
@@ -39,8 +42,9 @@ ratings:
       - source: otc_monograph
         document_id: 21 CFR 201.326
         section: Liver warning
-        quote: This product contains acetaminophen. Severe liver damage may occur if your
-          child takes more than 5 doses in 24 hours or with other drugs containing acetaminophen.
+        quote: 'This product contains acetaminophen. Severe liver damage may occur
+          if your child takes: more than 5 doses in 24 hours; with other drugs containing
+          acetaminophen.'
   - dimension: liver
     persona: child_2_5
     severity: 3
@@ -48,8 +52,9 @@ ratings:
       - source: otc_monograph
         document_id: 21 CFR 201.326
         section: Liver warning
-        quote: This product contains acetaminophen. Severe liver damage may occur if your
-          child takes more than 5 doses in 24 hours or with other drugs containing acetaminophen.
+        quote: 'This product contains acetaminophen. Severe liver damage may occur
+          if your child takes: more than 5 doses in 24 hours; with other drugs containing
+          acetaminophen.'
   - dimension: liver
     persona: under_2
     severity: 3
@@ -57,8 +62,9 @@ ratings:
       - source: otc_monograph
         document_id: 21 CFR 201.326
         section: Liver warning
-        quote: This product contains acetaminophen. Severe liver damage may occur if your
-          child takes more than 5 doses in 24 hours or with other drugs containing acetaminophen.
+        quote: 'This product contains acetaminophen. Severe liver damage may occur
+          if your child takes: more than 5 doses in 24 hours; with other drugs containing
+          acetaminophen.'
   - dimension: liver
     persona: pregnant
     severity: 3
@@ -66,9 +72,10 @@ ratings:
       - source: otc_monograph
         document_id: 21 CFR 201.326
         section: Liver warning
-        quote: This product contains acetaminophen. Severe liver damage may occur if you
-          take more than 4,000 mg of acetaminophen in 24 hours, with other drugs containing
-          acetaminophen, or 3 or more alcoholic drinks every day.
+        quote: 'This product contains acetaminophen. Severe liver damage may occur
+          if you take: more than 4,000 mg of acetaminophen in 24 hours; with other
+          drugs containing acetaminophen; 3 or more alcoholic drinks every day while
+          using this product.'
   - dimension: liver
     persona: breastfeeding
     severity: 3
@@ -76,9 +83,10 @@ ratings:
       - source: otc_monograph
         document_id: 21 CFR 201.326
         section: Liver warning
-        quote: This product contains acetaminophen. Severe liver damage may occur if you
-          take more than 4,000 mg of acetaminophen in 24 hours, with other drugs containing
-          acetaminophen, or 3 or more alcoholic drinks every day.
+        quote: 'This product contains acetaminophen. Severe liver damage may occur
+          if you take: more than 4,000 mg of acetaminophen in 24 hours; with other
+          drugs containing acetaminophen; 3 or more alcoholic drinks every day while
+          using this product.'
   - dimension: gi_bleeding
     persona: adult_18_64
     severity: 0
@@ -266,10 +274,10 @@ ratings:
     persona: under_2
     severity: 2
     citations:
-      - source: otc_monograph
-        document_id: 21 CFR 201.326
+      - source: fda_label
+        document_id: 1b164780-ec84-4187-8afa-6f8a0da550fc
         section: Directions
-        quote: "Under 2 years: ask a doctor."
+        quote: 'children under 2 years: ask a doctor'
   - dimension: pediatric
     persona: pregnant
     severity: 0
@@ -333,74 +341,74 @@ ratings:
     persona: adult_18_64
     severity: 3
     citations:
-      - source: otc_monograph
-        document_id: 21 CFR 201.326
+      - source: fda_label
+        document_id: 1b164780-ec84-4187-8afa-6f8a0da550fc
         section: Warnings
-        quote: Do not use with any other drug containing acetaminophen (prescription or
-          nonprescription).
+        quote: Do not use with any other drug containing acetaminophen (prescription
+          or nonprescription).
   - dimension: duplicate_dosing
     persona: adult_65_plus
     severity: 3
     citations:
-      - source: otc_monograph
-        document_id: 21 CFR 201.326
+      - source: fda_label
+        document_id: 1b164780-ec84-4187-8afa-6f8a0da550fc
         section: Warnings
-        quote: Do not use with any other drug containing acetaminophen (prescription or
-          nonprescription).
+        quote: Do not use with any other drug containing acetaminophen (prescription
+          or nonprescription).
   - dimension: duplicate_dosing
     persona: teen_12_17
     severity: 3
     citations:
-      - source: otc_monograph
-        document_id: 21 CFR 201.326
+      - source: fda_label
+        document_id: 1b164780-ec84-4187-8afa-6f8a0da550fc
         section: Warnings
-        quote: Do not use with any other drug containing acetaminophen (prescription or
-          nonprescription).
+        quote: Do not use with any other drug containing acetaminophen (prescription
+          or nonprescription).
   - dimension: duplicate_dosing
     persona: child_6_11
     severity: 3
     citations:
-      - source: otc_monograph
-        document_id: 21 CFR 201.326
+      - source: fda_label
+        document_id: 1b164780-ec84-4187-8afa-6f8a0da550fc
         section: Warnings
-        quote: Do not use with any other drug containing acetaminophen (prescription or
-          nonprescription).
+        quote: Do not use with any other drug containing acetaminophen (prescription
+          or nonprescription).
   - dimension: duplicate_dosing
     persona: child_2_5
     severity: 3
     citations:
-      - source: otc_monograph
-        document_id: 21 CFR 201.326
+      - source: fda_label
+        document_id: 1b164780-ec84-4187-8afa-6f8a0da550fc
         section: Warnings
-        quote: Do not use with any other drug containing acetaminophen (prescription or
-          nonprescription).
+        quote: Do not use with any other drug containing acetaminophen (prescription
+          or nonprescription).
   - dimension: duplicate_dosing
     persona: under_2
     severity: 3
     citations:
-      - source: otc_monograph
-        document_id: 21 CFR 201.326
+      - source: fda_label
+        document_id: 1b164780-ec84-4187-8afa-6f8a0da550fc
         section: Warnings
-        quote: Do not use with any other drug containing acetaminophen (prescription or
-          nonprescription).
+        quote: Do not use with any other drug containing acetaminophen (prescription
+          or nonprescription).
   - dimension: duplicate_dosing
     persona: pregnant
     severity: 3
     citations:
-      - source: otc_monograph
-        document_id: 21 CFR 201.326
+      - source: fda_label
+        document_id: 1b164780-ec84-4187-8afa-6f8a0da550fc
         section: Warnings
-        quote: Do not use with any other drug containing acetaminophen (prescription or
-          nonprescription).
+        quote: Do not use with any other drug containing acetaminophen (prescription
+          or nonprescription).
   - dimension: duplicate_dosing
     persona: breastfeeding
     severity: 3
     citations:
-      - source: otc_monograph
-        document_id: 21 CFR 201.326
+      - source: fda_label
+        document_id: 1b164780-ec84-4187-8afa-6f8a0da550fc
         section: Warnings
-        quote: Do not use with any other drug containing acetaminophen (prescription or
-          nonprescription).
+        quote: Do not use with any other drug containing acetaminophen (prescription
+          or nonprescription).
   - dimension: excipients
     persona: adult_18_64
     severity: 0
@@ -478,8 +486,8 @@ modifiers:
     condition: liver_disease
     severity_change: 2
     citations:
-      - source: otc_monograph
-        document_id: 21 CFR 201.326
+      - source: fda_label
+        document_id: 1b164780-ec84-4187-8afa-6f8a0da550fc
         section: Ask a doctor before use if you have
         quote: Ask a doctor before use if you have liver disease.
   - dimension: liver
@@ -489,14 +497,14 @@ modifiers:
       - source: otc_monograph
         document_id: 21 CFR 201.326
         section: Liver warning
-        quote: Severe liver damage may occur if you take 3 or more alcoholic drinks every
-          day while using this product.
+        quote: Severe liver damage may occur if you take 3 or more alcoholic drinks
+          every day while using this product.
   - dimension: anticoagulant_bleeding
     medication_type: anticoagulants
-    severity_change: 1
+    severity_change: 2
     citations:
-      - source: otc_monograph
-        document_id: 21 CFR 201.326
+      - source: fda_label
+        document_id: 1b164780-ec84-4187-8afa-6f8a0da550fc
         section: Ask a doctor or pharmacist before use if you are
         quote: Ask a doctor or pharmacist before use if you are taking the blood thinning
           drug warfarin.

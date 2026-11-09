@@ -55,14 +55,7 @@ ratings:
     severity: 0
   - dimension: cardiovascular_bp
     persona: adult_65_plus
-    severity: 1
-    citations:
-      - source: stopp_start
-        document_id: 10.1093/ageing/afad156
-        section: STOPP v3 Section B (Cardiovascular System), Criterion 15
-        quote: Prescribing agents known to prolong cardiac repolarization to individuals
-          with documented baseline QTc interval prolongation increases the hazard of life-threatening
-          polymorphic ventricular dysrhythmias.
+    severity: 0
   - dimension: cardiovascular_bp
     persona: teen_12_17
     severity: 0
@@ -88,10 +81,10 @@ ratings:
     persona: adult_65_plus
     severity: 1
     citations:
-      - source: otc_monograph
-        document_id: 21 CFR 330.1
+      - source: fda_label
+        document_id: 54f4086f-e443-4e7e-8c7e-94e152e1c256
         section: Ask a doctor before use if you have
-        quote: Ask a doctor before use if you have kidney disease.
+        quote: 'Ask a doctor before use if you have: kidney disease'
   - dimension: kidney
     persona: teen_12_17
     severity: 0
@@ -115,13 +108,7 @@ ratings:
     severity: 0
   - dimension: anticholinergic_cognitive
     persona: adult_65_plus
-    severity: 1
-    citations:
-      - source: publication
-        document_id: 10.1002/pds.1171
-        section: Central Nervous System Adverse Reactions Associated with H2-Blockers
-        quote: Famotidine can induce acute confusional states, delirium, and cognitive
-          disorientation in older adults, particularly those with reduced renal function.
+    severity: 0
   - dimension: anticholinergic_cognitive
     persona: teen_12_17
     severity: 0
@@ -225,26 +212,26 @@ ratings:
     persona: child_6_11
     severity: 2
     citations:
-      - source: otc_monograph
-        document_id: 21 CFR 330.1
+      - source: fda_label
+        document_id: 54f4086f-e443-4e7e-8c7e-94e152e1c256
         section: Directions
-        quote: "Children under 12 years of age: ask a doctor."
+        quote: 'children under 12 years of age: ask a doctor'
   - dimension: pediatric
     persona: child_2_5
     severity: 2
     citations:
-      - source: otc_monograph
-        document_id: 21 CFR 330.1
+      - source: fda_label
+        document_id: 54f4086f-e443-4e7e-8c7e-94e152e1c256
         section: Directions
-        quote: "Children under 12 years of age: ask a doctor."
+        quote: 'children under 12 years of age: ask a doctor'
   - dimension: pediatric
     persona: under_2
     severity: 2
     citations:
-      - source: otc_monograph
-        document_id: 21 CFR 330.1
+      - source: fda_label
+        document_id: 54f4086f-e443-4e7e-8c7e-94e152e1c256
         section: Directions
-        quote: "Children under 12 years of age: ask a doctor."
+        quote: 'children under 12 years of age: ask a doctor'
   - dimension: pediatric
     persona: pregnant
     severity: 0
@@ -255,26 +242,29 @@ ratings:
     persona: adult_18_64
     severity: 1
     citations:
-      - source: otc_monograph
-        document_id: 21 CFR 330.1
-        section: Warnings
-        quote: Do not use for more than 14 days unless directed by a doctor.
+      - source: fda_label
+        document_id: 54f4086f-e443-4e7e-8c7e-94e152e1c256
+        section: Stop use and ask a doctor if
+        quote: 'Stop use and ask a doctor if: you need to take this product for more
+          than 14 days'
   - dimension: rebound_overuse
     persona: adult_65_plus
     severity: 1
     citations:
-      - source: otc_monograph
-        document_id: 21 CFR 330.1
-        section: Warnings
-        quote: Do not use for more than 14 days unless directed by a doctor.
+      - source: fda_label
+        document_id: 54f4086f-e443-4e7e-8c7e-94e152e1c256
+        section: Stop use and ask a doctor if
+        quote: 'Stop use and ask a doctor if: you need to take this product for more
+          than 14 days'
   - dimension: rebound_overuse
     persona: teen_12_17
     severity: 1
     citations:
-      - source: otc_monograph
-        document_id: 21 CFR 330.1
-        section: Warnings
-        quote: Do not use for more than 14 days unless directed by a doctor.
+      - source: fda_label
+        document_id: 54f4086f-e443-4e7e-8c7e-94e152e1c256
+        section: Stop use and ask a doctor if
+        quote: 'Stop use and ask a doctor if: you need to take this product for more
+          than 14 days'
   - dimension: rebound_overuse
     persona: child_6_11
     severity: 0
@@ -288,18 +278,20 @@ ratings:
     persona: pregnant
     severity: 1
     citations:
-      - source: otc_monograph
-        document_id: 21 CFR 330.1
-        section: Warnings
-        quote: Do not use for more than 14 days unless directed by a doctor.
+      - source: fda_label
+        document_id: 54f4086f-e443-4e7e-8c7e-94e152e1c256
+        section: Stop use and ask a doctor if
+        quote: 'Stop use and ask a doctor if: you need to take this product for more
+          than 14 days'
   - dimension: rebound_overuse
     persona: breastfeeding
     severity: 1
     citations:
-      - source: otc_monograph
-        document_id: 21 CFR 330.1
-        section: Warnings
-        quote: Do not use for more than 14 days unless directed by a doctor.
+      - source: fda_label
+        document_id: 54f4086f-e443-4e7e-8c7e-94e152e1c256
+        section: Stop use and ask a doctor if
+        quote: 'Stop use and ask a doctor if: you need to take this product for more
+          than 14 days'
   - dimension: pregnancy_lactation
     persona: adult_18_64
     severity: 0
@@ -435,16 +427,7 @@ modifiers:
     condition: kidney_disease
     severity_change: 1
     citations:
-      - source: otc_monograph
-        document_id: 21 CFR 330.1
+      - source: fda_label
+        document_id: 54f4086f-e443-4e7e-8c7e-94e152e1c256
         section: Ask a doctor before use if you have
-        quote: Ask a doctor before use if you have kidney disease.
-  - dimension: cardiovascular_bp
-    condition: heart_disease
-    severity_change: 1
-    citations:
-      - source: stopp_start
-        document_id: 10.1093/ageing/afad156
-        section: STOPP v3 Section B (Cardiovascular System), Criterion 15
-        quote: Prescribing agents known to prolong cardiac repolarization to individuals
-          with documented baseline QTc interval prolongation increases dysrhythmia hazard.
+        quote: 'Ask a doctor before use if you have: kidney disease'

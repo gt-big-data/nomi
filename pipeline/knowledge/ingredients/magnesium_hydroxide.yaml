@@ -81,10 +81,10 @@ ratings:
     persona: adult_65_plus
     severity: 1
     citations:
-      - source: otc_monograph
-        document_id: 21 CFR 331.30
-        section: Antacid warnings - kidney disease
-        quote: Ask a doctor before use if you have kidney disease.
+      - source: fda_label
+        document_id: 5faf2ed0-dd71-17c9-e053-2a91aa0ab75a
+        section: Ask a doctor before use if you have
+        quote: 'Ask a doctor before use if you have: kidney disease'
   - dimension: kidney
     persona: teen_12_17
     severity: 0
@@ -213,21 +213,20 @@ ratings:
     severity: 0
   - dimension: pediatric
     persona: child_2_5
-    severity: 1
+    severity: 2
     citations:
       - source: otc_monograph
-        document_id: 21 CFR 334.50
+        document_id: M007
         section: Directions - pediatric dosing
-        quote: "Children 2 to under 6 years of age: ask a doctor or follow approved oral
-          dosage."
+        quote: 'children under 6 years: ask a doctor'
   - dimension: pediatric
     persona: under_2
     severity: 2
     citations:
       - source: otc_monograph
-        document_id: 21 CFR 334.50
+        document_id: M007
         section: Directions - pediatric dosing
-        quote: "Children under 2 years of age: ask a doctor."
+        quote: 'children under 2 years: ask a doctor'
   - dimension: pediatric
     persona: pregnant
     severity: 0
@@ -239,31 +238,25 @@ ratings:
     severity: 1
     citations:
       - source: otc_monograph
-        document_id: 21 CFR 334.50
+        document_id: M007
         section: Laxative warnings - duration of use
-        quote: Do not use laxative products when abdominal pain, nausea, or vomiting are
-          present unless directed by a doctor. Do not use for a period longer than 1 week
-          unless directed by a doctor.
+        quote: Do not use for a period longer than 1 week unless directed by a doctor.
   - dimension: rebound_overuse
     persona: adult_65_plus
     severity: 1
     citations:
       - source: otc_monograph
-        document_id: 21 CFR 334.50
+        document_id: M007
         section: Laxative warnings - duration of use
-        quote: Do not use laxative products when abdominal pain, nausea, or vomiting are
-          present unless directed by a doctor. Do not use for a period longer than 1 week
-          unless directed by a doctor.
+        quote: Do not use for a period longer than 1 week unless directed by a doctor.
   - dimension: rebound_overuse
     persona: teen_12_17
     severity: 1
     citations:
       - source: otc_monograph
-        document_id: 21 CFR 334.50
+        document_id: M007
         section: Laxative warnings - duration of use
-        quote: Do not use laxative products when abdominal pain, nausea, or vomiting are
-          present unless directed by a doctor. Do not use for a period longer than 1 week
-          unless directed by a doctor.
+        quote: Do not use for a period longer than 1 week unless directed by a doctor.
   - dimension: rebound_overuse
     persona: child_6_11
     severity: 0
@@ -414,18 +407,15 @@ modifiers:
     condition: kidney_disease
     severity_change: 2
     citations:
-      - source: otc_monograph
-        document_id: 21 CFR 331.30
-        section: Antacid warnings - kidney disease
-        quote: Do not use this product, except under the advice and supervision of a physician,
-          if you have kidney disease.
+      - source: fda_label
+        document_id: 5faf2ed0-dd71-17c9-e053-2a91aa0ab75a
+        section: Ask a doctor before use if you have
+        quote: 'Ask a doctor before use if you have: kidney disease'
   - dimension: kidney
     medication_type: diuretics
     severity_change: 1
     citations:
       - source: otc_monograph
-        document_id: 21 CFR 334.50
+        document_id: M007
         section: Drug interaction precaution
-        quote: Ask a doctor or pharmacist before use if you are taking a prescription
-          drug. Concomitant use of saline laxatives and diuretics may accelerate fluid
-          loss and electrolyte depletion.
+        quote: Ask a doctor or pharmacist before use if you are taking a prescription drug.

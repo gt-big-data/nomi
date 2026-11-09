@@ -31,73 +31,73 @@ ratings:
     severity: 2
     citations:
       - source: otc_monograph
-        document_id: 21 CFR 201.326
+        document_id: 21 CFR 335.50(c)(2)
         section: Warnings
-        quote: "Ask a doctor before use if you have: ulcers; bleeding problems; stool
-          that is bloody or black."
+        quote: 'Do not use if you have: an ulcer; a bleeding problem; bloody or black
+          stool'
   - dimension: gi_bleeding
     persona: adult_65_plus
     severity: 3
     citations:
       - source: otc_monograph
-        document_id: 21 CFR 201.326
+        document_id: 21 CFR 335.50(c)(2)
         section: Warnings
-        quote: "Ask a doctor before use if you have: ulcers; bleeding problems; stool
-          that is bloody or black."
+        quote: 'Do not use if you have: an ulcer; a bleeding problem; bloody or black
+          stool'
   - dimension: gi_bleeding
     persona: teen_12_17
     severity: 2
     citations:
       - source: otc_monograph
-        document_id: 21 CFR 201.326
+        document_id: 21 CFR 335.50(c)(2)
         section: Warnings
-        quote: "Ask a doctor before use if you have: ulcers; bleeding problems; stool
-          that is bloody or black."
+        quote: 'Do not use if you have: an ulcer; a bleeding problem; bloody or black
+          stool'
   - dimension: gi_bleeding
     persona: child_6_11
     severity: 2
     citations:
       - source: otc_monograph
-        document_id: 21 CFR 201.326
+        document_id: 21 CFR 335.50(c)(2)
         section: Warnings
-        quote: "Ask a doctor before use if you have: ulcers; bleeding problems; stool
-          that is bloody or black."
+        quote: 'Do not use if you have: an ulcer; a bleeding problem; bloody or black
+          stool'
   - dimension: gi_bleeding
     persona: child_2_5
     severity: 2
     citations:
       - source: otc_monograph
-        document_id: 21 CFR 201.326
+        document_id: 21 CFR 335.50(c)(2)
         section: Warnings
-        quote: "Ask a doctor before use if you have: ulcers; bleeding problems; stool
-          that is bloody or black."
+        quote: 'Do not use if you have: an ulcer; a bleeding problem; bloody or black
+          stool'
   - dimension: gi_bleeding
     persona: under_2
     severity: 2
     citations:
       - source: otc_monograph
-        document_id: 21 CFR 201.326
+        document_id: 21 CFR 335.50(c)(2)
         section: Warnings
-        quote: "Ask a doctor before use if you have: ulcers; bleeding problems; stool
-          that is bloody or black."
+        quote: 'Do not use if you have: an ulcer; a bleeding problem; bloody or black
+          stool'
   - dimension: gi_bleeding
     persona: pregnant
-    severity: 3
+    severity: 2
     citations:
       - source: otc_monograph
-        document_id: 21 CFR 201.326
+        document_id: 21 CFR 335.50(c)(2)
         section: Warnings
-        quote: "Ask a doctor before use if you have: ulcers; bleeding problems; stool
-          that is bloody or black."
+        quote: 'Do not use if you have: an ulcer; a bleeding problem; bloody or black
+          stool'
   - dimension: gi_bleeding
     persona: breastfeeding
     severity: 2
     citations:
       - source: otc_monograph
-        document_id: 21 CFR 201.326
+        document_id: 21 CFR 335.50(c)(2)
         section: Warnings
-        quote: "Ask a doctor before use if you have: ulcers; bleeding problems; stool
-          that is bloody or black."
+        quote: 'Do not use if you have: an ulcer; a bleeding problem; bloody or black
+          stool'
   - dimension: cardiovascular_bp
     persona: adult_18_64
     severity: 0
@@ -223,73 +223,73 @@ ratings:
     severity: 2
     citations:
       - source: otc_monograph
-        document_id: 21 CFR 201.326
+        document_id: 21 CFR 335.50(c)(2)
         section: Warnings
-        quote: "Ask a doctor or pharmacist before use if you are taking any drug for:
-          anticoagulation (thinning the blood); diabetes; gout; arthritis."
+        quote: 'Ask a doctor or pharmacist before use if you are taking any drug for:
+          anticoagulation (thinning the blood)'
   - dimension: anticoagulant_bleeding
     persona: adult_65_plus
     severity: 2
     citations:
       - source: otc_monograph
-        document_id: 21 CFR 201.326
+        document_id: 21 CFR 335.50(c)(2)
         section: Warnings
-        quote: "Ask a doctor or pharmacist before use if you are taking any drug for:
-          anticoagulation (thinning the blood); diabetes; gout; arthritis."
+        quote: 'Ask a doctor or pharmacist before use if you are taking any drug for:
+          anticoagulation (thinning the blood)'
   - dimension: anticoagulant_bleeding
     persona: teen_12_17
     severity: 2
     citations:
       - source: otc_monograph
-        document_id: 21 CFR 201.326
+        document_id: 21 CFR 335.50(c)(2)
         section: Warnings
-        quote: "Ask a doctor or pharmacist before use if you are taking any drug for:
-          anticoagulation (thinning the blood); diabetes; gout; arthritis."
+        quote: 'Ask a doctor or pharmacist before use if you are taking any drug for:
+          anticoagulation (thinning the blood)'
   - dimension: anticoagulant_bleeding
     persona: child_6_11
     severity: 2
     citations:
       - source: otc_monograph
-        document_id: 21 CFR 201.326
+        document_id: 21 CFR 335.50(c)(2)
         section: Warnings
-        quote: "Ask a doctor or pharmacist before use if you are taking any drug for:
-          anticoagulation (thinning the blood); diabetes; gout; arthritis."
+        quote: 'Ask a doctor or pharmacist before use if you are taking any drug for:
+          anticoagulation (thinning the blood)'
   - dimension: anticoagulant_bleeding
     persona: child_2_5
     severity: 2
     citations:
       - source: otc_monograph
-        document_id: 21 CFR 201.326
+        document_id: 21 CFR 335.50(c)(2)
         section: Warnings
-        quote: "Ask a doctor or pharmacist before use if you are taking any drug for:
-          anticoagulation (thinning the blood); diabetes; gout; arthritis."
+        quote: 'Ask a doctor or pharmacist before use if you are taking any drug for:
+          anticoagulation (thinning the blood)'
   - dimension: anticoagulant_bleeding
     persona: under_2
     severity: 2
     citations:
       - source: otc_monograph
-        document_id: 21 CFR 201.326
+        document_id: 21 CFR 335.50(c)(2)
         section: Warnings
-        quote: "Ask a doctor or pharmacist before use if you are taking any drug for:
-          anticoagulation (thinning the blood); diabetes; gout; arthritis."
+        quote: 'Ask a doctor or pharmacist before use if you are taking any drug for:
+          anticoagulation (thinning the blood)'
   - dimension: anticoagulant_bleeding
     persona: pregnant
     severity: 2
     citations:
       - source: otc_monograph
-        document_id: 21 CFR 201.326
+        document_id: 21 CFR 335.50(c)(2)
         section: Warnings
-        quote: "Ask a doctor or pharmacist before use if you are taking any drug for:
-          anticoagulation (thinning the blood); diabetes; gout; arthritis."
+        quote: 'Ask a doctor or pharmacist before use if you are taking any drug for:
+          anticoagulation (thinning the blood)'
   - dimension: anticoagulant_bleeding
     persona: breastfeeding
     severity: 2
     citations:
       - source: otc_monograph
-        document_id: 21 CFR 201.326
+        document_id: 21 CFR 335.50(c)(2)
         section: Warnings
-        quote: "Ask a doctor or pharmacist before use if you are taking any drug for:
-          anticoagulation (thinning the blood); diabetes; gout; arthritis."
+        quote: 'Ask a doctor or pharmacist before use if you are taking any drug for:
+          anticoagulation (thinning the blood)'
   - dimension: pediatric
     persona: adult_18_64
     severity: 0
@@ -303,8 +303,11 @@ ratings:
       - source: otc_monograph
         document_id: 21 CFR 201.314
         section: Reye's syndrome warning
-        quote: "Reye's syndrome: Children and teenagers who have or are recovering from
-          chicken pox or flu-like symptoms should not use this product."
+        quote: 'Reye''s syndrome: Children and teenagers who have or are recovering
+          from chicken pox or flu-like symptoms should not use this product. When
+          using this product, if changes in behavior with nausea and vomiting occur,
+          consult a doctor because these symptoms could be an early sign of Reye''s
+          syndrome, a rare but serious illness.'
   - dimension: pediatric
     persona: child_6_11
     severity: 3
@@ -312,8 +315,11 @@ ratings:
       - source: otc_monograph
         document_id: 21 CFR 201.314
         section: Reye's syndrome warning
-        quote: "Reye's syndrome: Children and teenagers who have or are recovering from
-          chicken pox or flu-like symptoms should not use this product."
+        quote: 'Reye''s syndrome: Children and teenagers who have or are recovering
+          from chicken pox or flu-like symptoms should not use this product. When
+          using this product, if changes in behavior with nausea and vomiting occur,
+          consult a doctor because these symptoms could be an early sign of Reye''s
+          syndrome, a rare but serious illness.'
   - dimension: pediatric
     persona: child_2_5
     severity: 3
@@ -321,8 +327,11 @@ ratings:
       - source: otc_monograph
         document_id: 21 CFR 201.314
         section: Reye's syndrome warning
-        quote: "Reye's syndrome: Children and teenagers who have or are recovering from
-          chicken pox or flu-like symptoms should not use this product."
+        quote: 'Reye''s syndrome: Children and teenagers who have or are recovering
+          from chicken pox or flu-like symptoms should not use this product. When
+          using this product, if changes in behavior with nausea and vomiting occur,
+          consult a doctor because these symptoms could be an early sign of Reye''s
+          syndrome, a rare but serious illness.'
   - dimension: pediatric
     persona: under_2
     severity: 3
@@ -330,8 +339,11 @@ ratings:
       - source: otc_monograph
         document_id: 21 CFR 201.314
         section: Reye's syndrome warning
-        quote: "Reye's syndrome: Children and teenagers who have or are recovering from
-          chicken pox or flu-like symptoms should not use this product."
+        quote: 'Reye''s syndrome: Children and teenagers who have or are recovering
+          from chicken pox or flu-like symptoms should not use this product. When
+          using this product, if changes in behavior with nausea and vomiting occur,
+          consult a doctor because these symptoms could be an early sign of Reye''s
+          syndrome, a rare but serious illness.'
   - dimension: pediatric
     persona: pregnant
     severity: 0
@@ -387,91 +399,87 @@ ratings:
       - source: otc_monograph
         document_id: 21 CFR 201.63
         section: Pregnancy/breast-feeding warning
-        quote: If pregnant or breast-feeding, ask a health professional before use. It
-          is especially important not to use salicylate products at 20 weeks or later
-          in pregnancy.
+        quote: If pregnant or breast-feeding, ask a health professional before use.
   - dimension: pregnancy_lactation
     persona: breastfeeding
     severity: 2
     citations:
-      - source: publication
-        document_id: 10.1542/peds.108.3.776
-        section: AAP Committee on Drugs
-        quote: Salicylates are excreted in human milk; avoidance is recommended during
-          lactation due to theoretical risk of Reye's syndrome and platelet dysfunction
-          in the infant.
+      - source: otc_monograph
+        document_id: 21 CFR 201.63
+        section: Pregnancy/breast-feeding warning
+        quote: If pregnant or breast-feeding, ask a health professional before use.
   - dimension: duplicate_dosing
     persona: adult_18_64
     severity: 2
     citations:
       - source: otc_monograph
-        document_id: 21 CFR 201.326
+        document_id: 21 CFR 335.50(c)(2)
         section: Warnings
-        quote: Do not use if you are allergic to salicylates (including aspirin) or taking
-          other salicylate products.
+        quote: 'Ask a doctor or pharmacist before use if you are taking any drug for:
+          anticoagulation (thinning the blood), diabetes, gout, arthritis'
   - dimension: duplicate_dosing
     persona: adult_65_plus
     severity: 2
     citations:
       - source: otc_monograph
-        document_id: 21 CFR 201.326
+        document_id: 21 CFR 335.50(c)(2)
         section: Warnings
-        quote: Do not use if you are allergic to salicylates (including aspirin) or taking
-          other salicylate products.
+        quote: 'Ask a doctor or pharmacist before use if you are taking any drug for:
+          anticoagulation (thinning the blood), diabetes, gout, arthritis'
   - dimension: duplicate_dosing
     persona: teen_12_17
     severity: 2
     citations:
       - source: otc_monograph
-        document_id: 21 CFR 201.326
+        document_id: 21 CFR 335.50(c)(2)
         section: Warnings
-        quote: Do not use if you are allergic to salicylates (including aspirin) or taking
-          other salicylate products.
+        quote: 'Ask a doctor or pharmacist before use if you are taking any drug for:
+          anticoagulation (thinning the blood), diabetes, gout, arthritis'
   - dimension: duplicate_dosing
     persona: child_6_11
     severity: 2
     citations:
       - source: otc_monograph
-        document_id: 21 CFR 201.326
+        document_id: 21 CFR 335.50(c)(2)
         section: Warnings
-        quote: Do not use if you are allergic to salicylates (including aspirin) or taking
-          other salicylate products.
+        quote: 'Ask a doctor or pharmacist before use if you are taking any drug for:
+          anticoagulation (thinning the blood), diabetes, gout, arthritis'
   - dimension: duplicate_dosing
     persona: child_2_5
     severity: 2
     citations:
       - source: otc_monograph
-        document_id: 21 CFR 201.326
+        document_id: 21 CFR 335.50(c)(2)
         section: Warnings
-        quote: Do not use if you are allergic to salicylates (including aspirin) or taking
-          other salicylate products.
+        quote: 'Ask a doctor or pharmacist before use if you are taking any drug for:
+          anticoagulation (thinning the blood), diabetes, gout, arthritis'
   - dimension: duplicate_dosing
     persona: under_2
     severity: 2
     citations:
       - source: otc_monograph
-        document_id: 21 CFR 201.326
+        document_id: 21 CFR 335.50(c)(2)
         section: Warnings
-        quote: Do not use if you are allergic to salicylates (including aspirin) or taking
-          other salicylate products.
+        quote: 'Ask a doctor or pharmacist before use if you are taking any drug for:
+          anticoagulation (thinning the blood), diabetes, gout, arthritis'
   - dimension: duplicate_dosing
     persona: pregnant
     severity: 2
     citations:
       - source: otc_monograph
-        document_id: 21 CFR 201.326
+        document_id: 21 CFR 335.50(c)(2)
         section: Warnings
-        quote: Do not use if you are allergic to salicylates (including aspirin) or taking
-          other salicylate products.
+        quote: 'Ask a doctor or pharmacist before use if you are taking any drug for:
+          anticoagulation (thinning the blood), diabetes, gout, arthritis'
   - dimension: duplicate_dosing
     persona: breastfeeding
     severity: 2
     citations:
       - source: otc_monograph
-        document_id: 21 CFR 201.326
+        document_id: 21 CFR 335.50(c)(2)
         section: Warnings
-        quote: Do not use if you are allergic to salicylates (including aspirin) or taking
-          other salicylate products.
+        quote: 'Ask a doctor or pharmacist before use if you are taking any drug for:
+          anticoagulation (thinning the blood), diabetes, gout, arthritis'
   - dimension: excipients
     persona: adult_18_64
     severity: 0
@@ -550,33 +558,35 @@ modifiers:
     severity_change: 2
     citations:
       - source: otc_monograph
-        document_id: 21 CFR 201.326
+        document_id: 21 CFR 335.50(c)(2)
         section: Warnings
-        quote: Ask a doctor before use if you have had ulcers or bleeding problems.
+        quote: Do not use if you have an ulcer, a bleeding problem, bloody or black
+          stool.
   - dimension: anticoagulant_bleeding
     medication_type: anticoagulants
     severity_change: 2
     citations:
       - source: otc_monograph
-        document_id: 21 CFR 201.326
+        document_id: 21 CFR 335.50(c)(2)
         section: Warnings
-        quote: Ask a doctor or pharmacist before use if you are taking any drug for anticoagulation
-          (thinning the blood).
+        quote: 'Ask a doctor or pharmacist before use if you are taking any drug for:
+          anticoagulation (thinning the blood).'
   - dimension: anticoagulant_bleeding
     medication_type: antiplatelets
     severity_change: 2
     citations:
-      - source: stopp_start
-        document_id: 10.1093/ageing/afad156
-        section: STOPP v3 Section C (Coagulation System), Criterion 3
-        quote: Concurrent salicylate or antiplatelet therapy elevates hemorrhagic diathesis
-          without therapeutic synergy.
+      - source: otc_monograph
+        document_id: 21 CFR 335.50(c)(2)
+        section: Warnings
+        quote: 'Ask a doctor or pharmacist before use if you are taking any drug for:
+          anticoagulation (thinning the blood).'
   - dimension: kidney
     condition: kidney_disease
     severity_change: 1
     citations:
       - source: publication
-        document_id: 10.1007/BF01297059
+        document_id: 10.1038/clpt.1981.112
         section: Pharmacokinetics of Bismuth Subsalicylate
-        quote: Systemic salicylate absorption from bismuth subsalicylate is near 100%,
-          and renal impairment delays salicylate clearance and increases bismuth retention.
+        quote: Absorption of salicylate was also essentially complete after 15- and
+          30-ml doses of the antidiarrheal preparation, and a linear relationship
+          between dose and recovery of salicylate in the urine was found.

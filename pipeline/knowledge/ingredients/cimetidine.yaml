@@ -81,10 +81,10 @@ ratings:
     persona: adult_65_plus
     severity: 1
     citations:
-      - source: otc_monograph
-        document_id: 21 CFR 330.1
+      - source: fda_label
+        document_id: e6401e0a-8612-42e8-bf89-2d67243f28dc
         section: Ask a doctor before use if you have
-        quote: Ask a doctor before use if you have kidney disease.
+        quote: 'Ask a doctor before use if you have: kidney disease'
   - dimension: kidney
     persona: teen_12_17
     severity: 0
@@ -109,27 +109,30 @@ ratings:
     citations:
       - source: acb
         document_id: 10.2217/1745509X.4.3.311
-        section: "Table 1: Possible Anticholinergics (Score 1)"
-        quote: Cimetidine is associated with acute confusional states, delirium, and cognitive
-          alterations in older adults due to central nervous system penetration.
+        section: 'Table 1: Possible Anticholinergics (Score 1)'
+        quote: 'Score 1: Drugs with serum anticholinergic activity or in vitro affinity
+          to muscarinic receptors, but no known clinically relevant negative cognitive
+          effects'
   - dimension: anticholinergic_cognitive
     persona: adult_65_plus
     severity: 2
     citations:
       - source: acb
         document_id: 10.2217/1745509X.4.3.311
-        section: "Table 1: Possible Anticholinergics (Score 1)"
-        quote: Cimetidine is associated with acute confusional states, delirium, and cognitive
-          alterations in older adults due to central nervous system penetration.
+        section: 'Table 1: Possible Anticholinergics (Score 1)'
+        quote: 'Score 1: Drugs with serum anticholinergic activity or in vitro affinity
+          to muscarinic receptors, but no known clinically relevant negative cognitive
+          effects'
   - dimension: anticholinergic_cognitive
     persona: teen_12_17
     severity: 1
     citations:
       - source: acb
         document_id: 10.2217/1745509X.4.3.311
-        section: "Table 1: Possible Anticholinergics (Score 1)"
-        quote: Cimetidine is associated with acute confusional states, delirium, and cognitive
-          alterations in older adults due to central nervous system penetration.
+        section: 'Table 1: Possible Anticholinergics (Score 1)'
+        quote: 'Score 1: Drugs with serum anticholinergic activity or in vitro affinity
+          to muscarinic receptors, but no known clinically relevant negative cognitive
+          effects'
   - dimension: anticholinergic_cognitive
     persona: child_6_11
     severity: 0
@@ -145,18 +148,20 @@ ratings:
     citations:
       - source: acb
         document_id: 10.2217/1745509X.4.3.311
-        section: "Table 1: Possible Anticholinergics (Score 1)"
-        quote: Cimetidine is associated with acute confusional states, delirium, and cognitive
-          alterations in older adults due to central nervous system penetration.
+        section: 'Table 1: Possible Anticholinergics (Score 1)'
+        quote: 'Score 1: Drugs with serum anticholinergic activity or in vitro affinity
+          to muscarinic receptors, but no known clinically relevant negative cognitive
+          effects'
   - dimension: anticholinergic_cognitive
     persona: breastfeeding
     severity: 1
     citations:
       - source: acb
         document_id: 10.2217/1745509X.4.3.311
-        section: "Table 1: Possible Anticholinergics (Score 1)"
-        quote: Cimetidine is associated with acute confusional states, delirium, and cognitive
-          alterations in older adults due to central nervous system penetration.
+        section: 'Table 1: Possible Anticholinergics (Score 1)'
+        quote: 'Score 1: Drugs with serum anticholinergic activity or in vitro affinity
+          to muscarinic receptors, but no known clinically relevant negative cognitive
+          effects'
   - dimension: sedation_falls
     persona: adult_18_64
     severity: 0
@@ -207,34 +212,13 @@ ratings:
     severity: 0
   - dimension: anticoagulant_bleeding
     persona: adult_18_64
-    severity: 2
-    citations:
-      - source: otc_monograph
-        document_id: 21 CFR 330.1
-        section: Warnings
-        quote: "Ask a doctor or pharmacist before use if you are taking: theophylline
-          (oral asthma medicine); warfarin (blood thinning medicine); phenytoin (seizure
-          medicine)."
+    severity: 0
   - dimension: anticoagulant_bleeding
     persona: adult_65_plus
-    severity: 2
-    citations:
-      - source: otc_monograph
-        document_id: 21 CFR 330.1
-        section: Warnings
-        quote: "Ask a doctor or pharmacist before use if you are taking: theophylline
-          (oral asthma medicine); warfarin (blood thinning medicine); phenytoin (seizure
-          medicine)."
+    severity: 0
   - dimension: anticoagulant_bleeding
     persona: teen_12_17
-    severity: 2
-    citations:
-      - source: otc_monograph
-        document_id: 21 CFR 330.1
-        section: Warnings
-        quote: "Ask a doctor or pharmacist before use if you are taking: theophylline
-          (oral asthma medicine); warfarin (blood thinning medicine); phenytoin (seizure
-          medicine)."
+    severity: 0
   - dimension: anticoagulant_bleeding
     persona: child_6_11
     severity: 0
@@ -246,24 +230,10 @@ ratings:
     severity: 0
   - dimension: anticoagulant_bleeding
     persona: pregnant
-    severity: 2
-    citations:
-      - source: otc_monograph
-        document_id: 21 CFR 330.1
-        section: Warnings
-        quote: "Ask a doctor or pharmacist before use if you are taking: theophylline
-          (oral asthma medicine); warfarin (blood thinning medicine); phenytoin (seizure
-          medicine)."
+    severity: 0
   - dimension: anticoagulant_bleeding
     persona: breastfeeding
-    severity: 2
-    citations:
-      - source: otc_monograph
-        document_id: 21 CFR 330.1
-        section: Warnings
-        quote: "Ask a doctor or pharmacist before use if you are taking: theophylline
-          (oral asthma medicine); warfarin (blood thinning medicine); phenytoin (seizure
-          medicine)."
+    severity: 0
   - dimension: pediatric
     persona: adult_18_64
     severity: 0
@@ -277,26 +247,26 @@ ratings:
     persona: child_6_11
     severity: 2
     citations:
-      - source: otc_monograph
-        document_id: 21 CFR 330.1
+      - source: fda_label
+        document_id: e6401e0a-8612-42e8-bf89-2d67243f28dc
         section: Directions
-        quote: "Children under 12 years of age: ask a doctor."
+        quote: 'children under 12 years of age: ask a doctor'
   - dimension: pediatric
     persona: child_2_5
     severity: 2
     citations:
-      - source: otc_monograph
-        document_id: 21 CFR 330.1
+      - source: fda_label
+        document_id: e6401e0a-8612-42e8-bf89-2d67243f28dc
         section: Directions
-        quote: "Children under 12 years of age: ask a doctor."
+        quote: 'children under 12 years of age: ask a doctor'
   - dimension: pediatric
     persona: under_2
     severity: 2
     citations:
-      - source: otc_monograph
-        document_id: 21 CFR 330.1
+      - source: fda_label
+        document_id: e6401e0a-8612-42e8-bf89-2d67243f28dc
         section: Directions
-        quote: "Children under 12 years of age: ask a doctor."
+        quote: 'children under 12 years of age: ask a doctor'
   - dimension: pediatric
     persona: pregnant
     severity: 0
@@ -307,26 +277,29 @@ ratings:
     persona: adult_18_64
     severity: 1
     citations:
-      - source: otc_monograph
-        document_id: 21 CFR 330.1
-        section: Warnings
-        quote: Do not use for more than 14 days unless directed by a doctor.
+      - source: fda_label
+        document_id: e6401e0a-8612-42e8-bf89-2d67243f28dc
+        section: Stop use and ask a doctor if
+        quote: 'Stop use and ask a doctor if: you need to take this product for more
+          than 14 days'
   - dimension: rebound_overuse
     persona: adult_65_plus
     severity: 1
     citations:
-      - source: otc_monograph
-        document_id: 21 CFR 330.1
-        section: Warnings
-        quote: Do not use for more than 14 days unless directed by a doctor.
+      - source: fda_label
+        document_id: e6401e0a-8612-42e8-bf89-2d67243f28dc
+        section: Stop use and ask a doctor if
+        quote: 'Stop use and ask a doctor if: you need to take this product for more
+          than 14 days'
   - dimension: rebound_overuse
     persona: teen_12_17
     severity: 1
     citations:
-      - source: otc_monograph
-        document_id: 21 CFR 330.1
-        section: Warnings
-        quote: Do not use for more than 14 days unless directed by a doctor.
+      - source: fda_label
+        document_id: e6401e0a-8612-42e8-bf89-2d67243f28dc
+        section: Stop use and ask a doctor if
+        quote: 'Stop use and ask a doctor if: you need to take this product for more
+          than 14 days'
   - dimension: rebound_overuse
     persona: child_6_11
     severity: 0
@@ -340,18 +313,20 @@ ratings:
     persona: pregnant
     severity: 1
     citations:
-      - source: otc_monograph
-        document_id: 21 CFR 330.1
-        section: Warnings
-        quote: Do not use for more than 14 days unless directed by a doctor.
+      - source: fda_label
+        document_id: e6401e0a-8612-42e8-bf89-2d67243f28dc
+        section: Stop use and ask a doctor if
+        quote: 'Stop use and ask a doctor if: you need to take this product for more
+          than 14 days'
   - dimension: rebound_overuse
     persona: breastfeeding
     severity: 1
     citations:
-      - source: otc_monograph
-        document_id: 21 CFR 330.1
-        section: Warnings
-        quote: Do not use for more than 14 days unless directed by a doctor.
+      - source: fda_label
+        document_id: e6401e0a-8612-42e8-bf89-2d67243f28dc
+        section: Stop use and ask a doctor if
+        quote: 'Stop use and ask a doctor if: you need to take this product for more
+          than 14 days'
   - dimension: pregnancy_lactation
     persona: adult_18_64
     severity: 0
@@ -382,11 +357,10 @@ ratings:
     persona: breastfeeding
     severity: 1
     citations:
-      - source: publication
-        document_id: 10.1542/peds.108.3.776
-        section: American Academy of Pediatrics Committee on Drugs
-        quote: Cimetidine is concentrated in breast milk and suppresses gastric acidity
-          in the nursing infant.
+      - source: otc_monograph
+        document_id: 21 CFR 201.63
+        section: Pregnancy/breast-feeding warning
+        quote: If pregnant or breast-feeding, ask a health professional before use.
   - dimension: duplicate_dosing
     persona: adult_18_64
     severity: 0
@@ -488,25 +462,25 @@ modifiers:
     medication_type: anticoagulants
     severity_change: 2
     citations:
-      - source: otc_monograph
-        document_id: 21 CFR 330.1
+      - source: fda_label
+        document_id: e6401e0a-8612-42e8-bf89-2d67243f28dc
         section: Warnings
-        quote: Ask a doctor or pharmacist before use if you are taking warfarin (blood
-          thinning medicine).
+        quote: Ask a doctor or pharmacist before use if you are taking a prescription
+          drug. Acid reducers may interact with certain prescription drugs.
   - dimension: sedation_falls
     medication_type: sedatives
     severity_change: 1
     citations:
       - source: publication
-        document_id: 10.1007/BF00609559
-        section: Inhibition of Sedative Metabolism by Cimetidine
-        quote: Cimetidine markedly impairs microsomal oxidative elimination of benzodiazepines
-          and sedatives, prolonging psychomotor impairment.
+        document_id: 10.1056/NEJM198005013021807
+        section: Delayed Clearance of Diazepam Due to Cimetidine
+        quote: cimetidine impairs the elimination of diazepam and produces a marked
+          reduction in total body clearance
   - dimension: kidney
     condition: kidney_disease
     severity_change: 1
     citations:
-      - source: otc_monograph
-        document_id: 21 CFR 330.1
+      - source: fda_label
+        document_id: e6401e0a-8612-42e8-bf89-2d67243f28dc
         section: Ask a doctor before use if you have
-        quote: Ask a doctor before use if you have kidney disease.
+        quote: 'Ask a doctor before use if you have: kidney disease'

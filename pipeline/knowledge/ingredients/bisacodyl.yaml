@@ -211,17 +211,17 @@ ratings:
     severity: 2
     citations:
       - source: otc_monograph
-        document_id: 21 CFR 334.58
+        document_id: M007
         section: Directions
-        quote: "Children under 6 years of age: ask a doctor."
+        quote: "children 2 to under 6 years of age: ask a doctor"
   - dimension: pediatric
     persona: under_2
     severity: 3
     citations:
       - source: otc_monograph
-        document_id: 21 CFR 334.58
+        document_id: M007
         section: Directions
-        quote: Do not use in children under 2 years of age.
+        quote: "children under 2 years of age: ask a doctor"
   - dimension: pediatric
     persona: pregnant
     severity: 0
@@ -233,73 +233,81 @@ ratings:
     severity: 2
     citations:
       - source: otc_monograph
-        document_id: 21 CFR 334.58
+        document_id: M007
         section: Warnings
-        quote: Do not use for more than 7 days unless directed by a doctor. Frequent or
-          continued use of laxatives may result in dependence on laxatives.
+        quote:
+          Do not use laxative products when abdominal pain, nausea, or vomiting are present unless directed by a doctor.
+          Do not use for a period longer than 1 week unless directed by a doctor.
   - dimension: rebound_overuse
     persona: adult_65_plus
     severity: 2
     citations:
       - source: otc_monograph
-        document_id: 21 CFR 334.58
+        document_id: M007
         section: Warnings
-        quote: Do not use for more than 7 days unless directed by a doctor. Frequent or
-          continued use of laxatives may result in dependence on laxatives.
+        quote:
+          Do not use laxative products when abdominal pain, nausea, or vomiting are present unless directed by a doctor.
+          Do not use for a period longer than 1 week unless directed by a doctor.
   - dimension: rebound_overuse
     persona: teen_12_17
     severity: 2
     citations:
       - source: otc_monograph
-        document_id: 21 CFR 334.58
+        document_id: M007
         section: Warnings
-        quote: Do not use for more than 7 days unless directed by a doctor. Frequent or
-          continued use of laxatives may result in dependence on laxatives.
+        quote:
+          Do not use laxative products when abdominal pain, nausea, or vomiting are present unless directed by a doctor.
+          Do not use for a period longer than 1 week unless directed by a doctor.
   - dimension: rebound_overuse
     persona: child_6_11
     severity: 2
     citations:
       - source: otc_monograph
-        document_id: 21 CFR 334.58
+        document_id: M007
         section: Warnings
-        quote: Do not use for more than 7 days unless directed by a doctor. Frequent or
-          continued use of laxatives may result in dependence on laxatives.
+        quote:
+          Do not use laxative products when abdominal pain, nausea, or vomiting are present unless directed by a doctor.
+          Do not use for a period longer than 1 week unless directed by a doctor.
   - dimension: rebound_overuse
     persona: child_2_5
     severity: 2
     citations:
       - source: otc_monograph
-        document_id: 21 CFR 334.58
+        document_id: M007
         section: Warnings
-        quote: Do not use for more than 7 days unless directed by a doctor. Frequent or
-          continued use of laxatives may result in dependence on laxatives.
+        quote:
+          Do not use laxative products when abdominal pain, nausea, or vomiting are present unless directed by a doctor.
+          Do not use for a period longer than 1 week unless directed by a doctor.
   - dimension: rebound_overuse
     persona: under_2
     severity: 2
     citations:
       - source: otc_monograph
-        document_id: 21 CFR 334.58
+        document_id: M007
         section: Warnings
-        quote: Do not use for more than 7 days unless directed by a doctor. Frequent or
-          continued use of laxatives may result in dependence on laxatives.
+        quote:
+          Do not use laxative products when abdominal pain, nausea, or vomiting are present unless directed by a doctor.
+          Do not use for a period longer than 1 week unless directed by a doctor.
   - dimension: rebound_overuse
     persona: pregnant
     severity: 2
     citations:
       - source: otc_monograph
-        document_id: 21 CFR 334.58
+        document_id: M007
         section: Warnings
-        quote: Do not use for more than 7 days unless directed by a doctor. Frequent or
-          continued use of laxatives may result in dependence on laxatives.
+        quote:
+          Do not use laxative products when abdominal pain, nausea, or vomiting are present unless directed by a doctor.
+          Do not use for a period longer than 1 week unless directed by a doctor.
   - dimension: rebound_overuse
     persona: breastfeeding
     severity: 2
     citations:
       - source: otc_monograph
-        document_id: 21 CFR 334.58
+        document_id: M007
         section: Warnings
-        quote: Do not use for more than 7 days unless directed by a doctor. Frequent or
-          continued use of laxatives may result in dependence on laxatives.
+        quote:
+          Do not use laxative products when abdominal pain, nausea, or vomiting are present unless directed by a doctor.
+          Do not use for a period longer than 1 week unless directed by a doctor.
   - dimension: pregnancy_lactation
     persona: adult_18_64
     severity: 0
@@ -425,22 +433,4 @@ ratings:
   - dimension: efficacy_evidence
     persona: breastfeeding
     severity: 0
-modifiers:
-  - dimension: kidney
-    condition: kidney_disease
-    severity_change: 1
-    citations:
-      - source: publication
-        document_id: 10.1016/S0140-6736(05)76465-4
-        section: Electrolyte and Renal Complications of Laxative Abuse
-        quote: Chronic stimulant laxative use in patients with compromised renal function
-          exacerbates dehydration, hypokalemia, and secondary hyperaldosteronism.
-  - dimension: kidney
-    medication_type: diuretics
-    severity_change: 1
-    citations:
-      - source: stopp_start
-        document_id: 10.1093/ageing/afad156
-        section: STOPP v3 Section F (Gastrointestinal System)
-        quote: Concomitant use of stimulant laxatives and loop or thiazide diuretics accelerates
-          potassium depletion and volume contraction.
+modifiers: []

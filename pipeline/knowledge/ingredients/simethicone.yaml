@@ -205,22 +205,10 @@ ratings:
     severity: 0
   - dimension: pediatric
     persona: child_6_11
-    severity: 1
-    citations:
-      - source: otc_monograph
-        document_id: 21 CFR 332.30
-        section: Directions for antiflatulent drug products
-        quote: "Directions: Adults and children 12 years of age and older: thoroughly
-          chew 1 to 2 tablets as needed. Children under 12 years of age: ask a doctor."
+    severity: 0
   - dimension: pediatric
     persona: child_2_5
-    severity: 1
-    citations:
-      - source: otc_monograph
-        document_id: 21 CFR 332.30
-        section: Directions for antiflatulent drug products
-        quote: "Directions: Adults and children 12 years of age and older: thoroughly
-          chew 1 to 2 tablets as needed. Children under 12 years of age: ask a doctor."
+    severity: 0
   - dimension: pediatric
     persona: under_2
     severity: 1
@@ -228,8 +216,8 @@ ratings:
       - source: otc_monograph
         document_id: 21 CFR 332.30
         section: Directions for antiflatulent drug products
-        quote: "Directions: Adults and children 12 years of age and older: thoroughly
-          chew 1 to 2 tablets as needed. Children under 12 years of age: ask a doctor."
+        quote: there is no recommended dosage for children under 2 years of age, except
+          under the advice and supervision of a physician
   - dimension: pediatric
     persona: pregnant
     severity: 0

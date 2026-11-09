@@ -81,10 +81,10 @@ ratings:
     persona: adult_65_plus
     severity: 1
     citations:
-      - source: otc_monograph
-        document_id: 21 CFR 331.30
+      - source: fda_label
+        document_id: 9bc5c5de-8d61-4edf-83d2-a1e797c2d24a
         section: Ask a doctor before use if you have
-        quote: Ask a doctor before use if you have kidney stones or kidney disease.
+        quote: 'Ask a doctor before use if you have: kidney disease'
   - dimension: kidney
     persona: teen_12_17
     severity: 0
@@ -221,7 +221,7 @@ ratings:
       - source: otc_monograph
         document_id: 21 CFR 331.30
         section: Directions
-        quote: "Children under 2 years: ask a doctor."
+        quote: do not use in children under 2 years of age except under the advice and supervision of a physician
   - dimension: pediatric
     persona: pregnant
     severity: 0
@@ -235,9 +235,7 @@ ratings:
       - source: otc_monograph
         document_id: 21 CFR 331.30
         section: Warnings
-        quote: Do not take more than the maximum daily dose in 24 hours, or use the maximum
-          dosage of this product for more than 2 weeks, except under the advice and supervision
-          of a physician.
+        quote: do not use the maximum daily dosage for more than 2 weeks except under the advice and supervision of a physician
   - dimension: rebound_overuse
     persona: adult_65_plus
     severity: 1
@@ -245,9 +243,7 @@ ratings:
       - source: otc_monograph
         document_id: 21 CFR 331.30
         section: Warnings
-        quote: Do not take more than the maximum daily dose in 24 hours, or use the maximum
-          dosage of this product for more than 2 weeks, except under the advice and supervision
-          of a physician.
+        quote: do not use the maximum daily dosage for more than 2 weeks except under the advice and supervision of a physician
   - dimension: rebound_overuse
     persona: teen_12_17
     severity: 1
@@ -255,9 +251,7 @@ ratings:
       - source: otc_monograph
         document_id: 21 CFR 331.30
         section: Warnings
-        quote: Do not take more than the maximum daily dose in 24 hours, or use the maximum
-          dosage of this product for more than 2 weeks, except under the advice and supervision
-          of a physician.
+        quote: do not use the maximum daily dosage for more than 2 weeks except under the advice and supervision of a physician
   - dimension: rebound_overuse
     persona: child_6_11
     severity: 0
@@ -274,9 +268,7 @@ ratings:
       - source: otc_monograph
         document_id: 21 CFR 331.30
         section: Warnings
-        quote: Do not take more than the maximum daily dose in 24 hours, or use the maximum
-          dosage of this product for more than 2 weeks, except under the advice and supervision
-          of a physician.
+        quote: do not use the maximum daily dosage for more than 2 weeks except under the advice and supervision of a physician
   - dimension: rebound_overuse
     persona: breastfeeding
     severity: 1
@@ -284,9 +276,7 @@ ratings:
       - source: otc_monograph
         document_id: 21 CFR 331.30
         section: Warnings
-        quote: Do not take more than the maximum daily dose in 24 hours, or use the maximum
-          dosage of this product for more than 2 weeks, except under the advice and supervision
-          of a physician.
+        quote: do not use the maximum daily dosage for more than 2 weeks except under the advice and supervision of a physician
   - dimension: pregnancy_lactation
     persona: adult_18_64
     severity: 0
@@ -417,7 +407,7 @@ modifiers:
     condition: kidney_disease
     severity_change: 2
     citations:
-      - source: otc_monograph
-        document_id: 21 CFR 331.30
+      - source: fda_label
+        document_id: 9bc5c5de-8d61-4edf-83d2-a1e797c2d24a
         section: Ask a doctor before use if you have
-        quote: Ask a doctor before use if you have kidney stones or kidney disease.
+        quote: Ask a doctor before use if you have kidney disease.
