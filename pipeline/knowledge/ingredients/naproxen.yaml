@@ -162,7 +162,14 @@ ratings:
           The risk is higher if you use more than directed or for longer than directed."
   - dimension: cardiovascular_bp
     persona: child_6_11
-    severity: 0
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: a3745850-3e32-4884-b315-161bcb9996ed
+        section: Heart attack and stroke warning
+        quote: "Heart attack and stroke warning: NSAIDs, except aspirin, increase
+          the risk of heart attack, heart failure, and stroke. These can be fatal.
+          The risk is higher if you use more than directed or for longer than directed."
   - dimension: cardiovascular_bp
     persona: child_2_5
     severity: 0
@@ -205,7 +212,13 @@ ratings:
     severity: 0
   - dimension: kidney
     persona: child_6_11
-    severity: 0
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: a3745850-3e32-4884-b315-161bcb9996ed
+        section: Ask a doctor before use if
+        quote: "Ask a doctor before use if you have: high blood pressure, heart disease,
+          liver cirrhosis, kidney disease, asthma, or are taking a diuretic."
   - dimension: kidney
     persona: child_2_5
     severity: 0

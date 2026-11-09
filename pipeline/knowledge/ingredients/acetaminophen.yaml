@@ -266,7 +266,12 @@ ratings:
     severity: 0
   - dimension: pediatric
     persona: child_6_11
-    severity: 0
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 1b164780-ec84-4187-8afa-6f8a0da550fc
+        section: Directions
+        quote: "children under 12 years: ask a doctor"
   - dimension: pediatric
     persona: child_2_5
     severity: 0
