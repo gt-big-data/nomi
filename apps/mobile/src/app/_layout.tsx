@@ -23,7 +23,7 @@ export default function RootLayout() {
   );
 }
 
-/** A child of ThemeProvider, so useTheme() reads the provider instead of its fallback. */
+/** Inside <ThemeProvider>, so useTheme() gets the provider's theme instead of a default one. */
 function Navigator() {
   const { scheme, colors } = useTheme();
   const base = scheme === "dark" ? DarkTheme : DefaultTheme;

@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View } from "react-native";
 
-import { borderWidth, riskSeverity, severityText, useTheme } from "@/theme";
+import { borderWidth, riskSeverity, riskSeverityText, useTheme } from "@/theme";
 
 import { CitationChip, type CitationSource } from "./CitationChip";
 import { spokenLabel, Tappable } from "./Tappable";
@@ -53,7 +53,7 @@ export function RiskFactorRow({
   const { colors, radius, space, text } = useTheme();
   const severity = riskSeverity(points);
   const accessibilityLabel = spokenLabel([
-    `${severityText[severity]} risk: ${factor}`,
+    `${riskSeverityText[severity]} risk: ${factor}`,
     detail,
     showPoints && `Minus ${points} points`,
   ]);
@@ -89,7 +89,6 @@ export function RiskFactorRow({
         },
       ]}
     >
-      {/* The chips sit outside this group, so screen readers can reach each source on its own. */}
       <Tappable
         onPress={onPress}
         accessibilityLabel={accessibilityLabel}

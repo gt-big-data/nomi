@@ -125,8 +125,8 @@ export function useTheme(): Theme {
  *
  * @example
  * ```tsx
- * const k = useIconScale();
- * <Icon name="info" size={22 * k} color={colors.brand.text} strokeWidth={1.83 * k} />
+ * const iconScale = useIconScale();
+ * <Icon name="info" size="banner" scale={iconScale} color={colors.brand.text} />
  * ```
  */
 export function useIconScale(max = 1.5): number {

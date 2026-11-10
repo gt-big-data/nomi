@@ -12,7 +12,7 @@ type ButtonProps = {
   onPress: () => void;
   /** How much emphasis it has. Defaults to `primary`. The types are described on `Button`. */
   type?: ButtonType;
-  /** Shows the gem: the action needs Premium (tapping it should open the Premium sheet). */
+  /** Shows the gem: the action needs Premium (tapping it should open the Premium page). */
   gem?: boolean;
   /** Extra screen-reader hint, e.g. "Opens the comparison". */
   accessibilityHint?: string;
@@ -95,9 +95,7 @@ export function Button({
         pressed && styles.pressed,
       ]}
     >
-      {gem && (
-        <Icon name="gem" size={18 * iconScale} color={c.foreground} strokeWidth={2 * iconScale} />
-      )}
+      {gem && <Icon name="gem" size="button" scale={iconScale} color={c.foreground} />}
       <Text style={[text("button"), styles.label, { color: c.foreground }]}>{label}</Text>
     </Pressable>
   );

@@ -1,4 +1,4 @@
-import { type RiskSeverity, severityColors, severityText, useTheme } from "@/theme";
+import { type RiskSeverity, riskSeverityColors, riskSeverityText, useTheme } from "@/theme";
 
 import type { IconName } from "./Icon";
 import { Pill } from "./Pill";
@@ -26,11 +26,11 @@ type RiskSeverityLabelProps = {
  */
 export function RiskSeverityLabel({ severity }: RiskSeverityLabelProps) {
   const { colors } = useTheme();
-  const c = severityColors(colors, severity);
+  const c = riskSeverityColors(colors, severity);
   return (
     <Pill
       icon={icons[severity]}
-      label={severityText[severity]}
+      label={riskSeverityText[severity]}
       textStyle="label"
       background={c.tint}
       foreground={c.text}

@@ -8,6 +8,8 @@ import Info from "lucide-react-native/icons/info";
 import OctagonAlert from "lucide-react-native/icons/octagon-alert";
 import TriangleAlert from "lucide-react-native/icons/triangle-alert";
 
+import { iconSize, type IconSize } from "@/theme";
+
 /**
  * The Lucide icons the app uses (lucide.dev), named by what they mean in Nomi.
  */
@@ -28,12 +30,12 @@ export type IconName = keyof typeof icons;
 type IconProps = {
   /** Which icon, by what it means in Nomi, e.g. "chevron" or "info". The list is `icons` above. */
   name: IconName;
-  /** Width and height in points. */
-  size: number;
+  /** Where it's used, which sets its size and line thickness (`iconSize` in tokens.ts). */
+  size: IconSize;
   /** A theme color, e.g. `colors.brand.text`. */
   color: string;
-  /** Line thickness in points at this size (Figma's stroke weight). Converted to Lucide's units for you. */
-  strokeWidth: number;
+  /** Grows it with large text: pass `useIconScale()` when it sits next to text. Defaults to 1. */
+  scale?: number;
 };
 
 /**
@@ -43,29 +45,18 @@ type IconProps = {
  * Mostly used inside the core components. Use it directly only when building a new component,
  * and give that component the screen-reader label.
  *
- * Every prop is required: there are no defaults. Don't pick new numbers; use a pair from this
- * list, which is every size the Nomi Library uses (size / strokeWidth, in points):
- * - 14 / 1.17: citation chip document icon
- * - 14 / 1.4: tier label icon
- * - 18 / 1.5: chevron on tappable rows and banners
- * - 18 / 2: Premium gem on buttons
- * - 22 / 1.83: alert banner icon
- * - 22 / 2: "Do not use" icon in the small score dot
- * - 72 / 6: "Do not use" icon in the large score ring
- * If a design needs a size that isn't here, add it to the Figma library first, then to this list.
- *
- * When the icon sits next to text, multiply both numbers by `useIconScale()` so it grows with
- * large text settings.
- *
  * @example
  * ```tsx
  * const { colors } = useTheme();
- * const k = useIconScale(); // grows with large text
- * <Icon name="chevron" size={18 * k} color={colors.text.secondary} strokeWidth={1.5 * k} />
+ * const iconScale = useIconScale(); // grows with large text
+ * <Icon name="chevron" size="chevron" scale={iconScale} color={colors.text.secondary} />
  * ```
  */
-export function Icon({ name, size, color, strokeWidth }: IconProps) {
+export function Icon({ name, size, color, scale = 1 }: IconProps) {
   const LucideIcon = icons[name];
-  // Lucide draws on a 24×24 grid, so turn the line width in points into grid units.
-  return <LucideIcon size={size} color={color} strokeWidth={(strokeWidth * 24) / size} />;
+  const points = iconSize[size].size * scale;
+  // Lucide draws on a 24×24 grid and scales the line with the icon, so convert the Figma line
+  // width to grid units once; it stays right at any scale.
+  const strokeWidth = (iconSize[size].strokeWidth * 24) / iconSize[size].size;
+  return <LucideIcon size={points} color={color} strokeWidth={strokeWidth} />;
 }

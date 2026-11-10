@@ -47,7 +47,7 @@ export function Pill({
 }: PillProps) {
   const { radius, space, text } = useTheme();
   // Grows with the text, up to 3x, so the icon keeps up with the word next to it.
-  const k = useIconScale(3);
+  const iconScale = useIconScale(3);
 
   return (
     <Tappable
@@ -70,7 +70,7 @@ export function Pill({
         },
       ]}
     >
-      <Icon name={icon} size={14 * k} color={foreground} strokeWidth={1.4 * k} />
+      <Icon name={icon} size="pill" scale={iconScale} color={foreground} />
       <Text
         style={[
           text(textStyle),

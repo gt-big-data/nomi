@@ -1,6 +1,13 @@
 import { StyleSheet, Text, View } from "react-native";
 
-import { borderWidth, tierText, type UiTier, useIconScale, useTextScale, useTheme } from "@/theme";
+import {
+  borderWidth,
+  productTierText,
+  type ProductTier,
+  useIconScale,
+  useTextScale,
+  useTheme,
+} from "@/theme";
 
 import { Icon } from "./Icon";
 import { ScoreBadge } from "./ScoreBadge";
@@ -11,8 +18,8 @@ type ProductRowProps = {
   title: string;
   /** Who it was for and when, or generic name and strength. */
   subtitle?: string;
-  /** From `uiTier()`. Sets the score dot and what screen readers hear. */
-  tier: UiTier;
+  /** From `productTier()`. Sets the score dot and what screen readers hear. */
+  tier: ProductTier;
   /** score-record.score. Not shown for Stop and None. */
   score?: number;
   /** Open the product's result. The chevron only shows when the row can be tapped. */
@@ -38,7 +45,7 @@ const STACK_AT = 1.5;
  */
 export function ProductRow({ title, subtitle, tier, score, onPress }: ProductRowProps) {
   const { colors, radius, space, text } = useTheme();
-  const k = useIconScale();
+  const iconScale = useIconScale();
   const stacked = useTextScale() >= STACK_AT;
 
   const scoreText =
@@ -46,7 +53,7 @@ export function ProductRow({ title, subtitle, tier, score, onPress }: ProductRow
       ? "Do not use"
       : tier === "none"
         ? "Not scored"
-        : `Score ${score ?? 0}, ${tierText[tier]}`;
+        : `Score ${score ?? 0}, ${productTierText[tier]}`;
   const label = spokenLabel([title, scoreText, subtitle]);
 
   const row = [
@@ -62,7 +69,7 @@ export function ProductRow({ title, subtitle, tier, score, onPress }: ProductRow
   ];
   const badge = <ScoreBadge tier={tier} score={score} size="small" />;
   const chevron = onPress ? (
-    <Icon name="chevron" size={18 * k} color={colors.text.secondary} strokeWidth={1.5 * k} />
+    <Icon name="chevron" size="chevron" scale={iconScale} color={colors.text.secondary} />
   ) : null;
   const words = (
     <View style={[styles.stack, { gap: space[2] }]}>

@@ -6,7 +6,7 @@ import { Icon, type IconName } from "./Icon";
 import { spokenLabel, Tappable } from "./Tappable";
 
 /**
- * How serious it is, not just that something happened:
+ * How serious the alert is:
  * - danger: Don't combine, or a High clash (e.g. two acetaminophen products)
  * - warning: a Moderate clash, or a Preliminary score
  * - info: a Low clash or a neutral note ("Ask your pharmacist")
@@ -54,8 +54,8 @@ function typeColors(c: Colors, type: AlertType) {
 }
 
 /**
- * A message whose color and icon say how serious it is. Screen readers hear the
- * severity translated from colors first ("Important", "Caution"...).
+ * A message whose color and icon say how serious it is. Screen readers say how serious it is
+ * first ("Important", "Caution"…).
  *
  * @example
  * ```tsx
@@ -80,21 +80,14 @@ export function AlertBanner({ type, title, body, onPress }: AlertBannerProps) {
   ];
   const content = (
     <>
-      <Icon
-        name={icons[type]}
-        size={22 * iconScale}
-        color={c.accent}
-        strokeWidth={1.83 * iconScale}
-      />
+      <Icon name={icons[type]} size="banner" scale={iconScale} color={c.accent} />
       <View style={[styles.stack, { gap: space[2] }]}>
         <Text style={[text("bodyStrong"), { color: c.accent }]}>{title}</Text>
         {body ? (
           <Text style={[text("footnote"), { color: colors.text.primary }]}>{body}</Text>
         ) : null}
       </View>
-      {onPress && (
-        <Icon name="chevron" size={18 * iconScale} color={c.accent} strokeWidth={1.5 * iconScale} />
-      )}
+      {onPress && <Icon name="chevron" size="chevron" scale={iconScale} color={c.accent} />}
     </>
   );
 

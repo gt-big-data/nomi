@@ -1,13 +1,13 @@
 import { StyleSheet, Text, View } from "react-native";
 import Svg, { Circle } from "react-native-svg";
 
-import { tierColors, type UiTier, useTheme } from "@/theme";
+import { productTierColors, type ProductTier, useTheme } from "@/theme";
 
 import { Icon } from "./Icon";
 
 type ScoreBadgeProps = {
-  /** From `uiTier()`: score-record.tier, plus Stop (hard stop) and None (not scored). */
-  tier: UiTier;
+  /** From `productTier()`: score-record.tier, plus Stop (hard stop) and None (not scored). */
+  tier: ProductTier;
   /** score-record.score, 0–100. Ignored for Stop and None, which never show a number. */
   score?: number;
   /** Large = the ring on the result screen. Small = the dot in lists. */
@@ -27,7 +27,7 @@ const MAX_SCALE = { number: 1.2, outOf: 1.5, dot: 1.15 };
  *
  * @example
  * ```tsx
- * const tier = uiTier({ tier: record.tier, hardStop: record.hard_stops_triggered.length > 0 });
+ * const tier = productTier({ tier: record.tier, hardStop: record.hard_stops_triggered.length > 0 });
  * <ScoreBadge tier={tier} score={record.score} />
  * <TierLabel tier={tier} />
  *
@@ -37,7 +37,7 @@ const MAX_SCALE = { number: 1.2, outOf: 1.5, dot: 1.15 };
  */
 export function ScoreBadge({ tier, score = 0, size = "large" }: ScoreBadgeProps) {
   const { colors, text } = useTheme();
-  const c = tierColors(colors, tier);
+  const c = productTierColors(colors, tier);
   const value = Math.round(Math.min(100, Math.max(0, score)));
   const label =
     tier === "stop"
@@ -51,7 +51,7 @@ export function ScoreBadge({ tier, score = 0, size = "large" }: ScoreBadgeProps)
     if (tier === "stop") {
       return (
         <View {...a11y} style={[styles.dot, { backgroundColor: c.tint }]}>
-          <Icon name="stop" size={22} color={c.text} strokeWidth={2} />
+          <Icon name="stop" size="dot" color={c.text} />
         </View>
       );
     }
@@ -81,7 +81,7 @@ export function ScoreBadge({ tier, score = 0, size = "large" }: ScoreBadgeProps)
   if (tier === "stop") {
     return (
       <View {...a11y} style={[styles.ring, { backgroundColor: c.tint }]}>
-        <Icon name="stop" size={72} color={c.text} strokeWidth={6} />
+        <Icon name="stop" size="ring" color={c.text} />
       </View>
     );
   }

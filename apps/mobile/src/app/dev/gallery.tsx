@@ -17,7 +17,13 @@ import {
   ScoreBadge,
   TierLabel,
 } from "@/components";
-import { type ColorScheme, type RiskSeverity, ThemeProvider, type UiTier, useTheme } from "@/theme";
+import {
+  type ColorScheme,
+  type RiskSeverity,
+  ThemeProvider,
+  type ProductTier,
+  useTheme,
+} from "@/theme";
 
 /**
  * Shows every core component in every state.
@@ -60,7 +66,7 @@ const schemes: { value: SchemeChoice; label: string }[] = [
 /** 300% is about the largest iOS accessibility text size. */
 const scales = [1, 1.5, 2, 3];
 
-const scoreExamples: { tier: UiTier; score: number }[] = [
+const scoreExamples: { tier: ProductTier; score: number }[] = [
   { tier: "low", score: 84 },
   { tier: "moderate", score: 52 },
   { tier: "high", score: 28 },
@@ -80,7 +86,7 @@ const buttonExamples: { type: ButtonType; label: string }[] = [
 const ageGroups = ["Under 2", "2–5", "6–11", "12–17", "18–64", "65+"];
 const conditions = ["High blood pressure", "Glaucoma", "Asthma", "Kidney disease"];
 
-const products: { tier: UiTier; score: number; title: string; subtitle: string }[] = [
+const products: { tier: ProductTier; score: number; title: string; subtitle: string }[] = [
   { tier: "low", score: 84, title: "Claritin", subtitle: "Loratadine 10 mg · For Mom" },
   {
     tier: "moderate",

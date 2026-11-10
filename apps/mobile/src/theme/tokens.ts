@@ -109,7 +109,7 @@ export const radius = {
   pill: 999,
 } as const;
 
-/** Border widths in points. Cards and rows use `card`; buttons and chips use `control`. */
+/** Border widths in points. Cards and rows use `card`; option chips use `control`. */
 export const borderWidth = {
   card: 1,
   control: 1.5,
@@ -126,6 +126,27 @@ export const minHeight = {
 export const opacity = {
   pressed: 0.7,
 } as const;
+
+/**
+ * Every icon size the Nomi Library uses, each with its line thickness (Figma's stroke weight), in
+ * points. If a design needs a new size, add it to Figma first, then here.
+ */
+export const iconSize = {
+  /** Tier, risk severity and citation pills */
+  pill: { size: 14, strokeWidth: 1.4 },
+  /** Chevron on tappable rows and banners */
+  chevron: { size: 18, strokeWidth: 1.5 },
+  /** Premium gem on buttons */
+  button: { size: 18, strokeWidth: 2 },
+  /** Alert banner icon */
+  banner: { size: 22, strokeWidth: 1.83 },
+  /** "Do not use" icon in the small score dot */
+  dot: { size: 22, strokeWidth: 2 },
+  /** "Do not use" icon in the large score ring */
+  ring: { size: 72, strokeWidth: 6 },
+} as const;
+
+export type IconSize = keyof typeof iconSize;
 
 /** Inter, loaded by `useNomiFonts()` (fonts.ts). Three weights: regular, semibold and bold. */
 export const fontFamily = {

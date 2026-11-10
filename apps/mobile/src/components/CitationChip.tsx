@@ -12,7 +12,7 @@ export type CitationSource =
   | "publication"
   | "pharmacist_review";
 
-/** UI text conversion from schema citationSource type. */
+/** What each source is called in the app. */
 export const citationSourceText: Record<CitationSource, string> = {
   fda_label: "FDA label",
   otc_monograph: "OTC monograph",

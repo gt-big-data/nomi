@@ -1,10 +1,10 @@
-import { tierColors, tierText, type UiTier, useTheme } from "@/theme";
+import { productTierColors, productTierText, type ProductTier, useTheme } from "@/theme";
 
 import type { IconName } from "./Icon";
 import { Pill } from "./Pill";
 
 /** Each tier has its own icon shape, so tiers can be told apart without color. */
-const icons: Record<UiTier, IconName> = {
+const icons: Record<ProductTier, IconName> = {
   low: "checkCircle",
   moderate: "triangleAlert",
   high: "octagonAlert",
@@ -13,11 +13,12 @@ const icons: Record<UiTier, IconName> = {
 };
 
 type TierLabelProps = {
-  /** From `uiTier()`. */
-  tier: UiTier;
-  /** `center` to sit under the score ring. This may be deprecated in the future,
-   * depending on whether the score ring/dial is dropped.
-   * Defaults to `start` (left, as in lists). */
+  /** From `productTier()`. */
+  tier: ProductTier;
+  /**
+   * `center` to sit under the score ring. Defaults to `start` (left, as in lists). May go away if
+   * the score ring is dropped.
+   */
   align?: "start" | "center";
 };
 
@@ -37,11 +38,11 @@ type TierLabelProps = {
 export function TierLabel({ tier, align }: TierLabelProps) {
   const { colors } = useTheme();
   const isStop = tier === "stop";
-  const c = tierColors(colors, tier);
+  const c = productTierColors(colors, tier);
   return (
     <Pill
       icon={icons[tier]}
-      label={tierText[tier]}
+      label={productTierText[tier]}
       textStyle="label"
       background={isStop ? colors.tier.stop.fill : c.tint}
       foreground={isStop ? colors.tier.stop.on : c.text}
