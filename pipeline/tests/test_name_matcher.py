@@ -1,13 +1,14 @@
 import csv
-from nomi_pipeline.evidence.name_matcher import FaersNameMatcher
 from pathlib import Path
+
+from nomi_pipeline.evidence.name_matcher import FaersNameMatcher
 
 FIXTURE_PATH = Path(__file__).parent / "fixtures" / "faers_names_labeled.csv"
 
 
 def load_labeled_data() -> list[dict[str, str]]:
     """Load the CSV into a list of row dictionaries."""
-    with open(FIXTURE_PATH, mode="r", encoding="utf-8") as f:
+    with open(FIXTURE_PATH, encoding="utf-8") as f:
         return list(csv.DictReader(f))
 
 
@@ -43,24 +44,16 @@ def test_data_structure() -> None:
 
     # Filter for rows where annotator_2 is not empty
     double_labeled = [r for r in rows if r.get("annotator_2", "").strip()]
-    assert (
-        len(double_labeled) >= 50
-    ), f"Expected at least 50 double-labeled, got {len(double_labeled)}"
-    agreed = sum(
-        1
-        for r in double_labeled
-        if r["annotator_1"].strip() == r["annotator_2"].strip()
+    assert len(double_labeled) >= 50, (
+        f"Expected at least 50 double-labeled, got {len(double_labeled)}"
     )
+    agreed = sum(1 for r in double_labeled if r["annotator_1"].strip() == r["annotator_2"].strip())
     assert agreed / len(double_labeled) >= 0.95
 
     held_out = [r for r in rows if r.get("split", "").strip() == "held_out"]
     tuning = [r for r in rows if r.get("split", "").strip() == "tuning"]
-    assert (
-        len(held_out) >= 250
-    ), f"Expected at least 250 held-out samples, got {len(held_out)}"
-    assert (
-        len(tuning) >= 250
-    ), f"Expected at least 250 tuning samples, got {len(tuning)}"
+    assert len(held_out) >= 250, f"Expected at least 250 held-out samples, got {len(held_out)}"
+    assert len(tuning) >= 250, f"Expected at least 250 tuning samples, got {len(tuning)}"
 
 
 def test_held_out() -> None:
