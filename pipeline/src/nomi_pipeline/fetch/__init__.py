@@ -62,7 +62,9 @@ def _run(source: str, settings: Settings) -> None:
 def open_store(settings: Settings) -> tuple[AbstractFileSystem, str]:
     """Return the filesystem and root path for RAW_STORE."""
     if not settings.raw_store:
-        raise RuntimeError("RAW_STORE not configured. Copy .env.example to .env and fill it in.")
+        raise RuntimeError(
+            "RAW_STORE not configured. Copy .env.example to .env and fill it in."
+        )
     options: dict[str, Any] = {}
     if settings.hf_token and settings.raw_store.startswith("hf://"):
         options["token"] = settings.hf_token
@@ -107,7 +109,9 @@ def _fetch_source(source: str, settings: Settings) -> None:
         actual = _sha256(tmp)
         if actual != expected:
             tmp.unlink(missing_ok=True)
-            raise RuntimeError(f"checksum mismatch for {key}: expected {expected}, got {actual}")
+            raise RuntimeError(
+                f"checksum mismatch for {key}: expected {expected}, got {actual}"
+            )
         tmp.replace(local)
         log.info("verified %s", key)
 
