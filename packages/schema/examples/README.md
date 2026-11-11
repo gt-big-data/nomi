@@ -31,7 +31,8 @@ The points come from the summary table in `docs/scoring/dimensions.md`: the low 
 severity 1 (5-10) and severity 2 (15-25) ranges, and 51 for severity 3 ("35-50+"), so that one
 severity 3 is red as the table's tier column says. The table cannot be met exactly: no value in
 15-25 makes a single severity 2 yellow. With these values every product here is yellow or red;
-Tylenol is red (34) for a healthy adult because of its liver warning and its 10 day limit. That is what the rubric table
+the liver warning alone makes Tylenol red (49) for a healthy adult, and its 10 day limit lowers
+it to 34. That is what the rubric table
 implies and needs a decision from the rubric owner. Change `POINTS` in `tests/test_examples.py`
 and regenerate these records when the rubric is set. They are not production golden vectors.
 
@@ -93,7 +94,9 @@ says for NSAIDs; the label line it cites names high blood pressure, not the kidn
   says "children under 12 years ask a doctor" (2). The knowledge base rates acetaminophen 0 for
   children 6 to 11 because children's liquids are dosed for that age. NyQuil also has no "do not
   use for more than 10 days" limit, so its acetaminophen `rebound_overuse` is 0 where the knowledge
-  base has 2. A test fails if an override
+  base has 2, and Aleve has no "do not take longer than 10 days" limit, so its naproxen
+  `rebound_overuse` is 0 where the knowledge base has 2 (from other naproxen labels; see
+  `pipeline/knowledge/README.md`). A test fails if an override
   stops being needed.
 
 ## Review

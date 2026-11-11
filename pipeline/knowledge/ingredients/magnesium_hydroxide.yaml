@@ -231,76 +231,116 @@ ratings:
     severity: 0
   - dimension: rebound_overuse
     persona: adult_18_64
-    severity: 1
+    severity: 2
     citations:
       - source: fda_label
         document_id: 0a57bb45-d4f7-443b-e054-00144ff8d46c
         section: "SPL v10: Stop use (50566-9)"
         url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0a57bb45-d4f7-443b-e054-00144ff8d46c
         quote: you need to use a laxative for more than 1 week
+      - source: fda_label
+        document_id: 2de868a0-c652-473c-8b61-636083b7f757
+        section: "SPL v7: When using (50567-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=2de868a0-c652-473c-8b61-636083b7f757
+        quote: do not use the maximum dosage for more than 2 weeks
   - dimension: rebound_overuse
     persona: adult_65_plus
-    severity: 1
+    severity: 2
     citations:
       - source: fda_label
         document_id: 0a57bb45-d4f7-443b-e054-00144ff8d46c
         section: "SPL v10: Stop use (50566-9)"
         url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0a57bb45-d4f7-443b-e054-00144ff8d46c
         quote: you need to use a laxative for more than 1 week
+      - source: fda_label
+        document_id: 2de868a0-c652-473c-8b61-636083b7f757
+        section: "SPL v7: When using (50567-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=2de868a0-c652-473c-8b61-636083b7f757
+        quote: do not use the maximum dosage for more than 2 weeks
   - dimension: rebound_overuse
     persona: teen_12_17
-    severity: 1
+    severity: 2
     citations:
       - source: fda_label
         document_id: 0a57bb45-d4f7-443b-e054-00144ff8d46c
         section: "SPL v10: Stop use (50566-9)"
         url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0a57bb45-d4f7-443b-e054-00144ff8d46c
         quote: you need to use a laxative for more than 1 week
+      - source: fda_label
+        document_id: 2de868a0-c652-473c-8b61-636083b7f757
+        section: "SPL v7: When using (50567-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=2de868a0-c652-473c-8b61-636083b7f757
+        quote: do not use the maximum dosage for more than 2 weeks
   - dimension: rebound_overuse
     persona: child_6_11
-    severity: 1
+    severity: 2
     citations:
       - source: fda_label
         document_id: 0a57bb45-d4f7-443b-e054-00144ff8d46c
         section: "SPL v10: Stop use (50566-9)"
         url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0a57bb45-d4f7-443b-e054-00144ff8d46c
         quote: you need to use a laxative for more than 1 week
+      - source: fda_label
+        document_id: 2de868a0-c652-473c-8b61-636083b7f757
+        section: "SPL v7: When using (50567-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=2de868a0-c652-473c-8b61-636083b7f757
+        quote: do not use the maximum dosage for more than 2 weeks
   - dimension: rebound_overuse
     persona: child_2_5
-    severity: 1
+    severity: 2
     citations:
       - source: fda_label
         document_id: 0a57bb45-d4f7-443b-e054-00144ff8d46c
         section: "SPL v10: Stop use (50566-9)"
         url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0a57bb45-d4f7-443b-e054-00144ff8d46c
         quote: you need to use a laxative for more than 1 week
+      - source: fda_label
+        document_id: 2de868a0-c652-473c-8b61-636083b7f757
+        section: "SPL v7: When using (50567-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=2de868a0-c652-473c-8b61-636083b7f757
+        quote: do not use the maximum dosage for more than 2 weeks
   - dimension: rebound_overuse
     persona: under_2
-    severity: 1
+    severity: 2
     citations:
       - source: fda_label
         document_id: 0a57bb45-d4f7-443b-e054-00144ff8d46c
         section: "SPL v10: Stop use (50566-9)"
         url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0a57bb45-d4f7-443b-e054-00144ff8d46c
         quote: you need to use a laxative for more than 1 week
+      - source: fda_label
+        document_id: 2de868a0-c652-473c-8b61-636083b7f757
+        section: "SPL v7: When using (50567-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=2de868a0-c652-473c-8b61-636083b7f757
+        quote: do not use the maximum dosage for more than 2 weeks
   - dimension: rebound_overuse
     persona: pregnant
-    severity: 1
+    severity: 2
     citations:
       - source: fda_label
         document_id: 0a57bb45-d4f7-443b-e054-00144ff8d46c
         section: "SPL v10: Stop use (50566-9)"
         url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0a57bb45-d4f7-443b-e054-00144ff8d46c
         quote: you need to use a laxative for more than 1 week
+      - source: fda_label
+        document_id: 2de868a0-c652-473c-8b61-636083b7f757
+        section: "SPL v7: When using (50567-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=2de868a0-c652-473c-8b61-636083b7f757
+        quote: do not use the maximum dosage for more than 2 weeks
   - dimension: rebound_overuse
     persona: breastfeeding
-    severity: 1
+    severity: 2
     citations:
       - source: fda_label
         document_id: 0a57bb45-d4f7-443b-e054-00144ff8d46c
         section: "SPL v10: Stop use (50566-9)"
         url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0a57bb45-d4f7-443b-e054-00144ff8d46c
         quote: you need to use a laxative for more than 1 week
+      - source: fda_label
+        document_id: 2de868a0-c652-473c-8b61-636083b7f757
+        section: "SPL v7: When using (50567-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=2de868a0-c652-473c-8b61-636083b7f757
+        quote: do not use the maximum dosage for more than 2 weeks
   - dimension: pregnancy_lactation
     persona: adult_18_64
     severity: 0
@@ -445,6 +485,8 @@ modifiers:
         quote: kidney disease
 review_status: unreviewed
 notes:
-  Oral magnesium hydroxide (milk of magnesia). Kidney disease is a modifier (clearance precaution),
-  with no baseline. The label's "taking a prescription drug" line names no drug class, so there is no
-  medication modifier.
+  Oral magnesium hydroxide (milk of magnesia). Kidney disease is a modifier (clearance precaution
+  under the organ rule in pipeline/knowledge/README.md), with no baseline. The label's "taking a prescription
+  drug" line names no drug class, so there is no medication modifier. rebound_overuse is 2 because labels
+  that also sell it as an antacid (2 of 93, e.g. 2de868a0) say "do not use the maximum dosage for more
+  than 2 weeks", as calcium carbonate labels do; the laxative-only labels have only the stop-use line.

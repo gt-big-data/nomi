@@ -442,14 +442,20 @@ ratings:
 modifiers:
   - dimension: kidney
     condition: kidney_disease
-    severity_change: 2
+    severity_change: 3
     citations:
       - source: fda_label
         document_id: 54f4086f-e443-4e7e-8c7e-94e152e1c256
         section: "SPL v20: Ask a doctor (50569-3)"
         url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=54f4086f-e443-4e7e-8c7e-94e152e1c256
         quote: kidney disease
+      - source: fda_label
+        document_id: f5d5b40e-82e5-4284-9f3f-d2c0e88f0ab9
+        section: "SPL v8: Do not use (50570-1)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=f5d5b40e-82e5-4284-9f3f-d2c0e88f0ab9
+        quote: if you have kidney disease, except under the advice and supervision of a doctor
 review_status: unreviewed
 notes:
-  Oral famotidine. Kidney disease is a clearance precaution, so it is a modifier (+2, "ask a doctor")
-  with no baseline.
+  Oral famotidine. Kidney disease is a clearance precaution (organ rule in pipeline/knowledge/README.md),
+  so it is a modifier with no baseline. It is +3 because some labels (3 of 146, e.g. f5d5b40e) put kidney
+  disease under Do not use; most say ask a doctor.

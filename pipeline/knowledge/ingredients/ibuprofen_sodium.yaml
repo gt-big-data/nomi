@@ -772,4 +772,5 @@ notes:
   Oral ibuprofen sodium (Advil, Advil Menstrual Pain), the only labels with this UNII. Rated like
   ibuprofen, except that no product is labeled for children under 12, so children get the adult warnings
   plus the "ask a doctor" pediatric rating, as for naproxen. The pregnancy quote leaves out the heading,
-  which this SPL prints without a space after the comma.
+  which this SPL prints without a space after the comma. Neither label has a duration limit or a separate
+  anticoagulation line, so rebound_overuse is 0 and blood thinners are only a gi_bleeding modifier.

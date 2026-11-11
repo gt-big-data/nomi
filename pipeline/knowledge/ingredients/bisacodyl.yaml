@@ -207,22 +207,22 @@ ratings:
     severity: 0
   - dimension: pediatric
     persona: child_2_5
-    severity: 2
+    severity: 3
     citations:
       - source: fda_label
-        document_id: f1e4b28a-ed74-4eff-bd10-b2bfaf7483b0
-        section: "SPL v8: Directions (34068-7)"
-        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=f1e4b28a-ed74-4eff-bd10-b2bfaf7483b0
-        quote: children under 6 years of age ask a doctor
+        document_id: 20c43036-830b-0e1d-e063-6394a90adf5f
+        section: "SPL v4: Directions (34068-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=20c43036-830b-0e1d-e063-6394a90adf5f
+        quote: "children under 6 years: do not use"
   - dimension: pediatric
     persona: under_2
-    severity: 2
+    severity: 3
     citations:
       - source: fda_label
-        document_id: f1e4b28a-ed74-4eff-bd10-b2bfaf7483b0
-        section: "SPL v8: Directions (34068-7)"
-        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=f1e4b28a-ed74-4eff-bd10-b2bfaf7483b0
-        quote: children under 6 years of age ask a doctor
+        document_id: 20c43036-830b-0e1d-e063-6394a90adf5f
+        section: "SPL v4: Directions (34068-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=20c43036-830b-0e1d-e063-6394a90adf5f
+        quote: "children under 6 years: do not use"
   - dimension: pediatric
     persona: pregnant
     severity: 0
@@ -436,8 +436,11 @@ ratings:
 modifiers: []
 review_status: unreviewed
 notes:
-  'Oral bisacodyl tablets. rebound_overuse is 1 from the stop-use line on needing a laxative for
-  more than 1 week, as for magnesium hydroxide; the label has no "do not use for more than" limit. Rubric
-  owner: polyethylene glycol 3350 is 2 for its "do not use more than 7 days" limit while bisacodyl and
-  magnesium hydroxide are 1, although all are laxatives; the difference comes only from label wording.
-  The pregnancy quote leaves out the heading, which this SPL prints as "b reast-feeding".'
+  'Oral bisacodyl, tablets and suppositories. rebound_overuse is 1 from the stop-use line on needing
+  a laxative for more than 1 week; no bisacodyl label has a "do not use for more than" limit. Rubric owner:
+  polyethylene glycol 3350 and magnesium hydroxide are 2 for their duration limits while bisacodyl is
+  1, although all are laxatives; the difference comes only from label wording. No bisacodyl label doses
+  children under 6: the tablets say "ask a doctor", but the suppositories (10 of 125 labels, e.g. 20c43036)
+  say "children under 6 years: do not use", so child_2_5 and under_2 are 3 under the any-label rule in
+  pipeline/knowledge/README.md. The pregnancy quote leaves out the heading, which f1e4b28a prints as "b
+  reast-feeding".'

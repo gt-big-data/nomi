@@ -396,7 +396,13 @@ ratings:
     severity: 0
   - dimension: pediatric
     persona: child_2_5
-    severity: 0
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 9e1cdef7-921f-4163-869c-6c062e31c5bb
+        section: "SPL v16: Warnings / Sore throat warning"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=9e1cdef7-921f-4163-869c-6c062e31c5bb
+        quote: administer to children under 3 years of age unless directed by doctor
   - dimension: pediatric
     persona: under_2
     severity: 2
@@ -414,28 +420,76 @@ ratings:
     severity: 0
   - dimension: rebound_overuse
     persona: adult_18_64
-    severity: 0
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 0607edb0-1b3a-2ccd-e054-00144ff8d46c
+        section: "SPL v25: Directions (34068-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0607edb0-1b3a-2ccd-e054-00144ff8d46c
+        quote: do not take longer than 10 days, unless directed by a doctor
   - dimension: rebound_overuse
     persona: adult_65_plus
-    severity: 0
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 0607edb0-1b3a-2ccd-e054-00144ff8d46c
+        section: "SPL v25: Directions (34068-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0607edb0-1b3a-2ccd-e054-00144ff8d46c
+        quote: do not take longer than 10 days, unless directed by a doctor
   - dimension: rebound_overuse
     persona: teen_12_17
-    severity: 0
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 0607edb0-1b3a-2ccd-e054-00144ff8d46c
+        section: "SPL v25: Directions (34068-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0607edb0-1b3a-2ccd-e054-00144ff8d46c
+        quote: do not take longer than 10 days, unless directed by a doctor
   - dimension: rebound_overuse
     persona: child_6_11
-    severity: 0
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 9e1cdef7-921f-4163-869c-6c062e31c5bb
+        section: "SPL v16: Warnings / Sore throat warning"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=9e1cdef7-921f-4163-869c-6c062e31c5bb
+        quote: Do not use more than 2 days
   - dimension: rebound_overuse
     persona: child_2_5
-    severity: 0
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 9e1cdef7-921f-4163-869c-6c062e31c5bb
+        section: "SPL v16: Warnings / Sore throat warning"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=9e1cdef7-921f-4163-869c-6c062e31c5bb
+        quote: Do not use more than 2 days
   - dimension: rebound_overuse
     persona: under_2
-    severity: 0
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: c57f6ded-c0bd-45ae-823a-4c02ce334d98
+        section: "SPL v17: Warnings / Sore throat warning"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=c57f6ded-c0bd-45ae-823a-4c02ce334d98
+        quote: Do not use more than 2 days
   - dimension: rebound_overuse
     persona: pregnant
-    severity: 0
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 0607edb0-1b3a-2ccd-e054-00144ff8d46c
+        section: "SPL v25: Directions (34068-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0607edb0-1b3a-2ccd-e054-00144ff8d46c
+        quote: do not take longer than 10 days, unless directed by a doctor
   - dimension: rebound_overuse
     persona: breastfeeding
-    severity: 0
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 0607edb0-1b3a-2ccd-e054-00144ff8d46c
+        section: "SPL v25: Directions (34068-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0607edb0-1b3a-2ccd-e054-00144ff8d46c
+        quote: do not take longer than 10 days, unless directed by a doctor
   - dimension: pregnancy_lactation
     persona: adult_18_64
     severity: 0
@@ -702,9 +756,13 @@ modifiers:
         quote: you are taking a diuretic
 review_status: unreviewed
 notes:
-  Oral ibuprofen, including children's and infants' liquids, which carry the same stomach bleeding,
-  heart attack and stroke, and kidney warnings. Children's liquids dose ages 2 to 11; the infants' drops
+  'Oral ibuprofen, including children''s and infants'' liquids, which carry the same stomach bleeding,
+  heart attack and stroke, and kidney warnings. Children''s liquids dose ages 2 to 11; the infants'' drops
   dose 6 to 23 months and say under 6 months ask a doctor. Modifiers match naproxen and the Aleve reference
   product. The blood thinner line is only in the stomach bleeding warning, so it is a gi_bleeding modifier,
   with no anticoagulant_bleeding modifier (no single-ingredient ibuprofen label on openFDA has a separate
-  anticoagulation line). Ibuprofen sodium has its own file.
+  anticoagulation line). Under the duration rule in pipeline/knowledge/README.md, rebound_overuse is 2:
+  some adult labels (26 of 757, e.g. 0607edb0) say "do not take longer than 10 days", and the children''s
+  and infants'' sore throat warning says "Do not use more than 2 days". The same sentence''s "or administer
+  to children under 3 years of age unless directed by doctor" rates child_2_5 pediatric 2; it covers only
+  part of that age band and only sore throat use (rubric owner). Ibuprofen sodium has its own file.'

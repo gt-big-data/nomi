@@ -303,28 +303,28 @@ ratings:
     severity: 2
     citations:
       - source: fda_label
-        document_id: 1b164780-ec84-4187-8afa-6f8a0da550fc
-        section: "SPL v18: Directions (34068-7)"
-        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1b164780-ec84-4187-8afa-6f8a0da550fc
-        quote: do not use for more than 10 days unless directed by a doctor
+        document_id: c13ced61-c491-4fc2-b83f-78c6d9ad8546
+        section: "SPL v10: Directions (34068-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=c13ced61-c491-4fc2-b83f-78c6d9ad8546
+        quote: Do not give more than 5 days unless directed by a doctor.
   - dimension: rebound_overuse
     persona: child_2_5
     severity: 2
     citations:
       - source: fda_label
-        document_id: 1b164780-ec84-4187-8afa-6f8a0da550fc
-        section: "SPL v18: Directions (34068-7)"
-        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1b164780-ec84-4187-8afa-6f8a0da550fc
-        quote: do not use for more than 10 days unless directed by a doctor
+        document_id: c13ced61-c491-4fc2-b83f-78c6d9ad8546
+        section: "SPL v10: Directions (34068-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=c13ced61-c491-4fc2-b83f-78c6d9ad8546
+        quote: Do not give more than 5 days unless directed by a doctor.
   - dimension: rebound_overuse
     persona: under_2
     severity: 2
     citations:
       - source: fda_label
-        document_id: 1b164780-ec84-4187-8afa-6f8a0da550fc
-        section: "SPL v18: Directions (34068-7)"
-        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1b164780-ec84-4187-8afa-6f8a0da550fc
-        quote: do not use for more than 10 days unless directed by a doctor
+        document_id: af5c3b3b-079f-4ee6-a9a4-a13ee8cd99a5
+        section: "SPL v5: Directions (34068-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=af5c3b3b-079f-4ee6-a9a4-a13ee8cd99a5
+        quote: do not give more than 5 days unless directed by a doctor
   - dimension: rebound_overuse
     persona: pregnant
     severity: 2
@@ -556,8 +556,8 @@ notes:
   'Oral acetaminophen, including children''s and infants'' liquids. Pediatric ratings follow the
   youngest directions on the market: children''s liquids dose ages 2 to 11 and the infants'' liquid says
   under 2 years ask a doctor. The adult tablets'' "children under 12 years ask a doctor" is a product-level
-  limit (LABEL_OVERRIDES in packages/schema/tests/test_examples.py). rebound_overuse follows the rule
-  used in every file: a "do not use (take) for more than N days" limit is 2, the rubric''s duration-limit
-  example; a stop-use line about needing the product for more than N days is 1; symptoms lasting more
-  than N days is not rated. NyQuil has no such limit, so its reference product overrides rebound_overuse
-  to 0.'
+  limit (LABEL_OVERRIDES in packages/schema/tests/test_examples.py). rebound_overuse is 2 under the duration
+  rule in pipeline/knowledge/README.md: adults and teens from the adult directions'' 10 day limit, children
+  2 to 11 from a children''s liquid''s 5 day limit (Children''s Tylenol itself has none), and under 2
+  from an infants'' liquid whose directions cover that age. NyQuil has no such limit, so its reference
+  product overrides rebound_overuse to 0.'

@@ -458,7 +458,6 @@ modifiers:
 review_status: unreviewed
 notes:
   Oral polyethylene glycol 3350 powder. rebound_overuse is 2 because the directions say "do not use
-  more than 7 days", the rubric's own severity 2 example of a duration limit (bisacodyl and magnesium
-  hydroxide are 1 from a stop-use line; flagged for the rubric owner). Kidney disease is "do not use",
-  so its modifier is +3. The "taking a prescription drug" line names no drug class, so there is no medication
-  modifier.
+  more than 7 days", the rubric's own severity 2 example of a duration limit (bisacodyl is 1 from a stop-use
+  line; flagged for the rubric owner). Kidney disease is "do not use", so its modifier is +3. The "taking
+  a prescription drug" line names no drug class, so there is no medication modifier.

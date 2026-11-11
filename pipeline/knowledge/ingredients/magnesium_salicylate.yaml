@@ -728,7 +728,9 @@ modifiers:
         quote: you are taking a diuretic
 review_status: unreviewed
 notes:
-  "Oral magnesium salicylate (Doan's). Rated like aspirin: the Ask a doctor line naming high blood
+  'Oral magnesium salicylate (Doan''s). Rated like aspirin: the Ask a doctor line naming high blood
   pressure, heart disease and kidney disease gives cardiovascular_bp and kidney a baseline of 2 plus modifiers.
   None of the 5 single-ingredient labels on openFDA has a separate anticoagulation line, so blood thinners
-  are only a gi_bleeding modifier, as for ibuprofen and naproxen."
+  are only a gi_bleeding modifier, as for ibuprofen and naproxen. No label has a duration limit: "more
+  than 10 days" appears only as a stop-use symptom line, which the duration rule in pipeline/knowledge/README.md
+  does not rate.'

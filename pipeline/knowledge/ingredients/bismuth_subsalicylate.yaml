@@ -638,4 +638,4 @@ notes:
   an ulcer or a bleeding problem is a +3 modifier ("do not use" is 3 in the rubric), and its anticoagulation
   line a +2 modifier. The allergy alert's do not take line for people taking other salicylate products
   is the duplicate-use warning, rated 3 as for acetaminophen and diphenhydramine. rebound_overuse is 2
-  from the "not more than 2 days" limit (the duration rule in acetaminophen.yaml).
+  from the "not more than 2 days" limit (the duration rule in pipeline/knowledge/README.md).

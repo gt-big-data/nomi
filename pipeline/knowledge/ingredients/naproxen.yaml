@@ -396,28 +396,28 @@ ratings:
     severity: 2
     citations:
       - source: fda_label
-        document_id: 1266393e-b55e-4e34-9710-0b87209f4158
-        section: "SPL v16: Directions (34068-7)"
-        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1266393e-b55e-4e34-9710-0b87209f4158
-        quote: Children under 12 years of age ask a doctor
+        document_id: 43745d42-f859-4168-a2dd-2c8ae47ae590
+        section: "SPL v5: Directions (34068-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=43745d42-f859-4168-a2dd-2c8ae47ae590
+        quote: "children under 12 years: ask a doctor"
   - dimension: pediatric
     persona: child_2_5
     severity: 2
     citations:
       - source: fda_label
-        document_id: 1266393e-b55e-4e34-9710-0b87209f4158
-        section: "SPL v16: Directions (34068-7)"
-        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1266393e-b55e-4e34-9710-0b87209f4158
-        quote: Children under 12 years of age ask a doctor
+        document_id: 43745d42-f859-4168-a2dd-2c8ae47ae590
+        section: "SPL v5: Directions (34068-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=43745d42-f859-4168-a2dd-2c8ae47ae590
+        quote: "children under 12 years: ask a doctor"
   - dimension: pediatric
     persona: under_2
     severity: 2
     citations:
       - source: fda_label
-        document_id: 1266393e-b55e-4e34-9710-0b87209f4158
-        section: "SPL v16: Directions (34068-7)"
-        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1266393e-b55e-4e34-9710-0b87209f4158
-        quote: Children under 12 years of age ask a doctor
+        document_id: 43745d42-f859-4168-a2dd-2c8ae47ae590
+        section: "SPL v5: Directions (34068-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=43745d42-f859-4168-a2dd-2c8ae47ae590
+        quote: "children under 12 years: ask a doctor"
   - dimension: pediatric
     persona: pregnant
     severity: 0
@@ -426,28 +426,76 @@ ratings:
     severity: 0
   - dimension: rebound_overuse
     persona: adult_18_64
-    severity: 0
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 074fc2b9-743b-458e-a0c0-d5f27633bbf3
+        section: "SPL v3: Directions (34068-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=074fc2b9-743b-458e-a0c0-d5f27633bbf3
+        quote: do not take longer than 10 days, unless directed by a doctor
   - dimension: rebound_overuse
     persona: adult_65_plus
-    severity: 0
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 074fc2b9-743b-458e-a0c0-d5f27633bbf3
+        section: "SPL v3: Directions (34068-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=074fc2b9-743b-458e-a0c0-d5f27633bbf3
+        quote: do not take longer than 10 days, unless directed by a doctor
   - dimension: rebound_overuse
     persona: teen_12_17
-    severity: 0
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 074fc2b9-743b-458e-a0c0-d5f27633bbf3
+        section: "SPL v3: Directions (34068-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=074fc2b9-743b-458e-a0c0-d5f27633bbf3
+        quote: do not take longer than 10 days, unless directed by a doctor
   - dimension: rebound_overuse
     persona: child_6_11
-    severity: 0
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 074fc2b9-743b-458e-a0c0-d5f27633bbf3
+        section: "SPL v3: Directions (34068-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=074fc2b9-743b-458e-a0c0-d5f27633bbf3
+        quote: do not take longer than 10 days, unless directed by a doctor
   - dimension: rebound_overuse
     persona: child_2_5
-    severity: 0
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 074fc2b9-743b-458e-a0c0-d5f27633bbf3
+        section: "SPL v3: Directions (34068-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=074fc2b9-743b-458e-a0c0-d5f27633bbf3
+        quote: do not take longer than 10 days, unless directed by a doctor
   - dimension: rebound_overuse
     persona: under_2
-    severity: 0
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 074fc2b9-743b-458e-a0c0-d5f27633bbf3
+        section: "SPL v3: Directions (34068-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=074fc2b9-743b-458e-a0c0-d5f27633bbf3
+        quote: do not take longer than 10 days, unless directed by a doctor
   - dimension: rebound_overuse
     persona: pregnant
-    severity: 0
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 074fc2b9-743b-458e-a0c0-d5f27633bbf3
+        section: "SPL v3: Directions (34068-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=074fc2b9-743b-458e-a0c0-d5f27633bbf3
+        quote: do not take longer than 10 days, unless directed by a doctor
   - dimension: rebound_overuse
     persona: breastfeeding
-    severity: 0
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 074fc2b9-743b-458e-a0c0-d5f27633bbf3
+        section: "SPL v3: Directions (34068-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=074fc2b9-743b-458e-a0c0-d5f27633bbf3
+        quote: do not take longer than 10 days, unless directed by a doctor
   - dimension: pregnancy_lactation
     persona: adult_18_64
     severity: 0
@@ -714,7 +762,11 @@ modifiers:
         quote: you are taking a diuretic
 review_status: unreviewed
 notes:
-  Oral naproxen sodium. Cites Aleve Liquid Gels SPL v16, the label of the Aleve reference product;
+  'Oral naproxen sodium. Cites Aleve Liquid Gels SPL v16, the label of the Aleve reference product;
   the current Aleve Caplets SPL (a3745850-3e32-4884-b315-161bcb9996ed, v17) has no Warnings text. No product
   is labeled for children under 12, so children get the adult warnings plus the "ask a doctor" pediatric
-  rating, as in the reference product.
+  rating, as in the reference product. That line is quoted from 43745d42, where it is one list item; on
+  Aleve the age and "ask a doctor" sit in separate table cells. rebound_overuse is 2 from labels whose
+  directions say "do not take longer than 10 days" (6 of 229, e.g. 074fc2b9), under the duration rule
+  in pipeline/knowledge/README.md; Aleve has no such line, so its reference product overrides it to 0.
+  Blood thinners are only a gi_bleeding modifier: no naproxen label has a separate anticoagulation line.'

@@ -503,4 +503,4 @@ notes:
   Oral cimetidine. Every single-ingredient label says only "if you are taking a prescription drug",
   so there are no medication modifiers; cimetidine's warfarin, phenytoin, theophylline and benzodiazepine
   interactions need a source a pharmacist has checked. Kidney and liver disease are clearance precautions,
-  so they are modifiers (+2, "ask a doctor") with no baseline.
+  so they are modifiers (+2, "ask a doctor") with no baseline (organ rule in pipeline/knowledge/README.md).

@@ -41,6 +41,10 @@ LABEL_OVERRIDES = {
     ("nyquil", "362O9ITL9D", "rebound_overuse", "adult_18_64"): 0,
     ("nyquil", "362O9ITL9D", "rebound_overuse", "adult_65_plus"): 0,
     ("nyquil", "362O9ITL9D", "rebound_overuse", "child_6_11"): 0,
+    # Aleve has no "do not take longer than 10 days" limit, only stop-use lines.
+    ("aleve", "9TN87S3A3C", "rebound_overuse", "adult_18_64"): 0,
+    ("aleve", "9TN87S3A3C", "rebound_overuse", "adult_65_plus"): 0,
+    ("aleve", "9TN87S3A3C", "rebound_overuse", "child_6_11"): 0,
 }
 
 

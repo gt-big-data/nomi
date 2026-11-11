@@ -545,4 +545,6 @@ notes:
   Oral loperamide hydrochloride (the UNII on Imodium and store-brand labels). The heart alert applies
   to anyone who takes more than directed and is rated 2 for every persona; no source singles out adults
   65+. The heart disease modifier rests on "a history of abnormal heart rhythm", the closest condition
-  in the schema.
+  in the schema. Under the organ rule in pipeline/knowledge/README.md, the heart rating has a baseline
+  because the drug itself harms the heart (the heart alert), while liver disease is a clearance precaution,
+  so only a modifier.
