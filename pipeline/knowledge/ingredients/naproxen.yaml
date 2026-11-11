@@ -760,6 +760,15 @@ modifiers:
         section: "SPL v16: Ask a doctor (50569-3)"
         url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1266393e-b55e-4e34-9710-0b87209f4158
         quote: you are taking a diuretic
+  - dimension: kidney
+    condition: liver_disease
+    severity_change: 2
+    citations:
+      - source: fda_label
+        document_id: 1266393e-b55e-4e34-9710-0b87209f4158
+        section: "SPL v16: Ask a doctor (50569-3)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1266393e-b55e-4e34-9710-0b87209f4158
+        quote: liver cirrhosis
 review_status: unreviewed
 notes:
   'Oral naproxen sodium. Cites Aleve Liquid Gels SPL v16, the label of the Aleve reference product;

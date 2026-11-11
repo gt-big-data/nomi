@@ -748,6 +748,15 @@ modifiers:
         section: "SPL v39: Ask a doctor (50569-3)"
         url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1a665e64-9f30-be37-4a83-38789f1f1e89
         quote: you are taking a diuretic
+  - dimension: kidney
+    condition: liver_disease
+    severity_change: 2
+    citations:
+      - source: fda_label
+        document_id: 1a665e64-9f30-be37-4a83-38789f1f1e89
+        section: "SPL v39: Ask a doctor (50569-3)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1a665e64-9f30-be37-4a83-38789f1f1e89
+        quote: liver cirrhosis
   - dimension: anticoagulant_bleeding
     medication_type: anticoagulants
     severity_change: 2
@@ -767,11 +776,14 @@ notes:
   'Oral ibuprofen, including children''s and infants'' liquids, which carry the same stomach bleeding,
   heart attack and stroke, and kidney warnings. Children''s liquids dose ages 2 to 11; the infants'' drops
   dose 6 to 23 months and say under 6 months ask a doctor. Modifiers match naproxen and the Aleve reference
-  product. Two labels (1c1374e1, 218f6df9) also print a blood thinner line under Ask a doctor or pharmacist,
+  product, plus liver cirrhosis as a liver_disease +2 modifier on kidney. Three labels (1c1374e1 and 218f6df9
+  under Ask a doctor or pharmacist, 564e9910 in its Warnings) also print a separate blood thinner line,
   so there is an anticoagulant_bleeding anticoagulants +2 modifier as well as the gi_bleeding one (rubric
   owner: possible double count, as for aspirin). Under the duration rule in pipeline/knowledge/README.md,
   rebound_overuse is 2: some adult labels (26 of 757, e.g. 0607edb0) say "do not take longer than 10 days",
-  and the children''s and infants'' sore throat warning says "Do not use more than 2 days". The same sentence''s
-  "or administer to children under 3 years of age unless directed by doctor" is specific to sore throat
-  use, and the children''s label doses ages 2 to 3, so it does not set pediatric (README). Ibuprofen sodium
-  has its own file and shares the drug interaction and organ modifiers.'
+  and the children''s and infants'' sore throat warning says "Do not use more than 2 days". The second
+  half of that sentence, "or administer to children under 3 years of age unless directed by doctor", is
+  treated differently: duration lines are product lines and count on any label that doses the age, but
+  an age line tied to one use does not set pediatric when a label doses that age, and the children''s
+  label doses ages 2 to 3 (both rules in the README). So rebound_overuse is 2 and child_2_5 pediatric
+  is 0. Ibuprofen sodium has its own file and shares the drug interaction and organ modifiers.'

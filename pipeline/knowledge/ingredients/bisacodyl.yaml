@@ -261,28 +261,28 @@ ratings:
     severity: 2
     citations:
       - source: fda_label
-        document_id: 0331c762-d318-48d6-97ed-86499c6c8b30
-        section: "SPL v4: Warnings (34071-1)"
-        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0331c762-d318-48d6-97ed-86499c6c8b30
-        quote: Do not use for more than one week unless directed by a doctor
+        document_id: c194c40c-c732-2f03-e053-2a95a90a7a40
+        section: "SPL v5: Warnings (34071-1)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=c194c40c-c732-2f03-e053-2a95a90a7a40
+        quote: Do not use more than once per day for a period longer than one week unless directed by a doctor
   - dimension: rebound_overuse
     persona: child_2_5
     severity: 2
     citations:
       - source: fda_label
-        document_id: 0331c762-d318-48d6-97ed-86499c6c8b30
-        section: "SPL v4: Warnings (34071-1)"
-        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0331c762-d318-48d6-97ed-86499c6c8b30
-        quote: Do not use for more than one week unless directed by a doctor
+        document_id: c194c40c-c732-2f03-e053-2a95a90a7a40
+        section: "SPL v5: Warnings (34071-1)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=c194c40c-c732-2f03-e053-2a95a90a7a40
+        quote: Do not use more than once per day for a period longer than one week unless directed by a doctor
   - dimension: rebound_overuse
     persona: under_2
     severity: 2
     citations:
       - source: fda_label
-        document_id: 0331c762-d318-48d6-97ed-86499c6c8b30
-        section: "SPL v4: Warnings (34071-1)"
-        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0331c762-d318-48d6-97ed-86499c6c8b30
-        quote: Do not use for more than one week unless directed by a doctor
+        document_id: c194c40c-c732-2f03-e053-2a95a90a7a40
+        section: "SPL v5: Warnings (34071-1)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=c194c40c-c732-2f03-e053-2a95a90a7a40
+        quote: Do not use more than once per day for a period longer than one week unless directed by a doctor
   - dimension: rebound_overuse
     persona: pregnant
     severity: 2
@@ -438,8 +438,9 @@ review_status: unreviewed
 notes:
   'Oral bisacodyl, tablets and suppositories. rebound_overuse is 2 from 0331c762, whose Warnings
   say "Do not use for more than one week unless directed by a doctor" (duration rule in pipeline/knowledge/README.md);
-  most labels have only the stop-use line on needing a laxative for more than 1 week. No bisacodyl label
-  doses children under 6: the tablets say "ask a doctor", but the suppositories (10 of 125 labels, e.g.
-  20c43036) say "children under 6 years: do not use", so child_2_5 and under_2 are 3 under the any-label
-  rule in pipeline/knowledge/README.md. The pregnancy quote leaves out the heading, which f1e4b28a prints
-  as "b reast-feeding".'
+  most labels have only the stop-use line on needing a laxative for more than 1 week. For children, suppositories
+  that dose ages 6 to 11 (e.g. c194c40c) say "Do not use more than once per day for a period longer than
+  one week unless directed by a doctor". No bisacodyl label doses children under 6: the tablets say "ask
+  a doctor", but the suppositories (10 of 125 labels, e.g. 20c43036) say "children under 6 years: do not
+  use", so child_2_5 and under_2 are 3 under the any-label rule in pipeline/knowledge/README.md. The pregnancy
+  quote leaves out the heading, which f1e4b28a prints as "b reast-feeding".'

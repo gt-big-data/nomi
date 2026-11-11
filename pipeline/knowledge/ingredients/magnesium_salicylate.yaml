@@ -774,11 +774,21 @@ modifiers:
         section: "SPL v3: Ask a doctor (50569-3)"
         url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=c906df41-bb45-03ea-b1a8-2b9816d55c97
         quote: you are taking a diuretic
+  - dimension: kidney
+    condition: liver_disease
+    severity_change: 2
+    citations:
+      - source: fda_label
+        document_id: c906df41-bb45-03ea-b1a8-2b9816d55c97
+        section: "SPL v3: Ask a doctor (50569-3)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=c906df41-bb45-03ea-b1a8-2b9816d55c97
+        quote: liver cirrhosis
 review_status: unreviewed
 notes:
   'Oral magnesium salicylate (Doan''s). Rated like aspirin: the Ask a doctor line naming high blood
-  pressure, heart disease and kidney disease gives cardiovascular_bp and kidney a baseline of 2 plus modifiers.
-  None of the 5 single-ingredient labels on openFDA has a separate anticoagulation line, so blood thinners
-  are only a gi_bleeding modifier, as for ibuprofen and naproxen. rebound_overuse is 2 from f8cbcd4e,
-  which lists "for more than 10 days for pain unless directed by a doctor" under Do not use (duration
-  rule in pipeline/knowledge/README.md).'
+  pressure, heart disease and kidney disease gives cardiovascular_bp and kidney a baseline of 2 plus modifiers,
+  and liver cirrhosis is a liver_disease +2 modifier on kidney. None of the 5 single-ingredient labels
+  on openFDA has a separate anticoagulation line, so blood thinners are only a gi_bleeding modifier, as
+  for naproxen and ibuprofen sodium; aspirin and ibuprofen have such a line and also an anticoagulant_bleeding
+  modifier. rebound_overuse is 2 from f8cbcd4e, which lists "for more than 10 days for pain unless directed
+  by a doctor" under Do not use (duration rule in pipeline/knowledge/README.md).'

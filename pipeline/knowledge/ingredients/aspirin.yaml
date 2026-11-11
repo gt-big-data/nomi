@@ -835,6 +835,15 @@ modifiers:
         section: "SPL v6: Ask a doctor (50569-3)"
         url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0c6ae05f-7634-34d1-e054-00144ff88e88
         quote: you are taking a diuretic
+  - dimension: kidney
+    condition: liver_disease
+    severity_change: 2
+    citations:
+      - source: fda_label
+        document_id: 0c6ae05f-7634-34d1-e054-00144ff88e88
+        section: "SPL v6: Ask a doctor (50569-3)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0c6ae05f-7634-34d1-e054-00144ff88e88
+        quote: liver cirrhosis
   - dimension: anticoagulant_bleeding
     medication_type: anticoagulants
     severity_change: 2
@@ -854,11 +863,12 @@ notes:
   'Oral aspirin. The stomach bleeding warning is rated 2, and 3 for adults 65+ (age 60 or older is
   a listed risk factor), as in the Aleve reference product. The Ask a doctor line naming high blood pressure,
   heart disease and kidney disease gives cardiovascular_bp and kidney a baseline of 2 plus modifiers,
-  the rule the rubric''s Advil kidney example and the pseudoephedrine file use (organ rule in pipeline/knowledge/README.md);
-  liver cirrhosis in the same line is not rated on liver, which covers drug liver toxicity. Blood thinners
-  and steroids are gi_bleeding modifiers from the stomach bleeding warning. Some aspirin labels (8 of
-  401 single-ingredient labels on openFDA, e.g. 04017bc9 and 6009842a) also print a separate Ask a doctor
-  or pharmacist line for anticoagulation, so aspirin, unlike the other NSAIDs, also has an anticoagulant_bleeding
+  the rule the rubric''s Advil kidney example and the pseudoephedrine file use (organ rule in pipeline/knowledge/README.md).
+  Liver cirrhosis in the same line is a liver_disease +2 modifier on kidney, as for every NSAID file (rubric
+  owner: section 4 of docs/scoring/dimensions.md maps liver_disease only to liver). Blood thinners and
+  steroids are gi_bleeding modifiers from the stomach bleeding warning. Some aspirin labels (12 of 401
+  single-ingredient labels on openFDA, e.g. 04017bc9 and 6009842a) also print a separate Ask a doctor
+  or pharmacist line for anticoagulation, so aspirin, like ibuprofen, also has an anticoagulant_bleeding
   modifier. Rubric owner: someone taking a blood thinner gets both this +2 and the gi_bleeding anticoagulants
   +2, which may count the same risk twice. rebound_overuse is 2 from labels that limit use to 10 days
   (6009842a under Do not use, 503868bb in Directions); Bayer only has stop-use lines. No antiplatelets

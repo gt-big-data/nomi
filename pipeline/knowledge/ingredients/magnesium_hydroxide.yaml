@@ -207,22 +207,16 @@ ratings:
     severity: 0
   - dimension: pediatric
     persona: child_2_5
-    severity: 2
-    citations:
-      - source: fda_label
-        document_id: 0a57bb45-d4f7-443b-e054-00144ff8d46c
-        section: "SPL v10: Directions (34068-7)"
-        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0a57bb45-d4f7-443b-e054-00144ff8d46c
-        quote: children under 6 years ask a doctor
+    severity: 0
   - dimension: pediatric
     persona: under_2
     severity: 2
     citations:
       - source: fda_label
-        document_id: 0a57bb45-d4f7-443b-e054-00144ff8d46c
-        section: "SPL v10: Directions (34068-7)"
-        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0a57bb45-d4f7-443b-e054-00144ff8d46c
-        quote: children under 6 years ask a doctor
+        document_id: 3813ed22-cf68-4c16-9b61-c39828120079
+        section: "SPL v7: Directions (34068-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=3813ed22-cf68-4c16-9b61-c39828120079
+        quote: children under 2 years ask a doctor
   - dimension: pediatric
     persona: pregnant
     severity: 0
@@ -261,28 +255,28 @@ ratings:
     severity: 2
     citations:
       - source: fda_label
-        document_id: 2de868a0-c652-473c-8b61-636083b7f757
-        section: "SPL v7: When using (50567-7)"
-        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=2de868a0-c652-473c-8b61-636083b7f757
-        quote: do not use the maximum dosage for more than 2 weeks
+        document_id: b6c90fb4-2673-7e29-e053-2995a90ae9e1
+        section: "SPL v3: When using (50567-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=b6c90fb4-2673-7e29-e053-2995a90ae9e1
+        quote: take the maximum dose for more than two weeks, except under the advise of a doctor
   - dimension: rebound_overuse
     persona: child_2_5
     severity: 2
     citations:
       - source: fda_label
-        document_id: 2de868a0-c652-473c-8b61-636083b7f757
-        section: "SPL v7: When using (50567-7)"
-        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=2de868a0-c652-473c-8b61-636083b7f757
-        quote: do not use the maximum dosage for more than 2 weeks
+        document_id: b6c90fb4-2673-7e29-e053-2995a90ae9e1
+        section: "SPL v3: When using (50567-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=b6c90fb4-2673-7e29-e053-2995a90ae9e1
+        quote: take the maximum dose for more than two weeks, except under the advise of a doctor
   - dimension: rebound_overuse
     persona: under_2
     severity: 2
     citations:
       - source: fda_label
-        document_id: 2de868a0-c652-473c-8b61-636083b7f757
-        section: "SPL v7: When using (50567-7)"
-        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=2de868a0-c652-473c-8b61-636083b7f757
-        quote: do not use the maximum dosage for more than 2 weeks
+        document_id: b6c90fb4-2673-7e29-e053-2995a90ae9e1
+        section: "SPL v3: When using (50567-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=b6c90fb4-2673-7e29-e053-2995a90ae9e1
+        quote: take the maximum dose for more than two weeks, except under the advise of a doctor
   - dimension: rebound_overuse
     persona: pregnant
     severity: 2
@@ -445,8 +439,11 @@ modifiers:
         quote: kidney disease
 review_status: unreviewed
 notes:
-  Oral magnesium hydroxide (milk of magnesia). Kidney disease is a modifier (clearance precaution
-  under the organ rule in pipeline/knowledge/README.md), with no baseline. The label's "taking a prescription
+  'Oral magnesium hydroxide (milk of magnesia). Kidney disease is a modifier (clearance precaution
+  under the organ rule in pipeline/knowledge/README.md), with no baseline. The label''s "taking a prescription
   drug" line names no drug class, so there is no medication modifier. rebound_overuse is 2 because labels
-  that also sell it as an antacid (2 of 93, e.g. 2de868a0) say "do not use the maximum dosage for more
-  than 2 weeks", as calcium carbonate labels do; the laxative-only labels have only the stop-use line.
+  that also sell it as an antacid (4 of 93) limit the maximum dosage to 2 weeks, as calcium carbonate
+  labels do: 2de868a0 for adults and teens, and b6c90fb4, which also doses children 2 to 11, for children
+  (under 2 is dosed by no label, so the strongest line counts). Children''s chewables (e.g. 3813ed22)
+  dose ages 2 to under 6, so child_2_5 pediatric is 0; they say "children under 2 years ask a doctor",
+  so under_2 is 2.'

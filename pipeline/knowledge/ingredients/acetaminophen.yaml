@@ -261,10 +261,10 @@ ratings:
     severity: 2
     citations:
       - source: fda_label
-        document_id: 2143cc16-86db-4060-96da-5c228ae9207b
-        section: "SPL v11: Directions (34068-7)"
-        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=2143cc16-86db-4060-96da-5c228ae9207b
-        quote: under 2 years ask a doctor
+        document_id: 3ade895b-5dca-4d81-9415-8091923162ff
+        section: "SPL v8: Directions (34068-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=3ade895b-5dca-4d81-9415-8091923162ff
+        quote: under 6 months Do not use unless directed by a doctor
   - dimension: pediatric
     persona: pregnant
     severity: 0
@@ -318,13 +318,7 @@ ratings:
         quote: Do not give more than 5 days unless directed by a doctor.
   - dimension: rebound_overuse
     persona: under_2
-    severity: 2
-    citations:
-      - source: fda_label
-        document_id: af5c3b3b-079f-4ee6-a9a4-a13ee8cd99a5
-        section: "SPL v5: Directions (34068-7)"
-        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=af5c3b3b-079f-4ee6-a9a4-a13ee8cd99a5
-        quote: do not give more than 5 days unless directed by a doctor
+    severity: 0
   - dimension: rebound_overuse
     persona: pregnant
     severity: 2
@@ -553,12 +547,13 @@ modifiers:
         quote: taking the blood thinning drug warfarin
 review_status: unreviewed
 notes:
-  'Oral acetaminophen, including children''s and infants'' liquids. Pediatric ratings follow the
-  youngest directions on the market: children''s liquids dose ages 2 to 11 and the infants'' liquid says
-  under 2 years ask a doctor. The adult tablets'' "children under 12 years ask a doctor" is a product-level
-  limit (LABEL_OVERRIDES in packages/schema/tests/test_examples.py). rebound_overuse is 2 under the duration
-  rule in pipeline/knowledge/README.md: adults and teens from the adult directions'' 10 day limit, children
-  2 to 11 from a children''s liquid''s 5 day limit (Children''s Tylenol itself has none). For under 2,
-  no acetaminophen label gives a dose (af5c3b3b says "Under 2 Ask a doctor"), so under the any-label rule
-  the strongest line counts: that infants'' label''s own 5 day limit, 2. NyQuil has no such limit, so
-  its reference product overrides rebound_overuse to 0.'
+  'Acetaminophen by every route (pipeline/knowledge/README.md), including children''s liquids and
+  infants'' suppositories. Pediatric ratings follow the labels that dose each age: children''s liquids
+  dose ages 2 to 11, and Feverall Infants suppositories (3ade895b) dose 6 to 36 months and say "under
+  6 months Do not use unless directed by a doctor", an ask-a-doctor strength line, so under_2 is 2. The
+  adult tablets'' "children under 12 years ask a doctor" is a product-level limit (LABEL_OVERRIDES in
+  packages/schema/tests/test_examples.py). rebound_overuse follows the duration rule, per UNII and per
+  age: adults and teens 2 from the adult directions'' 10 day limit, children 2 to 11 2 from a children''s
+  liquid''s 5 day limit (c13ced61; Children''s Tylenol itself has none). For under 2 the only label that
+  doses that age is Feverall Infants, which has stop-use lines only, so under_2 is 0. NyQuil has no limit,
+  so its reference product overrides rebound_overuse to 0.'

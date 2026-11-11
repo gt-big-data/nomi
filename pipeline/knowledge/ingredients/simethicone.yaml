@@ -261,10 +261,22 @@ ratings:
     severity: 0
   - dimension: pregnancy_lactation
     persona: pregnant
-    severity: 0
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 0050b639-5fb6-4503-ae73-e319cf037027
+        section: "SPL v5: Pregnancy or breast-feeding (53414-9)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0050b639-5fb6-4503-ae73-e319cf037027
+        quote: If pregnant or breast-feeding, ask a health professional before use.
   - dimension: pregnancy_lactation
     persona: breastfeeding
-    severity: 0
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 0050b639-5fb6-4503-ae73-e319cf037027
+        section: "SPL v5: Pregnancy or breast-feeding (53414-9)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0050b639-5fb6-4503-ae73-e319cf037027
+        quote: If pregnant or breast-feeding, ask a health professional before use.
   - dimension: duplicate_dosing
     persona: adult_18_64
     severity: 0
@@ -364,9 +376,9 @@ ratings:
 modifiers: []
 review_status: unreviewed
 notes:
-  "Oral simethicone, which SPLs code as dimethicone (92RU3N3Y1O), so topical dimethicone skin protectants
-  share this UNII and these ratings. No rating is above 0: simethicone is not absorbed, so the general
-  pregnancy warning of 21 CFR 201.63(a) (for drugs intended for systemic absorption) does not apply and
-  Gas-X (fa4a3b07-591b-4445-aa67-b17ba1e67d5c) and Infants' Mylicon (395be942-d883-4bcb-8811-6fe1521d5a92)
-  carry none; the infants' drops give a dose for under 2 years. One children's drops label (6e26ffbe)
-  says under 2 do not use; since other labels dose that age, that is a product-level limit."
+  Oral simethicone, which SPLs code as dimethicone (92RU3N3Y1O), so topical dimethicone skin protectants
+  share this UNII and these ratings. Gas-X (fa4a3b07) and Infants' Mylicon (395be942) print no pregnancy
+  warning, but many labels (92 of 411 on openFDA, e.g. 0050b639) print the general pregnancy line, so
+  pregnant and breastfeeding are 2 under the any-label rule in pipeline/knowledge/README.md. The infants'
+  drops give a dose for under 2 years, so one children's drops label (6e26ffbe) that says under 2 do not
+  use is a product-level limit.
