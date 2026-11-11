@@ -104,28 +104,76 @@ ratings:
         quote: This product contains an NSAID, which may cause severe stomach bleeding.
   - dimension: cardiovascular_bp
     persona: adult_18_64
-    severity: 0
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: c906df41-bb45-03ea-b1a8-2b9816d55c97
+        section: "SPL v3: Ask a doctor (50569-3)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=c906df41-bb45-03ea-b1a8-2b9816d55c97
+        quote: you have high blood pressure, heart disease, liver cirrhosis, or kidney disease
   - dimension: cardiovascular_bp
     persona: adult_65_plus
-    severity: 0
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: c906df41-bb45-03ea-b1a8-2b9816d55c97
+        section: "SPL v3: Ask a doctor (50569-3)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=c906df41-bb45-03ea-b1a8-2b9816d55c97
+        quote: you have high blood pressure, heart disease, liver cirrhosis, or kidney disease
   - dimension: cardiovascular_bp
     persona: teen_12_17
-    severity: 0
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: c906df41-bb45-03ea-b1a8-2b9816d55c97
+        section: "SPL v3: Ask a doctor (50569-3)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=c906df41-bb45-03ea-b1a8-2b9816d55c97
+        quote: you have high blood pressure, heart disease, liver cirrhosis, or kidney disease
   - dimension: cardiovascular_bp
     persona: child_6_11
-    severity: 0
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: c906df41-bb45-03ea-b1a8-2b9816d55c97
+        section: "SPL v3: Ask a doctor (50569-3)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=c906df41-bb45-03ea-b1a8-2b9816d55c97
+        quote: you have high blood pressure, heart disease, liver cirrhosis, or kidney disease
   - dimension: cardiovascular_bp
     persona: child_2_5
-    severity: 0
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: c906df41-bb45-03ea-b1a8-2b9816d55c97
+        section: "SPL v3: Ask a doctor (50569-3)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=c906df41-bb45-03ea-b1a8-2b9816d55c97
+        quote: you have high blood pressure, heart disease, liver cirrhosis, or kidney disease
   - dimension: cardiovascular_bp
     persona: under_2
-    severity: 0
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: c906df41-bb45-03ea-b1a8-2b9816d55c97
+        section: "SPL v3: Ask a doctor (50569-3)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=c906df41-bb45-03ea-b1a8-2b9816d55c97
+        quote: you have high blood pressure, heart disease, liver cirrhosis, or kidney disease
   - dimension: cardiovascular_bp
     persona: pregnant
-    severity: 0
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: c906df41-bb45-03ea-b1a8-2b9816d55c97
+        section: "SPL v3: Ask a doctor (50569-3)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=c906df41-bb45-03ea-b1a8-2b9816d55c97
+        quote: you have high blood pressure, heart disease, liver cirrhosis, or kidney disease
   - dimension: cardiovascular_bp
     persona: breastfeeding
-    severity: 0
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: c906df41-bb45-03ea-b1a8-2b9816d55c97
+        section: "SPL v3: Ask a doctor (50569-3)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=c906df41-bb45-03ea-b1a8-2b9816d55c97
+        quote: you have high blood pressure, heart disease, liver cirrhosis, or kidney disease
   - dimension: kidney
     persona: adult_18_64
     severity: 2
@@ -458,7 +506,7 @@ ratings:
     citations:
       - source: fda_label
         document_id: c906df41-bb45-03ea-b1a8-2b9816d55c97
-        section: "SPL v3: Warnings /  Stomach bleeding warning"
+        section: "SPL v3: Warnings / Stomach bleeding warning"
         url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=c906df41-bb45-03ea-b1a8-2b9816d55c97
         quote: take other drugs containing prescription or nonprescription NSAIDs
   - dimension: duplicate_dosing
@@ -467,7 +515,7 @@ ratings:
     citations:
       - source: fda_label
         document_id: c906df41-bb45-03ea-b1a8-2b9816d55c97
-        section: "SPL v3: Warnings /  Stomach bleeding warning"
+        section: "SPL v3: Warnings / Stomach bleeding warning"
         url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=c906df41-bb45-03ea-b1a8-2b9816d55c97
         quote: take other drugs containing prescription or nonprescription NSAIDs
   - dimension: duplicate_dosing
@@ -476,7 +524,7 @@ ratings:
     citations:
       - source: fda_label
         document_id: c906df41-bb45-03ea-b1a8-2b9816d55c97
-        section: "SPL v3: Warnings /  Stomach bleeding warning"
+        section: "SPL v3: Warnings / Stomach bleeding warning"
         url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=c906df41-bb45-03ea-b1a8-2b9816d55c97
         quote: take other drugs containing prescription or nonprescription NSAIDs
   - dimension: duplicate_dosing
@@ -485,7 +533,7 @@ ratings:
     citations:
       - source: fda_label
         document_id: c906df41-bb45-03ea-b1a8-2b9816d55c97
-        section: "SPL v3: Warnings /  Stomach bleeding warning"
+        section: "SPL v3: Warnings / Stomach bleeding warning"
         url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=c906df41-bb45-03ea-b1a8-2b9816d55c97
         quote: take other drugs containing prescription or nonprescription NSAIDs
   - dimension: duplicate_dosing
@@ -494,7 +542,7 @@ ratings:
     citations:
       - source: fda_label
         document_id: c906df41-bb45-03ea-b1a8-2b9816d55c97
-        section: "SPL v3: Warnings /  Stomach bleeding warning"
+        section: "SPL v3: Warnings / Stomach bleeding warning"
         url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=c906df41-bb45-03ea-b1a8-2b9816d55c97
         quote: take other drugs containing prescription or nonprescription NSAIDs
   - dimension: duplicate_dosing
@@ -503,7 +551,7 @@ ratings:
     citations:
       - source: fda_label
         document_id: c906df41-bb45-03ea-b1a8-2b9816d55c97
-        section: "SPL v3: Warnings /  Stomach bleeding warning"
+        section: "SPL v3: Warnings / Stomach bleeding warning"
         url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=c906df41-bb45-03ea-b1a8-2b9816d55c97
         quote: take other drugs containing prescription or nonprescription NSAIDs
   - dimension: duplicate_dosing
@@ -512,7 +560,7 @@ ratings:
     citations:
       - source: fda_label
         document_id: c906df41-bb45-03ea-b1a8-2b9816d55c97
-        section: "SPL v3: Warnings /  Stomach bleeding warning"
+        section: "SPL v3: Warnings / Stomach bleeding warning"
         url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=c906df41-bb45-03ea-b1a8-2b9816d55c97
         quote: take other drugs containing prescription or nonprescription NSAIDs
   - dimension: duplicate_dosing
@@ -521,7 +569,7 @@ ratings:
     citations:
       - source: fda_label
         document_id: c906df41-bb45-03ea-b1a8-2b9816d55c97
-        section: "SPL v3: Warnings /  Stomach bleeding warning"
+        section: "SPL v3: Warnings / Stomach bleeding warning"
         url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=c906df41-bb45-03ea-b1a8-2b9816d55c97
         quote: take other drugs containing prescription or nonprescription NSAIDs
   - dimension: excipients
@@ -680,6 +728,7 @@ modifiers:
         quote: you are taking a diuretic
 review_status: unreviewed
 notes:
-  Oral magnesium salicylate (Doan's). Like aspirin it has no heart attack and stroke warning, so
-  cardiovascular_bp comes only from the hypertension and heart disease modifiers. Blood thinners and steroids
-  are modifiers on gi_bleeding, where the stomach bleeding warning names them.
+  "Oral magnesium salicylate (Doan's). Rated like aspirin: the Ask a doctor line naming high blood
+  pressure, heart disease and kidney disease gives cardiovascular_bp and kidney a baseline of 2 plus modifiers.
+  None of the 5 single-ingredient labels on openFDA has a separate anticoagulation line, so blood thinners
+  are only a gi_bleeding modifier, as for ibuprofen and naproxen."

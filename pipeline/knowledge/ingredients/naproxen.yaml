@@ -108,7 +108,7 @@ ratings:
     citations:
       - source: fda_label
         document_id: 1266393e-b55e-4e34-9710-0b87209f4158
-        section: "SPL v16: Warnings /  Heart attack and stroke warning"
+        section: "SPL v16: Warnings / Heart attack and stroke warning"
         url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1266393e-b55e-4e34-9710-0b87209f4158
         quote: NSAIDs, except aspirin, increase the risk of heart attack, heart failure, and stroke.
   - dimension: cardiovascular_bp
@@ -117,7 +117,7 @@ ratings:
     citations:
       - source: fda_label
         document_id: 1266393e-b55e-4e34-9710-0b87209f4158
-        section: "SPL v16: Warnings /  Heart attack and stroke warning"
+        section: "SPL v16: Warnings / Heart attack and stroke warning"
         url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1266393e-b55e-4e34-9710-0b87209f4158
         quote: NSAIDs, except aspirin, increase the risk of heart attack, heart failure, and stroke.
   - dimension: cardiovascular_bp
@@ -126,7 +126,7 @@ ratings:
     citations:
       - source: fda_label
         document_id: 1266393e-b55e-4e34-9710-0b87209f4158
-        section: "SPL v16: Warnings /  Heart attack and stroke warning"
+        section: "SPL v16: Warnings / Heart attack and stroke warning"
         url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1266393e-b55e-4e34-9710-0b87209f4158
         quote: NSAIDs, except aspirin, increase the risk of heart attack, heart failure, and stroke.
   - dimension: cardiovascular_bp
@@ -135,7 +135,7 @@ ratings:
     citations:
       - source: fda_label
         document_id: 1266393e-b55e-4e34-9710-0b87209f4158
-        section: "SPL v16: Warnings /  Heart attack and stroke warning"
+        section: "SPL v16: Warnings / Heart attack and stroke warning"
         url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1266393e-b55e-4e34-9710-0b87209f4158
         quote: NSAIDs, except aspirin, increase the risk of heart attack, heart failure, and stroke.
   - dimension: cardiovascular_bp
@@ -144,7 +144,7 @@ ratings:
     citations:
       - source: fda_label
         document_id: 1266393e-b55e-4e34-9710-0b87209f4158
-        section: "SPL v16: Warnings /  Heart attack and stroke warning"
+        section: "SPL v16: Warnings / Heart attack and stroke warning"
         url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1266393e-b55e-4e34-9710-0b87209f4158
         quote: NSAIDs, except aspirin, increase the risk of heart attack, heart failure, and stroke.
   - dimension: cardiovascular_bp
@@ -153,7 +153,7 @@ ratings:
     citations:
       - source: fda_label
         document_id: 1266393e-b55e-4e34-9710-0b87209f4158
-        section: "SPL v16: Warnings /  Heart attack and stroke warning"
+        section: "SPL v16: Warnings / Heart attack and stroke warning"
         url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1266393e-b55e-4e34-9710-0b87209f4158
         quote: NSAIDs, except aspirin, increase the risk of heart attack, heart failure, and stroke.
   - dimension: cardiovascular_bp
@@ -162,7 +162,7 @@ ratings:
     citations:
       - source: fda_label
         document_id: 1266393e-b55e-4e34-9710-0b87209f4158
-        section: "SPL v16: Warnings /  Heart attack and stroke warning"
+        section: "SPL v16: Warnings / Heart attack and stroke warning"
         url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1266393e-b55e-4e34-9710-0b87209f4158
         quote: NSAIDs, except aspirin, increase the risk of heart attack, heart failure, and stroke.
   - dimension: cardiovascular_bp
@@ -171,7 +171,7 @@ ratings:
     citations:
       - source: fda_label
         document_id: 1266393e-b55e-4e34-9710-0b87209f4158
-        section: "SPL v16: Warnings /  Heart attack and stroke warning"
+        section: "SPL v16: Warnings / Heart attack and stroke warning"
         url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1266393e-b55e-4e34-9710-0b87209f4158
         quote: NSAIDs, except aspirin, increase the risk of heart attack, heart failure, and stroke.
   - dimension: kidney
@@ -492,7 +492,7 @@ ratings:
     citations:
       - source: fda_label
         document_id: 1266393e-b55e-4e34-9710-0b87209f4158
-        section: "SPL v16: Warnings /  Stomach bleeding warning"
+        section: "SPL v16: Warnings / Stomach bleeding warning"
         url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1266393e-b55e-4e34-9710-0b87209f4158
         quote: take other drugs containing prescription or nonprescription NSAIDs
   - dimension: duplicate_dosing
@@ -501,7 +501,7 @@ ratings:
     citations:
       - source: fda_label
         document_id: 1266393e-b55e-4e34-9710-0b87209f4158
-        section: "SPL v16: Warnings /  Stomach bleeding warning"
+        section: "SPL v16: Warnings / Stomach bleeding warning"
         url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1266393e-b55e-4e34-9710-0b87209f4158
         quote: take other drugs containing prescription or nonprescription NSAIDs
   - dimension: duplicate_dosing
@@ -510,7 +510,7 @@ ratings:
     citations:
       - source: fda_label
         document_id: 1266393e-b55e-4e34-9710-0b87209f4158
-        section: "SPL v16: Warnings /  Stomach bleeding warning"
+        section: "SPL v16: Warnings / Stomach bleeding warning"
         url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1266393e-b55e-4e34-9710-0b87209f4158
         quote: take other drugs containing prescription or nonprescription NSAIDs
   - dimension: duplicate_dosing
@@ -519,7 +519,7 @@ ratings:
     citations:
       - source: fda_label
         document_id: 1266393e-b55e-4e34-9710-0b87209f4158
-        section: "SPL v16: Warnings /  Stomach bleeding warning"
+        section: "SPL v16: Warnings / Stomach bleeding warning"
         url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1266393e-b55e-4e34-9710-0b87209f4158
         quote: take other drugs containing prescription or nonprescription NSAIDs
   - dimension: duplicate_dosing
@@ -528,7 +528,7 @@ ratings:
     citations:
       - source: fda_label
         document_id: 1266393e-b55e-4e34-9710-0b87209f4158
-        section: "SPL v16: Warnings /  Stomach bleeding warning"
+        section: "SPL v16: Warnings / Stomach bleeding warning"
         url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1266393e-b55e-4e34-9710-0b87209f4158
         quote: take other drugs containing prescription or nonprescription NSAIDs
   - dimension: duplicate_dosing
@@ -537,7 +537,7 @@ ratings:
     citations:
       - source: fda_label
         document_id: 1266393e-b55e-4e34-9710-0b87209f4158
-        section: "SPL v16: Warnings /  Stomach bleeding warning"
+        section: "SPL v16: Warnings / Stomach bleeding warning"
         url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1266393e-b55e-4e34-9710-0b87209f4158
         quote: take other drugs containing prescription or nonprescription NSAIDs
   - dimension: duplicate_dosing
@@ -546,7 +546,7 @@ ratings:
     citations:
       - source: fda_label
         document_id: 1266393e-b55e-4e34-9710-0b87209f4158
-        section: "SPL v16: Warnings /  Stomach bleeding warning"
+        section: "SPL v16: Warnings / Stomach bleeding warning"
         url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1266393e-b55e-4e34-9710-0b87209f4158
         quote: take other drugs containing prescription or nonprescription NSAIDs
   - dimension: duplicate_dosing
@@ -555,7 +555,7 @@ ratings:
     citations:
       - source: fda_label
         document_id: 1266393e-b55e-4e34-9710-0b87209f4158
-        section: "SPL v16: Warnings /  Stomach bleeding warning"
+        section: "SPL v16: Warnings / Stomach bleeding warning"
         url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1266393e-b55e-4e34-9710-0b87209f4158
         quote: take other drugs containing prescription or nonprescription NSAIDs
   - dimension: excipients

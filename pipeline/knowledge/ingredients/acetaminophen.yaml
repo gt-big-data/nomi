@@ -7,7 +7,7 @@ ratings:
     citations:
       - source: fda_label
         document_id: 1b164780-ec84-4187-8afa-6f8a0da550fc
-        section: "SPL v18: Warnings /  Liver warning"
+        section: "SPL v18: Warnings / Liver warning"
         url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1b164780-ec84-4187-8afa-6f8a0da550fc
         quote: Severe liver damage may occur if you take
   - dimension: liver
@@ -16,7 +16,7 @@ ratings:
     citations:
       - source: fda_label
         document_id: 1b164780-ec84-4187-8afa-6f8a0da550fc
-        section: "SPL v18: Warnings /  Liver warning"
+        section: "SPL v18: Warnings / Liver warning"
         url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1b164780-ec84-4187-8afa-6f8a0da550fc
         quote: Severe liver damage may occur if you take
   - dimension: liver
@@ -25,7 +25,7 @@ ratings:
     citations:
       - source: fda_label
         document_id: 1b164780-ec84-4187-8afa-6f8a0da550fc
-        section: "SPL v18: Warnings /  Liver warning"
+        section: "SPL v18: Warnings / Liver warning"
         url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1b164780-ec84-4187-8afa-6f8a0da550fc
         quote: Severe liver damage may occur if you take
   - dimension: liver
@@ -34,7 +34,7 @@ ratings:
     citations:
       - source: fda_label
         document_id: 46ddbfde-54ab-4373-b832-b9c0620b1e9d
-        section: "SPL v13: Warnings /  Liver warning"
+        section: "SPL v13: Warnings / Liver warning"
         url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=46ddbfde-54ab-4373-b832-b9c0620b1e9d
         quote: Severe liver damage may occur if your child takes more than 5 doses in 24 hours
   - dimension: liver
@@ -43,7 +43,7 @@ ratings:
     citations:
       - source: fda_label
         document_id: 46ddbfde-54ab-4373-b832-b9c0620b1e9d
-        section: "SPL v13: Warnings /  Liver warning"
+        section: "SPL v13: Warnings / Liver warning"
         url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=46ddbfde-54ab-4373-b832-b9c0620b1e9d
         quote: Severe liver damage may occur if your child takes more than 5 doses in 24 hours
   - dimension: liver
@@ -52,7 +52,7 @@ ratings:
     citations:
       - source: fda_label
         document_id: 46ddbfde-54ab-4373-b832-b9c0620b1e9d
-        section: "SPL v13: Warnings /  Liver warning"
+        section: "SPL v13: Warnings / Liver warning"
         url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=46ddbfde-54ab-4373-b832-b9c0620b1e9d
         quote: Severe liver damage may occur if your child takes more than 5 doses in 24 hours
   - dimension: liver
@@ -61,7 +61,7 @@ ratings:
     citations:
       - source: fda_label
         document_id: 1b164780-ec84-4187-8afa-6f8a0da550fc
-        section: "SPL v18: Warnings /  Liver warning"
+        section: "SPL v18: Warnings / Liver warning"
         url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1b164780-ec84-4187-8afa-6f8a0da550fc
         quote: Severe liver damage may occur if you take
   - dimension: liver
@@ -70,7 +70,7 @@ ratings:
     citations:
       - source: fda_label
         document_id: 1b164780-ec84-4187-8afa-6f8a0da550fc
-        section: "SPL v18: Warnings /  Liver warning"
+        section: "SPL v18: Warnings / Liver warning"
         url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1b164780-ec84-4187-8afa-6f8a0da550fc
         quote: Severe liver damage may occur if you take
   - dimension: gi_bleeding
@@ -273,28 +273,76 @@ ratings:
     severity: 0
   - dimension: rebound_overuse
     persona: adult_18_64
-    severity: 0
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 1b164780-ec84-4187-8afa-6f8a0da550fc
+        section: "SPL v18: Directions (34068-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1b164780-ec84-4187-8afa-6f8a0da550fc
+        quote: do not use for more than 10 days unless directed by a doctor
   - dimension: rebound_overuse
     persona: adult_65_plus
-    severity: 0
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 1b164780-ec84-4187-8afa-6f8a0da550fc
+        section: "SPL v18: Directions (34068-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1b164780-ec84-4187-8afa-6f8a0da550fc
+        quote: do not use for more than 10 days unless directed by a doctor
   - dimension: rebound_overuse
     persona: teen_12_17
-    severity: 0
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 1b164780-ec84-4187-8afa-6f8a0da550fc
+        section: "SPL v18: Directions (34068-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1b164780-ec84-4187-8afa-6f8a0da550fc
+        quote: do not use for more than 10 days unless directed by a doctor
   - dimension: rebound_overuse
     persona: child_6_11
-    severity: 0
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 1b164780-ec84-4187-8afa-6f8a0da550fc
+        section: "SPL v18: Directions (34068-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1b164780-ec84-4187-8afa-6f8a0da550fc
+        quote: do not use for more than 10 days unless directed by a doctor
   - dimension: rebound_overuse
     persona: child_2_5
-    severity: 0
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 1b164780-ec84-4187-8afa-6f8a0da550fc
+        section: "SPL v18: Directions (34068-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1b164780-ec84-4187-8afa-6f8a0da550fc
+        quote: do not use for more than 10 days unless directed by a doctor
   - dimension: rebound_overuse
     persona: under_2
-    severity: 0
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 1b164780-ec84-4187-8afa-6f8a0da550fc
+        section: "SPL v18: Directions (34068-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1b164780-ec84-4187-8afa-6f8a0da550fc
+        quote: do not use for more than 10 days unless directed by a doctor
   - dimension: rebound_overuse
     persona: pregnant
-    severity: 0
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 1b164780-ec84-4187-8afa-6f8a0da550fc
+        section: "SPL v18: Directions (34068-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1b164780-ec84-4187-8afa-6f8a0da550fc
+        quote: do not use for more than 10 days unless directed by a doctor
   - dimension: rebound_overuse
     persona: breastfeeding
-    severity: 0
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 1b164780-ec84-4187-8afa-6f8a0da550fc
+        section: "SPL v18: Directions (34068-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1b164780-ec84-4187-8afa-6f8a0da550fc
+        quote: do not use for more than 10 days unless directed by a doctor
   - dimension: pregnancy_lactation
     persona: adult_18_64
     severity: 0
@@ -491,7 +539,7 @@ modifiers:
     citations:
       - source: fda_label
         document_id: 1b164780-ec84-4187-8afa-6f8a0da550fc
-        section: "SPL v18: Warnings /  Liver warning"
+        section: "SPL v18: Warnings / Liver warning"
         url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1b164780-ec84-4187-8afa-6f8a0da550fc
         quote: 3 or more alcoholic drinks every day while using this product
   - dimension: anticoagulant_bleeding
@@ -508,6 +556,8 @@ notes:
   'Oral acetaminophen, including children''s and infants'' liquids. Pediatric ratings follow the
   youngest directions on the market: children''s liquids dose ages 2 to 11 and the infants'' liquid says
   under 2 years ask a doctor. The adult tablets'' "children under 12 years ask a doctor" is a product-level
-  limit (LABEL_OVERRIDES in packages/schema/tests/test_examples.py). The adult directions'' "do not use
-  for more than 10 days unless directed by a doctor" is not rated under rebound_overuse; the rubric owner
-  should decide whether duration limits belong there.'
+  limit (LABEL_OVERRIDES in packages/schema/tests/test_examples.py). rebound_overuse follows the rule
+  used in every file: a "do not use (take) for more than N days" limit is 2, the rubric''s duration-limit
+  example; a stop-use line about needing the product for more than N days is 1; symptoms lasting more
+  than N days is not rated. NyQuil has no such limit, so its reference product overrides rebound_overuse
+  to 0.'

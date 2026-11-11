@@ -251,28 +251,116 @@ ratings:
     severity: 0
   - dimension: rebound_overuse
     persona: adult_18_64
-    severity: 0
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 252b143f-eee8-f407-e063-6394a90a0a08
+        section: "SPL v5: Directions (34068-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=252b143f-eee8-f407-e063-6394a90a0a08
+        quote: use until diarrhea stops but not more than 2 days
+      - source: otc_monograph
+        document_id: 21 CFR 335.50
+        section: (d)(2)
+        url: https://www.ecfr.gov/current/title-21/section-335.50
+        quote: use until diarrhea stops but not more than 2 days
   - dimension: rebound_overuse
     persona: adult_65_plus
-    severity: 0
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 252b143f-eee8-f407-e063-6394a90a0a08
+        section: "SPL v5: Directions (34068-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=252b143f-eee8-f407-e063-6394a90a0a08
+        quote: use until diarrhea stops but not more than 2 days
+      - source: otc_monograph
+        document_id: 21 CFR 335.50
+        section: (d)(2)
+        url: https://www.ecfr.gov/current/title-21/section-335.50
+        quote: use until diarrhea stops but not more than 2 days
   - dimension: rebound_overuse
     persona: teen_12_17
-    severity: 0
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 252b143f-eee8-f407-e063-6394a90a0a08
+        section: "SPL v5: Directions (34068-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=252b143f-eee8-f407-e063-6394a90a0a08
+        quote: use until diarrhea stops but not more than 2 days
+      - source: otc_monograph
+        document_id: 21 CFR 335.50
+        section: (d)(2)
+        url: https://www.ecfr.gov/current/title-21/section-335.50
+        quote: use until diarrhea stops but not more than 2 days
   - dimension: rebound_overuse
     persona: child_6_11
-    severity: 0
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 252b143f-eee8-f407-e063-6394a90a0a08
+        section: "SPL v5: Directions (34068-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=252b143f-eee8-f407-e063-6394a90a0a08
+        quote: use until diarrhea stops but not more than 2 days
+      - source: otc_monograph
+        document_id: 21 CFR 335.50
+        section: (d)(2)
+        url: https://www.ecfr.gov/current/title-21/section-335.50
+        quote: use until diarrhea stops but not more than 2 days
   - dimension: rebound_overuse
     persona: child_2_5
-    severity: 0
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 252b143f-eee8-f407-e063-6394a90a0a08
+        section: "SPL v5: Directions (34068-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=252b143f-eee8-f407-e063-6394a90a0a08
+        quote: use until diarrhea stops but not more than 2 days
+      - source: otc_monograph
+        document_id: 21 CFR 335.50
+        section: (d)(2)
+        url: https://www.ecfr.gov/current/title-21/section-335.50
+        quote: use until diarrhea stops but not more than 2 days
   - dimension: rebound_overuse
     persona: under_2
-    severity: 0
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 252b143f-eee8-f407-e063-6394a90a0a08
+        section: "SPL v5: Directions (34068-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=252b143f-eee8-f407-e063-6394a90a0a08
+        quote: use until diarrhea stops but not more than 2 days
+      - source: otc_monograph
+        document_id: 21 CFR 335.50
+        section: (d)(2)
+        url: https://www.ecfr.gov/current/title-21/section-335.50
+        quote: use until diarrhea stops but not more than 2 days
   - dimension: rebound_overuse
     persona: pregnant
-    severity: 0
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 252b143f-eee8-f407-e063-6394a90a0a08
+        section: "SPL v5: Directions (34068-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=252b143f-eee8-f407-e063-6394a90a0a08
+        quote: use until diarrhea stops but not more than 2 days
+      - source: otc_monograph
+        document_id: 21 CFR 335.50
+        section: (d)(2)
+        url: https://www.ecfr.gov/current/title-21/section-335.50
+        quote: use until diarrhea stops but not more than 2 days
   - dimension: rebound_overuse
     persona: breastfeeding
-    severity: 0
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 252b143f-eee8-f407-e063-6394a90a0a08
+        section: "SPL v5: Directions (34068-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=252b143f-eee8-f407-e063-6394a90a0a08
+        quote: use until diarrhea stops but not more than 2 days
+      - source: otc_monograph
+        document_id: 21 CFR 335.50
+        section: (d)(2)
+        url: https://www.ecfr.gov/current/title-21/section-335.50
+        quote: use until diarrhea stops but not more than 2 days
   - dimension: pregnancy_lactation
     persona: adult_18_64
     severity: 0
@@ -315,7 +403,7 @@ ratings:
     citations:
       - source: fda_label
         document_id: 252b143f-eee8-f407-e063-6394a90a0a08
-        section: "SPL v5: Warnings /  Allergy alert"
+        section: "SPL v5: Warnings / Allergy alert"
         url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=252b143f-eee8-f407-e063-6394a90a0a08
         quote:
           Do not take if you are allergic to salicylates (including aspirin) taking other salicylate
@@ -331,7 +419,7 @@ ratings:
     citations:
       - source: fda_label
         document_id: 252b143f-eee8-f407-e063-6394a90a0a08
-        section: "SPL v5: Warnings /  Allergy alert"
+        section: "SPL v5: Warnings / Allergy alert"
         url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=252b143f-eee8-f407-e063-6394a90a0a08
         quote:
           Do not take if you are allergic to salicylates (including aspirin) taking other salicylate
@@ -347,7 +435,7 @@ ratings:
     citations:
       - source: fda_label
         document_id: 252b143f-eee8-f407-e063-6394a90a0a08
-        section: "SPL v5: Warnings /  Allergy alert"
+        section: "SPL v5: Warnings / Allergy alert"
         url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=252b143f-eee8-f407-e063-6394a90a0a08
         quote:
           Do not take if you are allergic to salicylates (including aspirin) taking other salicylate
@@ -363,7 +451,7 @@ ratings:
     citations:
       - source: fda_label
         document_id: 252b143f-eee8-f407-e063-6394a90a0a08
-        section: "SPL v5: Warnings /  Allergy alert"
+        section: "SPL v5: Warnings / Allergy alert"
         url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=252b143f-eee8-f407-e063-6394a90a0a08
         quote:
           Do not take if you are allergic to salicylates (including aspirin) taking other salicylate
@@ -379,7 +467,7 @@ ratings:
     citations:
       - source: fda_label
         document_id: 252b143f-eee8-f407-e063-6394a90a0a08
-        section: "SPL v5: Warnings /  Allergy alert"
+        section: "SPL v5: Warnings / Allergy alert"
         url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=252b143f-eee8-f407-e063-6394a90a0a08
         quote:
           Do not take if you are allergic to salicylates (including aspirin) taking other salicylate
@@ -395,7 +483,7 @@ ratings:
     citations:
       - source: fda_label
         document_id: 252b143f-eee8-f407-e063-6394a90a0a08
-        section: "SPL v5: Warnings /  Allergy alert"
+        section: "SPL v5: Warnings / Allergy alert"
         url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=252b143f-eee8-f407-e063-6394a90a0a08
         quote:
           Do not take if you are allergic to salicylates (including aspirin) taking other salicylate
@@ -411,7 +499,7 @@ ratings:
     citations:
       - source: fda_label
         document_id: 252b143f-eee8-f407-e063-6394a90a0a08
-        section: "SPL v5: Warnings /  Allergy alert"
+        section: "SPL v5: Warnings / Allergy alert"
         url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=252b143f-eee8-f407-e063-6394a90a0a08
         quote:
           Do not take if you are allergic to salicylates (including aspirin) taking other salicylate
@@ -427,7 +515,7 @@ ratings:
     citations:
       - source: fda_label
         document_id: 252b143f-eee8-f407-e063-6394a90a0a08
-        section: "SPL v5: Warnings /  Allergy alert"
+        section: "SPL v5: Warnings / Allergy alert"
         url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=252b143f-eee8-f407-e063-6394a90a0a08
         quote:
           Do not take if you are allergic to salicylates (including aspirin) taking other salicylate
@@ -518,7 +606,12 @@ modifiers:
         document_id: 252b143f-eee8-f407-e063-6394a90a0a08
         section: "SPL v5: Do not use (50570-1)"
         url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=252b143f-eee8-f407-e063-6394a90a0a08
-        quote: "Do not use if you have: an ulcer a bleeding problem"
+        quote: an ulcer
+      - source: fda_label
+        document_id: 252b143f-eee8-f407-e063-6394a90a0a08
+        section: "SPL v5: Do not use (50570-1)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=252b143f-eee8-f407-e063-6394a90a0a08
+        quote: a bleeding problem
       - source: otc_monograph
         document_id: 21 CFR 335.50
         section: (c)(2)(ii)
@@ -544,4 +637,5 @@ notes:
   warning, so gi_bleeding and anticoagulant_bleeding have no baseline. The label's do not use line for
   an ulcer or a bleeding problem is a +3 modifier ("do not use" is 3 in the rubric), and its anticoagulation
   line a +2 modifier. The allergy alert's do not take line for people taking other salicylate products
-  is the duplicate-use warning, rated 3 as for acetaminophen and diphenhydramine.
+  is the duplicate-use warning, rated 3 as for acetaminophen and diphenhydramine. rebound_overuse is 2
+  from the "not more than 2 days" limit (the duration rule in acetaminophen.yaml).

@@ -104,28 +104,76 @@ ratings:
         quote: This product contains an NSAID, which may cause severe stomach bleeding.
   - dimension: cardiovascular_bp
     persona: adult_18_64
-    severity: 0
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 0c6ae05f-7634-34d1-e054-00144ff88e88
+        section: "SPL v6: Ask a doctor (50569-3)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0c6ae05f-7634-34d1-e054-00144ff88e88
+        quote: you have high blood pressure, heart disease, liver cirrhosis, or kidney disease
   - dimension: cardiovascular_bp
     persona: adult_65_plus
-    severity: 0
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 0c6ae05f-7634-34d1-e054-00144ff88e88
+        section: "SPL v6: Ask a doctor (50569-3)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0c6ae05f-7634-34d1-e054-00144ff88e88
+        quote: you have high blood pressure, heart disease, liver cirrhosis, or kidney disease
   - dimension: cardiovascular_bp
     persona: teen_12_17
-    severity: 0
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 0c6ae05f-7634-34d1-e054-00144ff88e88
+        section: "SPL v6: Ask a doctor (50569-3)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0c6ae05f-7634-34d1-e054-00144ff88e88
+        quote: you have high blood pressure, heart disease, liver cirrhosis, or kidney disease
   - dimension: cardiovascular_bp
     persona: child_6_11
-    severity: 0
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 0c6ae05f-7634-34d1-e054-00144ff88e88
+        section: "SPL v6: Ask a doctor (50569-3)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0c6ae05f-7634-34d1-e054-00144ff88e88
+        quote: you have high blood pressure, heart disease, liver cirrhosis, or kidney disease
   - dimension: cardiovascular_bp
     persona: child_2_5
-    severity: 0
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 0c6ae05f-7634-34d1-e054-00144ff88e88
+        section: "SPL v6: Ask a doctor (50569-3)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0c6ae05f-7634-34d1-e054-00144ff88e88
+        quote: you have high blood pressure, heart disease, liver cirrhosis, or kidney disease
   - dimension: cardiovascular_bp
     persona: under_2
-    severity: 0
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 0c6ae05f-7634-34d1-e054-00144ff88e88
+        section: "SPL v6: Ask a doctor (50569-3)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0c6ae05f-7634-34d1-e054-00144ff88e88
+        quote: you have high blood pressure, heart disease, liver cirrhosis, or kidney disease
   - dimension: cardiovascular_bp
     persona: pregnant
-    severity: 0
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 0c6ae05f-7634-34d1-e054-00144ff88e88
+        section: "SPL v6: Ask a doctor (50569-3)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0c6ae05f-7634-34d1-e054-00144ff88e88
+        quote: you have high blood pressure, heart disease, liver cirrhosis, or kidney disease
   - dimension: cardiovascular_bp
     persona: breastfeeding
-    severity: 0
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 0c6ae05f-7634-34d1-e054-00144ff88e88
+        section: "SPL v6: Ask a doctor (50569-3)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0c6ae05f-7634-34d1-e054-00144ff88e88
+        quote: you have high blood pressure, heart disease, liver cirrhosis, or kidney disease
   - dimension: kidney
     persona: adult_18_64
     severity: 2
@@ -699,11 +747,30 @@ modifiers:
         section: "SPL v6: Ask a doctor (50569-3)"
         url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0c6ae05f-7634-34d1-e054-00144ff88e88
         quote: you are taking a diuretic
+  - dimension: anticoagulant_bleeding
+    medication_type: anticoagulants
+    severity_change: 2
+    citations:
+      - source: fda_label
+        document_id: 04017bc9-602a-4204-96a9-b7f9713155f6
+        section: "SPL v4: Ask a doctor or pharmacist (50568-5)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=04017bc9-602a-4204-96a9-b7f9713155f6
+        quote: taking a prescription drug for anticoagulation (thinning the blood)
+      - source: fda_label
+        document_id: 6009842a-c6ae-4582-a80f-364fc8a13a7a
+        section: "SPL v2: Ask a doctor or pharmacist (50568-5)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=6009842a-c6ae-4582-a80f-364fc8a13a7a
+        quote: "taking a prescription drug for: anticoagulation (thinning of the blood)"
 review_status: unreviewed
 notes:
-  Oral aspirin. The stomach bleeding warning is rated 2, and 3 for adults 65+ (age 60 or older is
-  a listed risk factor), as in the Aleve reference product. Blood thinners and steroids are modifiers
-  on gi_bleeding, where the warning names them; no current single-ingredient aspirin label has a separate
-  blood thinner line (0 of 401 on openFDA), so anticoagulant_bleeding has no rating or modifier until
-  a pharmacist confirms a source. About half of the labels say "at 20 weeks or later in pregnancy" instead
-  of "during the last 3 months"; both are rated 3.
+  'Oral aspirin. The stomach bleeding warning is rated 2, and 3 for adults 65+ (age 60 or older is
+  a listed risk factor), as in the Aleve reference product. The Ask a doctor line naming high blood pressure,
+  heart disease and kidney disease gives cardiovascular_bp and kidney a baseline of 2 plus modifiers,
+  the rule the rubric''s Advil kidney example and the pseudoephedrine file use; liver cirrhosis in the
+  same line is not rated on liver, which covers drug liver toxicity. Blood thinners and steroids are gi_bleeding
+  modifiers from the stomach bleeding warning. Some aspirin labels (8 of 401 single-ingredient labels
+  on openFDA, e.g. 04017bc9 and 6009842a) also print a separate Ask a doctor or pharmacist line for anticoagulation,
+  so aspirin, unlike the other NSAIDs, also has an anticoagulant_bleeding modifier. No antiplatelets modifier
+  yet: the labels name only other NSAIDs (aspirin), not clopidogrel or ticagrelor; open for the rubric
+  owner. About half of the labels say "at 20 weeks or later in pregnancy" instead of "during the last
+  3 months"; both are rated 3.'

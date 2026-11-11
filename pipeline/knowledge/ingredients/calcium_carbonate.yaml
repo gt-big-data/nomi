@@ -225,7 +225,7 @@ ratings:
     severity: 0
   - dimension: rebound_overuse
     persona: adult_18_64
-    severity: 1
+    severity: 2
     citations:
       - source: fda_label
         document_id: 348d3dfa-6a52-4583-96e3-83c4bf2df45b
@@ -241,7 +241,7 @@ ratings:
         quote: use the maximum dosage of this product for more than 2 weeks
   - dimension: rebound_overuse
     persona: adult_65_plus
-    severity: 1
+    severity: 2
     citations:
       - source: fda_label
         document_id: 348d3dfa-6a52-4583-96e3-83c4bf2df45b
@@ -257,7 +257,7 @@ ratings:
         quote: use the maximum dosage of this product for more than 2 weeks
   - dimension: rebound_overuse
     persona: teen_12_17
-    severity: 1
+    severity: 2
     citations:
       - source: fda_label
         document_id: 348d3dfa-6a52-4583-96e3-83c4bf2df45b
@@ -273,7 +273,7 @@ ratings:
         quote: use the maximum dosage of this product for more than 2 weeks
   - dimension: rebound_overuse
     persona: child_6_11
-    severity: 1
+    severity: 2
     citations:
       - source: fda_label
         document_id: 348d3dfa-6a52-4583-96e3-83c4bf2df45b
@@ -289,7 +289,7 @@ ratings:
         quote: use the maximum dosage of this product for more than 2 weeks
   - dimension: rebound_overuse
     persona: child_2_5
-    severity: 1
+    severity: 2
     citations:
       - source: fda_label
         document_id: 348d3dfa-6a52-4583-96e3-83c4bf2df45b
@@ -305,7 +305,7 @@ ratings:
         quote: use the maximum dosage of this product for more than 2 weeks
   - dimension: rebound_overuse
     persona: under_2
-    severity: 1
+    severity: 2
     citations:
       - source: fda_label
         document_id: 348d3dfa-6a52-4583-96e3-83c4bf2df45b
@@ -321,7 +321,7 @@ ratings:
         quote: use the maximum dosage of this product for more than 2 weeks
   - dimension: rebound_overuse
     persona: pregnant
-    severity: 1
+    severity: 2
     citations:
       - source: fda_label
         document_id: 348d3dfa-6a52-4583-96e3-83c4bf2df45b
@@ -337,7 +337,7 @@ ratings:
         quote: use the maximum dosage of this product for more than 2 weeks
   - dimension: rebound_overuse
     persona: breastfeeding
-    severity: 1
+    severity: 2
     citations:
       - source: fda_label
         document_id: 348d3dfa-6a52-4583-96e3-83c4bf2df45b
@@ -491,6 +491,6 @@ review_status: unreviewed
 notes:
   Oral calcium carbonate antacid, including children's chewables (ages 2 to 11). Most labels (291
   of 519 single-ingredient labels on openFDA) replace the general pregnancy warning with a lower tablet
-  limit under "When using this product", rated 1, with no breastfeeding warning. rebound_overuse is 1
-  because the 2 week limit applies only to the maximum dosage. The kidney disease line is on a minority
-  of labels (20 of 519).
+  limit under "When using this product", rated 1, with no breastfeeding warning. rebound_overuse is 2
+  from the "do not use the maximum dosage for more than 2 weeks" limit, the duration rule in acetaminophen.yaml
+  (the PPI files use the same rule). The kidney disease line is on a minority of labels (20 of 519).

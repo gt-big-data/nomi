@@ -450,5 +450,5 @@ review_status: unreviewed
 notes:
   Oral delayed-release omeprazole, 14-day course. One file per UNII, because labels code the base
   and the salts separately (omeprazole KG60484QX9, omeprazole magnesium 426QFE7XLK, esomeprazole N3PA6559FT,
-  esomeprazole magnesium R6DXU4WAY9, esomeprazole magnesium dihydrate 36H71644EQ); keep the files in step.
-  The "taking a prescription drug" line names no drug, so there are no medication modifiers.
+  esomeprazole magnesium trihydrate R6DXU4WAY9, esomeprazole magnesium dihydrate 36H71644EQ); keep the
+  files in step. The "taking a prescription drug" line names no drug, so there are no medication modifiers.

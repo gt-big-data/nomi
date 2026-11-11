@@ -37,6 +37,10 @@ LABEL_OVERRIDES = {
     ("tylenol", "362O9ITL9D", "pediatric", "child_6_11"): 2,
     # "children 4 to under 12 yrs ask a doctor"
     ("nyquil", "362O9ITL9D", "pediatric", "child_6_11"): 2,
+    # NyQuil has no "do not use for more than 10 days" limit, only stop-use lines.
+    ("nyquil", "362O9ITL9D", "rebound_overuse", "adult_18_64"): 0,
+    ("nyquil", "362O9ITL9D", "rebound_overuse", "adult_65_plus"): 0,
+    ("nyquil", "362O9ITL9D", "rebound_overuse", "child_6_11"): 0,
 }
 
 

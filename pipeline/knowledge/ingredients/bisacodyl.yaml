@@ -436,6 +436,8 @@ ratings:
 modifiers: []
 review_status: unreviewed
 notes:
-  Oral bisacodyl tablets. rebound_overuse is 1 from the stop-use line on needing a laxative for more
-  than 1 week, as for magnesium hydroxide; the label has no "do not use for more than" limit. The pregnancy
-  quote leaves out the heading, which this SPL prints as "b reast-feeding".
+  'Oral bisacodyl tablets. rebound_overuse is 1 from the stop-use line on needing a laxative for
+  more than 1 week, as for magnesium hydroxide; the label has no "do not use for more than" limit. Rubric
+  owner: polyethylene glycol 3350 is 2 for its "do not use more than 7 days" limit while bisacodyl and
+  magnesium hydroxide are 1, although all are laxatives; the difference comes only from label wording.
+  The pregnancy quote leaves out the heading, which this SPL prints as "b reast-feeding".'

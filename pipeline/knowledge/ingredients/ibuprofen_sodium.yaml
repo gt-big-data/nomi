@@ -1,0 +1,775 @@
+unii: RM1CE97Z4N
+name: ibuprofen sodium
+ratings:
+  - dimension: liver
+    persona: adult_18_64
+    severity: 0
+  - dimension: liver
+    persona: adult_65_plus
+    severity: 0
+  - dimension: liver
+    persona: teen_12_17
+    severity: 0
+  - dimension: liver
+    persona: child_6_11
+    severity: 0
+  - dimension: liver
+    persona: child_2_5
+    severity: 0
+  - dimension: liver
+    persona: under_2
+    severity: 0
+  - dimension: liver
+    persona: pregnant
+    severity: 0
+  - dimension: liver
+    persona: breastfeeding
+    severity: 0
+  - dimension: gi_bleeding
+    persona: adult_18_64
+    severity: 2
+    citations:
+      - source: otc_monograph
+        document_id: 21 CFR 201.326
+        section: (a)(2)(iii)(A)
+        url: https://www.ecfr.gov/current/title-21/section-201.326
+        quote: This product contains an NSAID, which may cause severe stomach bleeding.
+  - dimension: gi_bleeding
+    persona: adult_65_plus
+    severity: 3
+    citations:
+      - source: otc_monograph
+        document_id: 21 CFR 201.326
+        section: (a)(2)(iii)(A)
+        url: https://www.ecfr.gov/current/title-21/section-201.326
+        quote: This product contains an NSAID, which may cause severe stomach bleeding.
+      - source: otc_monograph
+        document_id: 21 CFR 201.326
+        section: (a)(2)(iii)(A)
+        url: https://www.ecfr.gov/current/title-21/section-201.326
+        quote: are age 60 or older
+  - dimension: gi_bleeding
+    persona: teen_12_17
+    severity: 2
+    citations:
+      - source: otc_monograph
+        document_id: 21 CFR 201.326
+        section: (a)(2)(iii)(A)
+        url: https://www.ecfr.gov/current/title-21/section-201.326
+        quote: This product contains an NSAID, which may cause severe stomach bleeding.
+  - dimension: gi_bleeding
+    persona: child_6_11
+    severity: 2
+    citations:
+      - source: otc_monograph
+        document_id: 21 CFR 201.326
+        section: (a)(2)(iii)(A)
+        url: https://www.ecfr.gov/current/title-21/section-201.326
+        quote: This product contains an NSAID, which may cause severe stomach bleeding.
+  - dimension: gi_bleeding
+    persona: child_2_5
+    severity: 2
+    citations:
+      - source: otc_monograph
+        document_id: 21 CFR 201.326
+        section: (a)(2)(iii)(A)
+        url: https://www.ecfr.gov/current/title-21/section-201.326
+        quote: This product contains an NSAID, which may cause severe stomach bleeding.
+  - dimension: gi_bleeding
+    persona: under_2
+    severity: 2
+    citations:
+      - source: otc_monograph
+        document_id: 21 CFR 201.326
+        section: (a)(2)(iii)(A)
+        url: https://www.ecfr.gov/current/title-21/section-201.326
+        quote: This product contains an NSAID, which may cause severe stomach bleeding.
+  - dimension: gi_bleeding
+    persona: pregnant
+    severity: 2
+    citations:
+      - source: otc_monograph
+        document_id: 21 CFR 201.326
+        section: (a)(2)(iii)(A)
+        url: https://www.ecfr.gov/current/title-21/section-201.326
+        quote: This product contains an NSAID, which may cause severe stomach bleeding.
+  - dimension: gi_bleeding
+    persona: breastfeeding
+    severity: 2
+    citations:
+      - source: otc_monograph
+        document_id: 21 CFR 201.326
+        section: (a)(2)(iii)(A)
+        url: https://www.ecfr.gov/current/title-21/section-201.326
+        quote: This product contains an NSAID, which may cause severe stomach bleeding.
+  - dimension: cardiovascular_bp
+    persona: adult_18_64
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 5be198b8-396e-4b44-8819-e2e3b5d2ad0e
+        section: "SPL v20: Warnings / Heart attack and stroke warning"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=5be198b8-396e-4b44-8819-e2e3b5d2ad0e
+        quote: NSAIDs, except aspirin, increase the risk of heart attack, heart failure, and stroke.
+      - source: fda_label
+        document_id: ae1625f4-ef32-4d4f-bf54-c44085843e41
+        section: "SPL v7: Warnings / Heart attack and stroke warning"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=ae1625f4-ef32-4d4f-bf54-c44085843e41
+        quote: NSAIDs, except aspirin, increase the risk of heart attack, heart failure, and stroke.
+  - dimension: cardiovascular_bp
+    persona: adult_65_plus
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 5be198b8-396e-4b44-8819-e2e3b5d2ad0e
+        section: "SPL v20: Warnings / Heart attack and stroke warning"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=5be198b8-396e-4b44-8819-e2e3b5d2ad0e
+        quote: NSAIDs, except aspirin, increase the risk of heart attack, heart failure, and stroke.
+      - source: fda_label
+        document_id: ae1625f4-ef32-4d4f-bf54-c44085843e41
+        section: "SPL v7: Warnings / Heart attack and stroke warning"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=ae1625f4-ef32-4d4f-bf54-c44085843e41
+        quote: NSAIDs, except aspirin, increase the risk of heart attack, heart failure, and stroke.
+  - dimension: cardiovascular_bp
+    persona: teen_12_17
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 5be198b8-396e-4b44-8819-e2e3b5d2ad0e
+        section: "SPL v20: Warnings / Heart attack and stroke warning"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=5be198b8-396e-4b44-8819-e2e3b5d2ad0e
+        quote: NSAIDs, except aspirin, increase the risk of heart attack, heart failure, and stroke.
+      - source: fda_label
+        document_id: ae1625f4-ef32-4d4f-bf54-c44085843e41
+        section: "SPL v7: Warnings / Heart attack and stroke warning"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=ae1625f4-ef32-4d4f-bf54-c44085843e41
+        quote: NSAIDs, except aspirin, increase the risk of heart attack, heart failure, and stroke.
+  - dimension: cardiovascular_bp
+    persona: child_6_11
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 5be198b8-396e-4b44-8819-e2e3b5d2ad0e
+        section: "SPL v20: Warnings / Heart attack and stroke warning"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=5be198b8-396e-4b44-8819-e2e3b5d2ad0e
+        quote: NSAIDs, except aspirin, increase the risk of heart attack, heart failure, and stroke.
+      - source: fda_label
+        document_id: ae1625f4-ef32-4d4f-bf54-c44085843e41
+        section: "SPL v7: Warnings / Heart attack and stroke warning"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=ae1625f4-ef32-4d4f-bf54-c44085843e41
+        quote: NSAIDs, except aspirin, increase the risk of heart attack, heart failure, and stroke.
+  - dimension: cardiovascular_bp
+    persona: child_2_5
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 5be198b8-396e-4b44-8819-e2e3b5d2ad0e
+        section: "SPL v20: Warnings / Heart attack and stroke warning"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=5be198b8-396e-4b44-8819-e2e3b5d2ad0e
+        quote: NSAIDs, except aspirin, increase the risk of heart attack, heart failure, and stroke.
+      - source: fda_label
+        document_id: ae1625f4-ef32-4d4f-bf54-c44085843e41
+        section: "SPL v7: Warnings / Heart attack and stroke warning"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=ae1625f4-ef32-4d4f-bf54-c44085843e41
+        quote: NSAIDs, except aspirin, increase the risk of heart attack, heart failure, and stroke.
+  - dimension: cardiovascular_bp
+    persona: under_2
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 5be198b8-396e-4b44-8819-e2e3b5d2ad0e
+        section: "SPL v20: Warnings / Heart attack and stroke warning"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=5be198b8-396e-4b44-8819-e2e3b5d2ad0e
+        quote: NSAIDs, except aspirin, increase the risk of heart attack, heart failure, and stroke.
+      - source: fda_label
+        document_id: ae1625f4-ef32-4d4f-bf54-c44085843e41
+        section: "SPL v7: Warnings / Heart attack and stroke warning"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=ae1625f4-ef32-4d4f-bf54-c44085843e41
+        quote: NSAIDs, except aspirin, increase the risk of heart attack, heart failure, and stroke.
+  - dimension: cardiovascular_bp
+    persona: pregnant
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 5be198b8-396e-4b44-8819-e2e3b5d2ad0e
+        section: "SPL v20: Warnings / Heart attack and stroke warning"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=5be198b8-396e-4b44-8819-e2e3b5d2ad0e
+        quote: NSAIDs, except aspirin, increase the risk of heart attack, heart failure, and stroke.
+      - source: fda_label
+        document_id: ae1625f4-ef32-4d4f-bf54-c44085843e41
+        section: "SPL v7: Warnings / Heart attack and stroke warning"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=ae1625f4-ef32-4d4f-bf54-c44085843e41
+        quote: NSAIDs, except aspirin, increase the risk of heart attack, heart failure, and stroke.
+  - dimension: cardiovascular_bp
+    persona: breastfeeding
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 5be198b8-396e-4b44-8819-e2e3b5d2ad0e
+        section: "SPL v20: Warnings / Heart attack and stroke warning"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=5be198b8-396e-4b44-8819-e2e3b5d2ad0e
+        quote: NSAIDs, except aspirin, increase the risk of heart attack, heart failure, and stroke.
+      - source: fda_label
+        document_id: ae1625f4-ef32-4d4f-bf54-c44085843e41
+        section: "SPL v7: Warnings / Heart attack and stroke warning"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=ae1625f4-ef32-4d4f-bf54-c44085843e41
+        quote: NSAIDs, except aspirin, increase the risk of heart attack, heart failure, and stroke.
+  - dimension: kidney
+    persona: adult_18_64
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 5be198b8-396e-4b44-8819-e2e3b5d2ad0e
+        section: "SPL v20: Ask a doctor (50569-3)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=5be198b8-396e-4b44-8819-e2e3b5d2ad0e
+        quote: kidney disease
+      - source: fda_label
+        document_id: 5be198b8-396e-4b44-8819-e2e3b5d2ad0e
+        section: "SPL v20: Ask a doctor (50569-3)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=5be198b8-396e-4b44-8819-e2e3b5d2ad0e
+        quote: you are taking a diuretic
+  - dimension: kidney
+    persona: adult_65_plus
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 5be198b8-396e-4b44-8819-e2e3b5d2ad0e
+        section: "SPL v20: Ask a doctor (50569-3)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=5be198b8-396e-4b44-8819-e2e3b5d2ad0e
+        quote: kidney disease
+      - source: fda_label
+        document_id: 5be198b8-396e-4b44-8819-e2e3b5d2ad0e
+        section: "SPL v20: Ask a doctor (50569-3)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=5be198b8-396e-4b44-8819-e2e3b5d2ad0e
+        quote: you are taking a diuretic
+  - dimension: kidney
+    persona: teen_12_17
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 5be198b8-396e-4b44-8819-e2e3b5d2ad0e
+        section: "SPL v20: Ask a doctor (50569-3)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=5be198b8-396e-4b44-8819-e2e3b5d2ad0e
+        quote: kidney disease
+      - source: fda_label
+        document_id: 5be198b8-396e-4b44-8819-e2e3b5d2ad0e
+        section: "SPL v20: Ask a doctor (50569-3)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=5be198b8-396e-4b44-8819-e2e3b5d2ad0e
+        quote: you are taking a diuretic
+  - dimension: kidney
+    persona: child_6_11
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 5be198b8-396e-4b44-8819-e2e3b5d2ad0e
+        section: "SPL v20: Ask a doctor (50569-3)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=5be198b8-396e-4b44-8819-e2e3b5d2ad0e
+        quote: kidney disease
+      - source: fda_label
+        document_id: 5be198b8-396e-4b44-8819-e2e3b5d2ad0e
+        section: "SPL v20: Ask a doctor (50569-3)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=5be198b8-396e-4b44-8819-e2e3b5d2ad0e
+        quote: you are taking a diuretic
+  - dimension: kidney
+    persona: child_2_5
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 5be198b8-396e-4b44-8819-e2e3b5d2ad0e
+        section: "SPL v20: Ask a doctor (50569-3)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=5be198b8-396e-4b44-8819-e2e3b5d2ad0e
+        quote: kidney disease
+      - source: fda_label
+        document_id: 5be198b8-396e-4b44-8819-e2e3b5d2ad0e
+        section: "SPL v20: Ask a doctor (50569-3)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=5be198b8-396e-4b44-8819-e2e3b5d2ad0e
+        quote: you are taking a diuretic
+  - dimension: kidney
+    persona: under_2
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 5be198b8-396e-4b44-8819-e2e3b5d2ad0e
+        section: "SPL v20: Ask a doctor (50569-3)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=5be198b8-396e-4b44-8819-e2e3b5d2ad0e
+        quote: kidney disease
+      - source: fda_label
+        document_id: 5be198b8-396e-4b44-8819-e2e3b5d2ad0e
+        section: "SPL v20: Ask a doctor (50569-3)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=5be198b8-396e-4b44-8819-e2e3b5d2ad0e
+        quote: you are taking a diuretic
+  - dimension: kidney
+    persona: pregnant
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 5be198b8-396e-4b44-8819-e2e3b5d2ad0e
+        section: "SPL v20: Ask a doctor (50569-3)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=5be198b8-396e-4b44-8819-e2e3b5d2ad0e
+        quote: kidney disease
+      - source: fda_label
+        document_id: 5be198b8-396e-4b44-8819-e2e3b5d2ad0e
+        section: "SPL v20: Ask a doctor (50569-3)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=5be198b8-396e-4b44-8819-e2e3b5d2ad0e
+        quote: you are taking a diuretic
+  - dimension: kidney
+    persona: breastfeeding
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 5be198b8-396e-4b44-8819-e2e3b5d2ad0e
+        section: "SPL v20: Ask a doctor (50569-3)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=5be198b8-396e-4b44-8819-e2e3b5d2ad0e
+        quote: kidney disease
+      - source: fda_label
+        document_id: 5be198b8-396e-4b44-8819-e2e3b5d2ad0e
+        section: "SPL v20: Ask a doctor (50569-3)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=5be198b8-396e-4b44-8819-e2e3b5d2ad0e
+        quote: you are taking a diuretic
+  - dimension: anticholinergic_cognitive
+    persona: adult_18_64
+    severity: 0
+  - dimension: anticholinergic_cognitive
+    persona: adult_65_plus
+    severity: 0
+  - dimension: anticholinergic_cognitive
+    persona: teen_12_17
+    severity: 0
+  - dimension: anticholinergic_cognitive
+    persona: child_6_11
+    severity: 0
+  - dimension: anticholinergic_cognitive
+    persona: child_2_5
+    severity: 0
+  - dimension: anticholinergic_cognitive
+    persona: under_2
+    severity: 0
+  - dimension: anticholinergic_cognitive
+    persona: pregnant
+    severity: 0
+  - dimension: anticholinergic_cognitive
+    persona: breastfeeding
+    severity: 0
+  - dimension: sedation_falls
+    persona: adult_18_64
+    severity: 0
+  - dimension: sedation_falls
+    persona: adult_65_plus
+    severity: 0
+  - dimension: sedation_falls
+    persona: teen_12_17
+    severity: 0
+  - dimension: sedation_falls
+    persona: child_6_11
+    severity: 0
+  - dimension: sedation_falls
+    persona: child_2_5
+    severity: 0
+  - dimension: sedation_falls
+    persona: under_2
+    severity: 0
+  - dimension: sedation_falls
+    persona: pregnant
+    severity: 0
+  - dimension: sedation_falls
+    persona: breastfeeding
+    severity: 0
+  - dimension: serotonergic_interactions
+    persona: adult_18_64
+    severity: 0
+  - dimension: serotonergic_interactions
+    persona: adult_65_plus
+    severity: 0
+  - dimension: serotonergic_interactions
+    persona: teen_12_17
+    severity: 0
+  - dimension: serotonergic_interactions
+    persona: child_6_11
+    severity: 0
+  - dimension: serotonergic_interactions
+    persona: child_2_5
+    severity: 0
+  - dimension: serotonergic_interactions
+    persona: under_2
+    severity: 0
+  - dimension: serotonergic_interactions
+    persona: pregnant
+    severity: 0
+  - dimension: serotonergic_interactions
+    persona: breastfeeding
+    severity: 0
+  - dimension: anticoagulant_bleeding
+    persona: adult_18_64
+    severity: 0
+  - dimension: anticoagulant_bleeding
+    persona: adult_65_plus
+    severity: 0
+  - dimension: anticoagulant_bleeding
+    persona: teen_12_17
+    severity: 0
+  - dimension: anticoagulant_bleeding
+    persona: child_6_11
+    severity: 0
+  - dimension: anticoagulant_bleeding
+    persona: child_2_5
+    severity: 0
+  - dimension: anticoagulant_bleeding
+    persona: under_2
+    severity: 0
+  - dimension: anticoagulant_bleeding
+    persona: pregnant
+    severity: 0
+  - dimension: anticoagulant_bleeding
+    persona: breastfeeding
+    severity: 0
+  - dimension: pediatric
+    persona: adult_18_64
+    severity: 0
+  - dimension: pediatric
+    persona: adult_65_plus
+    severity: 0
+  - dimension: pediatric
+    persona: teen_12_17
+    severity: 0
+  - dimension: pediatric
+    persona: child_6_11
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 5be198b8-396e-4b44-8819-e2e3b5d2ad0e
+        section: "SPL v20: Directions (34068-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=5be198b8-396e-4b44-8819-e2e3b5d2ad0e
+        quote: "children under 12 years: ask a doctor"
+      - source: fda_label
+        document_id: ae1625f4-ef32-4d4f-bf54-c44085843e41
+        section: "SPL v7: Directions (34068-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=ae1625f4-ef32-4d4f-bf54-c44085843e41
+        quote: "children under 12 years: ask a doctor"
+  - dimension: pediatric
+    persona: child_2_5
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 5be198b8-396e-4b44-8819-e2e3b5d2ad0e
+        section: "SPL v20: Directions (34068-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=5be198b8-396e-4b44-8819-e2e3b5d2ad0e
+        quote: "children under 12 years: ask a doctor"
+      - source: fda_label
+        document_id: ae1625f4-ef32-4d4f-bf54-c44085843e41
+        section: "SPL v7: Directions (34068-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=ae1625f4-ef32-4d4f-bf54-c44085843e41
+        quote: "children under 12 years: ask a doctor"
+  - dimension: pediatric
+    persona: under_2
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 5be198b8-396e-4b44-8819-e2e3b5d2ad0e
+        section: "SPL v20: Directions (34068-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=5be198b8-396e-4b44-8819-e2e3b5d2ad0e
+        quote: "children under 12 years: ask a doctor"
+      - source: fda_label
+        document_id: ae1625f4-ef32-4d4f-bf54-c44085843e41
+        section: "SPL v7: Directions (34068-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=ae1625f4-ef32-4d4f-bf54-c44085843e41
+        quote: "children under 12 years: ask a doctor"
+  - dimension: pediatric
+    persona: pregnant
+    severity: 0
+  - dimension: pediatric
+    persona: breastfeeding
+    severity: 0
+  - dimension: rebound_overuse
+    persona: adult_18_64
+    severity: 0
+  - dimension: rebound_overuse
+    persona: adult_65_plus
+    severity: 0
+  - dimension: rebound_overuse
+    persona: teen_12_17
+    severity: 0
+  - dimension: rebound_overuse
+    persona: child_6_11
+    severity: 0
+  - dimension: rebound_overuse
+    persona: child_2_5
+    severity: 0
+  - dimension: rebound_overuse
+    persona: under_2
+    severity: 0
+  - dimension: rebound_overuse
+    persona: pregnant
+    severity: 0
+  - dimension: rebound_overuse
+    persona: breastfeeding
+    severity: 0
+  - dimension: pregnancy_lactation
+    persona: adult_18_64
+    severity: 0
+  - dimension: pregnancy_lactation
+    persona: adult_65_plus
+    severity: 0
+  - dimension: pregnancy_lactation
+    persona: teen_12_17
+    severity: 0
+  - dimension: pregnancy_lactation
+    persona: child_6_11
+    severity: 0
+  - dimension: pregnancy_lactation
+    persona: child_2_5
+    severity: 0
+  - dimension: pregnancy_lactation
+    persona: under_2
+    severity: 0
+  - dimension: pregnancy_lactation
+    persona: pregnant
+    severity: 3
+    citations:
+      - source: fda_label
+        document_id: 5be198b8-396e-4b44-8819-e2e3b5d2ad0e
+        section: "SPL v20: Pregnancy or breast-feeding (53414-9)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=5be198b8-396e-4b44-8819-e2e3b5d2ad0e
+        quote:
+          It is especially important not to use ibuprofen at 20 weeks or later in pregnancy unless definitely
+          directed to do so by a doctor
+  - dimension: pregnancy_lactation
+    persona: breastfeeding
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 5be198b8-396e-4b44-8819-e2e3b5d2ad0e
+        section: "SPL v20: Pregnancy or breast-feeding (53414-9)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=5be198b8-396e-4b44-8819-e2e3b5d2ad0e
+        quote: ask a health professional before use
+  - dimension: duplicate_dosing
+    persona: adult_18_64
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 5be198b8-396e-4b44-8819-e2e3b5d2ad0e
+        section: "SPL v20: Warnings / Stomach bleeding warning"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=5be198b8-396e-4b44-8819-e2e3b5d2ad0e
+        quote: take other drugs containing prescription or nonprescription NSAIDs
+  - dimension: duplicate_dosing
+    persona: adult_65_plus
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 5be198b8-396e-4b44-8819-e2e3b5d2ad0e
+        section: "SPL v20: Warnings / Stomach bleeding warning"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=5be198b8-396e-4b44-8819-e2e3b5d2ad0e
+        quote: take other drugs containing prescription or nonprescription NSAIDs
+  - dimension: duplicate_dosing
+    persona: teen_12_17
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 5be198b8-396e-4b44-8819-e2e3b5d2ad0e
+        section: "SPL v20: Warnings / Stomach bleeding warning"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=5be198b8-396e-4b44-8819-e2e3b5d2ad0e
+        quote: take other drugs containing prescription or nonprescription NSAIDs
+  - dimension: duplicate_dosing
+    persona: child_6_11
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 5be198b8-396e-4b44-8819-e2e3b5d2ad0e
+        section: "SPL v20: Warnings / Stomach bleeding warning"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=5be198b8-396e-4b44-8819-e2e3b5d2ad0e
+        quote: take other drugs containing prescription or nonprescription NSAIDs
+  - dimension: duplicate_dosing
+    persona: child_2_5
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 5be198b8-396e-4b44-8819-e2e3b5d2ad0e
+        section: "SPL v20: Warnings / Stomach bleeding warning"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=5be198b8-396e-4b44-8819-e2e3b5d2ad0e
+        quote: take other drugs containing prescription or nonprescription NSAIDs
+  - dimension: duplicate_dosing
+    persona: under_2
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 5be198b8-396e-4b44-8819-e2e3b5d2ad0e
+        section: "SPL v20: Warnings / Stomach bleeding warning"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=5be198b8-396e-4b44-8819-e2e3b5d2ad0e
+        quote: take other drugs containing prescription or nonprescription NSAIDs
+  - dimension: duplicate_dosing
+    persona: pregnant
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 5be198b8-396e-4b44-8819-e2e3b5d2ad0e
+        section: "SPL v20: Warnings / Stomach bleeding warning"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=5be198b8-396e-4b44-8819-e2e3b5d2ad0e
+        quote: take other drugs containing prescription or nonprescription NSAIDs
+  - dimension: duplicate_dosing
+    persona: breastfeeding
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 5be198b8-396e-4b44-8819-e2e3b5d2ad0e
+        section: "SPL v20: Warnings / Stomach bleeding warning"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=5be198b8-396e-4b44-8819-e2e3b5d2ad0e
+        quote: take other drugs containing prescription or nonprescription NSAIDs
+  - dimension: excipients
+    persona: adult_18_64
+    severity: 0
+  - dimension: excipients
+    persona: adult_65_plus
+    severity: 0
+  - dimension: excipients
+    persona: teen_12_17
+    severity: 0
+  - dimension: excipients
+    persona: child_6_11
+    severity: 0
+  - dimension: excipients
+    persona: child_2_5
+    severity: 0
+  - dimension: excipients
+    persona: under_2
+    severity: 0
+  - dimension: excipients
+    persona: pregnant
+    severity: 0
+  - dimension: excipients
+    persona: breastfeeding
+    severity: 0
+  - dimension: local_skin
+    persona: adult_18_64
+    severity: 0
+  - dimension: local_skin
+    persona: adult_65_plus
+    severity: 0
+  - dimension: local_skin
+    persona: teen_12_17
+    severity: 0
+  - dimension: local_skin
+    persona: child_6_11
+    severity: 0
+  - dimension: local_skin
+    persona: child_2_5
+    severity: 0
+  - dimension: local_skin
+    persona: under_2
+    severity: 0
+  - dimension: local_skin
+    persona: pregnant
+    severity: 0
+  - dimension: local_skin
+    persona: breastfeeding
+    severity: 0
+  - dimension: efficacy_evidence
+    persona: adult_18_64
+    severity: 0
+  - dimension: efficacy_evidence
+    persona: adult_65_plus
+    severity: 0
+  - dimension: efficacy_evidence
+    persona: teen_12_17
+    severity: 0
+  - dimension: efficacy_evidence
+    persona: child_6_11
+    severity: 0
+  - dimension: efficacy_evidence
+    persona: child_2_5
+    severity: 0
+  - dimension: efficacy_evidence
+    persona: under_2
+    severity: 0
+  - dimension: efficacy_evidence
+    persona: pregnant
+    severity: 0
+  - dimension: efficacy_evidence
+    persona: breastfeeding
+    severity: 0
+modifiers:
+  - dimension: gi_bleeding
+    condition: stomach_ulcer_or_bleeding
+    severity_change: 2
+    citations:
+      - source: otc_monograph
+        document_id: 21 CFR 201.326
+        section: (a)(2)(iii)(A)
+        url: https://www.ecfr.gov/current/title-21/section-201.326
+        quote: have had stomach ulcers or bleeding problems
+  - dimension: gi_bleeding
+    condition: heavy_alcohol_use
+    severity_change: 2
+    citations:
+      - source: otc_monograph
+        document_id: 21 CFR 201.326
+        section: (a)(2)(iii)(A)
+        url: https://www.ecfr.gov/current/title-21/section-201.326
+        quote: have 3 or more alcoholic drinks every day while using this product
+  - dimension: gi_bleeding
+    medication_type: anticoagulants
+    severity_change: 2
+    citations:
+      - source: otc_monograph
+        document_id: 21 CFR 201.326
+        section: (a)(2)(iii)(A)
+        url: https://www.ecfr.gov/current/title-21/section-201.326
+        quote: take a blood thinning (anticoagulant) or steroid drug
+  - dimension: gi_bleeding
+    medication_type: corticosteroids
+    severity_change: 2
+    citations:
+      - source: otc_monograph
+        document_id: 21 CFR 201.326
+        section: (a)(2)(iii)(A)
+        url: https://www.ecfr.gov/current/title-21/section-201.326
+        quote: take a blood thinning (anticoagulant) or steroid drug
+  - dimension: cardiovascular_bp
+    condition: hypertension
+    severity_change: 1
+    citations:
+      - source: fda_label
+        document_id: 5be198b8-396e-4b44-8819-e2e3b5d2ad0e
+        section: "SPL v20: Ask a doctor (50569-3)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=5be198b8-396e-4b44-8819-e2e3b5d2ad0e
+        quote: you have high blood pressure
+  - dimension: cardiovascular_bp
+    condition: heart_disease
+    severity_change: 2
+    citations:
+      - source: fda_label
+        document_id: 5be198b8-396e-4b44-8819-e2e3b5d2ad0e
+        section: "SPL v20: Ask a doctor (50569-3)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=5be198b8-396e-4b44-8819-e2e3b5d2ad0e
+        quote: heart disease
+  - dimension: kidney
+    condition: hypertension
+    severity_change: 1
+    citations:
+      - source: fda_label
+        document_id: 5be198b8-396e-4b44-8819-e2e3b5d2ad0e
+        section: "SPL v20: Ask a doctor (50569-3)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=5be198b8-396e-4b44-8819-e2e3b5d2ad0e
+        quote: you have high blood pressure
+  - dimension: kidney
+    condition: kidney_disease
+    severity_change: 2
+    citations:
+      - source: fda_label
+        document_id: 5be198b8-396e-4b44-8819-e2e3b5d2ad0e
+        section: "SPL v20: Ask a doctor (50569-3)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=5be198b8-396e-4b44-8819-e2e3b5d2ad0e
+        quote: kidney disease
+  - dimension: kidney
+    medication_type: diuretics
+    severity_change: 2
+    citations:
+      - source: fda_label
+        document_id: 5be198b8-396e-4b44-8819-e2e3b5d2ad0e
+        section: "SPL v20: Ask a doctor (50569-3)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=5be198b8-396e-4b44-8819-e2e3b5d2ad0e
+        quote: you are taking a diuretic
+review_status: unreviewed
+notes:
+  Oral ibuprofen sodium (Advil, Advil Menstrual Pain), the only labels with this UNII. Rated like
+  ibuprofen, except that no product is labeled for children under 12, so children get the adult warnings
+  plus the "ask a doctor" pediatric rating, as for naproxen. The pregnancy quote leaves out the heading,
+  which this SPL prints without a space after the comma.
