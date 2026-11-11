@@ -1,0 +1,505 @@
+unii: H0G9379FGK
+name: calcium carbonate
+ratings:
+  - dimension: liver
+    persona: adult_18_64
+    severity: 0
+  - dimension: liver
+    persona: adult_65_plus
+    severity: 0
+  - dimension: liver
+    persona: teen_12_17
+    severity: 0
+  - dimension: liver
+    persona: child_6_11
+    severity: 0
+  - dimension: liver
+    persona: child_2_5
+    severity: 0
+  - dimension: liver
+    persona: under_2
+    severity: 0
+  - dimension: liver
+    persona: pregnant
+    severity: 0
+  - dimension: liver
+    persona: breastfeeding
+    severity: 0
+  - dimension: gi_bleeding
+    persona: adult_18_64
+    severity: 0
+  - dimension: gi_bleeding
+    persona: adult_65_plus
+    severity: 0
+  - dimension: gi_bleeding
+    persona: teen_12_17
+    severity: 0
+  - dimension: gi_bleeding
+    persona: child_6_11
+    severity: 0
+  - dimension: gi_bleeding
+    persona: child_2_5
+    severity: 0
+  - dimension: gi_bleeding
+    persona: under_2
+    severity: 0
+  - dimension: gi_bleeding
+    persona: pregnant
+    severity: 0
+  - dimension: gi_bleeding
+    persona: breastfeeding
+    severity: 0
+  - dimension: cardiovascular_bp
+    persona: adult_18_64
+    severity: 0
+  - dimension: cardiovascular_bp
+    persona: adult_65_plus
+    severity: 0
+  - dimension: cardiovascular_bp
+    persona: teen_12_17
+    severity: 0
+  - dimension: cardiovascular_bp
+    persona: child_6_11
+    severity: 0
+  - dimension: cardiovascular_bp
+    persona: child_2_5
+    severity: 0
+  - dimension: cardiovascular_bp
+    persona: under_2
+    severity: 0
+  - dimension: cardiovascular_bp
+    persona: pregnant
+    severity: 0
+  - dimension: cardiovascular_bp
+    persona: breastfeeding
+    severity: 0
+  - dimension: kidney
+    persona: adult_18_64
+    severity: 0
+  - dimension: kidney
+    persona: adult_65_plus
+    severity: 0
+  - dimension: kidney
+    persona: teen_12_17
+    severity: 0
+  - dimension: kidney
+    persona: child_6_11
+    severity: 0
+  - dimension: kidney
+    persona: child_2_5
+    severity: 0
+  - dimension: kidney
+    persona: under_2
+    severity: 0
+  - dimension: kidney
+    persona: pregnant
+    severity: 0
+  - dimension: kidney
+    persona: breastfeeding
+    severity: 0
+  - dimension: anticholinergic_cognitive
+    persona: adult_18_64
+    severity: 0
+  - dimension: anticholinergic_cognitive
+    persona: adult_65_plus
+    severity: 0
+  - dimension: anticholinergic_cognitive
+    persona: teen_12_17
+    severity: 0
+  - dimension: anticholinergic_cognitive
+    persona: child_6_11
+    severity: 0
+  - dimension: anticholinergic_cognitive
+    persona: child_2_5
+    severity: 0
+  - dimension: anticholinergic_cognitive
+    persona: under_2
+    severity: 0
+  - dimension: anticholinergic_cognitive
+    persona: pregnant
+    severity: 0
+  - dimension: anticholinergic_cognitive
+    persona: breastfeeding
+    severity: 0
+  - dimension: sedation_falls
+    persona: adult_18_64
+    severity: 0
+  - dimension: sedation_falls
+    persona: adult_65_plus
+    severity: 0
+  - dimension: sedation_falls
+    persona: teen_12_17
+    severity: 0
+  - dimension: sedation_falls
+    persona: child_6_11
+    severity: 0
+  - dimension: sedation_falls
+    persona: child_2_5
+    severity: 0
+  - dimension: sedation_falls
+    persona: under_2
+    severity: 0
+  - dimension: sedation_falls
+    persona: pregnant
+    severity: 0
+  - dimension: sedation_falls
+    persona: breastfeeding
+    severity: 0
+  - dimension: serotonergic_interactions
+    persona: adult_18_64
+    severity: 0
+  - dimension: serotonergic_interactions
+    persona: adult_65_plus
+    severity: 0
+  - dimension: serotonergic_interactions
+    persona: teen_12_17
+    severity: 0
+  - dimension: serotonergic_interactions
+    persona: child_6_11
+    severity: 0
+  - dimension: serotonergic_interactions
+    persona: child_2_5
+    severity: 0
+  - dimension: serotonergic_interactions
+    persona: under_2
+    severity: 0
+  - dimension: serotonergic_interactions
+    persona: pregnant
+    severity: 0
+  - dimension: serotonergic_interactions
+    persona: breastfeeding
+    severity: 0
+  - dimension: anticoagulant_bleeding
+    persona: adult_18_64
+    severity: 0
+  - dimension: anticoagulant_bleeding
+    persona: adult_65_plus
+    severity: 0
+  - dimension: anticoagulant_bleeding
+    persona: teen_12_17
+    severity: 0
+  - dimension: anticoagulant_bleeding
+    persona: child_6_11
+    severity: 0
+  - dimension: anticoagulant_bleeding
+    persona: child_2_5
+    severity: 0
+  - dimension: anticoagulant_bleeding
+    persona: under_2
+    severity: 0
+  - dimension: anticoagulant_bleeding
+    persona: pregnant
+    severity: 0
+  - dimension: anticoagulant_bleeding
+    persona: breastfeeding
+    severity: 0
+  - dimension: pediatric
+    persona: adult_18_64
+    severity: 0
+  - dimension: pediatric
+    persona: adult_65_plus
+    severity: 0
+  - dimension: pediatric
+    persona: teen_12_17
+    severity: 0
+  - dimension: pediatric
+    persona: child_6_11
+    severity: 0
+  - dimension: pediatric
+    persona: child_2_5
+    severity: 0
+  - dimension: pediatric
+    persona: under_2
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 4f9db9dc-6b78-d123-e063-6294a90ae38d
+        section: "SPL v1: Directions (34068-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=4f9db9dc-6b78-d123-e063-6294a90ae38d
+        quote: under 2 years ask a doctor
+  - dimension: pediatric
+    persona: pregnant
+    severity: 0
+  - dimension: pediatric
+    persona: breastfeeding
+    severity: 0
+  - dimension: rebound_overuse
+    persona: adult_18_64
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 348d3dfa-6a52-4583-96e3-83c4bf2df45b
+        section: "SPL v5: When using (50567-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=348d3dfa-6a52-4583-96e3-83c4bf2df45b
+        quote:
+          do not use the maximum dosage for more than 2 weeks except under the advice and supervision
+          of a doctor
+      - source: otc_monograph
+        document_id: 21 CFR 331.30
+        section: (c)(1)
+        url: https://www.ecfr.gov/current/title-21/section-331.30
+        quote: use the maximum dosage of this product for more than 2 weeks
+  - dimension: rebound_overuse
+    persona: adult_65_plus
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 348d3dfa-6a52-4583-96e3-83c4bf2df45b
+        section: "SPL v5: When using (50567-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=348d3dfa-6a52-4583-96e3-83c4bf2df45b
+        quote:
+          do not use the maximum dosage for more than 2 weeks except under the advice and supervision
+          of a doctor
+      - source: otc_monograph
+        document_id: 21 CFR 331.30
+        section: (c)(1)
+        url: https://www.ecfr.gov/current/title-21/section-331.30
+        quote: use the maximum dosage of this product for more than 2 weeks
+  - dimension: rebound_overuse
+    persona: teen_12_17
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 348d3dfa-6a52-4583-96e3-83c4bf2df45b
+        section: "SPL v5: When using (50567-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=348d3dfa-6a52-4583-96e3-83c4bf2df45b
+        quote:
+          do not use the maximum dosage for more than 2 weeks except under the advice and supervision
+          of a doctor
+      - source: otc_monograph
+        document_id: 21 CFR 331.30
+        section: (c)(1)
+        url: https://www.ecfr.gov/current/title-21/section-331.30
+        quote: use the maximum dosage of this product for more than 2 weeks
+  - dimension: rebound_overuse
+    persona: child_6_11
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 4f9db9dc-6b78-d123-e063-6294a90ae38d
+        section: "SPL v1: When using (50567-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=4f9db9dc-6b78-d123-e063-6294a90ae38d
+        quote:
+          do not give the child the maximum dosage for more than 2 weeks except under the advice and
+          supervision of a doctor
+      - source: otc_monograph
+        document_id: 21 CFR 331.30
+        section: (c)(1)
+        url: https://www.ecfr.gov/current/title-21/section-331.30
+        quote: use the maximum dosage of this product for more than 2 weeks
+  - dimension: rebound_overuse
+    persona: child_2_5
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 4f9db9dc-6b78-d123-e063-6294a90ae38d
+        section: "SPL v1: When using (50567-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=4f9db9dc-6b78-d123-e063-6294a90ae38d
+        quote:
+          do not give the child the maximum dosage for more than 2 weeks except under the advice and
+          supervision of a doctor
+      - source: otc_monograph
+        document_id: 21 CFR 331.30
+        section: (c)(1)
+        url: https://www.ecfr.gov/current/title-21/section-331.30
+        quote: use the maximum dosage of this product for more than 2 weeks
+  - dimension: rebound_overuse
+    persona: under_2
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 348d3dfa-6a52-4583-96e3-83c4bf2df45b
+        section: "SPL v5: When using (50567-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=348d3dfa-6a52-4583-96e3-83c4bf2df45b
+        quote:
+          do not use the maximum dosage for more than 2 weeks except under the advice and supervision
+          of a doctor
+      - source: otc_monograph
+        document_id: 21 CFR 331.30
+        section: (c)(1)
+        url: https://www.ecfr.gov/current/title-21/section-331.30
+        quote: use the maximum dosage of this product for more than 2 weeks
+  - dimension: rebound_overuse
+    persona: pregnant
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 348d3dfa-6a52-4583-96e3-83c4bf2df45b
+        section: "SPL v5: When using (50567-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=348d3dfa-6a52-4583-96e3-83c4bf2df45b
+        quote:
+          do not use the maximum dosage for more than 2 weeks except under the advice and supervision
+          of a doctor
+      - source: otc_monograph
+        document_id: 21 CFR 331.30
+        section: (c)(1)
+        url: https://www.ecfr.gov/current/title-21/section-331.30
+        quote: use the maximum dosage of this product for more than 2 weeks
+  - dimension: rebound_overuse
+    persona: breastfeeding
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 348d3dfa-6a52-4583-96e3-83c4bf2df45b
+        section: "SPL v5: When using (50567-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=348d3dfa-6a52-4583-96e3-83c4bf2df45b
+        quote:
+          do not use the maximum dosage for more than 2 weeks except under the advice and supervision
+          of a doctor
+      - source: otc_monograph
+        document_id: 21 CFR 331.30
+        section: (c)(1)
+        url: https://www.ecfr.gov/current/title-21/section-331.30
+        quote: use the maximum dosage of this product for more than 2 weeks
+  - dimension: pregnancy_lactation
+    persona: adult_18_64
+    severity: 0
+  - dimension: pregnancy_lactation
+    persona: adult_65_plus
+    severity: 0
+  - dimension: pregnancy_lactation
+    persona: teen_12_17
+    severity: 0
+  - dimension: pregnancy_lactation
+    persona: child_6_11
+    severity: 0
+  - dimension: pregnancy_lactation
+    persona: child_2_5
+    severity: 0
+  - dimension: pregnancy_lactation
+    persona: under_2
+    severity: 0
+  - dimension: pregnancy_lactation
+    persona: pregnant
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 026aefd6-bb80-1ffd-e063-6394a90a1262
+        section: "SPL v3: Pregnancy or breast-feeding (53414-9)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=026aefd6-bb80-1ffd-e063-6394a90a1262
+        quote: If pregnant or breast-feeding, ask a health professional before use.
+  - dimension: pregnancy_lactation
+    persona: breastfeeding
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 026aefd6-bb80-1ffd-e063-6394a90a1262
+        section: "SPL v3: Pregnancy or breast-feeding (53414-9)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=026aefd6-bb80-1ffd-e063-6394a90a1262
+        quote: If pregnant or breast-feeding, ask a health professional before use.
+  - dimension: duplicate_dosing
+    persona: adult_18_64
+    severity: 0
+  - dimension: duplicate_dosing
+    persona: adult_65_plus
+    severity: 0
+  - dimension: duplicate_dosing
+    persona: teen_12_17
+    severity: 0
+  - dimension: duplicate_dosing
+    persona: child_6_11
+    severity: 0
+  - dimension: duplicate_dosing
+    persona: child_2_5
+    severity: 0
+  - dimension: duplicate_dosing
+    persona: under_2
+    severity: 0
+  - dimension: duplicate_dosing
+    persona: pregnant
+    severity: 0
+  - dimension: duplicate_dosing
+    persona: breastfeeding
+    severity: 0
+  - dimension: excipients
+    persona: adult_18_64
+    severity: 0
+  - dimension: excipients
+    persona: adult_65_plus
+    severity: 0
+  - dimension: excipients
+    persona: teen_12_17
+    severity: 0
+  - dimension: excipients
+    persona: child_6_11
+    severity: 0
+  - dimension: excipients
+    persona: child_2_5
+    severity: 0
+  - dimension: excipients
+    persona: under_2
+    severity: 0
+  - dimension: excipients
+    persona: pregnant
+    severity: 0
+  - dimension: excipients
+    persona: breastfeeding
+    severity: 0
+  - dimension: local_skin
+    persona: adult_18_64
+    severity: 0
+  - dimension: local_skin
+    persona: adult_65_plus
+    severity: 0
+  - dimension: local_skin
+    persona: teen_12_17
+    severity: 0
+  - dimension: local_skin
+    persona: child_6_11
+    severity: 0
+  - dimension: local_skin
+    persona: child_2_5
+    severity: 0
+  - dimension: local_skin
+    persona: under_2
+    severity: 0
+  - dimension: local_skin
+    persona: pregnant
+    severity: 0
+  - dimension: local_skin
+    persona: breastfeeding
+    severity: 0
+  - dimension: efficacy_evidence
+    persona: adult_18_64
+    severity: 0
+  - dimension: efficacy_evidence
+    persona: adult_65_plus
+    severity: 0
+  - dimension: efficacy_evidence
+    persona: teen_12_17
+    severity: 0
+  - dimension: efficacy_evidence
+    persona: child_6_11
+    severity: 0
+  - dimension: efficacy_evidence
+    persona: child_2_5
+    severity: 0
+  - dimension: efficacy_evidence
+    persona: under_2
+    severity: 0
+  - dimension: efficacy_evidence
+    persona: pregnant
+    severity: 0
+  - dimension: efficacy_evidence
+    persona: breastfeeding
+    severity: 0
+modifiers:
+  - dimension: kidney
+    condition: kidney_disease
+    severity_change: 2
+    citations:
+      - source: fda_label
+        document_id: 9bc5c5de-8d61-4edf-83d2-a1e797c2d24a
+        section: "SPL v1: Ask a doctor or pharmacist (50568-5)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=9bc5c5de-8d61-4edf-83d2-a1e797c2d24a
+        quote: have kidney disease
+review_status: unreviewed
+notes:
+  'Oral calcium carbonate antacid, including children''s chewables (ages 2 to 11). Many labels (about
+  110 of 519 single-ingredient labels on openFDA, e.g. 026aefd6) print the general pregnancy line, so
+  pregnant and breastfeeding are 2 under the any-label rule; most others have only a lower tablet limit
+  for pregnancy. rebound_overuse is 2 from the "do not use the maximum dosage for more than 2 weeks" limit,
+  under the duration rule in pipeline/knowledge/README.md. Rubric owner: this limit covers only the maximum
+  dosage; the same labels also say "do not take for symptoms that persist for more than 2 weeks". Kidney
+  disease is a clearance precaution, so a modifier. The kidney disease line is on a minority of labels
+  (20 of 519).'
