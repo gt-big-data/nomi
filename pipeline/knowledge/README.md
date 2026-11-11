@@ -19,12 +19,25 @@ For a child persona, use the labels whose directions dose that age; duration lim
 the same way. A limit printed only on one product (such as "children under 12 years: do not use"
 on adult tablets) is about that product when another label doses the whole age band. When no
 label doses an age, or only part of the band, the strongest line for the undosed ages counts (for
-example "under 6 months" on an infants' label that doses 6 months and up sets `under_2`). An age line tied to one use (such as the sore throat
-warning's "administer to children under 3 years of age unless directed by doctor") does not set
-`pediatric` when a label doses that age.
+example "under 6 months" on an infants' label that doses 6 months and up sets `under_2`). A line
+tied to one use applies only to the ages that use is dosed for: the sore throat warning's
+"administer to children under 3 years of age unless directed by doctor" does not set `pediatric`
+when a label doses that age, and a limit printed "As an antacid" does not apply to children dosed
+only as a laxative.
 
-"Do not use unless directed by a doctor" has ask-a-doctor strength (2), since
-`docs/scoring/dimensions.md` does not treat it as a contraindication; a plain "do not use" is 3.
+In pediatric age lines and duration lines only, "do not use unless directed by a doctor" has
+ask-a-doctor strength (2); a plain "do not use" is 3. Elsewhere the wording keeps its rubric
+value: examples the rubric names stay 3, such as the NSAID line "not to use ... at 20 weeks or
+later in pregnancy unless definitely directed to do so by a doctor". The famotidine and
+polyethylene glycol 3350 line "Do not use if you have kidney disease, except under the advice
+and supervision of a doctor" is a +3 modifier because it is printed as do not use, which is the
+safe side; it stays open for the rubric owner.
+
+Hard stops are not ingredient ratings. They belong in the `hard_stops` table of the term tables
+(`packages/schema/schemas/term-tables.schema.json`, `docs/system-design.md`), which scoring
+(NOMI-051) will build; nothing builds them yet. The universal `under_2` hard stop for systemic
+OTC cough, cold, fever and pain products (`docs/scoring/dimensions.md`, section 3, persona 6) is
+therefore open.
 
 Lines about the drug's pharmacology (drug interactions, organ harm) apply to every salt file of
 the same moiety, because the salt does not change the pharmacology: a warfarin line on an

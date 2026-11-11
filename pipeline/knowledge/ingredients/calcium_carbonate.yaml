@@ -495,11 +495,11 @@ modifiers:
         quote: have kidney disease
 review_status: unreviewed
 notes:
-  'Oral calcium carbonate antacid, including children''s chewables (ages 2 to 11). Many labels (106
-  of 519 single-ingredient labels on openFDA, e.g. 026aefd6) print the general pregnancy line, so pregnant
-  and breastfeeding are 2 under the any-label rule; most others have only a lower tablet limit for pregnancy.
-  rebound_overuse is 2 from the "do not use the maximum dosage for more than 2 weeks" limit, under the
-  duration rule in pipeline/knowledge/README.md. Rubric owner: this limit covers only the maximum dosage;
-  the same labels also say "do not take for symptoms that persist for more than 2 weeks". Kidney disease
-  is a clearance precaution, so a modifier. The kidney disease line is on a minority of labels (20 of
-  519).'
+  'Oral calcium carbonate antacid, including children''s chewables (ages 2 to 11). Many labels (about
+  110 of 519 single-ingredient labels on openFDA, e.g. 026aefd6) print the general pregnancy line, so
+  pregnant and breastfeeding are 2 under the any-label rule; most others have only a lower tablet limit
+  for pregnancy. rebound_overuse is 2 from the "do not use the maximum dosage for more than 2 weeks" limit,
+  under the duration rule in pipeline/knowledge/README.md. Rubric owner: this limit covers only the maximum
+  dosage; the same labels also say "do not take for symptoms that persist for more than 2 weeks". Kidney
+  disease is a clearance precaution, so a modifier. The kidney disease line is on a minority of labels
+  (20 of 519).'

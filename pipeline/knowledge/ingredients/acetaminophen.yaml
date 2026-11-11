@@ -318,7 +318,13 @@ ratings:
         quote: Do not give more than 5 days unless directed by a doctor.
   - dimension: rebound_overuse
     persona: under_2
-    severity: 0
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: c13ced61-c491-4fc2-b83f-78c6d9ad8546
+        section: "SPL v10: Directions (34068-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=c13ced61-c491-4fc2-b83f-78c6d9ad8546
+        quote: Do not give more than 5 days unless directed by a doctor.
   - dimension: rebound_overuse
     persona: pregnant
     severity: 2
@@ -554,6 +560,7 @@ notes:
   adult tablets'' "children under 12 years ask a doctor" is a product-level limit (LABEL_OVERRIDES in
   packages/schema/tests/test_examples.py). rebound_overuse follows the duration rule, per UNII and per
   age: adults and teens 2 from the adult directions'' 10 day limit, children 2 to 11 2 from a children''s
-  liquid''s 5 day limit (c13ced61; Children''s Tylenol itself has none). For under 2 the only label that
-  doses that age is Feverall Infants, which has stop-use lines only, so under_2 is 0. NyQuil has no limit,
-  so its reference product overrides rebound_overuse to 0.'
+  liquid''s 5 day limit (c13ced61; Children''s Tylenol itself has none). For under 2, Feverall Infants
+  doses only 6 to 23 months, so 0 to 5 months is undosed and takes the strongest acetaminophen duration
+  line, the same 5 day limit (2). NyQuil has no limit, so its reference product overrides rebound_overuse
+  to 0.'

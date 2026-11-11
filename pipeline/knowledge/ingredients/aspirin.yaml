@@ -867,11 +867,12 @@ notes:
   Liver cirrhosis in the same line is a liver_disease +2 modifier on kidney, as for every NSAID file (rubric
   owner: section 4 of docs/scoring/dimensions.md maps liver_disease only to liver). Blood thinners and
   steroids are gi_bleeding modifiers from the stomach bleeding warning. Some aspirin labels (12 of 401
-  single-ingredient labels on openFDA, e.g. 04017bc9 and 6009842a) also print a separate Ask a doctor
-  or pharmacist line for anticoagulation, so aspirin, like ibuprofen, also has an anticoagulant_bleeding
-  modifier. Rubric owner: someone taking a blood thinner gets both this +2 and the gi_bleeding anticoagulants
-  +2, which may count the same risk twice. rebound_overuse is 2 from labels that limit use to 10 days
-  (6009842a under Do not use, 503868bb in Directions); Bayer only has stop-use lines. No antiplatelets
-  modifier yet: the labels name only other NSAIDs (aspirin), not clopidogrel or ticagrelor; open for the
-  rubric owner. About half of the labels say "at 20 weeks or later in pregnancy" instead of "during the
-  last 3 months"; both are rated 3.'
+  single-ingredient labels on openFDA, e.g. 04017bc9 and 6009842a: openFDA text with "pharmacist before
+  use if" followed within 120 characters by anticoagula, thinning the blood or blood thinner, each checked
+  in the DailyMed SPL) also print a separate Ask a doctor or pharmacist line for anticoagulation, so aspirin,
+  like ibuprofen, also has an anticoagulant_bleeding modifier. Rubric owner: someone taking a blood thinner
+  gets both this +2 and the gi_bleeding anticoagulants +2, which may count the same risk twice. rebound_overuse
+  is 2 from labels that limit use to 10 days (6009842a under Do not use, 503868bb in Directions); Bayer
+  only has stop-use lines. No antiplatelets modifier yet: the labels name only other NSAIDs (aspirin),
+  not clopidogrel or ticagrelor; open for the rubric owner. About half of the labels say "at 20 weeks
+  or later in pregnancy" instead of "during the last 3 months"; both are rated 3.'

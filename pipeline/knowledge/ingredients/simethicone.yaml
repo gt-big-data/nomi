@@ -378,7 +378,7 @@ review_status: unreviewed
 notes:
   Oral simethicone, which SPLs code as dimethicone (92RU3N3Y1O), so topical dimethicone skin protectants
   share this UNII and these ratings. Gas-X (fa4a3b07) and Infants' Mylicon (395be942) print no pregnancy
-  warning, but many labels (92 of 411 on openFDA, e.g. 0050b639) print the general pregnancy line, so
-  pregnant and breastfeeding are 2 under the any-label rule in pipeline/knowledge/README.md. The infants'
+  warning, but many labels (about 90 of 411 on openFDA, e.g. 0050b639) print the general pregnancy line,
+  so pregnant and breastfeeding are 2 under the any-label rule in pipeline/knowledge/README.md. The infants'
   drops give a dose for under 2 years, so one children's drops label (6e26ffbe) that says under 2 do not
   use is a product-level limit.

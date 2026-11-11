@@ -252,31 +252,31 @@ ratings:
         quote: do not use the maximum dosage for more than 2 weeks
   - dimension: rebound_overuse
     persona: child_6_11
-    severity: 2
+    severity: 1
     citations:
       - source: fda_label
         document_id: b6c90fb4-2673-7e29-e053-2995a90ae9e1
-        section: "SPL v3: When using (50567-7)"
+        section: "SPL v3: Stop use (50566-9)"
         url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=b6c90fb4-2673-7e29-e053-2995a90ae9e1
-        quote: take the maximum dose for more than two weeks, except under the advise of a doctor
+        quote: you need to use a laxative for more than one week
   - dimension: rebound_overuse
     persona: child_2_5
-    severity: 2
+    severity: 1
     citations:
       - source: fda_label
         document_id: b6c90fb4-2673-7e29-e053-2995a90ae9e1
-        section: "SPL v3: When using (50567-7)"
+        section: "SPL v3: Stop use (50566-9)"
         url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=b6c90fb4-2673-7e29-e053-2995a90ae9e1
-        quote: take the maximum dose for more than two weeks, except under the advise of a doctor
+        quote: you need to use a laxative for more than one week
   - dimension: rebound_overuse
     persona: under_2
     severity: 2
     citations:
       - source: fda_label
-        document_id: b6c90fb4-2673-7e29-e053-2995a90ae9e1
-        section: "SPL v3: When using (50567-7)"
-        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=b6c90fb4-2673-7e29-e053-2995a90ae9e1
-        quote: take the maximum dose for more than two weeks, except under the advise of a doctor
+        document_id: 2de868a0-c652-473c-8b61-636083b7f757
+        section: "SPL v7: When using (50567-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=2de868a0-c652-473c-8b61-636083b7f757
+        quote: do not use the maximum dosage for more than 2 weeks
   - dimension: rebound_overuse
     persona: pregnant
     severity: 2
@@ -441,9 +441,10 @@ review_status: unreviewed
 notes:
   'Oral magnesium hydroxide (milk of magnesia). Kidney disease is a modifier (clearance precaution
   under the organ rule in pipeline/knowledge/README.md), with no baseline. The label''s "taking a prescription
-  drug" line names no drug class, so there is no medication modifier. rebound_overuse is 2 because labels
-  that also sell it as an antacid (4 of 93) limit the maximum dosage to 2 weeks, as calcium carbonate
-  labels do: 2de868a0 for adults and teens, and b6c90fb4, which also doses children 2 to 11, for children
-  (under 2 is dosed by no label, so the strongest line counts). Children''s chewables (e.g. 3813ed22)
-  dose ages 2 to under 6, so child_2_5 pediatric is 0; they say "children under 2 years ask a doctor",
-  so under_2 is 2.'
+  drug" line names no drug class, so there is no medication modifier. rebound_overuse follows the duration
+  rule per age: adults and teens 2 from 2de868a0''s "do not use the maximum dosage for more than 2 weeks"
+  (4 of 93 labels have such a limit, all on antacid uses dosed for 12 and over). Children 2 to 11 are
+  dosed only as a laxative: b6c90fb4 doses them, but its limit sits under "As an antacid", which doses
+  only 12 and over, so under the one-use rule they get its laxative stop-use line (1). No label doses
+  under 2, so the strongest line counts (2). Children''s chewables (e.g. 3813ed22) dose ages 2 to under
+  6, so child_2_5 pediatric is 0; they say "children under 2 years ask a doctor", so under_2 is 2.'
