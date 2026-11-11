@@ -82,16 +82,15 @@ says for NSAIDs; the label line it cites names high blood pressure, not the kidn
 - each expected score, contribution, tier and hard stop, and the citations of each scored
   dimension's explanation, follow from the ingredient ratings and modifiers under the convention
   above (explanation wording is not checked);
-- ingredients that have a file in `pipeline/knowledge/ingredients` (dextromethorphan, doxylamine,
-  diphenhydramine) match it for the three profiles: rating severities, and each modifier's
-  dimension, condition or medication, value and personas (citations are not compared). The two
-  exceptions come from the product's own label and are listed in `LABEL_OVERRIDES`: ZzzQuil
-  says "children under 12 yrs do not use" (3),
-  and NyQuil says "children 4 to under 12 yrs ask a doctor" (2). A test fails if an override stops
-  being needed.
-
-Acetaminophen and naproxen are not in the knowledge base yet (#98); add them to the check once
-they are.
+- ingredients that have a file in `pipeline/knowledge/ingredients` (all of them: acetaminophen,
+  naproxen sodium, dextromethorphan, doxylamine, diphenhydramine) match it for the three profiles:
+  rating severities, and each modifier's dimension, condition or medication, value and personas
+  (citations are not compared). The exceptions come from the product's own label and are listed in
+  `LABEL_OVERRIDES`: ZzzQuil says "children under 12 yrs do not use" (3), NyQuil says "children 4
+  to under 12 yrs ask a doctor" (2, for doxylamine and acetaminophen), and Tylenol Extra Strength
+  says "children under 12 years ask a doctor" (2). The knowledge base rates acetaminophen 0 for
+  children 6 to 11 because children's liquids are dosed for that age. A test fails if an override
+  stops being needed.
 
 ## Review
 

@@ -1,6 +1,5 @@
 unii: KG60484QX9
 name: omeprazole
-review_status: unreviewed
 ratings:
   - dimension: liver
     persona: adult_18_64
@@ -79,13 +78,7 @@ ratings:
     severity: 0
   - dimension: kidney
     persona: adult_65_plus
-    severity: 1
-    citations:
-      - source: publication
-        document_id: 10.1001/jamainternmed.2015.7193
-        section: Proton Pump Inhibitor Use and Risk of Chronic Kidney Disease
-        quote: Proton pump inhibitor use is associated with a higher risk of incident
-          CKD.
+    severity: 0
   - dimension: kidney
     persona: teen_12_17
     severity: 0
@@ -211,37 +204,37 @@ ratings:
     severity: 2
     citations:
       - source: fda_label
-        document_id: 77ed80a2-a482-4838-ac55-4865b5c31d9f
-        section: Warnings
-        quote: "children under 18 years of age: ask a doctor before use. Heartburn
-          in children may sometimes be caused by a more serious condition."
+        document_id: 015b1c8f-9d5b-4afc-a55c-1a731b5fc72a
+        section: "SPL v9: Directions (34068-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=015b1c8f-9d5b-4afc-a55c-1a731b5fc72a
+        quote: "children under 18 years of age: ask a doctor"
   - dimension: pediatric
     persona: child_6_11
     severity: 2
     citations:
       - source: fda_label
-        document_id: 77ed80a2-a482-4838-ac55-4865b5c31d9f
-        section: Warnings
-        quote: "children under 18 years of age: ask a doctor before use. Heartburn
-          in children may sometimes be caused by a more serious condition."
+        document_id: 015b1c8f-9d5b-4afc-a55c-1a731b5fc72a
+        section: "SPL v9: Directions (34068-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=015b1c8f-9d5b-4afc-a55c-1a731b5fc72a
+        quote: "children under 18 years of age: ask a doctor"
   - dimension: pediatric
     persona: child_2_5
     severity: 2
     citations:
       - source: fda_label
-        document_id: 77ed80a2-a482-4838-ac55-4865b5c31d9f
-        section: Warnings
-        quote: "children under 18 years of age: ask a doctor before use. Heartburn
-          in children may sometimes be caused by a more serious condition."
+        document_id: 015b1c8f-9d5b-4afc-a55c-1a731b5fc72a
+        section: "SPL v9: Directions (34068-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=015b1c8f-9d5b-4afc-a55c-1a731b5fc72a
+        quote: "children under 18 years of age: ask a doctor"
   - dimension: pediatric
     persona: under_2
     severity: 2
     citations:
       - source: fda_label
-        document_id: 77ed80a2-a482-4838-ac55-4865b5c31d9f
-        section: Warnings
-        quote: "children under 18 years of age: ask a doctor before use. Heartburn
-          in children may sometimes be caused by a more serious condition."
+        document_id: 015b1c8f-9d5b-4afc-a55c-1a731b5fc72a
+        section: "SPL v9: Directions (34068-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=015b1c8f-9d5b-4afc-a55c-1a731b5fc72a
+        quote: "children under 18 years of age: ask a doctor"
   - dimension: pediatric
     persona: pregnant
     severity: 0
@@ -253,55 +246,73 @@ ratings:
     severity: 2
     citations:
       - source: fda_label
-        document_id: 77ed80a2-a482-4838-ac55-4865b5c31d9f
-        section: Directions / Warnings
-        quote: Do not use for more than 14 days or more often than every 4 months
-          unless directed by a doctor.
+        document_id: 015b1c8f-9d5b-4afc-a55c-1a731b5fc72a
+        section: "SPL v9: Directions (34068-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=015b1c8f-9d5b-4afc-a55c-1a731b5fc72a
+        quote: do not take for more than 14 days or more often than every 4 months unless directed by a doctor
   - dimension: rebound_overuse
     persona: adult_65_plus
     severity: 2
     citations:
       - source: fda_label
-        document_id: 77ed80a2-a482-4838-ac55-4865b5c31d9f
-        section: Directions / Warnings
-        quote: Do not use for more than 14 days or more often than every 4 months
-          unless directed by a doctor.
+        document_id: 015b1c8f-9d5b-4afc-a55c-1a731b5fc72a
+        section: "SPL v9: Directions (34068-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=015b1c8f-9d5b-4afc-a55c-1a731b5fc72a
+        quote: do not take for more than 14 days or more often than every 4 months unless directed by a doctor
   - dimension: rebound_overuse
     persona: teen_12_17
     severity: 2
     citations:
       - source: fda_label
-        document_id: 77ed80a2-a482-4838-ac55-4865b5c31d9f
-        section: Directions / Warnings
-        quote: Do not use for more than 14 days or more often than every 4 months
-          unless directed by a doctor.
+        document_id: 015b1c8f-9d5b-4afc-a55c-1a731b5fc72a
+        section: "SPL v9: Directions (34068-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=015b1c8f-9d5b-4afc-a55c-1a731b5fc72a
+        quote: do not take for more than 14 days or more often than every 4 months unless directed by a doctor
   - dimension: rebound_overuse
     persona: child_6_11
-    severity: 0
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 015b1c8f-9d5b-4afc-a55c-1a731b5fc72a
+        section: "SPL v9: Directions (34068-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=015b1c8f-9d5b-4afc-a55c-1a731b5fc72a
+        quote: do not take for more than 14 days or more often than every 4 months unless directed by a doctor
   - dimension: rebound_overuse
     persona: child_2_5
-    severity: 0
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 015b1c8f-9d5b-4afc-a55c-1a731b5fc72a
+        section: "SPL v9: Directions (34068-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=015b1c8f-9d5b-4afc-a55c-1a731b5fc72a
+        quote: do not take for more than 14 days or more often than every 4 months unless directed by a doctor
   - dimension: rebound_overuse
     persona: under_2
-    severity: 0
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 015b1c8f-9d5b-4afc-a55c-1a731b5fc72a
+        section: "SPL v9: Directions (34068-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=015b1c8f-9d5b-4afc-a55c-1a731b5fc72a
+        quote: do not take for more than 14 days or more often than every 4 months unless directed by a doctor
   - dimension: rebound_overuse
     persona: pregnant
     severity: 2
     citations:
       - source: fda_label
-        document_id: 77ed80a2-a482-4838-ac55-4865b5c31d9f
-        section: Directions / Warnings
-        quote: Do not use for more than 14 days or more often than every 4 months
-          unless directed by a doctor.
+        document_id: 015b1c8f-9d5b-4afc-a55c-1a731b5fc72a
+        section: "SPL v9: Directions (34068-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=015b1c8f-9d5b-4afc-a55c-1a731b5fc72a
+        quote: do not take for more than 14 days or more often than every 4 months unless directed by a doctor
   - dimension: rebound_overuse
     persona: breastfeeding
     severity: 2
     citations:
       - source: fda_label
-        document_id: 77ed80a2-a482-4838-ac55-4865b5c31d9f
-        section: Directions / Warnings
-        quote: Do not use for more than 14 days or more often than every 4 months
-          unless directed by a doctor.
+        document_id: 015b1c8f-9d5b-4afc-a55c-1a731b5fc72a
+        section: "SPL v9: Directions (34068-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=015b1c8f-9d5b-4afc-a55c-1a731b5fc72a
+        quote: do not take for more than 14 days or more often than every 4 months unless directed by a doctor
   - dimension: pregnancy_lactation
     persona: adult_18_64
     severity: 0
@@ -322,15 +333,22 @@ ratings:
     severity: 0
   - dimension: pregnancy_lactation
     persona: pregnant
-    severity: 1
+    severity: 2
     citations:
-      - source: otc_monograph
-        document_id: 21 CFR 201.63
-        section: Pregnancy/breast-feeding warning
+      - source: fda_label
+        document_id: 015b1c8f-9d5b-4afc-a55c-1a731b5fc72a
+        section: "SPL v9: Pregnancy or breast-feeding (53414-9)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=015b1c8f-9d5b-4afc-a55c-1a731b5fc72a
         quote: If pregnant or breast-feeding, ask a health professional before use.
   - dimension: pregnancy_lactation
     persona: breastfeeding
-    severity: 0
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 015b1c8f-9d5b-4afc-a55c-1a731b5fc72a
+        section: "SPL v9: Pregnancy or breast-feeding (53414-9)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=015b1c8f-9d5b-4afc-a55c-1a731b5fc72a
+        quote: If pregnant or breast-feeding, ask a health professional before use.
   - dimension: duplicate_dosing
     persona: adult_18_64
     severity: 0
@@ -428,3 +446,9 @@ ratings:
     persona: breastfeeding
     severity: 0
 modifiers: []
+review_status: unreviewed
+notes:
+  Oral delayed-release omeprazole, 14-day course. One file per UNII, because labels code the base
+  and the salts separately (omeprazole KG60484QX9, omeprazole magnesium 426QFE7XLK, esomeprazole N3PA6559FT,
+  esomeprazole magnesium R6DXU4WAY9, esomeprazole magnesium dihydrate 36H71644EQ); keep the files in step.
+  The "taking a prescription drug" line names no drug, so there are no medication modifiers.

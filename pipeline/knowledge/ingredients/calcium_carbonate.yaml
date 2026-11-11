@@ -1,6 +1,5 @@
 unii: H0G9379FGK
 name: calcium carbonate
-review_status: unreviewed
 ratings:
   - dimension: liver
     persona: adult_18_64
@@ -79,12 +78,7 @@ ratings:
     severity: 0
   - dimension: kidney
     persona: adult_65_plus
-    severity: 1
-    citations:
-      - source: fda_label
-        document_id: 9bc5c5de-8d61-4edf-83d2-a1e797c2d24a
-        section: Ask a doctor before use if you have
-        quote: "Ask a doctor before use if you have: kidney disease"
+    severity: 0
   - dimension: kidney
     persona: teen_12_17
     severity: 0
@@ -218,10 +212,11 @@ ratings:
     persona: under_2
     severity: 2
     citations:
-      - source: otc_monograph
-        document_id: 21 CFR 331.30
-        section: Directions
-        quote: do not use in children under 2 years of age except under the advice and supervision of a physician
+      - source: fda_label
+        document_id: 4f9db9dc-6b78-d123-e063-6294a90ae38d
+        section: "SPL v1: Directions (34068-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=4f9db9dc-6b78-d123-e063-6294a90ae38d
+        quote: under 2 years ask a doctor
   - dimension: pediatric
     persona: pregnant
     severity: 0
@@ -232,51 +227,130 @@ ratings:
     persona: adult_18_64
     severity: 1
     citations:
+      - source: fda_label
+        document_id: 348d3dfa-6a52-4583-96e3-83c4bf2df45b
+        section: "SPL v5: When using (50567-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=348d3dfa-6a52-4583-96e3-83c4bf2df45b
+        quote:
+          do not use the maximum dosage for more than 2 weeks except under the advice and supervision
+          of a doctor
       - source: otc_monograph
         document_id: 21 CFR 331.30
-        section: Warnings
-        quote: do not use the maximum daily dosage for more than 2 weeks except under the advice and supervision of a physician
+        section: (c)(1)
+        url: https://www.ecfr.gov/current/title-21/section-331.30
+        quote: use the maximum dosage of this product for more than 2 weeks
   - dimension: rebound_overuse
     persona: adult_65_plus
     severity: 1
     citations:
+      - source: fda_label
+        document_id: 348d3dfa-6a52-4583-96e3-83c4bf2df45b
+        section: "SPL v5: When using (50567-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=348d3dfa-6a52-4583-96e3-83c4bf2df45b
+        quote:
+          do not use the maximum dosage for more than 2 weeks except under the advice and supervision
+          of a doctor
       - source: otc_monograph
         document_id: 21 CFR 331.30
-        section: Warnings
-        quote: do not use the maximum daily dosage for more than 2 weeks except under the advice and supervision of a physician
+        section: (c)(1)
+        url: https://www.ecfr.gov/current/title-21/section-331.30
+        quote: use the maximum dosage of this product for more than 2 weeks
   - dimension: rebound_overuse
     persona: teen_12_17
     severity: 1
     citations:
+      - source: fda_label
+        document_id: 348d3dfa-6a52-4583-96e3-83c4bf2df45b
+        section: "SPL v5: When using (50567-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=348d3dfa-6a52-4583-96e3-83c4bf2df45b
+        quote:
+          do not use the maximum dosage for more than 2 weeks except under the advice and supervision
+          of a doctor
       - source: otc_monograph
         document_id: 21 CFR 331.30
-        section: Warnings
-        quote: do not use the maximum daily dosage for more than 2 weeks except under the advice and supervision of a physician
+        section: (c)(1)
+        url: https://www.ecfr.gov/current/title-21/section-331.30
+        quote: use the maximum dosage of this product for more than 2 weeks
   - dimension: rebound_overuse
     persona: child_6_11
-    severity: 0
+    severity: 1
+    citations:
+      - source: fda_label
+        document_id: 348d3dfa-6a52-4583-96e3-83c4bf2df45b
+        section: "SPL v5: When using (50567-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=348d3dfa-6a52-4583-96e3-83c4bf2df45b
+        quote:
+          do not use the maximum dosage for more than 2 weeks except under the advice and supervision
+          of a doctor
+      - source: otc_monograph
+        document_id: 21 CFR 331.30
+        section: (c)(1)
+        url: https://www.ecfr.gov/current/title-21/section-331.30
+        quote: use the maximum dosage of this product for more than 2 weeks
   - dimension: rebound_overuse
     persona: child_2_5
-    severity: 0
+    severity: 1
+    citations:
+      - source: fda_label
+        document_id: 348d3dfa-6a52-4583-96e3-83c4bf2df45b
+        section: "SPL v5: When using (50567-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=348d3dfa-6a52-4583-96e3-83c4bf2df45b
+        quote:
+          do not use the maximum dosage for more than 2 weeks except under the advice and supervision
+          of a doctor
+      - source: otc_monograph
+        document_id: 21 CFR 331.30
+        section: (c)(1)
+        url: https://www.ecfr.gov/current/title-21/section-331.30
+        quote: use the maximum dosage of this product for more than 2 weeks
   - dimension: rebound_overuse
     persona: under_2
-    severity: 0
+    severity: 1
+    citations:
+      - source: fda_label
+        document_id: 348d3dfa-6a52-4583-96e3-83c4bf2df45b
+        section: "SPL v5: When using (50567-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=348d3dfa-6a52-4583-96e3-83c4bf2df45b
+        quote:
+          do not use the maximum dosage for more than 2 weeks except under the advice and supervision
+          of a doctor
+      - source: otc_monograph
+        document_id: 21 CFR 331.30
+        section: (c)(1)
+        url: https://www.ecfr.gov/current/title-21/section-331.30
+        quote: use the maximum dosage of this product for more than 2 weeks
   - dimension: rebound_overuse
     persona: pregnant
     severity: 1
     citations:
+      - source: fda_label
+        document_id: 348d3dfa-6a52-4583-96e3-83c4bf2df45b
+        section: "SPL v5: When using (50567-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=348d3dfa-6a52-4583-96e3-83c4bf2df45b
+        quote:
+          do not use the maximum dosage for more than 2 weeks except under the advice and supervision
+          of a doctor
       - source: otc_monograph
         document_id: 21 CFR 331.30
-        section: Warnings
-        quote: do not use the maximum daily dosage for more than 2 weeks except under the advice and supervision of a physician
+        section: (c)(1)
+        url: https://www.ecfr.gov/current/title-21/section-331.30
+        quote: use the maximum dosage of this product for more than 2 weeks
   - dimension: rebound_overuse
     persona: breastfeeding
     severity: 1
     citations:
+      - source: fda_label
+        document_id: 348d3dfa-6a52-4583-96e3-83c4bf2df45b
+        section: "SPL v5: When using (50567-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=348d3dfa-6a52-4583-96e3-83c4bf2df45b
+        quote:
+          do not use the maximum dosage for more than 2 weeks except under the advice and supervision
+          of a doctor
       - source: otc_monograph
         document_id: 21 CFR 331.30
-        section: Warnings
-        quote: do not use the maximum daily dosage for more than 2 weeks except under the advice and supervision of a physician
+        section: (c)(1)
+        url: https://www.ecfr.gov/current/title-21/section-331.30
+        quote: use the maximum dosage of this product for more than 2 weeks
   - dimension: pregnancy_lactation
     persona: adult_18_64
     severity: 0
@@ -299,10 +373,11 @@ ratings:
     persona: pregnant
     severity: 1
     citations:
-      - source: otc_monograph
-        document_id: 21 CFR 201.63
-        section: Pregnancy/breast-feeding warning
-        quote: If pregnant or breast-feeding, ask a health professional before use.
+      - source: fda_label
+        document_id: 348d3dfa-6a52-4583-96e3-83c4bf2df45b
+        section: "SPL v5: When using (50567-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=348d3dfa-6a52-4583-96e3-83c4bf2df45b
+        quote: if pregnant do not take more than 5 tablets in 24 hours
   - dimension: pregnancy_lactation
     persona: breastfeeding
     severity: 0
@@ -409,5 +484,13 @@ modifiers:
     citations:
       - source: fda_label
         document_id: 9bc5c5de-8d61-4edf-83d2-a1e797c2d24a
-        section: Ask a doctor before use if you have
-        quote: Ask a doctor before use if you have kidney disease.
+        section: "SPL v1: Ask a doctor or pharmacist (50568-5)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=9bc5c5de-8d61-4edf-83d2-a1e797c2d24a
+        quote: have kidney disease
+review_status: unreviewed
+notes:
+  Oral calcium carbonate antacid, including children's chewables (ages 2 to 11). Most labels (291
+  of 519 single-ingredient labels on openFDA) replace the general pregnancy warning with a lower tablet
+  limit under "When using this product", rated 1, with no breastfeeding warning. rebound_overuse is 1
+  because the 2 week limit applies only to the maximum dosage. The kidney disease line is on a minority
+  of labels (20 of 519).

@@ -1,6 +1,5 @@
 unii: 10X0709Y6I
 name: bisacodyl
-review_status: unreviewed
 ratings:
   - dimension: liver
     persona: adult_18_64
@@ -210,18 +209,20 @@ ratings:
     persona: child_2_5
     severity: 2
     citations:
-      - source: otc_monograph
-        document_id: M007
-        section: Directions
-        quote: "children 2 to under 6 years of age: ask a doctor"
+      - source: fda_label
+        document_id: f1e4b28a-ed74-4eff-bd10-b2bfaf7483b0
+        section: "SPL v8: Directions (34068-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=f1e4b28a-ed74-4eff-bd10-b2bfaf7483b0
+        quote: children under 6 years of age ask a doctor
   - dimension: pediatric
     persona: under_2
-    severity: 3
+    severity: 2
     citations:
-      - source: otc_monograph
-        document_id: M007
-        section: Directions
-        quote: "children under 2 years of age: ask a doctor"
+      - source: fda_label
+        document_id: f1e4b28a-ed74-4eff-bd10-b2bfaf7483b0
+        section: "SPL v8: Directions (34068-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=f1e4b28a-ed74-4eff-bd10-b2bfaf7483b0
+        quote: children under 6 years of age ask a doctor
   - dimension: pediatric
     persona: pregnant
     severity: 0
@@ -230,113 +231,112 @@ ratings:
     severity: 0
   - dimension: rebound_overuse
     persona: adult_18_64
-    severity: 2
+    severity: 1
     citations:
-      - source: otc_monograph
-        document_id: M007
-        section: Warnings
-        quote:
-          Do not use laxative products when abdominal pain, nausea, or vomiting are present unless directed by a doctor.
-          Do not use for a period longer than 1 week unless directed by a doctor.
+      - source: fda_label
+        document_id: f1e4b28a-ed74-4eff-bd10-b2bfaf7483b0
+        section: "SPL v8: Stop use (50566-9)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=f1e4b28a-ed74-4eff-bd10-b2bfaf7483b0
+        quote: you need to use a laxative for more than 1 week
   - dimension: rebound_overuse
     persona: adult_65_plus
-    severity: 2
+    severity: 1
     citations:
-      - source: otc_monograph
-        document_id: M007
-        section: Warnings
-        quote:
-          Do not use laxative products when abdominal pain, nausea, or vomiting are present unless directed by a doctor.
-          Do not use for a period longer than 1 week unless directed by a doctor.
+      - source: fda_label
+        document_id: f1e4b28a-ed74-4eff-bd10-b2bfaf7483b0
+        section: "SPL v8: Stop use (50566-9)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=f1e4b28a-ed74-4eff-bd10-b2bfaf7483b0
+        quote: you need to use a laxative for more than 1 week
   - dimension: rebound_overuse
     persona: teen_12_17
-    severity: 2
+    severity: 1
     citations:
-      - source: otc_monograph
-        document_id: M007
-        section: Warnings
-        quote:
-          Do not use laxative products when abdominal pain, nausea, or vomiting are present unless directed by a doctor.
-          Do not use for a period longer than 1 week unless directed by a doctor.
+      - source: fda_label
+        document_id: f1e4b28a-ed74-4eff-bd10-b2bfaf7483b0
+        section: "SPL v8: Stop use (50566-9)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=f1e4b28a-ed74-4eff-bd10-b2bfaf7483b0
+        quote: you need to use a laxative for more than 1 week
   - dimension: rebound_overuse
     persona: child_6_11
-    severity: 2
+    severity: 1
     citations:
-      - source: otc_monograph
-        document_id: M007
-        section: Warnings
-        quote:
-          Do not use laxative products when abdominal pain, nausea, or vomiting are present unless directed by a doctor.
-          Do not use for a period longer than 1 week unless directed by a doctor.
+      - source: fda_label
+        document_id: f1e4b28a-ed74-4eff-bd10-b2bfaf7483b0
+        section: "SPL v8: Stop use (50566-9)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=f1e4b28a-ed74-4eff-bd10-b2bfaf7483b0
+        quote: you need to use a laxative for more than 1 week
   - dimension: rebound_overuse
     persona: child_2_5
-    severity: 2
+    severity: 1
     citations:
-      - source: otc_monograph
-        document_id: M007
-        section: Warnings
-        quote:
-          Do not use laxative products when abdominal pain, nausea, or vomiting are present unless directed by a doctor.
-          Do not use for a period longer than 1 week unless directed by a doctor.
+      - source: fda_label
+        document_id: f1e4b28a-ed74-4eff-bd10-b2bfaf7483b0
+        section: "SPL v8: Stop use (50566-9)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=f1e4b28a-ed74-4eff-bd10-b2bfaf7483b0
+        quote: you need to use a laxative for more than 1 week
   - dimension: rebound_overuse
     persona: under_2
-    severity: 2
+    severity: 1
     citations:
-      - source: otc_monograph
-        document_id: M007
-        section: Warnings
-        quote:
-          Do not use laxative products when abdominal pain, nausea, or vomiting are present unless directed by a doctor.
-          Do not use for a period longer than 1 week unless directed by a doctor.
+      - source: fda_label
+        document_id: f1e4b28a-ed74-4eff-bd10-b2bfaf7483b0
+        section: "SPL v8: Stop use (50566-9)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=f1e4b28a-ed74-4eff-bd10-b2bfaf7483b0
+        quote: you need to use a laxative for more than 1 week
   - dimension: rebound_overuse
-    persona: pregnant
-    severity: 2
-    citations:
-      - source: otc_monograph
-        document_id: M007
-        section: Warnings
-        quote:
-          Do not use laxative products when abdominal pain, nausea, or vomiting are present unless directed by a doctor.
-          Do not use for a period longer than 1 week unless directed by a doctor.
-  - dimension: rebound_overuse
-    persona: breastfeeding
-    severity: 2
-    citations:
-      - source: otc_monograph
-        document_id: M007
-        section: Warnings
-        quote:
-          Do not use laxative products when abdominal pain, nausea, or vomiting are present unless directed by a doctor.
-          Do not use for a period longer than 1 week unless directed by a doctor.
-  - dimension: pregnancy_lactation
-    persona: adult_18_64
-    severity: 0
-  - dimension: pregnancy_lactation
-    persona: adult_65_plus
-    severity: 0
-  - dimension: pregnancy_lactation
-    persona: teen_12_17
-    severity: 0
-  - dimension: pregnancy_lactation
-    persona: child_6_11
-    severity: 0
-  - dimension: pregnancy_lactation
-    persona: child_2_5
-    severity: 0
-  - dimension: pregnancy_lactation
-    persona: under_2
-    severity: 0
-  - dimension: pregnancy_lactation
     persona: pregnant
     severity: 1
     citations:
-      - source: otc_monograph
-        document_id: 21 CFR 201.63
-        section: Pregnancy/breast-feeding warning
-        quote: If pregnant or breast-feeding, ask a health professional before use.
+      - source: fda_label
+        document_id: f1e4b28a-ed74-4eff-bd10-b2bfaf7483b0
+        section: "SPL v8: Stop use (50566-9)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=f1e4b28a-ed74-4eff-bd10-b2bfaf7483b0
+        quote: you need to use a laxative for more than 1 week
+  - dimension: rebound_overuse
+    persona: breastfeeding
+    severity: 1
+    citations:
+      - source: fda_label
+        document_id: f1e4b28a-ed74-4eff-bd10-b2bfaf7483b0
+        section: "SPL v8: Stop use (50566-9)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=f1e4b28a-ed74-4eff-bd10-b2bfaf7483b0
+        quote: you need to use a laxative for more than 1 week
+  - dimension: pregnancy_lactation
+    persona: adult_18_64
+    severity: 0
+  - dimension: pregnancy_lactation
+    persona: adult_65_plus
+    severity: 0
+  - dimension: pregnancy_lactation
+    persona: teen_12_17
+    severity: 0
+  - dimension: pregnancy_lactation
+    persona: child_6_11
+    severity: 0
+  - dimension: pregnancy_lactation
+    persona: child_2_5
+    severity: 0
+  - dimension: pregnancy_lactation
+    persona: under_2
+    severity: 0
+  - dimension: pregnancy_lactation
+    persona: pregnant
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: f1e4b28a-ed74-4eff-bd10-b2bfaf7483b0
+        section: "SPL v8: Pregnancy or breast-feeding (53414-9)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=f1e4b28a-ed74-4eff-bd10-b2bfaf7483b0
+        quote: ask a health professional before use
   - dimension: pregnancy_lactation
     persona: breastfeeding
-    severity: 0
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: f1e4b28a-ed74-4eff-bd10-b2bfaf7483b0
+        section: "SPL v8: Pregnancy or breast-feeding (53414-9)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=f1e4b28a-ed74-4eff-bd10-b2bfaf7483b0
+        quote: ask a health professional before use
   - dimension: duplicate_dosing
     persona: adult_18_64
     severity: 0
@@ -434,3 +434,8 @@ ratings:
     persona: breastfeeding
     severity: 0
 modifiers: []
+review_status: unreviewed
+notes:
+  Oral bisacodyl tablets. rebound_overuse is 1 from the stop-use line on needing a laxative for more
+  than 1 week, as for magnesium hydroxide; the label has no "do not use for more than" limit. The pregnancy
+  quote leaves out the heading, which this SPL prints as "b reast-feeding".

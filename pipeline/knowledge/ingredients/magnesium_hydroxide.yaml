@@ -1,6 +1,5 @@
 unii: NBZ3QY004S
 name: magnesium hydroxide
-review_status: unreviewed
 ratings:
   - dimension: liver
     persona: adult_18_64
@@ -79,232 +78,264 @@ ratings:
     severity: 0
   - dimension: kidney
     persona: adult_65_plus
+    severity: 0
+  - dimension: kidney
+    persona: teen_12_17
+    severity: 0
+  - dimension: kidney
+    persona: child_6_11
+    severity: 0
+  - dimension: kidney
+    persona: child_2_5
+    severity: 0
+  - dimension: kidney
+    persona: under_2
+    severity: 0
+  - dimension: kidney
+    persona: pregnant
+    severity: 0
+  - dimension: kidney
+    persona: breastfeeding
+    severity: 0
+  - dimension: anticholinergic_cognitive
+    persona: adult_18_64
+    severity: 0
+  - dimension: anticholinergic_cognitive
+    persona: adult_65_plus
+    severity: 0
+  - dimension: anticholinergic_cognitive
+    persona: teen_12_17
+    severity: 0
+  - dimension: anticholinergic_cognitive
+    persona: child_6_11
+    severity: 0
+  - dimension: anticholinergic_cognitive
+    persona: child_2_5
+    severity: 0
+  - dimension: anticholinergic_cognitive
+    persona: under_2
+    severity: 0
+  - dimension: anticholinergic_cognitive
+    persona: pregnant
+    severity: 0
+  - dimension: anticholinergic_cognitive
+    persona: breastfeeding
+    severity: 0
+  - dimension: sedation_falls
+    persona: adult_18_64
+    severity: 0
+  - dimension: sedation_falls
+    persona: adult_65_plus
+    severity: 0
+  - dimension: sedation_falls
+    persona: teen_12_17
+    severity: 0
+  - dimension: sedation_falls
+    persona: child_6_11
+    severity: 0
+  - dimension: sedation_falls
+    persona: child_2_5
+    severity: 0
+  - dimension: sedation_falls
+    persona: under_2
+    severity: 0
+  - dimension: sedation_falls
+    persona: pregnant
+    severity: 0
+  - dimension: sedation_falls
+    persona: breastfeeding
+    severity: 0
+  - dimension: serotonergic_interactions
+    persona: adult_18_64
+    severity: 0
+  - dimension: serotonergic_interactions
+    persona: adult_65_plus
+    severity: 0
+  - dimension: serotonergic_interactions
+    persona: teen_12_17
+    severity: 0
+  - dimension: serotonergic_interactions
+    persona: child_6_11
+    severity: 0
+  - dimension: serotonergic_interactions
+    persona: child_2_5
+    severity: 0
+  - dimension: serotonergic_interactions
+    persona: under_2
+    severity: 0
+  - dimension: serotonergic_interactions
+    persona: pregnant
+    severity: 0
+  - dimension: serotonergic_interactions
+    persona: breastfeeding
+    severity: 0
+  - dimension: anticoagulant_bleeding
+    persona: adult_18_64
+    severity: 0
+  - dimension: anticoagulant_bleeding
+    persona: adult_65_plus
+    severity: 0
+  - dimension: anticoagulant_bleeding
+    persona: teen_12_17
+    severity: 0
+  - dimension: anticoagulant_bleeding
+    persona: child_6_11
+    severity: 0
+  - dimension: anticoagulant_bleeding
+    persona: child_2_5
+    severity: 0
+  - dimension: anticoagulant_bleeding
+    persona: under_2
+    severity: 0
+  - dimension: anticoagulant_bleeding
+    persona: pregnant
+    severity: 0
+  - dimension: anticoagulant_bleeding
+    persona: breastfeeding
+    severity: 0
+  - dimension: pediatric
+    persona: adult_18_64
+    severity: 0
+  - dimension: pediatric
+    persona: adult_65_plus
+    severity: 0
+  - dimension: pediatric
+    persona: teen_12_17
+    severity: 0
+  - dimension: pediatric
+    persona: child_6_11
+    severity: 0
+  - dimension: pediatric
+    persona: child_2_5
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 0a57bb45-d4f7-443b-e054-00144ff8d46c
+        section: "SPL v10: Directions (34068-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0a57bb45-d4f7-443b-e054-00144ff8d46c
+        quote: children under 6 years ask a doctor
+  - dimension: pediatric
+    persona: under_2
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 0a57bb45-d4f7-443b-e054-00144ff8d46c
+        section: "SPL v10: Directions (34068-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0a57bb45-d4f7-443b-e054-00144ff8d46c
+        quote: children under 6 years ask a doctor
+  - dimension: pediatric
+    persona: pregnant
+    severity: 0
+  - dimension: pediatric
+    persona: breastfeeding
+    severity: 0
+  - dimension: rebound_overuse
+    persona: adult_18_64
     severity: 1
     citations:
       - source: fda_label
-        document_id: 5faf2ed0-dd71-17c9-e053-2a91aa0ab75a
-        section: Ask a doctor before use if you have
-        quote: "Ask a doctor before use if you have: kidney disease"
-  - dimension: kidney
+        document_id: 0a57bb45-d4f7-443b-e054-00144ff8d46c
+        section: "SPL v10: Stop use (50566-9)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0a57bb45-d4f7-443b-e054-00144ff8d46c
+        quote: you need to use a laxative for more than 1 week
+  - dimension: rebound_overuse
+    persona: adult_65_plus
+    severity: 1
+    citations:
+      - source: fda_label
+        document_id: 0a57bb45-d4f7-443b-e054-00144ff8d46c
+        section: "SPL v10: Stop use (50566-9)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0a57bb45-d4f7-443b-e054-00144ff8d46c
+        quote: you need to use a laxative for more than 1 week
+  - dimension: rebound_overuse
     persona: teen_12_17
-    severity: 0
-  - dimension: kidney
+    severity: 1
+    citations:
+      - source: fda_label
+        document_id: 0a57bb45-d4f7-443b-e054-00144ff8d46c
+        section: "SPL v10: Stop use (50566-9)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0a57bb45-d4f7-443b-e054-00144ff8d46c
+        quote: you need to use a laxative for more than 1 week
+  - dimension: rebound_overuse
     persona: child_6_11
-    severity: 0
-  - dimension: kidney
+    severity: 1
+    citations:
+      - source: fda_label
+        document_id: 0a57bb45-d4f7-443b-e054-00144ff8d46c
+        section: "SPL v10: Stop use (50566-9)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0a57bb45-d4f7-443b-e054-00144ff8d46c
+        quote: you need to use a laxative for more than 1 week
+  - dimension: rebound_overuse
     persona: child_2_5
-    severity: 0
-  - dimension: kidney
+    severity: 1
+    citations:
+      - source: fda_label
+        document_id: 0a57bb45-d4f7-443b-e054-00144ff8d46c
+        section: "SPL v10: Stop use (50566-9)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0a57bb45-d4f7-443b-e054-00144ff8d46c
+        quote: you need to use a laxative for more than 1 week
+  - dimension: rebound_overuse
     persona: under_2
-    severity: 0
-  - dimension: kidney
+    severity: 1
+    citations:
+      - source: fda_label
+        document_id: 0a57bb45-d4f7-443b-e054-00144ff8d46c
+        section: "SPL v10: Stop use (50566-9)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0a57bb45-d4f7-443b-e054-00144ff8d46c
+        quote: you need to use a laxative for more than 1 week
+  - dimension: rebound_overuse
     persona: pregnant
-    severity: 0
-  - dimension: kidney
+    severity: 1
+    citations:
+      - source: fda_label
+        document_id: 0a57bb45-d4f7-443b-e054-00144ff8d46c
+        section: "SPL v10: Stop use (50566-9)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0a57bb45-d4f7-443b-e054-00144ff8d46c
+        quote: you need to use a laxative for more than 1 week
+  - dimension: rebound_overuse
     persona: breastfeeding
-    severity: 0
-  - dimension: anticholinergic_cognitive
+    severity: 1
+    citations:
+      - source: fda_label
+        document_id: 0a57bb45-d4f7-443b-e054-00144ff8d46c
+        section: "SPL v10: Stop use (50566-9)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0a57bb45-d4f7-443b-e054-00144ff8d46c
+        quote: you need to use a laxative for more than 1 week
+  - dimension: pregnancy_lactation
     persona: adult_18_64
     severity: 0
-  - dimension: anticholinergic_cognitive
+  - dimension: pregnancy_lactation
     persona: adult_65_plus
     severity: 0
-  - dimension: anticholinergic_cognitive
+  - dimension: pregnancy_lactation
     persona: teen_12_17
     severity: 0
-  - dimension: anticholinergic_cognitive
+  - dimension: pregnancy_lactation
     persona: child_6_11
     severity: 0
-  - dimension: anticholinergic_cognitive
+  - dimension: pregnancy_lactation
     persona: child_2_5
     severity: 0
-  - dimension: anticholinergic_cognitive
+  - dimension: pregnancy_lactation
     persona: under_2
     severity: 0
-  - dimension: anticholinergic_cognitive
+  - dimension: pregnancy_lactation
     persona: pregnant
-    severity: 0
-  - dimension: anticholinergic_cognitive
-    persona: breastfeeding
-    severity: 0
-  - dimension: sedation_falls
-    persona: adult_18_64
-    severity: 0
-  - dimension: sedation_falls
-    persona: adult_65_plus
-    severity: 0
-  - dimension: sedation_falls
-    persona: teen_12_17
-    severity: 0
-  - dimension: sedation_falls
-    persona: child_6_11
-    severity: 0
-  - dimension: sedation_falls
-    persona: child_2_5
-    severity: 0
-  - dimension: sedation_falls
-    persona: under_2
-    severity: 0
-  - dimension: sedation_falls
-    persona: pregnant
-    severity: 0
-  - dimension: sedation_falls
-    persona: breastfeeding
-    severity: 0
-  - dimension: serotonergic_interactions
-    persona: adult_18_64
-    severity: 0
-  - dimension: serotonergic_interactions
-    persona: adult_65_plus
-    severity: 0
-  - dimension: serotonergic_interactions
-    persona: teen_12_17
-    severity: 0
-  - dimension: serotonergic_interactions
-    persona: child_6_11
-    severity: 0
-  - dimension: serotonergic_interactions
-    persona: child_2_5
-    severity: 0
-  - dimension: serotonergic_interactions
-    persona: under_2
-    severity: 0
-  - dimension: serotonergic_interactions
-    persona: pregnant
-    severity: 0
-  - dimension: serotonergic_interactions
-    persona: breastfeeding
-    severity: 0
-  - dimension: anticoagulant_bleeding
-    persona: adult_18_64
-    severity: 0
-  - dimension: anticoagulant_bleeding
-    persona: adult_65_plus
-    severity: 0
-  - dimension: anticoagulant_bleeding
-    persona: teen_12_17
-    severity: 0
-  - dimension: anticoagulant_bleeding
-    persona: child_6_11
-    severity: 0
-  - dimension: anticoagulant_bleeding
-    persona: child_2_5
-    severity: 0
-  - dimension: anticoagulant_bleeding
-    persona: under_2
-    severity: 0
-  - dimension: anticoagulant_bleeding
-    persona: pregnant
-    severity: 0
-  - dimension: anticoagulant_bleeding
-    persona: breastfeeding
-    severity: 0
-  - dimension: pediatric
-    persona: adult_18_64
-    severity: 0
-  - dimension: pediatric
-    persona: adult_65_plus
-    severity: 0
-  - dimension: pediatric
-    persona: teen_12_17
-    severity: 0
-  - dimension: pediatric
-    persona: child_6_11
-    severity: 0
-  - dimension: pediatric
-    persona: child_2_5
     severity: 2
     citations:
-      - source: otc_monograph
-        document_id: M007
-        section: Directions - pediatric dosing
-        quote: "children under 6 years: ask a doctor"
-  - dimension: pediatric
-    persona: under_2
-    severity: 2
-    citations:
-      - source: otc_monograph
-        document_id: M007
-        section: Directions - pediatric dosing
-        quote: "children under 2 years: ask a doctor"
-  - dimension: pediatric
-    persona: pregnant
-    severity: 0
-  - dimension: pediatric
-    persona: breastfeeding
-    severity: 0
-  - dimension: rebound_overuse
-    persona: adult_18_64
-    severity: 1
-    citations:
-      - source: otc_monograph
-        document_id: M007
-        section: Laxative warnings - duration of use
-        quote: Do not use for a period longer than 1 week unless directed by a doctor.
-  - dimension: rebound_overuse
-    persona: adult_65_plus
-    severity: 1
-    citations:
-      - source: otc_monograph
-        document_id: M007
-        section: Laxative warnings - duration of use
-        quote: Do not use for a period longer than 1 week unless directed by a doctor.
-  - dimension: rebound_overuse
-    persona: teen_12_17
-    severity: 1
-    citations:
-      - source: otc_monograph
-        document_id: M007
-        section: Laxative warnings - duration of use
-        quote: Do not use for a period longer than 1 week unless directed by a doctor.
-  - dimension: rebound_overuse
-    persona: child_6_11
-    severity: 0
-  - dimension: rebound_overuse
-    persona: child_2_5
-    severity: 0
-  - dimension: rebound_overuse
-    persona: under_2
-    severity: 0
-  - dimension: rebound_overuse
-    persona: pregnant
-    severity: 0
-  - dimension: rebound_overuse
-    persona: breastfeeding
-    severity: 0
-  - dimension: pregnancy_lactation
-    persona: adult_18_64
-    severity: 0
-  - dimension: pregnancy_lactation
-    persona: adult_65_plus
-    severity: 0
-  - dimension: pregnancy_lactation
-    persona: teen_12_17
-    severity: 0
-  - dimension: pregnancy_lactation
-    persona: child_6_11
-    severity: 0
-  - dimension: pregnancy_lactation
-    persona: child_2_5
-    severity: 0
-  - dimension: pregnancy_lactation
-    persona: under_2
-    severity: 0
-  - dimension: pregnancy_lactation
-    persona: pregnant
-    severity: 1
-    citations:
-      - source: otc_monograph
-        document_id: 21 CFR 201.63
-        section: Pregnancy/breast-feeding warning
+      - source: fda_label
+        document_id: 0a57bb45-d4f7-443b-e054-00144ff8d46c
+        section: "SPL v10: Pregnancy or breast-feeding (53414-9)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0a57bb45-d4f7-443b-e054-00144ff8d46c
         quote: If pregnant or breast-feeding, ask a health professional before use.
   - dimension: pregnancy_lactation
     persona: breastfeeding
-    severity: 1
+    severity: 2
     citations:
-      - source: otc_monograph
-        document_id: 21 CFR 201.63
-        section: Pregnancy/breast-feeding warning
+      - source: fda_label
+        document_id: 0a57bb45-d4f7-443b-e054-00144ff8d46c
+        section: "SPL v10: Pregnancy or breast-feeding (53414-9)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0a57bb45-d4f7-443b-e054-00144ff8d46c
         quote: If pregnant or breast-feeding, ask a health professional before use.
   - dimension: duplicate_dosing
     persona: adult_18_64
@@ -408,14 +439,12 @@ modifiers:
     severity_change: 2
     citations:
       - source: fda_label
-        document_id: 5faf2ed0-dd71-17c9-e053-2a91aa0ab75a
-        section: Ask a doctor before use if you have
-        quote: "Ask a doctor before use if you have: kidney disease"
-  - dimension: kidney
-    medication_type: diuretics
-    severity_change: 1
-    citations:
-      - source: otc_monograph
-        document_id: M007
-        section: Drug interaction precaution
-        quote: Ask a doctor or pharmacist before use if you are taking a prescription drug.
+        document_id: 0a57bb45-d4f7-443b-e054-00144ff8d46c
+        section: "SPL v10: Ask a doctor (50569-3)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0a57bb45-d4f7-443b-e054-00144ff8d46c
+        quote: kidney disease
+review_status: unreviewed
+notes:
+  Oral magnesium hydroxide (milk of magnesia). Kidney disease is a modifier (clearance precaution),
+  with no baseline. The label's "taking a prescription drug" line names no drug class, so there is no
+  medication modifier.

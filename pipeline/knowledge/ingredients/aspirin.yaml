@@ -1,6 +1,5 @@
 unii: R16CO5Y76E
 name: aspirin
-review_status: unreviewed
 ratings:
   - dimension: liver
     persona: adult_18_64
@@ -32,116 +31,83 @@ ratings:
     citations:
       - source: otc_monograph
         document_id: 21 CFR 201.326
-        section: Stomach bleeding warning
-        quote: "This product contains an NSAID, which may cause severe stomach bleeding.
-          The chance is higher if you: are age 60 or older; have had stomach ulcers
-          or bleeding problems; take a blood thinning (anticoagulant) or steroid drug;
-          take other drugs containing prescription or nonprescription NSAIDs; have
-          3 or more alcoholic drinks every day while using this product; take more
-          or for a longer time than directed."
+        section: (a)(2)(iii)(A)
+        url: https://www.ecfr.gov/current/title-21/section-201.326
+        quote: This product contains an NSAID, which may cause severe stomach bleeding.
   - dimension: gi_bleeding
     persona: adult_65_plus
     severity: 3
     citations:
       - source: otc_monograph
         document_id: 21 CFR 201.326
-        section: Stomach bleeding warning
-        quote: "This product contains an NSAID, which may cause severe stomach bleeding.
-          The chance is higher if you: are age 60 or older; have had stomach ulcers
-          or bleeding problems; take a blood thinning (anticoagulant) or steroid drug;
-          take other drugs containing prescription or nonprescription NSAIDs; have
-          3 or more alcoholic drinks every day while using this product; take more
-          or for a longer time than directed."
+        section: (a)(2)(iii)(A)
+        url: https://www.ecfr.gov/current/title-21/section-201.326
+        quote: This product contains an NSAID, which may cause severe stomach bleeding.
+      - source: otc_monograph
+        document_id: 21 CFR 201.326
+        section: (a)(2)(iii)(A)
+        url: https://www.ecfr.gov/current/title-21/section-201.326
+        quote: are age 60 or older
   - dimension: gi_bleeding
     persona: teen_12_17
     severity: 2
     citations:
       - source: otc_monograph
         document_id: 21 CFR 201.326
-        section: Stomach bleeding warning
-        quote: "This product contains an NSAID, which may cause severe stomach bleeding.
-          The chance is higher if you: are age 60 or older; have had stomach ulcers
-          or bleeding problems; take a blood thinning (anticoagulant) or steroid drug;
-          take other drugs containing prescription or nonprescription NSAIDs; have
-          3 or more alcoholic drinks every day while using this product; take more
-          or for a longer time than directed."
+        section: (a)(2)(iii)(A)
+        url: https://www.ecfr.gov/current/title-21/section-201.326
+        quote: This product contains an NSAID, which may cause severe stomach bleeding.
   - dimension: gi_bleeding
     persona: child_6_11
     severity: 2
     citations:
       - source: otc_monograph
         document_id: 21 CFR 201.326
-        section: Stomach bleeding warning
-        quote: "This product contains an NSAID, which may cause severe stomach bleeding.
-          The chance is higher if you: are age 60 or older; have had stomach ulcers
-          or bleeding problems; take a blood thinning (anticoagulant) or steroid drug;
-          take other drugs containing prescription or nonprescription NSAIDs; have
-          3 or more alcoholic drinks every day while using this product; take more
-          or for a longer time than directed."
+        section: (a)(2)(iii)(A)
+        url: https://www.ecfr.gov/current/title-21/section-201.326
+        quote: This product contains an NSAID, which may cause severe stomach bleeding.
   - dimension: gi_bleeding
     persona: child_2_5
     severity: 2
     citations:
       - source: otc_monograph
         document_id: 21 CFR 201.326
-        section: Stomach bleeding warning
-        quote: "This product contains an NSAID, which may cause severe stomach bleeding.
-          The chance is higher if you: are age 60 or older; have had stomach ulcers
-          or bleeding problems; take a blood thinning (anticoagulant) or steroid drug;
-          take other drugs containing prescription or nonprescription NSAIDs; have
-          3 or more alcoholic drinks every day while using this product; take more
-          or for a longer time than directed."
+        section: (a)(2)(iii)(A)
+        url: https://www.ecfr.gov/current/title-21/section-201.326
+        quote: This product contains an NSAID, which may cause severe stomach bleeding.
   - dimension: gi_bleeding
     persona: under_2
     severity: 2
     citations:
       - source: otc_monograph
         document_id: 21 CFR 201.326
-        section: Stomach bleeding warning
-        quote: "This product contains an NSAID, which may cause severe stomach bleeding.
-          The chance is higher if you: are age 60 or older; have had stomach ulcers
-          or bleeding problems; take a blood thinning (anticoagulant) or steroid drug;
-          take other drugs containing prescription or nonprescription NSAIDs; have
-          3 or more alcoholic drinks every day while using this product; take more
-          or for a longer time than directed."
+        section: (a)(2)(iii)(A)
+        url: https://www.ecfr.gov/current/title-21/section-201.326
+        quote: This product contains an NSAID, which may cause severe stomach bleeding.
   - dimension: gi_bleeding
     persona: pregnant
     severity: 2
     citations:
       - source: otc_monograph
         document_id: 21 CFR 201.326
-        section: Stomach bleeding warning
-        quote: "This product contains an NSAID, which may cause severe stomach bleeding.
-          The chance is higher if you: are age 60 or older; have had stomach ulcers
-          or bleeding problems; take a blood thinning (anticoagulant) or steroid drug;
-          take other drugs containing prescription or nonprescription NSAIDs; have
-          3 or more alcoholic drinks every day while using this product; take more
-          or for a longer time than directed."
+        section: (a)(2)(iii)(A)
+        url: https://www.ecfr.gov/current/title-21/section-201.326
+        quote: This product contains an NSAID, which may cause severe stomach bleeding.
   - dimension: gi_bleeding
     persona: breastfeeding
     severity: 2
     citations:
       - source: otc_monograph
         document_id: 21 CFR 201.326
-        section: Stomach bleeding warning
-        quote: "This product contains an NSAID, which may cause severe stomach bleeding.
-          The chance is higher if you: are age 60 or older; have had stomach ulcers
-          or bleeding problems; take a blood thinning (anticoagulant) or steroid drug;
-          take other drugs containing prescription or nonprescription NSAIDs; have
-          3 or more alcoholic drinks every day while using this product; take more
-          or for a longer time than directed."
+        section: (a)(2)(iii)(A)
+        url: https://www.ecfr.gov/current/title-21/section-201.326
+        quote: This product contains an NSAID, which may cause severe stomach bleeding.
   - dimension: cardiovascular_bp
     persona: adult_18_64
     severity: 0
   - dimension: cardiovascular_bp
     persona: adult_65_plus
-    severity: 1
-    citations:
-      - source: stopp_start
-        document_id: 10.1007/s41999-023-00777-y
-        section: STOPP v3 Section B (Cardiovascular System), Criterion 19
-        quote: NSAIDs or systemic corticosteroids with concurrent heart failure requiring
-          loop diuretic therapy (risk of exacerbation of heart failure).
+    severity: 0
   - dimension: cardiovascular_bp
     persona: teen_12_17
     severity: 0
@@ -166,36 +132,112 @@ ratings:
     citations:
       - source: fda_label
         document_id: 0c6ae05f-7634-34d1-e054-00144ff88e88
-        section: Ask a doctor before use if
-        quote: "Ask a doctor before use if you have: high blood pressure, heart disease,
-          liver cirrhosis, kidney disease, asthma, or are taking a diuretic."
+        section: "SPL v6: Ask a doctor (50569-3)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0c6ae05f-7634-34d1-e054-00144ff88e88
+        quote: you have high blood pressure, heart disease, liver cirrhosis, or kidney disease
+      - source: fda_label
+        document_id: 0c6ae05f-7634-34d1-e054-00144ff88e88
+        section: "SPL v6: Ask a doctor (50569-3)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0c6ae05f-7634-34d1-e054-00144ff88e88
+        quote: you are taking a diuretic
   - dimension: kidney
     persona: adult_65_plus
     severity: 2
     citations:
       - source: fda_label
         document_id: 0c6ae05f-7634-34d1-e054-00144ff88e88
-        section: Ask a doctor before use if
-        quote: "Ask a doctor before use if you have: high blood pressure, heart disease,
-          liver cirrhosis, kidney disease, asthma, or are taking a diuretic."
+        section: "SPL v6: Ask a doctor (50569-3)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0c6ae05f-7634-34d1-e054-00144ff88e88
+        quote: you have high blood pressure, heart disease, liver cirrhosis, or kidney disease
+      - source: fda_label
+        document_id: 0c6ae05f-7634-34d1-e054-00144ff88e88
+        section: "SPL v6: Ask a doctor (50569-3)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0c6ae05f-7634-34d1-e054-00144ff88e88
+        quote: you are taking a diuretic
   - dimension: kidney
     persona: teen_12_17
-    severity: 0
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 0c6ae05f-7634-34d1-e054-00144ff88e88
+        section: "SPL v6: Ask a doctor (50569-3)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0c6ae05f-7634-34d1-e054-00144ff88e88
+        quote: you have high blood pressure, heart disease, liver cirrhosis, or kidney disease
+      - source: fda_label
+        document_id: 0c6ae05f-7634-34d1-e054-00144ff88e88
+        section: "SPL v6: Ask a doctor (50569-3)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0c6ae05f-7634-34d1-e054-00144ff88e88
+        quote: you are taking a diuretic
   - dimension: kidney
     persona: child_6_11
-    severity: 0
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 0c6ae05f-7634-34d1-e054-00144ff88e88
+        section: "SPL v6: Ask a doctor (50569-3)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0c6ae05f-7634-34d1-e054-00144ff88e88
+        quote: you have high blood pressure, heart disease, liver cirrhosis, or kidney disease
+      - source: fda_label
+        document_id: 0c6ae05f-7634-34d1-e054-00144ff88e88
+        section: "SPL v6: Ask a doctor (50569-3)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0c6ae05f-7634-34d1-e054-00144ff88e88
+        quote: you are taking a diuretic
   - dimension: kidney
     persona: child_2_5
-    severity: 0
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 0c6ae05f-7634-34d1-e054-00144ff88e88
+        section: "SPL v6: Ask a doctor (50569-3)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0c6ae05f-7634-34d1-e054-00144ff88e88
+        quote: you have high blood pressure, heart disease, liver cirrhosis, or kidney disease
+      - source: fda_label
+        document_id: 0c6ae05f-7634-34d1-e054-00144ff88e88
+        section: "SPL v6: Ask a doctor (50569-3)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0c6ae05f-7634-34d1-e054-00144ff88e88
+        quote: you are taking a diuretic
   - dimension: kidney
     persona: under_2
-    severity: 0
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 0c6ae05f-7634-34d1-e054-00144ff88e88
+        section: "SPL v6: Ask a doctor (50569-3)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0c6ae05f-7634-34d1-e054-00144ff88e88
+        quote: you have high blood pressure, heart disease, liver cirrhosis, or kidney disease
+      - source: fda_label
+        document_id: 0c6ae05f-7634-34d1-e054-00144ff88e88
+        section: "SPL v6: Ask a doctor (50569-3)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0c6ae05f-7634-34d1-e054-00144ff88e88
+        quote: you are taking a diuretic
   - dimension: kidney
     persona: pregnant
-    severity: 0
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 0c6ae05f-7634-34d1-e054-00144ff88e88
+        section: "SPL v6: Ask a doctor (50569-3)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0c6ae05f-7634-34d1-e054-00144ff88e88
+        quote: you have high blood pressure, heart disease, liver cirrhosis, or kidney disease
+      - source: fda_label
+        document_id: 0c6ae05f-7634-34d1-e054-00144ff88e88
+        section: "SPL v6: Ask a doctor (50569-3)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0c6ae05f-7634-34d1-e054-00144ff88e88
+        quote: you are taking a diuretic
   - dimension: kidney
     persona: breastfeeding
-    severity: 0
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 0c6ae05f-7634-34d1-e054-00144ff88e88
+        section: "SPL v6: Ask a doctor (50569-3)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0c6ae05f-7634-34d1-e054-00144ff88e88
+        quote: you have high blood pressure, heart disease, liver cirrhosis, or kidney disease
+      - source: fda_label
+        document_id: 0c6ae05f-7634-34d1-e054-00144ff88e88
+        section: "SPL v6: Ask a doctor (50569-3)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0c6ae05f-7634-34d1-e054-00144ff88e88
+        quote: you are taking a diuretic
   - dimension: anticholinergic_cognitive
     persona: adult_18_64
     severity: 0
@@ -270,76 +312,28 @@ ratings:
     severity: 0
   - dimension: anticoagulant_bleeding
     persona: adult_18_64
-    severity: 2
-    citations:
-      - source: fda_label
-        document_id: 0c6ae05f-7634-34d1-e054-00144ff88e88
-        section: Warnings
-        quote: "Ask a doctor or pharmacist before use if you are taking: a blood thinning
-          (anticoagulant) or steroid drug."
+    severity: 0
   - dimension: anticoagulant_bleeding
     persona: adult_65_plus
-    severity: 2
-    citations:
-      - source: fda_label
-        document_id: 0c6ae05f-7634-34d1-e054-00144ff88e88
-        section: Warnings
-        quote: "Ask a doctor or pharmacist before use if you are taking: a blood thinning
-          (anticoagulant) or steroid drug."
+    severity: 0
   - dimension: anticoagulant_bleeding
     persona: teen_12_17
-    severity: 2
-    citations:
-      - source: fda_label
-        document_id: 0c6ae05f-7634-34d1-e054-00144ff88e88
-        section: Warnings
-        quote: "Ask a doctor or pharmacist before use if you are taking: a blood thinning
-          (anticoagulant) or steroid drug."
+    severity: 0
   - dimension: anticoagulant_bleeding
     persona: child_6_11
-    severity: 2
-    citations:
-      - source: fda_label
-        document_id: 0c6ae05f-7634-34d1-e054-00144ff88e88
-        section: Warnings
-        quote: "Ask a doctor or pharmacist before use if you are taking: a blood thinning
-          (anticoagulant) or steroid drug."
+    severity: 0
   - dimension: anticoagulant_bleeding
     persona: child_2_5
-    severity: 2
-    citations:
-      - source: fda_label
-        document_id: 0c6ae05f-7634-34d1-e054-00144ff88e88
-        section: Warnings
-        quote: "Ask a doctor or pharmacist before use if you are taking: a blood thinning
-          (anticoagulant) or steroid drug."
+    severity: 0
   - dimension: anticoagulant_bleeding
     persona: under_2
-    severity: 2
-    citations:
-      - source: fda_label
-        document_id: 0c6ae05f-7634-34d1-e054-00144ff88e88
-        section: Warnings
-        quote: "Ask a doctor or pharmacist before use if you are taking: a blood thinning
-          (anticoagulant) or steroid drug."
+    severity: 0
   - dimension: anticoagulant_bleeding
     persona: pregnant
-    severity: 2
-    citations:
-      - source: fda_label
-        document_id: 0c6ae05f-7634-34d1-e054-00144ff88e88
-        section: Warnings
-        quote: "Ask a doctor or pharmacist before use if you are taking: a blood thinning
-          (anticoagulant) or steroid drug."
+    severity: 0
   - dimension: anticoagulant_bleeding
     persona: breastfeeding
-    severity: 2
-    citations:
-      - source: fda_label
-        document_id: 0c6ae05f-7634-34d1-e054-00144ff88e88
-        section: Warnings
-        quote: "Ask a doctor or pharmacist before use if you are taking: a blood thinning
-          (anticoagulant) or steroid drug."
+    severity: 0
   - dimension: pediatric
     persona: adult_18_64
     severity: 0
@@ -352,48 +346,44 @@ ratings:
     citations:
       - source: otc_monograph
         document_id: 21 CFR 201.314
-        section: Reye's syndrome warning
-        quote: "Reye's syndrome: Children and teenagers who have or are recovering
-          from chicken pox or flu-like symptoms should not use this product. When
-          using this product, if changes in behavior with nausea and vomiting occur,
-          consult a doctor because these symptoms could be an early sign of Reye's
-          syndrome, a rare but serious illness."
+        section: (h)(1)
+        url: https://www.ecfr.gov/current/title-21/section-201.314
+        quote:
+          Children and teenagers who have or are recovering from chicken pox or flu-like symptoms should
+          not use this product.
   - dimension: pediatric
     persona: child_6_11
     severity: 3
     citations:
       - source: otc_monograph
         document_id: 21 CFR 201.314
-        section: Reye's syndrome warning
-        quote: "Reye's syndrome: Children and teenagers who have or are recovering
-          from chicken pox or flu-like symptoms should not use this product. When
-          using this product, if changes in behavior with nausea and vomiting occur,
-          consult a doctor because these symptoms could be an early sign of Reye's
-          syndrome, a rare but serious illness."
+        section: (h)(1)
+        url: https://www.ecfr.gov/current/title-21/section-201.314
+        quote:
+          Children and teenagers who have or are recovering from chicken pox or flu-like symptoms should
+          not use this product.
   - dimension: pediatric
     persona: child_2_5
     severity: 3
     citations:
       - source: otc_monograph
         document_id: 21 CFR 201.314
-        section: Reye's syndrome warning
-        quote: "Reye's syndrome: Children and teenagers who have or are recovering
-          from chicken pox or flu-like symptoms should not use this product. When
-          using this product, if changes in behavior with nausea and vomiting occur,
-          consult a doctor because these symptoms could be an early sign of Reye's
-          syndrome, a rare but serious illness."
+        section: (h)(1)
+        url: https://www.ecfr.gov/current/title-21/section-201.314
+        quote:
+          Children and teenagers who have or are recovering from chicken pox or flu-like symptoms should
+          not use this product.
   - dimension: pediatric
     persona: under_2
     severity: 3
     citations:
       - source: otc_monograph
         document_id: 21 CFR 201.314
-        section: Reye's syndrome warning
-        quote: "Reye's syndrome: Children and teenagers who have or are recovering
-          from chicken pox or flu-like symptoms should not use this product. When
-          using this product, if changes in behavior with nausea and vomiting occur,
-          consult a doctor because these symptoms could be an early sign of Reye's
-          syndrome, a rare but serious illness."
+        section: (h)(1)
+        url: https://www.ecfr.gov/current/title-21/section-201.314
+        quote:
+          Children and teenagers who have or are recovering from chicken pox or flu-like symptoms should
+          not use this product.
   - dimension: pediatric
     persona: pregnant
     severity: 0
@@ -448,92 +438,113 @@ ratings:
     citations:
       - source: fda_label
         document_id: 0c6ae05f-7634-34d1-e054-00144ff88e88
-        section: Pregnancy/breast-feeding warning
+        section: "SPL v6: Pregnancy or breast-feeding (53414-9)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0c6ae05f-7634-34d1-e054-00144ff88e88
+        quote:
+          It is especially important not to use aspirin during the last 3 months of pregnancy unless
+          definitely directed to do so by a doctor
+      - source: otc_monograph
+        document_id: 21 CFR 201.63
+        section: (e)
+        url: https://www.ecfr.gov/current/title-21/section-201.63
+        quote: during the last 3 months of pregnancy unless definitely directed to do so by a doctor
+  - dimension: pregnancy_lactation
+    persona: breastfeeding
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 0c6ae05f-7634-34d1-e054-00144ff88e88
+        section: "SPL v6: Pregnancy or breast-feeding (53414-9)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0c6ae05f-7634-34d1-e054-00144ff88e88
         quote: If pregnant or breast-feeding, ask a health professional before use.
-          It is especially important not to use aspirin at 20 weeks or later in pregnancy
-          unless definitely directed to do so by a doctor because it may cause problems
-          in the unborn child or complications during delivery.
-  - dimension: pregnancy_lactation
-    persona: breastfeeding
-    severity: 2
-    citations:
-      - source: publication
-        document_id: 10.1542/peds.108.3.776
-        section: American Academy of Pediatrics Committee on Drugs
-        quote: "Aspirin: Reported Sign or Symptom in Infant or Effect on Lactation:
-          Metabolic acidosis (1 case reported)"
   - dimension: duplicate_dosing
     persona: adult_18_64
     severity: 2
     citations:
       - source: fda_label
         document_id: 0c6ae05f-7634-34d1-e054-00144ff88e88
-        section: Warnings
-        quote: "Ask a doctor or pharmacist before use if you are taking: any other
-          drug containing prescription or nonprescription NSAIDs."
+        section: "SPL v6: Warnings (34071-1)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0c6ae05f-7634-34d1-e054-00144ff88e88
+        quote:
+          take other drugs containing prescription or nonprescription NSAIDs (aspirin, ibuprofen, naproxen,
+          or others)
   - dimension: duplicate_dosing
     persona: adult_65_plus
     severity: 2
     citations:
       - source: fda_label
         document_id: 0c6ae05f-7634-34d1-e054-00144ff88e88
-        section: Warnings
-        quote: "Ask a doctor or pharmacist before use if you are taking: any other
-          drug containing prescription or nonprescription NSAIDs."
+        section: "SPL v6: Warnings (34071-1)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0c6ae05f-7634-34d1-e054-00144ff88e88
+        quote:
+          take other drugs containing prescription or nonprescription NSAIDs (aspirin, ibuprofen, naproxen,
+          or others)
   - dimension: duplicate_dosing
     persona: teen_12_17
     severity: 2
     citations:
       - source: fda_label
         document_id: 0c6ae05f-7634-34d1-e054-00144ff88e88
-        section: Warnings
-        quote: "Ask a doctor or pharmacist before use if you are taking: any other
-          drug containing prescription or nonprescription NSAIDs."
+        section: "SPL v6: Warnings (34071-1)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0c6ae05f-7634-34d1-e054-00144ff88e88
+        quote:
+          take other drugs containing prescription or nonprescription NSAIDs (aspirin, ibuprofen, naproxen,
+          or others)
   - dimension: duplicate_dosing
     persona: child_6_11
     severity: 2
     citations:
       - source: fda_label
         document_id: 0c6ae05f-7634-34d1-e054-00144ff88e88
-        section: Warnings
-        quote: "Ask a doctor or pharmacist before use if you are taking: any other
-          drug containing prescription or nonprescription NSAIDs."
+        section: "SPL v6: Warnings (34071-1)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0c6ae05f-7634-34d1-e054-00144ff88e88
+        quote:
+          take other drugs containing prescription or nonprescription NSAIDs (aspirin, ibuprofen, naproxen,
+          or others)
   - dimension: duplicate_dosing
     persona: child_2_5
     severity: 2
     citations:
       - source: fda_label
         document_id: 0c6ae05f-7634-34d1-e054-00144ff88e88
-        section: Warnings
-        quote: "Ask a doctor or pharmacist before use if you are taking: any other
-          drug containing prescription or nonprescription NSAIDs."
+        section: "SPL v6: Warnings (34071-1)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0c6ae05f-7634-34d1-e054-00144ff88e88
+        quote:
+          take other drugs containing prescription or nonprescription NSAIDs (aspirin, ibuprofen, naproxen,
+          or others)
   - dimension: duplicate_dosing
     persona: under_2
     severity: 2
     citations:
       - source: fda_label
         document_id: 0c6ae05f-7634-34d1-e054-00144ff88e88
-        section: Warnings
-        quote: "Ask a doctor or pharmacist before use if you are taking: any other
-          drug containing prescription or nonprescription NSAIDs."
+        section: "SPL v6: Warnings (34071-1)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0c6ae05f-7634-34d1-e054-00144ff88e88
+        quote:
+          take other drugs containing prescription or nonprescription NSAIDs (aspirin, ibuprofen, naproxen,
+          or others)
   - dimension: duplicate_dosing
     persona: pregnant
     severity: 2
     citations:
       - source: fda_label
         document_id: 0c6ae05f-7634-34d1-e054-00144ff88e88
-        section: Warnings
-        quote: "Ask a doctor or pharmacist before use if you are taking: any other
-          drug containing prescription or nonprescription NSAIDs."
+        section: "SPL v6: Warnings (34071-1)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0c6ae05f-7634-34d1-e054-00144ff88e88
+        quote:
+          take other drugs containing prescription or nonprescription NSAIDs (aspirin, ibuprofen, naproxen,
+          or others)
   - dimension: duplicate_dosing
     persona: breastfeeding
     severity: 2
     citations:
       - source: fda_label
         document_id: 0c6ae05f-7634-34d1-e054-00144ff88e88
-        section: Warnings
-        quote: "Ask a doctor or pharmacist before use if you are taking: any other
-          drug containing prescription or nonprescription NSAIDs."
+        section: "SPL v6: Warnings (34071-1)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0c6ae05f-7634-34d1-e054-00144ff88e88
+        quote:
+          take other drugs containing prescription or nonprescription NSAIDs (aspirin, ibuprofen, naproxen,
+          or others)
   - dimension: excipients
     persona: adult_18_64
     severity: 0
@@ -613,60 +624,86 @@ modifiers:
     citations:
       - source: otc_monograph
         document_id: 21 CFR 201.326
-        section: Stomach bleeding warning
-        quote: "The chance is higher if you: have had stomach ulcers or bleeding problems."
-  - dimension: gi_bleeding
-    medication_type: anticoagulants
-    severity_change: 2
-    citations:
-      - source: otc_monograph
-        document_id: 21 CFR 201.326
-        section: Stomach bleeding warning
-        quote: "The chance is higher if you: take a blood thinning (anticoagulant) or steroid drug."
-  - dimension: anticoagulant_bleeding
-    medication_type: anticoagulants
-    severity_change: 2
-    citations:
-      - source: otc_monograph
-        document_id: 21 CFR 201.326
-        section: Stomach bleeding warning
-        quote: "The chance is higher if you: take a blood thinning (anticoagulant)
-          or steroid drug."
-  - dimension: anticoagulant_bleeding
-    medication_type: antiplatelets
-    severity_change: 2
-    citations:
-      - source: stopp_start
-        document_id: 10.1007/s41999-023-00777-y
-        section: STOPP v3 Section C (Coagulation System), Criterion 3
-        quote: Aspirin plus clopidogrel as secondary stroke prevention, unless the
-          patient has had a coronary stent implanted within the previous 12 months
-          or concurrent acute coronary syndrome or a high-grade symptomatic carotid
-          arterial stenosis (no evidence of added benefit over monotherapy; increased
-          bleeding risk).
-  - dimension: gi_bleeding
-    medication_type: corticosteroids
-    severity_change: 2
-    citations:
-      - source: otc_monograph
-        document_id: 21 CFR 201.326
-        section: Stomach bleeding warning
-        quote: "The chance is higher if you: take a blood thinning (anticoagulant)
-          or steroid drug."
+        section: (a)(2)(iii)(A)
+        url: https://www.ecfr.gov/current/title-21/section-201.326
+        quote: have had stomach ulcers or bleeding problems
   - dimension: gi_bleeding
     condition: heavy_alcohol_use
     severity_change: 2
     citations:
       - source: otc_monograph
         document_id: 21 CFR 201.326
-        section: Stomach bleeding warning
-        quote: "The chance is higher if you: have 3 or more alcoholic drinks every
-          day while using this product."
+        section: (a)(2)(iii)(A)
+        url: https://www.ecfr.gov/current/title-21/section-201.326
+        quote: have 3 or more alcoholic drinks every day while using this product
+  - dimension: gi_bleeding
+    medication_type: anticoagulants
+    severity_change: 2
+    citations:
+      - source: otc_monograph
+        document_id: 21 CFR 201.326
+        section: (a)(2)(iii)(A)
+        url: https://www.ecfr.gov/current/title-21/section-201.326
+        quote: take a blood thinning (anticoagulant) or steroid drug
+  - dimension: gi_bleeding
+    medication_type: corticosteroids
+    severity_change: 2
+    citations:
+      - source: otc_monograph
+        document_id: 21 CFR 201.326
+        section: (a)(2)(iii)(A)
+        url: https://www.ecfr.gov/current/title-21/section-201.326
+        quote: take a blood thinning (anticoagulant) or steroid drug
+  - dimension: cardiovascular_bp
+    condition: hypertension
+    severity_change: 1
+    citations:
+      - source: fda_label
+        document_id: 0c6ae05f-7634-34d1-e054-00144ff88e88
+        section: "SPL v6: Ask a doctor (50569-3)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0c6ae05f-7634-34d1-e054-00144ff88e88
+        quote: you have high blood pressure
+  - dimension: cardiovascular_bp
+    condition: heart_disease
+    severity_change: 2
+    citations:
+      - source: fda_label
+        document_id: 0c6ae05f-7634-34d1-e054-00144ff88e88
+        section: "SPL v6: Ask a doctor (50569-3)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0c6ae05f-7634-34d1-e054-00144ff88e88
+        quote: heart disease
+  - dimension: kidney
+    condition: hypertension
+    severity_change: 1
+    citations:
+      - source: fda_label
+        document_id: 0c6ae05f-7634-34d1-e054-00144ff88e88
+        section: "SPL v6: Ask a doctor (50569-3)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0c6ae05f-7634-34d1-e054-00144ff88e88
+        quote: you have high blood pressure
   - dimension: kidney
     condition: kidney_disease
     severity_change: 2
     citations:
       - source: fda_label
         document_id: 0c6ae05f-7634-34d1-e054-00144ff88e88
-        section: Ask a doctor before use if
-        quote: "Ask a doctor before use if you have: kidney disease."
+        section: "SPL v6: Ask a doctor (50569-3)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0c6ae05f-7634-34d1-e054-00144ff88e88
+        quote: kidney disease
+  - dimension: kidney
+    medication_type: diuretics
+    severity_change: 2
+    citations:
+      - source: fda_label
+        document_id: 0c6ae05f-7634-34d1-e054-00144ff88e88
+        section: "SPL v6: Ask a doctor (50569-3)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0c6ae05f-7634-34d1-e054-00144ff88e88
+        quote: you are taking a diuretic
+review_status: unreviewed
+notes:
+  Oral aspirin. The stomach bleeding warning is rated 2, and 3 for adults 65+ (age 60 or older is
+  a listed risk factor), as in the Aleve reference product. Blood thinners and steroids are modifiers
+  on gi_bleeding, where the warning names them; no current single-ingredient aspirin label has a separate
+  blood thinner line (0 of 401 on openFDA), so anticoagulant_bleeding has no rating or modifier until
+  a pharmacist confirms a source. About half of the labels say "at 20 weeks or later in pregnancy" instead
+  of "during the last 3 months"; both are rated 3.

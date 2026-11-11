@@ -1,6 +1,5 @@
 unii: 5QZO15J2Z8
 name: famotidine
-review_status: unreviewed
 ratings:
   - dimension: liver
     persona: adult_18_64
@@ -79,12 +78,7 @@ ratings:
     severity: 0
   - dimension: kidney
     persona: adult_65_plus
-    severity: 1
-    citations:
-      - source: fda_label
-        document_id: 54f4086f-e443-4e7e-8c7e-94e152e1c256
-        section: Ask a doctor before use if you have
-        quote: "Ask a doctor before use if you have: kidney disease"
+    severity: 0
   - dimension: kidney
     persona: teen_12_17
     severity: 0
@@ -214,24 +208,27 @@ ratings:
     citations:
       - source: fda_label
         document_id: 54f4086f-e443-4e7e-8c7e-94e152e1c256
-        section: Directions
-        quote: "children under 12 years of age: ask a doctor"
+        section: "SPL v20: Directions (34068-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=54f4086f-e443-4e7e-8c7e-94e152e1c256
+        quote: "children under 12 years: ask a doctor"
   - dimension: pediatric
     persona: child_2_5
     severity: 2
     citations:
       - source: fda_label
         document_id: 54f4086f-e443-4e7e-8c7e-94e152e1c256
-        section: Directions
-        quote: "children under 12 years of age: ask a doctor"
+        section: "SPL v20: Directions (34068-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=54f4086f-e443-4e7e-8c7e-94e152e1c256
+        quote: "children under 12 years: ask a doctor"
   - dimension: pediatric
     persona: under_2
     severity: 2
     citations:
       - source: fda_label
         document_id: 54f4086f-e443-4e7e-8c7e-94e152e1c256
-        section: Directions
-        quote: "children under 12 years of age: ask a doctor"
+        section: "SPL v20: Directions (34068-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=54f4086f-e443-4e7e-8c7e-94e152e1c256
+        quote: "children under 12 years: ask a doctor"
   - dimension: pediatric
     persona: pregnant
     severity: 0
@@ -244,54 +241,72 @@ ratings:
     citations:
       - source: fda_label
         document_id: 54f4086f-e443-4e7e-8c7e-94e152e1c256
-        section: Stop use and ask a doctor if
-        quote: "Stop use and ask a doctor if: you need to take this product for more
-          than 14 days"
+        section: "SPL v20: Stop use (50566-9)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=54f4086f-e443-4e7e-8c7e-94e152e1c256
+        quote: you need to take this product for more than 14 days
   - dimension: rebound_overuse
     persona: adult_65_plus
     severity: 1
     citations:
       - source: fda_label
         document_id: 54f4086f-e443-4e7e-8c7e-94e152e1c256
-        section: Stop use and ask a doctor if
-        quote: "Stop use and ask a doctor if: you need to take this product for more
-          than 14 days"
+        section: "SPL v20: Stop use (50566-9)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=54f4086f-e443-4e7e-8c7e-94e152e1c256
+        quote: you need to take this product for more than 14 days
   - dimension: rebound_overuse
     persona: teen_12_17
     severity: 1
     citations:
       - source: fda_label
         document_id: 54f4086f-e443-4e7e-8c7e-94e152e1c256
-        section: Stop use and ask a doctor if
-        quote: "Stop use and ask a doctor if: you need to take this product for more
-          than 14 days"
+        section: "SPL v20: Stop use (50566-9)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=54f4086f-e443-4e7e-8c7e-94e152e1c256
+        quote: you need to take this product for more than 14 days
   - dimension: rebound_overuse
     persona: child_6_11
-    severity: 0
+    severity: 1
+    citations:
+      - source: fda_label
+        document_id: 54f4086f-e443-4e7e-8c7e-94e152e1c256
+        section: "SPL v20: Stop use (50566-9)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=54f4086f-e443-4e7e-8c7e-94e152e1c256
+        quote: you need to take this product for more than 14 days
   - dimension: rebound_overuse
     persona: child_2_5
-    severity: 0
+    severity: 1
+    citations:
+      - source: fda_label
+        document_id: 54f4086f-e443-4e7e-8c7e-94e152e1c256
+        section: "SPL v20: Stop use (50566-9)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=54f4086f-e443-4e7e-8c7e-94e152e1c256
+        quote: you need to take this product for more than 14 days
   - dimension: rebound_overuse
     persona: under_2
-    severity: 0
+    severity: 1
+    citations:
+      - source: fda_label
+        document_id: 54f4086f-e443-4e7e-8c7e-94e152e1c256
+        section: "SPL v20: Stop use (50566-9)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=54f4086f-e443-4e7e-8c7e-94e152e1c256
+        quote: you need to take this product for more than 14 days
   - dimension: rebound_overuse
     persona: pregnant
     severity: 1
     citations:
       - source: fda_label
         document_id: 54f4086f-e443-4e7e-8c7e-94e152e1c256
-        section: Stop use and ask a doctor if
-        quote: "Stop use and ask a doctor if: you need to take this product for more
-          than 14 days"
+        section: "SPL v20: Stop use (50566-9)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=54f4086f-e443-4e7e-8c7e-94e152e1c256
+        quote: you need to take this product for more than 14 days
   - dimension: rebound_overuse
     persona: breastfeeding
     severity: 1
     citations:
       - source: fda_label
         document_id: 54f4086f-e443-4e7e-8c7e-94e152e1c256
-        section: Stop use and ask a doctor if
-        quote: "Stop use and ask a doctor if: you need to take this product for more
-          than 14 days"
+        section: "SPL v20: Stop use (50566-9)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=54f4086f-e443-4e7e-8c7e-94e152e1c256
+        quote: you need to take this product for more than 14 days
   - dimension: pregnancy_lactation
     persona: adult_18_64
     severity: 0
@@ -312,19 +327,21 @@ ratings:
     severity: 0
   - dimension: pregnancy_lactation
     persona: pregnant
-    severity: 1
+    severity: 2
     citations:
-      - source: otc_monograph
-        document_id: 21 CFR 201.63
-        section: Pregnancy/breast-feeding warning
+      - source: fda_label
+        document_id: 54f4086f-e443-4e7e-8c7e-94e152e1c256
+        section: "SPL v20: Pregnancy or breast-feeding (53414-9)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=54f4086f-e443-4e7e-8c7e-94e152e1c256
         quote: If pregnant or breast-feeding, ask a health professional before use.
   - dimension: pregnancy_lactation
     persona: breastfeeding
-    severity: 1
+    severity: 2
     citations:
-      - source: otc_monograph
-        document_id: 21 CFR 201.63
-        section: Pregnancy/breast-feeding warning
+      - source: fda_label
+        document_id: 54f4086f-e443-4e7e-8c7e-94e152e1c256
+        section: "SPL v20: Pregnancy or breast-feeding (53414-9)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=54f4086f-e443-4e7e-8c7e-94e152e1c256
         quote: If pregnant or breast-feeding, ask a health professional before use.
   - dimension: duplicate_dosing
     persona: adult_18_64
@@ -425,9 +442,14 @@ ratings:
 modifiers:
   - dimension: kidney
     condition: kidney_disease
-    severity_change: 1
+    severity_change: 2
     citations:
       - source: fda_label
         document_id: 54f4086f-e443-4e7e-8c7e-94e152e1c256
-        section: Ask a doctor before use if you have
-        quote: "Ask a doctor before use if you have: kidney disease"
+        section: "SPL v20: Ask a doctor (50569-3)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=54f4086f-e443-4e7e-8c7e-94e152e1c256
+        quote: kidney disease
+review_status: unreviewed
+notes:
+  Oral famotidine. Kidney disease is a clearance precaution, so it is a modifier (+2, "ask a doctor")
+  with no baseline.

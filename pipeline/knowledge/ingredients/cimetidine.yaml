@@ -1,6 +1,5 @@
 unii: 80061L1WGD
 name: cimetidine
-review_status: unreviewed
 ratings:
   - dimension: liver
     persona: adult_18_64
@@ -79,12 +78,7 @@ ratings:
     severity: 0
   - dimension: kidney
     persona: adult_65_plus
-    severity: 1
-    citations:
-      - source: fda_label
-        document_id: e6401e0a-8612-42e8-bf89-2d67243f28dc
-        section: Ask a doctor before use if you have
-        quote: "Ask a doctor before use if you have: kidney disease"
+    severity: 0
   - dimension: kidney
     persona: teen_12_17
     severity: 0
@@ -108,60 +102,65 @@ ratings:
     severity: 1
     citations:
       - source: acb
-        document_id: 10.2217/1745509X.4.3.311
-        section: "Table 1: Possible Anticholinergics (Score 1)"
-        quote: "Score 1: Drugs with serum anticholinergic activity or in vitro affinity
-          to muscarinic receptors, but no known clinically relevant negative cognitive
-          effects"
+        document_id: Boustani_2008_ACB_2012_update
+        section: "2012 update, page 1: cimetidine, ACB score 1"
+        url: https://www.hii.iu.edu/resources/anticholinergic-cognitive-burden-scale.pdf
   - dimension: anticholinergic_cognitive
     persona: adult_65_plus
-    severity: 2
+    severity: 1
     citations:
       - source: acb
-        document_id: 10.2217/1745509X.4.3.311
-        section: "Table 1: Possible Anticholinergics (Score 1)"
-        quote: "Score 1: Drugs with serum anticholinergic activity or in vitro affinity
-          to muscarinic receptors, but no known clinically relevant negative cognitive
-          effects"
+        document_id: Boustani_2008_ACB_2012_update
+        section: "2012 update, page 1: cimetidine, ACB score 1"
+        url: https://www.hii.iu.edu/resources/anticholinergic-cognitive-burden-scale.pdf
   - dimension: anticholinergic_cognitive
     persona: teen_12_17
     severity: 1
     citations:
       - source: acb
-        document_id: 10.2217/1745509X.4.3.311
-        section: "Table 1: Possible Anticholinergics (Score 1)"
-        quote: "Score 1: Drugs with serum anticholinergic activity or in vitro affinity
-          to muscarinic receptors, but no known clinically relevant negative cognitive
-          effects"
+        document_id: Boustani_2008_ACB_2012_update
+        section: "2012 update, page 1: cimetidine, ACB score 1"
+        url: https://www.hii.iu.edu/resources/anticholinergic-cognitive-burden-scale.pdf
   - dimension: anticholinergic_cognitive
     persona: child_6_11
-    severity: 0
+    severity: 1
+    citations:
+      - source: acb
+        document_id: Boustani_2008_ACB_2012_update
+        section: "2012 update, page 1: cimetidine, ACB score 1"
+        url: https://www.hii.iu.edu/resources/anticholinergic-cognitive-burden-scale.pdf
   - dimension: anticholinergic_cognitive
     persona: child_2_5
-    severity: 0
+    severity: 1
+    citations:
+      - source: acb
+        document_id: Boustani_2008_ACB_2012_update
+        section: "2012 update, page 1: cimetidine, ACB score 1"
+        url: https://www.hii.iu.edu/resources/anticholinergic-cognitive-burden-scale.pdf
   - dimension: anticholinergic_cognitive
     persona: under_2
-    severity: 0
+    severity: 1
+    citations:
+      - source: acb
+        document_id: Boustani_2008_ACB_2012_update
+        section: "2012 update, page 1: cimetidine, ACB score 1"
+        url: https://www.hii.iu.edu/resources/anticholinergic-cognitive-burden-scale.pdf
   - dimension: anticholinergic_cognitive
     persona: pregnant
     severity: 1
     citations:
       - source: acb
-        document_id: 10.2217/1745509X.4.3.311
-        section: "Table 1: Possible Anticholinergics (Score 1)"
-        quote: "Score 1: Drugs with serum anticholinergic activity or in vitro affinity
-          to muscarinic receptors, but no known clinically relevant negative cognitive
-          effects"
+        document_id: Boustani_2008_ACB_2012_update
+        section: "2012 update, page 1: cimetidine, ACB score 1"
+        url: https://www.hii.iu.edu/resources/anticholinergic-cognitive-burden-scale.pdf
   - dimension: anticholinergic_cognitive
     persona: breastfeeding
     severity: 1
     citations:
       - source: acb
-        document_id: 10.2217/1745509X.4.3.311
-        section: "Table 1: Possible Anticholinergics (Score 1)"
-        quote: "Score 1: Drugs with serum anticholinergic activity or in vitro affinity
-          to muscarinic receptors, but no known clinically relevant negative cognitive
-          effects"
+        document_id: Boustani_2008_ACB_2012_update
+        section: "2012 update, page 1: cimetidine, ACB score 1"
+        url: https://www.hii.iu.edu/resources/anticholinergic-cognitive-burden-scale.pdf
   - dimension: sedation_falls
     persona: adult_18_64
     severity: 0
@@ -245,28 +244,31 @@ ratings:
     severity: 0
   - dimension: pediatric
     persona: child_6_11
-    severity: 2
-    citations:
-      - source: fda_label
-        document_id: e6401e0a-8612-42e8-bf89-2d67243f28dc
-        section: Directions
-        quote: "children under 12 years of age: ask a doctor"
-  - dimension: pediatric
-    persona: child_2_5
     severity: 2
     citations:
       - source: fda_label
         document_id: e6401e0a-8612-42e8-bf89-2d67243f28dc
-        section: Directions
-        quote: "children under 12 years of age: ask a doctor"
+        section: "SPL v9: Directions (34068-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=e6401e0a-8612-42e8-bf89-2d67243f28dc
+        quote: "children under 12 years: ask a doctor"
+  - dimension: pediatric
+    persona: child_2_5
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: e6401e0a-8612-42e8-bf89-2d67243f28dc
+        section: "SPL v9: Directions (34068-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=e6401e0a-8612-42e8-bf89-2d67243f28dc
+        quote: "children under 12 years: ask a doctor"
   - dimension: pediatric
     persona: under_2
     severity: 2
     citations:
       - source: fda_label
         document_id: e6401e0a-8612-42e8-bf89-2d67243f28dc
-        section: Directions
-        quote: "children under 12 years of age: ask a doctor"
+        section: "SPL v9: Directions (34068-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=e6401e0a-8612-42e8-bf89-2d67243f28dc
+        quote: "children under 12 years: ask a doctor"
   - dimension: pediatric
     persona: pregnant
     severity: 0
@@ -279,54 +281,72 @@ ratings:
     citations:
       - source: fda_label
         document_id: e6401e0a-8612-42e8-bf89-2d67243f28dc
-        section: Stop use and ask a doctor if
-        quote: "Stop use and ask a doctor if: you need to take this product for more
-          than 14 days"
+        section: "SPL v9: Stop use (50566-9)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=e6401e0a-8612-42e8-bf89-2d67243f28dc
+        quote: you need to take this product for more than 14 days
   - dimension: rebound_overuse
     persona: adult_65_plus
     severity: 1
     citations:
       - source: fda_label
         document_id: e6401e0a-8612-42e8-bf89-2d67243f28dc
-        section: Stop use and ask a doctor if
-        quote: "Stop use and ask a doctor if: you need to take this product for more
-          than 14 days"
+        section: "SPL v9: Stop use (50566-9)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=e6401e0a-8612-42e8-bf89-2d67243f28dc
+        quote: you need to take this product for more than 14 days
   - dimension: rebound_overuse
     persona: teen_12_17
     severity: 1
     citations:
       - source: fda_label
         document_id: e6401e0a-8612-42e8-bf89-2d67243f28dc
-        section: Stop use and ask a doctor if
-        quote: "Stop use and ask a doctor if: you need to take this product for more
-          than 14 days"
+        section: "SPL v9: Stop use (50566-9)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=e6401e0a-8612-42e8-bf89-2d67243f28dc
+        quote: you need to take this product for more than 14 days
   - dimension: rebound_overuse
     persona: child_6_11
-    severity: 0
+    severity: 1
+    citations:
+      - source: fda_label
+        document_id: e6401e0a-8612-42e8-bf89-2d67243f28dc
+        section: "SPL v9: Stop use (50566-9)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=e6401e0a-8612-42e8-bf89-2d67243f28dc
+        quote: you need to take this product for more than 14 days
   - dimension: rebound_overuse
     persona: child_2_5
-    severity: 0
+    severity: 1
+    citations:
+      - source: fda_label
+        document_id: e6401e0a-8612-42e8-bf89-2d67243f28dc
+        section: "SPL v9: Stop use (50566-9)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=e6401e0a-8612-42e8-bf89-2d67243f28dc
+        quote: you need to take this product for more than 14 days
   - dimension: rebound_overuse
     persona: under_2
-    severity: 0
+    severity: 1
+    citations:
+      - source: fda_label
+        document_id: e6401e0a-8612-42e8-bf89-2d67243f28dc
+        section: "SPL v9: Stop use (50566-9)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=e6401e0a-8612-42e8-bf89-2d67243f28dc
+        quote: you need to take this product for more than 14 days
   - dimension: rebound_overuse
     persona: pregnant
     severity: 1
     citations:
       - source: fda_label
         document_id: e6401e0a-8612-42e8-bf89-2d67243f28dc
-        section: Stop use and ask a doctor if
-        quote: "Stop use and ask a doctor if: you need to take this product for more
-          than 14 days"
+        section: "SPL v9: Stop use (50566-9)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=e6401e0a-8612-42e8-bf89-2d67243f28dc
+        quote: you need to take this product for more than 14 days
   - dimension: rebound_overuse
     persona: breastfeeding
     severity: 1
     citations:
       - source: fda_label
         document_id: e6401e0a-8612-42e8-bf89-2d67243f28dc
-        section: Stop use and ask a doctor if
-        quote: "Stop use and ask a doctor if: you need to take this product for more
-          than 14 days"
+        section: "SPL v9: Stop use (50566-9)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=e6401e0a-8612-42e8-bf89-2d67243f28dc
+        quote: you need to take this product for more than 14 days
   - dimension: pregnancy_lactation
     persona: adult_18_64
     severity: 0
@@ -347,19 +367,21 @@ ratings:
     severity: 0
   - dimension: pregnancy_lactation
     persona: pregnant
-    severity: 1
+    severity: 2
     citations:
-      - source: otc_monograph
-        document_id: 21 CFR 201.63
-        section: Pregnancy/breast-feeding warning
+      - source: fda_label
+        document_id: e6401e0a-8612-42e8-bf89-2d67243f28dc
+        section: "SPL v9: Pregnancy or breast-feeding (53414-9)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=e6401e0a-8612-42e8-bf89-2d67243f28dc
         quote: If pregnant or breast-feeding, ask a health professional before use.
   - dimension: pregnancy_lactation
     persona: breastfeeding
-    severity: 1
+    severity: 2
     citations:
-      - source: otc_monograph
-        document_id: 21 CFR 201.63
-        section: Pregnancy/breast-feeding warning
+      - source: fda_label
+        document_id: e6401e0a-8612-42e8-bf89-2d67243f28dc
+        section: "SPL v9: Pregnancy or breast-feeding (53414-9)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=e6401e0a-8612-42e8-bf89-2d67243f28dc
         quote: If pregnant or breast-feeding, ask a health professional before use.
   - dimension: duplicate_dosing
     persona: adult_18_64
@@ -458,29 +480,27 @@ ratings:
     persona: breastfeeding
     severity: 0
 modifiers:
-  - dimension: anticoagulant_bleeding
-    medication_type: anticoagulants
+  - dimension: kidney
+    condition: kidney_disease
     severity_change: 2
     citations:
       - source: fda_label
         document_id: e6401e0a-8612-42e8-bf89-2d67243f28dc
-        section: Warnings
-        quote: Ask a doctor or pharmacist before use if you are taking a prescription
-          drug. Acid reducers may interact with certain prescription drugs.
-  - dimension: sedation_falls
-    medication_type: sedatives
-    severity_change: 1
-    citations:
-      - source: publication
-        document_id: 10.1056/NEJM198005013021807
-        section: Delayed Clearance of Diazepam Due to Cimetidine
-        quote: cimetidine impairs the elimination of diazepam and produces a marked
-          reduction in total body clearance
-  - dimension: kidney
-    condition: kidney_disease
-    severity_change: 1
+        section: "SPL v9: Ask a doctor (50569-3)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=e6401e0a-8612-42e8-bf89-2d67243f28dc
+        quote: kidney disease
+  - dimension: liver
+    condition: liver_disease
+    severity_change: 2
     citations:
       - source: fda_label
         document_id: e6401e0a-8612-42e8-bf89-2d67243f28dc
-        section: Ask a doctor before use if you have
-        quote: "Ask a doctor before use if you have: kidney disease"
+        section: "SPL v9: Ask a doctor (50569-3)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=e6401e0a-8612-42e8-bf89-2d67243f28dc
+        quote: liver disease
+review_status: unreviewed
+notes:
+  Oral cimetidine. Every single-ingredient label says only "if you are taking a prescription drug",
+  so there are no medication modifiers; cimetidine's warfarin, phenytoin, theophylline and benzodiazepine
+  interactions need a source a pharmacist has checked. Kidney and liver disease are clearance precautions,
+  so they are modifiers (+2, "ask a doctor") with no baseline.

@@ -1,6 +1,5 @@
 unii: G2M7P15E5P
 name: polyethylene glycol 3350
-review_status: unreviewed
 ratings:
   - dimension: liver
     persona: adult_18_64
@@ -206,32 +205,36 @@ ratings:
     citations:
       - source: fda_label
         document_id: d69ce3d4-7ca4-4fe3-b49e-6655e48d6963
-        section: Directions
-        quote: "children 16 years of age and under: ask a doctor"
+        section: "SPL v24: Directions (34068-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=d69ce3d4-7ca4-4fe3-b49e-6655e48d6963
+        quote: "children 16 years of age or under: ask a doctor"
   - dimension: pediatric
     persona: child_6_11
     severity: 2
     citations:
       - source: fda_label
         document_id: d69ce3d4-7ca4-4fe3-b49e-6655e48d6963
-        section: Directions
-        quote: "children 16 years of age and under: ask a doctor"
+        section: "SPL v24: Directions (34068-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=d69ce3d4-7ca4-4fe3-b49e-6655e48d6963
+        quote: "children 16 years of age or under: ask a doctor"
   - dimension: pediatric
     persona: child_2_5
     severity: 2
     citations:
       - source: fda_label
         document_id: d69ce3d4-7ca4-4fe3-b49e-6655e48d6963
-        section: Directions
-        quote: "children 16 years of age and under: ask a doctor"
+        section: "SPL v24: Directions (34068-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=d69ce3d4-7ca4-4fe3-b49e-6655e48d6963
+        quote: "children 16 years of age or under: ask a doctor"
   - dimension: pediatric
     persona: under_2
     severity: 2
     citations:
       - source: fda_label
         document_id: d69ce3d4-7ca4-4fe3-b49e-6655e48d6963
-        section: Directions
-        quote: "children 16 years of age and under: ask a doctor"
+        section: "SPL v24: Directions (34068-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=d69ce3d4-7ca4-4fe3-b49e-6655e48d6963
+        quote: "children 16 years of age or under: ask a doctor"
   - dimension: pediatric
     persona: pregnant
     severity: 0
@@ -240,46 +243,76 @@ ratings:
     severity: 0
   - dimension: rebound_overuse
     persona: adult_18_64
-    severity: 1
+    severity: 2
     citations:
       - source: fda_label
         document_id: d69ce3d4-7ca4-4fe3-b49e-6655e48d6963
-        section: Warnings - Stop use and ask a doctor if
-        quote: Do not use more than once a day. Do not use for more than 7 days unless
-          directed by a doctor.
+        section: "SPL v24: Directions (34068-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=d69ce3d4-7ca4-4fe3-b49e-6655e48d6963
+        quote: do not use more than 7 days
   - dimension: rebound_overuse
     persona: adult_65_plus
-    severity: 1
+    severity: 2
     citations:
       - source: fda_label
         document_id: d69ce3d4-7ca4-4fe3-b49e-6655e48d6963
-        section: Warnings - Stop use and ask a doctor if
-        quote: Do not use more than once a day. Do not use for more than 7 days unless
-          directed by a doctor.
+        section: "SPL v24: Directions (34068-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=d69ce3d4-7ca4-4fe3-b49e-6655e48d6963
+        quote: do not use more than 7 days
   - dimension: rebound_overuse
     persona: teen_12_17
-    severity: 1
+    severity: 2
     citations:
       - source: fda_label
         document_id: d69ce3d4-7ca4-4fe3-b49e-6655e48d6963
-        section: Warnings - Stop use and ask a doctor if
-        quote: Do not use more than once a day. Do not use for more than 7 days unless
-          directed by a doctor.
+        section: "SPL v24: Directions (34068-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=d69ce3d4-7ca4-4fe3-b49e-6655e48d6963
+        quote: do not use more than 7 days
   - dimension: rebound_overuse
     persona: child_6_11
-    severity: 0
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: d69ce3d4-7ca4-4fe3-b49e-6655e48d6963
+        section: "SPL v24: Directions (34068-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=d69ce3d4-7ca4-4fe3-b49e-6655e48d6963
+        quote: do not use more than 7 days
   - dimension: rebound_overuse
     persona: child_2_5
-    severity: 0
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: d69ce3d4-7ca4-4fe3-b49e-6655e48d6963
+        section: "SPL v24: Directions (34068-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=d69ce3d4-7ca4-4fe3-b49e-6655e48d6963
+        quote: do not use more than 7 days
   - dimension: rebound_overuse
     persona: under_2
-    severity: 0
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: d69ce3d4-7ca4-4fe3-b49e-6655e48d6963
+        section: "SPL v24: Directions (34068-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=d69ce3d4-7ca4-4fe3-b49e-6655e48d6963
+        quote: do not use more than 7 days
   - dimension: rebound_overuse
     persona: pregnant
-    severity: 0
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: d69ce3d4-7ca4-4fe3-b49e-6655e48d6963
+        section: "SPL v24: Directions (34068-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=d69ce3d4-7ca4-4fe3-b49e-6655e48d6963
+        quote: do not use more than 7 days
   - dimension: rebound_overuse
     persona: breastfeeding
-    severity: 0
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: d69ce3d4-7ca4-4fe3-b49e-6655e48d6963
+        section: "SPL v24: Directions (34068-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=d69ce3d4-7ca4-4fe3-b49e-6655e48d6963
+        quote: do not use more than 7 days
   - dimension: pregnancy_lactation
     persona: adult_18_64
     severity: 0
@@ -300,19 +333,21 @@ ratings:
     severity: 0
   - dimension: pregnancy_lactation
     persona: pregnant
-    severity: 1
+    severity: 2
     citations:
-      - source: otc_monograph
-        document_id: 21 CFR 201.63
-        section: Pregnancy/breast-feeding warning
+      - source: fda_label
+        document_id: d69ce3d4-7ca4-4fe3-b49e-6655e48d6963
+        section: "SPL v24: Pregnancy or breast-feeding (53414-9)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=d69ce3d4-7ca4-4fe3-b49e-6655e48d6963
         quote: If pregnant or breast-feeding, ask a health professional before use.
   - dimension: pregnancy_lactation
     persona: breastfeeding
-    severity: 1
+    severity: 2
     citations:
-      - source: otc_monograph
-        document_id: 21 CFR 201.63
-        section: Pregnancy/breast-feeding warning
+      - source: fda_label
+        document_id: d69ce3d4-7ca4-4fe3-b49e-6655e48d6963
+        section: "SPL v24: Pregnancy or breast-feeding (53414-9)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=d69ce3d4-7ca4-4fe3-b49e-6655e48d6963
         quote: If pregnant or breast-feeding, ask a health professional before use.
   - dimension: duplicate_dosing
     persona: adult_18_64
@@ -417,14 +452,12 @@ modifiers:
     citations:
       - source: fda_label
         document_id: d69ce3d4-7ca4-4fe3-b49e-6655e48d6963
-        section: Warnings - Do not use if you have
-        quote: "Do not use if you have kidney disease, except under the advice and supervision of a doctor."
-  - dimension: kidney
-    medication_type: diuretics
-    severity_change: 1
-    citations:
-      - source: fda_label
-        document_id: d69ce3d4-7ca4-4fe3-b49e-6655e48d6963
-        section: Warnings
-        quote: Ask a doctor or pharmacist before use if you are taking a prescription
-          drug.
+        section: "SPL v24: Do not use (50570-1)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=d69ce3d4-7ca4-4fe3-b49e-6655e48d6963
+        quote: Do not use if you have kidney disease, except under the advice and supervision of a doctor
+review_status: unreviewed
+notes:
+  Oral polyethylene glycol 3350 powder. rebound_overuse is 2 because the directions say "do not use
+  more than 7 days", the rubric's own severity 2 example of a duration limit. Kidney disease is "do not
+  use", so its modifier is +3. The "taking a prescription drug" line names no drug class, so there is
+  no medication modifier.

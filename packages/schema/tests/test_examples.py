@@ -32,6 +32,11 @@ LABEL_OVERRIDES = {
     ("zzzquil", "TC2D6JAD40", "pediatric", "child_6_11"): 3,
     # "children 4 to under 12 yrs ask a doctor"
     ("nyquil", "V9BI9B5YI2", "pediatric", "child_6_11"): 2,
+    # Adult products; children's acetaminophen liquids are dosed for ages 2 to 11.
+    # "children under 12 years ask a doctor"
+    ("tylenol", "362O9ITL9D", "pediatric", "child_6_11"): 2,
+    # "children 4 to under 12 yrs ask a doctor"
+    ("nyquil", "362O9ITL9D", "pediatric", "child_6_11"): 2,
 }
 
 
