@@ -62,7 +62,7 @@ export function RiskFactorRow({
     <>
       {/* Wraps the points under the label when text is large, instead of running off the card. */}
       <View style={[styles.labelRow, { gap: space[8] }]}>
-        <RiskSeverityLabel severity={severity} />
+        <RiskSeverityLabel severity={severity} decorative />
         {showPoints && (
           <Text style={[text("footnote"), styles.points, { color: colors.text.secondary }]}>
             −{points} pts

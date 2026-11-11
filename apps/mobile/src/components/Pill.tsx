@@ -22,6 +22,8 @@ type PillProps = {
   accessibilityHint?: string;
   /** Where the pill sits in its column. `center` also centers wrapped text. Defaults to `start`. */
   align?: "start" | "center";
+  /** Hide it from screen readers when the row it sits in already says it. Ignored with `onPress`. */
+  decorative?: boolean;
 };
 
 /**
@@ -44,6 +46,7 @@ export function Pill({
   role,
   accessibilityHint,
   align = "start",
+  decorative = false,
 }: PillProps) {
   const { radius, space, text } = useTheme();
   // Grows with the text, up to 3x, so the icon keeps up with the word next to it.
@@ -57,6 +60,7 @@ export function Pill({
       accessibilityHint={accessibilityHint}
       // A pill is small, so when it's tappable the tap area reaches past it to about 48 points.
       hitSlop={onPress ? space[12] : undefined}
+      decorative={decorative}
       style={[
         styles.pill,
         align === "center" && styles.center,

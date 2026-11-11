@@ -12,6 +12,8 @@ type ScoreBadgeProps = {
   score?: number;
   /** Large = the ring on the result screen. Small = the dot in lists. */
   size?: "large" | "small";
+  /** Hide it from screen readers when the row it sits in already says the score. */
+  decorative?: boolean;
 };
 
 const LARGE = 150;
@@ -35,7 +37,12 @@ const MAX_SCALE = { number: 1.2, outOf: 1.5, dot: 1.15 };
  * <ScoreBadge tier="moderate" score={52} size="small" />
  * ```
  */
-export function ScoreBadge({ tier, score = 0, size = "large" }: ScoreBadgeProps) {
+export function ScoreBadge({
+  tier,
+  score = 0,
+  size = "large",
+  decorative = false,
+}: ScoreBadgeProps) {
   const { colors, text } = useTheme();
   const c = productTierColors(colors, tier);
   const value = Math.round(Math.min(100, Math.max(0, score)));
@@ -45,7 +52,9 @@ export function ScoreBadge({ tier, score = 0, size = "large" }: ScoreBadgeProps)
       : tier === "none"
         ? "Not scored"
         : `Score ${value} out of 100`;
-  const a11y = { accessible: true, accessibilityRole: "text" as const, accessibilityLabel: label };
+  const a11y = decorative
+    ? { "aria-hidden": true }
+    : { accessible: true, accessibilityRole: "text" as const, accessibilityLabel: label };
 
   if (size === "small") {
     if (tier === "stop") {

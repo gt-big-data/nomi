@@ -67,7 +67,7 @@ export function ProductRow({ title, subtitle, tier, score, onPress }: ProductRow
       paddingVertical: space[12],
     },
   ];
-  const badge = <ScoreBadge tier={tier} score={score} size="small" />;
+  const badge = <ScoreBadge tier={tier} score={score} size="small" decorative />;
   const chevron = onPress ? (
     <Icon name="chevron" size="chevron" scale={iconScale} color={colors.text.secondary} />
   ) : null;

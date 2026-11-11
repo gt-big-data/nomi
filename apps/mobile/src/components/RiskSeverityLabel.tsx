@@ -13,6 +13,8 @@ const icons: Record<RiskSeverity, IconName> = {
 type RiskSeverityLabelProps = {
   /** From `riskSeverity()`. */
   severity: RiskSeverity;
+  /** Hide it from screen readers when the row it sits in already says the severity. */
+  decorative?: boolean;
 };
 
 /**
@@ -24,7 +26,7 @@ type RiskSeverityLabelProps = {
  * <RiskSeverityLabel severity={riskSeverity(contribution.points)} />
  * ```
  */
-export function RiskSeverityLabel({ severity }: RiskSeverityLabelProps) {
+export function RiskSeverityLabel({ severity, decorative }: RiskSeverityLabelProps) {
   const { colors } = useTheme();
   const c = riskSeverityColors(colors, severity);
   return (
@@ -34,6 +36,7 @@ export function RiskSeverityLabel({ severity }: RiskSeverityLabelProps) {
       textStyle="label"
       background={c.tint}
       foreground={c.text}
+      decorative={decorative}
     />
   );
 }

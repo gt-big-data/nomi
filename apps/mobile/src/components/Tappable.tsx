@@ -14,6 +14,8 @@ type TappableProps = {
   role?: "button" | "link";
   /** Extra space around the area that still counts as a tap, in points. */
   hitSlop?: number;
+  /** Hide it from screen readers when the row it sits in already says it. Only without `onPress`. */
+  decorative?: boolean;
   style: StyleProp<ViewStyle>;
   children: ReactNode;
 };
@@ -39,9 +41,18 @@ export function Tappable({
   accessibilityHint,
   role = "button",
   hitSlop,
+  decorative = false,
   style,
   children,
 }: TappableProps) {
+  if (!onPress && decorative) {
+    // Without this, Android TalkBack stops on it again after reading the row.
+    return (
+      <View aria-hidden style={style}>
+        {children}
+      </View>
+    );
+  }
   if (!onPress) {
     return (
       <View
