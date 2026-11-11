@@ -276,12 +276,12 @@ ratings:
     severity: 2
     citations:
       - source: fda_label
-        document_id: 348d3dfa-6a52-4583-96e3-83c4bf2df45b
-        section: "SPL v5: When using (50567-7)"
-        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=348d3dfa-6a52-4583-96e3-83c4bf2df45b
+        document_id: 4f9db9dc-6b78-d123-e063-6294a90ae38d
+        section: "SPL v1: When using (50567-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=4f9db9dc-6b78-d123-e063-6294a90ae38d
         quote:
-          do not use the maximum dosage for more than 2 weeks except under the advice and supervision
-          of a doctor
+          do not give the child the maximum dosage for more than 2 weeks except under the advice and
+          supervision of a doctor
       - source: otc_monograph
         document_id: 21 CFR 331.30
         section: (c)(1)
@@ -292,12 +292,12 @@ ratings:
     severity: 2
     citations:
       - source: fda_label
-        document_id: 348d3dfa-6a52-4583-96e3-83c4bf2df45b
-        section: "SPL v5: When using (50567-7)"
-        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=348d3dfa-6a52-4583-96e3-83c4bf2df45b
+        document_id: 4f9db9dc-6b78-d123-e063-6294a90ae38d
+        section: "SPL v1: When using (50567-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=4f9db9dc-6b78-d123-e063-6294a90ae38d
         quote:
-          do not use the maximum dosage for more than 2 weeks except under the advice and supervision
-          of a doctor
+          do not give the child the maximum dosage for more than 2 weeks except under the advice and
+          supervision of a doctor
       - source: otc_monograph
         document_id: 21 CFR 331.30
         section: (c)(1)

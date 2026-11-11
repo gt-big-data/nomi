@@ -23,7 +23,7 @@ example "under 6 months" on an infants' label that doses 6 months and up sets `u
 tied to one use applies only to the ages that use is dosed for: the sore throat warning's
 "administer to children under 3 years of age unless directed by doctor" does not set `pediatric`
 when a label doses that age, and a limit printed "As an antacid" does not apply to children dosed
-only as a laxative.
+only as a laxative. An age that no label doses for any use still falls under the undosed rule above.
 
 In pediatric age lines and duration lines only, "do not use unless directed by a doctor" has
 ask-a-doctor strength (2); a plain "do not use" is 3. Elsewhere the wording keeps its rubric

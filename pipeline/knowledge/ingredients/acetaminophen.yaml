@@ -560,7 +560,7 @@ notes:
   adult tablets'' "children under 12 years ask a doctor" is a product-level limit (LABEL_OVERRIDES in
   packages/schema/tests/test_examples.py). rebound_overuse follows the duration rule, per UNII and per
   age: adults and teens 2 from the adult directions'' 10 day limit, children 2 to 11 2 from a children''s
-  liquid''s 5 day limit (c13ced61; Children''s Tylenol itself has none). For under 2, Feverall Infants
+  liquid''s 5 day limit (c13ced61; Children''s Tylenol itself has none). Within under 2, Feverall Infants
   doses only 6 to 23 months, so 0 to 5 months is undosed and takes the strongest acetaminophen duration
   line, the same 5 day limit (2). NyQuil has no limit, so its reference product overrides rebound_overuse
   to 0.'
