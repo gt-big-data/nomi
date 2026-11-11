@@ -18,7 +18,14 @@ the best-known brand.
 For a child persona, use the labels whose directions dose that age. A limit printed only on an
 adult product (such as "children under 12 years: do not use" on adult tablets, when children's
 products dose that age) is about that product, not the ingredient. When no label doses an age,
-the strongest age line on any label counts.
+the strongest age line on any label counts. An age line tied to one use (such as the sore throat
+warning's "administer to children under 3 years of age unless directed by doctor") does not set
+`pediatric` when a label doses that age.
+
+Lines about the drug's pharmacology (drug interactions, organ harm) apply to every salt file of
+the same moiety, because the salt does not change the pharmacology: a warfarin line on an
+omeprazole magnesium label also counts for omeprazole. Product-level lines (ages, dosing,
+duration, excipients) stay with the UNII whose labels print them.
 
 Product-level differences go in the reference examples (`LABEL_OVERRIDES` in
 `packages/schema/tests/test_examples.py`), not in the ingredient files.
@@ -34,7 +41,9 @@ When the line is a clearance precaution (the organ only clears the drug), it is 
 with no baseline. Examples: kidney disease for magnesium hydroxide, calcium carbonate, famotidine
 and cimetidine; liver disease for loperamide, cimetidine, loratadine and cetirizine.
 
-Modifier values: +2 for "ask a doctor", +3 for "do not use".
+Modifier values: by default +2 for "ask a doctor" and +3 for "do not use", unless section 4 of
+`docs/scoring/dimensions.md` gives a value for that modifier and drug class (for example
+hypertension +1 for NSAIDs).
 
 ## Duration limits (`rebound_overuse`)
 

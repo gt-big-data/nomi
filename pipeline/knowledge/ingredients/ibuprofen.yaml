@@ -396,13 +396,7 @@ ratings:
     severity: 0
   - dimension: pediatric
     persona: child_2_5
-    severity: 2
-    citations:
-      - source: fda_label
-        document_id: 9e1cdef7-921f-4163-869c-6c062e31c5bb
-        section: "SPL v16: Warnings / Sore throat warning"
-        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=9e1cdef7-921f-4163-869c-6c062e31c5bb
-        quote: administer to children under 3 years of age unless directed by doctor
+    severity: 0
   - dimension: pediatric
     persona: under_2
     severity: 2
@@ -754,15 +748,30 @@ modifiers:
         section: "SPL v39: Ask a doctor (50569-3)"
         url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1a665e64-9f30-be37-4a83-38789f1f1e89
         quote: you are taking a diuretic
+  - dimension: anticoagulant_bleeding
+    medication_type: anticoagulants
+    severity_change: 2
+    citations:
+      - source: fda_label
+        document_id: 1c1374e1-890f-48ab-8f93-e84da9d5bf84
+        section: "SPL v3: Ask a doctor or pharmacist (50568-5)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1c1374e1-890f-48ab-8f93-e84da9d5bf84
+        quote: take a blood thinning (anticoagulant) or steroid drug
+      - source: fda_label
+        document_id: 218f6df9-dd04-45b6-8a45-3276691abee2
+        section: "SPL v2: Ask a doctor or pharmacist (50568-5)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=218f6df9-dd04-45b6-8a45-3276691abee2
+        quote: taking a blood thinning (anticoagulant) drug
 review_status: unreviewed
 notes:
   'Oral ibuprofen, including children''s and infants'' liquids, which carry the same stomach bleeding,
   heart attack and stroke, and kidney warnings. Children''s liquids dose ages 2 to 11; the infants'' drops
   dose 6 to 23 months and say under 6 months ask a doctor. Modifiers match naproxen and the Aleve reference
-  product. The blood thinner line is only in the stomach bleeding warning, so it is a gi_bleeding modifier,
-  with no anticoagulant_bleeding modifier (no single-ingredient ibuprofen label on openFDA has a separate
-  anticoagulation line). Under the duration rule in pipeline/knowledge/README.md, rebound_overuse is 2:
-  some adult labels (26 of 757, e.g. 0607edb0) say "do not take longer than 10 days", and the children''s
-  and infants'' sore throat warning says "Do not use more than 2 days". The same sentence''s "or administer
-  to children under 3 years of age unless directed by doctor" rates child_2_5 pediatric 2; it covers only
-  part of that age band and only sore throat use (rubric owner). Ibuprofen sodium has its own file.'
+  product. Two labels (1c1374e1, 218f6df9) also print a blood thinner line under Ask a doctor or pharmacist,
+  so there is an anticoagulant_bleeding anticoagulants +2 modifier as well as the gi_bleeding one (rubric
+  owner: possible double count, as for aspirin). Under the duration rule in pipeline/knowledge/README.md,
+  rebound_overuse is 2: some adult labels (26 of 757, e.g. 0607edb0) say "do not take longer than 10 days",
+  and the children''s and infants'' sore throat warning says "Do not use more than 2 days". The same sentence''s
+  "or administer to children under 3 years of age unless directed by doctor" is specific to sore throat
+  use, and the children''s label doses ages 2 to 3, so it does not set pediatric (README). Ibuprofen sodium
+  has its own file and shares the drug interaction and organ modifiers.'

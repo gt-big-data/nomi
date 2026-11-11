@@ -234,11 +234,6 @@ ratings:
     severity: 2
     citations:
       - source: fda_label
-        document_id: 0a57bb45-d4f7-443b-e054-00144ff8d46c
-        section: "SPL v10: Stop use (50566-9)"
-        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0a57bb45-d4f7-443b-e054-00144ff8d46c
-        quote: you need to use a laxative for more than 1 week
-      - source: fda_label
         document_id: 2de868a0-c652-473c-8b61-636083b7f757
         section: "SPL v7: When using (50567-7)"
         url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=2de868a0-c652-473c-8b61-636083b7f757
@@ -247,11 +242,6 @@ ratings:
     persona: adult_65_plus
     severity: 2
     citations:
-      - source: fda_label
-        document_id: 0a57bb45-d4f7-443b-e054-00144ff8d46c
-        section: "SPL v10: Stop use (50566-9)"
-        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0a57bb45-d4f7-443b-e054-00144ff8d46c
-        quote: you need to use a laxative for more than 1 week
       - source: fda_label
         document_id: 2de868a0-c652-473c-8b61-636083b7f757
         section: "SPL v7: When using (50567-7)"
@@ -262,11 +252,6 @@ ratings:
     severity: 2
     citations:
       - source: fda_label
-        document_id: 0a57bb45-d4f7-443b-e054-00144ff8d46c
-        section: "SPL v10: Stop use (50566-9)"
-        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0a57bb45-d4f7-443b-e054-00144ff8d46c
-        quote: you need to use a laxative for more than 1 week
-      - source: fda_label
         document_id: 2de868a0-c652-473c-8b61-636083b7f757
         section: "SPL v7: When using (50567-7)"
         url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=2de868a0-c652-473c-8b61-636083b7f757
@@ -275,11 +260,6 @@ ratings:
     persona: child_6_11
     severity: 2
     citations:
-      - source: fda_label
-        document_id: 0a57bb45-d4f7-443b-e054-00144ff8d46c
-        section: "SPL v10: Stop use (50566-9)"
-        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0a57bb45-d4f7-443b-e054-00144ff8d46c
-        quote: you need to use a laxative for more than 1 week
       - source: fda_label
         document_id: 2de868a0-c652-473c-8b61-636083b7f757
         section: "SPL v7: When using (50567-7)"
@@ -290,11 +270,6 @@ ratings:
     severity: 2
     citations:
       - source: fda_label
-        document_id: 0a57bb45-d4f7-443b-e054-00144ff8d46c
-        section: "SPL v10: Stop use (50566-9)"
-        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0a57bb45-d4f7-443b-e054-00144ff8d46c
-        quote: you need to use a laxative for more than 1 week
-      - source: fda_label
         document_id: 2de868a0-c652-473c-8b61-636083b7f757
         section: "SPL v7: When using (50567-7)"
         url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=2de868a0-c652-473c-8b61-636083b7f757
@@ -303,11 +278,6 @@ ratings:
     persona: under_2
     severity: 2
     citations:
-      - source: fda_label
-        document_id: 0a57bb45-d4f7-443b-e054-00144ff8d46c
-        section: "SPL v10: Stop use (50566-9)"
-        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0a57bb45-d4f7-443b-e054-00144ff8d46c
-        quote: you need to use a laxative for more than 1 week
       - source: fda_label
         document_id: 2de868a0-c652-473c-8b61-636083b7f757
         section: "SPL v7: When using (50567-7)"
@@ -318,11 +288,6 @@ ratings:
     severity: 2
     citations:
       - source: fda_label
-        document_id: 0a57bb45-d4f7-443b-e054-00144ff8d46c
-        section: "SPL v10: Stop use (50566-9)"
-        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0a57bb45-d4f7-443b-e054-00144ff8d46c
-        quote: you need to use a laxative for more than 1 week
-      - source: fda_label
         document_id: 2de868a0-c652-473c-8b61-636083b7f757
         section: "SPL v7: When using (50567-7)"
         url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=2de868a0-c652-473c-8b61-636083b7f757
@@ -331,11 +296,6 @@ ratings:
     persona: breastfeeding
     severity: 2
     citations:
-      - source: fda_label
-        document_id: 0a57bb45-d4f7-443b-e054-00144ff8d46c
-        section: "SPL v10: Stop use (50566-9)"
-        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=0a57bb45-d4f7-443b-e054-00144ff8d46c
-        quote: you need to use a laxative for more than 1 week
       - source: fda_label
         document_id: 2de868a0-c652-473c-8b61-636083b7f757
         section: "SPL v7: When using (50567-7)"

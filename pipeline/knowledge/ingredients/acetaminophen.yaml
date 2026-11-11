@@ -558,6 +558,7 @@ notes:
   under 2 years ask a doctor. The adult tablets'' "children under 12 years ask a doctor" is a product-level
   limit (LABEL_OVERRIDES in packages/schema/tests/test_examples.py). rebound_overuse is 2 under the duration
   rule in pipeline/knowledge/README.md: adults and teens from the adult directions'' 10 day limit, children
-  2 to 11 from a children''s liquid''s 5 day limit (Children''s Tylenol itself has none), and under 2
-  from an infants'' liquid whose directions cover that age. NyQuil has no such limit, so its reference
-  product overrides rebound_overuse to 0.'
+  2 to 11 from a children''s liquid''s 5 day limit (Children''s Tylenol itself has none). For under 2,
+  no acetaminophen label gives a dose (af5c3b3b says "Under 2 Ask a doctor"), so under the any-label rule
+  the strongest line counts: that infants'' label''s own 5 day limit, 2. NyQuil has no such limit, so
+  its reference product overrides rebound_overuse to 0.'

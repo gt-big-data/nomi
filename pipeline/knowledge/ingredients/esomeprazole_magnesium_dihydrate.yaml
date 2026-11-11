@@ -455,21 +455,14 @@ modifiers:
         section: "SPL v5: Ask a doctor or pharmacist (50568-5)"
         url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=7bb719a0-9836-6752-e053-2a91aa0a2f48
         quote: warfarin, clopidogrel or cilostazol (blood-thinning medicines)
-  - dimension: anticoagulant_bleeding
-    medication_type: antiplatelets
-    severity_change: 2
-    citations:
-      - source: fda_label
-        document_id: 7bb719a0-9836-6752-e053-2a91aa0a2f48
-        section: "SPL v5: Ask a doctor or pharmacist (50568-5)"
-        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=7bb719a0-9836-6752-e053-2a91aa0a2f48
-        quote: warfarin, clopidogrel or cilostazol (blood-thinning medicines)
 review_status: unreviewed
 notes:
   'Oral delayed-release esomeprazole magnesium dihydrate, 14-day course. One file per UNII, because
   labels code the base and the salts separately (omeprazole KG60484QX9, omeprazole magnesium 426QFE7XLK,
   esomeprazole N3PA6559FT, esomeprazole magnesium trihydrate R6DXU4WAY9, esomeprazole magnesium dihydrate
-  36H71644EQ); keep the files in step. The "taking a prescription drug" line names no drug. Some labels
-  with this UNII (e.g. 7bb719a0) add an Ask a doctor or pharmacist line for warfarin, clopidogrel or cilostazol,
-  so there are anticoagulants and antiplatelets modifiers (any-label rule in pipeline/knowledge/README.md).
-  Rubric owner: the clopidogrel interaction lowers its effect rather than raising bleeding.'
+  36H71644EQ); keep the files in step. The "taking a prescription drug" line names no drug. Some esomeprazole
+  labels (e.g. 7bb719a0) add an Ask a doctor or pharmacist line for warfarin, clopidogrel or cilostazol.
+  Drug interaction lines follow the moiety across salt files (pipeline/knowledge/README.md), so every
+  esomeprazole file has the warfarin modifier, anticoagulants +2. Open for the rubric owner: the clopidogrel
+  and cilostazol interaction lowers their effect (clot risk), not bleeding, so it has no antiplatelets
+  modifier.'

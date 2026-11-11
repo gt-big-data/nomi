@@ -456,6 +456,8 @@ modifiers:
         quote: if you have kidney disease, except under the advice and supervision of a doctor
 review_status: unreviewed
 notes:
-  Oral famotidine. Kidney disease is a clearance precaution (organ rule in pipeline/knowledge/README.md),
+  'Oral famotidine. Kidney disease is a clearance precaution (organ rule in pipeline/knowledge/README.md),
   so it is a modifier with no baseline. It is +3 because some labels (3 of 146, e.g. f5d5b40e) put kidney
-  disease under Do not use; most say ask a doctor.
+  disease under Do not use; most say ask a doctor. Rubric owner: that line adds "except under the advice
+  and supervision of a doctor", which is close to ask a doctor (+2), and section 4 of docs/scoring/dimensions.md
+  gives kidney_disease +2 for NSAIDs.'

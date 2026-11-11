@@ -767,10 +767,25 @@ modifiers:
         section: "SPL v20: Ask a doctor (50569-3)"
         url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=5be198b8-396e-4b44-8819-e2e3b5d2ad0e
         quote: you are taking a diuretic
+  - dimension: anticoagulant_bleeding
+    medication_type: anticoagulants
+    severity_change: 2
+    citations:
+      - source: fda_label
+        document_id: 1c1374e1-890f-48ab-8f93-e84da9d5bf84
+        section: "SPL v3: Ask a doctor or pharmacist (50568-5)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1c1374e1-890f-48ab-8f93-e84da9d5bf84
+        quote: take a blood thinning (anticoagulant) or steroid drug
+      - source: fda_label
+        document_id: 218f6df9-dd04-45b6-8a45-3276691abee2
+        section: "SPL v2: Ask a doctor or pharmacist (50568-5)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=218f6df9-dd04-45b6-8a45-3276691abee2
+        quote: taking a blood thinning (anticoagulant) drug
 review_status: unreviewed
 notes:
   Oral ibuprofen sodium (Advil, Advil Menstrual Pain), the only labels with this UNII. Rated like
   ibuprofen, except that no product is labeled for children under 12, so children get the adult warnings
   plus the "ask a doctor" pediatric rating, as for naproxen. The pregnancy quote leaves out the heading,
-  which this SPL prints without a space after the comma. Neither label has a duration limit or a separate
-  anticoagulation line, so rebound_overuse is 0 and blood thinners are only a gi_bleeding modifier.
+  which this SPL prints without a space after the comma. Neither label has a duration limit. Neither has
+  a separate blood thinner line, but drug interaction and organ modifiers follow the moiety (README),
+  so the anticoagulant_bleeding modifier cites the ibuprofen labels 1c1374e1 and 218f6df9.
