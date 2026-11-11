@@ -1,0 +1,419 @@
+[
+  {
+    "ndc11": "69423099516",
+    "profile": {
+      "persona": "adult_18_64",
+      "conditions": [],
+      "medication_types": []
+    },
+    "score": 14,
+    "tier": "red",
+    "contributions": [
+      {
+        "dimension": "liver",
+        "points": 51,
+        "ingredient_uniis": ["362O9ITL9D"],
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "efe4e649-7514-32dd-e053-2995a90a0492",
+            "section": "SPL v13: Warnings / Liver warning",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=efe4e649-7514-32dd-e053-2995a90a0492"
+          }
+        ]
+      },
+      {
+        "dimension": "anticholinergic_cognitive",
+        "points": 15,
+        "ingredient_uniis": ["V9BI9B5YI2"],
+        "citations": [
+          {
+            "source": "acb",
+            "document_id": "Boustani_2008_ACB_2012_update",
+            "section": "2012 update, page 1: doxylamine, ACB score 3",
+            "url": "https://www.hii.iu.edu/resources/anticholinergic-cognitive-burden-scale.pdf"
+          },
+          {
+            "source": "fda_label",
+            "document_id": "efe4e649-7514-32dd-e053-2995a90a0492",
+            "section": "SPL v13: Ask a doctor (50569-3)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=efe4e649-7514-32dd-e053-2995a90a0492"
+          }
+        ]
+      },
+      {
+        "dimension": "sedation_falls",
+        "points": 15,
+        "ingredient_uniis": ["V9BI9B5YI2"],
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "efe4e649-7514-32dd-e053-2995a90a0492",
+            "section": "SPL v13: When using (50567-7)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=efe4e649-7514-32dd-e053-2995a90a0492"
+          }
+        ]
+      },
+      {
+        "dimension": "rebound_overuse",
+        "points": 5,
+        "ingredient_uniis": ["9D2RTI9KYH"],
+        "citations": [
+          {
+            "source": "publication",
+            "document_id": "PMID:22526529",
+            "section": "Abstract and Results: supratherapeutic-dose effects and abuse liability",
+            "url": "https://pubmed.ncbi.nlm.nih.gov/22526529/"
+          }
+        ]
+      }
+    ],
+    "hard_stops_triggered": [],
+    "benchmark": null,
+    "alternatives": [],
+    "explanation": [
+      {
+        "template_id": "NOMI-015_fixture_draft",
+        "text": "Draft test fixture using 5, 15 and 51 points for severity 1, 2 and 3; not a finalized Nomi score.",
+        "citations": []
+      },
+      {
+        "template_id": "NOMI-015_liver",
+        "text": "The label warns of serious liver harm with excess acetaminophen, overlapping products, or heavy alcohol use.",
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "efe4e649-7514-32dd-e053-2995a90a0492",
+            "section": "SPL v13: Warnings / Liver warning",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=efe4e649-7514-32dd-e053-2995a90a0492"
+          }
+        ]
+      },
+      {
+        "template_id": "NOMI-015_anticholinergic_cognitive",
+        "text": "Doxylamine scores 3 on the Anticholinergic Cognitive Burden scale; the label says to ask a doctor first with glaucoma or an enlarged prostate.",
+        "citations": [
+          {
+            "source": "acb",
+            "document_id": "Boustani_2008_ACB_2012_update",
+            "section": "2012 update, page 1: doxylamine, ACB score 3",
+            "url": "https://www.hii.iu.edu/resources/anticholinergic-cognitive-burden-scale.pdf"
+          },
+          {
+            "source": "fda_label",
+            "document_id": "efe4e649-7514-32dd-e053-2995a90a0492",
+            "section": "SPL v13: Ask a doctor (50569-3)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=efe4e649-7514-32dd-e053-2995a90a0492"
+          }
+        ]
+      },
+      {
+        "template_id": "NOMI-015_sedation_falls",
+        "text": "This antihistamine causes drowsiness; avoid alcohol and take care driving.",
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "efe4e649-7514-32dd-e053-2995a90a0492",
+            "section": "SPL v13: When using (50567-7)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=efe4e649-7514-32dd-e053-2995a90a0492"
+          }
+        ]
+      },
+      {
+        "template_id": "NOMI-015_rebound_overuse",
+        "text": "High doses of dextromethorphan are misused; the adult draft counts that risk.",
+        "citations": [
+          {
+            "source": "publication",
+            "document_id": "PMID:22526529",
+            "section": "Abstract and Results: supratherapeutic-dose effects and abuse liability",
+            "url": "https://pubmed.ncbi.nlm.nih.gov/22526529/"
+          }
+        ]
+      }
+    ],
+    "review_status": "unreviewed",
+    "provenance": {
+      "schema_version": "0.1.0",
+      "dataset_version": "NOMI-015-draft",
+      "rubric_version": "NOMI-015-fixture-draft-5-15-51-points",
+      "code_commit": "aa8d723e99fb22853023d8f66e54e3dbe04f52a1",
+      "generated_at": "2026-10-29T17:44:37Z"
+    }
+  },
+  {
+    "ndc11": "69423099516",
+    "profile": {
+      "persona": "adult_65_plus",
+      "conditions": ["hypertension"],
+      "medication_types": []
+    },
+    "score": 0,
+    "tier": "red",
+    "contributions": [
+      {
+        "dimension": "anticholinergic_cognitive",
+        "points": 51,
+        "ingredient_uniis": ["V9BI9B5YI2"],
+        "citations": [
+          {
+            "source": "publication",
+            "document_id": "10.1111/jgs.18372",
+            "section": "2023 AGS Beers Criteria, Table 2: first-generation antihistamines",
+            "url": "https://pubmed.ncbi.nlm.nih.gov/37139824/"
+          }
+        ]
+      },
+      {
+        "dimension": "liver",
+        "points": 51,
+        "ingredient_uniis": ["362O9ITL9D"],
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "efe4e649-7514-32dd-e053-2995a90a0492",
+            "section": "SPL v13: Warnings / Liver warning",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=efe4e649-7514-32dd-e053-2995a90a0492"
+          }
+        ]
+      },
+      {
+        "dimension": "sedation_falls",
+        "points": 51,
+        "ingredient_uniis": ["V9BI9B5YI2"],
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "efe4e649-7514-32dd-e053-2995a90a0492",
+            "section": "SPL v13: When using (50567-7)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=efe4e649-7514-32dd-e053-2995a90a0492",
+            "quote": "marked drowsiness may occur"
+          },
+          {
+            "source": "stopp_start",
+            "document_id": "STOPP_v3_K6",
+            "section": "Appendix 1, STOPP K6",
+            "url": "https://static-content.springer.com/esm/art%3A10.1007%2Fs41999-023-00777-y/MediaObjects/41999_2023_777_MOESM1_ESM.pdf",
+            "quote": "First generation antihistamines in patients with recurrent falls (may impair sensorium)"
+          }
+        ]
+      }
+    ],
+    "hard_stops_triggered": [],
+    "benchmark": null,
+    "alternatives": [],
+    "explanation": [
+      {
+        "template_id": "NOMI-015_fixture_draft",
+        "text": "Draft test fixture using 5, 15 and 51 points for severity 1, 2 and 3; not a finalized Nomi score.",
+        "citations": []
+      },
+      {
+        "template_id": "NOMI-015_anticholinergic_cognitive",
+        "text": "The 2023 Beers Criteria list first-generation antihistamines as anticholinergic drugs for older adults to avoid.",
+        "citations": [
+          {
+            "source": "publication",
+            "document_id": "10.1111/jgs.18372",
+            "section": "2023 AGS Beers Criteria, Table 2: first-generation antihistamines",
+            "url": "https://pubmed.ncbi.nlm.nih.gov/37139824/"
+          }
+        ]
+      },
+      {
+        "template_id": "NOMI-015_liver",
+        "text": "The label warns of serious liver harm with excess acetaminophen, overlapping products, or heavy alcohol use.",
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "efe4e649-7514-32dd-e053-2995a90a0492",
+            "section": "SPL v13: Warnings / Liver warning",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=efe4e649-7514-32dd-e053-2995a90a0492"
+          }
+        ]
+      },
+      {
+        "template_id": "NOMI-015_sedation_falls",
+        "text": "The label warns that marked drowsiness may occur, and STOPP v3 advises against first-generation antihistamines in older adults who fall.",
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "efe4e649-7514-32dd-e053-2995a90a0492",
+            "section": "SPL v13: When using (50567-7)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=efe4e649-7514-32dd-e053-2995a90a0492",
+            "quote": "marked drowsiness may occur"
+          },
+          {
+            "source": "stopp_start",
+            "document_id": "STOPP_v3_K6",
+            "section": "Appendix 1, STOPP K6",
+            "url": "https://static-content.springer.com/esm/art%3A10.1007%2Fs41999-023-00777-y/MediaObjects/41999_2023_777_MOESM1_ESM.pdf",
+            "quote": "First generation antihistamines in patients with recurrent falls (may impair sensorium)"
+          }
+        ]
+      }
+    ],
+    "review_status": "unreviewed",
+    "provenance": {
+      "schema_version": "0.1.0",
+      "dataset_version": "NOMI-015-draft",
+      "rubric_version": "NOMI-015-fixture-draft-5-15-51-points",
+      "code_commit": "aa8d723e99fb22853023d8f66e54e3dbe04f52a1",
+      "generated_at": "2026-10-29T17:44:37Z"
+    }
+  },
+  {
+    "ndc11": "69423099516",
+    "profile": {
+      "persona": "child_6_11",
+      "conditions": [],
+      "medication_types": []
+    },
+    "score": 4,
+    "tier": "red",
+    "contributions": [
+      {
+        "dimension": "liver",
+        "points": 51,
+        "ingredient_uniis": ["362O9ITL9D"],
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "efe4e649-7514-32dd-e053-2995a90a0492",
+            "section": "SPL v13: Warnings / Liver warning",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=efe4e649-7514-32dd-e053-2995a90a0492"
+          }
+        ]
+      },
+      {
+        "dimension": "anticholinergic_cognitive",
+        "points": 15,
+        "ingredient_uniis": ["V9BI9B5YI2"],
+        "citations": [
+          {
+            "source": "acb",
+            "document_id": "Boustani_2008_ACB_2012_update",
+            "section": "2012 update, page 1: doxylamine, ACB score 3",
+            "url": "https://www.hii.iu.edu/resources/anticholinergic-cognitive-burden-scale.pdf"
+          },
+          {
+            "source": "fda_label",
+            "document_id": "efe4e649-7514-32dd-e053-2995a90a0492",
+            "section": "SPL v13: Ask a doctor (50569-3)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=efe4e649-7514-32dd-e053-2995a90a0492"
+          }
+        ]
+      },
+      {
+        "dimension": "pediatric",
+        "points": 15,
+        "ingredient_uniis": ["362O9ITL9D", "V9BI9B5YI2"],
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "efe4e649-7514-32dd-e053-2995a90a0492",
+            "section": "SPL v13: Directions (34068-7)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=efe4e649-7514-32dd-e053-2995a90a0492"
+          }
+        ]
+      },
+      {
+        "dimension": "sedation_falls",
+        "points": 15,
+        "ingredient_uniis": ["V9BI9B5YI2"],
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "efe4e649-7514-32dd-e053-2995a90a0492",
+            "section": "SPL v13: When using (50567-7)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=efe4e649-7514-32dd-e053-2995a90a0492"
+          }
+        ]
+      }
+    ],
+    "hard_stops_triggered": [],
+    "benchmark": null,
+    "alternatives": [],
+    "explanation": [
+      {
+        "template_id": "NOMI-015_fixture_draft",
+        "text": "Draft test fixture using 5, 15 and 51 points for severity 1, 2 and 3; not a finalized Nomi score.",
+        "citations": []
+      },
+      {
+        "template_id": "NOMI-015_liver",
+        "text": "The label warns of serious liver harm with excess acetaminophen, overlapping products, or heavy alcohol use.",
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "efe4e649-7514-32dd-e053-2995a90a0492",
+            "section": "SPL v13: Warnings / Liver warning",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=efe4e649-7514-32dd-e053-2995a90a0492"
+          }
+        ]
+      },
+      {
+        "template_id": "NOMI-015_anticholinergic_cognitive",
+        "text": "Doxylamine scores 3 on the Anticholinergic Cognitive Burden scale; the label says to ask a doctor first with glaucoma or an enlarged prostate.",
+        "citations": [
+          {
+            "source": "acb",
+            "document_id": "Boustani_2008_ACB_2012_update",
+            "section": "2012 update, page 1: doxylamine, ACB score 3",
+            "url": "https://www.hii.iu.edu/resources/anticholinergic-cognitive-burden-scale.pdf"
+          },
+          {
+            "source": "fda_label",
+            "document_id": "efe4e649-7514-32dd-e053-2995a90a0492",
+            "section": "SPL v13: Ask a doctor (50569-3)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=efe4e649-7514-32dd-e053-2995a90a0492"
+          }
+        ]
+      },
+      {
+        "template_id": "NOMI-015_pediatric",
+        "text": "Follow the formulation-specific child directions: medical advice, an age restriction, or an excitability warning.",
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "efe4e649-7514-32dd-e053-2995a90a0492",
+            "section": "SPL v13: Directions (34068-7)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=efe4e649-7514-32dd-e053-2995a90a0492"
+          }
+        ]
+      },
+      {
+        "template_id": "NOMI-015_sedation_falls",
+        "text": "This antihistamine causes drowsiness; avoid alcohol and take care driving.",
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "efe4e649-7514-32dd-e053-2995a90a0492",
+            "section": "SPL v13: When using (50567-7)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=efe4e649-7514-32dd-e053-2995a90a0492"
+          }
+        ]
+      },
+      {
+        "template_id": "NOMI-015_child_directions",
+        "text": "For ages 6-11, this NyQuil presentation requires medical advice; it is not the below-age-4 prohibition.",
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "efe4e649-7514-32dd-e053-2995a90a0492",
+            "section": "SPL v13: Directions (34068-7)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=efe4e649-7514-32dd-e053-2995a90a0492"
+          }
+        ]
+      }
+    ],
+    "review_status": "unreviewed",
+    "provenance": {
+      "schema_version": "0.1.0",
+      "dataset_version": "NOMI-015-draft",
+      "rubric_version": "NOMI-015-fixture-draft-5-15-51-points",
+      "code_commit": "aa8d723e99fb22853023d8f66e54e3dbe04f52a1",
+      "generated_at": "2026-10-29T17:44:37Z"
+    }
+  }
+]

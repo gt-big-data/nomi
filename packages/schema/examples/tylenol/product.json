@@ -1,0 +1,22 @@
+{
+  "ndc11": "50580044905",
+  "spl_set_id": "59773893-09a8-47a2-943a-e9ea9da4458a",
+  "spl_version": 24,
+  "brand_name": "Tylenol Extra Strength",
+  "generic_name": "acetaminophen",
+  "labeler": "Kenvue Brands LLC",
+  "dosage_form": "TABLET, FILM COATED",
+  "marketing_category": "otc_monograph_drug",
+  "otc_category": "internal_analgesics",
+  "uses": ["pain", "fever"],
+  "scope": "in_scope",
+  "ingredients": [
+    {
+      "unii": "362O9ITL9D",
+      "name": "acetaminophen",
+      "strength": 500,
+      "unit": "mg"
+    }
+  ],
+  "review_status": "unreviewed"
+}

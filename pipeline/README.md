@@ -74,3 +74,9 @@ or anything we produce.
 | `docs/` | Method write-ups, such as signal detection |
 
 The knowledge base is reviewed like code: every change is a PR with citations.
+
+## Identity resolution (NOMI-025)
+
+`uv run pipeline identity resolve` turns a barcode for every directory package into a product,
+writes `data/silver/product.parquet`, and lists every miss in `pipeline/reports/identity_coverage.md`.
+See [docs/identity.md](docs/identity.md).

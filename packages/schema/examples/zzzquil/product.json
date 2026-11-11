@@ -1,0 +1,24 @@
+{
+  "ndc11": "84126031604",
+  "spl_set_id": "1d608c94-1651-f318-e063-6294a90aa11e",
+  "spl_version": 4,
+  "brand_name": "ZzzQuil Nighttime Sleep-Aid",
+  "generic_name": "diphenhydramine hydrochloride",
+  "labeler": "The Procter & Gamble Manufacturing Company",
+  "dosage_form": "LIQUID",
+  "marketing_category": "otc_monograph_drug",
+  "otc_category": "sleep_aids",
+  "uses": ["sleep"],
+  "scope": "in_scope",
+  "ingredients": [
+    {
+      "unii": "TC2D6JAD40",
+      "name": "diphenhydramine hydrochloride",
+      "strength": 50,
+      "unit": "mg",
+      "per_amount": 30.0,
+      "per_unit": "mL"
+    }
+  ],
+  "review_status": "unreviewed"
+}

@@ -1,0 +1,34 @@
+{
+  "ndc11": "69423099516",
+  "spl_set_id": "efe4e649-7514-32dd-e053-2995a90a0492",
+  "spl_version": 13,
+  "brand_name": "Vicks NyQuil Cold and Flu",
+  "generic_name": "dextromethorphan hydrobromide, doxylamine succinate, acetaminophen",
+  "labeler": "The Procter & Gamble Manufacturing Company",
+  "dosage_form": "CAPSULE, LIQUID FILLED",
+  "marketing_category": "otc_monograph_drug",
+  "otc_category": "cough_cold",
+  "uses": ["cough", "pain", "fever", "runny_nose", "sneezing"],
+  "scope": "in_scope",
+  "ingredients": [
+    {
+      "unii": "9D2RTI9KYH",
+      "name": "dextromethorphan hydrobromide",
+      "strength": 15,
+      "unit": "mg"
+    },
+    {
+      "unii": "V9BI9B5YI2",
+      "name": "doxylamine succinate",
+      "strength": 6.25,
+      "unit": "mg"
+    },
+    {
+      "unii": "362O9ITL9D",
+      "name": "acetaminophen",
+      "strength": 325,
+      "unit": "mg"
+    }
+  ],
+  "review_status": "unreviewed"
+}

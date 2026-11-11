@@ -1,0 +1,205 @@
+[
+  {
+    "unii": "TC2D6JAD40",
+    "name": "diphenhydramine hydrochloride",
+    "ratings": [
+      {
+        "dimension": "anticholinergic_cognitive",
+        "persona": "adult_18_64",
+        "severity": 2,
+        "citations": [
+          {
+            "source": "acb",
+            "document_id": "Boustani_2008_ACB_2012_update",
+            "section": "2012 update, page 1: diphenhydramine, ACB score 3",
+            "url": "https://www.hii.iu.edu/resources/anticholinergic-cognitive-burden-scale.pdf"
+          },
+          {
+            "source": "fda_label",
+            "document_id": "1d608c94-1651-f318-e063-6294a90aa11e",
+            "section": "SPL v4: Ask a doctor (50569-3)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1d608c94-1651-f318-e063-6294a90aa11e"
+          }
+        ]
+      },
+      {
+        "dimension": "sedation_falls",
+        "persona": "adult_18_64",
+        "severity": 2,
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "1d608c94-1651-f318-e063-6294a90aa11e",
+            "section": "SPL v4: Purpose (55105-1)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1d608c94-1651-f318-e063-6294a90aa11e",
+            "quote": "Nighttime sleep-aid"
+          },
+          {
+            "source": "fda_label",
+            "document_id": "1d608c94-1651-f318-e063-6294a90aa11e",
+            "section": "SPL v4: Ask a doctor or pharmacist (50568-5)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1d608c94-1651-f318-e063-6294a90aa11e",
+            "quote": "taking sedatives or tranquilizers"
+          }
+        ]
+      },
+      {
+        "dimension": "pediatric",
+        "persona": "adult_18_64",
+        "severity": 0
+      },
+      {
+        "dimension": "anticholinergic_cognitive",
+        "persona": "adult_65_plus",
+        "severity": 3,
+        "citations": [
+          {
+            "source": "publication",
+            "document_id": "10.1111/jgs.18372",
+            "section": "2023 AGS Beers Criteria, Table 2: first-generation antihistamines",
+            "url": "https://pubmed.ncbi.nlm.nih.gov/37139824/"
+          }
+        ]
+      },
+      {
+        "dimension": "sedation_falls",
+        "persona": "adult_65_plus",
+        "severity": 3,
+        "citations": [
+          {
+            "source": "stopp_start",
+            "document_id": "STOPP_v3_K6",
+            "section": "Appendix 1, STOPP K6",
+            "url": "https://static-content.springer.com/esm/art%3A10.1007%2Fs41999-023-00777-y/MediaObjects/41999_2023_777_MOESM1_ESM.pdf",
+            "quote": "First generation antihistamines in patients with recurrent falls (may impair sensorium)"
+          },
+          {
+            "source": "stopp_start",
+            "document_id": "STOPP_v3_D25",
+            "section": "Appendix 1, STOPP D25",
+            "url": "https://static-content.springer.com/esm/art%3A10.1007%2Fs41999-023-00777-y/MediaObjects/41999_2023_777_MOESM1_ESM.pdf",
+            "quote": "First-generation antihistamines for insomnia"
+          }
+        ]
+      },
+      {
+        "dimension": "pediatric",
+        "persona": "adult_65_plus",
+        "severity": 0
+      },
+      {
+        "dimension": "anticholinergic_cognitive",
+        "persona": "child_6_11",
+        "severity": 2,
+        "citations": [
+          {
+            "source": "acb",
+            "document_id": "Boustani_2008_ACB_2012_update",
+            "section": "2012 update, page 1: diphenhydramine, ACB score 3",
+            "url": "https://www.hii.iu.edu/resources/anticholinergic-cognitive-burden-scale.pdf"
+          },
+          {
+            "source": "fda_label",
+            "document_id": "1d608c94-1651-f318-e063-6294a90aa11e",
+            "section": "SPL v4: Ask a doctor (50569-3)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1d608c94-1651-f318-e063-6294a90aa11e"
+          }
+        ]
+      },
+      {
+        "dimension": "sedation_falls",
+        "persona": "child_6_11",
+        "severity": 2,
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "1d608c94-1651-f318-e063-6294a90aa11e",
+            "section": "SPL v4: Purpose (55105-1)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1d608c94-1651-f318-e063-6294a90aa11e",
+            "quote": "Nighttime sleep-aid"
+          },
+          {
+            "source": "fda_label",
+            "document_id": "1d608c94-1651-f318-e063-6294a90aa11e",
+            "section": "SPL v4: Ask a doctor or pharmacist (50568-5)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1d608c94-1651-f318-e063-6294a90aa11e",
+            "quote": "taking sedatives or tranquilizers"
+          }
+        ]
+      },
+      {
+        "dimension": "pediatric",
+        "persona": "child_6_11",
+        "severity": 3,
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "1d608c94-1651-f318-e063-6294a90aa11e",
+            "section": "SPL v4: Directions (34068-7)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1d608c94-1651-f318-e063-6294a90aa11e"
+          }
+        ]
+      }
+    ],
+    "modifiers": [
+      {
+        "dimension": "anticholinergic_cognitive",
+        "condition": "glaucoma",
+        "severity_change": 2,
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "1d608c94-1651-f318-e063-6294a90aa11e",
+            "section": "SPL v4: Ask a doctor (50569-3)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1d608c94-1651-f318-e063-6294a90aa11e",
+            "quote": "glaucoma"
+          }
+        ]
+      },
+      {
+        "dimension": "anticholinergic_cognitive",
+        "condition": "enlarged_prostate",
+        "severity_change": 2,
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "1d608c94-1651-f318-e063-6294a90aa11e",
+            "section": "SPL v4: Ask a doctor (50569-3)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1d608c94-1651-f318-e063-6294a90aa11e",
+            "quote": "difficulty in urination due to enlargement of the prostate gland"
+          }
+        ]
+      },
+      {
+        "dimension": "sedation_falls",
+        "medication_type": "sedatives",
+        "severity_change": 1,
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "1d608c94-1651-f318-e063-6294a90aa11e",
+            "section": "SPL v4: Ask a doctor or pharmacist (50568-5)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1d608c94-1651-f318-e063-6294a90aa11e",
+            "quote": "taking sedatives or tranquilizers"
+          }
+        ]
+      },
+      {
+        "dimension": "sedation_falls",
+        "condition": "heavy_alcohol_use",
+        "severity_change": 1,
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "1d608c94-1651-f318-e063-6294a90aa11e",
+            "section": "SPL v4: When using (50567-7)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1d608c94-1651-f318-e063-6294a90aa11e",
+            "quote": "avoid alcoholic beverages"
+          }
+        ]
+      }
+    ],
+    "review_status": "unreviewed",
+    "notes": "Draft for this labeled formulation and the three example personas only. Dimensions not listed count as 0 in the expected scores. Numeric severities are draft interpretations of the cited evidence; second-person review is pending. Pediatric ratings are presentation-specific: a sleep-aid prohibition is not an allergy-tablet prohibition. Older-adult escalation uses the cited Beers publication, not an age claim from the label."
+  }
+]
