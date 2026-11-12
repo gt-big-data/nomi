@@ -2,12 +2,16 @@
 
 import json
 import logging
+from dataclasses import fields
+from pathlib import Path
+from typing import Annotated
 
 import polars as pl
 import typer
 
-from nomi_pipeline.config import Settings
+from nomi_pipeline.config import REPO_ROOT, Settings
 from nomi_pipeline.ingest.ndc import NdcResult, compute_stats, dedupe_and_sort, parse_ndc_file
+from nomi_pipeline.ingest.sections import SectionRow, collect_sections, coverage_report
 from nomi_pipeline.ingest.spl import collect_labels
 
 app = typer.Typer(help="Load raw sources into typed bronze tables")
@@ -36,6 +40,37 @@ def ingest_spl() -> None:
 
     log.info(f"{successful} / {result.files_processed} labels parsed ({rate:.1f}%)")
     log.info(f"{result.superseded} older or duplicate label versions dropped")
+
+
+@app.command(name="sections")
+def ingest_sections(
+    report: Annotated[Path, typer.Option()] = REPO_ROOT
+    / "pipeline"
+    / "reports"
+    / "spl-section-coverage.md",
+) -> None:
+    """Split DailyMed OTC labels into Drug Facts sections in spl_sections.parquet."""
+    settings = Settings()
+    result = collect_sections(settings.raw_dir / "dailymed-otc")
+
+    settings.bronze_dir.mkdir(parents=True, exist_ok=True)
+    # An explicit schema keeps the columns when there are no rows.
+    schema = {f.name: pl.String for f in fields(SectionRow)} | {
+        "spl_version": pl.Int64,
+        "section_index": pl.Int64,
+    }
+    sections = pl.DataFrame(result.sections, schema=schema).select(
+        [f.name for f in fields(SectionRow)]
+    )
+    sections.write_parquet(settings.bronze_dir / "spl_sections.parquet")
+
+    report.parent.mkdir(parents=True, exist_ok=True)
+    report.write_text(coverage_report(result))
+
+    log.info(
+        f"{len(result.sections)} sections from {result.labels} labels "
+        f"({len(result.failures)} parse failures); report: {report}"
+    )
 
 
 @app.command(name="ndc")
