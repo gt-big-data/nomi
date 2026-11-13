@@ -10,19 +10,21 @@ when the directory names none, the only label listing it), it is not a kit, the 
 active ingredients are complete and agree in number with the directory's (when the directory
 lists any), and the directory gives a brand and generic name.
 
-**Scored packages resolved: 64265 of 65418 (98.24%).** Target 95%: met.
+**Scored packages resolved: 64279 of 65418 (98.26%).** Target 95%: met.
+
+Before NOMI-037: 64265 of 65418 (98.24%), with 14 ingredient_conflict and 82 missing_label misses. NOMI-037 rejoins ingredient names that
+the directory splits at ";", which caused every ingredient_conflict.
 
 Homeopathic products are not scored, so they are counted apart. Counting them as found when
-the directory identifies them, all packages: 91094 of 92247 (98.75%). With a full product record (label and ingredients), all packages: 64267 of 92247 (69.67%).
+the directory identifies them, all packages: 91108 of 92247 (98.77%). With a full product record (label and ingredients), all packages: 64281 of 92247 (69.68%).
 
 | Status | Scored packages | Homeopathic packages |
 | --- | ---: | ---: |
 | homeopathic | 0 | 26827 |
-| ingredient_conflict | 14 | 0 |
 | kit | 1053 | 0 |
 | missing_label | 82 | 0 |
 | missing_name | 4 | 0 |
-| resolved | 64265 | 2 |
+| resolved | 64279 | 2 |
 
 ## Every scored miss
 
@@ -248,9 +250,6 @@ the directory identifies them, all packages: 91094 of 92247 (98.75%). With a ful
 | 11822-6611-1 | 11822661101 | 311822661110 | kit | 11822661101 |
 | 11822-9485-9 | 11822948509 | 311822948594 | kit | 11822948509 |
 | 12546-725-24 | 12546072524 | 312546725249 | kit | 12546072524 |
-| 13411-893-05 | 13411089305 | 313411893056 | ingredient_conflict | 13411089305 |
-| 13411-893-15 | 13411089315 | 313411893155 | ingredient_conflict | 13411089315 |
-| 13411-893-30 | 13411089330 | 313411893308 | ingredient_conflict | 13411089330 |
 | 14222-1600-1 | 14222160001 | 314222160016 | kit | 14222160001 |
 | 14222-1602-1 | 14222160201 | 314222160214 | kit | 14222160201 |
 | 14222-2150-1 | 14222215001 | 314222215013 | kit | 14222215001 |
@@ -946,10 +945,6 @@ the directory identifies them, all packages: 91094 of 92247 (98.75%). With a ful
 | 82706-004-01 | 82706000401 | 382706004019 | kit | 82706000401 |
 | 82706-017-01 | 82706001701 | 382706017019 | kit | 82706001701 |
 | 82706-018-01 | 82706001801 | 382706018016 | kit | 82706001801 |
-| 83021-300-01 | 83021030001 | 383021300015 | ingredient_conflict | 83021030001 |
-| 83021-546-30 | 83021054630 | 383021546307 | ingredient_conflict | 83021054630 |
-| 83021-551-50 | 83021055150 | 383021551509 | ingredient_conflict | 83021055150 |
-| 83021-686-50 | 83021068650 | 383021686508 | ingredient_conflict | 83021068650 |
 | 83108-210-00 | 83108021000 | 383108210008 | kit | 83108021000 |
 | 83252-046-00 | 83252004600 | 383252046003 | missing_label | 83252004600 |
 | 83252-055-00 | 83252005500 | 383252055005 | missing_label | 83252005500 |
@@ -1065,25 +1060,20 @@ the directory identifies them, all packages: 91094 of 92247 (98.75%). With a ful
 | 84234-010-00 | 84234001000 | 384234010005 | kit | 84234001000 |
 | 84324-020-01 | 84324002001 | 384324020013 | kit | 84324002001 |
 | 84324-025-01 | 84324002501 | 384324025018 | kit | 84324002501 |
-| 84509-005-01 | 84509000501 | 384509005019 | ingredient_conflict | 84509000501 |
 | 84616-006-01 | 84616000601 | 384616006015 | kit | 84616000601 |
 | 84616-009-01 | 84616000901 | 384616009016 | kit | 84616000901 |
 | 84616-011-01 | 84616001101 | 384616011019 | kit | 84616001101 |
 | 84616-013-13 | 84616001313 | 384616013136 | kit | 84616001313 |
 | 84616-017-01 | 84616001701 | 384616017011 | kit | 84616001701 |
 | 84616-018-01 | 84616001801 | 384616018018 | kit | 84616001801 |
-| 84753-037-01 | 84753003701 | 384753037019 | ingredient_conflict | 84753003701 |
 | 84803-111-01 | 84803011101 | 384803111010 | kit | 84803011101 |
 | 84828-569-00 | 84828056900 | 384828569001 | kit | 84828056900 |
 | 84956-009-01 | 84956000901 | 384956009011 | kit | 84956000901 |
 | 84956-016-01 | 84956001601 | 384956016019 | kit | 84956001601 |
 | 84989-015-01 | 84989001501 | 384989015010 | missing_label | 84989001501 |
 | 84994-002-15 | 84994000215 | 384994002159 | kit | 84994000215 |
-| 85060-012-01 | 85060001201 | 385060012010 | ingredient_conflict | 85060001201 |
 | 85179-017-00 | 85179001700 | 385179017005 | missing_label | 85179001700 |
 | 85204-000-01 | 85204000001 | 385204000019 | kit | 85204000001 |
-| 85212-0015-1 | 85212001501 | 385212001510 | ingredient_conflict | 85212001501 |
-| 85212-0033-1 | 85212003301 | 385212003316 | ingredient_conflict | 85212003301 |
 | 85273-215-00 | 85273021500 | 385273215000 | kit | 85273021500 |
 | 85287-059-02 | 85287005902 | 385287059027 | kit | 85287005902 |
 | 85384-0014-1 | 85384001401 | 385384001417 | kit | 85384001401 |
@@ -1173,8 +1163,6 @@ the directory identifies them, all packages: 91094 of 92247 (98.75%). With a ful
 | 87625-200-01 | 87625020001 | 387625200016 | kit | 87625020001 |
 | 87649-0001-1 | 87649000101 | 387649000111 | kit | 87649000101 |
 | 87735-003-01 | 87735000301 | 387735003019 | kit | 87735000301 |
-| 87765-001-01 | 87765000101 | 387765001016 | ingredient_conflict | 87765000101 |
-| 87765-001-02 | 87765000102 | 387765001023 | ingredient_conflict | 87765000102 |
 | 87786-089-01 | 87786008901 | 387786089017 | missing_label | 87786008901 |
 | 87817-200-01 | 87817020001 | 387817200015 | kit | 87817020001 |
 | 87870-003-01 | 87870000301 | 387870003011 | kit | 87870000301 |
@@ -1186,3 +1174,11 @@ the directory identifies them, all packages: 91094 of 92247 (98.75%). With a ful
 
 | Package NDC | Expected NDC11 | Barcode | Status | Matches |
 | --- | --- | --- | --- | --- |
+
+## Barcode overrides
+
+Reviewed overrides (`pipeline/knowledge/barcode_overrides.csv`) map barcodes that carry no
+NDC to a package. They are not part of the coverage above. Overrides: 0.
+
+| Barcode | NDC11 | Status |
+| --- | --- | --- |

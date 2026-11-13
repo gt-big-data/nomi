@@ -10,6 +10,7 @@ from nomi_pipeline.identity.resolver import (
     build_identity,
     coverage_report,
     evaluate,
+    load_overrides,
     package_codes,
 )
 
@@ -222,6 +223,105 @@ def test_label_and_directory_must_agree_on_ingredient_count() -> None:
     for listed in none_listed:
         ndc[0]["active_ingredients"] = listed
         assert Resolver(ndc, labels, ingredients).resolve(barcode).status == "resolved"
+
+
+def test_directory_split_ingredient_name_is_not_a_conflict() -> None:
+    # openFDA's directory splits an ingredient name at ";", so one label active becomes two.
+    ndc, labels, ingredients, barcode = sources()
+    ndc[0]["active_ingredients"] = ["HYDROLYSED BOVINE COLLAGEN (ENZYMATIC", "3500 MW)"]
+    assert Resolver(ndc, labels, ingredients).resolve(barcode).status == "resolved"
+    # A fragment that closes a parenthesis it never opened is not rejoined.
+    ndc[0]["active_ingredients"] = ["ACETAMINOPHEN)", "CAFFEINE"]
+    assert Resolver(ndc, labels, ingredients).resolve(barcode).status == "ingredient_conflict"
+
+
+def test_real_ingredient_count_conflict_is_still_flagged() -> None:
+    ndc, labels, ingredients, barcode = sources()
+    ndc[0]["active_ingredients"] = ["ACETAMINOPHEN (AS SALT)", "CAFFEINE"]
+    assert Resolver(ndc, labels, ingredients).resolve(barcode).status == "ingredient_conflict"
+
+
+STORE_UPC = "012345678905"  # A valid UPC-A without an embedded NDC.
+
+
+def test_override_resolves_a_barcode_without_an_ndc() -> None:
+    ndc, labels, ingredients, _ = sources()
+    resolver = Resolver(ndc, labels, ingredients, overrides={STORE_UPC: "01234567890"})
+    for scan in (STORE_UPC, "0" + STORE_UPC):
+        result = resolver.resolve(scan)
+        assert result.status == "resolved"
+        assert result.product is not None
+        assert result.product["ndc11"] == "01234567890"
+    # Without an override it is still just not a drug barcode.
+    assert Resolver(ndc, labels, ingredients).resolve(STORE_UPC).status == "not_ndc_barcode"
+    # An override to a package the directory does not have is not found, never guessed.
+    missing = Resolver(ndc, labels, ingredients, overrides={STORE_UPC: "99999999999"})
+    assert missing.resolve(STORE_UPC).status == "not_found"
+
+
+def test_override_still_runs_every_package_check() -> None:
+    ndc, labels, ingredients, _ = sources()
+    kit = [{**ingredients[0], "part_index": 1}]
+    resolver = Resolver(ndc, labels, kit, overrides={STORE_UPC: "01234567890"})
+    assert resolver.resolve(STORE_UPC).status == "kit"
+
+
+OVERRIDE_HEADER = "barcode,ndc11,reviewed_by,reviewed_on,source\n"
+
+
+def write_overrides(path: Path, *rows: str) -> Path:
+    path.write_text(OVERRIDE_HEADER + "".join(row + "\n" for row in rows), encoding="utf-8")
+    return path
+
+
+def test_load_overrides_reads_reviewed_rows(tmp_path: Path) -> None:
+    path = write_overrides(
+        tmp_path / "o.csv",
+        f"{STORE_UPC},01234567890,A Reviewer,2026-11-01,photo of the box",
+        # Scanned as EAN-13: kept as the UPC-A the parser reads.
+        "0036000291452,01234567891,A Reviewer,2026-11-01,photo of the box",
+    )
+    assert load_overrides(path) == {STORE_UPC: "01234567890", "036000291452": "01234567891"}
+    assert load_overrides(write_overrides(tmp_path / "empty.csv")) == {}
+
+
+@pytest.mark.parametrize(
+    "rows",
+    [
+        # Already a "3" + NDC barcode: the generated barcode resolves it, so no override.
+        (f"{package_codes('1234-5678-90')[1]},01234567890,A Reviewer,2026-11-01,box",),
+        # Bad check digit.
+        ("012345678906,01234567890,A Reviewer,2026-11-01,box",),
+        # The same barcode twice, even as UPC-A and EAN-13.
+        (
+            f"{STORE_UPC},01234567890,A Reviewer,2026-11-01,box",
+            f"0{STORE_UPC},01234567891,A Reviewer,2026-11-01,box",
+        ),
+        # Not reviewed.
+        (f"{STORE_UPC},01234567890,,2026-11-01,box",),
+        (f"{STORE_UPC},01234567890,A Reviewer,,box",),
+        # Not an NDC11.
+        (f"{STORE_UPC},1234567890,A Reviewer,2026-11-01,box",),
+        (f"{STORE_UPC},0123456789a,A Reviewer,2026-11-01,box",),
+    ],
+)
+def test_load_overrides_rejects_bad_rows(tmp_path: Path, rows: tuple[str, ...]) -> None:
+    with pytest.raises(ValueError):
+        load_overrides(write_overrides(tmp_path / "o.csv", *rows))
+
+
+def test_build_reports_every_override(tmp_path: Path) -> None:
+    ndc, labels, ingredients, _ = sources()
+    bronze, silver, report = tmp_path / "bronze", tmp_path / "silver", tmp_path / "c.md"
+    write_bronze(bronze, ndc, labels, ingredients)
+    overrides = write_overrides(
+        tmp_path / "o.csv", f"{STORE_UPC},01234567890,A Reviewer,2026-11-01,box"
+    )
+    # Overrides never change the coverage of generated barcodes.
+    assert build_identity(bronze, silver, report, overrides) == (1, 1)
+    text = report.read_text()
+    assert "## Barcode overrides" in text
+    assert f"| {STORE_UPC} | 01234567890 | resolved |" in text
 
 
 def test_unknown_marketing_category_maps_to_other() -> None:
