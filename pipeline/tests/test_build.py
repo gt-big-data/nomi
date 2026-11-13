@@ -112,17 +112,24 @@ def test_write_manifest_has_expected_fields(tmp_path: Path) -> None:
     on_disk = json.loads(manifest_path.read_text())
     assert on_disk == manifest
 
+
 def test_db_handles_real_shape_without_otc_fields(tmp_path: Path) -> None:
     db_path = tmp_path / "nomi.sqlite"
-    counts = build_database(FIXTURES / "real_shape_product.parquet", db_path=db_path, dataset_version="v0.1.0")
+    counts = build_database(
+        FIXTURES / "real_shape_product.parquet", db_path=db_path, dataset_version="v0.1.0"
+    )
 
     assert counts["products"] == 1
     assert counts["product_ingredients"] == 1
     assert counts["product_uses"] == 0
 
     con = sqlite3.connect(str(db_path))
-    row = con.execute("SELECT category, scope_flag, review_status FROM products WHERE ndc11 = ?", ("33333333333",),).fetchone()
+    row = con.execute(
+        "SELECT category, scope_flag, review_status FROM products WHERE ndc11 = ?",
+        ("33333333333",),
+    ).fetchone()
     assert row == (None, None, None)
+
 
 def test_publish_uploads_db_and_manifest(tmp_path: Path) -> None:
     db_path = tmp_path / "nomi.sqlite"
@@ -137,7 +144,9 @@ def test_publish_uploads_db_and_manifest(tmp_path: Path) -> None:
     assert fs.exists(f"{prefix}/manifest.json")
     assert fs.cat(f"{prefix}/nomi.sqlite") == b"fake db bytes"
 
+
 REFERENCE_PRODUCTS_DIR = Path(__file__).parents[2] / "packages" / "schema" / "examples"
+
 
 def test_build_handles_five_reference_products(tmp_path: Path) -> None:
     product_dir = []
@@ -147,7 +156,7 @@ def test_build_handles_five_reference_products(tmp_path: Path) -> None:
 
     products = []
     for p in product_dir:
-        product_json = ( p / "product.json").read_text()
+        product_json = (p / "product.json").read_text()
         product = json.loads(product_json)
         for ingredient in product["ingredients"]:
             ingredient["strength"] = float(ingredient["strength"])
@@ -171,8 +180,14 @@ def test_build_handles_five_reference_products(tmp_path: Path) -> None:
     assert meta_row[0] == 1
 
     not_yet_populated = [
-        "hard_stops", "terms", "benchmarks", "alternatives",
-        "citations", "templates", "label_warnings", "interactions",
+        "hard_stops",
+        "terms",
+        "benchmarks",
+        "alternatives",
+        "citations",
+        "templates",
+        "label_warnings",
+        "interactions",
     ]
     for table in not_yet_populated:
         row_count = con.execute(f"SELECT COUNT(*) FROM {table}").fetchone()[0]
