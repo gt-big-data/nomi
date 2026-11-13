@@ -51,6 +51,14 @@ def fetch_faers() -> None:
     _run("faers", Settings())
 
 
+@app.command(name="rxnorm")
+def fetch_rxnorm_cmd() -> None:
+    """Fetch the RxNorm dataset (stub for NOMI-019)."""
+    from nomi_pipeline.fetch.rxnorm import fetch_rxnorm
+
+    fetch_rxnorm()
+
+
 def _run(source: str, settings: Settings) -> None:
     try:
         _fetch_source(source, settings)

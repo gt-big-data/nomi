@@ -1,11 +1,7 @@
 import csv
 from pathlib import Path
 
-<<<<<<< HEAD
-from nomi_pipeline.evidence.name_matcher import FaersNameMatcher
-=======
 from nomi_pipeline.evidence.name_matcher import FaersNameMatcher, tune_fuzzy_threshold
->>>>>>> feat/NOMI-033-match-faers
 
 FIXTURE_PATH = Path(__file__).parent / "fixtures" / "faers_names_labeled.csv"
 
