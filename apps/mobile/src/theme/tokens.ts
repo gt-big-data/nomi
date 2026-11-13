@@ -109,7 +109,7 @@ export const radius = {
   pill: 999,
 } as const;
 
-/** Border widths in points. Cards and rows use `card`; option chips use `control`. */
+/** Border widths in points. Cards and rows use `card`; option chips and cards use `control`. */
 export const borderWidth = {
   card: 1,
   control: 1.5,
@@ -144,6 +144,10 @@ export const iconSize = {
   dot: { size: 22, strokeWidth: 2 },
   /** "Do not use" icon in the large score ring */
   ring: { size: 72, strokeWidth: 6 },
+  /** Back arrow in the onboarding top bar */
+  back: { size: 20, strokeWidth: 1.67 },
+  /** Icons in the circles on the welcome screen */
+  feature: { size: 20, strokeWidth: 1.5 },
 } as const;
 
 export type IconSize = keyof typeof iconSize;

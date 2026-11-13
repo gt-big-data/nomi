@@ -1,4 +1,5 @@
 import Ban from "lucide-react-native/icons/ban";
+import ChevronLeft from "lucide-react-native/icons/chevron-left";
 import ChevronRight from "lucide-react-native/icons/chevron-right";
 import CircleCheck from "lucide-react-native/icons/circle-check";
 import CircleMinus from "lucide-react-native/icons/circle-minus";
@@ -6,7 +7,9 @@ import FileText from "lucide-react-native/icons/file-text";
 import Gem from "lucide-react-native/icons/gem";
 import Info from "lucide-react-native/icons/info";
 import OctagonAlert from "lucide-react-native/icons/octagon-alert";
+import ShieldCheck from "lucide-react-native/icons/shield-check";
 import TriangleAlert from "lucide-react-native/icons/triangle-alert";
+import User from "lucide-react-native/icons/user";
 
 import { iconSize, type IconSize } from "@/theme";
 
@@ -20,9 +23,12 @@ const icons = {
   stop: Ban, // Do not use
   dash: CircleMinus, // Not scored
   info: Info, // Info banner
-  doc: FileText, // Citation chip
+  doc: FileText, // Citation chip, welcome: every warning has a source
   chevron: ChevronRight, // Rows and banners you can tap
+  back: ChevronLeft, // Back button in onboarding
   gem: Gem, // Premium
+  person: User, // Welcome: scores for who it's for
+  shield: ShieldCheck, // Welcome: privacy promise
 } as const;
 
 export type IconName = keyof typeof icons;
