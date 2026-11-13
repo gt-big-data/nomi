@@ -1,19 +1,20 @@
-"""Resolve barcodes to products and measure coverage (NOMI-025).
+"""Resolve barcodes to products and measure coverage (NOMI-025, NOMI-037).
 
 Reads the bronze NDC directory (NOMI-009) and DailyMed label tables (NOMI-010); see
 pipeline/docs/identity.md.
 """
 
+import csv
 from collections import Counter, defaultdict
-from collections.abc import Iterable
+from collections.abc import Iterable, Mapping
 from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any, Literal
 
 import polars as pl
 
+from nomi_pipeline.identity.barcode import _TRIM, ndc_candidates
 from nomi_pipeline.identity.barcode import Status as ParseStatus
-from nomi_pipeline.identity.barcode import ndc_candidates
 
 Row = dict[str, Any]
 Status = (
@@ -40,6 +41,9 @@ Status = (
 HOMEOPATHIC = "UNAPPROVED HOMEOPATHIC"
 # docs/system-design.md 5.2 and 8: 95% or higher of generated barcodes resolve correctly.
 TARGET = 0.95
+# The last full-data run before NOMI-037's resolver fixes (pipeline/reports, #94).
+BEFORE = {"resolved": 64265, "total": 65418, "ingredient_conflict": 14, "missing_label": 82}
+OVERRIDE_FIELDS = ("barcode", "ndc11", "reviewed_by", "reviewed_on", "source")
 INGREDIENT_FIELDS = ("unii", "name", "strength", "unit", "per_amount", "per_unit")
 MARKETING_CATEGORIES = {
     "otc_monograph_drug",
@@ -91,8 +95,14 @@ class Resolver:
     """
 
     def __init__(
-        self, ndc: Iterable[Row], products: Iterable[Row], ingredients: Iterable[Row]
+        self,
+        ndc: Iterable[Row],
+        products: Iterable[Row],
+        ingredients: Iterable[Row],
+        overrides: Mapping[str, str] | None = None,
     ) -> None:
+        # Reviewed barcode -> NDC11, for boxes whose barcode carries no NDC (see load_overrides).
+        self.overrides = dict(overrides or {})
         self.directory: dict[str, Row] = {}
         # The 10 digits printed in a barcode -> the NDC11s of real packages with those digits.
         # Two different NDC10s can pad to one NDC11 (12345-0678-9 and 12345-678-09), so a
@@ -115,6 +125,12 @@ class Resolver:
 
     def resolve(self, barcode: str) -> Resolution:
         parsed = ndc_candidates(barcode)
+        if parsed["status"] == "not_ndc_barcode" and upc(barcode) in self.overrides:
+            # Resolve the package's own barcode, so an override passes every check below.
+            listing = self.directory.get(self.overrides[upc(barcode)])
+            if listing is None:
+                return Resolution("not_found")
+            return self.resolve(package_codes(listing["ndc_raw"])[1])
         if parsed["status"] != "ok":
             return Resolution(parsed["status"])
         # The 4-4-2 candidate is "0" + the scanned 10 digits.
@@ -160,11 +176,10 @@ class Resolver:
         if not all(valid_ingredient(item) for item in ingredients):
             # Bad strengths must never pass as a resolved product.
             return Resolution("invalid_ingredients", matches)
-        listed = listing.get("active_ingredients")
+        listed = rejoin_split_names(listing.get("active_ingredients") or [])
         # Bronze stores "none listed" as an empty list; then there is nothing to compare.
         if listed and len(listed) != len(ingredients):
-            # The label and the directory disagree on what is in the box. On today's data every case
-            # is an ingredient name containing ";", which openFDA's directory splits in two.
+            # The label and the directory disagree on what is in the box.
             return Resolution("ingredient_conflict", matches)
 
         if not (listing.get("brand_name") and listing.get("generic_name")):
@@ -186,6 +201,56 @@ class Resolver:
 
 def digits(ndc_raw: str | None) -> str:
     return (ndc_raw or "").replace("-", "")
+
+
+def upc(barcode: str) -> str:
+    """The barcode as the parser reads it: trimmed, and an EAN-13 with a leading 0 as its UPC-A."""
+    code = barcode.strip(_TRIM)
+    return code[1:] if len(code) == 13 and code[0] == "0" else code
+
+
+def rejoin_split_names(names: list[str]) -> list[str]:
+    """Undo openFDA's split of an ingredient name at ";".
+
+    The directory lists "HYDROLYSED BOVINE COLLAGEN (ENZYMATIC; 3500 MW)" as two names, cut inside
+    the parentheses. A name that leaves a parenthesis open is joined to the names after it until
+    it closes.
+    """
+    joined: list[str] = []
+    depth = 0
+    for name in names:
+        if depth > 0:
+            joined[-1] += "; " + name
+        else:
+            joined.append(name)
+        depth = max(depth + name.count("(") - name.count(")"), 0)
+    return joined
+
+
+def load_overrides(path: Path) -> dict[str, str]:
+    """Read reviewed overrides: barcodes that carry no NDC, each mapped to the box's NDC11.
+
+    Every row must name its reviewer and review date. A barcode that already encodes an NDC is
+    rejected: the resolver reads that NDC, and an override must never contradict it.
+    """
+    overrides: dict[str, str] = {}
+    with path.open(newline="", encoding="utf-8") as file:
+        reader = csv.DictReader(file)
+        if tuple(reader.fieldnames or ()) != OVERRIDE_FIELDS:
+            raise ValueError(f"{path}: expected columns {', '.join(OVERRIDE_FIELDS)}")
+        for line, row in enumerate(reader, start=2):
+            barcode, ndc11 = row["barcode"] or "", row["ndc11"] or ""
+            status = ndc_candidates(barcode)["status"]
+            if status != "not_ndc_barcode":
+                raise ValueError(f"{path}:{line}: {barcode!r} is {status}, not a non-NDC barcode")
+            if not (len(ndc11) == 11 and ndc11.isascii() and ndc11.isdigit()):
+                raise ValueError(f"{path}:{line}: {ndc11!r} is not an NDC11")
+            if not ((row["reviewed_by"] or "").strip() and (row["reviewed_on"] or "").strip()):
+                raise ValueError(f"{path}:{line}: an override needs reviewed_by and reviewed_on")
+            if upc(barcode) in overrides:
+                raise ValueError(f"{path}:{line}: {barcode!r} is listed twice")
+            overrides[upc(barcode)] = ndc11
+    return overrides
 
 
 def positive(value: Any) -> bool:
@@ -265,7 +330,7 @@ def miss_table(rows: list[Row]) -> list[str]:
     return lines
 
 
-def coverage_report(results: list[Row]) -> str:
+def coverage_report(results: list[Row], overrides: list[Row] | None = None) -> str:
     correct, total = coverage(results)
     rate = correct / total if total else 0.0
     found = sum(r["status"] in {"resolved", "homeopathic"} for r in results)
@@ -288,6 +353,12 @@ def coverage_report(results: list[Row]) -> str:
         f"**Scored packages resolved: {correct} of {total} ({rate:.2%}).** "
         f"Target {TARGET:.0%}: {'met' if total and rate >= TARGET else 'not met'}.",
         "",
+        f"Before NOMI-037: {BEFORE['resolved']} of {BEFORE['total']} "
+        f"({BEFORE['resolved'] / BEFORE['total']:.2%}), with "
+        f"{BEFORE['ingredient_conflict']} ingredient_conflict and "
+        f"{BEFORE['missing_label']} missing_label misses. NOMI-037 rejoins ingredient names that",
+        'the directory splits at ";", which caused every ingredient_conflict.',
+        "",
         "Homeopathic products are not scored, so they are counted apart. Counting them as found when",
         "the directory identifies them, all packages: "
         f"{found} of {len(results)} ({found / len(results) if results else 0:.2%}). "
@@ -307,6 +378,18 @@ def coverage_report(results: list[Row]) -> str:
     lines += miss_table(
         [r for r in results if is_homeopathic(r) and r["status"] not in {"resolved", "homeopathic"}]
     )
+    lines += [
+        "",
+        "## Barcode overrides",
+        "",
+        "Reviewed overrides (`pipeline/knowledge/barcode_overrides.csv`) map barcodes that carry no",
+        "NDC to a package. They are not part of the coverage above. Overrides: "
+        f"{len(overrides or [])}.",
+        "",
+        "| Barcode | NDC11 | Status |",
+        "| --- | --- | --- |",
+    ]
+    lines += [f"| {r['barcode']} | {r['ndc11']} | {r['status']} |" for r in overrides or []]
     return "\n".join(lines) + "\n"
 
 
@@ -342,7 +425,9 @@ RESULT_SCHEMA: dict[str, Any] = {
 }
 
 
-def build_identity(bronze_dir: Path, silver_dir: Path, report: Path) -> tuple[int, int]:
+def build_identity(
+    bronze_dir: Path, silver_dir: Path, report: Path, overrides: Path | None = None
+) -> tuple[int, int]:
     """Write product.parquet, identity_results.parquet and the coverage report.
 
     Returns resolved and total scored packages, for the coverage target.
@@ -354,12 +439,18 @@ def build_identity(bronze_dir: Path, silver_dir: Path, report: Path) -> tuple[in
         .filter(pl.col("role") == "active")
         .to_dicts()
     )
-    products, results = evaluate(Resolver(ndc, labels, ingredients))
+    reviewed = load_overrides(overrides) if overrides is not None else {}
+    resolver = Resolver(ndc, labels, ingredients, reviewed)
+    products, results = evaluate(resolver)
+    checked = [
+        {"barcode": barcode, "ndc11": ndc11, "status": resolver.resolve(barcode).status}
+        for barcode, ndc11 in sorted(reviewed.items())
+    ]
     silver_dir.mkdir(parents=True, exist_ok=True)
     report.parent.mkdir(parents=True, exist_ok=True)
     pl.DataFrame(products, schema=PRODUCT_SCHEMA).write_parquet(silver_dir / "product.parquet")
     pl.DataFrame(results, schema=RESULT_SCHEMA).write_parquet(
         silver_dir / "identity_results.parquet"
     )
-    report.write_text(coverage_report(results), encoding="utf-8")
+    report.write_text(coverage_report(results, checked), encoding="utf-8")
     return coverage(results)

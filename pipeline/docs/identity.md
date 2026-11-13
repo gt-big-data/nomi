@@ -32,6 +32,9 @@ It reads `ndc.parquet`, `spl_products.parquet` and `spl_ingredients.parquet` fro
    `per_amount` and `per_unit` together with a positive amount.
 6. The label must list as many active ingredients as the directory does, when the directory lists
    any (about 1% of directory rows list none, stored as an empty list, and then the check is skipped).
+   openFDA's directory splits an ingredient name at ";" (`HYDROLYSED BOVINE COLLAGEN (ENZYMATIC;
+   3500 MW)` becomes two names), so a name that leaves a parenthesis open is first joined to the
+   names after it (NOMI-037).
 7. The directory must give a brand name and a generic name, as the product schema requires.
 
 | Status | Meaning |
@@ -47,7 +50,7 @@ It reads `ndc.parquet`, `spl_products.parquet` and `spl_ingredients.parquet` fro
 | `missing_ingredients` | The label product lists no active ingredients |
 | `kit` | A kit; ingredients are per part, which the product record cannot hold yet |
 | `invalid_ingredients` | An ingredient breaks the product schema's rules |
-| `ingredient_conflict` | The label and the directory list a different number of actives; today every case is an ingredient name containing ";", which openFDA's directory splits in two |
+| `ingredient_conflict` | The label and the directory list a different number of actives, after rejoining names the directory split at ";" (none on today's data) |
 | `missing_name` | The directory gives no brand or generic name |
 | `invalid_package_ndc`, `ndc_mismatch` | The directory's own package NDC is malformed or disagrees with its NDC11 |
 
@@ -77,3 +80,16 @@ directory identifies them.
 
 This measures the lookup, not real boxes: store-brand barcodes that do not follow the `3` + NDC
 pattern need the overrides and name search in system design 5.2.
+
+## Overrides
+
+`pipeline/knowledge/barcode_overrides.csv` maps a reviewed barcode that carries no NDC to the
+package's NDC11 (`--overrides PATH` to change it). Columns: `barcode`, `ndc11`, `reviewed_by`,
+`reviewed_on`, `source`. Only barcodes the parser reports as `not_ndc_barcode` may be listed, and
+every row needs a reviewer and a date; the command fails on a bad row. An override resolves the
+package's own barcode, so it passes every check above; one that names a package missing from the
+directory is `not_found`. The report lists every override with its status.
+
+`pipeline/tests/fixtures/identity_regression.csv` has a row for every barcode an identity fix
+resolved. `tests/test_identity_regression.py` resolves them against the bronze tables when they
+have been built.
