@@ -33,7 +33,6 @@ def build_database(product_parquet: Path, db_path: Path, dataset_version: str) -
                 product["brand_name"],
                 product["generic_name"],
                 product["dosage_form"],
-
                 # otc_category/scope come from #26, review_status from no ticket yet;
                 # .get() avoids crashing until #26 lands
                 product.get("otc_category"),
@@ -96,9 +95,12 @@ def write_manifest(
     manifest_path.write_text(json.dumps(manifest, indent=2))
     return manifest
 
+
 def publish(db_path: Path, manifest_path: Path, dataset_version: str, settings: Settings) -> str:
     if not settings.dataset_store:
-        raise RuntimeError("DATASET_STORE not configured. Copy .env.example to .env and fill it in.")
+        raise RuntimeError(
+            "DATASET_STORE not configured. Copy .env.example to .env and fill it in."
+        )
 
     options: dict[str, Any] = {}
     if settings.hf_token and settings.dataset_store.startswith("hf://"):

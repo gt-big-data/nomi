@@ -101,4 +101,3 @@ CREATE TABLE interactions (
     severity TEXT,
     citation_id TEXT
 );
-
