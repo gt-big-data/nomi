@@ -20,7 +20,7 @@ app.add_typer(identity.app, name="identity")
 app.add_typer(extract.app, name="extract")
 app.add_typer(evidence.app, name="evidence")
 app.add_typer(score.app, name="score")
-app.add_typer(build.app, name="build")
+app.command(name="build")(build.run_build)
 
 
 def main() -> None:
