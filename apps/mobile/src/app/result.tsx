@@ -1,54 +1,69 @@
 import { Stack, useLocalSearchParams } from "expo-router";
-import { ScrollView, StyleSheet, Text } from "react-native";
+import { ScrollView, StyleSheet, Text, type TextProps } from "react-native";
 
 import { lookupFixture, type ScanResult } from "@/fixtures/scanFixtures";
+import { useTheme } from "@/theme";
 
-// Plain text for now; styled components come from NOMI-027.
+// Plain text for now; the NOMI-027 components (ScoreBadge, TierLabel...) can replace it later.
 export default function Result() {
   const { barcode } = useLocalSearchParams<{ barcode: string }>();
   const result = lookupFixture(barcode ?? "");
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
-      <Stack.Screen options={{ title: TITLES[result.state] }} />
+    // "automatic" starts the content below the see-through header instead of under it.
+    <ScrollView contentInsetAdjustmentBehavior="automatic" contentContainerStyle={styles.container}>
+      <Stack.Screen options={{ title: title(result) }} />
       <Body result={result} />
-      <Text style={styles.barcode}>Barcode {result.barcode}</Text>
+      <Line style={styles.barcode}>Barcode {result.barcode}</Line>
     </ScrollView>
   );
 }
 
-const TITLES: Record<ScanResult["state"], string> = {
-  scored: "Result",
-  preliminary: "Preliminary result",
-  homeopathic: "Homeopathic",
-  not_found: "Not found",
-  invalid: "Couldn't read barcode",
-};
+function title(result: ScanResult): string {
+  switch (result.state) {
+    case "scored":
+      return "Result";
+    case "preliminary":
+      return "Preliminary result";
+    case "homeopathic":
+      return "Homeopathic";
+    case "not_found":
+      return "Not found";
+    case "invalid":
+      return result.reason === "not_ndc_barcode" ? "Not a medicine" : "Couldn't read barcode";
+  }
+}
+
+/** Text in the theme's color, so it's readable in light and dark mode. */
+function Line({ style, ...props }: TextProps) {
+  const { colors } = useTheme();
+  return <Text style={[{ color: colors.text.primary }, style]} {...props} />;
+}
 
 function Body({ result }: { result: ScanResult }) {
   switch (result.state) {
     case "scored":
       return (
         <>
-          <Text style={styles.name}>{result.product.brand_name}</Text>
-          <Text>{result.product.generic_name}</Text>
-          <Text style={styles.score}>{result.score}/100</Text>
-          <Text>Tier: {result.tier}</Text>
+          <Line style={styles.name}>{result.product.brand_name}</Line>
+          <Line>{result.product.generic_name}</Line>
+          <Line style={styles.score}>{result.score}/100</Line>
+          <Line>Tier: {result.tier}</Line>
         </>
       );
     case "preliminary":
       // docs/system-design.md 8.2: ingredients and label warnings with a "preliminary" badge.
       return (
         <>
-          <Text style={styles.badge}>PRELIMINARY</Text>
-          <Text style={styles.name}>{result.product.brand_name}</Text>
-          <Text style={styles.heading}>Ingredients</Text>
+          <Line style={styles.badge}>PRELIMINARY</Line>
+          <Line style={styles.name}>{result.product.brand_name}</Line>
+          <Line style={styles.heading}>Ingredients</Line>
           {result.ingredients.map((line) => (
-            <Text key={line}>{line}</Text>
+            <Line key={line}>{line}</Line>
           ))}
-          <Text style={styles.heading}>Warnings</Text>
+          <Line style={styles.heading}>Warnings</Line>
           {result.warnings.map((line) => (
-            <Text key={line}>{line}</Text>
+            <Line key={line}>{line}</Line>
           ))}
         </>
       );
@@ -56,21 +71,21 @@ function Body({ result }: { result: ScanResult }) {
       // docs/system-design.md 5.2: shown as "not evaluated by FDA" and not scored.
       return (
         <>
-          <Text style={styles.name}>{result.product.brand_name}</Text>
-          <Text>
+          <Line style={styles.name}>{result.product.brand_name}</Line>
+          <Line>
             This homeopathic product has not been evaluated by the FDA, so Nomi does not score it.
-          </Text>
+          </Line>
         </>
       );
     case "not_found":
-      return <Text>We don't have this product yet.</Text>;
+      return <Line>We don't have this product yet.</Line>;
     case "invalid":
       return (
-        <Text>
+        <Line>
           {result.reason === "not_ndc_barcode"
             ? "This barcode isn't a medicine."
             : "The barcode didn't read cleanly. Please try again."}
-        </Text>
+        </Line>
       );
   }
 }
@@ -79,7 +94,7 @@ const styles = StyleSheet.create({
   container: { padding: 24, gap: 8 },
   name: { fontSize: 22, fontWeight: "600" },
   score: { fontSize: 48, fontWeight: "700", marginTop: 16 },
-  badge: { fontWeight: "700", color: "#8a5a00" },
+  badge: { fontWeight: "700" },
   heading: { fontWeight: "600", marginTop: 12 },
-  barcode: { marginTop: 24, color: "#666" },
+  barcode: { marginTop: 24, opacity: 0.6 },
 });

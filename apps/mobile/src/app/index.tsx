@@ -1,6 +1,6 @@
 import * as Haptics from "expo-haptics";
-import { router } from "expo-router";
-import { useEffect, useRef, useState } from "react";
+import { Link, router, useFocusEffect } from "expo-router";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { AppState, Button, Linking, StyleSheet, Text, View } from "react-native";
 import { useCameraPermission } from "react-native-vision-camera";
 import { CodeScanner } from "react-native-vision-camera-barcode-scanner";
@@ -20,6 +20,17 @@ export default function Scanner() {
     return () => subscription.remove();
   }, []);
 
+  // Runs each time this screen comes back into view, e.g. after Back from a result.
+  // Unlocks scanning and turns the camera back on; turns it off when another screen covers it.
+  const [focused, setFocused] = useState(true);
+  useFocusEffect(
+    useCallback(() => {
+      scanned.current = false;
+      setFocused(true);
+      return () => setFocused(false);
+    }, []),
+  );
+
   if (!hasPermission) {
     return (
       <View style={styles.center}>
@@ -38,7 +49,7 @@ export default function Scanner() {
     <View style={styles.container}>
       <CodeScanner
         style={StyleSheet.absoluteFill}
-        isActive={appActive}
+        isActive={appActive && focused}
         barcodeFormats={["upc-a", "ean-13"]}
         onBarcodeScanned={(barcodes) => {
           const value = barcodes[0]?.rawValue;
@@ -51,6 +62,11 @@ export default function Scanner() {
         }}
         onError={(error) => console.error("Scanner error:", error)}
       />
+      {__DEV__ && (
+        <Link href="/dev" style={styles.devLink}>
+          Dev menu
+        </Link>
+      )}
     </View>
   );
 }
@@ -58,4 +74,15 @@ export default function Scanner() {
 const styles = StyleSheet.create({
   container: { flex: 1 },
   center: { flex: 1, alignItems: "center", justifyContent: "center", gap: 12 },
+  // Fixed colors: it sits on the camera picture, not on a themed background.
+  devLink: {
+    position: "absolute",
+    bottom: 48,
+    alignSelf: "center",
+    padding: 12,
+    borderRadius: 8,
+    overflow: "hidden",
+    backgroundColor: "white",
+    color: "black",
+  },
 });
