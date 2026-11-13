@@ -63,9 +63,7 @@ def test_single_ingredient_mapping(
     tmp_path: Path,
 ) -> None:
     settings = _mock_settings(tmp_path)
-    build_faers_drug_mapping(
-        settings, reports_dir=tmp_path / "reports", matcher=test_matcher
-    )
+    build_faers_drug_mapping(settings, reports_dir=tmp_path / "reports", matcher=test_matcher)
 
     result = pl.read_parquet(tmp_path / "silver" / "faers_drug_ingredient.parquet")
 
@@ -89,9 +87,7 @@ def test_combination_product_explosion(
 ) -> None:
     """Combination drugs must explode into one row per active ingredient."""
     settings = _mock_settings(tmp_path)
-    build_faers_drug_mapping(
-        settings, reports_dir=tmp_path / "reports", matcher=test_matcher
-    )
+    build_faers_drug_mapping(settings, reports_dir=tmp_path / "reports", matcher=test_matcher)
 
     result = pl.read_parquet(tmp_path / "silver" / "faers_drug_ingredient.parquet")
 
@@ -120,9 +116,7 @@ def test_unmapped_handling(
     tmp_path: Path,
 ) -> None:
     settings = _mock_settings(tmp_path)
-    build_faers_drug_mapping(
-        settings, reports_dir=tmp_path / "reports", matcher=test_matcher
-    )
+    build_faers_drug_mapping(settings, reports_dir=tmp_path / "reports", matcher=test_matcher)
 
     result = pl.read_parquet(tmp_path / "silver" / "faers_drug_ingredient.parquet")
 
@@ -140,9 +134,7 @@ def test_faers_mapping_schema(
     tmp_path: Path,
 ) -> None:
     settings = _mock_settings(tmp_path)
-    build_faers_drug_mapping(
-        settings, reports_dir=tmp_path / "reports", matcher=test_matcher
-    )
+    build_faers_drug_mapping(settings, reports_dir=tmp_path / "reports", matcher=test_matcher)
 
     result = pl.read_parquet(tmp_path / "silver" / "faers_drug_ingredient.parquet")
     assert result.columns == COLUMNS

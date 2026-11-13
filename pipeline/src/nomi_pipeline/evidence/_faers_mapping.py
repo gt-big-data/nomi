@@ -64,9 +64,7 @@ def build_faers_drug_mapping(
 
     # 1. Distinct raw drug names to avoid re-matching duplicates
     unique_names = (
-        drug.select(pl.col("drugname").drop_nulls().unique())
-        .collect()["drugname"]
-        .to_list()
+        drug.select(pl.col("drugname").drop_nulls().unique()).collect()["drugname"].to_list()
     )
     log.info("Matching %d unique drug names...", len(unique_names))
     match_results = matcher.match_batch(unique_names)
@@ -145,16 +143,11 @@ def _write_mapping_report(
     coverage_pct = (total_mapped / total_rows * 100) if total_rows > 0 else 0.0
 
     # Counts by method
-    method_counts = (
-        df.group_by("match_method").len().sort("len", descending=True).iter_rows()
-    )
+    method_counts = df.group_by("match_method").len().sort("len", descending=True).iter_rows()
 
     # Top 500 unmapped names
     top_unmapped = (
-        unmapped_df.group_by("raw_name", "clean_name")
-        .len()
-        .sort("len", descending=True)
-        .head(500)
+        unmapped_df.group_by("raw_name", "clean_name").len().sort("len", descending=True).head(500)
     )
 
     # 200 Spot check sample (reproducible seed)
