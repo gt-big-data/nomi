@@ -96,12 +96,13 @@ def write_manifest(
     return manifest
 
 
-def publish(db_path: Path, manifest_path: Path, dataset_version: str, settings: Settings) -> str:
-    if not settings.dataset_store:
-        raise RuntimeError(
-            "DATASET_STORE not configured. Copy .env.example to .env and fill it in."
-        )
-
+def publish(
+    db_path: Path,
+    manifest_path: Path,
+    dataset_version: str,
+    settings: Settings,
+    overwrite: bool = False,
+) -> str:
     options: dict[str, Any] = {}
     if settings.hf_token and settings.dataset_store.startswith("hf://"):
         options["token"] = settings.hf_token
@@ -109,6 +110,9 @@ def publish(db_path: Path, manifest_path: Path, dataset_version: str, settings: 
     fs, root = url_to_fs(settings.dataset_store, **options)
     root = root.rstrip("/")
     prefix = f"{root}/datasets/{dataset_version}"
+    # The manifest goes up last, so it marks a finished publish.
+    if not overwrite and fs.exists(f"{prefix}/manifest.json"):
+        raise FileExistsError(f"{dataset_version} is already published at {prefix}")
     fs.put_file(str(db_path), f"{prefix}/nomi.sqlite")
     fs.put_file(str(manifest_path), f"{prefix}/manifest.json")
 

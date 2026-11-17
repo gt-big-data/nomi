@@ -3,6 +3,7 @@ import sqlite3
 from pathlib import Path
 
 import polars as pl
+import pytest
 from fsspec.core import url_to_fs
 from nomi_pipeline.build.build import build_database, publish, write_manifest
 from nomi_pipeline.config import Settings
@@ -143,6 +144,24 @@ def test_publish_uploads_db_and_manifest(tmp_path: Path) -> None:
     assert fs.exists(f"{prefix}/nomi.sqlite")
     assert fs.exists(f"{prefix}/manifest.json")
     assert fs.cat(f"{prefix}/nomi.sqlite") == b"fake db bytes"
+
+
+def test_publish_refuses_to_overwrite_a_published_version(tmp_path: Path) -> None:
+    db_path = tmp_path / "nomi.sqlite"
+    manifest_path = tmp_path / "manifest.json"
+    db_path.write_text("first")
+    manifest_path.write_text('{"version": "v0.1.0"}')
+    settings = Settings(data_dir=tmp_path / "data", dataset_store=f"memory://{tmp_path.name}")
+    prefix = publish(db_path, manifest_path, "v0.1.0", settings)
+
+    db_path.write_text("second")
+    with pytest.raises(FileExistsError):
+        publish(db_path, manifest_path, "v0.1.0", settings)
+    fs, _ = url_to_fs(settings.dataset_store)
+    assert fs.cat(f"{prefix}/nomi.sqlite") == b"first"
+
+    publish(db_path, manifest_path, "v0.1.0", settings, overwrite=True)
+    assert fs.cat(f"{prefix}/nomi.sqlite") == b"second"
 
 
 REFERENCE_PRODUCTS_DIR = Path(__file__).parents[2] / "packages" / "schema" / "examples"

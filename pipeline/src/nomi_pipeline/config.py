@@ -25,7 +25,7 @@ class Settings(BaseSettings):
     r2_endpoint: str | None = None
 
     # Published app dataset store (NOMI-038)
-    dataset_store: str | None = "hf://datasets/nomi-bdbi-gt/nomi-dataset"
+    dataset_store: str = "hf://datasets/nomi-bdbi-gt/nomi-dataset"
 
     @field_validator("data_dir")
     @classmethod

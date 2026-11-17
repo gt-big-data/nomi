@@ -11,7 +11,10 @@ log = logging.getLogger(__name__)
 DATASET_VERSION = "v0.1.0"
 
 
-def run_build(publish_flag: bool = typer.Option(False, "--publish")) -> None:
+def run_build(
+    publish_flag: bool = typer.Option(False, "--publish"),
+    overwrite: bool = typer.Option(False, help="Replace this version if it is already published."),
+) -> None:
     """Build nomi.sqlite and manifest.json from data/silver/product.parquet."""
 
     settings = Settings()
@@ -33,5 +36,5 @@ def run_build(publish_flag: bool = typer.Option(False, "--publish")) -> None:
     log.info(f"built {DATASET_VERSION}: {manifest['counts']}")
 
     if publish_flag:
-        prefix = publish(db_path, manifest_path, DATASET_VERSION, settings)
+        prefix = publish(db_path, manifest_path, DATASET_VERSION, settings, overwrite)
         log.info(f"publish to {prefix}")
