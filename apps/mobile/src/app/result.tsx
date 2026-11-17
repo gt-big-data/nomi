@@ -1,13 +1,13 @@
-import { Stack, useLocalSearchParams } from "expo-router";
+import { router, Stack, useLocalSearchParams } from "expo-router";
 import { ScrollView, StyleSheet, Text, type TextProps, View } from "react-native";
 
-import { ScoreBadge, TierLabel } from "@/components";
+import { AlertBanner, Button, ScoreBadge, TierLabel } from "@/components";
 import { lookupFixture, type ScanResult } from "@/lib/scanFixtures";
 import { productTier, type TypographyName, useTheme } from "@/theme";
 
 export default function Result() {
-  const { barcode } = useLocalSearchParams<{ barcode: string }>();
-  const result = lookupFixture(barcode ?? "");
+  const { barcode } = useLocalSearchParams<{ barcode?: string | string[] }>();
+  const result = lookupFixture((Array.isArray(barcode) ? barcode[0] : barcode) ?? "");
 
   return (
     // "automatic" starts the content below the see-through header instead of under it.
@@ -66,13 +66,24 @@ function Body({ result }: { result: ScanResult }) {
             {result.product.brand_name}
           </Line>
           <Line secondary>{result.product.generic_name}</Line>
-          <View style={styles.score}>
-            <ScoreBadge tier={tier} score={result.score} />
-            <TierLabel tier={tier} align="center" />
-            <Line type="footnote" secondary>
-              Draft score
-            </Line>
-          </View>
+          {/* The score is test data: release builds show the product without it. */}
+          {__DEV__ ? (
+            <>
+              {/* The verdict and who it's for, together (docs/design/score-visualization.md). */}
+              <View style={styles.score}>
+                <TierLabel tier={tier} align="center" />
+                <Line secondary>{result.profileText}</Line>
+                <ScoreBadge tier={tier} score={result.score} />
+              </View>
+              <AlertBanner
+                type="warning"
+                title="Draft score from test data"
+                body="Not medical advice."
+              />
+            </>
+          ) : (
+            <Line>Nomi hasn't scored this product yet.</Line>
+          )}
         </>
       );
     }
@@ -114,13 +125,22 @@ function Body({ result }: { result: ScanResult }) {
       return <Line>We don't have this product yet.</Line>;
     case "invalid":
       return (
-        <Line>
-          {result.reason === "not_ndc_barcode"
-            ? "We can't look up this barcode yet."
-            : "The barcode didn't read cleanly. Please try again."}
-        </Line>
+        <>
+          <Line>
+            {result.reason === "not_ndc_barcode"
+              ? "We can't look up this barcode yet."
+              : "The barcode didn't read cleanly. Please try again."}
+          </Line>
+          <Button label="Scan again" onPress={scanAgain} />
+        </>
       );
   }
+}
+
+/** Back to the camera. A deep link has nothing to go back to. */
+function scanAgain() {
+  if (router.canGoBack()) router.back();
+  else router.replace("/");
 }
 
 const styles = StyleSheet.create({

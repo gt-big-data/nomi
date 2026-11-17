@@ -12,10 +12,25 @@ interface Product {
   generic_name: string;
 }
 
+// The score-record profile a score is for, and how the screen says it.
+interface Profile {
+  persona: string;
+  conditions: string[];
+  medication_types: string[];
+}
+
 // Only "scored" has a score, so TypeScript won't compile code that shows a score
 // on the homeopathic or not-found screens.
 export type ScanResult =
-  | { state: "scored"; barcode: string; product: Product; score: number; tier: SchemaTier }
+  | {
+      state: "scored";
+      barcode: string;
+      product: Product;
+      profile: Profile;
+      profileText: string;
+      score: number;
+      tier: SchemaTier;
+    }
   | {
       state: "preliminary";
       barcode: string;
@@ -34,10 +49,12 @@ type Stored<T = Exclude<ScanResult, { state: "not_found" | "invalid" }>> = T ext
 
 // Products we "have", keyed by NDC11, so UPC-A and EAN-13 scans of one package find the same one.
 const PRODUCTS: Record<string, Stored> = {
-  // packages/schema/examples/tylenol/expected-scores.json, adult 18-64. A draft score.
+  // A draft score from packages/schema/examples/tylenol/expected-scores.json.
   "50580044905": {
     state: "scored",
     product: { brand_name: "Tylenol Extra Strength", generic_name: "acetaminophen" },
+    profile: { persona: "adult_18_64", conditions: [], medication_types: [] },
+    profileText: "For an adult 18 to 64",
     score: 34,
     tier: "red",
   },

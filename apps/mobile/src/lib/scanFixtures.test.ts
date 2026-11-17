@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { test } from "node:test";
+import { isDeepStrictEqual } from "node:util";
 
 import { FIXTURE_BARCODES, lookupFixture } from "./scanFixtures.ts";
 
@@ -25,22 +26,23 @@ test("finds a product from its EAN-13 form", () => {
   assert.equal(result.barcode, "0" + FIXTURE_BARCODES.scored);
 });
 
-test("shows Tylenol's reference score for an adult 18-64", () => {
+test("shows the Tylenol reference score for the profile it names", () => {
   const file = new URL(
     "../../../../packages/schema/examples/tylenol/expected-scores.json",
     import.meta.url,
   );
-  const records: { score: number; tier: string; profile: { persona: string } }[] = JSON.parse(
+  const records: { score: number; tier: string; profile: unknown }[] = JSON.parse(
     readFileSync(file, "utf8"),
   );
-  const adult = records.find((record) => record.profile.persona === "adult_18_64");
   const result = lookupFixture(FIXTURE_BARCODES.scored);
   assert.ok(result.state === "scored");
+  const record = records.find((r) => isDeepStrictEqual(r.profile, result.profile));
+  assert.ok(record, "no expected-scores record for the fixture's profile");
   assert.deepEqual(
     { score: result.score, tier: result.tier },
     {
-      score: adult?.score,
-      tier: adult?.tier,
+      score: record.score,
+      tier: record.tier,
     },
   );
 });
