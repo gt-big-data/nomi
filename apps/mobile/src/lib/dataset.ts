@@ -4,8 +4,7 @@
  * SQLite needs a writable file it can open by path, and the app package is neither, so the first
  * launch copies it into the app's database folder. The copy is named after the asset's hash, so an
  * app update with a new dataset gets a fresh copy instead of reusing the old one, and the old one
- * is deleted. dataset.web.ts
- * replaces this file on web.
+ * is deleted. dataset.web.ts replaces this file on web.
  */
 
 import { Asset } from "expo-asset";
