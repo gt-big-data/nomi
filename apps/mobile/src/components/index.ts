@@ -6,6 +6,8 @@ export type { CitationSource } from "./CitationChip";
 export { CitationChip, citationSourceText } from "./CitationChip";
 export type { IconName } from "./Icon";
 export { Icon } from "./Icon";
+export { Logo } from "./Logo";
+export { OptionCard } from "./OptionCard";
 export { OptionChip } from "./OptionChip";
 export { ProductRow } from "./ProductRow";
 export type { RiskCitation } from "./RiskFactorRow";
