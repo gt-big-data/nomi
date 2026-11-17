@@ -11,6 +11,7 @@ import polars as pl
 from fsspec.core import url_to_fs
 
 from nomi_pipeline.config import REPO_ROOT, Settings
+from nomi_pipeline.identity.resolver import package_codes
 
 # The app's tables; the app refuses a file whose user_version differs from its own.
 SCHEMA_PATH = REPO_ROOT / "packages" / "schema" / "sqlite" / "nomi.sql"
@@ -35,6 +36,15 @@ def scope_flag(product: dict[str, Any]) -> str:
     return str(product.get("scope") or "out_of_scope")
 
 
+def dashed_ndc(ndc10: str, ndc11: str) -> str:
+    """The package NDC with these 10 digits that pads to ndc11."""
+    for first, second in ((4, 8), (5, 8), (5, 9)):
+        dashed = f"{ndc10[:first]}-{ndc10[first:second]}-{ndc10[second:]}"
+        if package_codes(dashed)[0] == ndc11:
+            return dashed
+    raise ValueError(f"No package NDC with digits {ndc10} pads to {ndc11}")
+
+
 def build_database(
     product_parquet: Path,
     identity_results: Path,
@@ -42,16 +52,16 @@ def build_database(
     dataset_version: str,
     built_at: str,
 ) -> dict[str, int]:
-    """Write the resolved products to db_path.
+    """Write the packages the app can find to db_path, as packages/schema/sqlite/nomi.sql describes.
 
     Product records keep only the NDC11, which can't be turned back into the barcode's digits, so
     each product's dashed package NDC comes from the identity stage's resolved results.
     """
     db_path.unlink(missing_ok=True)
     products = pl.read_parquet(product_parquet).to_dicts()
+    results = pl.read_parquet(identity_results)
     package_ndcs = dict(
-        pl.read_parquet(identity_results)
-        .filter(pl.col("status") == "resolved")
+        results.filter(pl.col("status") == "resolved")
         .select("expected_ndc11", "ndc_raw")
         .iter_rows()
     )
@@ -108,6 +118,22 @@ def build_database(
                 counts["ingredients"] += 1
                 seen_uniis.add(unii)
 
+    # Homeopathic and ambiguous packages need only their codes and scope_flag: the app shows them
+    # without reading a product record. An ambiguous barcode gets a row for every package behind
+    # it, including ones known only from a label, so the app never takes it for a single product.
+    for row in results.filter(pl.col("status").is_in(["homeopathic", "ambiguous_ndc"])).iter_rows(
+        named=True
+    ):
+        ndc10 = row["ndc_raw"].replace("-", "")
+        scope = "homeopathic" if row["status"] == "homeopathic" else "out_of_scope"
+        for ndc11 in row["matches"]:
+            cursor = con.execute(
+                "INSERT OR IGNORE INTO products (package_ndc, ndc10, ndc11, scope_flag) "
+                "VALUES (?, ?, ?, ?)",
+                (dashed_ndc(ndc10, ndc11), ndc10, ndc11, scope),
+            )
+            counts["products"] += cursor.rowcount
+
     con.execute(
         "INSERT INTO meta (dataset_version, model_version, rubric_version, built_at) "
         "VALUES (?, ?, ?, ?)",
@@ -137,7 +163,7 @@ def write_manifest(
         "input_hashes": {path.name: sha256(path) for path in inputs},
         "commit": git("rev-parse", "HEAD"),
         # Uncommitted changes mean the commit alone can't rebuild this file.
-        "dirty": bool(git("status", "--porcelain")),
+        "dirty": bool(git("status", "--porcelain", "--untracked-files=no")),
         "counts": counts,
     }
 

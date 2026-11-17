@@ -16,6 +16,7 @@ from nomi_pipeline.build.build import (
     write_manifest,
 )
 from nomi_pipeline.config import REPO_ROOT, Settings
+from nomi_pipeline.identity.resolver import RESULT_SCHEMA
 
 FIXTURES = Path(__file__).parent / "fixtures" / "build"
 REFERENCE_PRODUCTS_DIR = REPO_ROOT / "packages" / "schema" / "examples"
@@ -49,13 +50,20 @@ LOOKUP_SQL = """
 @pytest.fixture
 def identity_results(tmp_path: Path) -> Path:
     """The identity stage's results, with every product in PACKAGES resolved."""
-    path = tmp_path / "identity_results.parquet"
+    return write_identity(
+        tmp_path / "identity_results.parquet",
+        [(package, ndc11, "resolved", [ndc11]) for ndc11, package in PACKAGES.items()],
+    )
+
+
+def write_identity(path: Path, rows: list[tuple[str, str, str, list[str]]]) -> Path:
+    """identity_results.parquet rows: package NDC, its NDC11, status and matching NDC11s."""
     pl.DataFrame(
-        {
-            "ndc_raw": list(PACKAGES.values()),
-            "expected_ndc11": list(PACKAGES),
-            "status": ["resolved"] * len(PACKAGES),
-        }
+        [
+            {"ndc_raw": package, "expected_ndc11": ndc11, "status": status, "matches": matches}
+            for package, ndc11, status, matches in rows
+        ],
+        schema=RESULT_SCHEMA,
     ).write_parquet(path)
     return path
 
@@ -211,6 +219,11 @@ def test_manifest_records_the_repo_commit_and_dirty_state(
     assert manifest["commit"] == git("rev-parse", "HEAD")
     assert manifest["dirty"] is False
 
+    # Untracked files (a local .env, say) can't change what the commit builds.
+    (repo / "untracked").write_text("x")
+    manifest = write_manifest([], db_path, {}, "v0.1.0", tmp_path / "manifest.json")
+    assert manifest["dirty"] is False
+
     (repo / "file").write_text("two")
     manifest = write_manifest([], db_path, {}, "v0.1.0", tmp_path / "manifest.json")
     assert manifest["dirty"] is True
@@ -275,6 +288,55 @@ def test_app_finds_the_five_reference_products(tmp_path: Path, identity_results:
             for i in ingredients
         ]
         assert rows == sorted(expected, key=lambda row: str(row[8]))
+
+
+def lookup_status(con: sqlite3.Connection, ndc10: str) -> str:
+    """The status apps/mobile/src/lib/db.ts lookupBarcode returns for these rows."""
+    rows = con.execute(LOOKUP_SQL, (ndc10,)).fetchall()
+    packages = {row[0] for row in rows}
+    if not packages:
+        return "not_found"
+    if len(packages) > 1:
+        return "ambiguous_ndc"
+    scope = str(rows[0][5])
+    return "resolved" if scope == "in_scope" else scope
+
+
+def test_app_lookup_status_for_each_identity_status(tmp_path: Path) -> None:
+    tylenol = next(p for p in reference_products() if p["ndc11"] == "50580044905")
+    products = write_products(tmp_path / "product.parquet", [tylenol])
+    # 1234567890 is two packages: one in the directory, one known only from a label.
+    identity = write_identity(
+        tmp_path / "identity_results.parquet",
+        [
+            ("50580-449-05", "50580044905", "resolved", ["50580044905"]),
+            ("0220-1234-56", "00220123456", "homeopathic", ["00220123456"]),
+            ("1234-5678-90", "01234567890", "ambiguous_ndc", ["01234567890", "12345067890"]),
+            ("0000-0000-01", "00000000001", "missing_label", ["00000000001"]),
+        ],
+    )
+    db_path = tmp_path / "nomi.sqlite"
+    counts = build_fixture(products, identity, db_path)
+
+    assert counts["products"] == 4
+    con = sqlite3.connect(str(db_path))
+    assert lookup_status(con, "5058044905") == "resolved"
+    assert lookup_status(con, "0220123456") == "homeopathic"
+    assert lookup_status(con, "1234567890") == "ambiguous_ndc"
+    assert lookup_status(con, "0000000001") == "not_found"
+    assert con.execute(
+        "SELECT package_ndc, ndc11, brand, scope_flag FROM products WHERE ndc10 = ?",
+        ("1234567890",),
+    ).fetchall() == [
+        ("1234-5678-90", "01234567890", None, "out_of_scope"),
+        ("12345-678-90", "12345067890", None, "out_of_scope"),
+    ]
+    homeopathic = con.execute(
+        "SELECT p.brand, pi.unii FROM products p "
+        "LEFT JOIN product_ingredients pi ON pi.package_ndc = p.package_ndc WHERE p.ndc10 = ?",
+        ("0220123456",),
+    ).fetchall()
+    assert homeopathic == [(None, None)]
 
 
 def test_lookup_uses_the_ndc10_index(tmp_path: Path, identity_results: Path) -> None:

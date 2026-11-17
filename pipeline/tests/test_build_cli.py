@@ -26,6 +26,7 @@ def write_silver(tmp_path: Path) -> None:
             "ndc_raw": ["0363-0710-08", "76176-135-01"],
             "expected_ndc11": ["00363071008", "76176013501"],
             "status": ["resolved", "resolved"],
+            "matches": [["00363071008"], ["76176013501"]],
         }
     ).write_parquet(silver_dir / "identity_results.parquet")
 
