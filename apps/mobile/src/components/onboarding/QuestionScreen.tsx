@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-import { type Question, questionNumber } from "@/lib/onboarding";
+import { type Draft, type Question, questionNumber } from "@/lib/onboarding";
 import { minHeight, opacity, useIconScale, useTheme } from "@/theme";
 
 import { Button } from "../Button";
@@ -17,6 +17,8 @@ const STEP_HEIGHT = 6;
 type QuestionScreenProps = {
   /** Which question this is. Sets the counter, which leaves out questions this person skips. */
   question: Question;
+  /** The answers to count questions from, when this screen's answer isn't saved yet. */
+  answers?: Draft;
   title: string;
   /** One line under the title on why it's asked. */
   subtitle: string;
@@ -45,6 +47,7 @@ type QuestionScreenProps = {
  */
 export function QuestionScreen({
   question,
+  answers,
   title,
   subtitle,
   onNext,
@@ -56,7 +59,8 @@ export function QuestionScreen({
   const { colors, radius, space, text } = useTheme();
   const insets = useSafeAreaInsets();
   const iconScale = useIconScale();
-  const { step, total } = questionNumber(useDraft().draft, question);
+  const { draft } = useDraft();
+  const { step, total } = questionNumber(answers ?? draft, question);
   const counter = `Question ${step} of ${total}`;
 
   return (

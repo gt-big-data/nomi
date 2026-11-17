@@ -44,8 +44,8 @@ export default function Welcome() {
         <Logo />
         <Title>Know what’s in the box before you buy it.</Title>
         <Text style={[text("body"), { color: colors.text.secondary }]}>
-          Scan any over-the-counter medicine for a 0–100 safety score, the risks in plain English,
-          and a safer option.
+          Scan over-the-counter medicines for a safety score and the risks in plain English. More
+          products are added over time.
         </Text>
         <View style={{ gap: space[12], paddingTop: space[8] }}>
           {promises.map((p) => (

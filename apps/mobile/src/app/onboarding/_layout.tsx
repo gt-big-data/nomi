@@ -2,7 +2,10 @@ import { Stack } from "expo-router";
 
 import { DraftProvider } from "@/components/onboarding/DraftProvider";
 
-/** First run: the welcome screen, five skippable questions, then done. Nothing leaves the phone. */
+/**
+ * First run: the welcome screen, up to five questions (pregnancy is skipped for children), then
+ * done. Nothing leaves the phone.
+ */
 export default function OnboardingLayout() {
   return (
     <DraftProvider>

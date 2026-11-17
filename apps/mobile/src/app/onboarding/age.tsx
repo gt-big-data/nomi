@@ -31,6 +31,7 @@ export default function Age() {
   return (
     <QuestionScreen
       question="age"
+      answers={{ ...draft, age: picked }}
       title={title}
       subtitle="Medicines affect children, adults and older adults differently."
       onNext={picked ? () => answer(picked) : undefined}

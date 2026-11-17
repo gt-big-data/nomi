@@ -89,6 +89,12 @@ test("the counter leaves out the pregnancy question for a child", () => {
   const child = { ...startingDraft, relation: "child" } as const;
   assert.deepEqual(questionNumber(child, "conditions"), { step: 3, total: 4 });
   assert.deepEqual(questionNumber(child, "medicines"), { step: 4, total: 4 });
+  const someoneElse = { ...startingDraft, relation: "someone_else" } as const;
+  assert.deepEqual(questionNumber(someoneElse, "age"), { step: 2, total: 5 });
+  assert.deepEqual(questionNumber({ ...someoneElse, age: "child_6_11" }, "age"), {
+    step: 2,
+    total: 4,
+  });
 });
 
 test("conditions and medicine types carry over with the schema's field names", () => {
