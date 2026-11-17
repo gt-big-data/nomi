@@ -32,6 +32,7 @@ Status = (
         "invalid_ingredients",
         "ingredient_conflict",
         "missing_name",
+        "invalid_package_ndc",
     ]
 )
 
@@ -130,7 +131,11 @@ class Resolver:
             listing = self.directory.get(self.overrides[normalize(barcode)])
             if listing is None:
                 return Resolution("not_found")
-            return self.resolve(package_codes(listing["ndc_raw"])[1])
+            try:
+                _, own = package_codes(listing.get("ndc_raw") or "")
+            except ValueError:
+                return Resolution("invalid_package_ndc")
+            return self.resolve(own)
         if parsed["status"] != "ok":
             return Resolution(parsed["status"])
         # The 4-4-2 candidate is "0" + the scanned 10 digits.

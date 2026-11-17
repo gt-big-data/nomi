@@ -88,7 +88,7 @@ package's NDC11 (`--overrides PATH` to change it). Columns: `barcode`, `ndc11`, 
 `reviewed_on`, `source`. Only barcodes the parser reports as `not_ndc_barcode` may be listed, and
 every row needs a reviewer and a date; the command fails on a bad row. An override resolves the
 package's own barcode, so it passes every check above; one that names a package missing from the
-directory is `not_found`. The report lists every override with its status.
+directory is `not_found`, and one whose package NDC is malformed is `invalid_package_ndc`. The report lists every override with its status.
 
 `pipeline/tests/fixtures/identity_regression.csv` has a row for every barcode an identity fix
 resolved. `tests/test_identity_regression.py` resolves them against the bronze tables when they

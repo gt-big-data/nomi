@@ -275,6 +275,14 @@ def test_override_still_runs_every_package_check() -> None:
     assert resolver.resolve(STORE_UPC).status == "kit"
 
 
+@pytest.mark.parametrize("ndc_raw", ["1234567890", None])
+def test_override_to_a_malformed_package_ndc_is_reported(ndc_raw: str | None) -> None:
+    ndc, labels, ingredients, _ = sources()
+    ndc[0]["ndc_raw"] = ndc_raw
+    resolver = Resolver(ndc, labels, ingredients, overrides={STORE_UPC: "01234567890"})
+    assert resolver.resolve(STORE_UPC).status == "invalid_package_ndc"
+
+
 OVERRIDE_HEADER = "barcode,ndc11,reviewed_by,reviewed_on,source\n"
 
 
