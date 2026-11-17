@@ -240,7 +240,12 @@ test("rejects a half-copied dataset", async (t) => {
   referenceDb(path).close();
   const bytes = readFileSync(path);
   writeFileSync(path, bytes.subarray(0, bytes.length / 2));
-  await assert.rejects(checkDataset(adapt(new DatabaseSync(path))), /malformed/);
+  const half = new DatabaseSync(path);
+  try {
+    await assert.rejects(checkDataset(adapt(half)), /malformed/);
+  } finally {
+    half.close();
+  }
 });
 
 test("formats strengths", () => {
