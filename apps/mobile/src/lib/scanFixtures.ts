@@ -1,0 +1,92 @@
+/**
+ * Pretend scan results, one per result state, until the real database lands (NOMI-040).
+ *
+ * Field names copy packages/schema (brand_name, score, tier) so real data can replace these easily.
+ */
+
+import type { SchemaTier } from "../theme/tiers.ts";
+import { ndcCandidates, type Status } from "./barcode.ts";
+
+interface Product {
+  brand_name: string;
+  generic_name: string;
+}
+
+// The score-record profile a score is for, and how the screen says it.
+interface Profile {
+  persona: string;
+  conditions: string[];
+  medication_types: string[];
+}
+
+// Only "scored" has a score, so TypeScript won't compile code that shows a score
+// on the homeopathic or not-found screens.
+export type ScanResult =
+  | {
+      state: "scored";
+      barcode: string;
+      product: Product;
+      profile: Profile;
+      profileText: string;
+      score: number;
+      tier: SchemaTier;
+    }
+  | {
+      state: "preliminary";
+      barcode: string;
+      product: Product;
+      ingredients: string[];
+      warnings: string[];
+    }
+  | { state: "homeopathic"; barcode: string; product: Product }
+  | { state: "not_found"; barcode: string }
+  | { state: "invalid"; barcode: string; reason: Exclude<Status, "ok"> };
+
+// A found result without its barcode, which comes from the scan. Omit each state on its own.
+type Stored<T = Exclude<ScanResult, { state: "not_found" | "invalid" }>> = T extends unknown
+  ? Omit<T, "barcode">
+  : never;
+
+// Products we "have", keyed by NDC11, so UPC-A and EAN-13 scans of one package find the same one.
+const PRODUCTS: Record<string, Stored> = {
+  // A draft score from packages/schema/examples/tylenol/expected-scores.json.
+  "50580044905": {
+    state: "scored",
+    product: { brand_name: "Tylenol Extra Strength", generic_name: "acetaminophen" },
+    profile: { persona: "adult_18_64", conditions: [], medication_types: [] },
+    profileText: "For an adult 18 to 64",
+    score: 34,
+    tier: "red",
+  },
+  // Made up. Labeler 99999 isn't assigned by the FDA.
+  "99999000201": {
+    state: "preliminary",
+    product: { brand_name: "Fixture Allergy", generic_name: "cetirizine" },
+    ingredients: ["Cetirizine HCl 10 mg"],
+    warnings: ["May cause drowsiness.", "Do not use with other antihistamines."],
+  },
+  "99999000301": {
+    state: "homeopathic",
+    product: { brand_name: "Fixture Cold Remedy", generic_name: "zincum gluconicum" },
+  },
+};
+
+/** One barcode per state, for the dev menu. */
+export const FIXTURE_BARCODES = {
+  scored: "350580449059",
+  preliminary: "399999002011",
+  homeopathic: "399999003018",
+  not_found: "399999004015", // A valid drug barcode that isn't in PRODUCTS.
+  not_ndc: "4006381333931", // A real EAN-13 that isn't a drug barcode.
+  misread: "350580449058", // The Tylenol barcode with its last digit off by one.
+} as const;
+
+/** Turns scanned digits into a result. */
+export function lookupFixture(barcode: string): ScanResult {
+  const parsed = ndcCandidates(barcode);
+  if (parsed.status !== "ok") {
+    return { state: "invalid", barcode, reason: parsed.status };
+  }
+  const ndc11 = parsed.candidates.find((candidate) => candidate in PRODUCTS);
+  return ndc11 ? { ...PRODUCTS[ndc11], barcode } : { state: "not_found", barcode };
+}
