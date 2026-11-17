@@ -2,14 +2,15 @@ import { Redirect, router, Stack } from "expo-router";
 import { ScrollView, StyleSheet } from "react-native";
 
 import { Button } from "@/components";
-import { FIXTURE_BARCODES } from "@/fixtures/scanFixtures";
+import { FIXTURE_BARCODES } from "@/lib/scanFixtures";
 
 const STATES = [
   { label: "Scored", barcode: FIXTURE_BARCODES.scored },
   { label: "Preliminary", barcode: FIXTURE_BARCODES.preliminary },
   { label: "Homeopathic", barcode: FIXTURE_BARCODES.homeopathic },
   { label: "Not found", barcode: FIXTURE_BARCODES.not_found },
-  { label: "Invalid", barcode: FIXTURE_BARCODES.invalid },
+  { label: "Not a drug barcode", barcode: FIXTURE_BARCODES.not_ndc },
+  { label: "Misread", barcode: FIXTURE_BARCODES.misread },
 ];
 
 /**

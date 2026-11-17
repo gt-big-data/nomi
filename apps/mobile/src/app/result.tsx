@@ -1,10 +1,10 @@
 import { Stack, useLocalSearchParams } from "expo-router";
-import { ScrollView, StyleSheet, Text, type TextProps } from "react-native";
+import { ScrollView, StyleSheet, Text, type TextProps, View } from "react-native";
 
-import { lookupFixture, type ScanResult } from "@/fixtures/scanFixtures";
-import { useTheme } from "@/theme";
+import { ScoreBadge, TierLabel } from "@/components";
+import { lookupFixture, type ScanResult } from "@/lib/scanFixtures";
+import { productTier, type TypographyName, useTheme } from "@/theme";
 
-// Plain text for now; the NOMI-027 components (ScoreBadge, TierLabel...) can replace it later.
 export default function Result() {
   const { barcode } = useLocalSearchParams<{ barcode: string }>();
   const result = lookupFixture(barcode ?? "");
@@ -14,7 +14,9 @@ export default function Result() {
     <ScrollView contentInsetAdjustmentBehavior="automatic" contentContainerStyle={styles.container}>
       <Stack.Screen options={{ title: title(result) }} />
       <Body result={result} />
-      <Line style={styles.barcode}>Barcode {result.barcode}</Line>
+      <Line type="footnote" secondary style={styles.barcode}>
+        Barcode {result.barcode}
+      </Line>
     </ScrollView>
   );
 }
@@ -30,38 +32,67 @@ function title(result: ScanResult): string {
     case "not_found":
       return "Not found";
     case "invalid":
-      return result.reason === "not_ndc_barcode" ? "Not a medicine" : "Couldn't read barcode";
+      return result.reason === "not_ndc_barcode" ? "Can't look up" : "Couldn't read barcode";
   }
 }
 
-/** Text in the theme's color, so it's readable in light and dark mode. */
-function Line({ style, ...props }: TextProps) {
-  const { colors } = useTheme();
-  return <Text style={[{ color: colors.text.primary }, style]} {...props} />;
+/** Text in a theme text style and color, so it's readable in light and dark mode. */
+function Line({
+  type = "body",
+  secondary = false,
+  style,
+  ...props
+}: TextProps & { type?: TypographyName; secondary?: boolean }) {
+  const { colors, text } = useTheme();
+  return (
+    <Text
+      style={[
+        text(type),
+        { color: secondary ? colors.text.secondary : colors.text.primary },
+        style,
+      ]}
+      {...props}
+    />
+  );
 }
 
 function Body({ result }: { result: ScanResult }) {
   switch (result.state) {
-    case "scored":
+    case "scored": {
+      const tier = productTier({ tier: result.tier });
       return (
         <>
-          <Line style={styles.name}>{result.product.brand_name}</Line>
-          <Line>{result.product.generic_name}</Line>
-          <Line style={styles.score}>{result.score}/100</Line>
-          <Line>Tier: {result.tier}</Line>
+          <Line type="titleLarge" accessibilityRole="header">
+            {result.product.brand_name}
+          </Line>
+          <Line secondary>{result.product.generic_name}</Line>
+          <View style={styles.score}>
+            <ScoreBadge tier={tier} score={result.score} />
+            <TierLabel tier={tier} align="center" />
+            <Line type="footnote" secondary>
+              Draft score
+            </Line>
+          </View>
         </>
       );
+    }
     case "preliminary":
       // docs/system-design.md 8.2: ingredients and label warnings with a "preliminary" badge.
       return (
         <>
-          <Line style={styles.badge}>PRELIMINARY</Line>
-          <Line style={styles.name}>{result.product.brand_name}</Line>
-          <Line style={styles.heading}>Ingredients</Line>
+          <Line type="label">Preliminary</Line>
+          <Line type="titleLarge" accessibilityRole="header">
+            {result.product.brand_name}
+          </Line>
+          <Line type="titleSmall" accessibilityRole="header" style={styles.heading}>
+            Ingredients
+          </Line>
           {result.ingredients.map((line) => (
             <Line key={line}>{line}</Line>
           ))}
-          <Line style={styles.heading}>Warnings</Line>
+          <Line type="titleSmall" accessibilityRole="header" style={styles.heading}>
+            Warnings
+          </Line>
           {result.warnings.map((line) => (
             <Line key={line}>{line}</Line>
           ))}
@@ -71,7 +102,9 @@ function Body({ result }: { result: ScanResult }) {
       // docs/system-design.md 5.2: shown as "not evaluated by FDA" and not scored.
       return (
         <>
-          <Line style={styles.name}>{result.product.brand_name}</Line>
+          <Line type="titleLarge" accessibilityRole="header">
+            {result.product.brand_name}
+          </Line>
           <Line>
             This homeopathic product has not been evaluated by the FDA, so Nomi does not score it.
           </Line>
@@ -83,7 +116,7 @@ function Body({ result }: { result: ScanResult }) {
       return (
         <Line>
           {result.reason === "not_ndc_barcode"
-            ? "This barcode isn't a medicine."
+            ? "We can't look up this barcode yet."
             : "The barcode didn't read cleanly. Please try again."}
         </Line>
       );
@@ -92,9 +125,7 @@ function Body({ result }: { result: ScanResult }) {
 
 const styles = StyleSheet.create({
   container: { padding: 24, gap: 8 },
-  name: { fontSize: 22, fontWeight: "600" },
-  score: { fontSize: 48, fontWeight: "700", marginTop: 16 },
-  badge: { fontWeight: "700" },
-  heading: { fontWeight: "600", marginTop: 12 },
-  barcode: { marginTop: 24, opacity: 0.6 },
+  score: { alignItems: "center", gap: 12, marginTop: 16 },
+  heading: { marginTop: 12 },
+  barcode: { marginTop: 24 },
 });
