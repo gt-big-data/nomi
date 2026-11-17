@@ -14,7 +14,8 @@ export type Pregnancy = "no" | "pregnant" | "breastfeeding" | "undisclosed";
 /** The answers so far. Every field starts at the default, so any question can be skipped. */
 export type Draft = {
   relation: Relation;
-  age: AgeGroup;
+  /** Null until answered, which counts as the default adult 18-64. */
+  age: AgeGroup | null;
   pregnancy: Pregnancy;
   conditions: Condition[];
   medicationTypes: MedicationType[];
@@ -22,14 +23,33 @@ export type Draft = {
 
 export const startingDraft: Draft = {
   relation: defaultProfile.relation,
-  age: "adult_18_64",
+  age: null,
   pregnancy: "no",
   conditions: [],
   medicationTypes: [],
 };
 
+const childAges: readonly AgeGroup[] = ["under_2", "child_2_5", "child_6_11"];
+
 /**
- * Turns the answers into a profile. Pregnant or breastfeeding replaces the age group.
+ * The age picked when the age question opens. Nothing for a child, so a child is never scored
+ * as an adult by tapping Next.
+ */
+export function startingAge(draft: Draft): AgeGroup | null {
+  return draft.age ?? (draft.relation === "child" ? null : "adult_18_64");
+}
+
+/**
+ * Whether to ask "Are you pregnant or breastfeeding?". Not for a child: a parent answering
+ * "Breastfeeding" for a nursing baby would hide the baby's own warnings.
+ */
+export function asksPregnancy(draft: Draft): boolean {
+  return draft.relation !== "child" && !(draft.age && childAges.includes(draft.age));
+}
+
+/**
+ * Turns the answers into a profile. Pregnant or breastfeeding replaces the age group, but only
+ * when `asksPregnancy()` is true.
  *
  * @example
  * ```ts
@@ -38,10 +58,12 @@ export const startingDraft: Draft = {
  */
 export function toProfile(draft: Draft): Profile {
   const pregnancy =
-    draft.pregnancy === "pregnant" || draft.pregnancy === "breastfeeding" ? draft.pregnancy : null;
+    asksPregnancy(draft) && (draft.pregnancy === "pregnant" || draft.pregnancy === "breastfeeding")
+      ? draft.pregnancy
+      : null;
   return {
     relation: draft.relation,
-    persona: pregnancy ?? draft.age,
+    persona: pregnancy ?? draft.age ?? defaultProfile.persona,
     conditions: draft.conditions,
     medication_types: draft.medicationTypes,
   };

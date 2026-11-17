@@ -21,10 +21,10 @@ type QuestionScreenProps = {
   title: string;
   /** One line under the title on why it's asked. */
   subtitle: string;
-  /** Saves the answer and moves on. */
-  onNext: () => void;
-  /** Moves on without saving, so the answer stays at its default. */
-  onSkip: () => void;
+  /** Saves the answer and moves on. Leave out to hide the main button until there's an answer. */
+  onNext?: () => void;
+  /** Sets the answer back to its default and moves on. Leave out when the question must be answered. */
+  onSkip?: () => void;
   /** What Back does. Defaults to going to the previous screen. */
   onBack?: () => void;
   /** The main button's label. Defaults to "Next". */
@@ -95,15 +95,20 @@ export function QuestionScreen({
             />
           ))}
         </View>
-        <Pressable
-          onPress={onSkip}
-          accessibilityRole="button"
-          accessibilityLabel="Skip this question"
-          hitSlop={space[8]}
-          style={({ pressed }) => [styles.topButton, pressed && styles.pressed]}
-        >
-          <Text style={[text("bodyStrong"), { color: colors.brand.text }]}>Skip</Text>
-        </Pressable>
+        {onSkip ? (
+          <Pressable
+            onPress={onSkip}
+            accessibilityRole="button"
+            accessibilityLabel="Skip this question"
+            hitSlop={space[8]}
+            style={({ pressed }) => [styles.topButton, pressed && styles.pressed]}
+          >
+            <Text style={[text("bodyStrong"), { color: colors.brand.text }]}>Skip</Text>
+          </Pressable>
+        ) : (
+          // Matches the back button, so the progress bars stay centered.
+          <View style={styles.topButton} />
+        )}
       </View>
 
       <ScrollView
@@ -120,15 +125,17 @@ export function QuestionScreen({
         <View style={{ marginTop: space[4] }}>{children}</View>
       </ScrollView>
 
-      <View
-        style={{
-          paddingHorizontal: space[16],
-          paddingTop: space[12],
-          paddingBottom: insets.bottom + space[16],
-        }}
-      >
-        <Button label={nextLabel} onPress={onNext} />
-      </View>
+      {onNext && (
+        <View
+          style={{
+            paddingHorizontal: space[16],
+            paddingTop: space[12],
+            paddingBottom: insets.bottom + space[16],
+          }}
+        >
+          <Button label={nextLabel} onPress={onNext} />
+        </View>
+      )}
     </View>
   );
 }

@@ -28,7 +28,7 @@ export default function Welcome() {
   };
   const skip = () => {
     saveProfile(defaultProfile);
-    router.replace("/");
+    router.dismissTo("/");
   };
 
   return (
@@ -84,7 +84,7 @@ export default function Welcome() {
           type="ghost"
           label="Skip for now"
           onPress={skip}
-          accessibilityHint="Scores for an adult 18 to 64. You can change this in Profile."
+          accessibilityHint="Uses an adult 18 to 64 with no health conditions or medicines."
         />
       </View>
     </View>

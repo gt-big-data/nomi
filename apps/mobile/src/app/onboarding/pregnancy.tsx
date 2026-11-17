@@ -15,26 +15,25 @@ const options: { value: Pregnancy; label: string }[] = [
   { value: "undisclosed", label: "Prefer not to say" },
 ];
 
-/** Question 3: pregnant or breastfeeding replaces the age persona. */
+/** Question 3: pregnant or breastfeeding replaces the age persona. Not asked for a child. */
 export default function PregnancyQuestion() {
   const { space } = useTheme();
   const { draft, update } = useDraft();
   const [picked, setPicked] = useState(draft.pregnancy);
   const title = `${capitalize(askAbout(draft.relation).are)} pregnant or breastfeeding?`;
 
-  const next = () => {
-    update({ pregnancy: picked });
+  const answer = (pregnancy: Pregnancy) => {
+    update({ pregnancy });
     router.push("/onboarding/conditions");
   };
-  const skip = () => router.push("/onboarding/conditions");
 
   return (
     <QuestionScreen
       step={3}
       title={title}
       subtitle="If you pick one, scores use pregnancy or breastfeeding guidance instead of your age group."
-      onNext={next}
-      onSkip={skip}
+      onNext={() => answer(picked)}
+      onSkip={() => answer("no")}
     >
       <View accessibilityRole="radiogroup" accessibilityLabel={title} style={{ gap: space[12] }}>
         {options.map((o) => (

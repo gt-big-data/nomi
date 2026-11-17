@@ -5,7 +5,7 @@ import { View } from "react-native";
 import { OptionCard } from "@/components";
 import { useDraft } from "@/components/onboarding/DraftProvider";
 import { QuestionScreen } from "@/components/onboarding/QuestionScreen";
-import { type Relation, relationText } from "@/storage/profile";
+import { defaultProfile, type Relation, relationText } from "@/storage/profile";
 import { useTheme } from "@/theme";
 
 const descriptions: Record<Relation, string> = {
@@ -23,19 +23,19 @@ export default function Who() {
   const { draft, update } = useDraft();
   const [picked, setPicked] = useState(draft.relation);
 
-  const next = () => {
-    update({ relation: picked });
+  const answer = (relation: Relation) => {
+    // Someone new: ask their age again instead of keeping the last person's.
+    update(relation === draft.relation ? {} : { relation, age: null });
     router.push("/onboarding/age");
   };
-  const skip = () => router.push("/onboarding/age");
 
   return (
     <QuestionScreen
       step={1}
       title={TITLE}
-      subtitle="You can add more people later."
-      onNext={next}
-      onSkip={skip}
+      subtitle="Medicines are scored for the person who will take them."
+      onNext={() => answer(picked)}
+      onSkip={() => answer(defaultProfile.relation)}
     >
       <View accessibilityRole="radiogroup" accessibilityLabel={TITLE} style={{ gap: space[12] }}>
         {relations.map((r) => (

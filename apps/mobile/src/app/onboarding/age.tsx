@@ -3,7 +3,7 @@ import { useState } from "react";
 import { StyleSheet, View } from "react-native";
 
 import { OptionChip } from "@/components";
-import { askAbout } from "@/lib/onboarding";
+import { askAbout, asksPregnancy, startingAge } from "@/lib/onboarding";
 import { useDraft } from "@/components/onboarding/DraftProvider";
 import { QuestionScreen } from "@/components/onboarding/QuestionScreen";
 import { type AgeGroup, ageGroupText } from "@/storage/profile";
@@ -11,26 +11,30 @@ import { useTheme } from "@/theme";
 
 const ages = Object.keys(ageGroupText) as AgeGroup[];
 
-/** Question 2: the age group, which sets the persona. A group, not a birthday: less to store. */
+/**
+ * Question 2: the age group, which sets the persona. A group, not a birthday: less to store.
+ * A child's age can't be skipped, since the default is an adult.
+ */
 export default function Age() {
   const { space } = useTheme();
   const { draft, update } = useDraft();
-  const [picked, setPicked] = useState(draft.age);
+  const [picked, setPicked] = useState(startingAge(draft));
   const title = `How old ${askAbout(draft.relation).are}?`;
 
-  const next = () => {
-    update({ age: picked });
-    router.push("/onboarding/pregnancy");
+  const answer = (age: AgeGroup | null) => {
+    update({ age });
+    router.push(
+      asksPregnancy({ ...draft, age }) ? "/onboarding/pregnancy" : "/onboarding/conditions",
+    );
   };
-  const skip = () => router.push("/onboarding/pregnancy");
 
   return (
     <QuestionScreen
       step={2}
       title={title}
       subtitle="Medicines affect children, adults and older adults differently."
-      onNext={next}
-      onSkip={skip}
+      onNext={picked ? () => answer(picked) : undefined}
+      onSkip={draft.relation === "child" ? undefined : () => answer(null)}
     >
       <View
         accessibilityRole="radiogroup"

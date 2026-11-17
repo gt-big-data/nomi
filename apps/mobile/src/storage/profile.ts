@@ -47,7 +47,7 @@ export type AgeGroup = Exclude<Persona, "pregnant" | "breastfeeding">;
 
 /**
  * Who Nomi scores for. `persona`, `conditions` and `medication_types` match `Profile` in
- * @nomi/schema, so the profile can go straight to the scoring engine. Never leaves the phone.
+ * @nomi/schema; `toScoringProfile()` drops the rest for the scoring engine. Never leaves the phone.
  */
 export type Profile = {
   relation: Relation;
@@ -55,6 +55,11 @@ export type Profile = {
   conditions: Condition[];
   medication_types: MedicationType[];
 };
+
+/** The fields the scoring engine takes, as `Profile` in @nomi/schema allows no others. */
+export function toScoringProfile({ relation: _relation, ...scoring }: Profile) {
+  return scoring;
+}
 
 /** Used when someone skips onboarding: an adult 18–64 with no conditions or medicines. */
 export const defaultProfile: Profile = {
@@ -71,7 +76,7 @@ export const relationText: Record<Relation, string> = {
   child: "My child",
 };
 
-/** Each persona in a few words, e.g. on the done screen and in Profile. */
+/** Each persona in a few words, e.g. on the done screen. */
 export const personaText: Record<Persona, string> = {
   under_2: "Under 2",
   child_2_5: "Child 2–5",
@@ -106,7 +111,7 @@ export const conditionText: Record<Condition, string> = {
   diabetes: "Diabetes",
   thyroid_disease: "Thyroid disease",
   phenylketonuria: "PKU",
-  // Sounds less judgy than "heavy alcohol use and less ambiguous".
+  // Less judgy and less ambiguous than "heavy alcohol use".
   heavy_alcohol_use: "3+ drinks a day",
 };
 

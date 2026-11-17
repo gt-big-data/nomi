@@ -46,8 +46,7 @@ export default function Done() {
       >
         <Title>You’re all set</Title>
         <Text style={[text("body"), { color: colors.text.secondary }]}>
-          Scores will match these answers. They stay on this phone, and you can change them anytime
-          in Profile.
+          Here’s what you told us. Your answers stay on this phone.
         </Text>
         <View
           style={{
@@ -78,8 +77,8 @@ export default function Done() {
           paddingBottom: insets.bottom + space[16],
         }}
       >
-        {/* Replace, so Back from the scanner doesn't return to onboarding. */}
-        <Button label="Start scanning" onPress={() => router.replace("/")} />
+        {/* Goes back to the scanner already on the stack instead of opening a second one. */}
+        <Button label="Start scanning" onPress={() => router.dismissTo("/")} />
       </View>
     </View>
   );
