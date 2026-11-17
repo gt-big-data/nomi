@@ -13,8 +13,8 @@ from typing import Any, Literal
 
 import polars as pl
 
-from nomi_pipeline.identity.barcode import _TRIM, ndc_candidates
 from nomi_pipeline.identity.barcode import Status as ParseStatus
+from nomi_pipeline.identity.barcode import ndc_candidates, normalize
 
 Row = dict[str, Any]
 Status = (
@@ -125,9 +125,9 @@ class Resolver:
 
     def resolve(self, barcode: str) -> Resolution:
         parsed = ndc_candidates(barcode)
-        if parsed["status"] == "not_ndc_barcode" and upc(barcode) in self.overrides:
+        if parsed["status"] == "not_ndc_barcode" and normalize(barcode) in self.overrides:
             # Resolve the package's own barcode, so an override passes every check below.
-            listing = self.directory.get(self.overrides[upc(barcode)])
+            listing = self.directory.get(self.overrides[normalize(barcode)])
             if listing is None:
                 return Resolution("not_found")
             return self.resolve(package_codes(listing["ndc_raw"])[1])
@@ -203,12 +203,6 @@ def digits(ndc_raw: str | None) -> str:
     return (ndc_raw or "").replace("-", "")
 
 
-def upc(barcode: str) -> str:
-    """The barcode as the parser reads it: trimmed, and an EAN-13 with a leading 0 as its UPC-A."""
-    code = barcode.strip(_TRIM)
-    return code[1:] if len(code) == 13 and code[0] == "0" else code
-
-
 def rejoin_split_names(names: list[str]) -> list[str]:
     """Undo openFDA's split of an ingredient name at ";".
 
@@ -247,9 +241,9 @@ def load_overrides(path: Path) -> dict[str, str]:
                 raise ValueError(f"{path}:{line}: {ndc11!r} is not an NDC11")
             if not ((row["reviewed_by"] or "").strip() and (row["reviewed_on"] or "").strip()):
                 raise ValueError(f"{path}:{line}: an override needs reviewed_by and reviewed_on")
-            if upc(barcode) in overrides:
+            if normalize(barcode) in overrides:
                 raise ValueError(f"{path}:{line}: {barcode!r} is listed twice")
-            overrides[upc(barcode)] = ndc11
+            overrides[normalize(barcode)] = ndc11
     return overrides
 
 
