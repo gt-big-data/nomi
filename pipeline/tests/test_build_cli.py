@@ -2,6 +2,7 @@ import json
 import shutil
 from pathlib import Path
 
+import polars as pl
 import pytest
 from nomi_pipeline.cli import app
 from nomi_pipeline.config import Settings
@@ -23,6 +24,13 @@ def test_build_writes_sqlite_and_manifest(tmp_path: Path, monkeypatch: pytest.Mo
     silver_dir = tmp_path / "silver"
     silver_dir.mkdir(parents=True)
     shutil.copy(FIXTURES / "product.parquet", silver_dir / "product.parquet")
+    pl.DataFrame(
+        {
+            "ndc_raw": ["0363-0710-08", "76176-135-01"],
+            "expected_ndc11": ["00363071008", "76176013501"],
+            "status": ["resolved", "resolved"],
+        }
+    ).write_parquet(silver_dir / "identity_results.parquet")
 
     results = runner.invoke(app, ["build"])
 
