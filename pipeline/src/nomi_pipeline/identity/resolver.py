@@ -179,7 +179,8 @@ class Resolver:
         if not all(valid_ingredient(item) for item in ingredients):
             # Bad strengths must never pass as a resolved product.
             return Resolution("invalid_ingredients", matches)
-        listed = rejoin_split_names(listing.get("active_ingredients") or [])
+        # A null name still counts as a listed ingredient.
+        listed = rejoin_split_names([n or "" for n in listing.get("active_ingredients") or []])
         # Bronze stores "none listed" as an empty list; then there is nothing to compare.
         if listed and len(listed) != len(ingredients):
             # The label and the directory disagree on what is in the box.

@@ -242,9 +242,11 @@ def test_directory_split_ingredient_name_is_not_a_conflict() -> None:
         # A parenthesis that never closes is not a split name: the names stay apart.
         ["ACETAMINOPHEN (AS SALT", "DIPHENHYDRAMINE HCL"],
         ["ZINC OXIDE (NANO", "TITANIUM DIOXIDE"],
+        # The directory can hold a null name.
+        ["ACETAMINOPHEN", None],
     ],
 )
-def test_real_ingredient_count_conflict_is_still_flagged(listed: list[str]) -> None:
+def test_real_ingredient_count_conflict_is_still_flagged(listed: list[str | None]) -> None:
     ndc, labels, ingredients, barcode = sources()
     ndc[0]["active_ingredients"] = listed
     assert Resolver(ndc, labels, ingredients).resolve(barcode).status == "ingredient_conflict"
