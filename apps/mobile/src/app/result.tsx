@@ -1,8 +1,8 @@
-import { Stack, useLocalSearchParams } from "expo-router";
+import { router, Stack, useLocalSearchParams } from "expo-router";
 import { useEffect, useState } from "react";
 import { ActivityIndicator, ScrollView, StyleSheet, Text, type TextProps } from "react-native";
 
-import { AlertBanner } from "@/components";
+import { AlertBanner, Button } from "@/components";
 import { openDataset } from "@/lib/dataset";
 import { lookupBarcode, strengthText, type Lookup, type Product } from "@/lib/db";
 import { type TypographyName, useTheme } from "@/theme";
@@ -34,7 +34,8 @@ function useLookup(barcode: string): Loaded | undefined {
 }
 
 export default function Result() {
-  const { barcode = "" } = useLocalSearchParams<{ barcode: string }>();
+  const params = useLocalSearchParams<{ barcode?: string | string[] }>();
+  const barcode = (Array.isArray(params.barcode) ? params.barcode[0] : params.barcode) ?? "";
   const lookup = useLookup(barcode);
 
   return (
@@ -46,7 +47,7 @@ export default function Result() {
       ) : lookup !== "error" && "product" in lookup ? (
         <ProductResult lookup={lookup} />
       ) : (
-        <Line>{MESSAGES[lookup === "error" ? lookup : lookup.status]}</Line>
+        <Message lookup={lookup} />
       )}
       <Line type="footnote" secondary style={styles.barcode}>
         Barcode {barcode}
@@ -82,6 +83,29 @@ const MESSAGES: Record<Exclude<NotFound, "error">["status"] | "error", string> =
   ambiguous_ndc: "This barcode matches more than one product, so we won't guess which one it is.",
   error: "Couldn't open the product database. Close Nomi and open it again.",
 };
+
+// Barcode errors, where scanning again may help.
+const UNREADABLE = new Set<keyof typeof MESSAGES>([
+  "invalid_format",
+  "bad_check_digit",
+  "not_ndc_barcode",
+]);
+
+function Message({ lookup }: { lookup: NotFound }) {
+  const status = lookup === "error" ? lookup : lookup.status;
+  return (
+    <>
+      <Line>{MESSAGES[status]}</Line>
+      {UNREADABLE.has(status) && <Button label="Scan again" onPress={scanAgain} />}
+    </>
+  );
+}
+
+/** Back to the camera. A deep link has nothing to go back to. */
+function scanAgain() {
+  if (router.canGoBack()) router.back();
+  else router.replace("/");
+}
 
 /** Text in a theme text style and color, so it's readable in light and dark mode. */
 function Line({

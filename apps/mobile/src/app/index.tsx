@@ -1,11 +1,13 @@
 import * as Haptics from "expo-haptics";
 import { Link, router, useFocusEffect } from "expo-router";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { AppState, Button, Linking, StyleSheet, Text, View } from "react-native";
+import { AppState, Button, Linking, Pressable, StyleSheet, Text, View } from "react-native";
 import { useCameraPermission } from "react-native-vision-camera";
 import { CodeScanner } from "react-native-vision-camera-barcode-scanner";
 
+import { ndcCandidates } from "@/lib/barcode";
 import { openDataset } from "@/lib/dataset";
+import { minHeight, radius } from "@/theme";
 
 export default function Scanner() {
   const { hasPermission, canRequestPermission, requestPermission } = useCameraPermission();
@@ -64,14 +66,20 @@ export default function Scanner() {
             return;
           }
           scanned.current = true;
-          Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+          Haptics.notificationAsync(
+            ndcCandidates(value).status === "ok"
+              ? Haptics.NotificationFeedbackType.Success
+              : Haptics.NotificationFeedbackType.Warning,
+          );
           router.push({ pathname: "/result", params: { barcode: value } });
         }}
         onError={(error) => console.error("Scanner error:", error)}
       />
       {__DEV__ && (
-        <Link href="/dev" style={styles.devLink}>
-          Dev menu
+        <Link href="/dev" asChild>
+          <Pressable style={styles.devLink}>
+            <Text style={styles.devText}>Dev menu</Text>
+          </Pressable>
         </Link>
       )}
     </View>
@@ -86,10 +94,11 @@ const styles = StyleSheet.create({
     position: "absolute",
     bottom: 48,
     alignSelf: "center",
-    padding: 12,
-    borderRadius: 8,
-    overflow: "hidden",
+    minHeight: minHeight.chip,
+    justifyContent: "center",
+    paddingHorizontal: 16,
+    borderRadius: radius.sm,
     backgroundColor: "white",
-    color: "black",
   },
+  devText: { color: "black" },
 });
