@@ -13,6 +13,7 @@ if (!existsSync(build)) {
 }
 
 // Run the app's own open check here, so a build the app would refuse never reaches a bundle.
+let problem: string | undefined;
 let db: DatabaseSync | undefined;
 try {
   db = new DatabaseSync(build, { readOnly: true });
@@ -23,13 +24,15 @@ try {
     },
   });
 } catch (error) {
-  console.error(`${build} isn't a dataset the app can open: ${(error as Error).message}`);
-  process.exitCode = 1;
+  problem = (error as Error).message;
 } finally {
   db?.close();
 }
 
-if (process.exitCode !== 1) {
+if (problem) {
+  console.error(`${build} isn't a dataset the app can open: ${problem}`);
+  process.exitCode = 1;
+} else {
   copyFileSync(build, out);
   console.log(`Copied ${build} to ${out}.`);
 }

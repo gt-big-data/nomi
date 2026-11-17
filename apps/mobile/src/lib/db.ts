@@ -69,15 +69,15 @@ interface Row {
  */
 export async function checkDataset(db: Dataset): Promise<void> {
   const [version] = await db.getAllAsync<{ user_version: number }>("PRAGMA user_version", []);
-  if (version?.user_version !== DATASET_SCHEMA_VERSION) {
+  if (version.user_version !== DATASET_SCHEMA_VERSION) {
     throw new Error(
-      `nomi.sqlite has schema version ${version?.user_version}, the app needs ` +
+      `nomi.sqlite has schema version ${version.user_version}, the app needs ` +
         `${DATASET_SCHEMA_VERSION}. Run pnpm db:fixture or pnpm db:copy again.`,
     );
   }
   const [meta] = await db.getAllAsync<{ n: number }>("SELECT count(*) AS n FROM meta", []);
-  if (meta?.n !== 1) {
-    throw new Error(`nomi.sqlite has ${meta?.n} meta rows, expected 1.`);
+  if (meta.n !== 1) {
+    throw new Error(`nomi.sqlite has ${meta.n} meta rows, expected 1.`);
   }
 }
 
@@ -114,16 +114,14 @@ export async function lookupBarcode(raw: string, db: Dataset): Promise<Lookup> {
   }
 
   const first = rows[0];
-  if (!SCOPES.has(first.scope_flag)) {
-    throw new Error(`Unknown scope_flag ${first.scope_flag}`);
-  }
   const product: Product = {
     packageNdc: first.package_ndc,
     ndc11: first.ndc11,
     brand: first.brand,
     generic: first.generic,
     form: first.form,
-    scope: first.scope_flag as Product["scope"],
+    // A scope this app doesn't know yet is never scored: it is shown as out of scope.
+    scope: SCOPES.has(first.scope_flag) ? (first.scope_flag as Product["scope"]) : "out_of_scope",
     reviewStatus: first.review_status,
     // A product with no ingredient rows (a homeopathic one, say) has one row of nulls.
     ingredients: rows
