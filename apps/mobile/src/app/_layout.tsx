@@ -1,5 +1,47 @@
-import { Stack } from "expo-router";
+import { useEffect } from "react";
+import { DarkTheme, DefaultTheme, Stack, ThemeProvider as NavThemeProvider } from "expo-router";
+import * as SplashScreen from "expo-splash-screen";
+
+import { ThemeProvider, useNomiFonts, useTheme } from "@/theme";
+
+// Keep the splash screen up until the fonts are ready.
+SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
-  return <Stack />;
+  const fontsReady = useNomiFonts();
+
+  useEffect(() => {
+    if (fontsReady) SplashScreen.hideAsync();
+  }, [fontsReady]);
+
+  if (!fontsReady) return null;
+
+  return (
+    <ThemeProvider>
+      <Navigator />
+    </ThemeProvider>
+  );
+}
+
+/** Inside <ThemeProvider>, so useTheme() gets the provider's theme instead of a default one. */
+function Navigator() {
+  const { scheme, colors } = useTheme();
+  const base = scheme === "dark" ? DarkTheme : DefaultTheme;
+  const navTheme = {
+    ...base,
+    colors: {
+      ...base.colors,
+      background: colors.bg.canvas,
+      card: colors.bg.surface,
+      text: colors.text.primary,
+      border: colors.border.subtle,
+      primary: colors.brand.primary,
+    },
+  };
+
+  return (
+    <NavThemeProvider value={navTheme}>
+      <Stack />
+    </NavThemeProvider>
+  );
 }

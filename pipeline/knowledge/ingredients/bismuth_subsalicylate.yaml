@@ -1,0 +1,641 @@
+unii: 62TEY51RR1
+name: bismuth subsalicylate
+ratings:
+  - dimension: liver
+    persona: adult_18_64
+    severity: 0
+  - dimension: liver
+    persona: adult_65_plus
+    severity: 0
+  - dimension: liver
+    persona: teen_12_17
+    severity: 0
+  - dimension: liver
+    persona: child_6_11
+    severity: 0
+  - dimension: liver
+    persona: child_2_5
+    severity: 0
+  - dimension: liver
+    persona: under_2
+    severity: 0
+  - dimension: liver
+    persona: pregnant
+    severity: 0
+  - dimension: liver
+    persona: breastfeeding
+    severity: 0
+  - dimension: gi_bleeding
+    persona: adult_18_64
+    severity: 0
+  - dimension: gi_bleeding
+    persona: adult_65_plus
+    severity: 0
+  - dimension: gi_bleeding
+    persona: teen_12_17
+    severity: 0
+  - dimension: gi_bleeding
+    persona: child_6_11
+    severity: 0
+  - dimension: gi_bleeding
+    persona: child_2_5
+    severity: 0
+  - dimension: gi_bleeding
+    persona: under_2
+    severity: 0
+  - dimension: gi_bleeding
+    persona: pregnant
+    severity: 0
+  - dimension: gi_bleeding
+    persona: breastfeeding
+    severity: 0
+  - dimension: cardiovascular_bp
+    persona: adult_18_64
+    severity: 0
+  - dimension: cardiovascular_bp
+    persona: adult_65_plus
+    severity: 0
+  - dimension: cardiovascular_bp
+    persona: teen_12_17
+    severity: 0
+  - dimension: cardiovascular_bp
+    persona: child_6_11
+    severity: 0
+  - dimension: cardiovascular_bp
+    persona: child_2_5
+    severity: 0
+  - dimension: cardiovascular_bp
+    persona: under_2
+    severity: 0
+  - dimension: cardiovascular_bp
+    persona: pregnant
+    severity: 0
+  - dimension: cardiovascular_bp
+    persona: breastfeeding
+    severity: 0
+  - dimension: kidney
+    persona: adult_18_64
+    severity: 0
+  - dimension: kidney
+    persona: adult_65_plus
+    severity: 0
+  - dimension: kidney
+    persona: teen_12_17
+    severity: 0
+  - dimension: kidney
+    persona: child_6_11
+    severity: 0
+  - dimension: kidney
+    persona: child_2_5
+    severity: 0
+  - dimension: kidney
+    persona: under_2
+    severity: 0
+  - dimension: kidney
+    persona: pregnant
+    severity: 0
+  - dimension: kidney
+    persona: breastfeeding
+    severity: 0
+  - dimension: anticholinergic_cognitive
+    persona: adult_18_64
+    severity: 0
+  - dimension: anticholinergic_cognitive
+    persona: adult_65_plus
+    severity: 0
+  - dimension: anticholinergic_cognitive
+    persona: teen_12_17
+    severity: 0
+  - dimension: anticholinergic_cognitive
+    persona: child_6_11
+    severity: 0
+  - dimension: anticholinergic_cognitive
+    persona: child_2_5
+    severity: 0
+  - dimension: anticholinergic_cognitive
+    persona: under_2
+    severity: 0
+  - dimension: anticholinergic_cognitive
+    persona: pregnant
+    severity: 0
+  - dimension: anticholinergic_cognitive
+    persona: breastfeeding
+    severity: 0
+  - dimension: sedation_falls
+    persona: adult_18_64
+    severity: 0
+  - dimension: sedation_falls
+    persona: adult_65_plus
+    severity: 0
+  - dimension: sedation_falls
+    persona: teen_12_17
+    severity: 0
+  - dimension: sedation_falls
+    persona: child_6_11
+    severity: 0
+  - dimension: sedation_falls
+    persona: child_2_5
+    severity: 0
+  - dimension: sedation_falls
+    persona: under_2
+    severity: 0
+  - dimension: sedation_falls
+    persona: pregnant
+    severity: 0
+  - dimension: sedation_falls
+    persona: breastfeeding
+    severity: 0
+  - dimension: serotonergic_interactions
+    persona: adult_18_64
+    severity: 0
+  - dimension: serotonergic_interactions
+    persona: adult_65_plus
+    severity: 0
+  - dimension: serotonergic_interactions
+    persona: teen_12_17
+    severity: 0
+  - dimension: serotonergic_interactions
+    persona: child_6_11
+    severity: 0
+  - dimension: serotonergic_interactions
+    persona: child_2_5
+    severity: 0
+  - dimension: serotonergic_interactions
+    persona: under_2
+    severity: 0
+  - dimension: serotonergic_interactions
+    persona: pregnant
+    severity: 0
+  - dimension: serotonergic_interactions
+    persona: breastfeeding
+    severity: 0
+  - dimension: anticoagulant_bleeding
+    persona: adult_18_64
+    severity: 0
+  - dimension: anticoagulant_bleeding
+    persona: adult_65_plus
+    severity: 0
+  - dimension: anticoagulant_bleeding
+    persona: teen_12_17
+    severity: 0
+  - dimension: anticoagulant_bleeding
+    persona: child_6_11
+    severity: 0
+  - dimension: anticoagulant_bleeding
+    persona: child_2_5
+    severity: 0
+  - dimension: anticoagulant_bleeding
+    persona: under_2
+    severity: 0
+  - dimension: anticoagulant_bleeding
+    persona: pregnant
+    severity: 0
+  - dimension: anticoagulant_bleeding
+    persona: breastfeeding
+    severity: 0
+  - dimension: pediatric
+    persona: adult_18_64
+    severity: 0
+  - dimension: pediatric
+    persona: adult_65_plus
+    severity: 0
+  - dimension: pediatric
+    persona: teen_12_17
+    severity: 3
+    citations:
+      - source: otc_monograph
+        document_id: 21 CFR 201.314
+        section: (h)(1)
+        url: https://www.ecfr.gov/current/title-21/section-201.314
+        quote:
+          Children and teenagers who have or are recovering from chicken pox or flu-like symptoms should
+          not use this product.
+  - dimension: pediatric
+    persona: child_6_11
+    severity: 3
+    citations:
+      - source: otc_monograph
+        document_id: 21 CFR 201.314
+        section: (h)(1)
+        url: https://www.ecfr.gov/current/title-21/section-201.314
+        quote:
+          Children and teenagers who have or are recovering from chicken pox or flu-like symptoms should
+          not use this product.
+  - dimension: pediatric
+    persona: child_2_5
+    severity: 3
+    citations:
+      - source: otc_monograph
+        document_id: 21 CFR 201.314
+        section: (h)(1)
+        url: https://www.ecfr.gov/current/title-21/section-201.314
+        quote:
+          Children and teenagers who have or are recovering from chicken pox or flu-like symptoms should
+          not use this product.
+  - dimension: pediatric
+    persona: under_2
+    severity: 3
+    citations:
+      - source: otc_monograph
+        document_id: 21 CFR 201.314
+        section: (h)(1)
+        url: https://www.ecfr.gov/current/title-21/section-201.314
+        quote:
+          Children and teenagers who have or are recovering from chicken pox or flu-like symptoms should
+          not use this product.
+  - dimension: pediatric
+    persona: pregnant
+    severity: 0
+  - dimension: pediatric
+    persona: breastfeeding
+    severity: 0
+  - dimension: rebound_overuse
+    persona: adult_18_64
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 252b143f-eee8-f407-e063-6394a90a0a08
+        section: "SPL v5: Directions (34068-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=252b143f-eee8-f407-e063-6394a90a0a08
+        quote: use until diarrhea stops but not more than 2 days
+      - source: otc_monograph
+        document_id: 21 CFR 335.50
+        section: (d)(2)
+        url: https://www.ecfr.gov/current/title-21/section-335.50
+        quote: use until diarrhea stops but not more than 2 days
+  - dimension: rebound_overuse
+    persona: adult_65_plus
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 252b143f-eee8-f407-e063-6394a90a0a08
+        section: "SPL v5: Directions (34068-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=252b143f-eee8-f407-e063-6394a90a0a08
+        quote: use until diarrhea stops but not more than 2 days
+      - source: otc_monograph
+        document_id: 21 CFR 335.50
+        section: (d)(2)
+        url: https://www.ecfr.gov/current/title-21/section-335.50
+        quote: use until diarrhea stops but not more than 2 days
+  - dimension: rebound_overuse
+    persona: teen_12_17
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 252b143f-eee8-f407-e063-6394a90a0a08
+        section: "SPL v5: Directions (34068-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=252b143f-eee8-f407-e063-6394a90a0a08
+        quote: use until diarrhea stops but not more than 2 days
+      - source: otc_monograph
+        document_id: 21 CFR 335.50
+        section: (d)(2)
+        url: https://www.ecfr.gov/current/title-21/section-335.50
+        quote: use until diarrhea stops but not more than 2 days
+  - dimension: rebound_overuse
+    persona: child_6_11
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 252b143f-eee8-f407-e063-6394a90a0a08
+        section: "SPL v5: Directions (34068-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=252b143f-eee8-f407-e063-6394a90a0a08
+        quote: use until diarrhea stops but not more than 2 days
+      - source: otc_monograph
+        document_id: 21 CFR 335.50
+        section: (d)(2)
+        url: https://www.ecfr.gov/current/title-21/section-335.50
+        quote: use until diarrhea stops but not more than 2 days
+  - dimension: rebound_overuse
+    persona: child_2_5
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 252b143f-eee8-f407-e063-6394a90a0a08
+        section: "SPL v5: Directions (34068-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=252b143f-eee8-f407-e063-6394a90a0a08
+        quote: use until diarrhea stops but not more than 2 days
+      - source: otc_monograph
+        document_id: 21 CFR 335.50
+        section: (d)(2)
+        url: https://www.ecfr.gov/current/title-21/section-335.50
+        quote: use until diarrhea stops but not more than 2 days
+  - dimension: rebound_overuse
+    persona: under_2
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 252b143f-eee8-f407-e063-6394a90a0a08
+        section: "SPL v5: Directions (34068-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=252b143f-eee8-f407-e063-6394a90a0a08
+        quote: use until diarrhea stops but not more than 2 days
+      - source: otc_monograph
+        document_id: 21 CFR 335.50
+        section: (d)(2)
+        url: https://www.ecfr.gov/current/title-21/section-335.50
+        quote: use until diarrhea stops but not more than 2 days
+  - dimension: rebound_overuse
+    persona: pregnant
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 252b143f-eee8-f407-e063-6394a90a0a08
+        section: "SPL v5: Directions (34068-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=252b143f-eee8-f407-e063-6394a90a0a08
+        quote: use until diarrhea stops but not more than 2 days
+      - source: otc_monograph
+        document_id: 21 CFR 335.50
+        section: (d)(2)
+        url: https://www.ecfr.gov/current/title-21/section-335.50
+        quote: use until diarrhea stops but not more than 2 days
+  - dimension: rebound_overuse
+    persona: breastfeeding
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 252b143f-eee8-f407-e063-6394a90a0a08
+        section: "SPL v5: Directions (34068-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=252b143f-eee8-f407-e063-6394a90a0a08
+        quote: use until diarrhea stops but not more than 2 days
+      - source: otc_monograph
+        document_id: 21 CFR 335.50
+        section: (d)(2)
+        url: https://www.ecfr.gov/current/title-21/section-335.50
+        quote: use until diarrhea stops but not more than 2 days
+  - dimension: pregnancy_lactation
+    persona: adult_18_64
+    severity: 0
+  - dimension: pregnancy_lactation
+    persona: adult_65_plus
+    severity: 0
+  - dimension: pregnancy_lactation
+    persona: teen_12_17
+    severity: 0
+  - dimension: pregnancy_lactation
+    persona: child_6_11
+    severity: 0
+  - dimension: pregnancy_lactation
+    persona: child_2_5
+    severity: 0
+  - dimension: pregnancy_lactation
+    persona: under_2
+    severity: 0
+  - dimension: pregnancy_lactation
+    persona: pregnant
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 252b143f-eee8-f407-e063-6394a90a0a08
+        section: "SPL v5: Pregnancy or breast-feeding (53414-9)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=252b143f-eee8-f407-e063-6394a90a0a08
+        quote: If pregnant or breast feeding, ask a health professional before use.
+  - dimension: pregnancy_lactation
+    persona: breastfeeding
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 252b143f-eee8-f407-e063-6394a90a0a08
+        section: "SPL v5: Pregnancy or breast-feeding (53414-9)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=252b143f-eee8-f407-e063-6394a90a0a08
+        quote: If pregnant or breast feeding, ask a health professional before use.
+  - dimension: duplicate_dosing
+    persona: adult_18_64
+    severity: 3
+    citations:
+      - source: fda_label
+        document_id: 252b143f-eee8-f407-e063-6394a90a0a08
+        section: "SPL v5: Warnings / Allergy alert"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=252b143f-eee8-f407-e063-6394a90a0a08
+        quote:
+          Do not take if you are allergic to salicylates (including aspirin) taking other salicylate
+          products
+      - source: otc_monograph
+        document_id: 21 CFR 335.50
+        section: (c)(2)(i)(B)
+        url: https://www.ecfr.gov/current/title-21/section-335.50
+        quote: taking other salicylate products
+  - dimension: duplicate_dosing
+    persona: adult_65_plus
+    severity: 3
+    citations:
+      - source: fda_label
+        document_id: 252b143f-eee8-f407-e063-6394a90a0a08
+        section: "SPL v5: Warnings / Allergy alert"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=252b143f-eee8-f407-e063-6394a90a0a08
+        quote:
+          Do not take if you are allergic to salicylates (including aspirin) taking other salicylate
+          products
+      - source: otc_monograph
+        document_id: 21 CFR 335.50
+        section: (c)(2)(i)(B)
+        url: https://www.ecfr.gov/current/title-21/section-335.50
+        quote: taking other salicylate products
+  - dimension: duplicate_dosing
+    persona: teen_12_17
+    severity: 3
+    citations:
+      - source: fda_label
+        document_id: 252b143f-eee8-f407-e063-6394a90a0a08
+        section: "SPL v5: Warnings / Allergy alert"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=252b143f-eee8-f407-e063-6394a90a0a08
+        quote:
+          Do not take if you are allergic to salicylates (including aspirin) taking other salicylate
+          products
+      - source: otc_monograph
+        document_id: 21 CFR 335.50
+        section: (c)(2)(i)(B)
+        url: https://www.ecfr.gov/current/title-21/section-335.50
+        quote: taking other salicylate products
+  - dimension: duplicate_dosing
+    persona: child_6_11
+    severity: 3
+    citations:
+      - source: fda_label
+        document_id: 252b143f-eee8-f407-e063-6394a90a0a08
+        section: "SPL v5: Warnings / Allergy alert"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=252b143f-eee8-f407-e063-6394a90a0a08
+        quote:
+          Do not take if you are allergic to salicylates (including aspirin) taking other salicylate
+          products
+      - source: otc_monograph
+        document_id: 21 CFR 335.50
+        section: (c)(2)(i)(B)
+        url: https://www.ecfr.gov/current/title-21/section-335.50
+        quote: taking other salicylate products
+  - dimension: duplicate_dosing
+    persona: child_2_5
+    severity: 3
+    citations:
+      - source: fda_label
+        document_id: 252b143f-eee8-f407-e063-6394a90a0a08
+        section: "SPL v5: Warnings / Allergy alert"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=252b143f-eee8-f407-e063-6394a90a0a08
+        quote:
+          Do not take if you are allergic to salicylates (including aspirin) taking other salicylate
+          products
+      - source: otc_monograph
+        document_id: 21 CFR 335.50
+        section: (c)(2)(i)(B)
+        url: https://www.ecfr.gov/current/title-21/section-335.50
+        quote: taking other salicylate products
+  - dimension: duplicate_dosing
+    persona: under_2
+    severity: 3
+    citations:
+      - source: fda_label
+        document_id: 252b143f-eee8-f407-e063-6394a90a0a08
+        section: "SPL v5: Warnings / Allergy alert"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=252b143f-eee8-f407-e063-6394a90a0a08
+        quote:
+          Do not take if you are allergic to salicylates (including aspirin) taking other salicylate
+          products
+      - source: otc_monograph
+        document_id: 21 CFR 335.50
+        section: (c)(2)(i)(B)
+        url: https://www.ecfr.gov/current/title-21/section-335.50
+        quote: taking other salicylate products
+  - dimension: duplicate_dosing
+    persona: pregnant
+    severity: 3
+    citations:
+      - source: fda_label
+        document_id: 252b143f-eee8-f407-e063-6394a90a0a08
+        section: "SPL v5: Warnings / Allergy alert"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=252b143f-eee8-f407-e063-6394a90a0a08
+        quote:
+          Do not take if you are allergic to salicylates (including aspirin) taking other salicylate
+          products
+      - source: otc_monograph
+        document_id: 21 CFR 335.50
+        section: (c)(2)(i)(B)
+        url: https://www.ecfr.gov/current/title-21/section-335.50
+        quote: taking other salicylate products
+  - dimension: duplicate_dosing
+    persona: breastfeeding
+    severity: 3
+    citations:
+      - source: fda_label
+        document_id: 252b143f-eee8-f407-e063-6394a90a0a08
+        section: "SPL v5: Warnings / Allergy alert"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=252b143f-eee8-f407-e063-6394a90a0a08
+        quote:
+          Do not take if you are allergic to salicylates (including aspirin) taking other salicylate
+          products
+      - source: otc_monograph
+        document_id: 21 CFR 335.50
+        section: (c)(2)(i)(B)
+        url: https://www.ecfr.gov/current/title-21/section-335.50
+        quote: taking other salicylate products
+  - dimension: excipients
+    persona: adult_18_64
+    severity: 0
+  - dimension: excipients
+    persona: adult_65_plus
+    severity: 0
+  - dimension: excipients
+    persona: teen_12_17
+    severity: 0
+  - dimension: excipients
+    persona: child_6_11
+    severity: 0
+  - dimension: excipients
+    persona: child_2_5
+    severity: 0
+  - dimension: excipients
+    persona: under_2
+    severity: 0
+  - dimension: excipients
+    persona: pregnant
+    severity: 0
+  - dimension: excipients
+    persona: breastfeeding
+    severity: 0
+  - dimension: local_skin
+    persona: adult_18_64
+    severity: 0
+  - dimension: local_skin
+    persona: adult_65_plus
+    severity: 0
+  - dimension: local_skin
+    persona: teen_12_17
+    severity: 0
+  - dimension: local_skin
+    persona: child_6_11
+    severity: 0
+  - dimension: local_skin
+    persona: child_2_5
+    severity: 0
+  - dimension: local_skin
+    persona: under_2
+    severity: 0
+  - dimension: local_skin
+    persona: pregnant
+    severity: 0
+  - dimension: local_skin
+    persona: breastfeeding
+    severity: 0
+  - dimension: efficacy_evidence
+    persona: adult_18_64
+    severity: 0
+  - dimension: efficacy_evidence
+    persona: adult_65_plus
+    severity: 0
+  - dimension: efficacy_evidence
+    persona: teen_12_17
+    severity: 0
+  - dimension: efficacy_evidence
+    persona: child_6_11
+    severity: 0
+  - dimension: efficacy_evidence
+    persona: child_2_5
+    severity: 0
+  - dimension: efficacy_evidence
+    persona: under_2
+    severity: 0
+  - dimension: efficacy_evidence
+    persona: pregnant
+    severity: 0
+  - dimension: efficacy_evidence
+    persona: breastfeeding
+    severity: 0
+modifiers:
+  - dimension: gi_bleeding
+    condition: stomach_ulcer_or_bleeding
+    severity_change: 3
+    citations:
+      - source: fda_label
+        document_id: 252b143f-eee8-f407-e063-6394a90a0a08
+        section: "SPL v5: Do not use (50570-1)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=252b143f-eee8-f407-e063-6394a90a0a08
+        quote: an ulcer
+      - source: fda_label
+        document_id: 252b143f-eee8-f407-e063-6394a90a0a08
+        section: "SPL v5: Do not use (50570-1)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=252b143f-eee8-f407-e063-6394a90a0a08
+        quote: a bleeding problem
+      - source: otc_monograph
+        document_id: 21 CFR 335.50
+        section: (c)(2)(ii)
+        url: https://www.ecfr.gov/current/title-21/section-335.50
+        quote: Do not use if you have an ulcer a bleeding problem
+  - dimension: anticoagulant_bleeding
+    medication_type: anticoagulants
+    severity_change: 2
+    citations:
+      - source: fda_label
+        document_id: 252b143f-eee8-f407-e063-6394a90a0a08
+        section: "SPL v5: Ask a doctor or pharmacist (50568-5)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=252b143f-eee8-f407-e063-6394a90a0a08
+        quote: taking any drug for anticoagulation (thinning the blood)
+      - source: otc_monograph
+        document_id: 21 CFR 335.50
+        section: (c)(2)(iii)
+        url: https://www.ecfr.gov/current/title-21/section-335.50
+        quote: taking any drug for anticoagulation (thinning the blood)
+review_status: unreviewed
+notes:
+  Oral bismuth subsalicylate. It is not an NSAID under 21 CFR 201.326 and carries no stomach bleeding
+  warning, so gi_bleeding and anticoagulant_bleeding have no baseline. The label's do not use line for
+  an ulcer or a bleeding problem is a +3 modifier ("do not use" is 3 in the rubric), and its anticoagulation
+  line a +2 modifier. The allergy alert's do not take line for people taking other salicylate products
+  is the duplicate-use warning, rated 3 as for acetaminophen and diphenhydramine. rebound_overuse is 2
+  from the "not more than 2 days" limit (the duration rule in pipeline/knowledge/README.md).

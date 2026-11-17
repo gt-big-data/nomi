@@ -6,7 +6,7 @@
       "conditions": [],
       "medication_types": []
     },
-    "score": 49,
+    "score": 34,
     "tier": "red",
     "contributions": [
       {
@@ -19,6 +19,20 @@
             "document_id": "59773893-09a8-47a2-943a-e9ea9da4458a",
             "section": "SPL v24: Warnings / Liver warning",
             "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=59773893-09a8-47a2-943a-e9ea9da4458a"
+          }
+        ]
+      },
+      {
+        "dimension": "rebound_overuse",
+        "points": 15,
+        "ingredient_uniis": ["362O9ITL9D"],
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "59773893-09a8-47a2-943a-e9ea9da4458a",
+            "section": "SPL v24: Directions (34068-7)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=59773893-09a8-47a2-943a-e9ea9da4458a",
+            "quote": "do not use for more than 10 days unless directed by a doctor"
           }
         ]
       }
@@ -41,6 +55,19 @@
             "document_id": "59773893-09a8-47a2-943a-e9ea9da4458a",
             "section": "SPL v24: Warnings / Liver warning",
             "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=59773893-09a8-47a2-943a-e9ea9da4458a"
+          }
+        ]
+      },
+      {
+        "template_id": "NOMI-015_rebound_overuse",
+        "text": "The label limits use to 10 days unless a doctor directs otherwise.",
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "59773893-09a8-47a2-943a-e9ea9da4458a",
+            "section": "SPL v24: Directions (34068-7)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=59773893-09a8-47a2-943a-e9ea9da4458a",
+            "quote": "do not use for more than 10 days unless directed by a doctor"
           }
         ]
       }
@@ -61,7 +88,7 @@
       "conditions": ["hypertension"],
       "medication_types": []
     },
-    "score": 49,
+    "score": 34,
     "tier": "red",
     "contributions": [
       {
@@ -74,6 +101,20 @@
             "document_id": "59773893-09a8-47a2-943a-e9ea9da4458a",
             "section": "SPL v24: Warnings / Liver warning",
             "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=59773893-09a8-47a2-943a-e9ea9da4458a"
+          }
+        ]
+      },
+      {
+        "dimension": "rebound_overuse",
+        "points": 15,
+        "ingredient_uniis": ["362O9ITL9D"],
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "59773893-09a8-47a2-943a-e9ea9da4458a",
+            "section": "SPL v24: Directions (34068-7)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=59773893-09a8-47a2-943a-e9ea9da4458a",
+            "quote": "do not use for more than 10 days unless directed by a doctor"
           }
         ]
       }
@@ -98,6 +139,19 @@
             "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=59773893-09a8-47a2-943a-e9ea9da4458a"
           }
         ]
+      },
+      {
+        "template_id": "NOMI-015_rebound_overuse",
+        "text": "The label limits use to 10 days unless a doctor directs otherwise.",
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "59773893-09a8-47a2-943a-e9ea9da4458a",
+            "section": "SPL v24: Directions (34068-7)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=59773893-09a8-47a2-943a-e9ea9da4458a",
+            "quote": "do not use for more than 10 days unless directed by a doctor"
+          }
+        ]
       }
     ],
     "review_status": "unreviewed",
@@ -116,7 +170,7 @@
       "conditions": [],
       "medication_types": []
     },
-    "score": 34,
+    "score": 19,
     "tier": "red",
     "contributions": [
       {
@@ -142,6 +196,20 @@
             "document_id": "59773893-09a8-47a2-943a-e9ea9da4458a",
             "section": "SPL v24: Directions (34068-7)",
             "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=59773893-09a8-47a2-943a-e9ea9da4458a"
+          }
+        ]
+      },
+      {
+        "dimension": "rebound_overuse",
+        "points": 15,
+        "ingredient_uniis": ["362O9ITL9D"],
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "59773893-09a8-47a2-943a-e9ea9da4458a",
+            "section": "SPL v24: Directions (34068-7)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=59773893-09a8-47a2-943a-e9ea9da4458a",
+            "quote": "do not use for more than 10 days unless directed by a doctor"
           }
         ]
       }
@@ -176,6 +244,19 @@
             "document_id": "59773893-09a8-47a2-943a-e9ea9da4458a",
             "section": "SPL v24: Directions (34068-7)",
             "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=59773893-09a8-47a2-943a-e9ea9da4458a"
+          }
+        ]
+      },
+      {
+        "template_id": "NOMI-015_rebound_overuse",
+        "text": "The label limits use to 10 days unless a doctor directs otherwise.",
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "59773893-09a8-47a2-943a-e9ea9da4458a",
+            "section": "SPL v24: Directions (34068-7)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=59773893-09a8-47a2-943a-e9ea9da4458a",
+            "quote": "do not use for more than 10 days unless directed by a doctor"
           }
         ]
       },

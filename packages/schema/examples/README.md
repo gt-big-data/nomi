@@ -31,7 +31,8 @@ The points come from the summary table in `docs/scoring/dimensions.md`: the low 
 severity 1 (5-10) and severity 2 (15-25) ranges, and 51 for severity 3 ("35-50+"), so that one
 severity 3 is red as the table's tier column says. The table cannot be met exactly: no value in
 15-25 makes a single severity 2 yellow. With these values every product here is yellow or red;
-Tylenol is red (49) for a healthy adult because of its liver warning. That is what the rubric table
+the liver warning alone makes Tylenol red (49) for a healthy adult, and its 10 day limit lowers
+it to 34. That is what the rubric table
 implies and needs a decision from the rubric owner. Change `POINTS` in `tests/test_examples.py`
 and regenerate these records when the rubric is set. They are not production golden vectors.
 
@@ -42,7 +43,9 @@ Four questions for the rubric owner before #29 builds on these numbers:
   stomach bleeding warning is rated 2 for adults and children and 3 for adults 65+, following the
   rubric's own severity 3 example ("Aleve, `adult_65_plus` or ulcer history"); its heart attack and
   stroke warning is rated 2 for every profile and reaches 3 for adults 65+ only through the
-  hypertension modifier. So Tylenol is red (49) for a healthy adult and Aleve is yellow (55).
+  hypertension modifier. Tylenol's directions also say "do not use for more than 10 days unless
+  directed by a doctor", rated 2 under `rebound_overuse` as the knowledge base rates duration
+  limits. So Tylenol is red (34) for a healthy adult and Aleve is yellow (55).
 - **Spread.** With 51 points for a severity 3, every adult 65+ record except Tylenol clamps to 0,
   so the fixtures cannot rank those products against each other.
 - **NyQuil sedation for adults 65+.** Doxylamine's `sedation_falls` rating of 3 for adults 65+
@@ -82,16 +85,19 @@ says for NSAIDs; the label line it cites names high blood pressure, not the kidn
 - each expected score, contribution, tier and hard stop, and the citations of each scored
   dimension's explanation, follow from the ingredient ratings and modifiers under the convention
   above (explanation wording is not checked);
-- ingredients that have a file in `pipeline/knowledge/ingredients` (dextromethorphan, doxylamine,
-  diphenhydramine) match it for the three profiles: rating severities, and each modifier's
-  dimension, condition or medication, value and personas (citations are not compared). The two
-  exceptions come from the product's own label and are listed in `LABEL_OVERRIDES`: ZzzQuil
-  says "children under 12 yrs do not use" (3),
-  and NyQuil says "children 4 to under 12 yrs ask a doctor" (2). A test fails if an override stops
-  being needed.
-
-Acetaminophen and naproxen are not in the knowledge base yet (#98); add them to the check once
-they are.
+- ingredients that have a file in `pipeline/knowledge/ingredients` (all of them: acetaminophen,
+  naproxen sodium, dextromethorphan, doxylamine, diphenhydramine) match it for the three profiles:
+  rating severities, and each modifier's dimension, condition or medication, value and personas
+  (citations are not compared). The exceptions come from the product's own label and are listed in
+  `LABEL_OVERRIDES`: ZzzQuil says "children under 12 yrs do not use" (3), NyQuil says "children 4
+  to under 12 yrs ask a doctor" (2, for doxylamine and acetaminophen), and Tylenol Extra Strength
+  says "children under 12 years ask a doctor" (2). The knowledge base rates acetaminophen 0 for
+  children 6 to 11 because children's liquids are dosed for that age. NyQuil also has no "do not
+  use for more than 10 days" limit, so its acetaminophen `rebound_overuse` is 0 where the knowledge
+  base has 2, and Aleve has no "do not take longer than 10 days" limit, so its naproxen
+  `rebound_overuse` is 0 where the knowledge base has 2 (from other naproxen labels; see
+  `pipeline/knowledge/README.md`). A test fails if an override
+  stops being needed.
 
 ## Review
 

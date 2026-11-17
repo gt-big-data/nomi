@@ -22,6 +22,20 @@
         "severity": 0
       },
       {
+        "dimension": "rebound_overuse",
+        "persona": "adult_18_64",
+        "severity": 2,
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "59773893-09a8-47a2-943a-e9ea9da4458a",
+            "section": "SPL v24: Directions (34068-7)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=59773893-09a8-47a2-943a-e9ea9da4458a",
+            "quote": "do not use for more than 10 days unless directed by a doctor"
+          }
+        ]
+      },
+      {
         "dimension": "liver",
         "persona": "adult_65_plus",
         "severity": 3,
@@ -38,6 +52,20 @@
         "dimension": "pediatric",
         "persona": "adult_65_plus",
         "severity": 0
+      },
+      {
+        "dimension": "rebound_overuse",
+        "persona": "adult_65_plus",
+        "severity": 2,
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "59773893-09a8-47a2-943a-e9ea9da4458a",
+            "section": "SPL v24: Directions (34068-7)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=59773893-09a8-47a2-943a-e9ea9da4458a",
+            "quote": "do not use for more than 10 days unless directed by a doctor"
+          }
+        ]
       },
       {
         "dimension": "liver",
@@ -62,6 +90,20 @@
             "document_id": "59773893-09a8-47a2-943a-e9ea9da4458a",
             "section": "SPL v24: Directions (34068-7)",
             "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=59773893-09a8-47a2-943a-e9ea9da4458a"
+          }
+        ]
+      },
+      {
+        "dimension": "rebound_overuse",
+        "persona": "child_6_11",
+        "severity": 2,
+        "citations": [
+          {
+            "source": "fda_label",
+            "document_id": "59773893-09a8-47a2-943a-e9ea9da4458a",
+            "section": "SPL v24: Directions (34068-7)",
+            "url": "https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=59773893-09a8-47a2-943a-e9ea9da4458a",
+            "quote": "do not use for more than 10 days unless directed by a doctor"
           }
         ]
       }
