@@ -33,24 +33,28 @@ def _fail(status: Status) -> BarcodeResult:
     return {"status": status, "candidates": []}
 
 
+def normalize(raw: str) -> str:
+    """Returns the barcode as it is parsed: trimmed, and an EAN-13 with a leading 0 as its UPC-A."""
+    code = raw.strip(_TRIM)
+    return code[1:] if len(code) == 13 and code[0] == "0" else code
+
+
 def ndc_candidates(raw: str) -> BarcodeResult:
     """Returns the status and NDC11 candidates for a scanned barcode.
 
     Candidates is empty unless status is "ok".
     """
-    code = raw.strip(_TRIM)
+    code = normalize(raw)
 
     # isascii() rejects other Unicode digits that isdigit() accepts.
     if not (code.isascii() and code.isdigit()):
         return _fail("invalid_format")
 
-    # EAN-13 with a leading 0 is a UPC-A. Any other valid EAN-13 is a real barcode, just not a drug.
+    # Any valid EAN-13 left after normalize() is a real barcode, just not a drug.
     if len(code) == 13:
-        if code[0] != "0":
-            if _check_digit(code[:12]) != int(code[12]):
-                return _fail("bad_check_digit")
-            return _fail("not_ndc_barcode")
-        code = code[1:]
+        if _check_digit(code[:12]) != int(code[12]):
+            return _fail("bad_check_digit")
+        return _fail("not_ndc_barcode")
 
     if len(code) != 12:
         return _fail("invalid_format")

@@ -1,5 +1,10 @@
 # Knowledge base
 
+`barcode_overrides.csv` maps reviewed barcodes that carry no NDC to a package; see
+`pipeline/docs/identity.md`. Add a row only after checking the box itself: put the barcode as
+printed, the NDC11 from the box's Drug Facts, who checked it, the date (YYYY-MM-DD), and the source
+(for example a photo in the issue).
+
 `ingredients/` holds one YAML file per ingredient UNII: a severity from 0 to 3 for each of the
 15 risk dimensions and 8 personas, plus modifiers for conditions and medications. Every rating
 above 0 and every modifier cites its source. The dimensions and severities are defined in

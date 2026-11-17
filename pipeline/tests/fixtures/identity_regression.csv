@@ -1,0 +1,15 @@
+barcode,expected_status,expected_ndc11,category,note
+313411893056,resolved,13411089305,ingredient_conflict,13411-893-05: the directory splits one ingredient name in two
+313411893155,resolved,13411089315,ingredient_conflict,13411-893-15: the directory splits one ingredient name in two
+313411893308,resolved,13411089330,ingredient_conflict,13411-893-30: the directory splits one ingredient name in two
+383021300015,resolved,83021030001,ingredient_conflict,83021-300-01: the directory splits one ingredient name in two
+383021546307,resolved,83021054630,ingredient_conflict,83021-546-30: the directory splits one ingredient name in two
+383021551509,resolved,83021055150,ingredient_conflict,83021-551-50: the directory splits one ingredient name in two
+383021686508,resolved,83021068650,ingredient_conflict,83021-686-50: the directory splits one ingredient name in two
+384509005019,resolved,84509000501,ingredient_conflict,84509-005-01: the directory splits one ingredient name in two
+384753037019,resolved,84753003701,ingredient_conflict,84753-037-01: the directory splits one ingredient name in two
+385060012010,resolved,85060001201,ingredient_conflict,85060-012-01: the directory splits one ingredient name in two
+385212001510,resolved,85212001501,ingredient_conflict,85212-0015-1: the directory splits one ingredient name in two
+385212003316,resolved,85212003301,ingredient_conflict,85212-0033-1: the directory splits one ingredient name in two
+387765001016,resolved,87765000101,ingredient_conflict,87765-001-01: the directory splits one ingredient name in two
+387765001023,resolved,87765000102,ingredient_conflict,87765-001-02: the directory splits one ingredient name in two
