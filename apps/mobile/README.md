@@ -29,6 +29,28 @@ Rules for this app:
 `react-native-vision-camera-barcode-scanner`. We chose it because it uses Google ML Kit on both iOS and Android, so
 scanning runs on-device and works offline. `expo-camera` uses Apple's scanner on iOS instead of ML Kit.
 
+## Bundled dataset
+
+Scans are looked up in `assets/nomi.sqlite`, which ships inside the app, so results need no internet
+(NOMI-040). `src/lib/db.ts` matches the barcode's 10 NDC digits in one indexed query; `src/lib/dataset.ts`
+opens the file once per launch. The tables are defined in `packages/schema/sqlite/nomi.sql`, which the
+pipeline's build (NOMI-038) must match.
+
+The file is generated, not committed. From `apps/mobile`:
+
+- `pnpm db:fixture` builds it from the five reference products in `packages/schema/examples/` (Aleve,
+  NyQuil, Equate Allergy Relief, Tylenol, ZzzQuil). Their package NDCs are in `scripts/fixture.mts`.
+- `pnpm db:copy` copies the pipeline's build, `data/build/nomi.sqlite`, once you have one.
+
+If the file is missing when Metro starts in development (a fresh clone), `metro.config.js` builds the fixture.
+Release bundles (`expo export`, Release builds) stop with an error when the file is missing, but they don't
+check which file it is: if the fixture is there (say from an earlier `expo start`), a release bundle ships it.
+Run `pnpm db:copy` before a release build. Run either command again after the tables change; the app refuses a
+file with the wrong schema version.
+
+`expo-sqlite` is a native module, so after pulling this change rebuild the development build
+(`npx expo run:ios` or `npx expo run:android`).
+
 ## Build and run
 
 ### iPhone (needs a Mac with Xcode)
@@ -66,7 +88,7 @@ Don't commit it.
 ### Checks
 
 From the repo root, `pnpm typecheck` type-checks the app and `pnpm test` runs the barcode parser tests
-(NOMI-007). CI runs both.
+(NOMI-007) and the product lookup tests (NOMI-040), which use a fixture database. CI runs both.
 
 ## Design
 
