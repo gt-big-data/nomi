@@ -15,7 +15,7 @@ from nomi_pipeline.identity.barcode import ndc_candidates
 from nomi_pipeline.identity.resolver import Resolver
 
 FIXTURE = Path(__file__).parent / "fixtures" / "identity_regression.csv"
-ROWS = list(csv.DictReader(FIXTURE.open(newline="", encoding="utf-8")))
+ROWS = list(csv.DictReader(FIXTURE.read_text(encoding="utf-8").splitlines()))
 BRONZE = Settings().bronze_dir
 TABLES = ("ndc", "spl_products", "spl_ingredients")
 
