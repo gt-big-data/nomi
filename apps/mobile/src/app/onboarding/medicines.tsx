@@ -25,7 +25,7 @@ export default function Medicines() {
 
   return (
     <QuestionScreen
-      step={5}
+      question="medicines"
       title={`${capitalize(askAbout(draft.relation).do)} take any of these?`}
       subtitle="Only the type matters, not the exact medicine. Nothing leaves your phone."
       nextLabel={picked.length ? "Finish" : "None of these"}

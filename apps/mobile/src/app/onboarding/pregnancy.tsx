@@ -20,7 +20,8 @@ export default function PregnancyQuestion() {
   const { space } = useTheme();
   const { draft, update } = useDraft();
   const [picked, setPicked] = useState(draft.pregnancy);
-  const title = `${capitalize(askAbout(draft.relation).are)} pregnant or breastfeeding?`;
+  const words = askAbout(draft.relation);
+  const title = `${capitalize(words.are)} pregnant or breastfeeding?`;
 
   const answer = (pregnancy: Pregnancy) => {
     update({ pregnancy });
@@ -29,9 +30,9 @@ export default function PregnancyQuestion() {
 
   return (
     <QuestionScreen
-      step={3}
+      question="pregnancy"
       title={title}
-      subtitle="If you pick one, scores use pregnancy or breastfeeding guidance instead of your age group."
+      subtitle={`If you pick one, scores use pregnancy or breastfeeding guidance instead of ${words.your} age group.`}
       onNext={() => answer(picked)}
       onSkip={() => answer("no")}
     >

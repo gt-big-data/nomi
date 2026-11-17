@@ -3,7 +3,7 @@ import { useState } from "react";
 import { StyleSheet, View } from "react-native";
 
 import { OptionChip } from "@/components";
-import { askAbout, asksPregnancy, startingAge } from "@/lib/onboarding";
+import { ageRequired, askAbout, asksPregnancy, startingAge } from "@/lib/onboarding";
 import { useDraft } from "@/components/onboarding/DraftProvider";
 import { QuestionScreen } from "@/components/onboarding/QuestionScreen";
 import { type AgeGroup, ageGroupText } from "@/storage/profile";
@@ -13,7 +13,7 @@ const ages = Object.keys(ageGroupText) as AgeGroup[];
 
 /**
  * Question 2: the age group, which sets the persona. A group, not a birthday: less to store.
- * A child's age can't be skipped, since the default is an adult.
+ * Only your own age can be skipped (see `ageRequired`).
  */
 export default function Age() {
   const { space } = useTheme();
@@ -30,11 +30,11 @@ export default function Age() {
 
   return (
     <QuestionScreen
-      step={2}
+      question="age"
       title={title}
       subtitle="Medicines affect children, adults and older adults differently."
       onNext={picked ? () => answer(picked) : undefined}
-      onSkip={draft.relation === "child" ? undefined : () => answer(null)}
+      onSkip={ageRequired(draft) ? undefined : () => answer(null)}
     >
       <View
         accessibilityRole="radiogroup"

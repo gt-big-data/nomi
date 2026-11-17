@@ -3,21 +3,20 @@ import type { ReactNode } from "react";
 import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
+import { type Question, questionNumber } from "@/lib/onboarding";
 import { minHeight, opacity, useIconScale, useTheme } from "@/theme";
 
 import { Button } from "../Button";
 import { Icon } from "../Icon";
+import { useDraft } from "./DraftProvider";
 import { Title } from "./Title";
-
-/** How many questions onboarding has. */
-export const QUESTION_COUNT = 5;
 
 /** Thickness of the progress bars, from the design. */
 const STEP_HEIGHT = 6;
 
 type QuestionScreenProps = {
-  /** Which question this is, from 1 to `QUESTION_COUNT`. */
-  step: number;
+  /** Which question this is. Sets the counter, which leaves out questions this person skips. */
+  question: Question;
   title: string;
   /** One line under the title on why it's asked. */
   subtitle: string;
@@ -39,13 +38,13 @@ type QuestionScreenProps = {
  *
  * @example
  * ```tsx
- * <QuestionScreen step={2} title="How old are you?" subtitle="…" onNext={next} onSkip={skip}>
+ * <QuestionScreen question="age" title="How old are you?" subtitle="…" onNext={next} onSkip={skip}>
  *   {chips}
  * </QuestionScreen>
  * ```
  */
 export function QuestionScreen({
-  step,
+  question,
   title,
   subtitle,
   onNext,
@@ -57,7 +56,8 @@ export function QuestionScreen({
   const { colors, radius, space, text } = useTheme();
   const insets = useSafeAreaInsets();
   const iconScale = useIconScale();
-  const counter = `Question ${step} of ${QUESTION_COUNT}`;
+  const { step, total } = questionNumber(useDraft().draft, question);
+  const counter = `Question ${step} of ${total}`;
 
   return (
     <View style={[styles.fill, { backgroundColor: colors.bg.surface }]}>
@@ -80,9 +80,10 @@ export function QuestionScreen({
           accessible
           accessibilityRole="progressbar"
           accessibilityLabel={counter}
+          accessibilityValue={{ min: 1, max: total, now: step }}
           style={[styles.steps, { gap: space[4] }]}
         >
-          {Array.from({ length: QUESTION_COUNT }, (_, i) => (
+          {Array.from({ length: total }, (_, i) => (
             <View
               key={i}
               style={[

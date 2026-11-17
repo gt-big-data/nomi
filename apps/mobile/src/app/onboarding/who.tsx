@@ -5,13 +5,14 @@ import { View } from "react-native";
 import { OptionCard } from "@/components";
 import { useDraft } from "@/components/onboarding/DraftProvider";
 import { QuestionScreen } from "@/components/onboarding/QuestionScreen";
+import { withRelation } from "@/lib/onboarding";
 import { defaultProfile, type Relation, relationText } from "@/storage/profile";
 import { useTheme } from "@/theme";
 
 const descriptions: Record<Relation, string> = {
   self: "Scores for your age, health and medicines",
   someone_else: "Check medicines for someone you look after",
-  child: "Adds child dosing and under-2 warnings",
+  child: "Adds child and under-2 warnings",
 };
 const relations = Object.keys(relationText) as Relation[];
 
@@ -24,14 +25,13 @@ export default function Who() {
   const [picked, setPicked] = useState(draft.relation);
 
   const answer = (relation: Relation) => {
-    // Someone new: ask their age again instead of keeping the last person's.
-    update(relation === draft.relation ? {} : { relation, age: null });
+    update(withRelation(draft, relation));
     router.push("/onboarding/age");
   };
 
   return (
     <QuestionScreen
-      step={1}
+      question="who"
       title={TITLE}
       subtitle="Medicines are scored for the person who will take them."
       onNext={() => answer(picked)}

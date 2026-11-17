@@ -18,7 +18,7 @@ export default function Conditions() {
 
   return (
     <QuestionScreen
-      step={4}
+      question="conditions"
       title="Any of these health conditions?"
       subtitle="Pick all that apply. They change how some ingredients are scored."
       // With nothing picked, the button is the "none of these" answer.

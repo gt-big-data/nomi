@@ -32,11 +32,27 @@ export const startingDraft: Draft = {
 const childAges: readonly AgeGroup[] = ["under_2", "child_2_5", "child_6_11"];
 
 /**
- * The age picked when the age question opens. Nothing for a child, so a child is never scored
- * as an adult by tapping Next.
+ * Sets who the profile is for. Choosing someone different clears the other answers, so one
+ * person's age, pregnancy or medicines never carry over to another.
+ */
+export function withRelation(draft: Draft, relation: Relation): Draft {
+  return relation === draft.relation ? draft : { ...startingDraft, relation };
+}
+
+/**
+ * Whether the age must be picked. Only your own can be skipped, as the default adult 18-64;
+ * anyone else's could be a child or an older adult.
+ */
+export function ageRequired(draft: Draft): boolean {
+  return draft.relation !== "self";
+}
+
+/**
+ * The age picked when the age question opens. Nothing when the age is required, so no one is
+ * scored as an adult just by tapping Next.
  */
 export function startingAge(draft: Draft): AgeGroup | null {
-  return draft.age ?? (draft.relation === "child" ? null : "adult_18_64");
+  return draft.age ?? (ageRequired(draft) ? null : "adult_18_64");
 }
 
 /**
@@ -69,6 +85,24 @@ export function toProfile(draft: Draft): Profile {
   };
 }
 
+const questions = ["who", "age", "pregnancy", "conditions", "medicines"] as const;
+
+/** One of the onboarding questions, in the order they're asked. */
+export type Question = (typeof questions)[number];
+
+/**
+ * Where a question falls among the ones this person is asked, for the progress counter.
+ *
+ * @example
+ * ```ts
+ * questionNumber({ ...draft, relation: "child" }, "conditions"); // { step: 3, total: 4 }
+ * ```
+ */
+export function questionNumber(draft: Draft, question: Question) {
+  const asked = questions.filter((q) => q !== "pregnancy" || asksPregnancy(draft));
+  return { step: asked.indexOf(question) + 1, total: asked.length };
+}
+
 /** Capitalizes the first letter, for questions that start with `askAbout()`. */
 export function capitalize(words: string): string {
   return words.charAt(0).toUpperCase() + words.slice(1);
@@ -85,10 +119,10 @@ export function capitalize(words: string): string {
 export function askAbout(relation: Relation) {
   switch (relation) {
     case "self":
-      return { are: "are you", do: "do you" };
+      return { are: "are you", do: "do you", your: "your" };
     case "someone_else":
-      return { are: "are they", do: "do they" };
+      return { are: "are they", do: "do they", your: "their" };
     case "child":
-      return { are: "is your child", do: "does your child" };
+      return { are: "is your child", do: "does your child", your: "your child’s" };
   }
 }
