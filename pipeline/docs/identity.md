@@ -34,7 +34,7 @@ It reads `ndc.parquet`, `spl_products.parquet` and `spl_ingredients.parquet` fro
    any (about 1% of directory rows list none, stored as an empty list, and then the check is skipped).
    openFDA's directory splits an ingredient name at ";" (`HYDROLYSED BOVINE COLLAGEN (ENZYMATIC;
    3500 MW)` becomes two names), so a name that leaves a parenthesis open is first joined to the
-   names after it (NOMI-037).
+   names after it, but only when the parenthesis closes by the last name (NOMI-037).
 7. The directory must give a brand name and a generic name, as the product schema requires.
 
 | Status | Meaning |

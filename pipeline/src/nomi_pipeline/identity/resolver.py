@@ -208,7 +208,7 @@ def rejoin_split_names(names: list[str]) -> list[str]:
 
     The directory lists "HYDROLYSED BOVINE COLLAGEN (ENZYMATIC; 3500 MW)" as two names, cut inside
     the parentheses. A name that leaves a parenthesis open is joined to the names after it until
-    it closes.
+    it closes. If the last group never closes, nothing was split and the names are kept as listed.
     """
     joined: list[str] = []
     depth = 0
@@ -218,7 +218,7 @@ def rejoin_split_names(names: list[str]) -> list[str]:
         else:
             joined.append(name)
         depth = max(depth + name.count("(") - name.count(")"), 0)
-    return joined
+    return names if depth else joined
 
 
 def load_overrides(path: Path) -> dict[str, str]:
