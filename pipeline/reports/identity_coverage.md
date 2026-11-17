@@ -12,9 +12,6 @@ lists any), and the directory gives a brand and generic name.
 
 **Scored packages resolved: 64279 of 65418 (98.26%).** Target 95%: met.
 
-Before NOMI-037: 64265 of 65418 (98.24%), with 14 ingredient_conflict and 82 missing_label misses. NOMI-037 rejoins ingredient names that
-the directory splits at ";", which caused every ingredient_conflict.
-
 Homeopathic products are not scored, so they are counted apart. Counting them as found when
 the directory identifies them, all packages: 91108 of 92247 (98.77%). With a full product record (label and ingredients), all packages: 64281 of 92247 (69.68%).
 
@@ -1178,7 +1175,8 @@ the directory identifies them, all packages: 91108 of 92247 (98.77%). With a ful
 ## Barcode overrides
 
 Reviewed overrides (`pipeline/knowledge/barcode_overrides.csv`) map barcodes that carry no
-NDC to a package. They are not part of the coverage above. Overrides: 0.
+NDC to a package. They are not part of the coverage above, and nothing ships them to the
+app yet: they are only checked here. Overrides: 0.
 
 | Barcode | NDC11 | Status |
 | --- | --- | --- |

@@ -42,8 +42,6 @@ Status = (
 HOMEOPATHIC = "UNAPPROVED HOMEOPATHIC"
 # docs/system-design.md 5.2 and 8: 95% or higher of generated barcodes resolve correctly.
 TARGET = 0.95
-# The last full-data run before NOMI-037's resolver fixes (pipeline/reports, #94).
-BEFORE = {"resolved": 64265, "total": 65418, "ingredient_conflict": 14, "missing_label": 82}
 OVERRIDE_FIELDS = ("barcode", "ndc11", "reviewed_by", "reviewed_on", "source")
 INGREDIENT_FIELDS = ("unii", "name", "strength", "unit", "per_amount", "per_unit")
 MARKETING_CATEGORIES = {
@@ -352,12 +350,6 @@ def coverage_report(results: list[Row], overrides: list[Row] | None = None) -> s
         f"**Scored packages resolved: {correct} of {total} ({rate:.2%}).** "
         f"Target {TARGET:.0%}: {'met' if total and rate >= TARGET else 'not met'}.",
         "",
-        f"Before NOMI-037: {BEFORE['resolved']} of {BEFORE['total']} "
-        f"({BEFORE['resolved'] / BEFORE['total']:.2%}), with "
-        f"{BEFORE['ingredient_conflict']} ingredient_conflict and "
-        f"{BEFORE['missing_label']} missing_label misses. NOMI-037 rejoins ingredient names that",
-        'the directory splits at ";", which caused every ingredient_conflict.',
-        "",
         "Homeopathic products are not scored, so they are counted apart. Counting them as found when",
         "the directory identifies them, all packages: "
         f"{found} of {len(results)} ({found / len(results) if results else 0:.2%}). "
@@ -382,8 +374,8 @@ def coverage_report(results: list[Row], overrides: list[Row] | None = None) -> s
         "## Barcode overrides",
         "",
         "Reviewed overrides (`pipeline/knowledge/barcode_overrides.csv`) map barcodes that carry no",
-        "NDC to a package. They are not part of the coverage above. Overrides: "
-        f"{len(overrides or [])}.",
+        "NDC to a package. They are not part of the coverage above, and nothing ships them to the",
+        f"app yet: they are only checked here. Overrides: {len(overrides or [])}.",
         "",
         "| Barcode | NDC11 | Status |",
         "| --- | --- | --- |",
