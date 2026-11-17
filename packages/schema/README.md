@@ -28,6 +28,7 @@ The persona, dimension, condition and medication type lists are owned by `docs/s
 | `fixtures/schema-samples/` | Format samples: `valid/` must pass, `invalid/` must fail |
 | `examples/` | Hand-verified reference products (NOMI-015) |
 | `golden/` | Golden scoring vectors checked in Python and TypeScript (NOMI-057) |
+| `sqlite/` | `nomi.sql`: the tables of the app's `nomi.sqlite` (NOMI-040), shared with the pipeline's build (NOMI-038) |
 | `scripts/` | Code generators |
 | `tests/` | Schema, sample and type tests |
 
