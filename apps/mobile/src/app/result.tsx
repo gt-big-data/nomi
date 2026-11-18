@@ -180,11 +180,6 @@ function ProductResult({ lookup }: { lookup: Found }) {
       <View style={[styles.center, { gap: space[12] }]}>
         <ScoreBadge tier={tier} score={shown?.score} />
         <TierLabel tier={tier} align="center" />
-        {shown && (
-          <Text style={[text("footnote"), { color: colors.text.secondary }]}>
-            Draft score, rubric v0
-          </Text>
-        )}
         {(shown || childLabel) && <ProfileSwitcher options={options} selected={profile} />}
       </View>
 
@@ -341,9 +336,7 @@ function ScoreDetails({ record }: { record: ScoreRecord }) {
         )}
       </View>
       <Text style={[text("footnote"), { color: colors.text.secondary }]}>
-        Draft score from Nomi's v0 rules, using each ingredient's ratings from FDA labels and
-        published guidelines. Each risk takes its own points off, and the score stops at 0. Not
-        medical advice: ask a pharmacist or doctor before you take it.
+        Not medical advice. Ask a pharmacist or doctor before you take it.
       </Text>
     </>
   );
