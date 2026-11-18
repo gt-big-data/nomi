@@ -380,9 +380,9 @@ test("a subgroup note says when the general estimate is still used", () => {
 // pinned so a change to the evidence shows up here as a deliberate update.
 const GOLDEN: Record<string, Record<string, number>> = {
   aleve: { adult_18_64: 78, adult_65_plus: 62, pregnant: 78 },
-  nyquil: { adult_18_64: 82, adult_65_plus: 45, pregnant: 82 },
+  nyquil: { adult_18_64: 75, adult_65_plus: 44, pregnant: 75 },
   "store-brand-diphenhydramine": { adult_18_64: 100, adult_65_plus: 45, pregnant: 100 },
-  tylenol: { adult_18_64: 82, adult_65_plus: 82, pregnant: 82 },
+  tylenol: { adult_18_64: 75, adult_65_plus: 75, pregnant: 75 },
   zzzquil: { adult_18_64: 100, adult_65_plus: 45, pregnant: 100 },
 };
 const EXAMPLES = new URL("../../../../packages/schema/examples/", import.meta.url);

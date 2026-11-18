@@ -75,7 +75,7 @@ relative_risks:
   outcome_match: true
   exposure_window: community_oral
   comparator: non_use
-  dose_mg_per_day: [2001, null]
+  dose_mg_per_day: null
   measure: RR
   estimate: 3.6
   ci95: [2.6, 5.1]
@@ -88,8 +88,118 @@ relative_risks:
     url: https://pubmed.ncbi.nlm.nih.gov/16611205/
     location: Abstract (nested case-control study)
     quote: The RR was 3.6 (95% CI, 2.6-5.1) among paracetamol users of more than 2 g daily, whereas smaller doses did not increase the risk.
-  selection_note: 'Rule 21: the dose stratum the abstract reports for the authors'' own nested case-control study. The lower stratum is described only in words ("smaller doses did not increase the risk"), with no number, so it is not recorded; the full text (Wiley) could not be opened (a bot check blocks it). The authors attribute much of the association to channelling and confounding. Rule 20: the abstract reports no incidence in non-users.'
-  match_note: Outcome is upper GI complications (bleeding or perforation), section 1's outcome; exposure is current paracetamol use above 2,000 mg a day in general practice (community, oral); comparator non-use. Stratum >2,000 mg/day.
+  selection_note: 'Full text opened (Wiley, via a university library, 2026-11-18). This figure pools the 2001-3999 and >=4000 mg strata of Table 1, so it is recorded undosed; each Table 1 stratum is its own row below and the build picks by rule 8.1 and 21. Rule 20: the paper reports no incidence in non-users.'
+  match_note: 'Outcome is upper GI complications (bleeding, perforation or melena), section 1''s outcome; exposure is current prescribed paracetamol above 2,000 mg a day in general practice (community, oral); comparator non-use of paracetamol. Methods (nested case-control study): ''We chose non-users of each respective drug group as the reference category'', where non-use is ''no recorded use in the 6 months before the index date''.'
+- ingredient: acetaminophen
+  dimension: gi_bleeding
+  applies_to: {persona: all, condition: null, medication_type: null}
+  outcome: upper_gi_bleeding
+  outcome_match: true
+  exposure_window: community_oral
+  comparator: non_use
+  dose_mg_per_day: [null, 1000]
+  measure: RR
+  estimate: 1.0
+  ci95: [0.8, 1.2]
+  interval: confidence
+  exposure: current paracetamol use, 1,000 mg or less a day, vs non-use (nested case-control)
+  population: UK General Practice Research Database, April 1993 to October 1998, persons aged 40-79; 2,105 cases and 11,500 controls
+  grade: case_control
+  source:
+    citation: Gonzalez-Perez A, Rodriguez LA. Upper gastrointestinal complications among users of paracetamol. Basic Clin Pharmacol Toxicol 2006;98(3):297-303. PMID 16611205
+    url: https://doi.org/10.1111/j.1742-7843.2006.pto_248.x
+    location: Table 1, paracetamol dose, adjusted RR
+    quote: "≤1000 142 610 1.5 (1.2–1.8) 1.0 (0.8–1.2)"
+  selection_note: 'Rule 22: every dose stratum of Table 1 (adjusted RR, current users) is recorded; the build picks the one holding the label maximum (rule 8.1). Table 1 footnote: adjusted for age, sex, calendar year, ulcer history, smoking, steroid, anticoagulant, gastroprotective drugs, NSAID and aspirin use. Rule 20: the paper reports no incidence in non-users.'
+  match_note: 'Outcome is upper GI complications (bleeding, perforation or melena), section 1''s outcome; exposure is current prescribed paracetamol in general practice (community, oral); comparator non-use of paracetamol. Methods (nested case-control study): ''We chose non-users of each respective drug group as the reference category'', where non-use is ''no recorded use in the 6 months before the index date''.'
+- ingredient: acetaminophen
+  dimension: gi_bleeding
+  applies_to: {persona: all, condition: null, medication_type: null}
+  outcome: upper_gi_bleeding
+  outcome_match: true
+  exposure_window: community_oral
+  comparator: non_use
+  dose_mg_per_day: [1001, 1999]
+  measure: RR
+  estimate: 0.8
+  ci95: [0.6, 1.1]
+  interval: confidence
+  exposure: current paracetamol use, 1,001 to 1,999 mg a day, vs non-use (nested case-control)
+  population: UK General Practice Research Database, April 1993 to October 1998, persons aged 40-79; 2,105 cases and 11,500 controls
+  grade: case_control
+  source:
+    citation: Gonzalez-Perez A, Rodriguez LA. Upper gastrointestinal complications among users of paracetamol. Basic Clin Pharmacol Toxicol 2006;98(3):297-303. PMID 16611205
+    url: https://doi.org/10.1111/j.1742-7843.2006.pto_248.x
+    location: Table 1, paracetamol dose, adjusted RR
+    quote: "1001–1999 59 242 1.6 (1.2–2.1) 0.8 (0.6–1.1)"
+  selection_note: 'Rule 22: every dose stratum of Table 1 (adjusted RR, current users) is recorded; the build picks the one holding the label maximum (rule 8.1). Table 1 footnote: adjusted for age, sex, calendar year, ulcer history, smoking, steroid, anticoagulant, gastroprotective drugs, NSAID and aspirin use. Rule 20: the paper reports no incidence in non-users.'
+  match_note: 'Outcome is upper GI complications (bleeding, perforation or melena), section 1''s outcome; exposure is current prescribed paracetamol in general practice (community, oral); comparator non-use of paracetamol. Methods (nested case-control study): ''We chose non-users of each respective drug group as the reference category'', where non-use is ''no recorded use in the 6 months before the index date''.'
+- ingredient: acetaminophen
+  dimension: gi_bleeding
+  applies_to: {persona: all, condition: null, medication_type: null}
+  outcome: upper_gi_bleeding
+  outcome_match: true
+  exposure_window: community_oral
+  comparator: non_use
+  dose_mg_per_day: [2000, 2000]
+  measure: RR
+  estimate: 1.9
+  ci95: [1.4, 2.6]
+  interval: confidence
+  exposure: current paracetamol use, 2,000 mg a day, vs non-use (nested case-control)
+  population: UK General Practice Research Database, April 1993 to October 1998, persons aged 40-79; 2,105 cases and 11,500 controls
+  grade: case_control
+  source:
+    citation: Gonzalez-Perez A, Rodriguez LA. Upper gastrointestinal complications among users of paracetamol. Basic Clin Pharmacol Toxicol 2006;98(3):297-303. PMID 16611205
+    url: https://doi.org/10.1111/j.1742-7843.2006.pto_248.x
+    location: Table 1, paracetamol dose, adjusted RR
+    quote: "2000 84 127 4.2 (3.2–5.6) 1.9 (1.4–2.6)"
+  selection_note: 'Rule 22: every dose stratum of Table 1 (adjusted RR, current users) is recorded; the build picks the one holding the label maximum (rule 8.1). Table 1 footnote: adjusted for age, sex, calendar year, ulcer history, smoking, steroid, anticoagulant, gastroprotective drugs, NSAID and aspirin use. Rule 20: the paper reports no incidence in non-users.'
+  match_note: 'Outcome is upper GI complications (bleeding, perforation or melena), section 1''s outcome; exposure is current prescribed paracetamol in general practice (community, oral); comparator non-use of paracetamol. Methods (nested case-control study): ''We chose non-users of each respective drug group as the reference category'', where non-use is ''no recorded use in the 6 months before the index date''.'
+- ingredient: acetaminophen
+  dimension: gi_bleeding
+  applies_to: {persona: all, condition: null, medication_type: null}
+  outcome: upper_gi_bleeding
+  outcome_match: true
+  exposure_window: community_oral
+  comparator: non_use
+  dose_mg_per_day: [2001, 3999]
+  measure: RR
+  estimate: 3.4
+  ci95: [2.4, 4.8]
+  interval: confidence
+  exposure: current paracetamol use, 2,001 to 3,999 mg a day, vs non-use (nested case-control)
+  population: UK General Practice Research Database, April 1993 to October 1998, persons aged 40-79; 2,105 cases and 11,500 controls
+  grade: case_control
+  source:
+    citation: Gonzalez-Perez A, Rodriguez LA. Upper gastrointestinal complications among users of paracetamol. Basic Clin Pharmacol Toxicol 2006;98(3):297-303. PMID 16611205
+    url: https://doi.org/10.1111/j.1742-7843.2006.pto_248.x
+    location: Table 1, paracetamol dose, adjusted RR
+    quote: "2001–3999 78 83 6.0 (4.4–8.2) 3.4 (2.4–4.8)"
+  selection_note: 'Rule 22: every dose stratum of Table 1 (adjusted RR, current users) is recorded; the build picks the one holding the label maximum (rule 8.1). Table 1 footnote: adjusted for age, sex, calendar year, ulcer history, smoking, steroid, anticoagulant, gastroprotective drugs, NSAID and aspirin use. Rule 20: the paper reports no incidence in non-users.'
+  match_note: 'Outcome is upper GI complications (bleeding, perforation or melena), section 1''s outcome; exposure is current prescribed paracetamol in general practice (community, oral); comparator non-use of paracetamol. Methods (nested case-control study): ''We chose non-users of each respective drug group as the reference category'', where non-use is ''no recorded use in the 6 months before the index date''.'
+- ingredient: acetaminophen
+  dimension: gi_bleeding
+  applies_to: {persona: all, condition: null, medication_type: null}
+  outcome: upper_gi_bleeding
+  outcome_match: true
+  exposure_window: community_oral
+  comparator: non_use
+  dose_mg_per_day: [4000, null]
+  measure: RR
+  estimate: 6.5
+  ci95: [2.4, 17.6]
+  interval: confidence
+  exposure: current paracetamol use, 4,000 mg or more a day, vs non-use (nested case-control)
+  population: UK General Practice Research Database, April 1993 to October 1998, persons aged 40-79; 2,105 cases and 11,500 controls
+  grade: case_control
+  source:
+    citation: Gonzalez-Perez A, Rodriguez LA. Upper gastrointestinal complications among users of paracetamol. Basic Clin Pharmacol Toxicol 2006;98(3):297-303. PMID 16611205
+    url: https://doi.org/10.1111/j.1742-7843.2006.pto_248.x
+    location: Table 1, paracetamol dose, adjusted RR
+    quote: "≥4000 13 7 11.8 (4.7–29.7) 6.5 (2.4–17.6)"
+  selection_note: 'Rule 22: every dose stratum of Table 1 (adjusted RR, current users) is recorded; the build picks the one holding the label maximum (rule 8.1). Table 1 footnote: adjusted for age, sex, calendar year, ulcer history, smoking, steroid, anticoagulant, gastroprotective drugs, NSAID and aspirin use. Rule 20: the paper reports no incidence in non-users.'
+  match_note: 'Outcome is upper GI complications (bleeding, perforation or melena), section 1''s outcome; exposure is current prescribed paracetamol in general practice (community, oral); comparator non-use of paracetamol. Methods (nested case-control study): ''We chose non-users of each respective drug group as the reference category'', where non-use is ''no recorded use in the 6 months before the index date''.'
 - ingredient: acetaminophen
   dimension: gi_bleeding
   applies_to: {persona: all, condition: null, medication_type: null}

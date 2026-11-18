@@ -260,6 +260,13 @@ takes the usual default that an unstated reference is non-use. That order and ch
 recorded here so they can be judged. Until a pharmacist signs off on rule 29, the scores that
 depend on it are provisional.
 
+Later on 2026-11-18 the Gonzalez-Perez 2006 full text was opened. Its reference group is stated
+("non-users of each respective drug group"), so it is non-use under either reading. Its Table 1
+reports five dose strata, which are now recorded as rule 22 requires; the stratum holding the
+4,000 mg label maximum (4,000 mg or more, RR 6.5) is the one rules 8.1 and 21 select. Rule 29
+still decides whether Lewis 2002's paracetamol rows, a meta-analysis that rule 13 would otherwise
+prefer, are used.
+
 29. **Stated comparator.** A row's comparator is `non_use` when the source's reference group is
     non-users of the ingredient or of its class, or when the source states no reference group
     (the usual non-user reference of a cohort or case-control study). When the source states a

@@ -560,23 +560,23 @@
           "exposure_window": "community_oral",
           "comparator": "non_use",
           "dose_mg_per_day": [
-            2001,
+            4000,
             null
           ],
           "measure": "RR",
-          "estimate": 3.6,
+          "estimate": 6.5,
           "ci95": [
-            2.6,
-            5.1
+            2.4,
+            17.6
           ],
           "grade": "case_control",
-          "exposure": "paracetamol use of more than 2 g daily vs non-use (nested case-control)",
-          "population": "UK General Practice Research Database, April 1993 to October 1998, nested case-control study of upper GI complications (bleeding or perforation)",
+          "exposure": "current paracetamol use, 4,000 mg or more a day, vs non-use (nested case-control)",
+          "population": "UK General Practice Research Database, April 1993 to October 1998, persons aged 40-79; 2,105 cases and 11,500 controls",
           "citation": {
             "source": "publication",
-            "section": "Gonzalez-Perez 2006, Abstract (nested case-control study)",
-            "url": "https://pubmed.ncbi.nlm.nih.gov/16611205/",
-            "quote": "The RR was 3.6 (95% CI, 2.6-5.1) among paracetamol users of more than 2 g daily, whereas smaller doses did not increase the risk.",
+            "section": "Gonzalez-Perez 2006, Table 1, paracetamol dose, adjusted RR",
+            "url": "https://doi.org/10.1111/j.1742-7843.2006.pto_248.x",
+            "quote": "≥4000 13 7 11.8 (4.7–29.7) 6.5 (2.4–17.6)",
             "citation": "Gonzalez-Perez A, Rodriguez LA. Upper gastrointestinal complications among users of paracetamol. Basic Clin Pharmacol Toxicol 2006;98(3):297-303. PMID 16611205"
           }
         },

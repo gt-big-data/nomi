@@ -185,7 +185,7 @@ def _relative_risk(row: dict[str, Any], where: str) -> dict[str, Any]:
     dose = row.get("dose_mg_per_day")
     if dose is not None:
         low, high = dose
-        if not (low is None or high is None or 0 <= low < high):
+        if not (low is None or high is None or 0 <= low <= high):
             raise ValueError(f"{where}: dose range {dose}")
     applies = _applies(row, where)
     if row["comparator"] == "within_group" and not (
