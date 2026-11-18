@@ -5,6 +5,7 @@ import CircleCheck from "lucide-react-native/icons/circle-check";
 import CircleMinus from "lucide-react-native/icons/circle-minus";
 import FileText from "lucide-react-native/icons/file-text";
 import Gem from "lucide-react-native/icons/gem";
+import House from "lucide-react-native/icons/house";
 import Info from "lucide-react-native/icons/info";
 import OctagonAlert from "lucide-react-native/icons/octagon-alert";
 import ShieldCheck from "lucide-react-native/icons/shield-check";
@@ -27,6 +28,7 @@ const icons = {
   chevron: ChevronRight, // Rows and banners you can tap
   back: ChevronLeft, // Back button in onboarding
   gem: Gem, // Premium
+  home: House, // Scanner: opens Home, what you've scanned
   person: User, // Welcome: scores for who it's for
   shield: ShieldCheck, // Welcome: privacy promise
 } as const;

@@ -133,6 +133,13 @@ test("finds a product from its EAN-13 form", async () => {
   assert.equal(result.product.brand, "Tylenol Extra Strength");
 });
 
+test("finds Tylenol from the old McNeil code printed on the box", async () => {
+  const result = await lookup(barcode("0045-0449-05"));
+  assert.equal(result.status, "resolved");
+  assert.ok("product" in result);
+  assert.equal(result.product.packageNdc, "50580-449-05");
+});
+
 test("rejects a barcode that isn't digits", async () => {
   assert.deepEqual(await lookup("not a barcode"), { status: "invalid_format" });
 });

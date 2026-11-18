@@ -3,6 +3,7 @@ import { DarkTheme, DefaultTheme, Stack, ThemeProvider as NavThemeProvider } fro
 import * as SplashScreen from "expo-splash-screen";
 
 import { loadProfile, useSavedProfile } from "@/storage/activeProfile";
+import { loadCabinet } from "@/storage/cabinet";
 import { ThemeProvider, useNomiFonts, useTheme } from "@/theme";
 
 // A deep link to /result still gets the camera underneath it, so Back has somewhere to go.
@@ -11,6 +12,7 @@ export const unstable_settings = { initialRouteName: "index" };
 // Keep the splash screen up until the fonts and the saved profile are ready.
 SplashScreen.preventAutoHideAsync();
 loadProfile();
+loadCabinet();
 
 export default function RootLayout() {
   const fontsReady = useNomiFonts();

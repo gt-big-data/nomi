@@ -96,6 +96,14 @@ export const LOOKUP_SQL = `
 
 const SCOPES = new Set(["in_scope", "homeopathic", "out_of_scope"]);
 
+/**
+ * Tylenol boxes still print McNeil's old labeler code, as in 0045-0449-05, while the FDA's list
+ * has the same products under 50580, as 50580-449-05. Returns the 50580 form of an old 0045 code.
+ */
+function mcneilCode(ndc10: string): string | undefined {
+  return ndc10.startsWith("00450") ? "50580" + ndc10.slice(5) : undefined;
+}
+
 /** Returns the product a scanned barcode is, or why there isn't exactly one. */
 export async function lookupBarcode(raw: string, db: Dataset): Promise<Lookup> {
   const parsed = ndcCandidates(raw);
@@ -105,7 +113,11 @@ export async function lookupBarcode(raw: string, db: Dataset): Promise<Lookup> {
   // The 4-4-2 candidate is "0" + the 10 digits in the barcode. Match those exactly, as the
   // pipeline's resolver does; the NDC11 candidates could hit a package with other digits.
   const ndc10 = parsed.candidates[0].slice(1);
-  const rows = await db.getAllAsync<Row>(LOOKUP_SQL, [ndc10]);
+  let rows = await db.getAllAsync<Row>(LOOKUP_SQL, [ndc10]);
+  const current = mcneilCode(ndc10);
+  if (rows.length === 0 && current) {
+    rows = await db.getAllAsync<Row>(LOOKUP_SQL, [current]);
+  }
 
   const matches = [...new Set(rows.map((row) => row.package_ndc))];
   if (matches.length === 0) {

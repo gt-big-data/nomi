@@ -18,6 +18,7 @@ import { profileNotes, recordTier, riskRows, type ScoreRecord } from "@/lib/refe
 import { RATED_STOP_PREFIX, score } from "@/scoring/engine";
 import { RATINGS } from "@/scoring/ratingsData";
 import { useSavedProfile } from "@/storage/activeProfile";
+import { recordScan, setTaking, useCabinet } from "@/storage/cabinet";
 import {
   conditionText,
   defaultProfile,
@@ -59,6 +60,8 @@ export default function Result() {
   const lookup = useLookup(barcode);
   const { colors, space, text } = useTheme();
 
+  // Only scans that found a product go to Home; ProductResult saves them with their score.
+
   return (
     <ScrollView
       contentInsetAdjustmentBehavior="automatic"
@@ -68,7 +71,7 @@ export default function Result() {
       {lookup === undefined ? (
         <ActivityIndicator style={{ marginTop: space[48] }} accessibilityLabel="Looking it up" />
       ) : lookup !== "error" && "product" in lookup ? (
-        <ProductResult lookup={lookup} />
+        <ProductResult lookup={lookup} barcode={barcode} />
       ) : (
         <Message lookup={lookup} />
       )}
@@ -145,7 +148,7 @@ function scoreFor(product: Product, profile: Profile): Scored {
 
 type Scored = { record?: ScoreRecord; missing: string[]; childLabel: boolean };
 
-function ProductResult({ lookup }: { lookup: Found }) {
+function ProductResult({ lookup, barcode }: { lookup: Found; barcode: string }) {
   const { product } = lookup;
   const options = useProfileOptions();
   const scoredFor = useScoredFor();
@@ -158,6 +161,12 @@ function ProductResult({ lookup }: { lookup: Found }) {
       : scoreFor(product, profile);
   const shown = lookup.status === "resolved" ? record : undefined;
   const tier: ProductTier = shown ? recordTier(shown) : "none";
+  const name = product.brand ?? product.ndc11;
+  const taking = useCabinet().some((item) => item.barcode === barcode && item.taking);
+
+  useEffect(() => {
+    recordScan({ barcode, name, generic: product.generic ?? undefined, tier, score: shown?.score });
+  }, [barcode, name, product.generic, tier, shown?.score]);
 
   return (
     <>
@@ -182,6 +191,12 @@ function ProductResult({ lookup }: { lookup: Found }) {
         <TierLabel tier={tier} align="center" />
         {(shown || childLabel) && <ProfileSwitcher options={options} selected={profile} />}
       </View>
+
+      <Button
+        label={taking ? "Remove from what I take" : "I take this"}
+        type="secondary"
+        onPress={() => setTaking(barcode, !taking)}
+      />
 
       {shown ? (
         <ScoreDetails record={shown} />

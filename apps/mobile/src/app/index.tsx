@@ -130,7 +130,13 @@ export default function Scanner() {
         onError={(error) => console.error("Scanner error:", error)}
       />
       <ScanFrame />
-      <View style={[styles.topBar, { top: insets.top + space[8], right: space[16] }]}>
+      <View
+        style={[
+          styles.topBar,
+          { top: insets.top + space[8], left: space[16], right: space[16] },
+        ]}
+      >
+        <CameraButton icon="home" label="Home" hint="Shows what you’ve scanned" onPress={openHome} />
         <CameraButton
           icon="person"
           label="Profile"
@@ -143,6 +149,10 @@ export default function Scanner() {
       </View>
     </View>
   );
+}
+
+function openHome() {
+  router.push("/cabinet");
 }
 
 function openProfile() {
@@ -230,7 +240,7 @@ const styles = StyleSheet.create({
   fill: { flex: 1 },
   row: { flexDirection: "row" },
   hint: { alignItems: "center" },
-  topBar: { position: "absolute", flexDirection: "row" },
+  topBar: { position: "absolute", flexDirection: "row", justifyContent: "space-between" },
   bottomBar: { position: "absolute", alignSelf: "center" },
   pill: { minHeight: minHeight.chip, flexDirection: "row", alignItems: "center" },
 });
