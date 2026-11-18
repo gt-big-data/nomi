@@ -7,7 +7,7 @@ import {
   AlertBanner,
   Button,
   OptionChip,
-  RiskFactorRow,
+  RiskList,
   ScoreBadge,
   TierLabel,
 } from "@/components";
@@ -321,18 +321,18 @@ function ScoreDetails({ record }: { record: ScoreRecord }) {
             No risks lowered this draft score.
           </Text>
         ) : (
-          rows.map((row) => (
-            <RiskFactorRow
-              key={row.dimension}
-              factor={row.name}
-              detail={row.detail}
-              points={row.points}
-              citations={row.citations.map(({ source, url }) => ({
+          <RiskList
+            items={rows.map((row) => ({
+              id: row.dimension,
+              factor: row.name,
+              detail: row.detail,
+              points: row.points,
+              citations: row.citations.map(({ source, url }) => ({
                 source,
                 onPress: url ? () => openSource(url) : undefined,
-              }))}
-            />
-          ))
+              })),
+            }))}
+          />
         )}
       </View>
       <Text style={[text("footnote"), { color: colors.text.secondary }]}>

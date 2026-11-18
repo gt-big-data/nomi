@@ -13,6 +13,7 @@ export { ProductRow } from "./ProductRow";
 export { ProfileSummary } from "./ProfileSummary";
 export type { RiskCitation } from "./RiskFactorRow";
 export { RiskFactorRow } from "./RiskFactorRow";
+export { RiskList, type RiskItem } from "./RiskList";
 export { RiskSeverityLabel } from "./RiskSeverityLabel";
 export { ScoreBadge } from "./ScoreBadge";
 export { TierLabel } from "./TierLabel";

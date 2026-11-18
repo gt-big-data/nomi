@@ -16,12 +16,13 @@ type ScoreBadgeProps = {
   decorative?: boolean;
 };
 
-const LARGE = 150;
+const LARGE = 156;
 const SMALL = 44;
-/** The ring is 18% of the radius thick. */
-const RING = (LARGE / 2) * 0.18;
+/** The ring is 12% of the radius thick, and the disc sits inside it with a gap. */
+const RING = (LARGE / 2) * 0.12;
+const DISC = LARGE - 36;
 /** Numbers sit inside a fixed circle, so they grow with large text only up to these limits. */
-const MAX_SCALE = { number: 1.2, outOf: 1.5, dot: 1.15 };
+const MAX_SCALE = { number: 1.2, dot: 1.15 };
 
 /**
  * The 0–100 score. Always pair it with a TierLabel nearby (or say the tier in the row's label),
@@ -87,39 +88,11 @@ export function ScoreBadge({
     );
   }
 
-  if (tier === "stop") {
-    return (
-      <View {...a11y} style={[styles.ring, { backgroundColor: c.tint }]}>
-        <Icon name="stop" size="ring" color={c.text} />
-      </View>
-    );
-  }
-
-  if (tier === "none") {
-    return (
-      <View
-        {...a11y}
-        style={[
-          styles.ring,
-          {
-            backgroundColor: colors.bg.surface,
-            borderColor: c.mark,
-            borderWidth: 4,
-          },
-        ]}
-      >
-        <Text
-          maxFontSizeMultiplier={MAX_SCALE.number}
-          style={[text("scoreLarge", { maxScale: MAX_SCALE.number }), { color: c.text }]}
-        >
-          —
-        </Text>
-      </View>
-    );
-  }
-
+  // Large: a raised disc inside a ring in the tier color. The ring fills to the score; Stop is a
+  // full ring and None shows only the track.
   const r = LARGE / 2 - RING / 2;
   const circumference = 2 * Math.PI * r;
+  const fill = tier === "stop" ? 100 : tier === "none" ? 0 : value;
   return (
     <View {...a11y} style={styles.ring}>
       <Svg width={LARGE} height={LARGE} style={StyleSheet.absoluteFill}>
@@ -127,35 +100,44 @@ export function ScoreBadge({
           cx={LARGE / 2}
           cy={LARGE / 2}
           r={r}
-          stroke={c.tint}
+          stroke={tier === "none" ? colors.border.subtle : c.tint}
           strokeWidth={RING}
           fill="none"
         />
-        {value > 0 && (
+        {fill > 0 && (
           <Circle
             cx={LARGE / 2}
             cy={LARGE / 2}
             r={r}
             stroke={c.mark}
             strokeWidth={RING}
+            strokeLinecap={fill < 100 ? "round" : "butt"}
             fill="none"
-            strokeDasharray={[(circumference * value) / 100, circumference]}
+            strokeDasharray={[(circumference * fill) / 100, circumference]}
             transform={`rotate(-90 ${LARGE / 2} ${LARGE / 2})`}
           />
         )}
       </Svg>
-      <Text
-        maxFontSizeMultiplier={MAX_SCALE.number}
-        style={[text("scoreLarge", { maxScale: MAX_SCALE.number }), { color: c.text }]}
+      <View
+        style={[
+          styles.disc,
+          { backgroundColor: colors.bg.surface, shadowColor: colors.brand.primary },
+        ]}
       >
-        {value}
-      </Text>
-      <Text
-        maxFontSizeMultiplier={MAX_SCALE.outOf}
-        style={[text("caption", { maxScale: MAX_SCALE.outOf }), { color: colors.text.secondary }]}
-      >
-        /100
-      </Text>
+        {tier === "stop" ? (
+          <Icon name="stop" size="ring" color={c.text} />
+        ) : (
+          <Text
+            maxFontSizeMultiplier={MAX_SCALE.number}
+            style={[
+              text("scoreLarge", { maxScale: MAX_SCALE.number }),
+              { color: tier === "none" ? colors.text.secondary : colors.text.primary },
+            ]}
+          >
+            {tier === "none" ? "—" : value}
+          </Text>
+        )}
+      </View>
     </View>
   );
 }
@@ -167,6 +149,17 @@ const styles = StyleSheet.create({
     borderRadius: LARGE / 2,
     alignItems: "center",
     justifyContent: "center",
+  },
+  disc: {
+    width: DISC,
+    height: DISC,
+    borderRadius: DISC / 2,
+    alignItems: "center",
+    justifyContent: "center",
+    shadowOpacity: 0.16,
+    shadowRadius: 16,
+    shadowOffset: { width: 0, height: 10 },
+    elevation: 8,
   },
   dot: {
     width: SMALL,

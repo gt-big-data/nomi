@@ -158,9 +158,9 @@ export type IconSize = keyof typeof iconSize;
 
 /** Inter, loaded by `useNomiFonts()` (fonts.ts). Three weights: regular, semibold and bold. */
 export const fontFamily = {
-  regular: "Inter_400Regular",
-  semiBold: "Inter_600SemiBold",
-  bold: "Inter_700Bold",
+  regular: "Figtree_400Regular",
+  semiBold: "Figtree_600SemiBold",
+  bold: "Figtree_700Bold",
 } as const;
 
 export type TextStyleToken = {
