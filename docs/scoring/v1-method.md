@@ -2,10 +2,12 @@
 
 Status: v1.0 locked on 2026-11-18, before any v1 score was computed. v1.1 (section 8) and v1.2
 (section 9) were added on 2026-11-18 after the first and second independent evidence reviews,
-and v1.3 (section 10) after the third; see their change logs. Each version's rules are committed on their own, before the evidence
-changes they govern, so the order can be checked in git. Changing a rule in this file
-needs a new version number, and the change log says why. No rule here may be changed because of
-the score it gives a particular product.
+and v1.3 (section 10) after the third; see their change logs. Versions 1.0 to 1.2 were committed on their own, before the evidence
+changes they govern, so the order can be checked in git. v1.3 is the one exception: its rule
+was written after the evidence change and with its score effect known, and is pending
+pharmacist sign-off (section 10). Changing a rule in this file needs a new version number, and
+the change log says why. No rule here may be changed because of the score it gives a particular
+product.
 
 v1 replaces the v0 severity ratings (`pipeline/knowledge/ingredients/`) as the source of a
 product's score. A score is the published probability of serious harm from one course of the
@@ -250,7 +252,13 @@ Change log. The third independent review (2026-11-18) found that commit 6efc214 
 and so was not applied to every row. Rule 29 writes the criterion down. Unlike earlier versions,
 it is committed after the evidence change it governs, and after its effect on the acetaminophen
 scores was known: with Lewis dropped, Gonzalez-Perez 2006 sets acetaminophen's stomach-bleeding
-term. That order is recorded here so it can be judged; a pharmacist should confirm the rule.
+term. The alternative reading, dropping rows whose source states no reference group, was also
+open and would have changed more scores: it would drop Gonzalez-Perez 2006 (acetaminophen
+stomach bleeding), Cho 2018 (diphenhydramine and doxylamine falls, 65 and over) and Schneider
+2006 (naproxen kidney, 65 and over), since their abstracts state no reference group. Rule 29
+takes the usual default that an unstated reference is non-use. That order and choice are
+recorded here so they can be judged. Until a pharmacist signs off on rule 29, the scores that
+depend on it are provisional.
 
 29. **Stated comparator.** A row's comparator is `non_use` when the source's reference group is
     non-users of the ingredient or of its class, or when the source states no reference group
