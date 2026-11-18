@@ -2,22 +2,26 @@ import { useEffect } from "react";
 import { DarkTheme, DefaultTheme, Stack, ThemeProvider as NavThemeProvider } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 
+import { loadProfile, useSavedProfile } from "@/storage/activeProfile";
 import { ThemeProvider, useNomiFonts, useTheme } from "@/theme";
 
 // A deep link to /result still gets the camera underneath it, so Back has somewhere to go.
 export const unstable_settings = { initialRouteName: "index" };
 
-// Keep the splash screen up until the fonts are ready.
+// Keep the splash screen up until the fonts and the saved profile are ready.
 SplashScreen.preventAutoHideAsync();
+loadProfile();
 
 export default function RootLayout() {
   const fontsReady = useNomiFonts();
+  const profileLoaded = useSavedProfile() !== undefined;
+  const ready = fontsReady && profileLoaded;
 
   useEffect(() => {
-    if (fontsReady) SplashScreen.hideAsync();
-  }, [fontsReady]);
+    if (ready) SplashScreen.hideAsync();
+  }, [ready]);
 
-  if (!fontsReady) return null;
+  if (!ready) return null;
 
   return (
     <ThemeProvider>

@@ -1,18 +1,28 @@
 import * as Haptics from "expo-haptics";
-import { Link, router, Stack, useFocusEffect } from "expo-router";
+import { Redirect, router, Stack, useFocusEffect } from "expo-router";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { AppState, Linking, StyleSheet, Text, View } from "react-native";
+import { AppState, Linking, StyleSheet, Text, useWindowDimensions, View } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useCameraPermission } from "react-native-vision-camera";
 import { CodeScanner } from "react-native-vision-camera-barcode-scanner";
 
-import { Button } from "@/components";
+import { Button, Icon, type IconName } from "@/components";
+import { Tappable } from "@/components/Tappable";
 import { ndcCandidates } from "@/lib/barcode";
 import { openDataset } from "@/lib/dataset";
-import { minHeight, useTheme } from "@/theme";
+import { useSavedProfile } from "@/storage/activeProfile";
+import { borderWidth, minHeight, opacity, useIconScale, useTheme } from "@/theme";
+
+/** The scan frame's width over its height, about a UPC-A barcode with its digits. */
+const FRAME_ASPECT = 1.6;
+/** The widest the scan frame gets, in points, so it stays barcode-sized on a tablet. */
+const FRAME_MAX_WIDTH = 320;
 
 export default function Scanner() {
   const { hasPermission, canRequestPermission, requestPermission } = useCameraPermission();
-  const { colors, radius, space, text } = useTheme();
+  const { colors, space, text } = useTheme();
+  const insets = useSafeAreaInsets();
+  const profile = useSavedProfile();
   // A ref, not state: the camera fires many times per second, and a ref changes instantly,
   // so a second frame can't open a second result screen.
   const scanned = useRef(false);
@@ -42,6 +52,9 @@ export default function Scanner() {
     }, []),
   );
 
+  // First launch: nobody to score for yet.
+  if (profile === null) return <Redirect href="/onboarding" />;
+
   if (!hasPermission) {
     return (
       <View
@@ -66,6 +79,7 @@ export default function Scanner() {
           label="Type a barcode instead"
           onPress={() => router.push("/enter")}
         />
+        <Button type="ghost" label="Profile" onPress={openProfile} />
       </View>
     );
   }
@@ -92,19 +106,94 @@ export default function Scanner() {
         }}
         onError={(error) => console.error("Scanner error:", error)}
       />
-      <View style={[styles.actions, { bottom: space[48], gap: space[12] }]}>
-        <Link
-          href="/enter"
-          style={[
-            text("button"),
-            styles.action,
-            { paddingHorizontal: space[16], paddingVertical: space[12], borderRadius: radius.pill },
-          ]}
-        >
-          Type a barcode
-        </Link>
+      <ScanFrame />
+      <View style={[styles.topBar, { top: insets.top + space[8], right: space[16] }]}>
+        <CameraButton
+          icon="person"
+          label="Profile"
+          hint="Shows who scores are for"
+          onPress={openProfile}
+        />
+      </View>
+      <View style={[styles.bottomBar, { bottom: insets.bottom + space[24] }]}>
+        <CameraButton label="Type a barcode" onPress={() => router.push("/enter")} />
       </View>
     </View>
+  );
+}
+
+function openProfile() {
+  router.push("/profile");
+}
+
+/**
+ * A barcode-sized frame with the picture around it dimmed, and a hint under it. Only a guide:
+ * the scanner reads barcodes anywhere in the picture.
+ */
+function ScanFrame() {
+  const { colors, radius, space, text } = useTheme();
+  const { width } = useWindowDimensions();
+  const frameWidth = Math.min(width - 2 * space[48], FRAME_MAX_WIDTH);
+  const dim = [styles.fill, { backgroundColor: colors.bg.camera, opacity: opacity.scrim }];
+  return (
+    <View style={StyleSheet.absoluteFill} pointerEvents="none">
+      <View style={dim} />
+      <View style={styles.row}>
+        <View style={dim} />
+        <View
+          style={{
+            width: frameWidth,
+            height: frameWidth / FRAME_ASPECT,
+            borderRadius: radius.md,
+            borderWidth: borderWidth.scanFrame,
+            // White in both modes, like the camera background it sits on.
+            borderColor: colors.brand.onPrimary,
+          }}
+        />
+        <View style={dim} />
+      </View>
+      <View style={[styles.fill, styles.hint]}>
+        <View style={[StyleSheet.absoluteFill, dim]} />
+        <Text style={[text("bodyStrong"), { color: colors.brand.onPrimary, marginTop: space[16] }]}>
+          Point at the barcode
+        </Text>
+      </View>
+    </View>
+  );
+}
+
+/** A pill on the camera picture, in the surface color so it reads on any picture. */
+function CameraButton({
+  icon,
+  label,
+  hint,
+  onPress,
+}: {
+  icon?: IconName;
+  label: string;
+  hint?: string;
+  onPress: () => void;
+}) {
+  const { colors, radius, space, text } = useTheme();
+  const iconScale = useIconScale();
+  return (
+    <Tappable
+      onPress={onPress}
+      accessibilityLabel={label}
+      accessibilityHint={hint}
+      style={[
+        styles.pill,
+        {
+          gap: space[8],
+          paddingHorizontal: space[16],
+          borderRadius: radius.pill,
+          backgroundColor: colors.bg.surface,
+        },
+      ]}
+    >
+      {icon && <Icon name={icon} size="button" scale={iconScale} color={colors.text.primary} />}
+      <Text style={[text("button"), { color: colors.text.primary }]}>{label}</Text>
+    </Tappable>
   );
 }
 
@@ -115,11 +204,10 @@ const styles = StyleSheet.create({
   container: { flex: 1 },
   center: { flex: 1, alignItems: "stretch", justifyContent: "center" },
   message: { textAlign: "center" },
-  actions: { position: "absolute", alignSelf: "center", flexDirection: "row" },
-  // Fixed colors: it sits on the camera picture, not on a themed background.
-  action: {
-    minHeight: minHeight.chip,
-    overflow: "hidden",
-    backgroundColor: "white",
-  },
+  fill: { flex: 1 },
+  row: { flexDirection: "row" },
+  hint: { alignItems: "center" },
+  topBar: { position: "absolute", flexDirection: "row" },
+  bottomBar: { position: "absolute", alignSelf: "center" },
+  pill: { minHeight: minHeight.chip, flexDirection: "row", alignItems: "center" },
 });

@@ -10,6 +10,7 @@ export { Logo } from "./Logo";
 export { OptionCard } from "./OptionCard";
 export { OptionChip } from "./OptionChip";
 export { ProductRow } from "./ProductRow";
+export { ProfileSummary } from "./ProfileSummary";
 export type { RiskCitation } from "./RiskFactorRow";
 export { RiskFactorRow } from "./RiskFactorRow";
 export { RiskSeverityLabel } from "./RiskSeverityLabel";

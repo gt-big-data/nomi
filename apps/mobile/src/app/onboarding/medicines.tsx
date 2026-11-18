@@ -5,7 +5,8 @@ import { askAbout, capitalize, toProfile } from "@/lib/onboarding";
 import { useDraft } from "@/components/onboarding/DraftProvider";
 import { MultiSelectChips } from "@/components/onboarding/MultiSelectChips";
 import { QuestionScreen } from "@/components/onboarding/QuestionScreen";
-import { type MedicationType, medicationTypeText, saveProfile } from "@/storage/profile";
+import { saveProfile } from "@/storage/activeProfile";
+import { type MedicationType, medicationTypeText } from "@/storage/profile";
 
 /**
  * Question 5: the 8 types of medicine that change scores. Only the type, since that's all the

@@ -13,7 +13,7 @@ import {
 } from "@/components";
 import { openDataset } from "@/lib/dataset";
 import { lookupBarcode, strengthText, type Lookup, type Product } from "@/lib/db";
-import { DEMO_PROFILES, setDemoProfile, useDemoProfile } from "@/lib/demoProfiles";
+import { DEMO_PROFILES, type ScoredFor, setScoredFor, useScoredFor } from "@/lib/demoProfiles";
 import { REFERENCE_SCORES } from "@/lib/referenceScoreData";
 import {
   findScore,
@@ -22,6 +22,16 @@ import {
   riskRows,
   type ScoreRecord,
 } from "@/lib/referenceScores";
+import { useSavedProfile } from "@/storage/activeProfile";
+import {
+  conditionText,
+  defaultProfile,
+  medicationTypeText,
+  personaText,
+  type Profile,
+  type Relation,
+  toScoringProfile,
+} from "@/storage/profile";
 import { type ProductTier, useTheme } from "@/theme";
 
 type Loaded = Lookup | "error";
@@ -126,14 +136,27 @@ function scanAgain() {
 // Found but not yet checked by a second person: shown with a "preliminary" badge (system design 8.2).
 const REVIEWED = new Set(["sampled_ok", "pharmacist_reviewed"]);
 
+/**
+ * The score for this product and profile, and whether the product has a score for anyone, so the
+ * screen can tell "not scored yet" from "not scored for this person". The one place scores come
+ * from: the scoring engine replaces the draft reference scores here.
+ */
+function scoreFor(ndc11: string, profile: Profile): { scorable: boolean; record?: ScoreRecord } {
+  return {
+    scorable: REFERENCE_SCORES.some((r) => r.ndc11 === ndc11),
+    record: findScore(REFERENCE_SCORES, ndc11, toScoringProfile(profile)),
+  };
+}
+
 function ProductResult({ lookup }: { lookup: Found }) {
   const { product } = lookup;
-  const profile = useDemoProfile();
+  const options = useProfileOptions();
+  const scoredFor = useScoredFor();
+  const profile = options.find((option) => option.id === scoredFor) ?? options[0];
   const { colors, space, text } = useTheme();
   // Only an in-scope product that resolved to one package may show a score.
-  const scorable =
-    lookup.status === "resolved" && REFERENCE_SCORES.some((r) => r.ndc11 === product.ndc11);
-  const record = scorable ? findScore(REFERENCE_SCORES, product.ndc11, profile) : undefined;
+  const { scorable, record } =
+    lookup.status === "resolved" ? scoreFor(product.ndc11, profile) : { scorable: false };
   const tier: ProductTier = record ? recordTier(record) : "none";
 
   return (
@@ -160,7 +183,7 @@ function ProductResult({ lookup }: { lookup: Found }) {
         {record && (
           <Text style={[text("footnote"), { color: colors.text.secondary }]}>Draft score</Text>
         )}
-        {scorable && <ProfileSwitcher />}
+        {scorable && <ProfileSwitcher options={options} selected={profile} />}
       </View>
 
       {record ? (
@@ -218,27 +241,55 @@ function unscoredBody(lookup: Found, scorable: boolean): string {
   }
 }
 
-/** The three demo profiles, so the audience can see the score change with who takes it. */
-function ProfileSwitcher() {
-  const profile = useDemoProfile();
+/** What the saved profile's chip says. */
+const SAVED_LABEL: Record<Relation, string> = {
+  self: "You",
+  someone_else: "Them",
+  child: "Your child",
+};
+
+type ProfileOption = Profile & { id: ScoredFor; label: string; description: string };
+
+/** The saved profile first, then the three demo profiles. */
+function useProfileOptions(): ProfileOption[] {
+  const saved = useSavedProfile() ?? defaultProfile;
+  const description = [
+    personaText[saved.persona],
+    ...saved.conditions.map((condition) => conditionText[condition]),
+    ...saved.medication_types.map((type) => medicationTypeText[type]),
+  ].join(", ");
+  return [
+    { ...saved, id: "saved", label: SAVED_LABEL[saved.relation], description },
+    ...DEMO_PROFILES,
+  ];
+}
+
+/** The saved profile and the demo profiles, so the audience can see the score change with who takes it. */
+function ProfileSwitcher({
+  options,
+  selected,
+}: {
+  options: ProfileOption[];
+  selected: ProfileOption;
+}) {
   const { colors, space, text } = useTheme();
   return (
     <View style={[styles.center, { gap: space[8] }]}>
       <Text style={[text("footnote"), styles.centerText, { color: colors.text.secondary }]}>
-        For: {profile.description}
+        For: {selected.description}
       </Text>
       <View
         accessibilityRole="radiogroup"
         accessibilityLabel="Who will take it"
         style={[styles.row, { gap: space[8] }]}
       >
-        {DEMO_PROFILES.map((option) => (
+        {options.map((option) => (
           <OptionChip
             key={option.id}
             mode="single"
             label={option.label}
-            selected={option.id === profile.id}
-            onPress={() => setDemoProfile(option)}
+            selected={option.id === selected.id}
+            onPress={() => setScoredFor(option.id)}
           />
         ))}
       </View>

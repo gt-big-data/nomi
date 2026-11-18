@@ -113,6 +113,8 @@ export const radius = {
 export const borderWidth = {
   card: 1,
   control: 1.5,
+  /** The scan frame on the camera. */
+  scanFrame: 3,
 } as const;
 
 /** Minimum heights in points, so controls stay easy to tap. */
@@ -125,6 +127,8 @@ export const minHeight = {
 /** Opacity for anything being pressed. */
 export const opacity = {
   pressed: 0.7,
+  /** The dimmed camera picture around the scan frame. */
+  scrim: 0.6,
 } as const;
 
 /**

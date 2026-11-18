@@ -20,6 +20,7 @@ export default function DevMenu() {
         label="Component gallery"
         onPress={() => router.push("/dev/gallery")}
       />
+      <Button type="secondary" label="Onboarding" onPress={() => router.push("/onboarding")} />
     </ScrollView>
   );
 }

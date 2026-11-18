@@ -4,7 +4,8 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { Button, Icon, type IconName, Logo } from "@/components";
 import { Title } from "@/components/onboarding/Title";
-import { defaultProfile, saveProfile } from "@/storage/profile";
+import { saveProfile, useSavedProfile } from "@/storage/activeProfile";
+import { defaultProfile } from "@/storage/profile";
 import { useIconScale, useTheme } from "@/theme";
 
 const promises: { icon: IconName; text: string }[] = [
@@ -22,12 +23,14 @@ export default function Welcome() {
   const insets = useSafeAreaInsets();
   const iconScale = useIconScale();
   const circle = PROMISE_CIRCLE * iconScale;
+  // Opened again from the profile screen to change the answers.
+  const editing = Boolean(useSavedProfile());
 
   const next = () => {
     router.push("/onboarding/who");
   };
   const skip = () => {
-    saveProfile(defaultProfile);
+    if (!editing) saveProfile(defaultProfile);
     router.dismissTo("/");
   };
 
@@ -82,9 +85,13 @@ export default function Welcome() {
         <Button label="Get started" onPress={next} />
         <Button
           type="ghost"
-          label="Skip for now"
+          label={editing ? "Keep my answers" : "Skip for now"}
           onPress={skip}
-          accessibilityHint="Uses an adult 18 to 64 with no health conditions or medicines."
+          accessibilityHint={
+            editing
+              ? "Goes back to the camera without changing your answers."
+              : "Uses an adult 18 to 64 with no health conditions or medicines."
+          }
         />
       </View>
     </View>

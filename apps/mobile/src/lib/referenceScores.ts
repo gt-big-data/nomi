@@ -12,7 +12,6 @@
  */
 
 import { productTier, type ProductTier, type SchemaTier } from "../theme/tiers.ts";
-import type { DemoProfile } from "./demoProfiles.ts";
 
 /** The fields of a score-record (packages/schema) that the result screen shows. */
 export interface ScoreRecord {
@@ -170,14 +169,14 @@ export function recordTier(record: ScoreRecord): ProductTier {
 export function findScore(
   records: readonly ScoreRecord[],
   ndc11: string,
-  profile: DemoProfile,
+  profile: { persona: string; conditions: readonly string[]; medication_types: readonly string[] },
 ): ScoreRecord | undefined {
   return records.find(
     (record) =>
       record.ndc11 === ndc11 &&
       record.profile.persona === profile.persona &&
       sameSet(record.profile.conditions, profile.conditions) &&
-      sameSet(record.profile.medication_types, profile.medicationTypes),
+      sameSet(record.profile.medication_types, profile.medication_types),
   );
 }
 

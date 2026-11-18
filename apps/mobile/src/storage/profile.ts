@@ -1,5 +1,3 @@
-import { useSyncExternalStore } from "react";
-
 /**
  * Same values as `Persona` in @nomi/schema.
  */
@@ -127,38 +125,25 @@ export const medicationTypeText: Record<MedicationType, string> = {
   corticosteroids: "Steroid pills",
 };
 
-// Kept in memory for now, so it resets when the app restarts. Swap this for encrypted storage
-// (iOS Keychain / Android Keystore, docs/system-design.md 8.4) when profiles are saved.
-let current: Profile = defaultProfile;
-const listeners = new Set<() => void>();
-
-/** The active profile. */
-export function getProfile(): Profile {
-  return current;
-}
-
-/** Replaces the active profile. Stays on the phone: nothing is sent anywhere. */
-export function saveProfile(profile: Profile): void {
-  current = profile;
-  for (const listener of listeners) listener();
-}
-
 /**
- * The active profile, kept up to date when it changes.
+ * The profile in plain words, one row per answer, e.g. on the done and profile screens.
  *
  * @example
- * ```tsx
- * const profile = useProfile();
- * <Text>{profile.conditions.map((c) => conditionText[c]).join(", ")}</Text>
+ * ```ts
+ * profileSummary(defaultProfile)[1]; // { label: "Scored as", value: "Adult 18–64" }
  * ```
  */
-export function useProfile(): Profile {
-  return useSyncExternalStore(
-    (listener) => {
-      listeners.add(listener);
-      return () => listeners.delete(listener);
+export function profileSummary(profile: Profile): { label: string; value: string }[] {
+  return [
+    { label: "For", value: relationText[profile.relation] },
+    { label: "Scored as", value: personaText[profile.persona] },
+    {
+      label: "Health conditions",
+      value: profile.conditions.map((c) => conditionText[c]).join(", ") || "None",
     },
-    getProfile,
-    getProfile,
-  );
+    {
+      label: "Medicines",
+      value: profile.medication_types.map((m) => medicationTypeText[m]).join(", ") || "None",
+    },
+  ];
 }
