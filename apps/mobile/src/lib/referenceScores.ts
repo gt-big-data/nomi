@@ -205,7 +205,8 @@ export function riskRows(record: ScoreRecord): RiskRow[] {
 }
 
 /**
- * Every explanation line no risk row shows, except the draft note: what the label's directions
+ * Every explanation line no risk row shows, except the draft note and the v1 "not enough
+ * published evidence" note: what the label's directions
  * say for this age ("Children younger than 12 must not use this ZzzQuil presentation"), and any
  * line about a risk that took no points. The screen shows these as banners, so no line is lost.
  */
@@ -218,6 +219,9 @@ export function profileNotes(record: ScoreRecord): string[] {
     .filter(
       (e) =>
         !DRAFT_LINE.test(e.template_id) &&
+        // The "not enough published evidence" note stays in the record for audit but is not
+        // shown on the result screen.
+        e.template_id !== "engine_v1_insufficient" &&
         !shown.has(e) &&
         !(stopped && CHILD_DIRECTIONS_LINE.test(e.template_id)),
     )

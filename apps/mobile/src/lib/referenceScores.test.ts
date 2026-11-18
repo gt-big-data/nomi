@@ -156,6 +156,17 @@ test("risk rows are largest first, named, explained and sourced", () => {
   }
 });
 
+test("the not-enough-evidence note is not shown", () => {
+  const record = {
+    ...RECORDS[0],
+    explanation: [
+      ...RECORDS[0].explanation,
+      { template_id: "engine_v1_insufficient", text: "Not enough published evidence to rate: x." },
+    ],
+  };
+  assert.ok(!profileNotes(record).some((note) => note.startsWith("Not enough published")));
+});
+
 test("every explanation line reaches the screen, except the draft note and what a hard stop says", () => {
   for (const record of RECORDS) {
     const shown = new Set([...riskRows(record).map((row) => row.detail), ...profileNotes(record)]);
