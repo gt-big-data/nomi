@@ -1,10 +1,22 @@
 import * as Haptics from "expo-haptics";
 import { Redirect, router, Stack, useFocusEffect } from "expo-router";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { AppState, Linking, StyleSheet, Text, useWindowDimensions, View } from "react-native";
+import {
+  AppState,
+  Linking,
+  type StyleProp,
+  StyleSheet,
+  Text,
+  useWindowDimensions,
+  View,
+  type ViewStyle,
+} from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { useCameraPermission } from "react-native-vision-camera";
-import { CodeScanner } from "react-native-vision-camera-barcode-scanner";
+import { Camera, useCameraDevice, useCameraPermission } from "react-native-vision-camera";
+import {
+  type BarcodeScannerOutputOptions,
+  useBarcodeScannerOutput,
+} from "react-native-vision-camera-barcode-scanner";
 
 import { Button, Icon, type IconName } from "@/components";
 import { Tappable } from "@/components/Tappable";
@@ -92,9 +104,9 @@ export default function Scanner() {
   }
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { backgroundColor: colors.bg.camera }]}>
       <Stack.Screen options={SCREEN} />
-      <CodeScanner
+      <BarcodeCamera
         style={StyleSheet.absoluteFill}
         isActive={appActive && focused}
         barcodeFormats={["upc-a", "ean-13"]}
@@ -222,3 +234,27 @@ const styles = StyleSheet.create({
   bottomBar: { position: "absolute", alignSelf: "center" },
   pill: { minHeight: minHeight.chip, flexDirection: "row", alignItems: "center" },
 });
+
+/**
+ * The back camera with barcode scanning. The library's own CodeScanner throws when the camera
+ * list hasn't loaded on the first render, which crashed the app at launch; this waits instead
+ * and shows the plain background until the camera is ready.
+ */
+function BarcodeCamera({
+  isActive,
+  style,
+  ...options
+}: BarcodeScannerOutputOptions & { isActive: boolean; style: StyleProp<ViewStyle> }) {
+  const device = useCameraDevice("back");
+  const output = useBarcodeScannerOutput(options);
+  if (device == null) return null;
+  return (
+    <Camera
+      style={style}
+      isActive={isActive}
+      device={device}
+      outputs={[output]}
+      onError={options.onError}
+    />
+  );
+}
