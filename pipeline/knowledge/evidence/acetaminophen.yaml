@@ -22,12 +22,7 @@ relative_risks:
     url: https://pmc.ncbi.nlm.nih.gov/articles/PMC4917796/
     location: Table 5, paracetamol <3000 mg row
     quote: <3000 mg | 42 (23.46) | 265 (14.97) | 2.22 (1.48-3.15) | 2.04 (1.35-3.09)
-  unexposed_incidence:
-    annual_incidence: 4.1e-05
-    as_reported: 4.1 cases per 100,000 inhabitants per year = 4.1 / 100,000 = 0.000041 per person-year. This is the incidence of the study outcome (acute serious liver injury admissions meeting the primary criteria, 204 cases) in the whole catchment population, paracetamol users included; the paper reports no rate for non-users alone, so it slightly overstates the unexposed rate.
-    location: Results, Population
-    quote: Overall, 2232 patients with diagnosis of acute serious liver injury were recorded; of those, 2028 were not included in the study, according to the primary exclusion criteria. The 204 incident cases resulted in an annual incidence of DILI of 4.1 cases per 100 000 inhabitants.
-  selection_note: 'No meta-analysis of acute liver injury at therapeutic doses was found. Only case-control study opened that reports dose-stratified adjusted ORs for hospitalised acute liver injury vs non-use; both strata of Table 5 are recorded (rule 14). The paper does not state that overdose cases were excluded, so pharmacist review should confirm. A Barcelona surveillance estimate (RR 7.0) is a case series with an exposure-prevalence denominator, so it ranks lower. Rule 20: the paper gives the annual incidence of the study outcome in its catchment population (see unexposed_incidence), not a rate in non-users.'
+  selection_note: 'No meta-analysis of acute liver injury at therapeutic doses was found. Only case-control study opened that reports dose-stratified adjusted ORs for hospitalised acute liver injury vs non-use; both strata of Table 5 are recorded (rule 14). The paper does not state that overdose cases were excluded, so pharmacist review should confirm. A Barcelona surveillance estimate (RR 7.0) is a case series with an exposure-prevalence denominator, so it ranks lower. Rule 20: the paper gives only the annual incidence in its whole catchment population, users included, not a rate in non-users, so no unexposed_incidence is recorded (third review).'
   match_note: Cases were adults admitted with a primary diagnosis of acute liver injury, matching section 1 at the serious level; exposure is paracetamol use before admission (community, oral); comparator is non-use among hospital controls without liver disease. Stratum <3000 mg/day.
 - ingredient: acetaminophen
   dimension: liver
@@ -49,12 +44,7 @@ relative_risks:
     url: https://pmc.ncbi.nlm.nih.gov/articles/PMC4917796/
     location: Table 5, paracetamol ≥3000 mg row (adjusted OR column)
     quote: ≥ 3000 mg | 26 (14.52) | 44 (2.49) | 7.80 (4.53–13.43) | 6.31 (3.56–11.20)
-  unexposed_incidence:
-    annual_incidence: 4.1e-05
-    as_reported: 4.1 cases per 100,000 inhabitants per year = 4.1 / 100,000 = 0.000041 per person-year. This is the incidence of the study outcome (acute serious liver injury admissions meeting the primary criteria, 204 cases) in the whole catchment population, paracetamol users included; the paper reports no rate for non-users alone, so it slightly overstates the unexposed rate.
-    location: Results, Population
-    quote: Overall, 2232 patients with diagnosis of acute serious liver injury were recorded; of those, 2028 were not included in the study, according to the primary exclusion criteria. The 204 incident cases resulted in an annual incidence of DILI of 4.1 cases per 100 000 inhabitants.
-  selection_note: 'No meta-analysis of acute liver injury at therapeutic doses was found. Only case-control study opened that reports dose-stratified adjusted ORs for hospitalised acute liver injury vs non-use; both strata of Table 5 are recorded (rule 14). The paper does not state that overdose cases were excluded, so pharmacist review should confirm. A Barcelona surveillance estimate (RR 7.0) is a case series with an exposure-prevalence denominator, so it ranks lower. The PMC XML renders this row with stray ''I'' characters before each number (I26, I44, I7.80, I6.31); the quote drops them. Rule 20: the paper gives the annual incidence of the study outcome in its catchment population (see unexposed_incidence), not a rate in non-users.'
+  selection_note: 'No meta-analysis of acute liver injury at therapeutic doses was found. Only case-control study opened that reports dose-stratified adjusted ORs for hospitalised acute liver injury vs non-use; both strata of Table 5 are recorded (rule 14). The paper does not state that overdose cases were excluded, so pharmacist review should confirm. A Barcelona surveillance estimate (RR 7.0) is a case series with an exposure-prevalence denominator, so it ranks lower. The PMC XML renders this row with stray ''I'' characters before each number (I26, I44, I7.80, I6.31); the quote drops them. Rule 20: the paper gives only the annual incidence in its whole catchment population, users included, not a rate in non-users, so no unexposed_incidence is recorded (third review).'
   match_note: Cases were adults admitted with a primary diagnosis of acute liver injury, matching section 1 at the serious level; exposure is paracetamol use before admission (community, oral); comparator is non-use among hospital controls without liver disease. Stratum ≥3000 mg/day.
 - ingredient: acetaminophen
   dimension: gi_bleeding
@@ -106,7 +96,7 @@ relative_risks:
   outcome: upper_gi_bleeding
   outcome_match: true
   exposure_window: community_oral
-  comparator: non_use
+  comparator: other
   dose_mg_per_day: [null, 1999]
   measure: OR
   estimate: 1.2
@@ -121,14 +111,14 @@ relative_risks:
     location: Table 4, Paracetamol rows (cases, controls, OR (95% CI))
     quote: Paracetamol < 2000 351 593 1.2 (1.0, 1.4)
   selection_note: 'Rule 21: every dose stratum of Lewis Table 4 for this ingredient is recorded; the build picks the one holding the label maximum. Table 4 footnotes: ''(*) All doses in mg day-1'' and ''All odds ratios are relative to nonuse of any NANSAID or aspirin''. The PDF (scanned 2002 typesetting) renders the ''>='' sign of the top stratum as a control glyph; the row order (<, range, then the open top stratum) shows it is ''>=''. Rule 20: a case-control design; the paper reports no incidence in non-users.'
-  match_note: Outcome is serious upper GI bleeding in hospital cases (Lewis title and Methods), section 1's outcome; exposure is the daily dose taken in the week before the index day, community use; comparator is non-use (Table 4 footnote). Stratum <2000 mg/day.
+  match_note: 'Not used (third review, rule 12): Table 4 footnote ''All odds ratios are relative to nonuse of any NANSAID or aspirin''; the source does not state that the reference group did not use paracetamol, so the comparator is not stated non-use of the ingredient.'
 - ingredient: acetaminophen
   dimension: gi_bleeding
   applies_to: {persona: all, condition: null, medication_type: null}
   outcome: upper_gi_bleeding
   outcome_match: true
   exposure_window: community_oral
-  comparator: non_use
+  comparator: other
   dose_mg_per_day: [2000, 3999]
   measure: OR
   estimate: 1.2
@@ -143,14 +133,14 @@ relative_risks:
     location: Table 4, Paracetamol rows (cases, controls, OR (95% CI))
     quote: 2000–3999 96 150 1.2 (0.8, 1.7)
   selection_note: 'Rule 21: every dose stratum of Lewis Table 4 for this ingredient is recorded; the build picks the one holding the label maximum. Table 4 footnotes: ''(*) All doses in mg day-1'' and ''All odds ratios are relative to nonuse of any NANSAID or aspirin''. The PDF (scanned 2002 typesetting) renders the ''>='' sign of the top stratum as a control glyph; the row order (<, range, then the open top stratum) shows it is ''>=''. Rule 20: a case-control design; the paper reports no incidence in non-users.'
-  match_note: Outcome is serious upper GI bleeding in hospital cases (Lewis title and Methods), section 1's outcome; exposure is the daily dose taken in the week before the index day, community use; comparator is non-use (Table 4 footnote). Stratum 2000-3999 mg/day.
+  match_note: 'Not used (third review, rule 12): Table 4 footnote ''All odds ratios are relative to nonuse of any NANSAID or aspirin''; the source does not state that the reference group did not use paracetamol, so the comparator is not stated non-use of the ingredient.'
 - ingredient: acetaminophen
   dimension: gi_bleeding
   applies_to: {persona: all, condition: null, medication_type: null}
   outcome: upper_gi_bleeding
   outcome_match: true
   exposure_window: community_oral
-  comparator: non_use
+  comparator: other
   dose_mg_per_day: [4000, null]
   measure: OR
   estimate: 1.0
@@ -165,7 +155,7 @@ relative_risks:
     location: Table 4, Paracetamol rows (cases, controls, OR (95% CI))
     quote: ≥ 4000 31 42 1.0 (0.5, 1.9)
   selection_note: 'Rule 21: every dose stratum of Lewis Table 4 for this ingredient is recorded; the build picks the one holding the label maximum. Table 4 footnotes: ''(*) All doses in mg day-1'' and ''All odds ratios are relative to nonuse of any NANSAID or aspirin''. The PDF (scanned 2002 typesetting) renders the ''>='' sign of the top stratum as a control glyph; the row order (<, range, then the open top stratum) shows it is ''>=''. Rule 20: a case-control design; the paper reports no incidence in non-users.'
-  match_note: Outcome is serious upper GI bleeding in hospital cases (Lewis title and Methods), section 1's outcome; exposure is the daily dose taken in the week before the index day, community use; comparator is non-use (Table 4 footnote). Stratum >=4000 mg/day.
+  match_note: 'Not used (third review, rule 12): Table 4 footnote ''All odds ratios are relative to nonuse of any NANSAID or aspirin''; the source does not state that the reference group did not use paracetamol, so the comparator is not stated non-use of the ingredient.'
 - ingredient: acetaminophen
   dimension: kidney
   applies_to: {persona: all, condition: null, medication_type: null}

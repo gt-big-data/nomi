@@ -95,7 +95,9 @@ OUTCOME_IDS = {
     "pregnancy_lactation": set(),
 }
 EXPOSURE_WINDOWS = {"community_oral", "long_term", "inpatient"}
-COMPARATORS = {"non_use", "within_group"}
+# Rule 12: "other" records a reference group the source does not state is non-use of the
+# ingredient; the build drops it.
+COMPARATORS = {"non_use", "within_group", "other"}
 INTERVALS = {"confidence", "credible"}
 # Rule 26: a baseline's age standardisation. Only all_ages bars it.
 STANDARDISATION = {False, "within_range", "all_ages"}
@@ -211,9 +213,15 @@ def _relative_risk(row: dict[str, Any], where: str) -> dict[str, Any]:
         for key in ("as_reported", "location", "quote"):
             if not str(own.get(key) or "").strip():
                 raise ValueError(f"{where}: unexposed_incidence has no {key}")
+        personas = own.get("personas")
+        if not personas or not set(personas) <= PERSONAS - {"all"}:
+            raise ValueError(
+                f"{where}: unexposed_incidence needs the personas its population covers"
+            )
         cited = _source(row["source"], where)
         unexposed = {
             "annual_incidence": rate,
+            "personas": sorted(personas),
             "as_reported": own["as_reported"],
             "citation": {
                 **cited,
@@ -401,6 +409,10 @@ def _usable(
         cite = row["citation"]["section"]
         if not row["outcome_match"]:
             dropped.append(f"{stem} {row['dimension']}: outcome does not match ({cite})")
+        elif row["comparator"] == "other":
+            dropped.append(
+                f"{stem} {row['dimension']}: comparator is not non-use (rule 12) ({cite})"
+            )
         elif row["exposure_window"] != "community_oral":
             dropped.append(f"{stem} {row['dimension']}: {row['exposure_window']} exposure ({cite})")
         elif row["stratum_population"] and row["stratum_population"] not in (populations or {}).get(
@@ -457,13 +469,15 @@ def _usable(
             and max_dose is not None
             and _holds(r["dose_mg_per_day"], max_dose)
         ]
-        if at_max:
-            winners = at_max
-            why = "an estimate at the label maximum dose exists (rule 21)"
-        else:
-            best = min(GRADE_RANK[r["grade"]] for r in group)
-            winners = [r for r in group if GRADE_RANK[r["grade"]] == best]
-            why = "a higher-grade estimate exists (rule 13)"
+        # Rule 21, then rule 13 among what is left.
+        pool = at_max or group
+        best = min(GRADE_RANK[r["grade"]] for r in pool)
+        winners = [r for r in pool if GRADE_RANK[r["grade"]] == best]
+        why = (
+            "an estimate at the label maximum dose exists (rule 21)"
+            if at_max
+            else "a higher-grade estimate exists (rule 13)"
+        )
         for row in group:
             if row not in winners:
                 keep.remove(row)

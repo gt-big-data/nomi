@@ -208,9 +208,19 @@ def test_unexposed_incidence_needs_a_quote() -> None:
         _parsed(
             unexposed_incidence={"annual_incidence": 0.001, "as_reported": "x", "location": "y"}
         )
+    with pytest.raises(ValueError):
+        _parsed(
+            unexposed_incidence={
+                "annual_incidence": 0.001,
+                "as_reported": "x",
+                "location": "T2",
+                "quote": "q",
+            }
+        )
     ok = _parsed(
         unexposed_incidence={
             "annual_incidence": 0.001,
+            "personas": ["adult_65_plus"],
             "as_reported": "x",
             "location": "T2",
             "quote": "q",
@@ -266,3 +276,23 @@ def test_the_stratum_matching_the_baseline_population_is_used() -> None:
     # A baseline of no named population matches neither stratum.
     keep, auto, _ = ae._usable("ibuprofen", rows, None, {})
     assert keep == [] and auto[0]["medication_types"] == ["anticoagulants"]
+
+
+def test_a_meta_analysis_beats_a_single_study_among_strata_at_the_maximum() -> None:
+    single = _parsed(
+        estimate=3.6, ci95=[2.6, 5.1], grade="case_control", dose_mg_per_day=[2001, None]
+    )
+    meta = _parsed(
+        estimate=1.0,
+        ci95=[0.5, 1.9],
+        grade="meta_analysis",
+        dose_mg_per_day=[4000, None],
+        source={"citation": "Roe J, et al. 2002", "url": "v", "location": "T4", "quote": "q"},
+    )
+    keep, _, _ = ae._usable("acetaminophen", [single, meta], 4000)
+    assert [r["estimate"] for r in keep] == [1.0]
+
+
+def test_a_comparator_other_than_non_use_is_dropped() -> None:
+    keep, _, dropped = ae._usable("acetaminophen", [_parsed(comparator="other")], None)
+    assert keep == [] and "rule 12" in dropped[0]

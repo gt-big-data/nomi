@@ -521,17 +521,7 @@
           "medication_type": null,
           "interval": "confidence",
           "stratum_population": null,
-          "unexposed_incidence": {
-            "annual_incidence": 4.1e-05,
-            "as_reported": "4.1 cases per 100,000 inhabitants per year = 4.1 / 100,000 = 0.000041 per person-year. This is the incidence of the study outcome (acute serious liver injury admissions meeting the primary criteria, 204 cases) in the whole catchment population, paracetamol users included; the paper reports no rate for non-users alone, so it slightly overstates the unexposed rate.",
-            "citation": {
-              "source": "publication",
-              "section": "Donati 2016, Results, Population",
-              "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4917796/",
-              "quote": "Overall, 2232 patients with diagnosis of acute serious liver injury were recorded; of those, 2028 were not included in the study, according to the primary exclusion criteria. The 204 incident cases resulted in an annual incidence of DILI of 4.1 cases per 100 000 inhabitants.",
-              "citation": "Donati M, Conforti A, Lenti MC, et al. Risk of acute and serious liver injury associated to nimesulide and other NSAIDs: data from drug-induced liver injury case-control study in Italy. Br J Clin Pharmacol 2016;82(1):238-248"
-            }
-          },
+          "unexposed_incidence": null,
           "outcome": "acute_liver_injury",
           "outcome_match": true,
           "exposure_window": "community_oral",
@@ -588,39 +578,6 @@
             "url": "https://pubmed.ncbi.nlm.nih.gov/16611205/",
             "quote": "The RR was 3.6 (95% CI, 2.6-5.1) among paracetamol users of more than 2 g daily, whereas smaller doses did not increase the risk.",
             "citation": "Gonzalez-Perez A, Rodriguez LA. Upper gastrointestinal complications among users of paracetamol. Basic Clin Pharmacol Toxicol 2006;98(3):297-303. PMID 16611205"
-          }
-        },
-        {
-          "dimension": "gi_bleeding",
-          "persona": "all",
-          "condition": null,
-          "medication_type": null,
-          "interval": "confidence",
-          "stratum_population": null,
-          "unexposed_incidence": null,
-          "outcome": "upper_gi_bleeding",
-          "outcome_match": true,
-          "exposure_window": "community_oral",
-          "comparator": "non_use",
-          "dose_mg_per_day": [
-            4000,
-            null
-          ],
-          "measure": "OR",
-          "estimate": 1.0,
-          "ci95": [
-            0.5,
-            1.9
-          ],
-          "grade": "meta_analysis",
-          "exposure": "paracetamol >=4000 mg/day in the week before the index day, vs non-use (adjusted OR)",
-          "population": "individual patient data from 3 hospital case-control studies (Catalonia, England, Scotland, Sweden); 2,472 cases of upper GI bleeding, 5,877 controls",
-          "citation": {
-            "source": "publication",
-            "section": "Lewis 2002, Table 4, Paracetamol rows (cases, controls, OR (95% CI))",
-            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC1874428/",
-            "quote": "≥ 4000 31 42 1.0 (0.5, 1.9)",
-            "citation": "Lewis SC, Langman MJS, Laporte JR, Matthews JNS, Rawlins MD, Wiholm BE. Dose-response relationships between individual nonaspirin nonsteroidal anti-inflammatory drugs (NANSAIDs) and serious upper gastrointestinal bleeding: a meta-analysis based on individual patient data. Br J Clin Pharmacol 2002;54(3):320-6. PMID 12236853"
           }
         },
         {
@@ -950,6 +907,9 @@
           "stratum_population": null,
           "unexposed_incidence": {
             "annual_incidence": 0.00546,
+            "personas": [
+              "adult_65_plus"
+            ],
             "as_reported": "5.46 acute kidney injury admissions per 1,000 person-years in the propensity-matched controls who did not start a PPI: 5.46 / 1,000 = 0.00546 per person-year",
             "citation": {
               "source": "publication",
@@ -1317,6 +1277,9 @@
           "stratum_population": null,
           "unexposed_incidence": {
             "annual_incidence": 0.00546,
+            "personas": [
+              "adult_65_plus"
+            ],
             "as_reported": "5.46 acute kidney injury admissions per 1,000 person-years in the propensity-matched controls who did not start a PPI: 5.46 / 1,000 = 0.00546 per person-year",
             "citation": {
               "source": "publication",
@@ -3127,46 +3090,6 @@
         },
         {
           "dimension": "kidney",
-          "persona": "all",
-          "condition": null,
-          "medication_type": null,
-          "interval": "confidence",
-          "stratum_population": null,
-          "unexposed_incidence": {
-            "annual_incidence": 0.000185,
-            "as_reported": "207 validated hospitalised ARF cases among 420,600 residents; the database population is resident since May 1990 and cases were collected between 1990 and 1992, taken as May 1990 to December 1992 = 32 months = 2.67 years. 207 / 420,600 / 2.67 = 0.000185 per person-year. This is the whole study population, NSAID users included: the abstract reports no rate for non-users alone, so it slightly overstates the unexposed rate. The end month is not stated in the abstract (full text not opened).",
-            "citation": {
-              "source": "publication",
-              "section": "Evans 1995, Abstract",
-              "url": "https://pubmed.ncbi.nlm.nih.gov/7648241/",
-              "quote": "We conducted a case-control study using a purpose-built record-linkage database for a population of 420,600 patients, resident in Tayside since May 1990. Patients (n = 207) hospitalized with a diagnostic code for ARF between 1990 and 1992 had their diagnosis validated by a renal physician.",
-              "citation": "Evans JM, McGregor E, McMahon AD, et al. Non-steroidal anti-inflammatory drugs and hospitalization for acute renal failure. QJM 1995;88(8):551-7. PMID 7648241"
-            }
-          },
-          "outcome": "aki_hospital",
-          "outcome_match": true,
-          "exposure_window": "community_oral",
-          "comparator": "non_use",
-          "dose_mg_per_day": null,
-          "measure": "OR",
-          "estimate": 2.2,
-          "ci95": [
-            1.49,
-            3.25
-          ],
-          "grade": "case_control",
-          "exposure": "dispensed oral NSAID in the 90 days before the index date (recent exposure) vs no recent exposure; community controls",
-          "population": "Tayside, Scotland, record-linkage population of 420,600; 207 hospitalised ARF cases validated by a renal physician, 1990-1992",
-          "citation": {
-            "source": "publication",
-            "section": "Evans 1995, Abstract",
-            "url": "https://pubmed.ncbi.nlm.nih.gov/7648241/",
-            "quote": "When community controls were used, recent exposure to NSAIDs and previous exposure to aspirin were independently associated with hospitalization for ARF, with adjusted odds ratios of 2.20 (1.49-3.25) and 2.19 (1.46-3.30), respectively.",
-            "citation": "Evans JM, McGregor E, McMahon AD, et al. Non-steroidal anti-inflammatory drugs and hospitalization for acute renal failure. QJM 1995;88(8):551-7. PMID 7648241"
-          }
-        },
-        {
-          "dimension": "kidney",
           "persona": "adult_65_plus",
           "condition": null,
           "medication_type": null,
@@ -3267,6 +3190,10 @@
           "stratum_population": null,
           "unexposed_incidence": {
             "annual_incidence": 0.083,
+            "personas": [
+              "adult_18_64",
+              "adult_65_plus"
+            ],
             "as_reported": "8.3 cardiovascular events per 100 person-years without NSAID treatment = 8.3 / 100 = 0.083 per person-year (crude rate in the reference group; composite of cardiovascular death, nonfatal recurrent MI and stroke).",
             "citation": {
               "source": "publication",
@@ -3337,6 +3264,10 @@
           "stratum_population": null,
           "unexposed_incidence": {
             "annual_incidence": 0.022,
+            "personas": [
+              "adult_18_64",
+              "adult_65_plus"
+            ],
             "as_reported": "2.2 bleeding events per 100 person-years without NSAID treatment = 2.2 / 100 = 0.022 per person-year (crude rate in the reference group, post-MI patients on antithrombotic therapy not taking NSAIDs).",
             "citation": {
               "source": "publication",
@@ -3417,6 +3348,14 @@
             "ssri_snri"
           ],
           "reason": "applies_to medication_type ssri_snri: no estimate specific to ssri_snri; the general estimate is used. Anglin et al. Am J Gastroenterol 2014;109:811-9 (PMID 24777151) reports SSRI plus NSAID against neither drug (OR 4.25, 2.82-6.42), a joint estimate that includes the SSRI's own risk (SSRI alone OR 1.66); by rule 23 it may be used only as NSAID plus SSRI against SSRI alone, which the abstract does not give and the full text (Ovid, paywalled) could not be opened. Haghbin et al. Dig Dis Sci 2023 (PMID 36526813) compares SSRI plus NSAID with SSRI alone but pools any GI bleeding, not upper GI bleeding (rule 10). SNRIs not studied."
+        },
+        {
+          "dimension": "kidney",
+          "personas": [],
+          "conditions": [],
+          "medication_types": [],
+          "require_all": true,
+          "reason": "Only estimates that do not meet the v1.1 and v1.2 rules were found (Zhang 2017, Abstract, Results; outcome definitions in Table 1 and Results)."
         },
         {
           "dimension": "kidney",
@@ -4026,6 +3965,9 @@
           "stratum_population": null,
           "unexposed_incidence": {
             "annual_incidence": 0.00546,
+            "personas": [
+              "adult_65_plus"
+            ],
             "as_reported": "5.46 acute kidney injury admissions per 1,000 person-years in the propensity-matched controls who did not start a PPI: 5.46 / 1,000 = 0.00546 per person-year",
             "citation": {
               "source": "publication",
@@ -4362,6 +4304,9 @@
           "stratum_population": null,
           "unexposed_incidence": {
             "annual_incidence": 0.00546,
+            "personas": [
+              "adult_65_plus"
+            ],
             "as_reported": "5.46 acute kidney injury admissions per 1,000 person-years in the propensity-matched controls who did not start a PPI: 5.46 / 1,000 = 0.00546 per person-year",
             "citation": {
               "source": "publication",
@@ -5109,6 +5054,9 @@
           "stratum_population": null,
           "unexposed_incidence": {
             "annual_incidence": 0.00546,
+            "personas": [
+              "adult_65_plus"
+            ],
             "as_reported": "5.46 acute kidney injury admissions per 1,000 person-years in the propensity-matched controls who did not start a PPI: 5.46 / 1,000 = 0.00546 per person-year",
             "citation": {
               "source": "publication",
@@ -5493,46 +5441,6 @@
         },
         {
           "dimension": "kidney",
-          "persona": "all",
-          "condition": null,
-          "medication_type": null,
-          "interval": "confidence",
-          "stratum_population": null,
-          "unexposed_incidence": {
-            "annual_incidence": 0.000185,
-            "as_reported": "207 validated hospitalised ARF cases among 420,600 residents; the database population is resident since May 1990 and cases were collected between 1990 and 1992, taken as May 1990 to December 1992 = 32 months = 2.67 years. 207 / 420,600 / 2.67 = 0.000185 per person-year. This is the whole study population, NSAID users included: the abstract reports no rate for non-users alone, so it slightly overstates the unexposed rate. The end month is not stated in the abstract (full text not opened).",
-            "citation": {
-              "source": "publication",
-              "section": "Evans 1995, Abstract",
-              "url": "https://pubmed.ncbi.nlm.nih.gov/7648241/",
-              "quote": "We conducted a case-control study using a purpose-built record-linkage database for a population of 420,600 patients, resident in Tayside since May 1990. Patients (n = 207) hospitalized with a diagnostic code for ARF between 1990 and 1992 had their diagnosis validated by a renal physician.",
-              "citation": "Evans JM, McGregor E, McMahon AD, et al. Non-steroidal anti-inflammatory drugs and hospitalization for acute renal failure. QJM 1995;88(8):551-7. PMID 7648241"
-            }
-          },
-          "outcome": "aki_hospital",
-          "outcome_match": true,
-          "exposure_window": "community_oral",
-          "comparator": "non_use",
-          "dose_mg_per_day": null,
-          "measure": "OR",
-          "estimate": 2.2,
-          "ci95": [
-            1.49,
-            3.25
-          ],
-          "grade": "case_control",
-          "exposure": "dispensed oral NSAID in the 90 days before the index date (recent exposure) vs no recent exposure; community controls",
-          "population": "Tayside, Scotland, record-linkage population of 420,600; 207 hospitalised ARF cases validated by a renal physician, 1990-1992",
-          "citation": {
-            "source": "publication",
-            "section": "Evans 1995, Abstract",
-            "url": "https://pubmed.ncbi.nlm.nih.gov/7648241/",
-            "quote": "When community controls were used, recent exposure to NSAIDs and previous exposure to aspirin were independently associated with hospitalization for ARF, with adjusted odds ratios of 2.20 (1.49-3.25) and 2.19 (1.46-3.30), respectively.",
-            "citation": "Evans JM, McGregor E, McMahon AD, et al. Non-steroidal anti-inflammatory drugs and hospitalization for acute renal failure. QJM 1995;88(8):551-7. PMID 7648241"
-          }
-        },
-        {
-          "dimension": "kidney",
           "persona": "adult_65_plus",
           "condition": null,
           "medication_type": null,
@@ -5633,6 +5541,10 @@
           "stratum_population": null,
           "unexposed_incidence": {
             "annual_incidence": 0.083,
+            "personas": [
+              "adult_18_64",
+              "adult_65_plus"
+            ],
             "as_reported": "8.3 cardiovascular events per 100 person-years without NSAID treatment = 8.3 / 100 = 0.083 per person-year (crude rate in the reference group; composite of cardiovascular death, nonfatal recurrent MI and stroke).",
             "citation": {
               "source": "publication",
@@ -5703,6 +5615,10 @@
           "stratum_population": null,
           "unexposed_incidence": {
             "annual_incidence": 0.022,
+            "personas": [
+              "adult_18_64",
+              "adult_65_plus"
+            ],
             "as_reported": "2.2 bleeding events per 100 person-years without NSAID treatment = 2.2 / 100 = 0.022 per person-year (crude rate in the reference group, post-MI patients on antithrombotic therapy not taking NSAIDs).",
             "citation": {
               "source": "publication",
@@ -5783,6 +5699,14 @@
             "ssri_snri"
           ],
           "reason": "applies_to medication_type ssri_snri: no estimate specific to ssri_snri; the general estimate is used. Anglin et al. Am J Gastroenterol 2014;109:811-9 (PMID 24777151) reports SSRI plus NSAID against neither drug (OR 4.25, 2.82-6.42), a joint estimate that includes the SSRI's own risk (SSRI alone OR 1.66); by rule 23 it may be used only as NSAID plus SSRI against SSRI alone, which the abstract does not give and the full text (Ovid, paywalled) could not be opened. Haghbin et al. Dig Dis Sci 2023 (PMID 36526813) compares SSRI plus NSAID with SSRI alone but pools any GI bleeding, not upper GI bleeding (rule 10). SNRIs not studied."
+        },
+        {
+          "dimension": "kidney",
+          "personas": [],
+          "conditions": [],
+          "medication_types": [],
+          "require_all": true,
+          "reason": "Only estimates that do not meet the v1.1 and v1.2 rules were found (Zhang 2017, Abstract, Results; outcome definitions in Table 1 and Results)."
         },
         {
           "dimension": "kidney",
@@ -6931,46 +6855,6 @@
         },
         {
           "dimension": "kidney",
-          "persona": "all",
-          "condition": null,
-          "medication_type": null,
-          "interval": "confidence",
-          "stratum_population": null,
-          "unexposed_incidence": {
-            "annual_incidence": 0.000185,
-            "as_reported": "207 validated hospitalised ARF cases among 420,600 residents; the database population is resident since May 1990 and cases were collected between 1990 and 1992, taken as May 1990 to December 1992 = 32 months = 2.67 years. 207 / 420,600 / 2.67 = 0.000185 per person-year. This is the whole study population, NSAID users included: the abstract reports no rate for non-users alone, so it slightly overstates the unexposed rate. The end month is not stated in the abstract (full text not opened).",
-            "citation": {
-              "source": "publication",
-              "section": "Evans 1995, Abstract",
-              "url": "https://pubmed.ncbi.nlm.nih.gov/7648241/",
-              "quote": "We conducted a case-control study using a purpose-built record-linkage database for a population of 420,600 patients, resident in Tayside since May 1990. Patients (n = 207) hospitalized with a diagnostic code for ARF between 1990 and 1992 had their diagnosis validated by a renal physician.",
-              "citation": "Evans JM, McGregor E, McMahon AD, et al. Non-steroidal anti-inflammatory drugs and hospitalization for acute renal failure. QJM 1995;88(8):551-7. PMID 7648241"
-            }
-          },
-          "outcome": "aki_hospital",
-          "outcome_match": true,
-          "exposure_window": "community_oral",
-          "comparator": "non_use",
-          "dose_mg_per_day": null,
-          "measure": "OR",
-          "estimate": 2.2,
-          "ci95": [
-            1.49,
-            3.25
-          ],
-          "grade": "case_control",
-          "exposure": "dispensed oral NSAID in the 90 days before the index date (recent exposure) vs no recent exposure; community controls",
-          "population": "Tayside, Scotland, record-linkage population of 420,600; 207 hospitalised ARF cases validated by a renal physician, 1990-1992",
-          "citation": {
-            "source": "publication",
-            "section": "Evans 1995, Abstract",
-            "url": "https://pubmed.ncbi.nlm.nih.gov/7648241/",
-            "quote": "When community controls were used, recent exposure to NSAIDs and previous exposure to aspirin were independently associated with hospitalization for ARF, with adjusted odds ratios of 2.20 (1.49-3.25) and 2.19 (1.46-3.30), respectively.",
-            "citation": "Evans JM, McGregor E, McMahon AD, et al. Non-steroidal anti-inflammatory drugs and hospitalization for acute renal failure. QJM 1995;88(8):551-7. PMID 7648241"
-          }
-        },
-        {
-          "dimension": "kidney",
           "persona": "adult_65_plus",
           "condition": null,
           "medication_type": null,
@@ -7071,6 +6955,10 @@
           "stratum_population": null,
           "unexposed_incidence": {
             "annual_incidence": 0.083,
+            "personas": [
+              "adult_18_64",
+              "adult_65_plus"
+            ],
             "as_reported": "8.3 cardiovascular events per 100 person-years without NSAID treatment = 8.3 / 100 = 0.083 per person-year (crude rate in the reference group; composite of cardiovascular death, nonfatal recurrent MI and stroke).",
             "citation": {
               "source": "publication",
@@ -7141,6 +7029,10 @@
           "stratum_population": null,
           "unexposed_incidence": {
             "annual_incidence": 0.022,
+            "personas": [
+              "adult_18_64",
+              "adult_65_plus"
+            ],
             "as_reported": "2.2 bleeding events per 100 person-years without NSAID treatment = 2.2 / 100 = 0.022 per person-year (crude rate in the reference group, post-MI patients on antithrombotic therapy not taking NSAIDs).",
             "citation": {
               "source": "publication",
@@ -7221,6 +7113,14 @@
             "ssri_snri"
           ],
           "reason": "applies_to medication_type ssri_snri: no estimate specific to ssri_snri; the general estimate is used. Anglin et al. Am J Gastroenterol 2014;109:811-9 (PMID 24777151) reports SSRI plus NSAID against neither drug (OR 4.25, 2.82-6.42), a joint estimate that includes the SSRI's own risk (SSRI alone OR 1.66); by rule 23 it may be used only as NSAID plus SSRI against SSRI alone, which the abstract does not give and the full text (Ovid, paywalled) could not be opened. Haghbin et al. Dig Dis Sci 2023 (PMID 36526813) compares SSRI plus NSAID with SSRI alone but pools any GI bleeding, not upper GI bleeding (rule 10). SNRIs not studied."
+        },
+        {
+          "dimension": "kidney",
+          "personas": [],
+          "conditions": [],
+          "medication_types": [],
+          "require_all": true,
+          "reason": "Only estimates that do not meet the v1.1 and v1.2 rules were found (Zhang 2017, Abstract, Results; outcome definitions in Table 1 and Results)."
         },
         {
           "dimension": "kidney",

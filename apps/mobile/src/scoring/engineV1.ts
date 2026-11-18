@@ -42,6 +42,8 @@ export interface RelativeRisk extends Applies {
   /** Rule 20: the source's own unexposed group's rate, used as the baseline when present. */
   unexposed_incidence?: {
     annual_incidence: number;
+    /** Third review: the personas the source's population covers; used only for them. */
+    personas: string[];
     as_reported: string;
     citation: EvidenceCitation;
   } | null;
@@ -343,8 +345,11 @@ export function scoreV1(
       }
       const group = same.find(({ row }) => row.comparator === "within_group")?.row;
       // Rule 20: a source's own unexposed rate first (the largest relative risk's, if several).
+      const adult = ["pregnant", "breastfeeding"].includes(profile.persona)
+        ? "adult_18_64"
+        : profile.persona;
       const own = same
-        .filter(({ row }) => row.unexposed_incidence)
+        .filter(({ row }) => row.unexposed_incidence?.personas.includes(adult))
         .sort((a, b) => b.row.estimate - a.row.estimate)[0]?.row.unexposed_incidence;
       const baseline = own ?? baselineFor(evidence, dimension, outcome, group, profile);
       if (!baseline) {

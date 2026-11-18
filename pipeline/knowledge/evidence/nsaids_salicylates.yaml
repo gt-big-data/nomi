@@ -138,7 +138,7 @@ relative_risks:
   dimension: kidney
   applies_to: {persona: all, condition: null, medication_type: null}
   outcome: aki_hospital
-  outcome_match: true
+  outcome_match: false
   exposure_window: community_oral
   comparator: non_use
   dose_mg_per_day: null
@@ -154,13 +154,8 @@ relative_risks:
     url: https://pubmed.ncbi.nlm.nih.gov/7648241/
     location: Abstract
     quote: When community controls were used, recent exposure to NSAIDs and previous exposure to aspirin were independently associated with hospitalization for ARF, with adjusted odds ratios of 2.20 (1.49-3.25) and 2.19 (1.46-3.30), respectively.
-  unexposed_incidence:
-    annual_incidence: 0.000185
-    as_reported: '207 validated hospitalised ARF cases among 420,600 residents; the database population is resident since May 1990 and cases were collected between 1990 and 1992, taken as May 1990 to December 1992 = 32 months = 2.67 years. 207 / 420,600 / 2.67 = 0.000185 per person-year. This is the whole study population, NSAID users included: the abstract reports no rate for non-users alone, so it slightly overstates the unexposed rate. The end month is not stated in the abstract (full text not opened).'
-    location: Abstract
-    quote: We conducted a case-control study using a purpose-built record-linkage database for a population of 420,600 patients, resident in Tayside since May 1990. Patients (n = 207) hospitalized with a diagnostic code for ARF between 1990 and 1992 had their diagnosis validated by a renal physician.
   selection_note: 'Rule 13 applied. Meta-analyses opened: Zhang 2017 (BMC Nephrol, 10 studies, most recent and largest general-population pool, OR 1.73) and Ungprasert 2015 (Eur J Intern Med, PMID 25862494, 5 cohort studies; abstract gives only the range 1.58-2.11 for individual NSAIDs, no quotable pooled estimate). No newer general-population meta-analysis of NSAIDs and AKI was found in PubMed (2016-2026; Calvo 2025 covers only triple-whammy combinations, Rom J Intern Med 2025 covers CKD). Zhang''s pooled outcome is not hospital AKI: per its Results, ''Half of the studies used laboratory data to define the presence of AKI'', including Murray 1990 (outpatient creatinine rises) and Lafrance 2009 (creatinine increase >50%, per the Lafrance abstract), and Leonard 2012 used GP diagnostic codes. So no meta-analysis reports a pooled estimate for hospital AKI, and rule 13 does not displace a single study. Of the general-population studies in Zhang''s Table 1 that count only hospital admissions for AKI, Evans 1995 has the largest population (420,600 Tayside residents, 207 validated cases) and is used; Perez Gutthann 1996 (hospitalisation for ARF, 28 cases, OR 4.1) is smaller. Class-level NSAID estimate (no ingredient-specific value in the source); applied to ibuprofen and naproxen alike. Rule 20: the abstract gives the case count and population (see unexposed_incidence); this is the whole-population rate, as the abstract gives no non-user rate.'
-  match_note: Cases were hospitalised with a diagnostic code for ARF validated by a renal physician, which is section 1's AKI at the serious level; exposure is recent community dispensing; comparator is no recent NSAID exposure.
+  match_note: 'Not used (third review): the abstract reports no significant interactions "whether the diagnosis was primary or secondary", so cases include ARF coded in any diagnosis position, the reason USRDS 2018 is outcome_match false (rule 10). Its whole-population rate is not a non-user rate (rule 20), so it is not recorded as unexposed_incidence.'
 - ingredient: ibuprofen
   dimension: kidney
   applies_to: {persona: all, condition: null, medication_type: null}
@@ -381,6 +376,7 @@ relative_risks:
     quote: the cardiovascular risk was also increased (hazard ratio, 1.40 [95% CI, 1.30-1.49])
   unexposed_incidence:
     annual_incidence: 0.083
+    personas: [adult_18_64, adult_65_plus]  # adults with prior MI (mean age 67.7)
     as_reported: 8.3 cardiovascular events per 100 person-years without NSAID treatment = 8.3 / 100 = 0.083 per person-year (crude rate in the reference group; composite of cardiovascular death, nonfatal recurrent MI and stroke).
     location: Abstract, Results
     quote: The crude incidence rates of bleeding (events per 100 person-years) were 4.2 (95% CI, 3.8-4.6) with concomitant NSAID treatment and 2.2 (95% CI, 2.1-2.3) without NSAID treatment, whereas the rates of cardiovascular events were 11.2 (95% CI, 10.5-11.9) and 8.3 (95% CI, 8.2-8.4).
@@ -476,6 +472,7 @@ relative_risks:
     quote: increased risk of bleeding with NSAID treatment compared with no NSAID treatment (hazard ratio, 2.02 [95% CI, 1.81-2.26])
   unexposed_incidence:
     annual_incidence: 0.022
+    personas: [adult_18_64, adult_65_plus]  # adults with prior MI (mean age 67.7)
     as_reported: 2.2 bleeding events per 100 person-years without NSAID treatment = 2.2 / 100 = 0.022 per person-year (crude rate in the reference group, post-MI patients on antithrombotic therapy not taking NSAIDs).
     location: Abstract, Results
     quote: The crude incidence rates of bleeding (events per 100 person-years) were 4.2 (95% CI, 3.8-4.6) with concomitant NSAID treatment and 2.2 (95% CI, 2.1-2.3) without NSAID treatment
@@ -616,7 +613,7 @@ relative_risks:
   dimension: kidney
   applies_to: {persona: all, condition: null, medication_type: null}
   outcome: aki_hospital
-  outcome_match: true
+  outcome_match: false
   exposure_window: community_oral
   comparator: non_use
   dose_mg_per_day: null
@@ -632,13 +629,8 @@ relative_risks:
     url: https://pubmed.ncbi.nlm.nih.gov/7648241/
     location: Abstract
     quote: When community controls were used, recent exposure to NSAIDs and previous exposure to aspirin were independently associated with hospitalization for ARF, with adjusted odds ratios of 2.20 (1.49-3.25) and 2.19 (1.46-3.30), respectively.
-  unexposed_incidence:
-    annual_incidence: 0.000185
-    as_reported: '207 validated hospitalised ARF cases among 420,600 residents; the database population is resident since May 1990 and cases were collected between 1990 and 1992, taken as May 1990 to December 1992 = 32 months = 2.67 years. 207 / 420,600 / 2.67 = 0.000185 per person-year. This is the whole study population, NSAID users included: the abstract reports no rate for non-users alone, so it slightly overstates the unexposed rate. The end month is not stated in the abstract (full text not opened).'
-    location: Abstract
-    quote: We conducted a case-control study using a purpose-built record-linkage database for a population of 420,600 patients, resident in Tayside since May 1990. Patients (n = 207) hospitalized with a diagnostic code for ARF between 1990 and 1992 had their diagnosis validated by a renal physician.
   selection_note: 'Rule 13 applied. Meta-analyses opened: Zhang 2017 (BMC Nephrol, 10 studies, most recent and largest general-population pool, OR 1.73) and Ungprasert 2015 (Eur J Intern Med, PMID 25862494, 5 cohort studies; abstract gives only the range 1.58-2.11 for individual NSAIDs, no quotable pooled estimate). No newer general-population meta-analysis of NSAIDs and AKI was found in PubMed (2016-2026; Calvo 2025 covers only triple-whammy combinations, Rom J Intern Med 2025 covers CKD). Zhang''s pooled outcome is not hospital AKI: per its Results, ''Half of the studies used laboratory data to define the presence of AKI'', including Murray 1990 (outpatient creatinine rises) and Lafrance 2009 (creatinine increase >50%, per the Lafrance abstract), and Leonard 2012 used GP diagnostic codes. So no meta-analysis reports a pooled estimate for hospital AKI, and rule 13 does not displace a single study. Of the general-population studies in Zhang''s Table 1 that count only hospital admissions for AKI, Evans 1995 has the largest population (420,600 Tayside residents, 207 validated cases) and is used; Perez Gutthann 1996 (hospitalisation for ARF, 28 cases, OR 4.1) is smaller. Class-level NSAID estimate (no ingredient-specific value in the source); applied to ibuprofen and naproxen alike. Rule 20: the abstract gives the case count and population (see unexposed_incidence); this is the whole-population rate, as the abstract gives no non-user rate.'
-  match_note: Cases were hospitalised with a diagnostic code for ARF validated by a renal physician, which is section 1's AKI at the serious level; exposure is recent community dispensing; comparator is no recent NSAID exposure.
+  match_note: 'Not used (third review): the abstract reports no significant interactions "whether the diagnosis was primary or secondary", so cases include ARF coded in any diagnosis position, the reason USRDS 2018 is outcome_match false (rule 10). Its whole-population rate is not a non-user rate (rule 20), so it is not recorded as unexposed_incidence.'
 - ingredient: naproxen
   dimension: kidney
   applies_to: {persona: all, condition: null, medication_type: null}
@@ -859,6 +851,7 @@ relative_risks:
     quote: the cardiovascular risk was also increased (hazard ratio, 1.40 [95% CI, 1.30-1.49])
   unexposed_incidence:
     annual_incidence: 0.083
+    personas: [adult_18_64, adult_65_plus]  # adults with prior MI (mean age 67.7)
     as_reported: 8.3 cardiovascular events per 100 person-years without NSAID treatment = 8.3 / 100 = 0.083 per person-year (crude rate in the reference group; composite of cardiovascular death, nonfatal recurrent MI and stroke).
     location: Abstract, Results
     quote: The crude incidence rates of bleeding (events per 100 person-years) were 4.2 (95% CI, 3.8-4.6) with concomitant NSAID treatment and 2.2 (95% CI, 2.1-2.3) without NSAID treatment, whereas the rates of cardiovascular events were 11.2 (95% CI, 10.5-11.9) and 8.3 (95% CI, 8.2-8.4).
@@ -954,6 +947,7 @@ relative_risks:
     quote: increased risk of bleeding with NSAID treatment compared with no NSAID treatment (hazard ratio, 2.02 [95% CI, 1.81-2.26])
   unexposed_incidence:
     annual_incidence: 0.022
+    personas: [adult_18_64, adult_65_plus]  # adults with prior MI (mean age 67.7)
     as_reported: 2.2 bleeding events per 100 person-years without NSAID treatment = 2.2 / 100 = 0.022 per person-year (crude rate in the reference group, post-MI patients on antithrombotic therapy not taking NSAIDs).
     location: Abstract, Results
     quote: The crude incidence rates of bleeding (events per 100 person-years) were 4.2 (95% CI, 3.8-4.6) with concomitant NSAID treatment and 2.2 (95% CI, 2.1-2.3) without NSAID treatment
@@ -1248,7 +1242,7 @@ relative_risks:
   dimension: kidney
   applies_to: {persona: all, condition: null, medication_type: null}
   outcome: aki_hospital
-  outcome_match: true
+  outcome_match: false
   exposure_window: community_oral
   comparator: non_use
   dose_mg_per_day: null
@@ -1264,13 +1258,8 @@ relative_risks:
     url: https://pubmed.ncbi.nlm.nih.gov/7648241/
     location: Abstract
     quote: When community controls were used, recent exposure to NSAIDs and previous exposure to aspirin were independently associated with hospitalization for ARF, with adjusted odds ratios of 2.20 (1.49-3.25) and 2.19 (1.46-3.30), respectively.
-  unexposed_incidence:
-    annual_incidence: 0.000185
-    as_reported: '207 validated hospitalised ARF cases among 420,600 residents; the database population is resident since May 1990 and cases were collected between 1990 and 1992, taken as May 1990 to December 1992 = 32 months = 2.67 years. 207 / 420,600 / 2.67 = 0.000185 per person-year. This is the whole study population, NSAID users included: the abstract reports no rate for non-users alone, so it slightly overstates the unexposed rate. The end month is not stated in the abstract (full text not opened).'
-    location: Abstract
-    quote: We conducted a case-control study using a purpose-built record-linkage database for a population of 420,600 patients, resident in Tayside since May 1990. Patients (n = 207) hospitalized with a diagnostic code for ARF between 1990 and 1992 had their diagnosis validated by a renal physician.
   selection_note: 'same moiety as ibuprofen; doses in ibuprofen mg. Rule 13 applied. Meta-analyses opened: Zhang 2017 (BMC Nephrol, 10 studies, most recent and largest general-population pool, OR 1.73) and Ungprasert 2015 (Eur J Intern Med, PMID 25862494, 5 cohort studies; abstract gives only the range 1.58-2.11 for individual NSAIDs, no quotable pooled estimate). No newer general-population meta-analysis of NSAIDs and AKI was found in PubMed (2016-2026; Calvo 2025 covers only triple-whammy combinations, Rom J Intern Med 2025 covers CKD). Zhang''s pooled outcome is not hospital AKI: per its Results, ''Half of the studies used laboratory data to define the presence of AKI'', including Murray 1990 (outpatient creatinine rises) and Lafrance 2009 (creatinine increase >50%, per the Lafrance abstract), and Leonard 2012 used GP diagnostic codes. So no meta-analysis reports a pooled estimate for hospital AKI, and rule 13 does not displace a single study. Of the general-population studies in Zhang''s Table 1 that count only hospital admissions for AKI, Evans 1995 has the largest population (420,600 Tayside residents, 207 validated cases) and is used; Perez Gutthann 1996 (hospitalisation for ARF, 28 cases, OR 4.1) is smaller. Class-level NSAID estimate (no ingredient-specific value in the source); applied to ibuprofen and naproxen alike. Rule 20: the abstract gives the case count and population (see unexposed_incidence); this is the whole-population rate, as the abstract gives no non-user rate.'
-  match_note: Cases were hospitalised with a diagnostic code for ARF validated by a renal physician, which is section 1's AKI at the serious level; exposure is recent community dispensing; comparator is no recent NSAID exposure.
+  match_note: 'Not used (third review): the abstract reports no significant interactions "whether the diagnosis was primary or secondary", so cases include ARF coded in any diagnosis position, the reason USRDS 2018 is outcome_match false (rule 10). Its whole-population rate is not a non-user rate (rule 20), so it is not recorded as unexposed_incidence.'
 - ingredient: ibuprofen_sodium
   dimension: kidney
   applies_to: {persona: all, condition: null, medication_type: null}
@@ -1491,6 +1480,7 @@ relative_risks:
     quote: the cardiovascular risk was also increased (hazard ratio, 1.40 [95% CI, 1.30-1.49])
   unexposed_incidence:
     annual_incidence: 0.083
+    personas: [adult_18_64, adult_65_plus]  # adults with prior MI (mean age 67.7)
     as_reported: 8.3 cardiovascular events per 100 person-years without NSAID treatment = 8.3 / 100 = 0.083 per person-year (crude rate in the reference group; composite of cardiovascular death, nonfatal recurrent MI and stroke).
     location: Abstract, Results
     quote: The crude incidence rates of bleeding (events per 100 person-years) were 4.2 (95% CI, 3.8-4.6) with concomitant NSAID treatment and 2.2 (95% CI, 2.1-2.3) without NSAID treatment, whereas the rates of cardiovascular events were 11.2 (95% CI, 10.5-11.9) and 8.3 (95% CI, 8.2-8.4).
@@ -1586,6 +1576,7 @@ relative_risks:
     quote: increased risk of bleeding with NSAID treatment compared with no NSAID treatment (hazard ratio, 2.02 [95% CI, 1.81-2.26])
   unexposed_incidence:
     annual_incidence: 0.022
+    personas: [adult_18_64, adult_65_plus]  # adults with prior MI (mean age 67.7)
     as_reported: 2.2 bleeding events per 100 person-years without NSAID treatment = 2.2 / 100 = 0.022 per person-year (crude rate in the reference group, post-MI patients on antithrombotic therapy not taking NSAIDs).
     location: Abstract, Results
     quote: The crude incidence rates of bleeding (events per 100 person-years) were 4.2 (95% CI, 3.8-4.6) with concomitant NSAID treatment and 2.2 (95% CI, 2.1-2.3) without NSAID treatment

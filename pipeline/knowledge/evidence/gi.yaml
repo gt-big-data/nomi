@@ -90,6 +90,7 @@ relative_risks:
       quote: "The rates of acute kidney injury (13.49 v. 5.46 per 1000 person-years, respectively; hazard ratio [HR] 2.52, 95% CI 2.27 to 2.79)"
     unexposed_incidence:
       annual_incidence: 0.00546
+      personas: [adult_65_plus]  # Ontario residents aged 66 and over
       as_reported: "5.46 acute kidney injury admissions per 1,000 person-years in the propensity-matched controls who did not start a PPI: 5.46 / 1,000 = 0.00546 per person-year"
       location: "Abstract, Results"
       quote: "The rates of acute kidney injury (13.49 v. 5.46 per 1000 person-years, respectively; hazard ratio [HR] 2.52, 95% CI 2.27 to 2.79)"
@@ -270,6 +271,7 @@ relative_risks:
       quote: "risk of upper gastrointestinal tract bleeding hospitalizations (n = 2245) was lower overall (IRR, 0.66 [95% CI, 0.62-0.69])"
     unexposed_incidence:
       annual_incidence: 0.0115
+      personas: [adult_65_plus]  # Medicare beneficiaries (mean age 76.4)
       as_reported: "115 hospitalizations for upper GI bleeding per 10,000 person-years of anticoagulant treatment without PPI cotherapy (adjusted incidence, the within-group reference): 115 / 10,000 = 0.0115 per person-year"
       location: "Abstract, Results"
       quote: "During 754 389 treatment person-years without PPI cotherapy, the adjusted incidence of hospitalization for upper gastrointestinal tract bleeding (n = 7119) was 115 per 10 000 person-years (95% CI, 112-118)."
@@ -407,6 +409,7 @@ relative_risks:
       quote: "The rates of acute kidney injury (13.49 v. 5.46 per 1000 person-years, respectively; hazard ratio [HR] 2.52, 95% CI 2.27 to 2.79)"
     unexposed_incidence:
       annual_incidence: 0.00546
+      personas: [adult_65_plus]  # Ontario residents aged 66 and over
       as_reported: "5.46 acute kidney injury admissions per 1,000 person-years in the propensity-matched controls who did not start a PPI: 5.46 / 1,000 = 0.00546 per person-year"
       location: "Abstract, Results"
       quote: "The rates of acute kidney injury (13.49 v. 5.46 per 1000 person-years, respectively; hazard ratio [HR] 2.52, 95% CI 2.27 to 2.79)"
@@ -587,6 +590,7 @@ relative_risks:
       quote: "risk of upper gastrointestinal tract bleeding hospitalizations (n = 2245) was lower overall (IRR, 0.66 [95% CI, 0.62-0.69])"
     unexposed_incidence:
       annual_incidence: 0.0115
+      personas: [adult_65_plus]  # Medicare beneficiaries (mean age 76.4)
       as_reported: "115 hospitalizations for upper GI bleeding per 10,000 person-years of anticoagulant treatment without PPI cotherapy (adjusted incidence, the within-group reference): 115 / 10,000 = 0.0115 per person-year"
       location: "Abstract, Results"
       quote: "During 754 389 treatment person-years without PPI cotherapy, the adjusted incidence of hospitalization for upper gastrointestinal tract bleeding (n = 7119) was 115 per 10 000 person-years (95% CI, 112-118)."
@@ -724,6 +728,7 @@ relative_risks:
       quote: "The rates of acute kidney injury (13.49 v. 5.46 per 1000 person-years, respectively; hazard ratio [HR] 2.52, 95% CI 2.27 to 2.79)"
     unexposed_incidence:
       annual_incidence: 0.00546
+      personas: [adult_65_plus]  # Ontario residents aged 66 and over
       as_reported: "5.46 acute kidney injury admissions per 1,000 person-years in the propensity-matched controls who did not start a PPI: 5.46 / 1,000 = 0.00546 per person-year"
       location: "Abstract, Results"
       quote: "The rates of acute kidney injury (13.49 v. 5.46 per 1000 person-years, respectively; hazard ratio [HR] 2.52, 95% CI 2.27 to 2.79)"
@@ -904,6 +909,7 @@ relative_risks:
       quote: "risk of upper gastrointestinal tract bleeding hospitalizations (n = 2245) was lower overall (IRR, 0.66 [95% CI, 0.62-0.69])"
     unexposed_incidence:
       annual_incidence: 0.0115
+      personas: [adult_65_plus]  # Medicare beneficiaries (mean age 76.4)
       as_reported: "115 hospitalizations for upper GI bleeding per 10,000 person-years of anticoagulant treatment without PPI cotherapy (adjusted incidence, the within-group reference): 115 / 10,000 = 0.0115 per person-year"
       location: "Abstract, Results"
       quote: "During 754 389 treatment person-years without PPI cotherapy, the adjusted incidence of hospitalization for upper gastrointestinal tract bleeding (n = 7119) was 115 per 10 000 person-years (95% CI, 112-118)."
@@ -1041,6 +1047,7 @@ relative_risks:
       quote: "The rates of acute kidney injury (13.49 v. 5.46 per 1000 person-years, respectively; hazard ratio [HR] 2.52, 95% CI 2.27 to 2.79)"
     unexposed_incidence:
       annual_incidence: 0.00546
+      personas: [adult_65_plus]  # Ontario residents aged 66 and over
       as_reported: "5.46 acute kidney injury admissions per 1,000 person-years in the propensity-matched controls who did not start a PPI: 5.46 / 1,000 = 0.00546 per person-year"
       location: "Abstract, Results"
       quote: "The rates of acute kidney injury (13.49 v. 5.46 per 1000 person-years, respectively; hazard ratio [HR] 2.52, 95% CI 2.27 to 2.79)"
@@ -1221,6 +1228,7 @@ relative_risks:
       quote: "risk of upper gastrointestinal tract bleeding hospitalizations (n = 2245) was lower overall (IRR, 0.66 [95% CI, 0.62-0.69])"
     unexposed_incidence:
       annual_incidence: 0.0115
+      personas: [adult_65_plus]  # Medicare beneficiaries (mean age 76.4)
       as_reported: "115 hospitalizations for upper GI bleeding per 10,000 person-years of anticoagulant treatment without PPI cotherapy (adjusted incidence, the within-group reference): 115 / 10,000 = 0.0115 per person-year"
       location: "Abstract, Results"
       quote: "During 754 389 treatment person-years without PPI cotherapy, the adjusted incidence of hospitalization for upper gastrointestinal tract bleeding (n = 7119) was 115 per 10 000 person-years (95% CI, 112-118)."
@@ -1358,6 +1366,7 @@ relative_risks:
       quote: "The rates of acute kidney injury (13.49 v. 5.46 per 1000 person-years, respectively; hazard ratio [HR] 2.52, 95% CI 2.27 to 2.79)"
     unexposed_incidence:
       annual_incidence: 0.00546
+      personas: [adult_65_plus]  # Ontario residents aged 66 and over
       as_reported: "5.46 acute kidney injury admissions per 1,000 person-years in the propensity-matched controls who did not start a PPI: 5.46 / 1,000 = 0.00546 per person-year"
       location: "Abstract, Results"
       quote: "The rates of acute kidney injury (13.49 v. 5.46 per 1000 person-years, respectively; hazard ratio [HR] 2.52, 95% CI 2.27 to 2.79)"
@@ -1538,6 +1547,7 @@ relative_risks:
       quote: "risk of upper gastrointestinal tract bleeding hospitalizations (n = 2245) was lower overall (IRR, 0.66 [95% CI, 0.62-0.69])"
     unexposed_incidence:
       annual_incidence: 0.0115
+      personas: [adult_65_plus]  # Medicare beneficiaries (mean age 76.4)
       as_reported: "115 hospitalizations for upper GI bleeding per 10,000 person-years of anticoagulant treatment without PPI cotherapy (adjusted incidence, the within-group reference): 115 / 10,000 = 0.0115 per person-year"
       location: "Abstract, Results"
       quote: "During 754 389 treatment person-years without PPI cotherapy, the adjusted incidence of hospitalization for upper gastrointestinal tract bleeding (n = 7119) was 115 per 10 000 person-years (95% CI, 112-118)."
@@ -1739,6 +1749,7 @@ relative_risks:
       quote: "The meta-analysis of trial level data showed similar results: 296 people had a myocardial infarction (166 allocated to calcium, 130 to placebo), with an increased incidence of myocardial infarction in those allocated to calcium (pooled relative risk 1.27, 95% confidence interval 1.01 to 1.59, P=0.038)."
     unexposed_incidence:
       annual_incidence: 0.0056
+      personas: [adult_18_64, adult_65_plus]  # adults in placebo-controlled trials (mean age over 40)
       as_reported: "130 myocardial infarctions among 5,805 participants allocated to placebo in the 11 trials with trial-level data, mean duration 4.0 years: 130 / (5,805 x 4.0) = 0.0056 per person-year (approximate: the source gives the mean trial duration, not counted person-time)"
       location: "Abstract, Results; Table 3, Total row (placebo group: participants, myocardial infarction)"
       quote: "11 with trial level data (11 921 participants, mean duration 4.0 years) ... 296 people had a myocardial infarction (166 allocated to calcium, 130 to placebo); Table 3 Total: Placebo group No of participants 5805, Myocardial infarction 130"
@@ -1766,6 +1777,7 @@ relative_risks:
       quote: "hospitalization of acute kidney injury (aHR=1.97, 95%CI=1.15, 3.37)"
     unexposed_incidence:
       annual_incidence: 0.000683
+      personas: [adult_18_64, adult_65_plus]  # non-dialysis CKD patients aged 30 and over
       as_reported: "Control (never MgO) arm after 1:1 propensity matching: 23 hospitalizations for AKI over 33,676 person-years (reported IR 0.68 per 1,000 person-years): 23 / 33,676 = 0.000683 per person-year"
       location: "Table 2a, 1:1 PS matching, Control columns (n, PY, IR per 1000 person-years)"
       quote: "Hospitalization of acute kidney injury | 23 | 33676 | 0.68 | 44 | 33787 | 1.3 | 2.14 | (1.26, 3.64)** | 1.97 | (1.15, 3.37)*"

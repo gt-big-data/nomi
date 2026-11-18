@@ -300,6 +300,7 @@ test("stomach bleeding is not counted again for anticoagulant users", () => {
 test("a source's own unexposed rate is the baseline before any outside rate", () => {
   const own = {
     annual_incidence: 0.0365,
+    personas: ["adult_18_64"],
     as_reported: "x",
     citation: cite,
   };
@@ -316,6 +317,18 @@ test("a sentence names the outcome the study measured", () => {
   );
   const record = scored(scoreV1(product([A]), ADULT, RATINGS, ev));
   assert.ok(record.explanation[0].text.startsWith("Heart attack:"));
+});
+
+test("a source's own rate is not used for ages its population leaves out", () => {
+  const own = {
+    annual_incidence: 0.0365,
+    personas: ["adult_65_plus"],
+    as_reported: "x",
+    citation: cite,
+  };
+  const ev = evidence([rr("kidney", 2, { unexposed_incidence: own })], [], [base("kidney", 0.365)]);
+  // The outside rate: 0.365 * 1 * 10/365 = 1e-2, score 25.
+  assert.equal(scored(scoreV1(product([A]), ADULT, RATINGS, ev)).score, 25);
 });
 
 test("a credible interval is labelled as one", () => {
@@ -366,7 +379,7 @@ test("a subgroup note says when the general estimate is still used", () => {
 // The bundled evidence: every reference product is rated for these personas, and the scores are
 // pinned so a change to the evidence shows up here as a deliberate update.
 const GOLDEN: Record<string, Record<string, number>> = {
-  aleve: { adult_18_64: 77, adult_65_plus: 62, pregnant: 77 },
+  aleve: { adult_18_64: 78, adult_65_plus: 62, pregnant: 78 },
   nyquil: { adult_18_64: 82, adult_65_plus: 45, pregnant: 82 },
   "store-brand-diphenhydramine": { adult_18_64: 100, adult_65_plus: 45, pregnant: 100 },
   tylenol: { adult_18_64: 82, adult_65_plus: 82, pregnant: 82 },
