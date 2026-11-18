@@ -1,0 +1,550 @@
+unii: 77TI35393C
+name: loperamide hydrochloride
+ratings:
+  - dimension: liver
+    persona: adult_18_64
+    severity: 0
+  - dimension: liver
+    persona: adult_65_plus
+    severity: 0
+  - dimension: liver
+    persona: teen_12_17
+    severity: 0
+  - dimension: liver
+    persona: child_6_11
+    severity: 0
+  - dimension: liver
+    persona: child_2_5
+    severity: 0
+  - dimension: liver
+    persona: under_2
+    severity: 0
+  - dimension: liver
+    persona: pregnant
+    severity: 0
+  - dimension: liver
+    persona: breastfeeding
+    severity: 0
+  - dimension: gi_bleeding
+    persona: adult_18_64
+    severity: 0
+  - dimension: gi_bleeding
+    persona: adult_65_plus
+    severity: 0
+  - dimension: gi_bleeding
+    persona: teen_12_17
+    severity: 0
+  - dimension: gi_bleeding
+    persona: child_6_11
+    severity: 0
+  - dimension: gi_bleeding
+    persona: child_2_5
+    severity: 0
+  - dimension: gi_bleeding
+    persona: under_2
+    severity: 0
+  - dimension: gi_bleeding
+    persona: pregnant
+    severity: 0
+  - dimension: gi_bleeding
+    persona: breastfeeding
+    severity: 0
+  - dimension: cardiovascular_bp
+    persona: adult_18_64
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 01da76d0-1979-4c45-9d39-c72ae4e4ffe2
+        section: "SPL v13: Warnings / Heart alert"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=01da76d0-1979-4c45-9d39-c72ae4e4ffe2
+        quote: Taking more than directed can cause serious heart problems or death
+  - dimension: cardiovascular_bp
+    persona: adult_65_plus
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 01da76d0-1979-4c45-9d39-c72ae4e4ffe2
+        section: "SPL v13: Warnings / Heart alert"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=01da76d0-1979-4c45-9d39-c72ae4e4ffe2
+        quote: Taking more than directed can cause serious heart problems or death
+  - dimension: cardiovascular_bp
+    persona: teen_12_17
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 01da76d0-1979-4c45-9d39-c72ae4e4ffe2
+        section: "SPL v13: Warnings / Heart alert"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=01da76d0-1979-4c45-9d39-c72ae4e4ffe2
+        quote: Taking more than directed can cause serious heart problems or death
+  - dimension: cardiovascular_bp
+    persona: child_6_11
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 01da76d0-1979-4c45-9d39-c72ae4e4ffe2
+        section: "SPL v13: Warnings / Heart alert"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=01da76d0-1979-4c45-9d39-c72ae4e4ffe2
+        quote: Taking more than directed can cause serious heart problems or death
+  - dimension: cardiovascular_bp
+    persona: child_2_5
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 01da76d0-1979-4c45-9d39-c72ae4e4ffe2
+        section: "SPL v13: Warnings / Heart alert"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=01da76d0-1979-4c45-9d39-c72ae4e4ffe2
+        quote: Taking more than directed can cause serious heart problems or death
+  - dimension: cardiovascular_bp
+    persona: under_2
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 01da76d0-1979-4c45-9d39-c72ae4e4ffe2
+        section: "SPL v13: Warnings / Heart alert"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=01da76d0-1979-4c45-9d39-c72ae4e4ffe2
+        quote: Taking more than directed can cause serious heart problems or death
+  - dimension: cardiovascular_bp
+    persona: pregnant
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 01da76d0-1979-4c45-9d39-c72ae4e4ffe2
+        section: "SPL v13: Warnings / Heart alert"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=01da76d0-1979-4c45-9d39-c72ae4e4ffe2
+        quote: Taking more than directed can cause serious heart problems or death
+  - dimension: cardiovascular_bp
+    persona: breastfeeding
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 01da76d0-1979-4c45-9d39-c72ae4e4ffe2
+        section: "SPL v13: Warnings / Heart alert"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=01da76d0-1979-4c45-9d39-c72ae4e4ffe2
+        quote: Taking more than directed can cause serious heart problems or death
+  - dimension: kidney
+    persona: adult_18_64
+    severity: 0
+  - dimension: kidney
+    persona: adult_65_plus
+    severity: 0
+  - dimension: kidney
+    persona: teen_12_17
+    severity: 0
+  - dimension: kidney
+    persona: child_6_11
+    severity: 0
+  - dimension: kidney
+    persona: child_2_5
+    severity: 0
+  - dimension: kidney
+    persona: under_2
+    severity: 0
+  - dimension: kidney
+    persona: pregnant
+    severity: 0
+  - dimension: kidney
+    persona: breastfeeding
+    severity: 0
+  - dimension: anticholinergic_cognitive
+    persona: adult_18_64
+    severity: 1
+    citations:
+      - source: acb
+        document_id: Boustani_2008_ACB_2012_update
+        section: "2012 update, page 1: loperamide, ACB score 1"
+        url: https://www.hii.iu.edu/resources/anticholinergic-cognitive-burden-scale.pdf
+  - dimension: anticholinergic_cognitive
+    persona: adult_65_plus
+    severity: 1
+    citations:
+      - source: acb
+        document_id: Boustani_2008_ACB_2012_update
+        section: "2012 update, page 1: loperamide, ACB score 1"
+        url: https://www.hii.iu.edu/resources/anticholinergic-cognitive-burden-scale.pdf
+  - dimension: anticholinergic_cognitive
+    persona: teen_12_17
+    severity: 1
+    citations:
+      - source: acb
+        document_id: Boustani_2008_ACB_2012_update
+        section: "2012 update, page 1: loperamide, ACB score 1"
+        url: https://www.hii.iu.edu/resources/anticholinergic-cognitive-burden-scale.pdf
+  - dimension: anticholinergic_cognitive
+    persona: child_6_11
+    severity: 1
+    citations:
+      - source: acb
+        document_id: Boustani_2008_ACB_2012_update
+        section: "2012 update, page 1: loperamide, ACB score 1"
+        url: https://www.hii.iu.edu/resources/anticholinergic-cognitive-burden-scale.pdf
+  - dimension: anticholinergic_cognitive
+    persona: child_2_5
+    severity: 1
+    citations:
+      - source: acb
+        document_id: Boustani_2008_ACB_2012_update
+        section: "2012 update, page 1: loperamide, ACB score 1"
+        url: https://www.hii.iu.edu/resources/anticholinergic-cognitive-burden-scale.pdf
+  - dimension: anticholinergic_cognitive
+    persona: under_2
+    severity: 1
+    citations:
+      - source: acb
+        document_id: Boustani_2008_ACB_2012_update
+        section: "2012 update, page 1: loperamide, ACB score 1"
+        url: https://www.hii.iu.edu/resources/anticholinergic-cognitive-burden-scale.pdf
+  - dimension: anticholinergic_cognitive
+    persona: pregnant
+    severity: 1
+    citations:
+      - source: acb
+        document_id: Boustani_2008_ACB_2012_update
+        section: "2012 update, page 1: loperamide, ACB score 1"
+        url: https://www.hii.iu.edu/resources/anticholinergic-cognitive-burden-scale.pdf
+  - dimension: anticholinergic_cognitive
+    persona: breastfeeding
+    severity: 1
+    citations:
+      - source: acb
+        document_id: Boustani_2008_ACB_2012_update
+        section: "2012 update, page 1: loperamide, ACB score 1"
+        url: https://www.hii.iu.edu/resources/anticholinergic-cognitive-burden-scale.pdf
+  - dimension: sedation_falls
+    persona: adult_18_64
+    severity: 1
+    citations:
+      - source: fda_label
+        document_id: 01da76d0-1979-4c45-9d39-c72ae4e4ffe2
+        section: "SPL v13: When using (50567-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=01da76d0-1979-4c45-9d39-c72ae4e4ffe2
+        quote: tiredness, drowsiness or dizziness may occur
+  - dimension: sedation_falls
+    persona: adult_65_plus
+    severity: 1
+    citations:
+      - source: fda_label
+        document_id: 01da76d0-1979-4c45-9d39-c72ae4e4ffe2
+        section: "SPL v13: When using (50567-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=01da76d0-1979-4c45-9d39-c72ae4e4ffe2
+        quote: tiredness, drowsiness or dizziness may occur
+  - dimension: sedation_falls
+    persona: teen_12_17
+    severity: 1
+    citations:
+      - source: fda_label
+        document_id: 01da76d0-1979-4c45-9d39-c72ae4e4ffe2
+        section: "SPL v13: When using (50567-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=01da76d0-1979-4c45-9d39-c72ae4e4ffe2
+        quote: tiredness, drowsiness or dizziness may occur
+  - dimension: sedation_falls
+    persona: child_6_11
+    severity: 1
+    citations:
+      - source: fda_label
+        document_id: 01da76d0-1979-4c45-9d39-c72ae4e4ffe2
+        section: "SPL v13: When using (50567-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=01da76d0-1979-4c45-9d39-c72ae4e4ffe2
+        quote: tiredness, drowsiness or dizziness may occur
+  - dimension: sedation_falls
+    persona: child_2_5
+    severity: 1
+    citations:
+      - source: fda_label
+        document_id: 01da76d0-1979-4c45-9d39-c72ae4e4ffe2
+        section: "SPL v13: When using (50567-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=01da76d0-1979-4c45-9d39-c72ae4e4ffe2
+        quote: tiredness, drowsiness or dizziness may occur
+  - dimension: sedation_falls
+    persona: under_2
+    severity: 1
+    citations:
+      - source: fda_label
+        document_id: 01da76d0-1979-4c45-9d39-c72ae4e4ffe2
+        section: "SPL v13: When using (50567-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=01da76d0-1979-4c45-9d39-c72ae4e4ffe2
+        quote: tiredness, drowsiness or dizziness may occur
+  - dimension: sedation_falls
+    persona: pregnant
+    severity: 1
+    citations:
+      - source: fda_label
+        document_id: 01da76d0-1979-4c45-9d39-c72ae4e4ffe2
+        section: "SPL v13: When using (50567-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=01da76d0-1979-4c45-9d39-c72ae4e4ffe2
+        quote: tiredness, drowsiness or dizziness may occur
+  - dimension: sedation_falls
+    persona: breastfeeding
+    severity: 1
+    citations:
+      - source: fda_label
+        document_id: 01da76d0-1979-4c45-9d39-c72ae4e4ffe2
+        section: "SPL v13: When using (50567-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=01da76d0-1979-4c45-9d39-c72ae4e4ffe2
+        quote: tiredness, drowsiness or dizziness may occur
+  - dimension: serotonergic_interactions
+    persona: adult_18_64
+    severity: 0
+  - dimension: serotonergic_interactions
+    persona: adult_65_plus
+    severity: 0
+  - dimension: serotonergic_interactions
+    persona: teen_12_17
+    severity: 0
+  - dimension: serotonergic_interactions
+    persona: child_6_11
+    severity: 0
+  - dimension: serotonergic_interactions
+    persona: child_2_5
+    severity: 0
+  - dimension: serotonergic_interactions
+    persona: under_2
+    severity: 0
+  - dimension: serotonergic_interactions
+    persona: pregnant
+    severity: 0
+  - dimension: serotonergic_interactions
+    persona: breastfeeding
+    severity: 0
+  - dimension: anticoagulant_bleeding
+    persona: adult_18_64
+    severity: 0
+  - dimension: anticoagulant_bleeding
+    persona: adult_65_plus
+    severity: 0
+  - dimension: anticoagulant_bleeding
+    persona: teen_12_17
+    severity: 0
+  - dimension: anticoagulant_bleeding
+    persona: child_6_11
+    severity: 0
+  - dimension: anticoagulant_bleeding
+    persona: child_2_5
+    severity: 0
+  - dimension: anticoagulant_bleeding
+    persona: under_2
+    severity: 0
+  - dimension: anticoagulant_bleeding
+    persona: pregnant
+    severity: 0
+  - dimension: anticoagulant_bleeding
+    persona: breastfeeding
+    severity: 0
+  - dimension: pediatric
+    persona: adult_18_64
+    severity: 0
+  - dimension: pediatric
+    persona: adult_65_plus
+    severity: 0
+  - dimension: pediatric
+    persona: teen_12_17
+    severity: 0
+  - dimension: pediatric
+    persona: child_6_11
+    severity: 0
+  - dimension: pediatric
+    persona: child_2_5
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 01da76d0-1979-4c45-9d39-c72ae4e4ffe2
+        section: "SPL v13: Directions (34068-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=01da76d0-1979-4c45-9d39-c72ae4e4ffe2
+        quote: children 2-5 years (34 to 47 lbs) ask a doctor
+  - dimension: pediatric
+    persona: under_2
+    severity: 3
+    citations:
+      - source: fda_label
+        document_id: 01da76d0-1979-4c45-9d39-c72ae4e4ffe2
+        section: "SPL v13: Directions (34068-7)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=01da76d0-1979-4c45-9d39-c72ae4e4ffe2
+        quote: children under 2 years (up to 33 lbs) do not use
+  - dimension: pediatric
+    persona: pregnant
+    severity: 0
+  - dimension: pediatric
+    persona: breastfeeding
+    severity: 0
+  - dimension: rebound_overuse
+    persona: adult_18_64
+    severity: 0
+  - dimension: rebound_overuse
+    persona: adult_65_plus
+    severity: 0
+  - dimension: rebound_overuse
+    persona: teen_12_17
+    severity: 0
+  - dimension: rebound_overuse
+    persona: child_6_11
+    severity: 0
+  - dimension: rebound_overuse
+    persona: child_2_5
+    severity: 0
+  - dimension: rebound_overuse
+    persona: under_2
+    severity: 0
+  - dimension: rebound_overuse
+    persona: pregnant
+    severity: 0
+  - dimension: rebound_overuse
+    persona: breastfeeding
+    severity: 0
+  - dimension: pregnancy_lactation
+    persona: adult_18_64
+    severity: 0
+  - dimension: pregnancy_lactation
+    persona: adult_65_plus
+    severity: 0
+  - dimension: pregnancy_lactation
+    persona: teen_12_17
+    severity: 0
+  - dimension: pregnancy_lactation
+    persona: child_6_11
+    severity: 0
+  - dimension: pregnancy_lactation
+    persona: child_2_5
+    severity: 0
+  - dimension: pregnancy_lactation
+    persona: under_2
+    severity: 0
+  - dimension: pregnancy_lactation
+    persona: pregnant
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 01da76d0-1979-4c45-9d39-c72ae4e4ffe2
+        section: "SPL v13: Pregnancy or breast-feeding (53414-9)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=01da76d0-1979-4c45-9d39-c72ae4e4ffe2
+        quote: If pregnant or breast-feeding, ask a health professional before use.
+  - dimension: pregnancy_lactation
+    persona: breastfeeding
+    severity: 2
+    citations:
+      - source: fda_label
+        document_id: 01da76d0-1979-4c45-9d39-c72ae4e4ffe2
+        section: "SPL v13: Pregnancy or breast-feeding (53414-9)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=01da76d0-1979-4c45-9d39-c72ae4e4ffe2
+        quote: If pregnant or breast-feeding, ask a health professional before use.
+  - dimension: duplicate_dosing
+    persona: adult_18_64
+    severity: 0
+  - dimension: duplicate_dosing
+    persona: adult_65_plus
+    severity: 0
+  - dimension: duplicate_dosing
+    persona: teen_12_17
+    severity: 0
+  - dimension: duplicate_dosing
+    persona: child_6_11
+    severity: 0
+  - dimension: duplicate_dosing
+    persona: child_2_5
+    severity: 0
+  - dimension: duplicate_dosing
+    persona: under_2
+    severity: 0
+  - dimension: duplicate_dosing
+    persona: pregnant
+    severity: 0
+  - dimension: duplicate_dosing
+    persona: breastfeeding
+    severity: 0
+  - dimension: excipients
+    persona: adult_18_64
+    severity: 0
+  - dimension: excipients
+    persona: adult_65_plus
+    severity: 0
+  - dimension: excipients
+    persona: teen_12_17
+    severity: 0
+  - dimension: excipients
+    persona: child_6_11
+    severity: 0
+  - dimension: excipients
+    persona: child_2_5
+    severity: 0
+  - dimension: excipients
+    persona: under_2
+    severity: 0
+  - dimension: excipients
+    persona: pregnant
+    severity: 0
+  - dimension: excipients
+    persona: breastfeeding
+    severity: 0
+  - dimension: local_skin
+    persona: adult_18_64
+    severity: 0
+  - dimension: local_skin
+    persona: adult_65_plus
+    severity: 0
+  - dimension: local_skin
+    persona: teen_12_17
+    severity: 0
+  - dimension: local_skin
+    persona: child_6_11
+    severity: 0
+  - dimension: local_skin
+    persona: child_2_5
+    severity: 0
+  - dimension: local_skin
+    persona: under_2
+    severity: 0
+  - dimension: local_skin
+    persona: pregnant
+    severity: 0
+  - dimension: local_skin
+    persona: breastfeeding
+    severity: 0
+  - dimension: efficacy_evidence
+    persona: adult_18_64
+    severity: 0
+  - dimension: efficacy_evidence
+    persona: adult_65_plus
+    severity: 0
+  - dimension: efficacy_evidence
+    persona: teen_12_17
+    severity: 0
+  - dimension: efficacy_evidence
+    persona: child_6_11
+    severity: 0
+  - dimension: efficacy_evidence
+    persona: child_2_5
+    severity: 0
+  - dimension: efficacy_evidence
+    persona: under_2
+    severity: 0
+  - dimension: efficacy_evidence
+    persona: pregnant
+    severity: 0
+  - dimension: efficacy_evidence
+    persona: breastfeeding
+    severity: 0
+modifiers:
+  - dimension: cardiovascular_bp
+    condition: heart_disease
+    severity_change: 2
+    citations:
+      - source: fda_label
+        document_id: 01da76d0-1979-4c45-9d39-c72ae4e4ffe2
+        section: "SPL v13: Ask a doctor (50569-3)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=01da76d0-1979-4c45-9d39-c72ae4e4ffe2
+        quote: a history of abnormal heart rhythm
+  - dimension: liver
+    condition: liver_disease
+    severity_change: 2
+    citations:
+      - source: fda_label
+        document_id: 01da76d0-1979-4c45-9d39-c72ae4e4ffe2
+        section: "SPL v13: Ask a doctor (50569-3)"
+        url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=01da76d0-1979-4c45-9d39-c72ae4e4ffe2
+        quote: a history of liver disease
+review_status: unreviewed
+notes:
+  Oral loperamide hydrochloride (the UNII on Imodium and store-brand labels). The heart alert applies
+  to anyone who takes more than directed and is rated 2 for every persona; no source singles out adults
+  65+. The heart disease modifier rests on "a history of abnormal heart rhythm", the closest condition
+  in the schema. Under the organ rule in pipeline/knowledge/README.md, the heart rating has a baseline
+  because the drug itself harms the heart (the heart alert), while liver disease is a clearance precaution,
+  so only a modifier.
