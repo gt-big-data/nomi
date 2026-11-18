@@ -41,14 +41,6 @@ function fixtureDb(): Dataset {
   };
 }
 
-test("the app bundles every example folder's scores", () => {
-  const source = readFileSync(new URL("./referenceScoreData.ts", import.meta.url), "utf8");
-  const bundled = [...source.matchAll(/examples\/([^/]+)\/expected-scores\.json/g)].map(
-    (match) => match[1],
-  );
-  assert.deepEqual(bundled.sort(), [...FOLDERS].sort());
-});
-
 test("checkRecords refuses a record the screen can't show safely", () => {
   const [good] = RECORDS;
   assert.throws(() => checkRecords([{ ...good, tier: "orange" }]), /unknown tier/);

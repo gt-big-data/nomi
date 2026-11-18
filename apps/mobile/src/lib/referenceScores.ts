@@ -1,14 +1,8 @@
 /**
- * Draft scores for the five reference products, until the scoring engine (NOMI-060) and score
- * tables (NOMI-056) exist.
- *
- * The records are the hand-computed ones in packages/schema/examples/<product>/expected-scores.json
- * (NOMI-015): one per demo profile, with the points each risk took off and the sources behind them.
- * They use a draft points convention (see that folder's README), so the app always says "draft"
- * next to them. They are matched by NDC11 only, so they describe the label version they were
- * worked out from; the scoring engine replaces them before a newer dataset ships.
- *
- * referenceScoreData.ts bundles the files; this module only reads them, so the tests run it in Node.
+ * Score records (packages/schema score-record) and how the result screen reads them: the risk rows,
+ * the notes no row shows, and the tier. The v0 engine (src/scoring/engine.ts) produces these
+ * records; the hand-computed ones in packages/schema/examples/<product>/expected-scores.json are
+ * its golden checks.
  */
 
 import { productTier, type ProductTier, type SchemaTier } from "../theme/tiers.ts";

@@ -14,14 +14,9 @@ import {
 import { openDataset } from "@/lib/dataset";
 import { lookupBarcode, strengthText, type Lookup, type Product } from "@/lib/db";
 import { DEMO_PROFILES, type ScoredFor, setScoredFor, useScoredFor } from "@/lib/demoProfiles";
-import { REFERENCE_SCORES } from "@/lib/referenceScoreData";
-import {
-  findScore,
-  profileNotes,
-  recordTier,
-  riskRows,
-  type ScoreRecord,
-} from "@/lib/referenceScores";
+import { profileNotes, recordTier, riskRows, type ScoreRecord } from "@/lib/referenceScores";
+import { score } from "@/scoring/engine";
+import { RATINGS } from "@/scoring/ratingsData";
 import { useSavedProfile } from "@/storage/activeProfile";
 import {
   conditionText,
@@ -137,15 +132,13 @@ function scanAgain() {
 const REVIEWED = new Set(["sampled_ok", "pharmacist_reviewed"]);
 
 /**
- * The score for this product and profile, and whether the product has a score for anyone, so the
- * screen can tell "not scored yet" from "not scored for this person". The one place scores come
- * from: the scoring engine replaces the draft reference scores here.
+ * The v0 engine's score for this product and profile, or the active ingredients it has no ratings
+ * for. The one place scores come from.
  */
-function scoreFor(ndc11: string, profile: Profile): { scorable: boolean; record?: ScoreRecord } {
-  return {
-    scorable: REFERENCE_SCORES.some((r) => r.ndc11 === ndc11),
-    record: findScore(REFERENCE_SCORES, ndc11, toScoringProfile(profile)),
-  };
+function scoreFor(product: Product, profile: Profile): { record?: ScoreRecord; missing: string[] } {
+  const { medication_types, ...rest } = toScoringProfile(profile);
+  const result = score(product, { ...rest, medicationTypes: medication_types }, RATINGS);
+  return "missing" in result ? { missing: result.missing } : { record: result, missing: [] };
 }
 
 function ProductResult({ lookup }: { lookup: Found }) {
@@ -155,9 +148,10 @@ function ProductResult({ lookup }: { lookup: Found }) {
   const profile = options.find((option) => option.id === scoredFor) ?? options[0];
   const { colors, space, text } = useTheme();
   // Only an in-scope product that resolved to one package may show a score.
-  const { scorable, record } =
-    lookup.status === "resolved" ? scoreFor(product.ndc11, profile) : { scorable: false };
-  const tier: ProductTier = record ? recordTier(record) : "none";
+  const { record, missing } =
+    lookup.status === "homeopathic" ? { missing: [] } : scoreFor(product, profile);
+  const shown = lookup.status === "resolved" ? record : undefined;
+  const tier: ProductTier = shown ? recordTier(shown) : "none";
 
   return (
     <>
@@ -178,21 +172,23 @@ function ProductResult({ lookup }: { lookup: Found }) {
 
       {/* The verdict and who it's for, together (docs/design/score-visualization.md). */}
       <View style={[styles.center, { gap: space[12] }]}>
-        <ScoreBadge tier={tier} score={record?.score} />
+        <ScoreBadge tier={tier} score={shown?.score} />
         <TierLabel tier={tier} align="center" />
-        {record && (
-          <Text style={[text("footnote"), { color: colors.text.secondary }]}>Draft score</Text>
+        {shown && (
+          <Text style={[text("footnote"), { color: colors.text.secondary }]}>
+            Draft score, rubric v0
+          </Text>
         )}
-        {scorable && <ProfileSwitcher options={options} selected={profile} />}
+        {shown && <ProfileSwitcher options={options} selected={profile} />}
       </View>
 
-      {record ? (
-        <ScoreDetails record={record} />
+      {shown ? (
+        <ScoreDetails record={shown} />
       ) : (
         <AlertBanner
           type="info"
-          title={unscoredTitle(lookup, scorable)}
-          body={unscoredBody(lookup, scorable)}
+          title={unscoredTitle(lookup)}
+          body={unscoredBody(lookup, missing)}
         />
       )}
 
@@ -217,28 +213,17 @@ function ProductResult({ lookup }: { lookup: Found }) {
   );
 }
 
-function unscoredTitle(lookup: Found, scorable: boolean): string {
-  switch (lookup.status) {
-    case "homeopathic":
-      return "Homeopathic product";
-    case "out_of_scope":
-      return "Not a product Nomi scores";
-    case "resolved":
-      return scorable ? "Not scored for this person yet" : "Not scored yet";
-  }
+function unscoredTitle(lookup: Found): string {
+  return lookup.status === "homeopathic" ? "Homeopathic product" : "Not scored yet";
 }
 
-function unscoredBody(lookup: Found, scorable: boolean): string {
-  switch (lookup.status) {
-    case "homeopathic":
-      return "It hasn't been evaluated by the FDA, so Nomi doesn't score it.";
-    case "out_of_scope":
-      return "Nomi scores over-the-counter medicines for pain, allergy, sleep, colds and digestion.";
-    case "resolved":
-      return scorable
-        ? "Pick another profile above to see a score."
-        : "We have this product's ingredients but haven't scored it yet.";
+function unscoredBody(lookup: Found, missing: string[]): string {
+  if (lookup.status === "homeopathic") {
+    return "It hasn't been evaluated by the FDA, so Nomi doesn't score it.";
   }
+  return missing.length > 0
+    ? `Nomi scores a product once every active ingredient is rated. Not rated yet: ${missing.join(", ")}.`
+    : "Nomi doesn't score this kind of product yet.";
 }
 
 /** What the saved profile's chip says. */
@@ -340,9 +325,9 @@ function ScoreDetails({ record }: { record: ScoreRecord }) {
         )}
       </View>
       <Text style={[text("footnote"), { color: colors.text.secondary }]}>
-        Draft score, worked out by hand from the FDA label and published guidelines. Each risk takes
-        its own points off, and the score stops at 0. Not medical advice: ask a pharmacist or doctor
-        before you take it.
+        Draft score from Nomi's v0 rules, using each ingredient's ratings from FDA labels and
+        published guidelines. Each risk takes its own points off, and the score stops at 0. Not
+        medical advice: ask a pharmacist or doctor before you take it.
       </Text>
     </>
   );
