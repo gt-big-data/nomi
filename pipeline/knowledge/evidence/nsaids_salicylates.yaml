@@ -1,6 +1,6 @@
 group: nsaids_salicylates
 compiled: 2026-11-18
-revised: 2026-11-18 (evidence rules v1.1)
+revised: 2026-11-18 (evidence rules v1.2)
 relative_risks:
 - ingredient: ibuprofen
   dimension: gi_bleeding
@@ -13,6 +13,7 @@ relative_risks:
   measure: RR
   estimate: 2.15
   ci95: [1.66, 2.79]
+  interval: confidence
   exposure: current use, low-medium daily dose, vs non-use of NSAIDs
   population: cohort and case-control studies 1980-2011, general populations (Europe, North America)
   grade: meta_analysis
@@ -21,7 +22,7 @@ relative_risks:
     url: https://pmc.ncbi.nlm.nih.gov/articles/PMC3714137/
     location: Results, dose analysis (text accompanying Figure 3)
     quote: For ibuprofen, RRs were 2.15 (95% CI 1.66, 2.79) for low-medium dose and 4.22 (95% CI 1.76, 10.12) for high dose.
-  selection_note: 'Most recent large meta-analysis of observational studies giving ingredient-specific pooled RRs (28 studies). Both dose strata the text quotes for ibuprofen are recorded (rule 14). dose_mg_per_day [null, 1200] is the range every included study''s low-medium stratum covers (cut-offs ranged from <=1200 to <2400 mg). Dose cut-offs come from Table IV (cut-off values for low-medium vs high daily dose, by study): ibuprofen <=1200 (Castellsague 2009, Garcia Rodriguez 2007), <=1500 (Garcia Rodriguez 1994, Perez-Gutthann 1997), <1800 (Laporte 2004), <2400 (Griffin 1991), 200 (Biskupiak 2006); naproxen <=1200, <=750, <=500, <=750, <500, <=750, 220. The text says the pooled ibuprofen and naproxen RRs were essentially unchanged when the studies with different cut-offs were excluded.'
+  selection_note: 'Most recent large meta-analysis of observational studies giving ingredient-specific pooled RRs (28 studies). Both dose strata the text quotes for ibuprofen are recorded (rule 14). dose_mg_per_day [null, 1200] is the range every included study''s low-medium stratum covers (cut-offs ranged from <=1200 to <2400 mg). Dose cut-offs come from Table IV (cut-off values for low-medium vs high daily dose, by study): ibuprofen <=1200 (Castellsague 2009, Garcia Rodriguez 2007), <=1500 (Garcia Rodriguez 1994, Perez-Gutthann 1997), <1800 (Laporte 2004), <2400 (Griffin 1991), 200 (Biskupiak 2006); naproxen <=1200, <=750, <=500, <=750, <500, <=750, 220. The text says the pooled ibuprofen and naproxen RRs were essentially unchanged when the studies with different cut-offs were excluded. Rule 20: meta-analysis; it reports no incidence in non-users.'
   match_note: Outcome is upper gastrointestinal complications (bleeding, perforation or obstruction) in field and database studies of serious events, which is section 1's upper GI bleeding or perforation; exposure is current use in the community; comparator is non-use of NSAIDs. Low-medium dose stratum.
 - ingredient: ibuprofen
   dimension: gi_bleeding
@@ -34,6 +35,7 @@ relative_risks:
   measure: RR
   estimate: 4.22
   ci95: [1.76, 10.12]
+  interval: confidence
   exposure: current use, high daily dose, vs non-use of NSAIDs
   population: cohort and case-control studies 1980-2011, general populations (Europe, North America)
   grade: meta_analysis
@@ -42,29 +44,74 @@ relative_risks:
     url: https://pmc.ncbi.nlm.nih.gov/articles/PMC3714137/
     location: Results, dose analysis (text accompanying Figure 3)
     quote: For ibuprofen, RRs were 2.15 (95% CI 1.66, 2.79) for low-medium dose and 4.22 (95% CI 1.76, 10.12) for high dose.
-  selection_note: 'Same source and sentence as the low-medium ibuprofen stratum. dose_mg_per_day [1201, null]: high dose started above 1200 mg in some included studies and at 1500 to 2400 mg in others. Dose cut-offs come from Table IV (cut-off values for low-medium vs high daily dose, by study): ibuprofen <=1200 (Castellsague 2009, Garcia Rodriguez 2007), <=1500 (Garcia Rodriguez 1994, Perez-Gutthann 1997), <1800 (Laporte 2004), <2400 (Griffin 1991), 200 (Biskupiak 2006); naproxen <=1200, <=750, <=500, <=750, <500, <=750, 220. The text says the pooled ibuprofen and naproxen RRs were essentially unchanged when the studies with different cut-offs were excluded.'
+  selection_note: 'Same source and sentence as the low-medium ibuprofen stratum. dose_mg_per_day [1201, null]: high dose started above 1200 mg in some included studies and at 1500 to 2400 mg in others. Dose cut-offs come from Table IV (cut-off values for low-medium vs high daily dose, by study): ibuprofen <=1200 (Castellsague 2009, Garcia Rodriguez 2007), <=1500 (Garcia Rodriguez 1994, Perez-Gutthann 1997), <1800 (Laporte 2004), <2400 (Griffin 1991), 200 (Biskupiak 2006); naproxen <=1200, <=750, <=500, <=750, <500, <=750, 220. The text says the pooled ibuprofen and naproxen RRs were essentially unchanged when the studies with different cut-offs were excluded. Rule 20: meta-analysis; it reports no incidence in non-users.'
   match_note: Outcome is upper gastrointestinal complications (bleeding, perforation or obstruction) in field and database studies of serious events, which is section 1's upper GI bleeding or perforation; exposure is current use in the community; comparator is non-use of NSAIDs. High dose stratum.
 - ingredient: ibuprofen
   dimension: gi_bleeding
-  applies_to: {persona: all, condition: null, medication_type: ssri_snri}
+  applies_to: {persona: all, condition: null, medication_type: null}
   outcome: upper_gi_bleeding
   outcome_match: true
   exposure_window: community_oral
   comparator: non_use
-  dose_mg_per_day: null
+  dose_mg_per_day: [null, 1199]
   measure: OR
-  estimate: 4.25
-  ci95: [2.82, 6.42]
-  exposure: concurrent SSRI plus NSAID use vs use of neither (joint exposure, not NSAID effect within SSRI users)
-  population: 15 case-control and 4 cohort studies, adults
+  estimate: 1.1
+  ci95: [0.6, 2.0]
+  interval: confidence
+  exposure: ibuprofen <1200 mg/day in the week before the index day, vs non-use (adjusted OR)
+  population: individual patient data from 3 hospital case-control studies (Catalonia, England, Scotland, Sweden); 2,472 cases of upper GI bleeding, 5,877 controls
   grade: meta_analysis
   source:
-    citation: 'Anglin R, Yuan Y, Moayyedi P, et al. Risk of upper gastrointestinal bleeding with selective serotonin reuptake inhibitors with or without concurrent nonsteroidal anti-inflammatory use: a systematic review and meta-analysis. Am J Gastroenterol 2014;109(6):811-9'
-    url: https://pubmed.ncbi.nlm.nih.gov/24777151/
-    location: Abstract, Results
-    quote: The risk of upper GI bleeding was further increased with the use of both SSRI and NSAID medications (OR=4.25, 95% CI=2.82,6.42).
-  selection_note: 'Only meta-analysis found reporting NSAID plus SSRI for upper GI bleeding against non-use of both. CAUTION: this is the joint OR versus neither drug, so it includes the SSRI''s own effect (SSRI alone OR 1.66). SNRIs not studied. Haghbin et al. Dig Dis Sci 2023 (PMID 36526813) is newer but pools any GI bleeding (not upper GI) and compares SSRI plus NSAID against SSRI alone (OR 2.14, 1.52-3.02), so it does not report this outcome and comparator. Class-level NSAID estimate (no ingredient-specific value in the source); applied to ibuprofen and naproxen alike.'
-  match_note: Outcome is upper GI bleeding; exposure is concurrent current use in the community; comparator is use of neither drug, so non_use.
+    citation: 'Lewis SC, Langman MJS, Laporte JR, Matthews JNS, Rawlins MD, Wiholm BE. Dose-response relationships between individual nonaspirin nonsteroidal anti-inflammatory drugs (NANSAIDs) and serious upper gastrointestinal bleeding: a meta-analysis based on individual patient data. Br J Clin Pharmacol 2002;54(3):320-6. PMID 12236853'
+    url: https://pmc.ncbi.nlm.nih.gov/articles/PMC1874428/
+    location: Table 4, Ibuprofen rows (cases, controls, OR (95% CI))
+    quote: Ibuprofen < 1200 22 58 1.1 (0.6, 2.0)
+  selection_note: 'Rule 21: every dose stratum of Lewis Table 4 for this ingredient is recorded; the build picks the one holding the label maximum. Table 4 footnotes: ''(*) All doses in mg day-1'' and ''All odds ratios are relative to nonuse of any NANSAID or aspirin''. The PDF (scanned 2002 typesetting) renders the ''>='' sign of the top stratum as a control glyph; the row order (<, range, then the open top stratum) shows it is ''>=''. Rule 20: a case-control design; the paper reports no incidence in non-users.'
+  match_note: Outcome is serious upper GI bleeding in hospital cases (Lewis title and Methods), section 1's outcome; exposure is the daily dose taken in the week before the index day, community use; comparator is non-use (Table 4 footnote). Stratum <1200 mg/day.
+- ingredient: ibuprofen
+  dimension: gi_bleeding
+  applies_to: {persona: all, condition: null, medication_type: null}
+  outcome: upper_gi_bleeding
+  outcome_match: true
+  exposure_window: community_oral
+  comparator: non_use
+  dose_mg_per_day: [1200, 1799]
+  measure: OR
+  estimate: 1.8
+  ci95: [0.8, 3.7]
+  interval: confidence
+  exposure: ibuprofen 1200-1799 mg/day in the week before the index day, vs non-use (adjusted OR)
+  population: individual patient data from 3 hospital case-control studies (Catalonia, England, Scotland, Sweden); 2,472 cases of upper GI bleeding, 5,877 controls
+  grade: meta_analysis
+  source:
+    citation: 'Lewis SC, Langman MJS, Laporte JR, Matthews JNS, Rawlins MD, Wiholm BE. Dose-response relationships between individual nonaspirin nonsteroidal anti-inflammatory drugs (NANSAIDs) and serious upper gastrointestinal bleeding: a meta-analysis based on individual patient data. Br J Clin Pharmacol 2002;54(3):320-6. PMID 12236853'
+    url: https://pmc.ncbi.nlm.nih.gov/articles/PMC1874428/
+    location: Table 4, Ibuprofen rows (cases, controls, OR (95% CI))
+    quote: 1200–1799 18 39 1.8 (0.8, 3.7)
+  selection_note: 'Rule 21: every dose stratum of Lewis Table 4 for this ingredient is recorded; the build picks the one holding the label maximum. Table 4 footnotes: ''(*) All doses in mg day-1'' and ''All odds ratios are relative to nonuse of any NANSAID or aspirin''. The PDF (scanned 2002 typesetting) renders the ''>='' sign of the top stratum as a control glyph; the row order (<, range, then the open top stratum) shows it is ''>=''. Rule 20: a case-control design; the paper reports no incidence in non-users.'
+  match_note: Outcome is serious upper GI bleeding in hospital cases (Lewis title and Methods), section 1's outcome; exposure is the daily dose taken in the week before the index day, community use; comparator is non-use (Table 4 footnote). Stratum 1200-1799 mg/day.
+- ingredient: ibuprofen
+  dimension: gi_bleeding
+  applies_to: {persona: all, condition: null, medication_type: null}
+  outcome: upper_gi_bleeding
+  outcome_match: true
+  exposure_window: community_oral
+  comparator: non_use
+  dose_mg_per_day: [1800, null]
+  measure: OR
+  estimate: 4.6
+  ci95: [0.9, 22.3]
+  interval: confidence
+  exposure: ibuprofen >=1800 mg/day in the week before the index day, vs non-use (adjusted OR)
+  population: individual patient data from 3 hospital case-control studies (Catalonia, England, Scotland, Sweden); 2,472 cases of upper GI bleeding, 5,877 controls
+  grade: meta_analysis
+  source:
+    citation: 'Lewis SC, Langman MJS, Laporte JR, Matthews JNS, Rawlins MD, Wiholm BE. Dose-response relationships between individual nonaspirin nonsteroidal anti-inflammatory drugs (NANSAIDs) and serious upper gastrointestinal bleeding: a meta-analysis based on individual patient data. Br J Clin Pharmacol 2002;54(3):320-6. PMID 12236853'
+    url: https://pmc.ncbi.nlm.nih.gov/articles/PMC1874428/
+    location: Table 4, Ibuprofen rows (cases, controls, OR (95% CI))
+    quote: ≥ 1800 6 6 4.6 (0.9, 22.3)
+  selection_note: 'Rule 21: every dose stratum of Lewis Table 4 for this ingredient is recorded; the build picks the one holding the label maximum. Table 4 footnotes: ''(*) All doses in mg day-1'' and ''All odds ratios are relative to nonuse of any NANSAID or aspirin''. The PDF (scanned 2002 typesetting) renders the ''>='' sign of the top stratum as a control glyph; the row order (<, range, then the open top stratum) shows it is ''>=''. Rule 20: a case-control design; the paper reports no incidence in non-users.'
+  match_note: Outcome is serious upper GI bleeding in hospital cases (Lewis title and Methods), section 1's outcome; exposure is the daily dose taken in the week before the index day, community use; comparator is non-use (Table 4 footnote). Stratum >=1800 mg/day.
 - ingredient: ibuprofen
   dimension: kidney
   applies_to: {persona: all, condition: null, medication_type: null}
@@ -76,15 +123,16 @@ relative_risks:
   measure: OR
   estimate: 1.73
   ci95: [1.44, 2.07]
+  interval: confidence
   exposure: current NSAID exposure vs non-use (random-effects pool of adjusted ORs)
   population: 10 observational studies of community-dwelling adults (UK, US, Canada, Netherlands, Australia), searched to June 2016
   grade: meta_analysis
-  source: &id001
+  source:
     citation: 'Zhang X, Donnan PT, Bell S, Guthrie B. Non-steroidal anti-inflammatory drug induced acute kidney injury in the community dwelling general population and people with chronic kidney disease: systematic review and meta-analysis. BMC Nephrol 2017;18(1):256. PMID 28764659'
     url: https://pmc.ncbi.nlm.nih.gov/articles/PMC5540416/
     location: Abstract, Results; outcome definitions in Table 1 and Results
     quote: In the general population, the pooled odds ratio (OR) of AKI for current NSAID exposure was 1.73 (95%CI 1.44 to 2.07)
-  selection_note: 'Rule 13 applied. Meta-analyses opened: Zhang 2017 (BMC Nephrol, 10 studies, most recent and largest general-population pool, OR 1.73) and Ungprasert 2015 (Eur J Intern Med, PMID 25862494, 5 cohort studies; abstract gives only the range 1.58-2.11 for individual NSAIDs, no quotable pooled estimate). No newer general-population meta-analysis of NSAIDs and AKI was found in PubMed (2016-2026; Calvo 2025 covers only triple-whammy combinations, Rom J Intern Med 2025 covers CKD). Zhang''s pooled outcome is not hospital AKI: per its Results, ''Half of the studies used laboratory data to define the presence of AKI'', including Murray 1990 (outpatient creatinine rises) and Lafrance 2009 (creatinine increase >50%, per the Lafrance abstract), and Leonard 2012 used GP diagnostic codes. So no meta-analysis reports a pooled estimate for hospital AKI, and rule 13 does not displace a single study. Of the general-population studies in Zhang''s Table 1 that count only hospital admissions for AKI, Evans 1995 has the largest population (420,600 Tayside residents, 207 validated cases) and is used; Perez Gutthann 1996 (hospitalisation for ARF, 28 cases, OR 4.1) is smaller. Class-level NSAID estimate (no ingredient-specific value in the source); applied to ibuprofen and naproxen alike.'
+  selection_note: 'Rule 13 applied. Meta-analyses opened: Zhang 2017 (BMC Nephrol, 10 studies, most recent and largest general-population pool, OR 1.73) and Ungprasert 2015 (Eur J Intern Med, PMID 25862494, 5 cohort studies; abstract gives only the range 1.58-2.11 for individual NSAIDs, no quotable pooled estimate). No newer general-population meta-analysis of NSAIDs and AKI was found in PubMed (2016-2026; Calvo 2025 covers only triple-whammy combinations, Rom J Intern Med 2025 covers CKD). Zhang''s pooled outcome is not hospital AKI: per its Results, ''Half of the studies used laboratory data to define the presence of AKI'', including Murray 1990 (outpatient creatinine rises) and Lafrance 2009 (creatinine increase >50%, per the Lafrance abstract), and Leonard 2012 used GP diagnostic codes. So no meta-analysis reports a pooled estimate for hospital AKI, and rule 13 does not displace a single study. Of the general-population studies in Zhang''s Table 1 that count only hospital admissions for AKI, Evans 1995 has the largest population (420,600 Tayside residents, 207 validated cases) and is used; Perez Gutthann 1996 (hospitalisation for ARF, 28 cases, OR 4.1) is smaller. Class-level NSAID estimate (no ingredient-specific value in the source); applied to ibuprofen and naproxen alike. Rule 20: meta-analysis; the source reports no incidence in non-users.'
   match_note: 'Outcome does not match rule 10: the pool mixes hospital-admission AKI with laboratory-defined AKI (half of the 10 studies) and GP-coded AKI, so it is broader than hospital AKI. Exposure is current community use; comparator non-use.'
 - ingredient: ibuprofen
   dimension: kidney
@@ -97,15 +145,21 @@ relative_risks:
   measure: OR
   estimate: 2.2
   ci95: [1.49, 3.25]
+  interval: confidence
   exposure: dispensed oral NSAID in the 90 days before the index date (recent exposure) vs no recent exposure; community controls
   population: Tayside, Scotland, record-linkage population of 420,600; 207 hospitalised ARF cases validated by a renal physician, 1990-1992
   grade: case_control
-  source: &id002
+  source:
     citation: Evans JM, McGregor E, McMahon AD, et al. Non-steroidal anti-inflammatory drugs and hospitalization for acute renal failure. QJM 1995;88(8):551-7. PMID 7648241
     url: https://pubmed.ncbi.nlm.nih.gov/7648241/
     location: Abstract
     quote: When community controls were used, recent exposure to NSAIDs and previous exposure to aspirin were independently associated with hospitalization for ARF, with adjusted odds ratios of 2.20 (1.49-3.25) and 2.19 (1.46-3.30), respectively.
-  selection_note: 'Rule 13 applied. Meta-analyses opened: Zhang 2017 (BMC Nephrol, 10 studies, most recent and largest general-population pool, OR 1.73) and Ungprasert 2015 (Eur J Intern Med, PMID 25862494, 5 cohort studies; abstract gives only the range 1.58-2.11 for individual NSAIDs, no quotable pooled estimate). No newer general-population meta-analysis of NSAIDs and AKI was found in PubMed (2016-2026; Calvo 2025 covers only triple-whammy combinations, Rom J Intern Med 2025 covers CKD). Zhang''s pooled outcome is not hospital AKI: per its Results, ''Half of the studies used laboratory data to define the presence of AKI'', including Murray 1990 (outpatient creatinine rises) and Lafrance 2009 (creatinine increase >50%, per the Lafrance abstract), and Leonard 2012 used GP diagnostic codes. So no meta-analysis reports a pooled estimate for hospital AKI, and rule 13 does not displace a single study. Of the general-population studies in Zhang''s Table 1 that count only hospital admissions for AKI, Evans 1995 has the largest population (420,600 Tayside residents, 207 validated cases) and is used; Perez Gutthann 1996 (hospitalisation for ARF, 28 cases, OR 4.1) is smaller. Class-level NSAID estimate (no ingredient-specific value in the source); applied to ibuprofen and naproxen alike.'
+  unexposed_incidence:
+    annual_incidence: 0.000185
+    as_reported: '207 validated hospitalised ARF cases among 420,600 residents; the database population is resident since May 1990 and cases were collected between 1990 and 1992, taken as May 1990 to December 1992 = 32 months = 2.67 years. 207 / 420,600 / 2.67 = 0.000185 per person-year. This is the whole study population, NSAID users included: the abstract reports no rate for non-users alone, so it slightly overstates the unexposed rate. The end month is not stated in the abstract (full text not opened).'
+    location: Abstract
+    quote: We conducted a case-control study using a purpose-built record-linkage database for a population of 420,600 patients, resident in Tayside since May 1990. Patients (n = 207) hospitalized with a diagnostic code for ARF between 1990 and 1992 had their diagnosis validated by a renal physician.
+  selection_note: 'Rule 13 applied. Meta-analyses opened: Zhang 2017 (BMC Nephrol, 10 studies, most recent and largest general-population pool, OR 1.73) and Ungprasert 2015 (Eur J Intern Med, PMID 25862494, 5 cohort studies; abstract gives only the range 1.58-2.11 for individual NSAIDs, no quotable pooled estimate). No newer general-population meta-analysis of NSAIDs and AKI was found in PubMed (2016-2026; Calvo 2025 covers only triple-whammy combinations, Rom J Intern Med 2025 covers CKD). Zhang''s pooled outcome is not hospital AKI: per its Results, ''Half of the studies used laboratory data to define the presence of AKI'', including Murray 1990 (outpatient creatinine rises) and Lafrance 2009 (creatinine increase >50%, per the Lafrance abstract), and Leonard 2012 used GP diagnostic codes. So no meta-analysis reports a pooled estimate for hospital AKI, and rule 13 does not displace a single study. Of the general-population studies in Zhang''s Table 1 that count only hospital admissions for AKI, Evans 1995 has the largest population (420,600 Tayside residents, 207 validated cases) and is used; Perez Gutthann 1996 (hospitalisation for ARF, 28 cases, OR 4.1) is smaller. Class-level NSAID estimate (no ingredient-specific value in the source); applied to ibuprofen and naproxen alike. Rule 20: the abstract gives the case count and population (see unexposed_incidence); this is the whole-population rate, as the abstract gives no non-user rate.'
   match_note: Cases were hospitalised with a diagnostic code for ARF validated by a renal physician, which is section 1's AKI at the serious level; exposure is recent community dispensing; comparator is no recent NSAID exposure.
 - ingredient: ibuprofen
   dimension: kidney
@@ -118,6 +172,7 @@ relative_risks:
   measure: RR
   estimate: 3.2
   ci95: [1.8, 5.8]
+  interval: confidence
   exposure: current NSAID use vs non-use
   population: UK GPRD, 386,916 patients aged 50-84, nested case-control, 103 validated idiopathic ARF cases
   grade: case_control
@@ -126,7 +181,7 @@ relative_risks:
     url: https://pubmed.ncbi.nlm.nih.gov/15754275/
     location: Abstract, Results
     quote: Current users of NSAIDs had a relative risk (RR) for ARF of 3.2 (95% confidence interval [CI], 1.8 to 5.8)
-  selection_note: Previously the general row. Kept for the audit trail; the general row is now Evans 1995 (see that row's note). Class-level NSAID estimate (no ingredient-specific value in the source); applied to ibuprofen and naproxen alike.
+  selection_note: 'Previously the general row. Kept for the audit trail; the general row is now Evans 1995 (see that row''s note). Class-level NSAID estimate (no ingredient-specific value in the source); applied to ibuprofen and naproxen alike. Rule 20: the abstract reports no incidence in non-users (full text not opened).'
   match_note: 'Outcome does not match rule 10 as far as can be checked: the abstract defines cases as ''a first-ever diagnosis of clinical ARF'' confirmed by a specialist with creatinine or urea thresholds, not as hospital admissions; the full text was not opened. Exposure is current community use; comparator non-use.'
 - ingredient: ibuprofen
   dimension: kidney
@@ -139,15 +194,16 @@ relative_risks:
   measure: OR
   estimate: 1.63
   ci95: [1.22, 2.19]
+  interval: confidence
   exposure: current NSAID exposure vs non-use, among people with CKD (pooled crude ORs)
   population: people with chronic kidney disease in 5 case-control studies (Evans 1995, Griffin 2000, Schneider 2006, Lafrance 2009, Henry 1997)
   grade: meta_analysis
-  source: &id003
+  source:
     citation: 'Zhang X, Donnan PT, Bell S, Guthrie B. Non-steroidal anti-inflammatory drug induced acute kidney injury in the community dwelling general population and people with chronic kidney disease: systematic review and meta-analysis. BMC Nephrol 2017;18(1):256. PMID 28764659'
     url: https://pmc.ncbi.nlm.nih.gov/articles/PMC5540416/
     location: Abstract, Results; outcome definitions in Table 1 and Results
     quote: In people with CKD, individual study OR of AKI due to current NSAID exposure ranged from 1.12 to 5.25, with pooled estimate OR 1.63 (95% CI 1.22 to 2.19).
-  selection_note: Only meta-analysis found giving an NSAID-AKI estimate within people with CKD. Crude ORs (most studies gave no adjusted CKD estimate). Class-level NSAID estimate (no ingredient-specific value in the source); applied to ibuprofen and naproxen alike.
+  selection_note: 'Only meta-analysis found giving an NSAID-AKI estimate within people with CKD. Crude ORs (most studies gave no adjusted CKD estimate). Class-level NSAID estimate (no ingredient-specific value in the source); applied to ibuprofen and naproxen alike. Rule 20: meta-analysis; the source reports no incidence in non-users.'
   match_note: 'Comparator is CKD patients not using NSAIDs, so within_group with condition kidney_disease. Outcome does not match rule 10: one of the five pooled studies (Lafrance 2009) defined AKI as a creatinine increase of more than 50%, not a hospital admission.'
 - ingredient: ibuprofen
   dimension: kidney
@@ -160,6 +216,7 @@ relative_risks:
   measure: RR
   estimate: 2.3
   ci95: [1.6, 3.32]
+  interval: confidence
   exposure: new use of nonselective non-naproxen NSAIDs, within 30 days of starting, vs non-use
   population: Quebec, 121,722 new NSAID users older than 65, 1999-2002, nested case-control, hospitalisation for acute renal failure
   grade: case_control
@@ -168,7 +225,7 @@ relative_risks:
     url: https://pubmed.ncbi.nlm.nih.gov/17005625/
     location: Abstract
     quote: 'nonselective, non-naproxen NSAIDs (RR = 2.30, 95% CI: 1.60, 3.32)'
-  selection_note: No ibuprofen-specific estimate for 65+ found; this group estimate covers nonselective NSAIDs other than naproxen, which includes ibuprofen. No meta-analysis reports a 65+ pooled estimate (Zhang 2017's older-people subgroup is age >50 and mixes outcome definitions).
+  selection_note: 'No ibuprofen-specific estimate for 65+ found; this group estimate covers nonselective NSAIDs other than naproxen, which includes ibuprofen. No meta-analysis reports a 65+ pooled estimate (Zhang 2017''s older-people subgroup is age >50 and mixes outcome definitions). Rule 20: the cohort is all new NSAID users and the abstract reports no incidence in an unexposed group (full text not opened).'
   match_note: Outcome is hospitalisation for acute renal failure (abstract), matching section 1; exposure is the first 30 days of community NSAID use; the abstract compares current exposure with no current exposure among people over 65 (the reference category is not named in the abstract), recorded as non_use.
 - ingredient: ibuprofen
   dimension: kidney
@@ -181,6 +238,7 @@ relative_risks:
   measure: RR
   estimate: 1.46
   ci95: [0.96, 2.24]
+  interval: confidence
   exposure: NSAID added to diuretics, first 30 days of NSAID use, vs diuretics only (Table 3 reference)
   population: UK CPRD linked to HES, 487,372 antihypertensive users (mean age about 77), hospital-coded AKI
   grade: case_control
@@ -189,12 +247,12 @@ relative_risks:
     url: https://pmc.ncbi.nlm.nih.gov/articles/PMC3541472/
     location: Table 3, 'Diuretics plus NSAIDs', row 'Duration ≤30 days', adjusted rate ratio
     quote: Duration‡ ≤30 days | 32 (1.4) | 208 (1.0) | 1.87 (1.25 to 2.79) | 1.46 (0.96 to 2.24)
-  selection_note: Large study with hospital-coded AKI comparing NSAID add-on against diuretics without NSAIDs. <=30 days row chosen to match a short OTC course; all-duration adjusted RR was 1.02 (0.81-1.28). Triple whammy (diuretic plus ACE inhibitor/ARB plus NSAID) is not encoded because applies_to takes one medication type. Class-level NSAID estimate (no ingredient-specific value in the source); applied to ibuprofen and naproxen alike.
+  selection_note: 'Large study with hospital-coded AKI comparing NSAID add-on against diuretics without NSAIDs. <=30 days row chosen to match a short OTC course; all-duration adjusted RR was 1.02 (0.81-1.28). Triple whammy (diuretic plus ACE inhibitor/ARB plus NSAID) is not encoded because applies_to takes one medication type. Class-level NSAID estimate (no ingredient-specific value in the source); applied to ibuprofen and naproxen alike. Rule 20: the paper reports only the whole cohort''s rate (''incidence rate of 7/10 000 ... person years'', all 487,372 antihypertensive users, NSAID users and all drug classes included), not the rate in its ''Diuretics only'' reference group, so no unexposed_incidence is recorded.'
   match_note: Cases were first hospital admissions with AKI (HES ICD-10 N17 in primary position), matching section 1; exposure is current community use in its first 30 days; Table 3's reference is 'Diuretics only', so the comparator is within_group and applies_to is medication_type diuretics.
 - ingredient: ibuprofen
   dimension: cardiovascular_bp
   applies_to: {persona: all, condition: null, medication_type: null}
-  outcome: mi_stroke
+  outcome: mi
   outcome_match: true
   exposure_window: community_oral
   comparator: non_use
@@ -202,6 +260,7 @@ relative_risks:
   measure: OR
   estimate: 1.48
   ci95: [1.0, 2.26]
+  interval: credible
   exposure: current use, any dose, for 1-7 days, vs no NSAID in the preceding year
   population: 446,763 people (61,460 acute MI) from Quebec RAMQ (elderly), Finland, UK GPRD and Saskatchewan databases
   grade: meta_analysis
@@ -210,8 +269,96 @@ relative_risks:
     url: https://pmc.ncbi.nlm.nih.gov/articles/PMC5423546/
     location: 'Table 2, pooled studies column, row ''Current: Any dose for 1-7 days''; CI is a 95% credible interval'
     quote: Any dose for 1-7 days | 192 (0.1) | 1.46 (0.99 to 2.12) | NA | 1.47 (0.89 to 2.61) | 117 (0.7) | 1.41 (0.95 to 2.04) | 15 (0.1) | 1.55 (0.99 to 2.99) | 1.48 (1.00 to 2.26)
-  selection_note: Most recent individual-patient-data meta-analysis with the largest MI case count; 1-7 day use matches a short OTC course. Outcome is MI only (not stroke or heart failure). McGettigan & Henry 2011 (PLoS Med) composite CV events gave ibuprofen 1.18 (1.11-1.25), naproxen 1.09 (1.02-1.16) for all doses and durations. Table 2 gives dose strata (<=1200/>1200 mg ibuprofen, <=750/>750 mg naproxen) only for 8-30 and >30 days of use; the 1-7 day row is any dose, so dose_mg_per_day is null.
-  match_note: Outcome is acute myocardial infarction, which is part of section 1's MI, stroke or heart failure outcome; exposure is 1-7 days of current community use; comparator is no NSAID in the preceding year.
+  selection_note: 'Most recent individual-patient-data meta-analysis with the largest MI case count; 1-7 day use matches a short OTC course. Outcome is MI only (not stroke or heart failure). McGettigan & Henry 2011 (PLoS Med) composite CV events gave ibuprofen 1.18 (1.11-1.25), naproxen 1.09 (1.02-1.16) for all doses and durations. Table 2 gives dose strata (<=1200/>1200 mg ibuprofen, <=750/>750 mg naproxen) only for 8-30 and >30 days of use; the 1-7 day row is any dose, so dose_mg_per_day is null. The dose strata are recorded as separate rows (rule 21). Rule 20: it reports no incidence in non-users.'
+  match_note: 'Outcome is acute myocardial infarction only (hospital admission is the index date), so outcome mi (rule 24), paired only with an MI baseline. Exposure is 1-7 days of current community use; comparator is no NSAID in the preceding year. Intervals are Bayesian 95% credible intervals (interval: credible, rule 27).'
+- ingredient: ibuprofen
+  dimension: cardiovascular_bp
+  applies_to: {persona: all, condition: null, medication_type: null}
+  outcome: mi
+  outcome_match: true
+  exposure_window: community_oral
+  comparator: non_use
+  dose_mg_per_day: [null, 1200]
+  measure: OR
+  estimate: 1.04
+  ci95: [0.72, 1.35]
+  interval: credible
+  exposure: current use, <=1200 mg/day for 8-30 days, vs no NSAID in the preceding year
+  population: 446,763 people (61,460 acute MI) from Quebec RAMQ (elderly), Finland, UK GPRD and Saskatchewan databases
+  grade: meta_analysis
+  source:
+    citation: 'Bally M, Dendukuri N, Rich B, et al. Risk of acute myocardial infarction with NSAIDs in real world use: bayesian meta-analysis of individual patient data. BMJ 2017;357:j1909'
+    url: https://pmc.ncbi.nlm.nih.gov/articles/PMC5423546/
+    location: Table 2, pooled studies column (last), row '<=1200 mg/day for 8-30 days' under Ibuprofen; intervals are 95% credible intervals
+    quote: ≤1200 mg/day for 8-30 days | 199 (0.1) | 0.97 (0.61 to 1.33) | | 918 (0.5) | 1.22 (1.03 to 1.46) | | 278 (1.6) | 0.94 (0.66 to 1.25) | | 17 (0.1) | 1.04 (0.57 to 1.61) | | 1.04 (0.72 to 1.35)
+  selection_note: 'Rule 21: Bally Table 2 reports dose strata for 8-30 days and >30 days of current use; every stratum is recorded and the build picks by rule. Rule 20: nested case-control IPD meta-analysis; it reports no incidence in non-users.'
+  match_note: Outcome is acute myocardial infarction (hospital admission is the index date), so outcome mi (rule 24). Comparator is no NSAID in the year before the index date. Exposure is 8-30 days of current community use, community_oral.
+- ingredient: ibuprofen
+  dimension: cardiovascular_bp
+  applies_to: {persona: all, condition: null, medication_type: null}
+  outcome: mi
+  outcome_match: true
+  exposure_window: community_oral
+  comparator: non_use
+  dose_mg_per_day: [1201, null]
+  measure: OR
+  estimate: 1.75
+  ci95: [1.0, 2.93]
+  interval: credible
+  exposure: current use, >1200 mg/day for 8-30 days, vs no NSAID in the preceding year
+  population: 446,763 people (61,460 acute MI) from Quebec RAMQ (elderly), Finland, UK GPRD and Saskatchewan databases
+  grade: meta_analysis
+  source:
+    citation: 'Bally M, Dendukuri N, Rich B, et al. Risk of acute myocardial infarction with NSAIDs in real world use: bayesian meta-analysis of individual patient data. BMJ 2017;357:j1909'
+    url: https://pmc.ncbi.nlm.nih.gov/articles/PMC5423546/
+    location: Table 2, pooled studies column (last), row '>1200 mg/day for 8-30 days' under Ibuprofen; intervals are 95% credible intervals
+    quote: '>1200 mg/day for 8-30 days | 61 (0.03) | 1.77 (1.02 to 2.96) | | NA | 1.74 (0.90 to 3.24) | | 34 (0.2) | 1.72 (0.98 to 2.85) | | 17 (0.1) | 1.75 (0.96 to 3.10) | | 1.75 (1.00 to 2.93)'
+  selection_note: 'Rule 21: Bally Table 2 reports dose strata for 8-30 days and >30 days of current use; every stratum is recorded and the build picks by rule. Rule 20: nested case-control IPD meta-analysis; it reports no incidence in non-users.'
+  match_note: Outcome is acute myocardial infarction (hospital admission is the index date), so outcome mi (rule 24). Comparator is no NSAID in the year before the index date. Exposure is 8-30 days of current community use, community_oral.
+- ingredient: ibuprofen
+  dimension: cardiovascular_bp
+  applies_to: {persona: all, condition: null, medication_type: null}
+  outcome: mi
+  outcome_match: true
+  exposure_window: long_term
+  comparator: non_use
+  dose_mg_per_day: [null, 1200]
+  measure: OR
+  estimate: 1.32
+  ci95: [1.02, 1.74]
+  interval: credible
+  exposure: current use, <=1200 mg/day for >30 days, vs no NSAID in the preceding year
+  population: 446,763 people (61,460 acute MI) from Quebec RAMQ (elderly), Finland, UK GPRD and Saskatchewan databases
+  grade: meta_analysis
+  source:
+    citation: 'Bally M, Dendukuri N, Rich B, et al. Risk of acute myocardial infarction with NSAIDs in real world use: bayesian meta-analysis of individual patient data. BMJ 2017;357:j1909'
+    url: https://pmc.ncbi.nlm.nih.gov/articles/PMC5423546/
+    location: Table 2, pooled studies column (last), row '<=1200 mg/day for >30 days' under Ibuprofen; intervals are 95% credible intervals
+    quote: ≤1200 mg/day for >30 days | 114 (0.05) | 1.43 (1.08 to 2.28) | | 1173 (0.7) | 1.39 (1.21 to 1.60) | | 626 (3.6) | 1.19 (0.96 to 1.44) | | 10 (0.04) | 1.29 (0.78 to 1.95) | | 1.32 (1.02 to 1.74)
+  selection_note: 'Rule 21: Bally Table 2 reports dose strata for 8-30 days and >30 days of current use; every stratum is recorded and the build picks by rule. Rule 20: nested case-control IPD meta-analysis; it reports no incidence in non-users.'
+  match_note: Outcome is acute myocardial infarction (hospital admission is the index date), so outcome mi (rule 24). Comparator is no NSAID in the year before the index date. Exposure is more than 30 days of continuous current use, i.e. defined by months of use, so long_term (rule 11).
+- ingredient: ibuprofen
+  dimension: cardiovascular_bp
+  applies_to: {persona: all, condition: null, medication_type: null}
+  outcome: mi
+  outcome_match: true
+  exposure_window: long_term
+  comparator: non_use
+  dose_mg_per_day: [1201, null]
+  measure: OR
+  estimate: 1.47
+  ci95: [1.04, 2.04]
+  interval: credible
+  exposure: current use, >1200 mg/day for >30 days, vs no NSAID in the preceding year
+  population: 446,763 people (61,460 acute MI) from Quebec RAMQ (elderly), Finland, UK GPRD and Saskatchewan databases
+  grade: meta_analysis
+  source:
+    citation: 'Bally M, Dendukuri N, Rich B, et al. Risk of acute myocardial infarction with NSAIDs in real world use: bayesian meta-analysis of individual patient data. BMJ 2017;357:j1909'
+    url: https://pmc.ncbi.nlm.nih.gov/articles/PMC5423546/
+    location: Table 2, pooled studies column (last), row '>1200 mg/day for >30 days' under Ibuprofen; intervals are 95% credible intervals
+    quote: '>1200 mg/day for >30 days | 26 (0.01) | 1.52 (0.98 to 2.51) | | 276 (0.2) | 1.56 (1.19 to 2.04) | | 98 (0.6) | 1.34 (0.85 to 1.84) | | 19 (0.1) | 1.48 (0.93 to 2.40) | | 1.47 (1.04 to 2.04)'
+  selection_note: 'Rule 21: Bally Table 2 reports dose strata for 8-30 days and >30 days of current use; every stratum is recorded and the build picks by rule. Rule 20: nested case-control IPD meta-analysis; it reports no incidence in non-users.'
+  match_note: Outcome is acute myocardial infarction (hospital admission is the index date), so outcome mi (rule 24). Comparator is no NSAID in the year before the index date. Exposure is more than 30 days of continuous current use, i.e. defined by months of use, so long_term (rule 11).
 - ingredient: ibuprofen
   dimension: cardiovascular_bp
   applies_to: {persona: all, condition: heart_disease, medication_type: antiplatelets}
@@ -223,6 +370,7 @@ relative_risks:
   measure: HR
   estimate: 1.4
   ci95: [1.3, 1.49]
+  interval: confidence
   exposure: ongoing NSAID use vs no NSAID, in patients on antithrombotic therapy after first MI
   population: Denmark nationwide registries 2002-2011, 61,971 patients with prior MI (mean age 67.7)
   grade: cohort
@@ -231,7 +379,12 @@ relative_risks:
     url: https://pubmed.ncbi.nlm.nih.gov/25710657/
     location: Abstract, Results
     quote: the cardiovascular risk was also increased (hazard ratio, 1.40 [95% CI, 1.30-1.49])
-  selection_note: Large nationwide cohort in people with established heart disease. Per-ingredient and per-regimen HRs are in the full text (JAMA), which could not be opened. Class-level NSAID estimate (no ingredient-specific value in the source); applied to ibuprofen and naproxen alike.
+  unexposed_incidence:
+    annual_incidence: 0.083
+    as_reported: 8.3 cardiovascular events per 100 person-years without NSAID treatment = 8.3 / 100 = 0.083 per person-year (crude rate in the reference group; composite of cardiovascular death, nonfatal recurrent MI and stroke).
+    location: Abstract, Results
+    quote: The crude incidence rates of bleeding (events per 100 person-years) were 4.2 (95% CI, 3.8-4.6) with concomitant NSAID treatment and 2.2 (95% CI, 2.1-2.3) without NSAID treatment, whereas the rates of cardiovascular events were 11.2 (95% CI, 10.5-11.9) and 8.3 (95% CI, 8.2-8.4).
+  selection_note: 'Large nationwide cohort in people with established heart disease. Per-ingredient and per-regimen HRs are in the full text (JAMA), which could not be opened. Class-level NSAID estimate (no ingredient-specific value in the source); applied to ibuprofen and naproxen alike. Rule 20: the abstract reports the crude rate in the reference group (no NSAID treatment); recorded as unexposed_incidence.'
   match_note: Comparator is post-MI patients on antithrombotic therapy without NSAIDs, so within_group; applies_to names the group's condition (heart_disease, first MI) and its usual co-medication (antiplatelets; the regimens were aspirin, clopidogrel or oral anticoagulants and combinations). Outcome is CV death, nonfatal recurrent MI and stroke; exposure is ongoing community NSAID use from prescriptions.
 - ingredient: ibuprofen
   dimension: anticoagulant_bleeding
@@ -244,6 +397,7 @@ relative_risks:
   measure: OR
   estimate: 1.58
   ci95: [1.18, 2.12]
+  interval: confidence
   exposure: warfarin plus NSAID vs warfarin alone
   population: 11 observational studies of warfarin users
   grade: meta_analysis
@@ -252,7 +406,7 @@ relative_risks:
     url: https://pubmed.ncbi.nlm.nih.gov/32455439/
     location: Abstract, Results
     quote: 'There was an increased risk of general bleeding with the combination of warfarin with NSAIDs (OR = 1.58, 95% CI: 1.18-2.12)'
-  selection_note: Previously the anticoagulant row; superseded by Zheng 2023 for major bleeding. Class-level NSAID estimate (no ingredient-specific value in the source); applied to ibuprofen and naproxen alike.
+  selection_note: 'Previously the anticoagulant row; superseded by Zheng 2023 for major bleeding. Class-level NSAID estimate (no ingredient-specific value in the source); applied to ibuprofen and naproxen alike. Rule 20: meta-analysis; the source reports no incidence in non-users.'
   match_note: 'Outcome does not match rule 10: ''general bleeding'' counts any bleeding, not major bleeding. Comparator is warfarin alone (within_group); warfarin users are narrower than the anticoagulants id.'
 - ingredient: ibuprofen
   dimension: anticoagulant_bleeding
@@ -262,19 +416,21 @@ relative_risks:
   exposure_window: community_oral
   comparator: within_group
   dose_mg_per_day: null
+  stratum_population: vka_users
   measure: OR
   estimate: 1.55
   ci95: [1.04, 2.3]
+  interval: confidence
   exposure: NSAID plus vitamin K antagonist vs vitamin K antagonist alone
   population: observational studies and trial analyses of VKA users (atrial fibrillation, venous thromboembolism)
   grade: meta_analysis
-  source: &id004
+  source:
     citation: 'Zheng Y, Zhang N, Tse G, Li G, Lip GYH, Liu T. Co-administered oral anticoagulants with nonsteroidal anti-inflammatory drugs and the risk of bleeding: a systematic review and meta-analysis. Thromb Res 2023;232:15-26. PMID 39492109'
     url: https://pubmed.ncbi.nlm.nih.gov/39492109/
     location: Abstract, Results
     quote: Taking vitamin K antagonist (VKAs) concurrently with NSAIDs was associated with a higher risk of any bleeding [odds ratio (OR) = 1.55; 95 % CI, 1.21 to 2.00; P = 0.0007), gastrointestinal bleeding (OR = 2.66; 95 % CI, 1.96 to 3.62; P < 0.00001) as well as major bleeding (OR = 1.55; 95 % CI, 1.04 to 2.30; P = 0.03).
-  selection_note: Most recent meta-analysis comparing NSAID plus oral anticoagulant against the anticoagulant alone (27 studies, searched to August 2023), with major bleeding reported separately for VKAs and DOACs; preferred over single studies such as Penner 2022 (Br J Clin Pharmacol, CPRD, major bleeding HR 2.77, 1.84-4.19) by rule 13, and over Villa Zapata 2020, which reports only general and GI bleeding with warfarin. The anticoagulants id covers both VKA and DOAC users, so both strata are recorded under it; rule 3 then uses the larger. Class-level NSAID estimate (no ingredient-specific value in the source); applied to ibuprofen and naproxen alike.
-  match_note: Outcome is major bleeding, matching section 1; exposure is concomitant use outside hospital; comparator is VKA users without NSAIDs, so within_group with medication_type anticoagulants (VKA stratum).
+  selection_note: 'Most recent meta-analysis comparing NSAID plus oral anticoagulant against the anticoagulant alone (27 studies, searched to August 2023), with major bleeding reported separately for VKA and DOAC users; preferred over single studies such as Penner 2022 (Br J Clin Pharmacol, CPRD, major bleeding HR 2.77, 1.84-4.19) by rule 13, and over Villa Zapata 2020, which reports only general and GI bleeding with warfarin. Rule 25: both strata are recorded, each with stratum_population naming its population; the build uses the stratum whose population matches the anticoagulant baseline (not the larger). Rule 20: the abstract reports no incidence in the anticoagulant-alone groups (full text not opened). Class-level NSAID estimate (no ingredient-specific value in the source); applied to ibuprofen and naproxen alike.'
+  match_note: 'Outcome is major bleeding, matching section 1; exposure is concomitant use outside hospital; comparator is VKA users without NSAIDs, so within_group with medication_type anticoagulants (VKA stratum). Population: vitamin K antagonist users (stratum_population vka_users).'
 - ingredient: ibuprofen
   dimension: anticoagulant_bleeding
   applies_to: {persona: all, condition: null, medication_type: anticoagulants}
@@ -283,19 +439,21 @@ relative_risks:
   exposure_window: community_oral
   comparator: within_group
   dose_mg_per_day: null
+  stratum_population: doac_users
   measure: OR
   estimate: 1.42
   ci95: [0.84, 2.4]
+  interval: confidence
   exposure: NSAID plus direct oral anticoagulant vs direct oral anticoagulant alone
   population: observational studies and trial analyses of DOAC users (atrial fibrillation, venous thromboembolism)
   grade: meta_analysis
-  source: &id005
+  source:
     citation: 'Zheng Y, Zhang N, Tse G, Li G, Lip GYH, Liu T. Co-administered oral anticoagulants with nonsteroidal anti-inflammatory drugs and the risk of bleeding: a systematic review and meta-analysis. Thromb Res 2023;232:15-26. PMID 39492109'
     url: https://pubmed.ncbi.nlm.nih.gov/39492109/
     location: Abstract, Results
     quote: Concomitant exposure to direct OACs (DOACs) and NSAIDs increased the risks of any bleeding (OR = 1.54; 95 % CI, 1.33 to 1.80; P < 0.00001) and gastrointestinal bleeding (OR = 2.18; 95 % CI, 1.02 to 4.69; P = 0.05), but was nonsignificant for major bleeding (OR = 1.42; 95 % CI, 0.84 to 2.40; P = 0.19).
-  selection_note: Most recent meta-analysis comparing NSAID plus oral anticoagulant against the anticoagulant alone (27 studies, searched to August 2023), with major bleeding reported separately for VKAs and DOACs; preferred over single studies such as Penner 2022 (Br J Clin Pharmacol, CPRD, major bleeding HR 2.77, 1.84-4.19) by rule 13, and over Villa Zapata 2020, which reports only general and GI bleeding with warfarin. The anticoagulants id covers both VKA and DOAC users, so both strata are recorded under it; rule 3 then uses the larger. Class-level NSAID estimate (no ingredient-specific value in the source); applied to ibuprofen and naproxen alike.
-  match_note: Outcome is major bleeding, matching section 1; exposure is concomitant use outside hospital; comparator is DOAC users without NSAIDs, so within_group with medication_type anticoagulants (DOAC stratum).
+  selection_note: 'Most recent meta-analysis comparing NSAID plus oral anticoagulant against the anticoagulant alone (27 studies, searched to August 2023), with major bleeding reported separately for VKA and DOAC users; preferred over single studies such as Penner 2022 (Br J Clin Pharmacol, CPRD, major bleeding HR 2.77, 1.84-4.19) by rule 13, and over Villa Zapata 2020, which reports only general and GI bleeding with warfarin. Rule 25: both strata are recorded, each with stratum_population naming its population; the build uses the stratum whose population matches the anticoagulant baseline (not the larger). Rule 20: the abstract reports no incidence in the anticoagulant-alone groups (full text not opened). Class-level NSAID estimate (no ingredient-specific value in the source); applied to ibuprofen and naproxen alike.'
+  match_note: 'Outcome is major bleeding, matching section 1; exposure is concomitant use outside hospital; comparator is DOAC users without NSAIDs, so within_group with medication_type anticoagulants (DOAC stratum). Population: direct oral anticoagulant users (stratum_population doac_users).'
 - ingredient: ibuprofen
   dimension: anticoagulant_bleeding
   applies_to: {persona: all, condition: heart_disease, medication_type: antiplatelets}
@@ -307,6 +465,7 @@ relative_risks:
   measure: HR
   estimate: 2.02
   ci95: [1.81, 2.26]
+  interval: confidence
   exposure: ongoing NSAID use vs no NSAID, in patients on aspirin, clopidogrel and/or oral anticoagulants after first MI
   population: Denmark nationwide registries 2002-2011, 61,971 patients with prior MI on antithrombotic therapy
   grade: cohort
@@ -315,7 +474,12 @@ relative_risks:
     url: https://pubmed.ncbi.nlm.nih.gov/25710657/
     location: Abstract, Results
     quote: increased risk of bleeding with NSAID treatment compared with no NSAID treatment (hazard ratio, 2.02 [95% CI, 1.81-2.26])
-  selection_note: Largest study found comparing NSAID use against no NSAID within antiplatelet users; no meta-analysis of NSAIDs with antiplatelets and major bleeding was found in PubMed. Per-regimen and per-ingredient HRs are in the full text, which could not be opened. Class-level NSAID estimate (no ingredient-specific value in the source); applied to ibuprofen and naproxen alike.
+  unexposed_incidence:
+    annual_incidence: 0.022
+    as_reported: 2.2 bleeding events per 100 person-years without NSAID treatment = 2.2 / 100 = 0.022 per person-year (crude rate in the reference group, post-MI patients on antithrombotic therapy not taking NSAIDs).
+    location: Abstract, Results
+    quote: The crude incidence rates of bleeding (events per 100 person-years) were 4.2 (95% CI, 3.8-4.6) with concomitant NSAID treatment and 2.2 (95% CI, 2.1-2.3) without NSAID treatment
+  selection_note: 'Largest study found comparing NSAID use against no NSAID within antiplatelet users; no meta-analysis of NSAIDs with antiplatelets and major bleeding was found in PubMed. Per-regimen and per-ingredient HRs are in the full text, which could not be opened. Class-level NSAID estimate (no ingredient-specific value in the source); applied to ibuprofen and naproxen alike. Rule 20: the abstract reports the crude rate in the reference group (no NSAID treatment); recorded as unexposed_incidence.'
   match_note: Outcome is bleeding requiring hospitalisation, i.e. major bleeding; exposure is ongoing community NSAID use; comparator is post-MI patients on antithrombotics without NSAIDs, so within_group with condition heart_disease and medication_type antiplatelets (most regimens were aspirin and/or clopidogrel; some included oral anticoagulants).
 - ingredient: ibuprofen
   dimension: pregnancy_lactation
@@ -327,6 +491,7 @@ relative_risks:
   measure: OR
   estimate: 1.19
   ci95: [1.08, 1.3]
+  interval: confidence
   exposure: NSAID exposure in early pregnancy vs unexposed; outcome major birth defects
   population: cohort and case-control studies to April 2023
   grade: meta_analysis
@@ -335,7 +500,7 @@ relative_risks:
     url: https://pubmed.ncbi.nlm.nih.gov/38423229/
     location: Abstract
     quote: infants exposed to NSAIDs during early pregnancy showed a 28% increased risk of overall congenital anomalies (OR 1.28, 95%CI 1.16-1.40), and 19% for major birth defects (OR 1.19, 95%CI 1.08-1.30)
-  selection_note: 'Most recent meta-analysis. Major birth defects chosen as the serious fetal harm; miscarriage was OR 1.20 (0.93-1.55), not significant. Ingredient-specific alternative: Nakhai-Pour 2011 (CMAJ, Quebec case-control) spontaneous abortion ibuprofen OR 2.19 (1.61-2.96), naproxen OR 2.64 (2.13-3.28). No breastfeeding estimate found. Class-level NSAID estimate (no ingredient-specific value in the source); applied to ibuprofen and naproxen alike.'
+  selection_note: 'Most recent meta-analysis. Major birth defects chosen as the serious fetal harm; miscarriage was OR 1.20 (0.93-1.55), not significant. Ingredient-specific alternative: Nakhai-Pour 2011 (CMAJ, Quebec case-control) spontaneous abortion ibuprofen OR 2.19 (1.61-2.96), naproxen OR 2.64 (2.13-3.28). No breastfeeding estimate found. Class-level NSAID estimate (no ingredient-specific value in the source); applied to ibuprofen and naproxen alike. Rule 20: meta-analysis; the source reports no incidence in non-users.'
   match_note: Outcome is major birth defects, the specific fetal harm the source studies (section 1); exposure is NSAID use in early pregnancy; comparator is unexposed pregnancies.
 - ingredient: naproxen
   dimension: gi_bleeding
@@ -348,6 +513,7 @@ relative_risks:
   measure: RR
   estimate: 3.62
   ci95: [2.62, 4.99]
+  interval: confidence
   exposure: current use, low-medium daily dose, vs non-use of NSAIDs
   population: cohort and case-control studies 1980-2011, general populations (Europe, North America)
   grade: meta_analysis
@@ -356,29 +522,74 @@ relative_risks:
     url: https://pmc.ncbi.nlm.nih.gov/articles/PMC3714137/
     location: Results, dose analysis (text accompanying Figure 3)
     quote: For naproxen, the RR for low-medium daily dose was 3.62 (95% CI 2.62, 4.99)
-  selection_note: 'Most recent large meta-analysis of observational studies giving ingredient-specific pooled RRs. Low-medium stratum; dose_mg_per_day [null, 499] is the range every included study''s low-medium naproxen stratum covers (cut-offs <500 to <=1200 mg). The high-dose naproxen stratum appears only as a point in Figure 3 (about 6.4) with no numeric interval, so it cannot be recorded as a row. Dose cut-offs come from Table IV (cut-off values for low-medium vs high daily dose, by study): ibuprofen <=1200 (Castellsague 2009, Garcia Rodriguez 2007), <=1500 (Garcia Rodriguez 1994, Perez-Gutthann 1997), <1800 (Laporte 2004), <2400 (Griffin 1991), 200 (Biskupiak 2006); naproxen <=1200, <=750, <=500, <=750, <500, <=750, 220. The text says the pooled ibuprofen and naproxen RRs were essentially unchanged when the studies with different cut-offs were excluded.'
+  selection_note: 'Most recent large meta-analysis of observational studies giving ingredient-specific pooled RRs. Low-medium stratum; dose_mg_per_day [null, 499] is the range every included study''s low-medium naproxen stratum covers (cut-offs <500 to <=1200 mg). The high-dose naproxen stratum appears only as a point in Figure 3 (about 6.4) with no numeric interval, so it cannot be recorded as a row. Dose cut-offs come from Table IV (cut-off values for low-medium vs high daily dose, by study): ibuprofen <=1200 (Castellsague 2009, Garcia Rodriguez 2007), <=1500 (Garcia Rodriguez 1994, Perez-Gutthann 1997), <1800 (Laporte 2004), <2400 (Griffin 1991), 200 (Biskupiak 2006); naproxen <=1200, <=750, <=500, <=750, <500, <=750, 220. The text says the pooled ibuprofen and naproxen RRs were essentially unchanged when the studies with different cut-offs were excluded. Rule 20: meta-analysis; it reports no incidence in non-users. The naproxen high-dose stratum appears only as a point in Figure 3; the text gives no number (''For naproxen, the RR for low-medium daily dose was 3.62 (95% CI 2.62, 4.99)'') and Table IV gives only cut-offs, so no high-dose row is recorded. The supplemental digital content link (links.adisonline.com/DSZ/A78) holds the search strategy.'
   match_note: Outcome is upper gastrointestinal complications (bleeding, perforation or obstruction) in field and database studies of serious events, which is section 1's upper GI bleeding or perforation; exposure is current use in the community; comparator is non-use of NSAIDs. Low-medium dose stratum.
 - ingredient: naproxen
   dimension: gi_bleeding
-  applies_to: {persona: all, condition: null, medication_type: ssri_snri}
+  applies_to: {persona: all, condition: null, medication_type: null}
   outcome: upper_gi_bleeding
   outcome_match: true
   exposure_window: community_oral
   comparator: non_use
-  dose_mg_per_day: null
+  dose_mg_per_day: [null, 499]
   measure: OR
-  estimate: 4.25
-  ci95: [2.82, 6.42]
-  exposure: concurrent SSRI plus NSAID use vs use of neither (joint exposure, not NSAID effect within SSRI users)
-  population: 15 case-control and 4 cohort studies, adults
+  estimate: 4.8
+  ci95: [1.3, 18.1]
+  interval: confidence
+  exposure: naproxen <500 mg/day in the week before the index day, vs non-use (adjusted OR)
+  population: individual patient data from 3 hospital case-control studies (Catalonia, England, Scotland, Sweden); 2,472 cases of upper GI bleeding, 5,877 controls
   grade: meta_analysis
   source:
-    citation: 'Anglin R, Yuan Y, Moayyedi P, et al. Risk of upper gastrointestinal bleeding with selective serotonin reuptake inhibitors with or without concurrent nonsteroidal anti-inflammatory use: a systematic review and meta-analysis. Am J Gastroenterol 2014;109(6):811-9'
-    url: https://pubmed.ncbi.nlm.nih.gov/24777151/
-    location: Abstract, Results
-    quote: The risk of upper GI bleeding was further increased with the use of both SSRI and NSAID medications (OR=4.25, 95% CI=2.82,6.42).
-  selection_note: 'Only meta-analysis found reporting NSAID plus SSRI for upper GI bleeding against non-use of both. CAUTION: this is the joint OR versus neither drug, so it includes the SSRI''s own effect (SSRI alone OR 1.66). SNRIs not studied. Haghbin et al. Dig Dis Sci 2023 (PMID 36526813) is newer but pools any GI bleeding (not upper GI) and compares SSRI plus NSAID against SSRI alone (OR 2.14, 1.52-3.02), so it does not report this outcome and comparator. Class-level NSAID estimate (no ingredient-specific value in the source); applied to ibuprofen and naproxen alike.'
-  match_note: Outcome is upper GI bleeding; exposure is concurrent current use in the community; comparator is use of neither drug, so non_use.
+    citation: 'Lewis SC, Langman MJS, Laporte JR, Matthews JNS, Rawlins MD, Wiholm BE. Dose-response relationships between individual nonaspirin nonsteroidal anti-inflammatory drugs (NANSAIDs) and serious upper gastrointestinal bleeding: a meta-analysis based on individual patient data. Br J Clin Pharmacol 2002;54(3):320-6. PMID 12236853'
+    url: https://pmc.ncbi.nlm.nih.gov/articles/PMC1874428/
+    location: Table 4, Naproxen rows (cases, controls, OR (95% CI))
+    quote: Naproxen < 500 6 5 4.8 (1.3, 18.1)
+  selection_note: 'Rule 21: every dose stratum of Lewis Table 4 for this ingredient is recorded; the build picks the one holding the label maximum. Table 4 footnotes: ''(*) All doses in mg day-1'' and ''All odds ratios are relative to nonuse of any NANSAID or aspirin''. The PDF (scanned 2002 typesetting) renders the ''>='' sign of the top stratum as a control glyph; the row order (<, range, then the open top stratum) shows it is ''>=''. Rule 20: a case-control design; the paper reports no incidence in non-users.'
+  match_note: Outcome is serious upper GI bleeding in hospital cases (Lewis title and Methods), section 1's outcome; exposure is the daily dose taken in the week before the index day, community use; comparator is non-use (Table 4 footnote). Stratum <500 mg/day.
+- ingredient: naproxen
+  dimension: gi_bleeding
+  applies_to: {persona: all, condition: null, medication_type: null}
+  outcome: upper_gi_bleeding
+  outcome_match: true
+  exposure_window: community_oral
+  comparator: non_use
+  dose_mg_per_day: [500, 999]
+  measure: OR
+  estimate: 5.4
+  ci95: [2.9, 9.9]
+  interval: confidence
+  exposure: naproxen 500-999 mg/day in the week before the index day, vs non-use (adjusted OR)
+  population: individual patient data from 3 hospital case-control studies (Catalonia, England, Scotland, Sweden); 2,472 cases of upper GI bleeding, 5,877 controls
+  grade: meta_analysis
+  source:
+    citation: 'Lewis SC, Langman MJS, Laporte JR, Matthews JNS, Rawlins MD, Wiholm BE. Dose-response relationships between individual nonaspirin nonsteroidal anti-inflammatory drugs (NANSAIDs) and serious upper gastrointestinal bleeding: a meta-analysis based on individual patient data. Br J Clin Pharmacol 2002;54(3):320-6. PMID 12236853'
+    url: https://pmc.ncbi.nlm.nih.gov/articles/PMC1874428/
+    location: Table 4, Naproxen rows (cases, controls, OR (95% CI))
+    quote: 500–999 31 24 5.4 (2.9, 9.9)
+  selection_note: 'Rule 21: every dose stratum of Lewis Table 4 for this ingredient is recorded; the build picks the one holding the label maximum. Table 4 footnotes: ''(*) All doses in mg day-1'' and ''All odds ratios are relative to nonuse of any NANSAID or aspirin''. The PDF (scanned 2002 typesetting) renders the ''>='' sign of the top stratum as a control glyph; the row order (<, range, then the open top stratum) shows it is ''>=''. Rule 20: a case-control design; the paper reports no incidence in non-users.'
+  match_note: Outcome is serious upper GI bleeding in hospital cases (Lewis title and Methods), section 1's outcome; exposure is the daily dose taken in the week before the index day, community use; comparator is non-use (Table 4 footnote). Stratum 500-999 mg/day.
+- ingredient: naproxen
+  dimension: gi_bleeding
+  applies_to: {persona: all, condition: null, medication_type: null}
+  outcome: upper_gi_bleeding
+  outcome_match: true
+  exposure_window: community_oral
+  comparator: non_use
+  dose_mg_per_day: [1000, null]
+  measure: OR
+  estimate: 15.6
+  ci95: [8.1, 30.2]
+  interval: confidence
+  exposure: naproxen >=1000 mg/day in the week before the index day, vs non-use (adjusted OR)
+  population: individual patient data from 3 hospital case-control studies (Catalonia, England, Scotland, Sweden); 2,472 cases of upper GI bleeding, 5,877 controls
+  grade: meta_analysis
+  source:
+    citation: 'Lewis SC, Langman MJS, Laporte JR, Matthews JNS, Rawlins MD, Wiholm BE. Dose-response relationships between individual nonaspirin nonsteroidal anti-inflammatory drugs (NANSAIDs) and serious upper gastrointestinal bleeding: a meta-analysis based on individual patient data. Br J Clin Pharmacol 2002;54(3):320-6. PMID 12236853'
+    url: https://pmc.ncbi.nlm.nih.gov/articles/PMC1874428/
+    location: Table 4, Naproxen rows (cases, controls, OR (95% CI))
+    quote: ≥ 1000 61 17 15.6 (8.1, 30.2)
+  selection_note: 'Rule 21: every dose stratum of Lewis Table 4 for this ingredient is recorded; the build picks the one holding the label maximum. Table 4 footnotes: ''(*) All doses in mg day-1'' and ''All odds ratios are relative to nonuse of any NANSAID or aspirin''. The PDF (scanned 2002 typesetting) renders the ''>='' sign of the top stratum as a control glyph; the row order (<, range, then the open top stratum) shows it is ''>=''. Rule 20: a case-control design; the paper reports no incidence in non-users.'
+  match_note: Outcome is serious upper GI bleeding in hospital cases (Lewis title and Methods), section 1's outcome; exposure is the daily dose taken in the week before the index day, community use; comparator is non-use (Table 4 footnote). Stratum >=1000 mg/day.
 - ingredient: naproxen
   dimension: kidney
   applies_to: {persona: all, condition: null, medication_type: null}
@@ -390,11 +601,16 @@ relative_risks:
   measure: OR
   estimate: 1.73
   ci95: [1.44, 2.07]
+  interval: confidence
   exposure: current NSAID exposure vs non-use (random-effects pool of adjusted ORs)
   population: 10 observational studies of community-dwelling adults (UK, US, Canada, Netherlands, Australia), searched to June 2016
   grade: meta_analysis
-  source: *id001
-  selection_note: 'Rule 13 applied. Meta-analyses opened: Zhang 2017 (BMC Nephrol, 10 studies, most recent and largest general-population pool, OR 1.73) and Ungprasert 2015 (Eur J Intern Med, PMID 25862494, 5 cohort studies; abstract gives only the range 1.58-2.11 for individual NSAIDs, no quotable pooled estimate). No newer general-population meta-analysis of NSAIDs and AKI was found in PubMed (2016-2026; Calvo 2025 covers only triple-whammy combinations, Rom J Intern Med 2025 covers CKD). Zhang''s pooled outcome is not hospital AKI: per its Results, ''Half of the studies used laboratory data to define the presence of AKI'', including Murray 1990 (outpatient creatinine rises) and Lafrance 2009 (creatinine increase >50%, per the Lafrance abstract), and Leonard 2012 used GP diagnostic codes. So no meta-analysis reports a pooled estimate for hospital AKI, and rule 13 does not displace a single study. Of the general-population studies in Zhang''s Table 1 that count only hospital admissions for AKI, Evans 1995 has the largest population (420,600 Tayside residents, 207 validated cases) and is used; Perez Gutthann 1996 (hospitalisation for ARF, 28 cases, OR 4.1) is smaller. Class-level NSAID estimate (no ingredient-specific value in the source); applied to ibuprofen and naproxen alike.'
+  source:
+    citation: 'Zhang X, Donnan PT, Bell S, Guthrie B. Non-steroidal anti-inflammatory drug induced acute kidney injury in the community dwelling general population and people with chronic kidney disease: systematic review and meta-analysis. BMC Nephrol 2017;18(1):256. PMID 28764659'
+    url: https://pmc.ncbi.nlm.nih.gov/articles/PMC5540416/
+    location: Abstract, Results; outcome definitions in Table 1 and Results
+    quote: In the general population, the pooled odds ratio (OR) of AKI for current NSAID exposure was 1.73 (95%CI 1.44 to 2.07)
+  selection_note: 'Rule 13 applied. Meta-analyses opened: Zhang 2017 (BMC Nephrol, 10 studies, most recent and largest general-population pool, OR 1.73) and Ungprasert 2015 (Eur J Intern Med, PMID 25862494, 5 cohort studies; abstract gives only the range 1.58-2.11 for individual NSAIDs, no quotable pooled estimate). No newer general-population meta-analysis of NSAIDs and AKI was found in PubMed (2016-2026; Calvo 2025 covers only triple-whammy combinations, Rom J Intern Med 2025 covers CKD). Zhang''s pooled outcome is not hospital AKI: per its Results, ''Half of the studies used laboratory data to define the presence of AKI'', including Murray 1990 (outpatient creatinine rises) and Lafrance 2009 (creatinine increase >50%, per the Lafrance abstract), and Leonard 2012 used GP diagnostic codes. So no meta-analysis reports a pooled estimate for hospital AKI, and rule 13 does not displace a single study. Of the general-population studies in Zhang''s Table 1 that count only hospital admissions for AKI, Evans 1995 has the largest population (420,600 Tayside residents, 207 validated cases) and is used; Perez Gutthann 1996 (hospitalisation for ARF, 28 cases, OR 4.1) is smaller. Class-level NSAID estimate (no ingredient-specific value in the source); applied to ibuprofen and naproxen alike. Rule 20: meta-analysis; the source reports no incidence in non-users.'
   match_note: 'Outcome does not match rule 10: the pool mixes hospital-admission AKI with laboratory-defined AKI (half of the 10 studies) and GP-coded AKI, so it is broader than hospital AKI. Exposure is current community use; comparator non-use.'
 - ingredient: naproxen
   dimension: kidney
@@ -407,11 +623,21 @@ relative_risks:
   measure: OR
   estimate: 2.2
   ci95: [1.49, 3.25]
+  interval: confidence
   exposure: dispensed oral NSAID in the 90 days before the index date (recent exposure) vs no recent exposure; community controls
   population: Tayside, Scotland, record-linkage population of 420,600; 207 hospitalised ARF cases validated by a renal physician, 1990-1992
   grade: case_control
-  source: *id002
-  selection_note: 'Rule 13 applied. Meta-analyses opened: Zhang 2017 (BMC Nephrol, 10 studies, most recent and largest general-population pool, OR 1.73) and Ungprasert 2015 (Eur J Intern Med, PMID 25862494, 5 cohort studies; abstract gives only the range 1.58-2.11 for individual NSAIDs, no quotable pooled estimate). No newer general-population meta-analysis of NSAIDs and AKI was found in PubMed (2016-2026; Calvo 2025 covers only triple-whammy combinations, Rom J Intern Med 2025 covers CKD). Zhang''s pooled outcome is not hospital AKI: per its Results, ''Half of the studies used laboratory data to define the presence of AKI'', including Murray 1990 (outpatient creatinine rises) and Lafrance 2009 (creatinine increase >50%, per the Lafrance abstract), and Leonard 2012 used GP diagnostic codes. So no meta-analysis reports a pooled estimate for hospital AKI, and rule 13 does not displace a single study. Of the general-population studies in Zhang''s Table 1 that count only hospital admissions for AKI, Evans 1995 has the largest population (420,600 Tayside residents, 207 validated cases) and is used; Perez Gutthann 1996 (hospitalisation for ARF, 28 cases, OR 4.1) is smaller. Class-level NSAID estimate (no ingredient-specific value in the source); applied to ibuprofen and naproxen alike.'
+  source:
+    citation: Evans JM, McGregor E, McMahon AD, et al. Non-steroidal anti-inflammatory drugs and hospitalization for acute renal failure. QJM 1995;88(8):551-7. PMID 7648241
+    url: https://pubmed.ncbi.nlm.nih.gov/7648241/
+    location: Abstract
+    quote: When community controls were used, recent exposure to NSAIDs and previous exposure to aspirin were independently associated with hospitalization for ARF, with adjusted odds ratios of 2.20 (1.49-3.25) and 2.19 (1.46-3.30), respectively.
+  unexposed_incidence:
+    annual_incidence: 0.000185
+    as_reported: '207 validated hospitalised ARF cases among 420,600 residents; the database population is resident since May 1990 and cases were collected between 1990 and 1992, taken as May 1990 to December 1992 = 32 months = 2.67 years. 207 / 420,600 / 2.67 = 0.000185 per person-year. This is the whole study population, NSAID users included: the abstract reports no rate for non-users alone, so it slightly overstates the unexposed rate. The end month is not stated in the abstract (full text not opened).'
+    location: Abstract
+    quote: We conducted a case-control study using a purpose-built record-linkage database for a population of 420,600 patients, resident in Tayside since May 1990. Patients (n = 207) hospitalized with a diagnostic code for ARF between 1990 and 1992 had their diagnosis validated by a renal physician.
+  selection_note: 'Rule 13 applied. Meta-analyses opened: Zhang 2017 (BMC Nephrol, 10 studies, most recent and largest general-population pool, OR 1.73) and Ungprasert 2015 (Eur J Intern Med, PMID 25862494, 5 cohort studies; abstract gives only the range 1.58-2.11 for individual NSAIDs, no quotable pooled estimate). No newer general-population meta-analysis of NSAIDs and AKI was found in PubMed (2016-2026; Calvo 2025 covers only triple-whammy combinations, Rom J Intern Med 2025 covers CKD). Zhang''s pooled outcome is not hospital AKI: per its Results, ''Half of the studies used laboratory data to define the presence of AKI'', including Murray 1990 (outpatient creatinine rises) and Lafrance 2009 (creatinine increase >50%, per the Lafrance abstract), and Leonard 2012 used GP diagnostic codes. So no meta-analysis reports a pooled estimate for hospital AKI, and rule 13 does not displace a single study. Of the general-population studies in Zhang''s Table 1 that count only hospital admissions for AKI, Evans 1995 has the largest population (420,600 Tayside residents, 207 validated cases) and is used; Perez Gutthann 1996 (hospitalisation for ARF, 28 cases, OR 4.1) is smaller. Class-level NSAID estimate (no ingredient-specific value in the source); applied to ibuprofen and naproxen alike. Rule 20: the abstract gives the case count and population (see unexposed_incidence); this is the whole-population rate, as the abstract gives no non-user rate.'
   match_note: Cases were hospitalised with a diagnostic code for ARF validated by a renal physician, which is section 1's AKI at the serious level; exposure is recent community dispensing; comparator is no recent NSAID exposure.
 - ingredient: naproxen
   dimension: kidney
@@ -424,6 +650,7 @@ relative_risks:
   measure: RR
   estimate: 3.2
   ci95: [1.8, 5.8]
+  interval: confidence
   exposure: current NSAID use vs non-use
   population: UK GPRD, 386,916 patients aged 50-84, nested case-control, 103 validated idiopathic ARF cases
   grade: case_control
@@ -432,7 +659,7 @@ relative_risks:
     url: https://pubmed.ncbi.nlm.nih.gov/15754275/
     location: Abstract, Results
     quote: Current users of NSAIDs had a relative risk (RR) for ARF of 3.2 (95% confidence interval [CI], 1.8 to 5.8)
-  selection_note: Previously the general row. Kept for the audit trail; the general row is now Evans 1995 (see that row's note). Class-level NSAID estimate (no ingredient-specific value in the source); applied to ibuprofen and naproxen alike.
+  selection_note: 'Previously the general row. Kept for the audit trail; the general row is now Evans 1995 (see that row''s note). Class-level NSAID estimate (no ingredient-specific value in the source); applied to ibuprofen and naproxen alike. Rule 20: the abstract reports no incidence in non-users (full text not opened).'
   match_note: 'Outcome does not match rule 10 as far as can be checked: the abstract defines cases as ''a first-ever diagnosis of clinical ARF'' confirmed by a specialist with creatinine or urea thresholds, not as hospital admissions; the full text was not opened. Exposure is current community use; comparator non-use.'
 - ingredient: naproxen
   dimension: kidney
@@ -445,11 +672,16 @@ relative_risks:
   measure: OR
   estimate: 1.63
   ci95: [1.22, 2.19]
+  interval: confidence
   exposure: current NSAID exposure vs non-use, among people with CKD (pooled crude ORs)
   population: people with chronic kidney disease in 5 case-control studies (Evans 1995, Griffin 2000, Schneider 2006, Lafrance 2009, Henry 1997)
   grade: meta_analysis
-  source: *id003
-  selection_note: Only meta-analysis found giving an NSAID-AKI estimate within people with CKD. Crude ORs (most studies gave no adjusted CKD estimate). Class-level NSAID estimate (no ingredient-specific value in the source); applied to ibuprofen and naproxen alike.
+  source:
+    citation: 'Zhang X, Donnan PT, Bell S, Guthrie B. Non-steroidal anti-inflammatory drug induced acute kidney injury in the community dwelling general population and people with chronic kidney disease: systematic review and meta-analysis. BMC Nephrol 2017;18(1):256. PMID 28764659'
+    url: https://pmc.ncbi.nlm.nih.gov/articles/PMC5540416/
+    location: Abstract, Results; outcome definitions in Table 1 and Results
+    quote: In people with CKD, individual study OR of AKI due to current NSAID exposure ranged from 1.12 to 5.25, with pooled estimate OR 1.63 (95% CI 1.22 to 2.19).
+  selection_note: 'Only meta-analysis found giving an NSAID-AKI estimate within people with CKD. Crude ORs (most studies gave no adjusted CKD estimate). Class-level NSAID estimate (no ingredient-specific value in the source); applied to ibuprofen and naproxen alike. Rule 20: meta-analysis; the source reports no incidence in non-users.'
   match_note: 'Comparator is CKD patients not using NSAIDs, so within_group with condition kidney_disease. Outcome does not match rule 10: one of the five pooled studies (Lafrance 2009) defined AKI as a creatinine increase of more than 50%, not a hospital admission.'
 - ingredient: naproxen
   dimension: kidney
@@ -462,6 +694,7 @@ relative_risks:
   measure: RR
   estimate: 2.42
   ci95: [1.52, 3.85]
+  interval: confidence
   exposure: new naproxen use, within 30 days of starting, vs non-use
   population: Quebec, 121,722 new NSAID users older than 65, 1999-2002, nested case-control, hospitalisation for acute renal failure
   grade: case_control
@@ -470,7 +703,7 @@ relative_risks:
     url: https://pubmed.ncbi.nlm.nih.gov/17005625/
     location: Abstract
     quote: 'naproxen (RR = 2.42, 95% CI: 1.52, 3.85)'
-  selection_note: Largest study found giving a naproxen-specific AKI estimate in people over 65; outcome is hospitalisation. No meta-analysis reports a 65+ pooled estimate (Zhang 2017's older-people subgroup is age >50 and mixes outcome definitions).
+  selection_note: 'Largest study found giving a naproxen-specific AKI estimate in people over 65; outcome is hospitalisation. No meta-analysis reports a 65+ pooled estimate (Zhang 2017''s older-people subgroup is age >50 and mixes outcome definitions). Rule 20: the cohort is all new NSAID users and the abstract reports no incidence in an unexposed group (full text not opened).'
   match_note: Outcome is hospitalisation for acute renal failure (abstract), matching section 1; exposure is the first 30 days of community NSAID use; the abstract compares current exposure with no current exposure among people over 65 (the reference category is not named in the abstract), recorded as non_use.
 - ingredient: naproxen
   dimension: kidney
@@ -483,6 +716,7 @@ relative_risks:
   measure: RR
   estimate: 1.46
   ci95: [0.96, 2.24]
+  interval: confidence
   exposure: NSAID added to diuretics, first 30 days of NSAID use, vs diuretics only (Table 3 reference)
   population: UK CPRD linked to HES, 487,372 antihypertensive users (mean age about 77), hospital-coded AKI
   grade: case_control
@@ -491,12 +725,12 @@ relative_risks:
     url: https://pmc.ncbi.nlm.nih.gov/articles/PMC3541472/
     location: Table 3, 'Diuretics plus NSAIDs', row 'Duration ≤30 days', adjusted rate ratio
     quote: Duration‡ ≤30 days | 32 (1.4) | 208 (1.0) | 1.87 (1.25 to 2.79) | 1.46 (0.96 to 2.24)
-  selection_note: Large study with hospital-coded AKI comparing NSAID add-on against diuretics without NSAIDs. <=30 days row chosen to match a short OTC course; all-duration adjusted RR was 1.02 (0.81-1.28). Triple whammy (diuretic plus ACE inhibitor/ARB plus NSAID) is not encoded because applies_to takes one medication type. Class-level NSAID estimate (no ingredient-specific value in the source); applied to ibuprofen and naproxen alike.
+  selection_note: 'Large study with hospital-coded AKI comparing NSAID add-on against diuretics without NSAIDs. <=30 days row chosen to match a short OTC course; all-duration adjusted RR was 1.02 (0.81-1.28). Triple whammy (diuretic plus ACE inhibitor/ARB plus NSAID) is not encoded because applies_to takes one medication type. Class-level NSAID estimate (no ingredient-specific value in the source); applied to ibuprofen and naproxen alike. Rule 20: the paper reports only the whole cohort''s rate (''incidence rate of 7/10 000 ... person years'', all 487,372 antihypertensive users, NSAID users and all drug classes included), not the rate in its ''Diuretics only'' reference group, so no unexposed_incidence is recorded.'
   match_note: Cases were first hospital admissions with AKI (HES ICD-10 N17 in primary position), matching section 1; exposure is current community use in its first 30 days; Table 3's reference is 'Diuretics only', so the comparator is within_group and applies_to is medication_type diuretics.
 - ingredient: naproxen
   dimension: cardiovascular_bp
   applies_to: {persona: all, condition: null, medication_type: null}
-  outcome: mi_stroke
+  outcome: mi
   outcome_match: true
   exposure_window: community_oral
   comparator: non_use
@@ -504,6 +738,7 @@ relative_risks:
   measure: OR
   estimate: 1.53
   ci95: [1.07, 2.33]
+  interval: credible
   exposure: current use, any dose, for 1-7 days, vs no NSAID in the preceding year
   population: 446,763 people (61,460 acute MI) from Quebec RAMQ (elderly), Finland, UK GPRD and Saskatchewan databases
   grade: meta_analysis
@@ -512,8 +747,96 @@ relative_risks:
     url: https://pmc.ncbi.nlm.nih.gov/articles/PMC5423546/
     location: 'Table 2, pooled studies column, row ''Current: Any dose for 1-7 days''; CI is a 95% credible interval'
     quote: Any dose for 1-7 days | 571 (0.2) | 1.49 (1.14 to 1.94) | NA | 1.53 (0.93 to 2.71) | 25 (0.1) | 1.53 (0.98 to 2.46) | 19 (0.1) | 1.57 (1.03 to 2.86) | 1.53 (1.07 to 2.33)
-  selection_note: Most recent individual-patient-data meta-analysis with the largest MI case count; 1-7 day use matches a short OTC course. Outcome is MI only (not stroke or heart failure). McGettigan & Henry 2011 (PLoS Med) composite CV events gave ibuprofen 1.18 (1.11-1.25), naproxen 1.09 (1.02-1.16) for all doses and durations. Table 2 gives dose strata (<=1200/>1200 mg ibuprofen, <=750/>750 mg naproxen) only for 8-30 and >30 days of use; the 1-7 day row is any dose, so dose_mg_per_day is null.
-  match_note: Outcome is acute myocardial infarction, which is part of section 1's MI, stroke or heart failure outcome; exposure is 1-7 days of current community use; comparator is no NSAID in the preceding year.
+  selection_note: 'Most recent individual-patient-data meta-analysis with the largest MI case count; 1-7 day use matches a short OTC course. Outcome is MI only (not stroke or heart failure). McGettigan & Henry 2011 (PLoS Med) composite CV events gave ibuprofen 1.18 (1.11-1.25), naproxen 1.09 (1.02-1.16) for all doses and durations. Table 2 gives dose strata (<=1200/>1200 mg ibuprofen, <=750/>750 mg naproxen) only for 8-30 and >30 days of use; the 1-7 day row is any dose, so dose_mg_per_day is null. The dose strata are recorded as separate rows (rule 21). Rule 20: it reports no incidence in non-users.'
+  match_note: 'Outcome is acute myocardial infarction only (hospital admission is the index date), so outcome mi (rule 24), paired only with an MI baseline. Exposure is 1-7 days of current community use; comparator is no NSAID in the preceding year. Intervals are Bayesian 95% credible intervals (interval: credible, rule 27).'
+- ingredient: naproxen
+  dimension: cardiovascular_bp
+  applies_to: {persona: all, condition: null, medication_type: null}
+  outcome: mi
+  outcome_match: true
+  exposure_window: community_oral
+  comparator: non_use
+  dose_mg_per_day: [null, 750]
+  measure: OR
+  estimate: 1.23
+  ci95: [0.9, 1.61]
+  interval: credible
+  exposure: current use, <=750 mg/day for 8-30 days, vs no NSAID in the preceding year
+  population: 446,763 people (61,460 acute MI) from Quebec RAMQ (elderly), Finland, UK GPRD and Saskatchewan databases
+  grade: meta_analysis
+  source:
+    citation: 'Bally M, Dendukuri N, Rich B, et al. Risk of acute myocardial infarction with NSAIDs in real world use: bayesian meta-analysis of individual patient data. BMJ 2017;357:j1909'
+    url: https://pmc.ncbi.nlm.nih.gov/articles/PMC5423546/
+    location: Table 2, pooled studies column (last), row '<=750 mg/day for 8-30 days' under Naproxen; intervals are 95% credible intervals
+    quote: ≤750 mg/day for 8-30 days | 450 (0.2) | 1.28 (1.00 to 1.65) | | 309 (0.2) | 1.22 (0.94 to 1.54) | | 28 (0.2) | 1.21 (0.78 to 1.68) | | 13 (0.1) | 1.23 (0.77 to 1.79) | | 1.23 (0.90 to 1.61)
+  selection_note: 'Rule 21: Bally Table 2 reports dose strata for 8-30 days and >30 days of current use; every stratum is recorded and the build picks by rule. Rule 20: nested case-control IPD meta-analysis; it reports no incidence in non-users.'
+  match_note: Outcome is acute myocardial infarction (hospital admission is the index date), so outcome mi (rule 24). Comparator is no NSAID in the year before the index date. Exposure is 8-30 days of current community use, community_oral.
+- ingredient: naproxen
+  dimension: cardiovascular_bp
+  applies_to: {persona: all, condition: null, medication_type: null}
+  outcome: mi
+  outcome_match: true
+  exposure_window: community_oral
+  comparator: non_use
+  dose_mg_per_day: [751, null]
+  measure: OR
+  estimate: 1.76
+  ci95: [1.14, 2.65]
+  interval: credible
+  exposure: current use, >750 mg/day for 8-30 days, vs no NSAID in the preceding year
+  population: 446,763 people (61,460 acute MI) from Quebec RAMQ (elderly), Finland, UK GPRD and Saskatchewan databases
+  grade: meta_analysis
+  source:
+    citation: 'Bally M, Dendukuri N, Rich B, et al. Risk of acute myocardial infarction with NSAIDs in real world use: bayesian meta-analysis of individual patient data. BMJ 2017;357:j1909'
+    url: https://pmc.ncbi.nlm.nih.gov/articles/PMC5423546/
+    location: Table 2, pooled studies column (last), row '>750 mg/day for 8-30 days' under Naproxen; intervals are 95% credible intervals
+    quote: '>750 mg/day for 8-30 days | 188 (0.1) | 1.73 (1.16 to 2.51) | | NA | 1.75 (1.01 to 3.04) | | 33 (0.2) | 1.70 (1.02 to 2.61) | | 35 (0.2) | 1.83 (1.15 to 3.13) | | 1.76 (1.14 to 2.65)'
+  selection_note: 'Rule 21: Bally Table 2 reports dose strata for 8-30 days and >30 days of current use; every stratum is recorded and the build picks by rule. Rule 20: nested case-control IPD meta-analysis; it reports no incidence in non-users.'
+  match_note: Outcome is acute myocardial infarction (hospital admission is the index date), so outcome mi (rule 24). Comparator is no NSAID in the year before the index date. Exposure is 8-30 days of current community use, community_oral.
+- ingredient: naproxen
+  dimension: cardiovascular_bp
+  applies_to: {persona: all, condition: null, medication_type: null}
+  outcome: mi
+  outcome_match: true
+  exposure_window: long_term
+  comparator: non_use
+  dose_mg_per_day: [null, 750]
+  measure: OR
+  estimate: 1.21
+  ci95: [0.95, 1.52]
+  interval: credible
+  exposure: current use, <=750 mg/day for >30 days, vs no NSAID in the preceding year
+  population: 446,763 people (61,460 acute MI) from Quebec RAMQ (elderly), Finland, UK GPRD and Saskatchewan databases
+  grade: meta_analysis
+  source:
+    citation: 'Bally M, Dendukuri N, Rich B, et al. Risk of acute myocardial infarction with NSAIDs in real world use: bayesian meta-analysis of individual patient data. BMJ 2017;357:j1909'
+    url: https://pmc.ncbi.nlm.nih.gov/articles/PMC5423546/
+    location: Table 2, pooled studies column (last), row '<=750 mg/day for >30 days' under Naproxen; intervals are 95% credible intervals
+    quote: ≤750 mg/day for >30 days | 284 (0.1) | 1.21 (0.94 to 1.53) | | 506 (0.3) | 1.22 (1.00 to 1.48) | | 127 (0.7) | 1.22 (0.93 to 1.58) | | 26 (0.1) | 1.21 (0.83 to 1.62) | | 1.21 (0.95 to 1.52)
+  selection_note: 'Rule 21: Bally Table 2 reports dose strata for 8-30 days and >30 days of current use; every stratum is recorded and the build picks by rule. Rule 20: nested case-control IPD meta-analysis; it reports no incidence in non-users.'
+  match_note: Outcome is acute myocardial infarction (hospital admission is the index date), so outcome mi (rule 24). Comparator is no NSAID in the year before the index date. Exposure is more than 30 days of continuous current use, i.e. defined by months of use, so long_term (rule 11).
+- ingredient: naproxen
+  dimension: cardiovascular_bp
+  applies_to: {persona: all, condition: null, medication_type: null}
+  outcome: mi
+  outcome_match: true
+  exposure_window: long_term
+  comparator: non_use
+  dose_mg_per_day: [751, null]
+  measure: OR
+  estimate: 1.21
+  ci95: [0.91, 1.57]
+  interval: credible
+  exposure: current use, >750 mg/day for >30 days, vs no NSAID in the preceding year
+  population: 446,763 people (61,460 acute MI) from Quebec RAMQ (elderly), Finland, UK GPRD and Saskatchewan databases
+  grade: meta_analysis
+  source:
+    citation: 'Bally M, Dendukuri N, Rich B, et al. Risk of acute myocardial infarction with NSAIDs in real world use: bayesian meta-analysis of individual patient data. BMJ 2017;357:j1909'
+    url: https://pmc.ncbi.nlm.nih.gov/articles/PMC5423546/
+    location: Table 2, pooled studies column (last), row '>750 mg/day for >30 days' under Naproxen; intervals are 95% credible intervals
+    quote: '>750 mg/day for >30 days | 147 (0.1) | 1.19 (0.86 to 1.58) | | 284 (0.2) | 1.23 (0.96 to 1.58) | | 104 (0.6) | 1.20 (0.87 to 1.58) | | 51 (0.2) | 1.22 (0.88 to 1.75) | | 1.21 (0.91 to 1.57)'
+  selection_note: 'Rule 21: Bally Table 2 reports dose strata for 8-30 days and >30 days of current use; every stratum is recorded and the build picks by rule. Rule 20: nested case-control IPD meta-analysis; it reports no incidence in non-users.'
+  match_note: Outcome is acute myocardial infarction (hospital admission is the index date), so outcome mi (rule 24). Comparator is no NSAID in the year before the index date. Exposure is more than 30 days of continuous current use, i.e. defined by months of use, so long_term (rule 11).
 - ingredient: naproxen
   dimension: cardiovascular_bp
   applies_to: {persona: all, condition: heart_disease, medication_type: antiplatelets}
@@ -525,6 +848,7 @@ relative_risks:
   measure: HR
   estimate: 1.4
   ci95: [1.3, 1.49]
+  interval: confidence
   exposure: ongoing NSAID use vs no NSAID, in patients on antithrombotic therapy after first MI
   population: Denmark nationwide registries 2002-2011, 61,971 patients with prior MI (mean age 67.7)
   grade: cohort
@@ -533,7 +857,12 @@ relative_risks:
     url: https://pubmed.ncbi.nlm.nih.gov/25710657/
     location: Abstract, Results
     quote: the cardiovascular risk was also increased (hazard ratio, 1.40 [95% CI, 1.30-1.49])
-  selection_note: Large nationwide cohort in people with established heart disease. Per-ingredient and per-regimen HRs are in the full text (JAMA), which could not be opened. Class-level NSAID estimate (no ingredient-specific value in the source); applied to ibuprofen and naproxen alike.
+  unexposed_incidence:
+    annual_incidence: 0.083
+    as_reported: 8.3 cardiovascular events per 100 person-years without NSAID treatment = 8.3 / 100 = 0.083 per person-year (crude rate in the reference group; composite of cardiovascular death, nonfatal recurrent MI and stroke).
+    location: Abstract, Results
+    quote: The crude incidence rates of bleeding (events per 100 person-years) were 4.2 (95% CI, 3.8-4.6) with concomitant NSAID treatment and 2.2 (95% CI, 2.1-2.3) without NSAID treatment, whereas the rates of cardiovascular events were 11.2 (95% CI, 10.5-11.9) and 8.3 (95% CI, 8.2-8.4).
+  selection_note: 'Large nationwide cohort in people with established heart disease. Per-ingredient and per-regimen HRs are in the full text (JAMA), which could not be opened. Class-level NSAID estimate (no ingredient-specific value in the source); applied to ibuprofen and naproxen alike. Rule 20: the abstract reports the crude rate in the reference group (no NSAID treatment); recorded as unexposed_incidence.'
   match_note: Comparator is post-MI patients on antithrombotic therapy without NSAIDs, so within_group; applies_to names the group's condition (heart_disease, first MI) and its usual co-medication (antiplatelets; the regimens were aspirin, clopidogrel or oral anticoagulants and combinations). Outcome is CV death, nonfatal recurrent MI and stroke; exposure is ongoing community NSAID use from prescriptions.
 - ingredient: naproxen
   dimension: anticoagulant_bleeding
@@ -546,6 +875,7 @@ relative_risks:
   measure: OR
   estimate: 1.58
   ci95: [1.18, 2.12]
+  interval: confidence
   exposure: warfarin plus NSAID vs warfarin alone
   population: 11 observational studies of warfarin users
   grade: meta_analysis
@@ -554,7 +884,7 @@ relative_risks:
     url: https://pubmed.ncbi.nlm.nih.gov/32455439/
     location: Abstract, Results
     quote: 'There was an increased risk of general bleeding with the combination of warfarin with NSAIDs (OR = 1.58, 95% CI: 1.18-2.12)'
-  selection_note: Previously the anticoagulant row; superseded by Zheng 2023 for major bleeding. Class-level NSAID estimate (no ingredient-specific value in the source); applied to ibuprofen and naproxen alike.
+  selection_note: 'Previously the anticoagulant row; superseded by Zheng 2023 for major bleeding. Class-level NSAID estimate (no ingredient-specific value in the source); applied to ibuprofen and naproxen alike. Rule 20: meta-analysis; the source reports no incidence in non-users.'
   match_note: 'Outcome does not match rule 10: ''general bleeding'' counts any bleeding, not major bleeding. Comparator is warfarin alone (within_group); warfarin users are narrower than the anticoagulants id.'
 - ingredient: naproxen
   dimension: anticoagulant_bleeding
@@ -564,15 +894,21 @@ relative_risks:
   exposure_window: community_oral
   comparator: within_group
   dose_mg_per_day: null
+  stratum_population: vka_users
   measure: OR
   estimate: 1.55
   ci95: [1.04, 2.3]
+  interval: confidence
   exposure: NSAID plus vitamin K antagonist vs vitamin K antagonist alone
   population: observational studies and trial analyses of VKA users (atrial fibrillation, venous thromboembolism)
   grade: meta_analysis
-  source: *id004
-  selection_note: Most recent meta-analysis comparing NSAID plus oral anticoagulant against the anticoagulant alone (27 studies, searched to August 2023), with major bleeding reported separately for VKAs and DOACs; preferred over single studies such as Penner 2022 (Br J Clin Pharmacol, CPRD, major bleeding HR 2.77, 1.84-4.19) by rule 13, and over Villa Zapata 2020, which reports only general and GI bleeding with warfarin. The anticoagulants id covers both VKA and DOAC users, so both strata are recorded under it; rule 3 then uses the larger. Class-level NSAID estimate (no ingredient-specific value in the source); applied to ibuprofen and naproxen alike.
-  match_note: Outcome is major bleeding, matching section 1; exposure is concomitant use outside hospital; comparator is VKA users without NSAIDs, so within_group with medication_type anticoagulants (VKA stratum).
+  source:
+    citation: 'Zheng Y, Zhang N, Tse G, Li G, Lip GYH, Liu T. Co-administered oral anticoagulants with nonsteroidal anti-inflammatory drugs and the risk of bleeding: a systematic review and meta-analysis. Thromb Res 2023;232:15-26. PMID 39492109'
+    url: https://pubmed.ncbi.nlm.nih.gov/39492109/
+    location: Abstract, Results
+    quote: Taking vitamin K antagonist (VKAs) concurrently with NSAIDs was associated with a higher risk of any bleeding [odds ratio (OR) = 1.55; 95 % CI, 1.21 to 2.00; P = 0.0007), gastrointestinal bleeding (OR = 2.66; 95 % CI, 1.96 to 3.62; P < 0.00001) as well as major bleeding (OR = 1.55; 95 % CI, 1.04 to 2.30; P = 0.03).
+  selection_note: 'Most recent meta-analysis comparing NSAID plus oral anticoagulant against the anticoagulant alone (27 studies, searched to August 2023), with major bleeding reported separately for VKA and DOAC users; preferred over single studies such as Penner 2022 (Br J Clin Pharmacol, CPRD, major bleeding HR 2.77, 1.84-4.19) by rule 13, and over Villa Zapata 2020, which reports only general and GI bleeding with warfarin. Rule 25: both strata are recorded, each with stratum_population naming its population; the build uses the stratum whose population matches the anticoagulant baseline (not the larger). Rule 20: the abstract reports no incidence in the anticoagulant-alone groups (full text not opened). Class-level NSAID estimate (no ingredient-specific value in the source); applied to ibuprofen and naproxen alike.'
+  match_note: 'Outcome is major bleeding, matching section 1; exposure is concomitant use outside hospital; comparator is VKA users without NSAIDs, so within_group with medication_type anticoagulants (VKA stratum). Population: vitamin K antagonist users (stratum_population vka_users).'
 - ingredient: naproxen
   dimension: anticoagulant_bleeding
   applies_to: {persona: all, condition: null, medication_type: anticoagulants}
@@ -581,15 +917,21 @@ relative_risks:
   exposure_window: community_oral
   comparator: within_group
   dose_mg_per_day: null
+  stratum_population: doac_users
   measure: OR
   estimate: 1.42
   ci95: [0.84, 2.4]
+  interval: confidence
   exposure: NSAID plus direct oral anticoagulant vs direct oral anticoagulant alone
   population: observational studies and trial analyses of DOAC users (atrial fibrillation, venous thromboembolism)
   grade: meta_analysis
-  source: *id005
-  selection_note: Most recent meta-analysis comparing NSAID plus oral anticoagulant against the anticoagulant alone (27 studies, searched to August 2023), with major bleeding reported separately for VKAs and DOACs; preferred over single studies such as Penner 2022 (Br J Clin Pharmacol, CPRD, major bleeding HR 2.77, 1.84-4.19) by rule 13, and over Villa Zapata 2020, which reports only general and GI bleeding with warfarin. The anticoagulants id covers both VKA and DOAC users, so both strata are recorded under it; rule 3 then uses the larger. Class-level NSAID estimate (no ingredient-specific value in the source); applied to ibuprofen and naproxen alike.
-  match_note: Outcome is major bleeding, matching section 1; exposure is concomitant use outside hospital; comparator is DOAC users without NSAIDs, so within_group with medication_type anticoagulants (DOAC stratum).
+  source:
+    citation: 'Zheng Y, Zhang N, Tse G, Li G, Lip GYH, Liu T. Co-administered oral anticoagulants with nonsteroidal anti-inflammatory drugs and the risk of bleeding: a systematic review and meta-analysis. Thromb Res 2023;232:15-26. PMID 39492109'
+    url: https://pubmed.ncbi.nlm.nih.gov/39492109/
+    location: Abstract, Results
+    quote: Concomitant exposure to direct OACs (DOACs) and NSAIDs increased the risks of any bleeding (OR = 1.54; 95 % CI, 1.33 to 1.80; P < 0.00001) and gastrointestinal bleeding (OR = 2.18; 95 % CI, 1.02 to 4.69; P = 0.05), but was nonsignificant for major bleeding (OR = 1.42; 95 % CI, 0.84 to 2.40; P = 0.19).
+  selection_note: 'Most recent meta-analysis comparing NSAID plus oral anticoagulant against the anticoagulant alone (27 studies, searched to August 2023), with major bleeding reported separately for VKA and DOAC users; preferred over single studies such as Penner 2022 (Br J Clin Pharmacol, CPRD, major bleeding HR 2.77, 1.84-4.19) by rule 13, and over Villa Zapata 2020, which reports only general and GI bleeding with warfarin. Rule 25: both strata are recorded, each with stratum_population naming its population; the build uses the stratum whose population matches the anticoagulant baseline (not the larger). Rule 20: the abstract reports no incidence in the anticoagulant-alone groups (full text not opened). Class-level NSAID estimate (no ingredient-specific value in the source); applied to ibuprofen and naproxen alike.'
+  match_note: 'Outcome is major bleeding, matching section 1; exposure is concomitant use outside hospital; comparator is DOAC users without NSAIDs, so within_group with medication_type anticoagulants (DOAC stratum). Population: direct oral anticoagulant users (stratum_population doac_users).'
 - ingredient: naproxen
   dimension: anticoagulant_bleeding
   applies_to: {persona: all, condition: heart_disease, medication_type: antiplatelets}
@@ -601,6 +943,7 @@ relative_risks:
   measure: HR
   estimate: 2.02
   ci95: [1.81, 2.26]
+  interval: confidence
   exposure: ongoing NSAID use vs no NSAID, in patients on aspirin, clopidogrel and/or oral anticoagulants after first MI
   population: Denmark nationwide registries 2002-2011, 61,971 patients with prior MI on antithrombotic therapy
   grade: cohort
@@ -609,7 +952,12 @@ relative_risks:
     url: https://pubmed.ncbi.nlm.nih.gov/25710657/
     location: Abstract, Results
     quote: increased risk of bleeding with NSAID treatment compared with no NSAID treatment (hazard ratio, 2.02 [95% CI, 1.81-2.26])
-  selection_note: Largest study found comparing NSAID use against no NSAID within antiplatelet users; no meta-analysis of NSAIDs with antiplatelets and major bleeding was found in PubMed. Per-regimen and per-ingredient HRs are in the full text, which could not be opened. Class-level NSAID estimate (no ingredient-specific value in the source); applied to ibuprofen and naproxen alike.
+  unexposed_incidence:
+    annual_incidence: 0.022
+    as_reported: 2.2 bleeding events per 100 person-years without NSAID treatment = 2.2 / 100 = 0.022 per person-year (crude rate in the reference group, post-MI patients on antithrombotic therapy not taking NSAIDs).
+    location: Abstract, Results
+    quote: The crude incidence rates of bleeding (events per 100 person-years) were 4.2 (95% CI, 3.8-4.6) with concomitant NSAID treatment and 2.2 (95% CI, 2.1-2.3) without NSAID treatment
+  selection_note: 'Largest study found comparing NSAID use against no NSAID within antiplatelet users; no meta-analysis of NSAIDs with antiplatelets and major bleeding was found in PubMed. Per-regimen and per-ingredient HRs are in the full text, which could not be opened. Class-level NSAID estimate (no ingredient-specific value in the source); applied to ibuprofen and naproxen alike. Rule 20: the abstract reports the crude rate in the reference group (no NSAID treatment); recorded as unexposed_incidence.'
   match_note: Outcome is bleeding requiring hospitalisation, i.e. major bleeding; exposure is ongoing community NSAID use; comparator is post-MI patients on antithrombotics without NSAIDs, so within_group with condition heart_disease and medication_type antiplatelets (most regimens were aspirin and/or clopidogrel; some included oral anticoagulants).
 - ingredient: naproxen
   dimension: pregnancy_lactation
@@ -621,6 +969,7 @@ relative_risks:
   measure: OR
   estimate: 1.19
   ci95: [1.08, 1.3]
+  interval: confidence
   exposure: NSAID exposure in early pregnancy vs unexposed; outcome major birth defects
   population: cohort and case-control studies to April 2023
   grade: meta_analysis
@@ -629,7 +978,7 @@ relative_risks:
     url: https://pubmed.ncbi.nlm.nih.gov/38423229/
     location: Abstract
     quote: infants exposed to NSAIDs during early pregnancy showed a 28% increased risk of overall congenital anomalies (OR 1.28, 95%CI 1.16-1.40), and 19% for major birth defects (OR 1.19, 95%CI 1.08-1.30)
-  selection_note: 'Most recent meta-analysis. Major birth defects chosen as the serious fetal harm; miscarriage was OR 1.20 (0.93-1.55), not significant. Ingredient-specific alternative: Nakhai-Pour 2011 (CMAJ, Quebec case-control) spontaneous abortion ibuprofen OR 2.19 (1.61-2.96), naproxen OR 2.64 (2.13-3.28). No breastfeeding estimate found. Class-level NSAID estimate (no ingredient-specific value in the source); applied to ibuprofen and naproxen alike.'
+  selection_note: 'Most recent meta-analysis. Major birth defects chosen as the serious fetal harm; miscarriage was OR 1.20 (0.93-1.55), not significant. Ingredient-specific alternative: Nakhai-Pour 2011 (CMAJ, Quebec case-control) spontaneous abortion ibuprofen OR 2.19 (1.61-2.96), naproxen OR 2.64 (2.13-3.28). No breastfeeding estimate found. Class-level NSAID estimate (no ingredient-specific value in the source); applied to ibuprofen and naproxen alike. Rule 20: meta-analysis; the source reports no incidence in non-users.'
   match_note: Outcome is major birth defects, the specific fetal harm the source studies (section 1); exposure is NSAID use in early pregnancy; comparator is unexposed pregnancies.
 - ingredient: aspirin
   dimension: gi_bleeding
@@ -642,6 +991,7 @@ relative_risks:
   measure: RR
   estimate: 2.7
   ci95: [2.0, 3.6]
+  interval: confidence
   exposure: current aspirin use (last 0-7 days) at 100 mg/day, vs non-use of aspirin
   population: Spain, hospital-based case-control, 2777 endoscopy-proven major peptic ulcer UGIB cases and 5532 controls, 2001-2004
   grade: case_control
@@ -650,7 +1000,7 @@ relative_risks:
     url: https://pmc.ncbi.nlm.nih.gov/articles/PMC1856452/
     location: 'Table 5 (aspirin dose), row ''100 mg'', adjusted condition RR (columns: cases | controls | age-adjusted RR | adjusted condition RR)'
     quote: 100 mg | 132 | 185 | 1.8 (1.4 to 2.2) | 2.7 (2.0 to 3.6)
-  selection_note: No meta-analysis found that reports analgesic-dose aspirin separately from low-dose aspirin; this large case-control study reports RR by daily dose (Table 5, read directly from the PMC full text this session). Every dose stratum in Table 5 is recorded (rule 14). The table gives point daily-dose categories (100 mg, 200 mg, 300 mg, 500 mg, 1 g, >1 g); each dose_mg_per_day range runs from its category up to just below the next one, and '1 g' is recorded as [1000, 1000.5] because the next category is '>1 g'.
+  selection_note: 'No meta-analysis found that reports analgesic-dose aspirin separately from low-dose aspirin; this large case-control study reports RR by daily dose (Table 5, read directly from the PMC full text this session). Every dose stratum in Table 5 is recorded (rule 14). The table gives point daily-dose categories (100 mg, 200 mg, 300 mg, 500 mg, 1 g, >1 g); each dose_mg_per_day range runs from its category up to just below the next one, and ''1 g'' is recorded as [1000, 1000.5] because the next category is ''>1 g''. Rule 20: hospital case-control study; the paper reports no incidence in non-users.'
   match_note: Cases had endoscopy-proven major upper GI bleeding from peptic lesions, admitted to hospital, which is section 1's outcome; exposure is current use (last 0-7 days) in the community; comparator is aspirin non-use. Dose stratum '100 mg'.
 - ingredient: aspirin
   dimension: gi_bleeding
@@ -663,6 +1013,7 @@ relative_risks:
   measure: RR
   estimate: 3.8
   ci95: [2.7, 5.2]
+  interval: confidence
   exposure: current aspirin use (last 0-7 days) at 200 mg/day, vs non-use of aspirin
   population: Spain, hospital-based case-control, 2777 endoscopy-proven major peptic ulcer UGIB cases and 5532 controls, 2001-2004
   grade: case_control
@@ -671,7 +1022,7 @@ relative_risks:
     url: https://pmc.ncbi.nlm.nih.gov/articles/PMC1856452/
     location: 'Table 5 (aspirin dose), row ''200 mg'', adjusted condition RR (columns: cases | controls | age-adjusted RR | adjusted condition RR)'
     quote: 200 mg | 126 | 122 | 2.5 (2.0 to 3.3) | 3.8 (2.7 to 5.2)
-  selection_note: No meta-analysis found that reports analgesic-dose aspirin separately from low-dose aspirin; this large case-control study reports RR by daily dose (Table 5, read directly from the PMC full text this session). Every dose stratum in Table 5 is recorded (rule 14). The table gives point daily-dose categories (100 mg, 200 mg, 300 mg, 500 mg, 1 g, >1 g); each dose_mg_per_day range runs from its category up to just below the next one, and '1 g' is recorded as [1000, 1000.5] because the next category is '>1 g'.
+  selection_note: 'No meta-analysis found that reports analgesic-dose aspirin separately from low-dose aspirin; this large case-control study reports RR by daily dose (Table 5, read directly from the PMC full text this session). Every dose stratum in Table 5 is recorded (rule 14). The table gives point daily-dose categories (100 mg, 200 mg, 300 mg, 500 mg, 1 g, >1 g); each dose_mg_per_day range runs from its category up to just below the next one, and ''1 g'' is recorded as [1000, 1000.5] because the next category is ''>1 g''. Rule 20: hospital case-control study; the paper reports no incidence in non-users.'
   match_note: Cases had endoscopy-proven major upper GI bleeding from peptic lesions, admitted to hospital, which is section 1's outcome; exposure is current use (last 0-7 days) in the community; comparator is aspirin non-use. Dose stratum '200 mg'.
 - ingredient: aspirin
   dimension: gi_bleeding
@@ -684,6 +1035,7 @@ relative_risks:
   measure: RR
   estimate: 6.1
   ci95: [4.3, 8.7]
+  interval: confidence
   exposure: current aspirin use (last 0-7 days) at 300 mg/day, vs non-use of aspirin
   population: Spain, hospital-based case-control, 2777 endoscopy-proven major peptic ulcer UGIB cases and 5532 controls, 2001-2004
   grade: case_control
@@ -692,7 +1044,7 @@ relative_risks:
     url: https://pmc.ncbi.nlm.nih.gov/articles/PMC1856452/
     location: 'Table 5 (aspirin dose), row ''300 mg'', adjusted condition RR (columns: cases | controls | age-adjusted RR | adjusted condition RR)'
     quote: 300 mg | 114 | 74 | 3.8 (2.8 to 5.1) | 6.1 (4.3 to 8.7)
-  selection_note: No meta-analysis found that reports analgesic-dose aspirin separately from low-dose aspirin; this large case-control study reports RR by daily dose (Table 5, read directly from the PMC full text this session). Every dose stratum in Table 5 is recorded (rule 14). The table gives point daily-dose categories (100 mg, 200 mg, 300 mg, 500 mg, 1 g, >1 g); each dose_mg_per_day range runs from its category up to just below the next one, and '1 g' is recorded as [1000, 1000.5] because the next category is '>1 g'.
+  selection_note: 'No meta-analysis found that reports analgesic-dose aspirin separately from low-dose aspirin; this large case-control study reports RR by daily dose (Table 5, read directly from the PMC full text this session). Every dose stratum in Table 5 is recorded (rule 14). The table gives point daily-dose categories (100 mg, 200 mg, 300 mg, 500 mg, 1 g, >1 g); each dose_mg_per_day range runs from its category up to just below the next one, and ''1 g'' is recorded as [1000, 1000.5] because the next category is ''>1 g''. Rule 20: hospital case-control study; the paper reports no incidence in non-users.'
   match_note: Cases had endoscopy-proven major upper GI bleeding from peptic lesions, admitted to hospital, which is section 1's outcome; exposure is current use (last 0-7 days) in the community; comparator is aspirin non-use. Dose stratum '300 mg'.
 - ingredient: aspirin
   dimension: gi_bleeding
@@ -705,6 +1057,7 @@ relative_risks:
   measure: RR
   estimate: 7.5
   ci95: [5.7, 9.9]
+  interval: confidence
   exposure: current aspirin use (last 0-7 days) at 500 mg/day, vs non-use of aspirin
   population: Spain, hospital-based case-control, 2777 endoscopy-proven major peptic ulcer UGIB cases and 5532 controls, 2001-2004
   grade: case_control
@@ -713,7 +1066,7 @@ relative_risks:
     url: https://pmc.ncbi.nlm.nih.gov/articles/PMC1856452/
     location: 'Table 5 (aspirin dose), row ''500 mg'', adjusted condition RR (columns: cases | controls | age-adjusted RR | adjusted condition RR)'
     quote: 500 mg | 259 | 112 | 5.6 (4.4 to 7.0) | 7.5 (5.7 to 9.9)
-  selection_note: No meta-analysis found that reports analgesic-dose aspirin separately from low-dose aspirin; this large case-control study reports RR by daily dose (Table 5, read directly from the PMC full text this session). Every dose stratum in Table 5 is recorded (rule 14). The table gives point daily-dose categories (100 mg, 200 mg, 300 mg, 500 mg, 1 g, >1 g); each dose_mg_per_day range runs from its category up to just below the next one, and '1 g' is recorded as [1000, 1000.5] because the next category is '>1 g'.
+  selection_note: 'No meta-analysis found that reports analgesic-dose aspirin separately from low-dose aspirin; this large case-control study reports RR by daily dose (Table 5, read directly from the PMC full text this session). Every dose stratum in Table 5 is recorded (rule 14). The table gives point daily-dose categories (100 mg, 200 mg, 300 mg, 500 mg, 1 g, >1 g); each dose_mg_per_day range runs from its category up to just below the next one, and ''1 g'' is recorded as [1000, 1000.5] because the next category is ''>1 g''. Rule 20: hospital case-control study; the paper reports no incidence in non-users.'
   match_note: Cases had endoscopy-proven major upper GI bleeding from peptic lesions, admitted to hospital, which is section 1's outcome; exposure is current use (last 0-7 days) in the community; comparator is aspirin non-use. Dose stratum '500 mg'.
 - ingredient: aspirin
   dimension: gi_bleeding
@@ -726,6 +1079,7 @@ relative_risks:
   measure: RR
   estimate: 10.4
   ci95: [6.1, 17.8]
+  interval: confidence
   exposure: current aspirin use (last 0-7 days) at 1 g/day, vs non-use of aspirin
   population: Spain, hospital-based case-control, 2777 endoscopy-proven major peptic ulcer UGIB cases and 5532 controls, 2001-2004
   grade: case_control
@@ -734,7 +1088,7 @@ relative_risks:
     url: https://pmc.ncbi.nlm.nih.gov/articles/PMC1856452/
     location: 'Table 5 (aspirin dose), row ''1 g'', adjusted condition RR (columns: cases | controls | age-adjusted RR | adjusted condition RR)'
     quote: 1 g | 76 | 24 | 7.6 (4.8 to 12.4) | 10.4 (6.1 to 17.8)
-  selection_note: No meta-analysis found that reports analgesic-dose aspirin separately from low-dose aspirin; this large case-control study reports RR by daily dose (Table 5, read directly from the PMC full text this session). Every dose stratum in Table 5 is recorded (rule 14). The table gives point daily-dose categories (100 mg, 200 mg, 300 mg, 500 mg, 1 g, >1 g); each dose_mg_per_day range runs from its category up to just below the next one, and '1 g' is recorded as [1000, 1000.5] because the next category is '>1 g'.
+  selection_note: 'No meta-analysis found that reports analgesic-dose aspirin separately from low-dose aspirin; this large case-control study reports RR by daily dose (Table 5, read directly from the PMC full text this session). Every dose stratum in Table 5 is recorded (rule 14). The table gives point daily-dose categories (100 mg, 200 mg, 300 mg, 500 mg, 1 g, >1 g); each dose_mg_per_day range runs from its category up to just below the next one, and ''1 g'' is recorded as [1000, 1000.5] because the next category is ''>1 g''. Rule 20: hospital case-control study; the paper reports no incidence in non-users.'
   match_note: Cases had endoscopy-proven major upper GI bleeding from peptic lesions, admitted to hospital, which is section 1's outcome; exposure is current use (last 0-7 days) in the community; comparator is aspirin non-use. Dose stratum '1 g'.
 - ingredient: aspirin
   dimension: gi_bleeding
@@ -747,6 +1101,7 @@ relative_risks:
   measure: RR
   estimate: 21.2
   ci95: [8.7, 51.9]
+  interval: confidence
   exposure: current aspirin use (last 0-7 days) at >1 g/day, vs non-use of aspirin
   population: Spain, hospital-based case-control, 2777 endoscopy-proven major peptic ulcer UGIB cases and 5532 controls, 2001-2004
   grade: case_control
@@ -755,7 +1110,7 @@ relative_risks:
     url: https://pmc.ncbi.nlm.nih.gov/articles/PMC1856452/
     location: 'Table 5 (aspirin dose), row ''>1 g'', adjusted condition RR (columns: cases | controls | age-adjusted RR | adjusted condition RR)'
     quote: '>1 g | 39 | 7 | 13.3 (5.9 to 29.8) | 21.2 (8.7 to 51.9)'
-  selection_note: No meta-analysis found that reports analgesic-dose aspirin separately from low-dose aspirin; this large case-control study reports RR by daily dose (Table 5, read directly from the PMC full text this session). Every dose stratum in Table 5 is recorded (rule 14). The table gives point daily-dose categories (100 mg, 200 mg, 300 mg, 500 mg, 1 g, >1 g); each dose_mg_per_day range runs from its category up to just below the next one, and '1 g' is recorded as [1000, 1000.5] because the next category is '>1 g'.
+  selection_note: 'No meta-analysis found that reports analgesic-dose aspirin separately from low-dose aspirin; this large case-control study reports RR by daily dose (Table 5, read directly from the PMC full text this session). Every dose stratum in Table 5 is recorded (rule 14). The table gives point daily-dose categories (100 mg, 200 mg, 300 mg, 500 mg, 1 g, >1 g); each dose_mg_per_day range runs from its category up to just below the next one, and ''1 g'' is recorded as [1000, 1000.5] because the next category is ''>1 g''. Rule 20: hospital case-control study; the paper reports no incidence in non-users.'
   match_note: Cases had endoscopy-proven major upper GI bleeding from peptic lesions, admitted to hospital, which is section 1's outcome; exposure is current use (last 0-7 days) in the community; comparator is aspirin non-use. Dose stratum '>1 g'.
 - ingredient: ibuprofen_sodium
   dimension: gi_bleeding
@@ -768,6 +1123,7 @@ relative_risks:
   measure: RR
   estimate: 2.15
   ci95: [1.66, 2.79]
+  interval: confidence
   exposure: current use, low-medium daily dose, vs non-use of NSAIDs
   population: cohort and case-control studies 1980-2011, general populations (Europe, North America)
   grade: meta_analysis
@@ -776,7 +1132,7 @@ relative_risks:
     url: https://pmc.ncbi.nlm.nih.gov/articles/PMC3714137/
     location: Results, dose analysis (text accompanying Figure 3)
     quote: For ibuprofen, RRs were 2.15 (95% CI 1.66, 2.79) for low-medium dose and 4.22 (95% CI 1.76, 10.12) for high dose.
-  selection_note: 'same moiety as ibuprofen; doses in ibuprofen mg. Most recent large meta-analysis of observational studies giving ingredient-specific pooled RRs (28 studies). Both dose strata the text quotes for ibuprofen are recorded (rule 14). dose_mg_per_day [null, 1200] is the range every included study''s low-medium stratum covers (cut-offs ranged from <=1200 to <2400 mg). Dose cut-offs come from Table IV (cut-off values for low-medium vs high daily dose, by study): ibuprofen <=1200 (Castellsague 2009, Garcia Rodriguez 2007), <=1500 (Garcia Rodriguez 1994, Perez-Gutthann 1997), <1800 (Laporte 2004), <2400 (Griffin 1991), 200 (Biskupiak 2006); naproxen <=1200, <=750, <=500, <=750, <500, <=750, 220. The text says the pooled ibuprofen and naproxen RRs were essentially unchanged when the studies with different cut-offs were excluded.'
+  selection_note: 'same moiety as ibuprofen; doses in ibuprofen mg. Most recent large meta-analysis of observational studies giving ingredient-specific pooled RRs (28 studies). Both dose strata the text quotes for ibuprofen are recorded (rule 14). dose_mg_per_day [null, 1200] is the range every included study''s low-medium stratum covers (cut-offs ranged from <=1200 to <2400 mg). Dose cut-offs come from Table IV (cut-off values for low-medium vs high daily dose, by study): ibuprofen <=1200 (Castellsague 2009, Garcia Rodriguez 2007), <=1500 (Garcia Rodriguez 1994, Perez-Gutthann 1997), <1800 (Laporte 2004), <2400 (Griffin 1991), 200 (Biskupiak 2006); naproxen <=1200, <=750, <=500, <=750, <500, <=750, 220. The text says the pooled ibuprofen and naproxen RRs were essentially unchanged when the studies with different cut-offs were excluded. Rule 20: meta-analysis; it reports no incidence in non-users.'
   match_note: Outcome is upper gastrointestinal complications (bleeding, perforation or obstruction) in field and database studies of serious events, which is section 1's upper GI bleeding or perforation; exposure is current use in the community; comparator is non-use of NSAIDs. Low-medium dose stratum.
 - ingredient: ibuprofen_sodium
   dimension: gi_bleeding
@@ -789,6 +1145,7 @@ relative_risks:
   measure: RR
   estimate: 4.22
   ci95: [1.76, 10.12]
+  interval: confidence
   exposure: current use, high daily dose, vs non-use of NSAIDs
   population: cohort and case-control studies 1980-2011, general populations (Europe, North America)
   grade: meta_analysis
@@ -797,29 +1154,74 @@ relative_risks:
     url: https://pmc.ncbi.nlm.nih.gov/articles/PMC3714137/
     location: Results, dose analysis (text accompanying Figure 3)
     quote: For ibuprofen, RRs were 2.15 (95% CI 1.66, 2.79) for low-medium dose and 4.22 (95% CI 1.76, 10.12) for high dose.
-  selection_note: 'same moiety as ibuprofen; doses in ibuprofen mg. Same source and sentence as the low-medium ibuprofen stratum. dose_mg_per_day [1201, null]: high dose started above 1200 mg in some included studies and at 1500 to 2400 mg in others. Dose cut-offs come from Table IV (cut-off values for low-medium vs high daily dose, by study): ibuprofen <=1200 (Castellsague 2009, Garcia Rodriguez 2007), <=1500 (Garcia Rodriguez 1994, Perez-Gutthann 1997), <1800 (Laporte 2004), <2400 (Griffin 1991), 200 (Biskupiak 2006); naproxen <=1200, <=750, <=500, <=750, <500, <=750, 220. The text says the pooled ibuprofen and naproxen RRs were essentially unchanged when the studies with different cut-offs were excluded.'
+  selection_note: 'same moiety as ibuprofen; doses in ibuprofen mg. Same source and sentence as the low-medium ibuprofen stratum. dose_mg_per_day [1201, null]: high dose started above 1200 mg in some included studies and at 1500 to 2400 mg in others. Dose cut-offs come from Table IV (cut-off values for low-medium vs high daily dose, by study): ibuprofen <=1200 (Castellsague 2009, Garcia Rodriguez 2007), <=1500 (Garcia Rodriguez 1994, Perez-Gutthann 1997), <1800 (Laporte 2004), <2400 (Griffin 1991), 200 (Biskupiak 2006); naproxen <=1200, <=750, <=500, <=750, <500, <=750, 220. The text says the pooled ibuprofen and naproxen RRs were essentially unchanged when the studies with different cut-offs were excluded. Rule 20: meta-analysis; it reports no incidence in non-users.'
   match_note: Outcome is upper gastrointestinal complications (bleeding, perforation or obstruction) in field and database studies of serious events, which is section 1's upper GI bleeding or perforation; exposure is current use in the community; comparator is non-use of NSAIDs. High dose stratum.
 - ingredient: ibuprofen_sodium
   dimension: gi_bleeding
-  applies_to: {persona: all, condition: null, medication_type: ssri_snri}
+  applies_to: {persona: all, condition: null, medication_type: null}
   outcome: upper_gi_bleeding
   outcome_match: true
   exposure_window: community_oral
   comparator: non_use
-  dose_mg_per_day: null
+  dose_mg_per_day: [null, 1199]
   measure: OR
-  estimate: 4.25
-  ci95: [2.82, 6.42]
-  exposure: concurrent SSRI plus NSAID use vs use of neither (joint exposure, not NSAID effect within SSRI users)
-  population: 15 case-control and 4 cohort studies, adults
+  estimate: 1.1
+  ci95: [0.6, 2.0]
+  interval: confidence
+  exposure: ibuprofen <1200 mg/day in the week before the index day, vs non-use (adjusted OR)
+  population: individual patient data from 3 hospital case-control studies (Catalonia, England, Scotland, Sweden); 2,472 cases of upper GI bleeding, 5,877 controls
   grade: meta_analysis
   source:
-    citation: 'Anglin R, Yuan Y, Moayyedi P, et al. Risk of upper gastrointestinal bleeding with selective serotonin reuptake inhibitors with or without concurrent nonsteroidal anti-inflammatory use: a systematic review and meta-analysis. Am J Gastroenterol 2014;109(6):811-9'
-    url: https://pubmed.ncbi.nlm.nih.gov/24777151/
-    location: Abstract, Results
-    quote: The risk of upper GI bleeding was further increased with the use of both SSRI and NSAID medications (OR=4.25, 95% CI=2.82,6.42).
-  selection_note: 'same moiety as ibuprofen; doses in ibuprofen mg. Only meta-analysis found reporting NSAID plus SSRI for upper GI bleeding against non-use of both. CAUTION: this is the joint OR versus neither drug, so it includes the SSRI''s own effect (SSRI alone OR 1.66). SNRIs not studied. Haghbin et al. Dig Dis Sci 2023 (PMID 36526813) is newer but pools any GI bleeding (not upper GI) and compares SSRI plus NSAID against SSRI alone (OR 2.14, 1.52-3.02), so it does not report this outcome and comparator. Class-level NSAID estimate (no ingredient-specific value in the source); applied to ibuprofen and naproxen alike.'
-  match_note: Outcome is upper GI bleeding; exposure is concurrent current use in the community; comparator is use of neither drug, so non_use.
+    citation: 'Lewis SC, Langman MJS, Laporte JR, Matthews JNS, Rawlins MD, Wiholm BE. Dose-response relationships between individual nonaspirin nonsteroidal anti-inflammatory drugs (NANSAIDs) and serious upper gastrointestinal bleeding: a meta-analysis based on individual patient data. Br J Clin Pharmacol 2002;54(3):320-6. PMID 12236853'
+    url: https://pmc.ncbi.nlm.nih.gov/articles/PMC1874428/
+    location: Table 4, Ibuprofen rows (cases, controls, OR (95% CI))
+    quote: Ibuprofen < 1200 22 58 1.1 (0.6, 2.0)
+  selection_note: 'Same moiety as ibuprofen. Rule 21: every dose stratum of Lewis Table 4 for this ingredient is recorded; the build picks the one holding the label maximum. Table 4 footnotes: ''(*) All doses in mg day-1'' and ''All odds ratios are relative to nonuse of any NANSAID or aspirin''. The PDF (scanned 2002 typesetting) renders the ''>='' sign of the top stratum as a control glyph; the row order (<, range, then the open top stratum) shows it is ''>=''. Rule 20: a case-control design; the paper reports no incidence in non-users.'
+  match_note: Outcome is serious upper GI bleeding in hospital cases (Lewis title and Methods), section 1's outcome; exposure is the daily dose taken in the week before the index day, community use; comparator is non-use (Table 4 footnote). Stratum <1200 mg/day.
+- ingredient: ibuprofen_sodium
+  dimension: gi_bleeding
+  applies_to: {persona: all, condition: null, medication_type: null}
+  outcome: upper_gi_bleeding
+  outcome_match: true
+  exposure_window: community_oral
+  comparator: non_use
+  dose_mg_per_day: [1200, 1799]
+  measure: OR
+  estimate: 1.8
+  ci95: [0.8, 3.7]
+  interval: confidence
+  exposure: ibuprofen 1200-1799 mg/day in the week before the index day, vs non-use (adjusted OR)
+  population: individual patient data from 3 hospital case-control studies (Catalonia, England, Scotland, Sweden); 2,472 cases of upper GI bleeding, 5,877 controls
+  grade: meta_analysis
+  source:
+    citation: 'Lewis SC, Langman MJS, Laporte JR, Matthews JNS, Rawlins MD, Wiholm BE. Dose-response relationships between individual nonaspirin nonsteroidal anti-inflammatory drugs (NANSAIDs) and serious upper gastrointestinal bleeding: a meta-analysis based on individual patient data. Br J Clin Pharmacol 2002;54(3):320-6. PMID 12236853'
+    url: https://pmc.ncbi.nlm.nih.gov/articles/PMC1874428/
+    location: Table 4, Ibuprofen rows (cases, controls, OR (95% CI))
+    quote: 1200–1799 18 39 1.8 (0.8, 3.7)
+  selection_note: 'Same moiety as ibuprofen. Rule 21: every dose stratum of Lewis Table 4 for this ingredient is recorded; the build picks the one holding the label maximum. Table 4 footnotes: ''(*) All doses in mg day-1'' and ''All odds ratios are relative to nonuse of any NANSAID or aspirin''. The PDF (scanned 2002 typesetting) renders the ''>='' sign of the top stratum as a control glyph; the row order (<, range, then the open top stratum) shows it is ''>=''. Rule 20: a case-control design; the paper reports no incidence in non-users.'
+  match_note: Outcome is serious upper GI bleeding in hospital cases (Lewis title and Methods), section 1's outcome; exposure is the daily dose taken in the week before the index day, community use; comparator is non-use (Table 4 footnote). Stratum 1200-1799 mg/day.
+- ingredient: ibuprofen_sodium
+  dimension: gi_bleeding
+  applies_to: {persona: all, condition: null, medication_type: null}
+  outcome: upper_gi_bleeding
+  outcome_match: true
+  exposure_window: community_oral
+  comparator: non_use
+  dose_mg_per_day: [1800, null]
+  measure: OR
+  estimate: 4.6
+  ci95: [0.9, 22.3]
+  interval: confidence
+  exposure: ibuprofen >=1800 mg/day in the week before the index day, vs non-use (adjusted OR)
+  population: individual patient data from 3 hospital case-control studies (Catalonia, England, Scotland, Sweden); 2,472 cases of upper GI bleeding, 5,877 controls
+  grade: meta_analysis
+  source:
+    citation: 'Lewis SC, Langman MJS, Laporte JR, Matthews JNS, Rawlins MD, Wiholm BE. Dose-response relationships between individual nonaspirin nonsteroidal anti-inflammatory drugs (NANSAIDs) and serious upper gastrointestinal bleeding: a meta-analysis based on individual patient data. Br J Clin Pharmacol 2002;54(3):320-6. PMID 12236853'
+    url: https://pmc.ncbi.nlm.nih.gov/articles/PMC1874428/
+    location: Table 4, Ibuprofen rows (cases, controls, OR (95% CI))
+    quote: ≥ 1800 6 6 4.6 (0.9, 22.3)
+  selection_note: 'Same moiety as ibuprofen. Rule 21: every dose stratum of Lewis Table 4 for this ingredient is recorded; the build picks the one holding the label maximum. Table 4 footnotes: ''(*) All doses in mg day-1'' and ''All odds ratios are relative to nonuse of any NANSAID or aspirin''. The PDF (scanned 2002 typesetting) renders the ''>='' sign of the top stratum as a control glyph; the row order (<, range, then the open top stratum) shows it is ''>=''. Rule 20: a case-control design; the paper reports no incidence in non-users.'
+  match_note: Outcome is serious upper GI bleeding in hospital cases (Lewis title and Methods), section 1's outcome; exposure is the daily dose taken in the week before the index day, community use; comparator is non-use (Table 4 footnote). Stratum >=1800 mg/day.
 - ingredient: ibuprofen_sodium
   dimension: kidney
   applies_to: {persona: all, condition: null, medication_type: null}
@@ -831,6 +1233,7 @@ relative_risks:
   measure: OR
   estimate: 1.73
   ci95: [1.44, 2.07]
+  interval: confidence
   exposure: current NSAID exposure vs non-use (random-effects pool of adjusted ORs)
   population: 10 observational studies of community-dwelling adults (UK, US, Canada, Netherlands, Australia), searched to June 2016
   grade: meta_analysis
@@ -839,7 +1242,7 @@ relative_risks:
     url: https://pmc.ncbi.nlm.nih.gov/articles/PMC5540416/
     location: Abstract, Results; outcome definitions in Table 1 and Results
     quote: In the general population, the pooled odds ratio (OR) of AKI for current NSAID exposure was 1.73 (95%CI 1.44 to 2.07)
-  selection_note: 'same moiety as ibuprofen; doses in ibuprofen mg. Rule 13 applied. Meta-analyses opened: Zhang 2017 (BMC Nephrol, 10 studies, most recent and largest general-population pool, OR 1.73) and Ungprasert 2015 (Eur J Intern Med, PMID 25862494, 5 cohort studies; abstract gives only the range 1.58-2.11 for individual NSAIDs, no quotable pooled estimate). No newer general-population meta-analysis of NSAIDs and AKI was found in PubMed (2016-2026; Calvo 2025 covers only triple-whammy combinations, Rom J Intern Med 2025 covers CKD). Zhang''s pooled outcome is not hospital AKI: per its Results, ''Half of the studies used laboratory data to define the presence of AKI'', including Murray 1990 (outpatient creatinine rises) and Lafrance 2009 (creatinine increase >50%, per the Lafrance abstract), and Leonard 2012 used GP diagnostic codes. So no meta-analysis reports a pooled estimate for hospital AKI, and rule 13 does not displace a single study. Of the general-population studies in Zhang''s Table 1 that count only hospital admissions for AKI, Evans 1995 has the largest population (420,600 Tayside residents, 207 validated cases) and is used; Perez Gutthann 1996 (hospitalisation for ARF, 28 cases, OR 4.1) is smaller. Class-level NSAID estimate (no ingredient-specific value in the source); applied to ibuprofen and naproxen alike.'
+  selection_note: 'same moiety as ibuprofen; doses in ibuprofen mg. Rule 13 applied. Meta-analyses opened: Zhang 2017 (BMC Nephrol, 10 studies, most recent and largest general-population pool, OR 1.73) and Ungprasert 2015 (Eur J Intern Med, PMID 25862494, 5 cohort studies; abstract gives only the range 1.58-2.11 for individual NSAIDs, no quotable pooled estimate). No newer general-population meta-analysis of NSAIDs and AKI was found in PubMed (2016-2026; Calvo 2025 covers only triple-whammy combinations, Rom J Intern Med 2025 covers CKD). Zhang''s pooled outcome is not hospital AKI: per its Results, ''Half of the studies used laboratory data to define the presence of AKI'', including Murray 1990 (outpatient creatinine rises) and Lafrance 2009 (creatinine increase >50%, per the Lafrance abstract), and Leonard 2012 used GP diagnostic codes. So no meta-analysis reports a pooled estimate for hospital AKI, and rule 13 does not displace a single study. Of the general-population studies in Zhang''s Table 1 that count only hospital admissions for AKI, Evans 1995 has the largest population (420,600 Tayside residents, 207 validated cases) and is used; Perez Gutthann 1996 (hospitalisation for ARF, 28 cases, OR 4.1) is smaller. Class-level NSAID estimate (no ingredient-specific value in the source); applied to ibuprofen and naproxen alike. Rule 20: meta-analysis; the source reports no incidence in non-users.'
   match_note: 'Outcome does not match rule 10: the pool mixes hospital-admission AKI with laboratory-defined AKI (half of the 10 studies) and GP-coded AKI, so it is broader than hospital AKI. Exposure is current community use; comparator non-use.'
 - ingredient: ibuprofen_sodium
   dimension: kidney
@@ -852,6 +1255,7 @@ relative_risks:
   measure: OR
   estimate: 2.2
   ci95: [1.49, 3.25]
+  interval: confidence
   exposure: dispensed oral NSAID in the 90 days before the index date (recent exposure) vs no recent exposure; community controls
   population: Tayside, Scotland, record-linkage population of 420,600; 207 hospitalised ARF cases validated by a renal physician, 1990-1992
   grade: case_control
@@ -860,7 +1264,12 @@ relative_risks:
     url: https://pubmed.ncbi.nlm.nih.gov/7648241/
     location: Abstract
     quote: When community controls were used, recent exposure to NSAIDs and previous exposure to aspirin were independently associated with hospitalization for ARF, with adjusted odds ratios of 2.20 (1.49-3.25) and 2.19 (1.46-3.30), respectively.
-  selection_note: 'same moiety as ibuprofen; doses in ibuprofen mg. Rule 13 applied. Meta-analyses opened: Zhang 2017 (BMC Nephrol, 10 studies, most recent and largest general-population pool, OR 1.73) and Ungprasert 2015 (Eur J Intern Med, PMID 25862494, 5 cohort studies; abstract gives only the range 1.58-2.11 for individual NSAIDs, no quotable pooled estimate). No newer general-population meta-analysis of NSAIDs and AKI was found in PubMed (2016-2026; Calvo 2025 covers only triple-whammy combinations, Rom J Intern Med 2025 covers CKD). Zhang''s pooled outcome is not hospital AKI: per its Results, ''Half of the studies used laboratory data to define the presence of AKI'', including Murray 1990 (outpatient creatinine rises) and Lafrance 2009 (creatinine increase >50%, per the Lafrance abstract), and Leonard 2012 used GP diagnostic codes. So no meta-analysis reports a pooled estimate for hospital AKI, and rule 13 does not displace a single study. Of the general-population studies in Zhang''s Table 1 that count only hospital admissions for AKI, Evans 1995 has the largest population (420,600 Tayside residents, 207 validated cases) and is used; Perez Gutthann 1996 (hospitalisation for ARF, 28 cases, OR 4.1) is smaller. Class-level NSAID estimate (no ingredient-specific value in the source); applied to ibuprofen and naproxen alike.'
+  unexposed_incidence:
+    annual_incidence: 0.000185
+    as_reported: '207 validated hospitalised ARF cases among 420,600 residents; the database population is resident since May 1990 and cases were collected between 1990 and 1992, taken as May 1990 to December 1992 = 32 months = 2.67 years. 207 / 420,600 / 2.67 = 0.000185 per person-year. This is the whole study population, NSAID users included: the abstract reports no rate for non-users alone, so it slightly overstates the unexposed rate. The end month is not stated in the abstract (full text not opened).'
+    location: Abstract
+    quote: We conducted a case-control study using a purpose-built record-linkage database for a population of 420,600 patients, resident in Tayside since May 1990. Patients (n = 207) hospitalized with a diagnostic code for ARF between 1990 and 1992 had their diagnosis validated by a renal physician.
+  selection_note: 'same moiety as ibuprofen; doses in ibuprofen mg. Rule 13 applied. Meta-analyses opened: Zhang 2017 (BMC Nephrol, 10 studies, most recent and largest general-population pool, OR 1.73) and Ungprasert 2015 (Eur J Intern Med, PMID 25862494, 5 cohort studies; abstract gives only the range 1.58-2.11 for individual NSAIDs, no quotable pooled estimate). No newer general-population meta-analysis of NSAIDs and AKI was found in PubMed (2016-2026; Calvo 2025 covers only triple-whammy combinations, Rom J Intern Med 2025 covers CKD). Zhang''s pooled outcome is not hospital AKI: per its Results, ''Half of the studies used laboratory data to define the presence of AKI'', including Murray 1990 (outpatient creatinine rises) and Lafrance 2009 (creatinine increase >50%, per the Lafrance abstract), and Leonard 2012 used GP diagnostic codes. So no meta-analysis reports a pooled estimate for hospital AKI, and rule 13 does not displace a single study. Of the general-population studies in Zhang''s Table 1 that count only hospital admissions for AKI, Evans 1995 has the largest population (420,600 Tayside residents, 207 validated cases) and is used; Perez Gutthann 1996 (hospitalisation for ARF, 28 cases, OR 4.1) is smaller. Class-level NSAID estimate (no ingredient-specific value in the source); applied to ibuprofen and naproxen alike. Rule 20: the abstract gives the case count and population (see unexposed_incidence); this is the whole-population rate, as the abstract gives no non-user rate.'
   match_note: Cases were hospitalised with a diagnostic code for ARF validated by a renal physician, which is section 1's AKI at the serious level; exposure is recent community dispensing; comparator is no recent NSAID exposure.
 - ingredient: ibuprofen_sodium
   dimension: kidney
@@ -873,6 +1282,7 @@ relative_risks:
   measure: RR
   estimate: 3.2
   ci95: [1.8, 5.8]
+  interval: confidence
   exposure: current NSAID use vs non-use
   population: UK GPRD, 386,916 patients aged 50-84, nested case-control, 103 validated idiopathic ARF cases
   grade: case_control
@@ -881,7 +1291,7 @@ relative_risks:
     url: https://pubmed.ncbi.nlm.nih.gov/15754275/
     location: Abstract, Results
     quote: Current users of NSAIDs had a relative risk (RR) for ARF of 3.2 (95% confidence interval [CI], 1.8 to 5.8)
-  selection_note: same moiety as ibuprofen; doses in ibuprofen mg. Previously the general row. Kept for the audit trail; the general row is now Evans 1995 (see that row's note). Class-level NSAID estimate (no ingredient-specific value in the source); applied to ibuprofen and naproxen alike.
+  selection_note: 'same moiety as ibuprofen; doses in ibuprofen mg. Previously the general row. Kept for the audit trail; the general row is now Evans 1995 (see that row''s note). Class-level NSAID estimate (no ingredient-specific value in the source); applied to ibuprofen and naproxen alike. Rule 20: the abstract reports no incidence in non-users (full text not opened).'
   match_note: 'Outcome does not match rule 10 as far as can be checked: the abstract defines cases as ''a first-ever diagnosis of clinical ARF'' confirmed by a specialist with creatinine or urea thresholds, not as hospital admissions; the full text was not opened. Exposure is current community use; comparator non-use.'
 - ingredient: ibuprofen_sodium
   dimension: kidney
@@ -894,6 +1304,7 @@ relative_risks:
   measure: OR
   estimate: 1.63
   ci95: [1.22, 2.19]
+  interval: confidence
   exposure: current NSAID exposure vs non-use, among people with CKD (pooled crude ORs)
   population: people with chronic kidney disease in 5 case-control studies (Evans 1995, Griffin 2000, Schneider 2006, Lafrance 2009, Henry 1997)
   grade: meta_analysis
@@ -902,7 +1313,7 @@ relative_risks:
     url: https://pmc.ncbi.nlm.nih.gov/articles/PMC5540416/
     location: Abstract, Results; outcome definitions in Table 1 and Results
     quote: In people with CKD, individual study OR of AKI due to current NSAID exposure ranged from 1.12 to 5.25, with pooled estimate OR 1.63 (95% CI 1.22 to 2.19).
-  selection_note: same moiety as ibuprofen; doses in ibuprofen mg. Only meta-analysis found giving an NSAID-AKI estimate within people with CKD. Crude ORs (most studies gave no adjusted CKD estimate). Class-level NSAID estimate (no ingredient-specific value in the source); applied to ibuprofen and naproxen alike.
+  selection_note: 'same moiety as ibuprofen; doses in ibuprofen mg. Only meta-analysis found giving an NSAID-AKI estimate within people with CKD. Crude ORs (most studies gave no adjusted CKD estimate). Class-level NSAID estimate (no ingredient-specific value in the source); applied to ibuprofen and naproxen alike. Rule 20: meta-analysis; the source reports no incidence in non-users.'
   match_note: 'Comparator is CKD patients not using NSAIDs, so within_group with condition kidney_disease. Outcome does not match rule 10: one of the five pooled studies (Lafrance 2009) defined AKI as a creatinine increase of more than 50%, not a hospital admission.'
 - ingredient: ibuprofen_sodium
   dimension: kidney
@@ -915,6 +1326,7 @@ relative_risks:
   measure: RR
   estimate: 2.3
   ci95: [1.6, 3.32]
+  interval: confidence
   exposure: new use of nonselective non-naproxen NSAIDs, within 30 days of starting, vs non-use
   population: Quebec, 121,722 new NSAID users older than 65, 1999-2002, nested case-control, hospitalisation for acute renal failure
   grade: case_control
@@ -923,7 +1335,7 @@ relative_risks:
     url: https://pubmed.ncbi.nlm.nih.gov/17005625/
     location: Abstract
     quote: 'nonselective, non-naproxen NSAIDs (RR = 2.30, 95% CI: 1.60, 3.32)'
-  selection_note: same moiety as ibuprofen; doses in ibuprofen mg. No ibuprofen-specific estimate for 65+ found; this group estimate covers nonselective NSAIDs other than naproxen, which includes ibuprofen. No meta-analysis reports a 65+ pooled estimate (Zhang 2017's older-people subgroup is age >50 and mixes outcome definitions).
+  selection_note: 'same moiety as ibuprofen; doses in ibuprofen mg. No ibuprofen-specific estimate for 65+ found; this group estimate covers nonselective NSAIDs other than naproxen, which includes ibuprofen. No meta-analysis reports a 65+ pooled estimate (Zhang 2017''s older-people subgroup is age >50 and mixes outcome definitions). Rule 20: the cohort is all new NSAID users and the abstract reports no incidence in an unexposed group (full text not opened).'
   match_note: Outcome is hospitalisation for acute renal failure (abstract), matching section 1; exposure is the first 30 days of community NSAID use; the abstract compares current exposure with no current exposure among people over 65 (the reference category is not named in the abstract), recorded as non_use.
 - ingredient: ibuprofen_sodium
   dimension: kidney
@@ -936,6 +1348,7 @@ relative_risks:
   measure: RR
   estimate: 1.46
   ci95: [0.96, 2.24]
+  interval: confidence
   exposure: NSAID added to diuretics, first 30 days of NSAID use, vs diuretics only (Table 3 reference)
   population: UK CPRD linked to HES, 487,372 antihypertensive users (mean age about 77), hospital-coded AKI
   grade: case_control
@@ -944,12 +1357,12 @@ relative_risks:
     url: https://pmc.ncbi.nlm.nih.gov/articles/PMC3541472/
     location: Table 3, 'Diuretics plus NSAIDs', row 'Duration ≤30 days', adjusted rate ratio
     quote: Duration‡ ≤30 days | 32 (1.4) | 208 (1.0) | 1.87 (1.25 to 2.79) | 1.46 (0.96 to 2.24)
-  selection_note: same moiety as ibuprofen; doses in ibuprofen mg. Large study with hospital-coded AKI comparing NSAID add-on against diuretics without NSAIDs. <=30 days row chosen to match a short OTC course; all-duration adjusted RR was 1.02 (0.81-1.28). Triple whammy (diuretic plus ACE inhibitor/ARB plus NSAID) is not encoded because applies_to takes one medication type. Class-level NSAID estimate (no ingredient-specific value in the source); applied to ibuprofen and naproxen alike.
+  selection_note: 'same moiety as ibuprofen; doses in ibuprofen mg. Large study with hospital-coded AKI comparing NSAID add-on against diuretics without NSAIDs. <=30 days row chosen to match a short OTC course; all-duration adjusted RR was 1.02 (0.81-1.28). Triple whammy (diuretic plus ACE inhibitor/ARB plus NSAID) is not encoded because applies_to takes one medication type. Class-level NSAID estimate (no ingredient-specific value in the source); applied to ibuprofen and naproxen alike. Rule 20: the paper reports only the whole cohort''s rate (''incidence rate of 7/10 000 ... person years'', all 487,372 antihypertensive users, NSAID users and all drug classes included), not the rate in its ''Diuretics only'' reference group, so no unexposed_incidence is recorded.'
   match_note: Cases were first hospital admissions with AKI (HES ICD-10 N17 in primary position), matching section 1; exposure is current community use in its first 30 days; Table 3's reference is 'Diuretics only', so the comparator is within_group and applies_to is medication_type diuretics.
 - ingredient: ibuprofen_sodium
   dimension: cardiovascular_bp
   applies_to: {persona: all, condition: null, medication_type: null}
-  outcome: mi_stroke
+  outcome: mi
   outcome_match: true
   exposure_window: community_oral
   comparator: non_use
@@ -957,6 +1370,7 @@ relative_risks:
   measure: OR
   estimate: 1.48
   ci95: [1.0, 2.26]
+  interval: credible
   exposure: current use, any dose, for 1-7 days, vs no NSAID in the preceding year
   population: 446,763 people (61,460 acute MI) from Quebec RAMQ (elderly), Finland, UK GPRD and Saskatchewan databases
   grade: meta_analysis
@@ -965,8 +1379,96 @@ relative_risks:
     url: https://pmc.ncbi.nlm.nih.gov/articles/PMC5423546/
     location: 'Table 2, pooled studies column, row ''Current: Any dose for 1-7 days''; CI is a 95% credible interval'
     quote: Any dose for 1-7 days | 192 (0.1) | 1.46 (0.99 to 2.12) | NA | 1.47 (0.89 to 2.61) | 117 (0.7) | 1.41 (0.95 to 2.04) | 15 (0.1) | 1.55 (0.99 to 2.99) | 1.48 (1.00 to 2.26)
-  selection_note: same moiety as ibuprofen; doses in ibuprofen mg. Most recent individual-patient-data meta-analysis with the largest MI case count; 1-7 day use matches a short OTC course. Outcome is MI only (not stroke or heart failure). McGettigan & Henry 2011 (PLoS Med) composite CV events gave ibuprofen 1.18 (1.11-1.25), naproxen 1.09 (1.02-1.16) for all doses and durations. Table 2 gives dose strata (<=1200/>1200 mg ibuprofen, <=750/>750 mg naproxen) only for 8-30 and >30 days of use; the 1-7 day row is any dose, so dose_mg_per_day is null.
-  match_note: Outcome is acute myocardial infarction, which is part of section 1's MI, stroke or heart failure outcome; exposure is 1-7 days of current community use; comparator is no NSAID in the preceding year.
+  selection_note: 'same moiety as ibuprofen; doses in ibuprofen mg. Most recent individual-patient-data meta-analysis with the largest MI case count; 1-7 day use matches a short OTC course. Outcome is MI only (not stroke or heart failure). McGettigan & Henry 2011 (PLoS Med) composite CV events gave ibuprofen 1.18 (1.11-1.25), naproxen 1.09 (1.02-1.16) for all doses and durations. Table 2 gives dose strata (<=1200/>1200 mg ibuprofen, <=750/>750 mg naproxen) only for 8-30 and >30 days of use; the 1-7 day row is any dose, so dose_mg_per_day is null. The dose strata are recorded as separate rows (rule 21). Rule 20: it reports no incidence in non-users.'
+  match_note: 'Outcome is acute myocardial infarction only (hospital admission is the index date), so outcome mi (rule 24), paired only with an MI baseline. Exposure is 1-7 days of current community use; comparator is no NSAID in the preceding year. Intervals are Bayesian 95% credible intervals (interval: credible, rule 27).'
+- ingredient: ibuprofen_sodium
+  dimension: cardiovascular_bp
+  applies_to: {persona: all, condition: null, medication_type: null}
+  outcome: mi
+  outcome_match: true
+  exposure_window: community_oral
+  comparator: non_use
+  dose_mg_per_day: [null, 1200]
+  measure: OR
+  estimate: 1.04
+  ci95: [0.72, 1.35]
+  interval: credible
+  exposure: current use, <=1200 mg/day for 8-30 days, vs no NSAID in the preceding year
+  population: 446,763 people (61,460 acute MI) from Quebec RAMQ (elderly), Finland, UK GPRD and Saskatchewan databases
+  grade: meta_analysis
+  source:
+    citation: 'Bally M, Dendukuri N, Rich B, et al. Risk of acute myocardial infarction with NSAIDs in real world use: bayesian meta-analysis of individual patient data. BMJ 2017;357:j1909'
+    url: https://pmc.ncbi.nlm.nih.gov/articles/PMC5423546/
+    location: Table 2, pooled studies column (last), row '<=1200 mg/day for 8-30 days' under Ibuprofen; intervals are 95% credible intervals
+    quote: ≤1200 mg/day for 8-30 days | 199 (0.1) | 0.97 (0.61 to 1.33) | | 918 (0.5) | 1.22 (1.03 to 1.46) | | 278 (1.6) | 0.94 (0.66 to 1.25) | | 17 (0.1) | 1.04 (0.57 to 1.61) | | 1.04 (0.72 to 1.35)
+  selection_note: 'Same moiety as ibuprofen. Rule 21: Bally Table 2 reports dose strata for 8-30 days and >30 days of current use; every stratum is recorded and the build picks by rule. Rule 20: nested case-control IPD meta-analysis; it reports no incidence in non-users.'
+  match_note: Outcome is acute myocardial infarction (hospital admission is the index date), so outcome mi (rule 24). Comparator is no NSAID in the year before the index date. Exposure is 8-30 days of current community use, community_oral.
+- ingredient: ibuprofen_sodium
+  dimension: cardiovascular_bp
+  applies_to: {persona: all, condition: null, medication_type: null}
+  outcome: mi
+  outcome_match: true
+  exposure_window: community_oral
+  comparator: non_use
+  dose_mg_per_day: [1201, null]
+  measure: OR
+  estimate: 1.75
+  ci95: [1.0, 2.93]
+  interval: credible
+  exposure: current use, >1200 mg/day for 8-30 days, vs no NSAID in the preceding year
+  population: 446,763 people (61,460 acute MI) from Quebec RAMQ (elderly), Finland, UK GPRD and Saskatchewan databases
+  grade: meta_analysis
+  source:
+    citation: 'Bally M, Dendukuri N, Rich B, et al. Risk of acute myocardial infarction with NSAIDs in real world use: bayesian meta-analysis of individual patient data. BMJ 2017;357:j1909'
+    url: https://pmc.ncbi.nlm.nih.gov/articles/PMC5423546/
+    location: Table 2, pooled studies column (last), row '>1200 mg/day for 8-30 days' under Ibuprofen; intervals are 95% credible intervals
+    quote: '>1200 mg/day for 8-30 days | 61 (0.03) | 1.77 (1.02 to 2.96) | | NA | 1.74 (0.90 to 3.24) | | 34 (0.2) | 1.72 (0.98 to 2.85) | | 17 (0.1) | 1.75 (0.96 to 3.10) | | 1.75 (1.00 to 2.93)'
+  selection_note: 'Same moiety as ibuprofen. Rule 21: Bally Table 2 reports dose strata for 8-30 days and >30 days of current use; every stratum is recorded and the build picks by rule. Rule 20: nested case-control IPD meta-analysis; it reports no incidence in non-users.'
+  match_note: Outcome is acute myocardial infarction (hospital admission is the index date), so outcome mi (rule 24). Comparator is no NSAID in the year before the index date. Exposure is 8-30 days of current community use, community_oral.
+- ingredient: ibuprofen_sodium
+  dimension: cardiovascular_bp
+  applies_to: {persona: all, condition: null, medication_type: null}
+  outcome: mi
+  outcome_match: true
+  exposure_window: long_term
+  comparator: non_use
+  dose_mg_per_day: [null, 1200]
+  measure: OR
+  estimate: 1.32
+  ci95: [1.02, 1.74]
+  interval: credible
+  exposure: current use, <=1200 mg/day for >30 days, vs no NSAID in the preceding year
+  population: 446,763 people (61,460 acute MI) from Quebec RAMQ (elderly), Finland, UK GPRD and Saskatchewan databases
+  grade: meta_analysis
+  source:
+    citation: 'Bally M, Dendukuri N, Rich B, et al. Risk of acute myocardial infarction with NSAIDs in real world use: bayesian meta-analysis of individual patient data. BMJ 2017;357:j1909'
+    url: https://pmc.ncbi.nlm.nih.gov/articles/PMC5423546/
+    location: Table 2, pooled studies column (last), row '<=1200 mg/day for >30 days' under Ibuprofen; intervals are 95% credible intervals
+    quote: ≤1200 mg/day for >30 days | 114 (0.05) | 1.43 (1.08 to 2.28) | | 1173 (0.7) | 1.39 (1.21 to 1.60) | | 626 (3.6) | 1.19 (0.96 to 1.44) | | 10 (0.04) | 1.29 (0.78 to 1.95) | | 1.32 (1.02 to 1.74)
+  selection_note: 'Same moiety as ibuprofen. Rule 21: Bally Table 2 reports dose strata for 8-30 days and >30 days of current use; every stratum is recorded and the build picks by rule. Rule 20: nested case-control IPD meta-analysis; it reports no incidence in non-users.'
+  match_note: Outcome is acute myocardial infarction (hospital admission is the index date), so outcome mi (rule 24). Comparator is no NSAID in the year before the index date. Exposure is more than 30 days of continuous current use, i.e. defined by months of use, so long_term (rule 11).
+- ingredient: ibuprofen_sodium
+  dimension: cardiovascular_bp
+  applies_to: {persona: all, condition: null, medication_type: null}
+  outcome: mi
+  outcome_match: true
+  exposure_window: long_term
+  comparator: non_use
+  dose_mg_per_day: [1201, null]
+  measure: OR
+  estimate: 1.47
+  ci95: [1.04, 2.04]
+  interval: credible
+  exposure: current use, >1200 mg/day for >30 days, vs no NSAID in the preceding year
+  population: 446,763 people (61,460 acute MI) from Quebec RAMQ (elderly), Finland, UK GPRD and Saskatchewan databases
+  grade: meta_analysis
+  source:
+    citation: 'Bally M, Dendukuri N, Rich B, et al. Risk of acute myocardial infarction with NSAIDs in real world use: bayesian meta-analysis of individual patient data. BMJ 2017;357:j1909'
+    url: https://pmc.ncbi.nlm.nih.gov/articles/PMC5423546/
+    location: Table 2, pooled studies column (last), row '>1200 mg/day for >30 days' under Ibuprofen; intervals are 95% credible intervals
+    quote: '>1200 mg/day for >30 days | 26 (0.01) | 1.52 (0.98 to 2.51) | | 276 (0.2) | 1.56 (1.19 to 2.04) | | 98 (0.6) | 1.34 (0.85 to 1.84) | | 19 (0.1) | 1.48 (0.93 to 2.40) | | 1.47 (1.04 to 2.04)'
+  selection_note: 'Same moiety as ibuprofen. Rule 21: Bally Table 2 reports dose strata for 8-30 days and >30 days of current use; every stratum is recorded and the build picks by rule. Rule 20: nested case-control IPD meta-analysis; it reports no incidence in non-users.'
+  match_note: Outcome is acute myocardial infarction (hospital admission is the index date), so outcome mi (rule 24). Comparator is no NSAID in the year before the index date. Exposure is more than 30 days of continuous current use, i.e. defined by months of use, so long_term (rule 11).
 - ingredient: ibuprofen_sodium
   dimension: cardiovascular_bp
   applies_to: {persona: all, condition: heart_disease, medication_type: antiplatelets}
@@ -978,6 +1480,7 @@ relative_risks:
   measure: HR
   estimate: 1.4
   ci95: [1.3, 1.49]
+  interval: confidence
   exposure: ongoing NSAID use vs no NSAID, in patients on antithrombotic therapy after first MI
   population: Denmark nationwide registries 2002-2011, 61,971 patients with prior MI (mean age 67.7)
   grade: cohort
@@ -986,7 +1489,12 @@ relative_risks:
     url: https://pubmed.ncbi.nlm.nih.gov/25710657/
     location: Abstract, Results
     quote: the cardiovascular risk was also increased (hazard ratio, 1.40 [95% CI, 1.30-1.49])
-  selection_note: same moiety as ibuprofen; doses in ibuprofen mg. Large nationwide cohort in people with established heart disease. Per-ingredient and per-regimen HRs are in the full text (JAMA), which could not be opened. Class-level NSAID estimate (no ingredient-specific value in the source); applied to ibuprofen and naproxen alike.
+  unexposed_incidence:
+    annual_incidence: 0.083
+    as_reported: 8.3 cardiovascular events per 100 person-years without NSAID treatment = 8.3 / 100 = 0.083 per person-year (crude rate in the reference group; composite of cardiovascular death, nonfatal recurrent MI and stroke).
+    location: Abstract, Results
+    quote: The crude incidence rates of bleeding (events per 100 person-years) were 4.2 (95% CI, 3.8-4.6) with concomitant NSAID treatment and 2.2 (95% CI, 2.1-2.3) without NSAID treatment, whereas the rates of cardiovascular events were 11.2 (95% CI, 10.5-11.9) and 8.3 (95% CI, 8.2-8.4).
+  selection_note: 'same moiety as ibuprofen; doses in ibuprofen mg. Large nationwide cohort in people with established heart disease. Per-ingredient and per-regimen HRs are in the full text (JAMA), which could not be opened. Class-level NSAID estimate (no ingredient-specific value in the source); applied to ibuprofen and naproxen alike. Rule 20: the abstract reports the crude rate in the reference group (no NSAID treatment); recorded as unexposed_incidence.'
   match_note: Comparator is post-MI patients on antithrombotic therapy without NSAIDs, so within_group; applies_to names the group's condition (heart_disease, first MI) and its usual co-medication (antiplatelets; the regimens were aspirin, clopidogrel or oral anticoagulants and combinations). Outcome is CV death, nonfatal recurrent MI and stroke; exposure is ongoing community NSAID use from prescriptions.
 - ingredient: ibuprofen_sodium
   dimension: anticoagulant_bleeding
@@ -999,6 +1507,7 @@ relative_risks:
   measure: OR
   estimate: 1.58
   ci95: [1.18, 2.12]
+  interval: confidence
   exposure: warfarin plus NSAID vs warfarin alone
   population: 11 observational studies of warfarin users
   grade: meta_analysis
@@ -1007,7 +1516,7 @@ relative_risks:
     url: https://pubmed.ncbi.nlm.nih.gov/32455439/
     location: Abstract, Results
     quote: 'There was an increased risk of general bleeding with the combination of warfarin with NSAIDs (OR = 1.58, 95% CI: 1.18-2.12)'
-  selection_note: same moiety as ibuprofen; doses in ibuprofen mg. Previously the anticoagulant row; superseded by Zheng 2023 for major bleeding. Class-level NSAID estimate (no ingredient-specific value in the source); applied to ibuprofen and naproxen alike.
+  selection_note: 'same moiety as ibuprofen; doses in ibuprofen mg. Previously the anticoagulant row; superseded by Zheng 2023 for major bleeding. Class-level NSAID estimate (no ingredient-specific value in the source); applied to ibuprofen and naproxen alike. Rule 20: meta-analysis; the source reports no incidence in non-users.'
   match_note: 'Outcome does not match rule 10: ''general bleeding'' counts any bleeding, not major bleeding. Comparator is warfarin alone (within_group); warfarin users are narrower than the anticoagulants id.'
 - ingredient: ibuprofen_sodium
   dimension: anticoagulant_bleeding
@@ -1017,9 +1526,11 @@ relative_risks:
   exposure_window: community_oral
   comparator: within_group
   dose_mg_per_day: null
+  stratum_population: vka_users
   measure: OR
   estimate: 1.55
   ci95: [1.04, 2.3]
+  interval: confidence
   exposure: NSAID plus vitamin K antagonist vs vitamin K antagonist alone
   population: observational studies and trial analyses of VKA users (atrial fibrillation, venous thromboembolism)
   grade: meta_analysis
@@ -1028,8 +1539,8 @@ relative_risks:
     url: https://pubmed.ncbi.nlm.nih.gov/39492109/
     location: Abstract, Results
     quote: Taking vitamin K antagonist (VKAs) concurrently with NSAIDs was associated with a higher risk of any bleeding [odds ratio (OR) = 1.55; 95 % CI, 1.21 to 2.00; P = 0.0007), gastrointestinal bleeding (OR = 2.66; 95 % CI, 1.96 to 3.62; P < 0.00001) as well as major bleeding (OR = 1.55; 95 % CI, 1.04 to 2.30; P = 0.03).
-  selection_note: same moiety as ibuprofen; doses in ibuprofen mg. Most recent meta-analysis comparing NSAID plus oral anticoagulant against the anticoagulant alone (27 studies, searched to August 2023), with major bleeding reported separately for VKAs and DOACs; preferred over single studies such as Penner 2022 (Br J Clin Pharmacol, CPRD, major bleeding HR 2.77, 1.84-4.19) by rule 13, and over Villa Zapata 2020, which reports only general and GI bleeding with warfarin. The anticoagulants id covers both VKA and DOAC users, so both strata are recorded under it; rule 3 then uses the larger. Class-level NSAID estimate (no ingredient-specific value in the source); applied to ibuprofen and naproxen alike.
-  match_note: Outcome is major bleeding, matching section 1; exposure is concomitant use outside hospital; comparator is VKA users without NSAIDs, so within_group with medication_type anticoagulants (VKA stratum).
+  selection_note: 'same moiety as ibuprofen; doses in ibuprofen mg. Most recent meta-analysis comparing NSAID plus oral anticoagulant against the anticoagulant alone (27 studies, searched to August 2023), with major bleeding reported separately for VKA and DOAC users; preferred over single studies such as Penner 2022 (Br J Clin Pharmacol, CPRD, major bleeding HR 2.77, 1.84-4.19) by rule 13, and over Villa Zapata 2020, which reports only general and GI bleeding with warfarin. Rule 25: both strata are recorded, each with stratum_population naming its population; the build uses the stratum whose population matches the anticoagulant baseline (not the larger). Rule 20: the abstract reports no incidence in the anticoagulant-alone groups (full text not opened). Class-level NSAID estimate (no ingredient-specific value in the source); applied to ibuprofen and naproxen alike.'
+  match_note: 'Outcome is major bleeding, matching section 1; exposure is concomitant use outside hospital; comparator is VKA users without NSAIDs, so within_group with medication_type anticoagulants (VKA stratum). Population: vitamin K antagonist users (stratum_population vka_users).'
 - ingredient: ibuprofen_sodium
   dimension: anticoagulant_bleeding
   applies_to: {persona: all, condition: null, medication_type: anticoagulants}
@@ -1038,9 +1549,11 @@ relative_risks:
   exposure_window: community_oral
   comparator: within_group
   dose_mg_per_day: null
+  stratum_population: doac_users
   measure: OR
   estimate: 1.42
   ci95: [0.84, 2.4]
+  interval: confidence
   exposure: NSAID plus direct oral anticoagulant vs direct oral anticoagulant alone
   population: observational studies and trial analyses of DOAC users (atrial fibrillation, venous thromboembolism)
   grade: meta_analysis
@@ -1049,8 +1562,8 @@ relative_risks:
     url: https://pubmed.ncbi.nlm.nih.gov/39492109/
     location: Abstract, Results
     quote: Concomitant exposure to direct OACs (DOACs) and NSAIDs increased the risks of any bleeding (OR = 1.54; 95 % CI, 1.33 to 1.80; P < 0.00001) and gastrointestinal bleeding (OR = 2.18; 95 % CI, 1.02 to 4.69; P = 0.05), but was nonsignificant for major bleeding (OR = 1.42; 95 % CI, 0.84 to 2.40; P = 0.19).
-  selection_note: same moiety as ibuprofen; doses in ibuprofen mg. Most recent meta-analysis comparing NSAID plus oral anticoagulant against the anticoagulant alone (27 studies, searched to August 2023), with major bleeding reported separately for VKAs and DOACs; preferred over single studies such as Penner 2022 (Br J Clin Pharmacol, CPRD, major bleeding HR 2.77, 1.84-4.19) by rule 13, and over Villa Zapata 2020, which reports only general and GI bleeding with warfarin. The anticoagulants id covers both VKA and DOAC users, so both strata are recorded under it; rule 3 then uses the larger. Class-level NSAID estimate (no ingredient-specific value in the source); applied to ibuprofen and naproxen alike.
-  match_note: Outcome is major bleeding, matching section 1; exposure is concomitant use outside hospital; comparator is DOAC users without NSAIDs, so within_group with medication_type anticoagulants (DOAC stratum).
+  selection_note: 'same moiety as ibuprofen; doses in ibuprofen mg. Most recent meta-analysis comparing NSAID plus oral anticoagulant against the anticoagulant alone (27 studies, searched to August 2023), with major bleeding reported separately for VKA and DOAC users; preferred over single studies such as Penner 2022 (Br J Clin Pharmacol, CPRD, major bleeding HR 2.77, 1.84-4.19) by rule 13, and over Villa Zapata 2020, which reports only general and GI bleeding with warfarin. Rule 25: both strata are recorded, each with stratum_population naming its population; the build uses the stratum whose population matches the anticoagulant baseline (not the larger). Rule 20: the abstract reports no incidence in the anticoagulant-alone groups (full text not opened). Class-level NSAID estimate (no ingredient-specific value in the source); applied to ibuprofen and naproxen alike.'
+  match_note: 'Outcome is major bleeding, matching section 1; exposure is concomitant use outside hospital; comparator is DOAC users without NSAIDs, so within_group with medication_type anticoagulants (DOAC stratum). Population: direct oral anticoagulant users (stratum_population doac_users).'
 - ingredient: ibuprofen_sodium
   dimension: anticoagulant_bleeding
   applies_to: {persona: all, condition: heart_disease, medication_type: antiplatelets}
@@ -1062,6 +1575,7 @@ relative_risks:
   measure: HR
   estimate: 2.02
   ci95: [1.81, 2.26]
+  interval: confidence
   exposure: ongoing NSAID use vs no NSAID, in patients on aspirin, clopidogrel and/or oral anticoagulants after first MI
   population: Denmark nationwide registries 2002-2011, 61,971 patients with prior MI on antithrombotic therapy
   grade: cohort
@@ -1070,7 +1584,12 @@ relative_risks:
     url: https://pubmed.ncbi.nlm.nih.gov/25710657/
     location: Abstract, Results
     quote: increased risk of bleeding with NSAID treatment compared with no NSAID treatment (hazard ratio, 2.02 [95% CI, 1.81-2.26])
-  selection_note: same moiety as ibuprofen; doses in ibuprofen mg. Largest study found comparing NSAID use against no NSAID within antiplatelet users; no meta-analysis of NSAIDs with antiplatelets and major bleeding was found in PubMed. Per-regimen and per-ingredient HRs are in the full text, which could not be opened. Class-level NSAID estimate (no ingredient-specific value in the source); applied to ibuprofen and naproxen alike.
+  unexposed_incidence:
+    annual_incidence: 0.022
+    as_reported: 2.2 bleeding events per 100 person-years without NSAID treatment = 2.2 / 100 = 0.022 per person-year (crude rate in the reference group, post-MI patients on antithrombotic therapy not taking NSAIDs).
+    location: Abstract, Results
+    quote: The crude incidence rates of bleeding (events per 100 person-years) were 4.2 (95% CI, 3.8-4.6) with concomitant NSAID treatment and 2.2 (95% CI, 2.1-2.3) without NSAID treatment
+  selection_note: 'same moiety as ibuprofen; doses in ibuprofen mg. Largest study found comparing NSAID use against no NSAID within antiplatelet users; no meta-analysis of NSAIDs with antiplatelets and major bleeding was found in PubMed. Per-regimen and per-ingredient HRs are in the full text, which could not be opened. Class-level NSAID estimate (no ingredient-specific value in the source); applied to ibuprofen and naproxen alike. Rule 20: the abstract reports the crude rate in the reference group (no NSAID treatment); recorded as unexposed_incidence.'
   match_note: Outcome is bleeding requiring hospitalisation, i.e. major bleeding; exposure is ongoing community NSAID use; comparator is post-MI patients on antithrombotics without NSAIDs, so within_group with condition heart_disease and medication_type antiplatelets (most regimens were aspirin and/or clopidogrel; some included oral anticoagulants).
 - ingredient: ibuprofen_sodium
   dimension: pregnancy_lactation
@@ -1082,6 +1601,7 @@ relative_risks:
   measure: OR
   estimate: 1.19
   ci95: [1.08, 1.3]
+  interval: confidence
   exposure: NSAID exposure in early pregnancy vs unexposed; outcome major birth defects
   population: cohort and case-control studies to April 2023
   grade: meta_analysis
@@ -1090,7 +1610,7 @@ relative_risks:
     url: https://pubmed.ncbi.nlm.nih.gov/38423229/
     location: Abstract
     quote: infants exposed to NSAIDs during early pregnancy showed a 28% increased risk of overall congenital anomalies (OR 1.28, 95%CI 1.16-1.40), and 19% for major birth defects (OR 1.19, 95%CI 1.08-1.30)
-  selection_note: 'same moiety as ibuprofen; doses in ibuprofen mg. Most recent meta-analysis. Major birth defects chosen as the serious fetal harm; miscarriage was OR 1.20 (0.93-1.55), not significant. Ingredient-specific alternative: Nakhai-Pour 2011 (CMAJ, Quebec case-control) spontaneous abortion ibuprofen OR 2.19 (1.61-2.96), naproxen OR 2.64 (2.13-3.28). No breastfeeding estimate found. Class-level NSAID estimate (no ingredient-specific value in the source); applied to ibuprofen and naproxen alike.'
+  selection_note: 'same moiety as ibuprofen; doses in ibuprofen mg. Most recent meta-analysis. Major birth defects chosen as the serious fetal harm; miscarriage was OR 1.20 (0.93-1.55), not significant. Ingredient-specific alternative: Nakhai-Pour 2011 (CMAJ, Quebec case-control) spontaneous abortion ibuprofen OR 2.19 (1.61-2.96), naproxen OR 2.64 (2.13-3.28). No breastfeeding estimate found. Class-level NSAID estimate (no ingredient-specific value in the source); applied to ibuprofen and naproxen alike. Rule 20: meta-analysis; the source reports no incidence in non-users.'
   match_note: Outcome is major birth defects, the specific fetal harm the source studies (section 1); exposure is NSAID use in early pregnancy; comparator is unexposed pregnancies.
 insufficient:
 - ingredient: aspirin
@@ -1132,15 +1652,27 @@ insufficient:
 - ingredient: ibuprofen
   dimension: kidney
   applies_to: {medication_type: [blood_pressure_medications]}
-  reason: 'applies_to medication_type blood_pressure_medications: the only within-group estimate found (Lapi et al. BMJ 2013;346:e8525, Table 3, NSAID added to ACE inhibitors or ARBs vs ACE inhibitors or ARBs only, first 30 days, adjusted RR 1.13, 0.66-1.96) covers ACE inhibitor and ARB users only, which is narrower than blood_pressure_medications; no estimate for the whole group was found, and no ID matches ACE inhibitors and ARBs alone.'
+  reason: 'applies_to medication_type blood_pressure_medications: no estimate specific to blood_pressure_medications; the general estimate is used. The only within-group estimate found (Lapi et al. BMJ 2013;346:e8525, Table 3, NSAID added to ACE inhibitors or ARBs vs ACE inhibitors or ARBs only, first 30 days, adjusted RR 1.13, 0.66-1.96) covers ACE inhibitor and ARB users only, which is narrower than blood_pressure_medications; no estimate for the whole group was found, and no ID matches ACE inhibitors and ARBs alone.'
 - ingredient: naproxen
   dimension: kidney
   applies_to: {medication_type: [blood_pressure_medications]}
-  reason: 'applies_to medication_type blood_pressure_medications: the only within-group estimate found (Lapi et al. BMJ 2013;346:e8525, Table 3, NSAID added to ACE inhibitors or ARBs vs ACE inhibitors or ARBs only, first 30 days, adjusted RR 1.13, 0.66-1.96) covers ACE inhibitor and ARB users only, which is narrower than blood_pressure_medications; no estimate for the whole group was found, and no ID matches ACE inhibitors and ARBs alone.'
+  reason: 'applies_to medication_type blood_pressure_medications: no estimate specific to blood_pressure_medications; the general estimate is used. The only within-group estimate found (Lapi et al. BMJ 2013;346:e8525, Table 3, NSAID added to ACE inhibitors or ARBs vs ACE inhibitors or ARBs only, first 30 days, adjusted RR 1.13, 0.66-1.96) covers ACE inhibitor and ARB users only, which is narrower than blood_pressure_medications; no estimate for the whole group was found, and no ID matches ACE inhibitors and ARBs alone.'
 - ingredient: ibuprofen_sodium
   dimension: kidney
   applies_to: {medication_type: [blood_pressure_medications]}
-  reason: 'applies_to medication_type blood_pressure_medications: the only within-group estimate found (Lapi et al. BMJ 2013;346:e8525, Table 3, NSAID added to ACE inhibitors or ARBs vs ACE inhibitors or ARBs only, first 30 days, adjusted RR 1.13, 0.66-1.96) covers ACE inhibitor and ARB users only, which is narrower than blood_pressure_medications; no estimate for the whole group was found, and no ID matches ACE inhibitors and ARBs alone.'
+  reason: 'applies_to medication_type blood_pressure_medications: no estimate specific to blood_pressure_medications; the general estimate is used. The only within-group estimate found (Lapi et al. BMJ 2013;346:e8525, Table 3, NSAID added to ACE inhibitors or ARBs vs ACE inhibitors or ARBs only, first 30 days, adjusted RR 1.13, 0.66-1.96) covers ACE inhibitor and ARB users only, which is narrower than blood_pressure_medications; no estimate for the whole group was found, and no ID matches ACE inhibitors and ARBs alone.'
+- ingredient: ibuprofen
+  dimension: gi_bleeding
+  applies_to: {medication_type: [ssri_snri]}
+  reason: 'applies_to medication_type ssri_snri: no estimate specific to ssri_snri; the general estimate is used. Anglin et al. Am J Gastroenterol 2014;109:811-9 (PMID 24777151) reports SSRI plus NSAID against neither drug (OR 4.25, 2.82-6.42), a joint estimate that includes the SSRI''s own risk (SSRI alone OR 1.66); by rule 23 it may be used only as NSAID plus SSRI against SSRI alone, which the abstract does not give and the full text (Ovid, paywalled) could not be opened. Haghbin et al. Dig Dis Sci 2023 (PMID 36526813) compares SSRI plus NSAID with SSRI alone but pools any GI bleeding, not upper GI bleeding (rule 10). SNRIs not studied.'
+- ingredient: naproxen
+  dimension: gi_bleeding
+  applies_to: {medication_type: [ssri_snri]}
+  reason: 'applies_to medication_type ssri_snri: no estimate specific to ssri_snri; the general estimate is used. Anglin et al. Am J Gastroenterol 2014;109:811-9 (PMID 24777151) reports SSRI plus NSAID against neither drug (OR 4.25, 2.82-6.42), a joint estimate that includes the SSRI''s own risk (SSRI alone OR 1.66); by rule 23 it may be used only as NSAID plus SSRI against SSRI alone, which the abstract does not give and the full text (Ovid, paywalled) could not be opened. Haghbin et al. Dig Dis Sci 2023 (PMID 36526813) compares SSRI plus NSAID with SSRI alone but pools any GI bleeding, not upper GI bleeding (rule 10). SNRIs not studied.'
+- ingredient: ibuprofen_sodium
+  dimension: gi_bleeding
+  applies_to: {medication_type: [ssri_snri]}
+  reason: 'applies_to medication_type ssri_snri: no estimate specific to ssri_snri; the general estimate is used. Anglin et al. Am J Gastroenterol 2014;109:811-9 (PMID 24777151) reports SSRI plus NSAID against neither drug (OR 4.25, 2.82-6.42), a joint estimate that includes the SSRI''s own risk (SSRI alone OR 1.66); by rule 23 it may be used only as NSAID plus SSRI against SSRI alone, which the abstract does not give and the full text (Ovid, paywalled) could not be opened. Haghbin et al. Dig Dis Sci 2023 (PMID 36526813) compares SSRI plus NSAID with SSRI alone but pools any GI bleeding, not upper GI bleeding (rule 10). SNRIs not studied.'
 max_daily_doses:
 - ingredient: aspirin
   max_daily_dose_mg: 4000
@@ -1149,6 +1681,7 @@ max_daily_doses:
     url: https://www.accessdata.fda.gov/drugsatfda_docs/omuf/monographs/OTC%20Monograph_M013-Internal%20Analgesic%2C%20Antipyretic%2C%20and%20Antirheumatic%20Drug%20Products%20for%20OTC%20Human%20Use%2010.14.2022.pdf
     location: § M013.50(d)(2), page 16 (eCFR 21 CFR part 343 currently holds only the professional cardiovascular and rheumatologic aspirin labeling, with no OTC analgesic daily maximum)
     quote: 'For products containing acetaminophen, aspirin, or sodium salicylate identified in §§ M013.10(a), (b), and (f). Adults: Oral dosage is 325 to 650 milligrams every 4 hours or 325 to 500 milligrams every 3 hours or 650 to 1,000 milligrams every 6 hours, while symptoms persist, not to exceed 4,000 milligrams in 24 hours, or as directed by a doctor.'
+  note: 'The monograph states the cap outright ("not to exceed 4,000 milligrams in 24 hours"); the largest regimen reaches it: 1,000 mg every 6 hours = 1,000 mg x 4 = 4,000 mg (also 500 mg every 3 hours = 500 mg x 8 = 4,000 mg).'
 - ingredient: ibuprofen
   max_daily_dose_mg: 1200
   source:
@@ -1156,6 +1689,7 @@ max_daily_doses:
     url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=1a665e64-9f30-be37-4a83-38789f1f1e89
     location: 'Drug Facts: Active ingredient; Directions (6 tablets x 200 mg = 1200 mg)'
     quote: Advil Tablets (in each tablet) Ibuprofen 200 mg ... do not exceed 6 tablets in 24 hours, unless directed by a doctor
+  note: 200 mg per tablet x 6 tablets in 24 hours = 1,200 mg.
 - ingredient: ibuprofen_sodium
   max_daily_dose_mg: 1200
   source:
@@ -1163,6 +1697,7 @@ max_daily_doses:
     url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=5be198b8-396e-4b44-8819-e2e3b5d2ad0e
     location: 'Drug Facts: Active ingredient; Directions (6 tablets x 200 mg ibuprofen = 1200 mg, stated in ibuprofen mg to match the dose strata)'
     quote: Ibuprofen 200 mg (provided as ibuprofen sodium 256 mg) ... do not exceed 6 tablets in 24 hours, unless directed by a doctor
+  note: 200 mg ibuprofen per tablet x 6 tablets in 24 hours = 1,200 mg ibuprofen.
 - ingredient: naproxen
   max_daily_dose_mg: 600
   source:
@@ -1170,3 +1705,4 @@ max_daily_doses:
     url: https://dailymed.nlm.nih.gov/dailymed/drugInfo.cfm?setid=00ef5b30-71d0-4cb4-84a3-48c67d1cea2a
     location: 'Drug Facts: Active ingredient; Directions (3 tablets x naproxen 200 mg = 600 mg naproxen, i.e. 660 mg naproxen sodium; stated as naproxen to match the dose strata)'
     quote: Naproxen sodium 220 mg (naproxen 200 mg) ... do not exceed 3 tablets in a 24-hour period
+  note: 200 mg naproxen per tablet x 3 tablets in 24 hours = 600 mg naproxen (660 mg naproxen sodium).

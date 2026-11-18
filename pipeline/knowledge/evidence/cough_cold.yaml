@@ -16,6 +16,7 @@ relative_risks:
     measure: OR
     estimate: 0.78
     ci95: [0.43, 1.42]
+    interval: confidence
     exposure: "definite use of any decongestant (ATC R01A, R01B, R05X, any dose) in week -1 vs week -3 before the event"
     population: "incident MI or stroke, French registries 2013-2016, mainly 70 years or younger, n=2797"
     grade: case_control
@@ -37,6 +38,7 @@ relative_risks:
     measure: OR
     estimate: 1.48
     ci95: [0.33, 6.72]
+    interval: confidence
     exposure: "definite use of any decongestant (ATC R01A, R01B, R05X) in week -1 vs week -3"
     population: "incident MI or stroke aged 66 or older, French registries 2013-2016, n=577"
     grade: case_control
@@ -58,6 +60,7 @@ relative_risks:
     measure: OR
     estimate: 0.69
     ci95: [0.36, 1.33]
+    interval: confidence
     exposure: "definite use of any decongestant (ATC R01A, R01B, R05X) in week -1 vs week -3"
     population: "incident MI or stroke aged under 66, French registries 2013-2016, n=2220"
     grade: case_control
@@ -79,6 +82,7 @@ relative_risks:
     measure: OR
     estimate: 0.78
     ci95: [0.43, 1.42]
+    interval: confidence
     exposure: "definite use of any decongestant (ATC R01A, R01B, R05X, any dose) in week -1 vs week -3 before the event"
     population: "incident MI or stroke, French registries 2013-2016, mainly 70 years or younger, n=2797"
     grade: case_control
@@ -100,6 +104,7 @@ relative_risks:
     measure: OR
     estimate: 1.48
     ci95: [0.33, 6.72]
+    interval: confidence
     exposure: "definite use of any decongestant (ATC R01A, R01B, R05X) in week -1 vs week -3"
     population: "incident MI or stroke aged 66 or older, French registries 2013-2016, n=577"
     grade: case_control
@@ -121,6 +126,7 @@ relative_risks:
     measure: OR
     estimate: 0.69
     ci95: [0.36, 1.33]
+    interval: confidence
     exposure: "definite use of any decongestant (ATC R01A, R01B, R05X) in week -1 vs week -3"
     population: "incident MI or stroke aged under 66, French registries 2013-2016, n=2220"
     grade: case_control
@@ -142,6 +148,7 @@ relative_risks:
     measure: OR
     estimate: 0.78
     ci95: [0.43, 1.42]
+    interval: confidence
     exposure: "definite use of any decongestant (ATC R01A nasal, R01B, R05X, any dose) in week -1 vs week -3 before the event"
     population: "incident MI or stroke, French registries 2013-2016, mainly 70 years or younger, n=2797"
     grade: case_control
@@ -163,6 +170,7 @@ relative_risks:
     measure: OR
     estimate: 1.48
     ci95: [0.33, 6.72]
+    interval: confidence
     exposure: "definite use of any decongestant (ATC R01A, R01B, R05X) in week -1 vs week -3"
     population: "incident MI or stroke aged 66 or older, French registries 2013-2016, n=577"
     grade: case_control
@@ -184,6 +192,7 @@ relative_risks:
     measure: OR
     estimate: 0.69
     ci95: [0.36, 1.33]
+    interval: confidence
     exposure: "definite use of any decongestant (ATC R01A, R01B, R05X) in week -1 vs week -3"
     population: "incident MI or stroke aged under 66, French registries 2013-2016, n=2220"
     grade: case_control
@@ -206,6 +215,7 @@ relative_risks:
     measure: RR
     estimate: 1.51
     ci95: [1.16, 1.97]
+    interval: confidence
     exposure: "use of pseudoephedrine or phenylpropanolamine during pregnancy, use vs non-use"
     population: "10 observational studies, 25,761 pregnancies; outcome gastroschisis"
     grade: meta_analysis
@@ -226,6 +236,7 @@ relative_risks:
     measure: OR
     estimate: 8.0
     ci95: [2.5, 25.3]
+    interval: confidence
     exposure: "first-trimester phenylephrine use (only decongestant used)"
     population: "Slone Birth Defects Study, US and Canada 1993-2010, 12,734 malformed cases and 7,606 controls; outcome endocardial cushion defect"
     grade: case_control
@@ -246,6 +257,7 @@ relative_risks:
     measure: OR
     estimate: 1.8
     ci95: [0.7, 4.8]
+    interval: confidence
     exposure: "first-trimester intranasal oxymetazoline use (only decongestant used)"
     population: "Slone Birth Defects Study, US and Canada 1993-2010; outcome pyloric stenosis"
     grade: case_control

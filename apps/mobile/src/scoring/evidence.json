@@ -1,6 +1,6 @@
 {
   "method": "docs/scoring/v1-method.md",
-  "version": "1.1",
+  "version": "1.2",
   "course_days": 10,
   "ingredients": {
     "04JA59TNSJ": {
@@ -11,6 +11,9 @@
           "persona": "all",
           "condition": null,
           "medication_type": null,
+          "interval": "confidence",
+          "stratum_population": null,
+          "unexposed_incidence": null,
           "outcome": "mi_stroke",
           "outcome_match": true,
           "exposure_window": "community_oral",
@@ -38,6 +41,9 @@
           "persona": "adult_65_plus",
           "condition": null,
           "medication_type": null,
+          "interval": "confidence",
+          "stratum_population": null,
+          "unexposed_incidence": null,
           "outcome": "mi_stroke",
           "outcome_match": true,
           "exposure_window": "community_oral",
@@ -65,6 +71,9 @@
           "persona": "adult_18_64",
           "condition": null,
           "medication_type": null,
+          "interval": "confidence",
+          "stratum_population": null,
+          "unexposed_incidence": null,
           "outcome": "mi_stroke",
           "outcome_match": true,
           "exposure_window": "community_oral",
@@ -92,6 +101,9 @@
           "persona": "pregnant",
           "condition": null,
           "medication_type": null,
+          "interval": "confidence",
+          "stratum_population": null,
+          "unexposed_incidence": null,
           "outcome": null,
           "outcome_match": true,
           "exposure_window": "community_oral",
@@ -433,6 +445,9 @@
           "persona": "pregnant",
           "condition": null,
           "medication_type": null,
+          "interval": "confidence",
+          "stratum_population": null,
+          "unexposed_incidence": null,
           "outcome": null,
           "outcome_match": true,
           "exposure_window": "community_oral",
@@ -504,6 +519,19 @@
           "persona": "all",
           "condition": null,
           "medication_type": null,
+          "interval": "confidence",
+          "stratum_population": null,
+          "unexposed_incidence": {
+            "annual_incidence": 4.1e-05,
+            "as_reported": "4.1 cases per 100,000 inhabitants per year = 4.1 / 100,000 = 0.000041 per person-year. This is the incidence of the study outcome (acute serious liver injury admissions meeting the primary criteria, 204 cases) in the whole catchment population, paracetamol users included; the paper reports no rate for non-users alone, so it slightly overstates the unexposed rate.",
+            "citation": {
+              "source": "publication",
+              "section": "Donati 2016, Results, Population",
+              "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4917796/",
+              "quote": "Overall, 2232 patients with diagnosis of acute serious liver injury were recorded; of those, 2028 were not included in the study, according to the primary exclusion criteria. The 204 incident cases resulted in an annual incidence of DILI of 4.1 cases per 100 000 inhabitants.",
+              "citation": "Donati M, Conforti A, Lenti MC, et al. Risk of acute and serious liver injury associated to nimesulide and other NSAIDs: data from drug-induced liver injury case-control study in Italy. Br J Clin Pharmacol 2016;82(1):238-248"
+            }
+          },
           "outcome": "acute_liver_injury",
           "outcome_match": true,
           "exposure_window": "community_oral",
@@ -534,53 +562,65 @@
           "persona": "all",
           "condition": null,
           "medication_type": null,
+          "interval": "confidence",
+          "stratum_population": null,
+          "unexposed_incidence": null,
           "outcome": "upper_gi_bleeding",
           "outcome_match": true,
           "exposure_window": "community_oral",
           "comparator": "non_use",
-          "dose_mg_per_day": null,
-          "measure": "RR",
-          "estimate": 1.3,
-          "ci95": [
-            1.2,
-            1.5
+          "dose_mg_per_day": [
+            2001,
+            null
           ],
-          "grade": "meta_analysis",
-          "exposure": "paracetamol use vs non-use (summary of 12 studies)",
-          "population": "12 observational studies 1980-2004 of upper GI complications (bleeding or perforation)",
+          "measure": "RR",
+          "estimate": 3.6,
+          "ci95": [
+            2.6,
+            5.1
+          ],
+          "grade": "case_control",
+          "exposure": "paracetamol use of more than 2 g daily vs non-use (nested case-control)",
+          "population": "UK General Practice Research Database, April 1993 to October 1998, nested case-control study of upper GI complications (bleeding or perforation)",
           "citation": {
             "source": "publication",
-            "section": "Gonzalez-Perez 2006, Abstract",
+            "section": "Gonzalez-Perez 2006, Abstract (nested case-control study)",
             "url": "https://pubmed.ncbi.nlm.nih.gov/16611205/",
-            "quote": "Among the twelve studies identified in the systematic review, estimates ranged from 0.2 through 2.0 with a summary estimate of 1.3 (95% CI, 1.2-1.5).",
+            "quote": "The RR was 3.6 (95% CI, 2.6-5.1) among paracetamol users of more than 2 g daily, whereas smaller doses did not increase the risk.",
             "citation": "Gonzalez-Perez A, Rodriguez LA. Upper gastrointestinal complications among users of paracetamol. Basic Clin Pharmacol Toxicol 2006;98(3):297-303. PMID 16611205"
           }
         },
         {
-          "dimension": "cardiovascular_bp",
+          "dimension": "gi_bleeding",
           "persona": "all",
           "condition": null,
           "medication_type": null,
-          "outcome": "mi_stroke",
+          "interval": "confidence",
+          "stratum_population": null,
+          "unexposed_incidence": null,
+          "outcome": "upper_gi_bleeding",
           "outcome_match": true,
           "exposure_window": "community_oral",
           "comparator": "non_use",
-          "dose_mg_per_day": null,
-          "measure": "RR",
-          "estimate": 1.09,
-          "ci95": [
-            0.91,
-            1.3
+          "dose_mg_per_day": [
+            4000,
+            null
           ],
-          "grade": "cohort",
-          "exposure": "acetaminophen use 5-14 days/month vs non-use",
-          "population": "Nurses' Health Study, 70,971 US women aged 44-69 free of CVD at baseline, 12 years follow-up; outcome nonfatal MI, fatal CHD, nonfatal and fatal stroke",
+          "measure": "OR",
+          "estimate": 1.0,
+          "ci95": [
+            0.5,
+            1.9
+          ],
+          "grade": "meta_analysis",
+          "exposure": "paracetamol >=4000 mg/day in the week before the index day, vs non-use (adjusted OR)",
+          "population": "individual patient data from 3 hospital case-control studies (Catalonia, England, Scotland, Sweden); 2,472 cases of upper GI bleeding, 5,877 controls",
           "citation": {
             "source": "publication",
-            "section": "Chan 2006, Roberts et al. Table 1, Chan et al. row; Chan et al. abstract (PMID 16534006)",
-            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4789700/",
-            "quote": "Roberts Table 1: 5-14 days/month 1.09 (0.91 to 1.30). Chan abstract: 'Women who reported occasional (1 to 21 d/mo) use of NSAIDs or acetaminophen did not experience a significant increase in the risk of cardiovascular events.'",
-            "citation": "Chan AT, Manson JE, Albert CM, et al. Nonsteroidal antiinflammatory drugs, acetaminophen, and the risk of cardiovascular events. Circulation 2006;113(12):1578-1587 (stratum as tabulated in Roberts E et al. Paracetamol: not as safe as we thought? Ann Rheum Dis 2016;75:552-559, Table 1)"
+            "section": "Lewis 2002, Table 4, Paracetamol rows (cases, controls, OR (95% CI))",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC1874428/",
+            "quote": "≥ 4000 31 42 1.0 (0.5, 1.9)",
+            "citation": "Lewis SC, Langman MJS, Laporte JR, Matthews JNS, Rawlins MD, Wiholm BE. Dose-response relationships between individual nonaspirin nonsteroidal anti-inflammatory drugs (NANSAIDs) and serious upper gastrointestinal bleeding: a meta-analysis based on individual patient data. Br J Clin Pharmacol 2002;54(3):320-6. PMID 12236853"
           }
         },
         {
@@ -588,6 +628,9 @@
           "persona": "pregnant",
           "condition": null,
           "medication_type": null,
+          "interval": "confidence",
+          "stratum_population": null,
+          "unexposed_incidence": null,
           "outcome": null,
           "outcome_match": true,
           "exposure_window": "community_oral",
@@ -619,7 +662,7 @@
             "heavy_alcohol_use"
           ],
           "medication_types": [],
-          "reason": "applies_to condition heavy_alcohol_use: no study opened gives a relative risk of serious liver injury at therapeutic doses in heavy drinkers vs non-use. Louvet et al. Hepatology 2021 is a case series (reports proportions, e.g. 93% of therapeutic-dose ALI cases were excessive drinkers); RCT meta-analyses in alcoholics report no injury but no serious-outcome RR. Donati 2016 excluded alcohol abuse."
+          "reason": "applies_to condition heavy_alcohol_use: no estimate specific to heavy_alcohol_use; the general estimate is used. No study opened gives a relative risk of serious liver injury at therapeutic doses in heavy drinkers vs non-use: Louvet et al. Hepatology 2021 is a case series (reports proportions, e.g. 93% of therapeutic-dose ALI cases were excessive drinkers); RCT meta-analyses in alcoholics report no injury but no serious-outcome RR. Donati 2016, the general estimate, excluded alcohol abuse."
         },
         {
           "dimension": "liver",
@@ -628,7 +671,7 @@
             "liver_disease"
           ],
           "medication_types": [],
-          "reason": "applies_to condition liver_disease: no relative risk for acute liver injury/failure at therapeutic doses in chronic liver disease or cirrhosis found; only a secondhand mention of a 170-patient case-control with no OR."
+          "reason": "applies_to condition liver_disease: no estimate specific to liver_disease; the general estimate is used. No relative risk for acute liver injury or failure at therapeutic doses in chronic liver disease or cirrhosis was found; only a secondhand mention of a 170-patient case-control with no OR."
         },
         {
           "dimension": "anticoagulant_bleeding",
@@ -657,6 +700,13 @@
         },
         {
           "dimension": "cardiovascular_bp",
+          "personas": [],
+          "conditions": [],
+          "medication_types": [],
+          "reason": "no community_oral estimate of MI or stroke against non-use was found: every Chan 2006 stratum (Nurses' Health Study) measures habitual use reported every two years over 12 years, long_term by rule 22, and Fulton 2015 is long_term prescribed use in hypertensive adults 65 and over."
+        },
+        {
+          "dimension": "cardiovascular_bp",
           "personas": [
             "adult_65_plus"
           ],
@@ -664,7 +714,8 @@
             "hypertension"
           ],
           "medication_types": [],
-          "reason": "Only estimates that do not meet rules 10 and 11 were found (Fulton 2015, Abstract)."
+          "require_all": true,
+          "reason": "Only estimates that do not meet the v1.1 and v1.2 rules were found (Fulton 2015, Abstract)."
         }
       ],
       "faers": [
@@ -895,6 +946,19 @@
           "persona": "adult_65_plus",
           "condition": null,
           "medication_type": null,
+          "interval": "confidence",
+          "stratum_population": null,
+          "unexposed_incidence": {
+            "annual_incidence": 0.00546,
+            "as_reported": "5.46 acute kidney injury admissions per 1,000 person-years in the propensity-matched controls who did not start a PPI: 5.46 / 1,000 = 0.00546 per person-year",
+            "citation": {
+              "source": "publication",
+              "section": "Antoniou 2015, Abstract, Results",
+              "url": "https://pubmed.ncbi.nlm.nih.gov/26389094/",
+              "quote": "The rates of acute kidney injury (13.49 v. 5.46 per 1000 person-years, respectively; hazard ratio [HR] 2.52, 95% CI 2.27 to 2.79)",
+              "citation": "Antoniou T et al. CMAJ Open 2015;3(2):E166-71"
+            }
+          },
           "outcome": "aki_hospital",
           "outcome_match": true,
           "exposure_window": "community_oral",
@@ -918,118 +982,13 @@
           }
         },
         {
-          "dimension": "sedation_falls",
-          "persona": "all",
-          "condition": null,
-          "medication_type": null,
-          "outcome": "hip_fracture",
-          "outcome_match": true,
-          "exposure_window": "community_oral",
-          "comparator": "non_use",
-          "dose_mg_per_day": null,
-          "measure": "RR",
-          "estimate": 1.2,
-          "ci95": [
-            1.15,
-            1.25
-          ],
-          "grade": "meta_analysis",
-          "exposure": "short-term PPI therapy vs PPI non-users",
-          "population": "24 observational studies, 2,103,800 participants (319,568 hip fracture patients), 1990-2018",
-          "citation": {
-            "source": "publication",
-            "section": "Poly 2019, Abstract, Results",
-            "url": "https://pubmed.ncbi.nlm.nih.gov/30539272/",
-            "quote": "Moreover, the overall pooled risk ratios were 1.20 (95% CI 1.15-1.25, p < 0.0001) and 1.24 (95% CI 1.10-1.40, p < 0.0001) for the patients with short- and long-term PPI therapy, respectively, compared with PPI non-users.",
-            "citation": "Poly TN et al. Osteoporos Int 2019;30(1):103-114"
-          }
-        },
-        {
-          "dimension": "sedation_falls",
-          "persona": "all",
-          "condition": null,
-          "medication_type": null,
-          "outcome": "fracture",
-          "outcome_match": true,
-          "exposure_window": "community_oral",
-          "comparator": "non_use",
-          "dose_mg_per_day": null,
-          "measure": "OR",
-          "estimate": 1.29,
-          "ci95": [
-            1.19,
-            1.4
-          ],
-          "grade": "meta_analysis",
-          "exposure": "short duration PPI use (each study's own shortest category) vs non-users",
-          "population": "33 studies, 2,714,502 individuals, mean age 66.9 years",
-          "citation": {
-            "source": "publication",
-            "section": "Nassar 2018, Abstract; Results section 1",
-            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6135649/",
-            "quote": "There was a trend towards increased fracture incidence from short duration use: OR 1.29 (95% CI, 1.19-1.40), medium duration use: OR 1.33 (95% CI, 1.12-1.55) and long duration use: OR 1.62 (95% CI, 1.33-1.90).",
-            "citation": "Nassar Y, Richter S. Proton-pump Inhibitor Use and Fracture Risk: An Updated Systematic Review and Meta-analysis. J Bone Metab 2018;25(3):141-151"
-          }
-        },
-        {
-          "dimension": "sedation_falls",
-          "persona": "adult_65_plus",
-          "condition": null,
-          "medication_type": null,
-          "outcome": "fracture",
-          "outcome_match": true,
-          "exposure_window": "community_oral",
-          "comparator": "non_use",
-          "dose_mg_per_day": null,
-          "measure": "OR",
-          "estimate": 1.41,
-          "ci95": [
-            1.31,
-            1.51
-          ],
-          "grade": "meta_analysis",
-          "exposure": "PPI prescription vs none (crude ORs pooled)",
-          "population": "11 observational studies in older adults",
-          "citation": {
-            "source": "publication",
-            "section": "Robert 2025, Abstract",
-            "url": "https://pubmed.ncbi.nlm.nih.gov/40848405/",
-            "quote": "Pooled OR, calculated using a random effect model, showed a statistically significant association between PPI prescription and overall fracture risk (OR 1.41, 95 % confidence interval 1.31-1.51, P < 0.001).",
-            "citation": "Robert V et al. Geriatr Nurs 2025;66(Pt A):103596"
-          }
-        },
-        {
-          "dimension": "sedation_falls",
-          "persona": "adult_65_plus",
-          "condition": null,
-          "medication_type": null,
-          "outcome": "fall_injury",
-          "outcome_match": true,
-          "exposure_window": "community_oral",
-          "comparator": "non_use",
-          "dose_mg_per_day": null,
-          "measure": "OR",
-          "estimate": 1.61,
-          "ci95": [
-            1.18,
-            2.2
-          ],
-          "grade": "meta_analysis",
-          "exposure": "PPI use vs non-use (definitions vary by study, including use in the 30 days before the index date)",
-          "population": "5 studies of fall injury requiring hospitalization, within a meta-analysis of 8 observational studies (367,068 patients), mostly older adults",
-          "citation": {
-            "source": "publication",
-            "section": "Lapumnuaypol 2019, Results, sensitivity analysis (full text read through the WebFetch tool; the PubMed record has no abstract)",
-            "url": "https://academic.oup.com/qjmed/article/112/2/115/5145385",
-            "quote": "The pooled OR for fall injury requiring hospitalization in patients using PPIs was 1.61 (95% CI, 1.18–2.20, I2 = 67%).",
-            "citation": "Lapumnuaypol K, Thongprayoon C, Wijarnpreecha K, Tiu A, Cheungpasitporn W. Risk of fall in patients taking proton pump inhibitors: a meta-analysis. QJM 2019;112(2):115-121"
-          }
-        },
-        {
           "dimension": "pregnancy_lactation",
           "persona": "pregnant",
           "condition": null,
           "medication_type": null,
+          "interval": "confidence",
+          "stratum_population": null,
+          "unexposed_incidence": null,
           "outcome": null,
           "outcome_match": true,
           "exposure_window": "community_oral",
@@ -1059,7 +1018,8 @@
           "personas": [],
           "conditions": [],
           "medication_types": [],
-          "reason": "Only estimates that do not meet rules 10 and 11 were found (Han 2023, Abstract; Section 3.3; Table 2 (all studies row))."
+          "require_all": true,
+          "reason": "Only estimates that do not meet the v1.1 and v1.2 rules were found (Han 2023, Abstract; Section 3.3; Table 2 (all studies row))."
         },
         {
           "dimension": "kidney",
@@ -1068,7 +1028,26 @@
             "kidney_disease"
           ],
           "medication_types": [],
-          "reason": "Only estimates that do not meet rules 10 and 11 were found (Liabeuf 2021, Abstract, Results)."
+          "require_all": true,
+          "reason": "Only estimates that do not meet the v1.1 and v1.2 rules were found (Liabeuf 2021, Abstract, Results)."
+        },
+        {
+          "dimension": "sedation_falls",
+          "personas": [],
+          "conditions": [],
+          "medication_types": [],
+          "require_all": true,
+          "reason": "Only estimates that do not meet the v1.1 and v1.2 rules were found (Poly 2019, Abstract, Results)."
+        },
+        {
+          "dimension": "sedation_falls",
+          "personas": [
+            "adult_65_plus"
+          ],
+          "conditions": [],
+          "medication_types": [],
+          "require_all": true,
+          "reason": "Only estimates that do not meet the v1.1 and v1.2 rules were found (Robert 2025, Abstract)."
         },
         {
           "dimension": "anticoagulant_bleeding",
@@ -1077,7 +1056,8 @@
           "medication_types": [
             "anticoagulants"
           ],
-          "reason": "Only estimates that do not meet rules 10 and 11 were found (Ray 2018, Abstract, Results)."
+          "require_all": true,
+          "reason": "Only estimates that do not meet the v1.1 and v1.2 rules were found (Ray 2018, Abstract, Results)."
         },
         {
           "dimension": "cardiovascular_bp",
@@ -1086,14 +1066,16 @@
           "medication_types": [
             "antiplatelets"
           ],
-          "reason": "Only estimates that do not meet rules 10 and 11 were found (Axelsson 2025, Abstract)."
+          "require_all": true,
+          "reason": "Only estimates that do not meet the v1.1 and v1.2 rules were found (Axelsson 2025, Abstract)."
         },
         {
           "dimension": "anticholinergic_cognitive",
           "personas": [],
           "conditions": [],
           "medication_types": [],
-          "reason": "Only estimates that do not meet rules 10 and 11 were found (Shiddapur 2021, Abstract, Results)."
+          "require_all": true,
+          "reason": "Only estimates that do not meet the v1.1 and v1.2 rules were found (Shiddapur 2021, Abstract, Results)."
         }
       ],
       "faers": [
@@ -1331,6 +1313,19 @@
           "persona": "adult_65_plus",
           "condition": null,
           "medication_type": null,
+          "interval": "confidence",
+          "stratum_population": null,
+          "unexposed_incidence": {
+            "annual_incidence": 0.00546,
+            "as_reported": "5.46 acute kidney injury admissions per 1,000 person-years in the propensity-matched controls who did not start a PPI: 5.46 / 1,000 = 0.00546 per person-year",
+            "citation": {
+              "source": "publication",
+              "section": "Antoniou 2015, Abstract, Results",
+              "url": "https://pubmed.ncbi.nlm.nih.gov/26389094/",
+              "quote": "The rates of acute kidney injury (13.49 v. 5.46 per 1000 person-years, respectively; hazard ratio [HR] 2.52, 95% CI 2.27 to 2.79)",
+              "citation": "Antoniou T et al. CMAJ Open 2015;3(2):E166-71"
+            }
+          },
           "outcome": "aki_hospital",
           "outcome_match": true,
           "exposure_window": "community_oral",
@@ -1354,118 +1349,13 @@
           }
         },
         {
-          "dimension": "sedation_falls",
-          "persona": "all",
-          "condition": null,
-          "medication_type": null,
-          "outcome": "hip_fracture",
-          "outcome_match": true,
-          "exposure_window": "community_oral",
-          "comparator": "non_use",
-          "dose_mg_per_day": null,
-          "measure": "RR",
-          "estimate": 1.2,
-          "ci95": [
-            1.15,
-            1.25
-          ],
-          "grade": "meta_analysis",
-          "exposure": "short-term PPI therapy vs PPI non-users",
-          "population": "24 observational studies, 2,103,800 participants (319,568 hip fracture patients), 1990-2018",
-          "citation": {
-            "source": "publication",
-            "section": "Poly 2019, Abstract, Results",
-            "url": "https://pubmed.ncbi.nlm.nih.gov/30539272/",
-            "quote": "Moreover, the overall pooled risk ratios were 1.20 (95% CI 1.15-1.25, p < 0.0001) and 1.24 (95% CI 1.10-1.40, p < 0.0001) for the patients with short- and long-term PPI therapy, respectively, compared with PPI non-users.",
-            "citation": "Poly TN et al. Osteoporos Int 2019;30(1):103-114"
-          }
-        },
-        {
-          "dimension": "sedation_falls",
-          "persona": "all",
-          "condition": null,
-          "medication_type": null,
-          "outcome": "fracture",
-          "outcome_match": true,
-          "exposure_window": "community_oral",
-          "comparator": "non_use",
-          "dose_mg_per_day": null,
-          "measure": "OR",
-          "estimate": 1.29,
-          "ci95": [
-            1.19,
-            1.4
-          ],
-          "grade": "meta_analysis",
-          "exposure": "short duration PPI use (each study's own shortest category) vs non-users",
-          "population": "33 studies, 2,714,502 individuals, mean age 66.9 years",
-          "citation": {
-            "source": "publication",
-            "section": "Nassar 2018, Abstract; Results section 1",
-            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6135649/",
-            "quote": "There was a trend towards increased fracture incidence from short duration use: OR 1.29 (95% CI, 1.19-1.40), medium duration use: OR 1.33 (95% CI, 1.12-1.55) and long duration use: OR 1.62 (95% CI, 1.33-1.90).",
-            "citation": "Nassar Y, Richter S. Proton-pump Inhibitor Use and Fracture Risk: An Updated Systematic Review and Meta-analysis. J Bone Metab 2018;25(3):141-151"
-          }
-        },
-        {
-          "dimension": "sedation_falls",
-          "persona": "adult_65_plus",
-          "condition": null,
-          "medication_type": null,
-          "outcome": "fracture",
-          "outcome_match": true,
-          "exposure_window": "community_oral",
-          "comparator": "non_use",
-          "dose_mg_per_day": null,
-          "measure": "OR",
-          "estimate": 1.41,
-          "ci95": [
-            1.31,
-            1.51
-          ],
-          "grade": "meta_analysis",
-          "exposure": "PPI prescription vs none (crude ORs pooled)",
-          "population": "11 observational studies in older adults",
-          "citation": {
-            "source": "publication",
-            "section": "Robert 2025, Abstract",
-            "url": "https://pubmed.ncbi.nlm.nih.gov/40848405/",
-            "quote": "Pooled OR, calculated using a random effect model, showed a statistically significant association between PPI prescription and overall fracture risk (OR 1.41, 95 % confidence interval 1.31-1.51, P < 0.001).",
-            "citation": "Robert V et al. Geriatr Nurs 2025;66(Pt A):103596"
-          }
-        },
-        {
-          "dimension": "sedation_falls",
-          "persona": "adult_65_plus",
-          "condition": null,
-          "medication_type": null,
-          "outcome": "fall_injury",
-          "outcome_match": true,
-          "exposure_window": "community_oral",
-          "comparator": "non_use",
-          "dose_mg_per_day": null,
-          "measure": "OR",
-          "estimate": 1.61,
-          "ci95": [
-            1.18,
-            2.2
-          ],
-          "grade": "meta_analysis",
-          "exposure": "PPI use vs non-use (definitions vary by study, including use in the 30 days before the index date)",
-          "population": "5 studies of fall injury requiring hospitalization, within a meta-analysis of 8 observational studies (367,068 patients), mostly older adults",
-          "citation": {
-            "source": "publication",
-            "section": "Lapumnuaypol 2019, Results, sensitivity analysis (full text read through the WebFetch tool; the PubMed record has no abstract)",
-            "url": "https://academic.oup.com/qjmed/article/112/2/115/5145385",
-            "quote": "The pooled OR for fall injury requiring hospitalization in patients using PPIs was 1.61 (95% CI, 1.18–2.20, I2 = 67%).",
-            "citation": "Lapumnuaypol K, Thongprayoon C, Wijarnpreecha K, Tiu A, Cheungpasitporn W. Risk of fall in patients taking proton pump inhibitors: a meta-analysis. QJM 2019;112(2):115-121"
-          }
-        },
-        {
           "dimension": "pregnancy_lactation",
           "persona": "pregnant",
           "condition": null,
           "medication_type": null,
+          "interval": "confidence",
+          "stratum_population": null,
+          "unexposed_incidence": null,
           "outcome": null,
           "outcome_match": true,
           "exposure_window": "community_oral",
@@ -1495,7 +1385,8 @@
           "personas": [],
           "conditions": [],
           "medication_types": [],
-          "reason": "Only estimates that do not meet rules 10 and 11 were found (Han 2023, Abstract; Section 3.3; Table 2 (all studies row))."
+          "require_all": true,
+          "reason": "Only estimates that do not meet the v1.1 and v1.2 rules were found (Han 2023, Abstract; Section 3.3; Table 2 (all studies row))."
         },
         {
           "dimension": "kidney",
@@ -1504,7 +1395,26 @@
             "kidney_disease"
           ],
           "medication_types": [],
-          "reason": "Only estimates that do not meet rules 10 and 11 were found (Liabeuf 2021, Abstract, Results)."
+          "require_all": true,
+          "reason": "Only estimates that do not meet the v1.1 and v1.2 rules were found (Liabeuf 2021, Abstract, Results)."
+        },
+        {
+          "dimension": "sedation_falls",
+          "personas": [],
+          "conditions": [],
+          "medication_types": [],
+          "require_all": true,
+          "reason": "Only estimates that do not meet the v1.1 and v1.2 rules were found (Poly 2019, Abstract, Results)."
+        },
+        {
+          "dimension": "sedation_falls",
+          "personas": [
+            "adult_65_plus"
+          ],
+          "conditions": [],
+          "medication_types": [],
+          "require_all": true,
+          "reason": "Only estimates that do not meet the v1.1 and v1.2 rules were found (Robert 2025, Abstract)."
         },
         {
           "dimension": "anticoagulant_bleeding",
@@ -1513,7 +1423,8 @@
           "medication_types": [
             "anticoagulants"
           ],
-          "reason": "Only estimates that do not meet rules 10 and 11 were found (Ray 2018, Abstract, Results)."
+          "require_all": true,
+          "reason": "Only estimates that do not meet the v1.1 and v1.2 rules were found (Ray 2018, Abstract, Results)."
         },
         {
           "dimension": "cardiovascular_bp",
@@ -1522,14 +1433,16 @@
           "medication_types": [
             "antiplatelets"
           ],
-          "reason": "Only estimates that do not meet rules 10 and 11 were found (Axelsson 2025, Abstract)."
+          "require_all": true,
+          "reason": "Only estimates that do not meet the v1.1 and v1.2 rules were found (Axelsson 2025, Abstract)."
         },
         {
           "dimension": "anticholinergic_cognitive",
           "personas": [],
           "conditions": [],
           "medication_types": [],
-          "reason": "Only estimates that do not meet rules 10 and 11 were found (Shiddapur 2021, Abstract, Results)."
+          "require_all": true,
+          "reason": "Only estimates that do not meet the v1.1 and v1.2 rules were found (Shiddapur 2021, Abstract, Results)."
         }
       ],
       "faers": [
@@ -1803,6 +1716,9 @@
           "persona": "pregnant",
           "condition": null,
           "medication_type": null,
+          "interval": "confidence",
+          "stratum_population": null,
+          "unexposed_incidence": null,
           "outcome": null,
           "outcome_match": true,
           "exposure_window": "community_oral",
@@ -1868,14 +1784,16 @@
           "personas": [],
           "conditions": [],
           "medication_types": [],
-          "reason": "Only estimates that do not meet rules 10 and 11 were found (Shiddapur 2021, Abstract, Results)."
+          "require_all": true,
+          "reason": "Only estimates that do not meet the v1.1 and v1.2 rules were found (Shiddapur 2021, Abstract, Results)."
         },
         {
           "dimension": "sedation_falls",
           "personas": [],
           "conditions": [],
           "medication_types": [],
-          "reason": "Only estimates that do not meet rules 10 and 11 were found (Eom 2011, Abstract, Results; Methods (exposure duration), Table 2)."
+          "require_all": true,
+          "reason": "Only estimates that do not meet the v1.1 and v1.2 rules were found (Eom 2011, Abstract, Results; Methods (exposure duration), Table 2)."
         }
       ],
       "faers": [
@@ -2079,6 +1997,9 @@
           "persona": "pregnant",
           "condition": null,
           "medication_type": null,
+          "interval": "confidence",
+          "stratum_population": null,
+          "unexposed_incidence": null,
           "outcome": null,
           "outcome_match": true,
           "exposure_window": "community_oral",
@@ -2283,6 +2204,9 @@
           "persona": "all",
           "condition": null,
           "medication_type": null,
+          "interval": "confidence",
+          "stratum_population": null,
+          "unexposed_incidence": null,
           "outcome": "mi_stroke",
           "outcome_match": true,
           "exposure_window": "community_oral",
@@ -2310,6 +2234,9 @@
           "persona": "adult_65_plus",
           "condition": null,
           "medication_type": null,
+          "interval": "confidence",
+          "stratum_population": null,
+          "unexposed_incidence": null,
           "outcome": "mi_stroke",
           "outcome_match": true,
           "exposure_window": "community_oral",
@@ -2337,6 +2264,9 @@
           "persona": "adult_18_64",
           "condition": null,
           "medication_type": null,
+          "interval": "confidence",
+          "stratum_population": null,
+          "unexposed_incidence": null,
           "outcome": "mi_stroke",
           "outcome_match": true,
           "exposure_window": "community_oral",
@@ -2364,6 +2294,9 @@
           "persona": "pregnant",
           "condition": null,
           "medication_type": null,
+          "interval": "confidence",
+          "stratum_population": null,
+          "unexposed_incidence": null,
           "outcome": null,
           "outcome_match": true,
           "exposure_window": "community_oral",
@@ -2512,6 +2445,9 @@
           "persona": "pregnant",
           "condition": null,
           "medication_type": null,
+          "interval": "confidence",
+          "stratum_population": null,
+          "unexposed_incidence": null,
           "outcome": null,
           "outcome_match": true,
           "exposure_window": "community_oral",
@@ -2692,6 +2628,9 @@
           "persona": "pregnant",
           "condition": null,
           "medication_type": null,
+          "interval": "confidence",
+          "stratum_population": null,
+          "unexposed_incidence": null,
           "outcome": null,
           "outcome_match": true,
           "exposure_window": "community_oral",
@@ -2784,6 +2723,9 @@
           "persona": "pregnant",
           "condition": null,
           "medication_type": null,
+          "interval": "confidence",
+          "stratum_population": null,
+          "unexposed_incidence": null,
           "outcome": null,
           "outcome_match": true,
           "exposure_window": "community_oral",
@@ -2840,14 +2782,16 @@
           "personas": [],
           "conditions": [],
           "medication_types": [],
-          "reason": "Only estimates that do not meet rules 10 and 11 were found (Shiddapur 2021, Abstract, Results)."
+          "require_all": true,
+          "reason": "Only estimates that do not meet the v1.1 and v1.2 rules were found (Shiddapur 2021, Abstract, Results)."
         },
         {
           "dimension": "sedation_falls",
           "personas": [],
           "conditions": [],
           "medication_types": [],
-          "reason": "Only estimates that do not meet rules 10 and 11 were found (Eom 2011, Abstract, Results; Methods (exposure duration), Table 2)."
+          "require_all": true,
+          "reason": "Only estimates that do not meet the v1.1 and v1.2 rules were found (Eom 2011, Abstract, Results; Methods (exposure duration), Table 2)."
         }
       ],
       "faers": [
@@ -3153,56 +3097,32 @@
           "persona": "all",
           "condition": null,
           "medication_type": null,
+          "interval": "confidence",
+          "stratum_population": null,
+          "unexposed_incidence": null,
           "outcome": "upper_gi_bleeding",
           "outcome_match": true,
           "exposure_window": "community_oral",
           "comparator": "non_use",
           "dose_mg_per_day": [
-            null,
-            499
+            500,
+            999
           ],
-          "measure": "RR",
-          "estimate": 3.62,
-          "ci95": [
-            2.62,
-            4.99
-          ],
-          "grade": "meta_analysis",
-          "exposure": "current use, low-medium daily dose, vs non-use of NSAIDs",
-          "population": "cohort and case-control studies 1980-2011, general populations (Europe, North America)",
-          "citation": {
-            "source": "publication",
-            "section": "Castellsague 2012, Results, dose analysis (text accompanying Figure 3)",
-            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3714137/",
-            "quote": "For naproxen, the RR for low-medium daily dose was 3.62 (95% CI 2.62, 4.99)",
-            "citation": "Castellsague J, Riera-Guardia N, Calingaert B, et al. Individual NSAIDs and upper gastrointestinal complications: a systematic review and meta-analysis of observational studies (the SOS project). Drug Saf 2012;35(12):1127-46"
-          }
-        },
-        {
-          "dimension": "gi_bleeding",
-          "persona": "all",
-          "condition": null,
-          "medication_type": "ssri_snri",
-          "outcome": "upper_gi_bleeding",
-          "outcome_match": true,
-          "exposure_window": "community_oral",
-          "comparator": "non_use",
-          "dose_mg_per_day": null,
           "measure": "OR",
-          "estimate": 4.25,
+          "estimate": 5.4,
           "ci95": [
-            2.82,
-            6.42
+            2.9,
+            9.9
           ],
           "grade": "meta_analysis",
-          "exposure": "concurrent SSRI plus NSAID use vs use of neither (joint exposure, not NSAID effect within SSRI users)",
-          "population": "15 case-control and 4 cohort studies, adults",
+          "exposure": "naproxen 500-999 mg/day in the week before the index day, vs non-use (adjusted OR)",
+          "population": "individual patient data from 3 hospital case-control studies (Catalonia, England, Scotland, Sweden); 2,472 cases of upper GI bleeding, 5,877 controls",
           "citation": {
             "source": "publication",
-            "section": "Anglin 2014, Abstract, Results",
-            "url": "https://pubmed.ncbi.nlm.nih.gov/24777151/",
-            "quote": "The risk of upper GI bleeding was further increased with the use of both SSRI and NSAID medications (OR=4.25, 95% CI=2.82,6.42).",
-            "citation": "Anglin R, Yuan Y, Moayyedi P, et al. Risk of upper gastrointestinal bleeding with selective serotonin reuptake inhibitors with or without concurrent nonsteroidal anti-inflammatory use: a systematic review and meta-analysis. Am J Gastroenterol 2014;109(6):811-9"
+            "section": "Lewis 2002, Table 4, Naproxen rows (cases, controls, OR (95% CI))",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC1874428/",
+            "quote": "500–999 31 24 5.4 (2.9, 9.9)",
+            "citation": "Lewis SC, Langman MJS, Laporte JR, Matthews JNS, Rawlins MD, Wiholm BE. Dose-response relationships between individual nonaspirin nonsteroidal anti-inflammatory drugs (NANSAIDs) and serious upper gastrointestinal bleeding: a meta-analysis based on individual patient data. Br J Clin Pharmacol 2002;54(3):320-6. PMID 12236853"
           }
         },
         {
@@ -3210,6 +3130,19 @@
           "persona": "all",
           "condition": null,
           "medication_type": null,
+          "interval": "confidence",
+          "stratum_population": null,
+          "unexposed_incidence": {
+            "annual_incidence": 0.000185,
+            "as_reported": "207 validated hospitalised ARF cases among 420,600 residents; the database population is resident since May 1990 and cases were collected between 1990 and 1992, taken as May 1990 to December 1992 = 32 months = 2.67 years. 207 / 420,600 / 2.67 = 0.000185 per person-year. This is the whole study population, NSAID users included: the abstract reports no rate for non-users alone, so it slightly overstates the unexposed rate. The end month is not stated in the abstract (full text not opened).",
+            "citation": {
+              "source": "publication",
+              "section": "Evans 1995, Abstract",
+              "url": "https://pubmed.ncbi.nlm.nih.gov/7648241/",
+              "quote": "We conducted a case-control study using a purpose-built record-linkage database for a population of 420,600 patients, resident in Tayside since May 1990. Patients (n = 207) hospitalized with a diagnostic code for ARF between 1990 and 1992 had their diagnosis validated by a renal physician.",
+              "citation": "Evans JM, McGregor E, McMahon AD, et al. Non-steroidal anti-inflammatory drugs and hospitalization for acute renal failure. QJM 1995;88(8):551-7. PMID 7648241"
+            }
+          },
           "outcome": "aki_hospital",
           "outcome_match": true,
           "exposure_window": "community_oral",
@@ -3237,6 +3170,9 @@
           "persona": "adult_65_plus",
           "condition": null,
           "medication_type": null,
+          "interval": "confidence",
+          "stratum_population": null,
+          "unexposed_incidence": null,
           "outcome": "aki_hospital",
           "outcome_match": true,
           "exposure_window": "community_oral",
@@ -3264,6 +3200,9 @@
           "persona": "all",
           "condition": null,
           "medication_type": "diuretics",
+          "interval": "confidence",
+          "stratum_population": null,
+          "unexposed_incidence": null,
           "outcome": "aki_hospital",
           "outcome_match": true,
           "exposure_window": "community_oral",
@@ -3291,25 +3230,31 @@
           "persona": "all",
           "condition": null,
           "medication_type": null,
-          "outcome": "mi_stroke",
+          "interval": "credible",
+          "stratum_population": null,
+          "unexposed_incidence": null,
+          "outcome": "mi",
           "outcome_match": true,
           "exposure_window": "community_oral",
           "comparator": "non_use",
-          "dose_mg_per_day": null,
+          "dose_mg_per_day": [
+            null,
+            750
+          ],
           "measure": "OR",
-          "estimate": 1.53,
+          "estimate": 1.23,
           "ci95": [
-            1.07,
-            2.33
+            0.9,
+            1.61
           ],
           "grade": "meta_analysis",
-          "exposure": "current use, any dose, for 1-7 days, vs no NSAID in the preceding year",
+          "exposure": "current use, <=750 mg/day for 8-30 days, vs no NSAID in the preceding year",
           "population": "446,763 people (61,460 acute MI) from Quebec RAMQ (elderly), Finland, UK GPRD and Saskatchewan databases",
           "citation": {
             "source": "publication",
-            "section": "Bally 2017, Table 2, pooled studies column, row 'Current: Any dose for 1-7 days'; CI is a 95% credible interval",
+            "section": "Bally 2017, Table 2, pooled studies column (last), row '<=750 mg/day for 8-30 days' under Naproxen; intervals are 95% credible intervals",
             "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5423546/",
-            "quote": "Any dose for 1-7 days | 571 (0.2) | 1.49 (1.14 to 1.94) | NA | 1.53 (0.93 to 2.71) | 25 (0.1) | 1.53 (0.98 to 2.46) | 19 (0.1) | 1.57 (1.03 to 2.86) | 1.53 (1.07 to 2.33)",
+            "quote": "≤750 mg/day for 8-30 days | 450 (0.2) | 1.28 (1.00 to 1.65) | | 309 (0.2) | 1.22 (0.94 to 1.54) | | 28 (0.2) | 1.21 (0.78 to 1.68) | | 13 (0.1) | 1.23 (0.77 to 1.79) | | 1.23 (0.90 to 1.61)",
             "citation": "Bally M, Dendukuri N, Rich B, et al. Risk of acute myocardial infarction with NSAIDs in real world use: bayesian meta-analysis of individual patient data. BMJ 2017;357:j1909"
           }
         },
@@ -3318,6 +3263,19 @@
           "persona": "all",
           "condition": "heart_disease",
           "medication_type": "antiplatelets",
+          "interval": "confidence",
+          "stratum_population": null,
+          "unexposed_incidence": {
+            "annual_incidence": 0.083,
+            "as_reported": "8.3 cardiovascular events per 100 person-years without NSAID treatment = 8.3 / 100 = 0.083 per person-year (crude rate in the reference group; composite of cardiovascular death, nonfatal recurrent MI and stroke).",
+            "citation": {
+              "source": "publication",
+              "section": "Schjerning 2015, Abstract, Results",
+              "url": "https://pubmed.ncbi.nlm.nih.gov/25710657/",
+              "quote": "The crude incidence rates of bleeding (events per 100 person-years) were 4.2 (95% CI, 3.8-4.6) with concomitant NSAID treatment and 2.2 (95% CI, 2.1-2.3) without NSAID treatment, whereas the rates of cardiovascular events were 11.2 (95% CI, 10.5-11.9) and 8.3 (95% CI, 8.2-8.4).",
+              "citation": "Schjerning Olsen AM, Gislason GH, McGettigan P, et al. Association of NSAID use with risk of bleeding and cardiovascular events in patients receiving antithrombotic therapy after myocardial infarction. JAMA 2015;313(8):805-14"
+            }
+          },
           "outcome": "mi_stroke",
           "outcome_match": true,
           "exposure_window": "community_oral",
@@ -3345,33 +3303,9 @@
           "persona": "all",
           "condition": null,
           "medication_type": "anticoagulants",
-          "outcome": "major_bleeding",
-          "outcome_match": true,
-          "exposure_window": "community_oral",
-          "comparator": "within_group",
-          "dose_mg_per_day": null,
-          "measure": "OR",
-          "estimate": 1.55,
-          "ci95": [
-            1.04,
-            2.3
-          ],
-          "grade": "meta_analysis",
-          "exposure": "NSAID plus vitamin K antagonist vs vitamin K antagonist alone",
-          "population": "observational studies and trial analyses of VKA users (atrial fibrillation, venous thromboembolism)",
-          "citation": {
-            "source": "publication",
-            "section": "Zheng 2023, Abstract, Results",
-            "url": "https://pubmed.ncbi.nlm.nih.gov/39492109/",
-            "quote": "Taking vitamin K antagonist (VKAs) concurrently with NSAIDs was associated with a higher risk of any bleeding [odds ratio (OR) = 1.55; 95 % CI, 1.21 to 2.00; P = 0.0007), gastrointestinal bleeding (OR = 2.66; 95 % CI, 1.96 to 3.62; P < 0.00001) as well as major bleeding (OR = 1.55; 95 % CI, 1.04 to 2.30; P = 0.03).",
-            "citation": "Zheng Y, Zhang N, Tse G, Li G, Lip GYH, Liu T. Co-administered oral anticoagulants with nonsteroidal anti-inflammatory drugs and the risk of bleeding: a systematic review and meta-analysis. Thromb Res 2023;232:15-26. PMID 39492109"
-          }
-        },
-        {
-          "dimension": "anticoagulant_bleeding",
-          "persona": "all",
-          "condition": null,
-          "medication_type": "anticoagulants",
+          "interval": "confidence",
+          "stratum_population": "doac_users",
+          "unexposed_incidence": null,
           "outcome": "major_bleeding",
           "outcome_match": true,
           "exposure_window": "community_oral",
@@ -3399,6 +3333,19 @@
           "persona": "all",
           "condition": "heart_disease",
           "medication_type": "antiplatelets",
+          "interval": "confidence",
+          "stratum_population": null,
+          "unexposed_incidence": {
+            "annual_incidence": 0.022,
+            "as_reported": "2.2 bleeding events per 100 person-years without NSAID treatment = 2.2 / 100 = 0.022 per person-year (crude rate in the reference group, post-MI patients on antithrombotic therapy not taking NSAIDs).",
+            "citation": {
+              "source": "publication",
+              "section": "Schjerning 2015, Abstract, Results",
+              "url": "https://pubmed.ncbi.nlm.nih.gov/25710657/",
+              "quote": "The crude incidence rates of bleeding (events per 100 person-years) were 4.2 (95% CI, 3.8-4.6) with concomitant NSAID treatment and 2.2 (95% CI, 2.1-2.3) without NSAID treatment",
+              "citation": "Schjerning Olsen AM, Gislason GH, McGettigan P, et al. Association of NSAID use with risk of bleeding and cardiovascular events in patients receiving antithrombotic therapy after myocardial infarction. JAMA 2015;313(8):805-14"
+            }
+          },
           "outcome": "major_bleeding",
           "outcome_match": true,
           "exposure_window": "community_oral",
@@ -3426,6 +3373,9 @@
           "persona": "pregnant",
           "condition": null,
           "medication_type": null,
+          "interval": "confidence",
+          "stratum_population": null,
+          "unexposed_incidence": null,
           "outcome": null,
           "outcome_match": true,
           "exposure_window": "community_oral",
@@ -3457,7 +3407,16 @@
           "medication_types": [
             "blood_pressure_medications"
           ],
-          "reason": "applies_to medication_type blood_pressure_medications: the only within-group estimate found (Lapi et al. BMJ 2013;346:e8525, Table 3, NSAID added to ACE inhibitors or ARBs vs ACE inhibitors or ARBs only, first 30 days, adjusted RR 1.13, 0.66-1.96) covers ACE inhibitor and ARB users only, which is narrower than blood_pressure_medications; no estimate for the whole group was found, and no ID matches ACE inhibitors and ARBs alone."
+          "reason": "applies_to medication_type blood_pressure_medications: no estimate specific to blood_pressure_medications; the general estimate is used. The only within-group estimate found (Lapi et al. BMJ 2013;346:e8525, Table 3, NSAID added to ACE inhibitors or ARBs vs ACE inhibitors or ARBs only, first 30 days, adjusted RR 1.13, 0.66-1.96) covers ACE inhibitor and ARB users only, which is narrower than blood_pressure_medications; no estimate for the whole group was found, and no ID matches ACE inhibitors and ARBs alone."
+        },
+        {
+          "dimension": "gi_bleeding",
+          "personas": [],
+          "conditions": [],
+          "medication_types": [
+            "ssri_snri"
+          ],
+          "reason": "applies_to medication_type ssri_snri: no estimate specific to ssri_snri; the general estimate is used. Anglin et al. Am J Gastroenterol 2014;109:811-9 (PMID 24777151) reports SSRI plus NSAID against neither drug (OR 4.25, 2.82-6.42), a joint estimate that includes the SSRI's own risk (SSRI alone OR 1.66); by rule 23 it may be used only as NSAID plus SSRI against SSRI alone, which the abstract does not give and the full text (Ovid, paywalled) could not be opened. Haghbin et al. Dig Dis Sci 2023 (PMID 36526813) compares SSRI plus NSAID with SSRI alone but pools any GI bleeding, not upper GI bleeding (rule 10). SNRIs not studied."
         },
         {
           "dimension": "kidney",
@@ -3466,7 +3425,8 @@
             "kidney_disease"
           ],
           "medication_types": [],
-          "reason": "Only estimates that do not meet rules 10 and 11 were found (Zhang 2017, Abstract, Results; outcome definitions in Table 1 and Results)."
+          "require_all": true,
+          "reason": "Only estimates that do not meet the v1.1 and v1.2 rules were found (Zhang 2017, Abstract, Results; outcome definitions in Table 1 and Results)."
         }
       ],
       "faers": [
@@ -3765,7 +3725,8 @@
           "personas": [],
           "conditions": [],
           "medication_types": [],
-          "reason": "Only estimates that do not meet rules 10 and 11 were found (Bolland 2010, Abstract, Study selection and Results)."
+          "require_all": true,
+          "reason": "Only estimates that do not meet the v1.1 and v1.2 rules were found (Bolland 2010, Abstract, Study selection and Results)."
         }
       ],
       "faers": [
@@ -3926,6 +3887,9 @@
           "persona": "all",
           "condition": null,
           "medication_type": null,
+          "interval": "confidence",
+          "stratum_population": null,
+          "unexposed_incidence": null,
           "outcome": "mi_stroke",
           "outcome_match": true,
           "exposure_window": "community_oral",
@@ -3953,6 +3917,9 @@
           "persona": "adult_65_plus",
           "condition": null,
           "medication_type": null,
+          "interval": "confidence",
+          "stratum_population": null,
+          "unexposed_incidence": null,
           "outcome": "mi_stroke",
           "outcome_match": true,
           "exposure_window": "community_oral",
@@ -3980,6 +3947,9 @@
           "persona": "adult_18_64",
           "condition": null,
           "medication_type": null,
+          "interval": "confidence",
+          "stratum_population": null,
+          "unexposed_incidence": null,
           "outcome": "mi_stroke",
           "outcome_match": true,
           "exposure_window": "community_oral",
@@ -4007,6 +3977,9 @@
           "persona": "pregnant",
           "condition": null,
           "medication_type": null,
+          "interval": "confidence",
+          "stratum_population": null,
+          "unexposed_incidence": null,
           "outcome": null,
           "outcome_match": true,
           "exposure_window": "community_oral",
@@ -4049,6 +4022,19 @@
           "persona": "adult_65_plus",
           "condition": null,
           "medication_type": null,
+          "interval": "confidence",
+          "stratum_population": null,
+          "unexposed_incidence": {
+            "annual_incidence": 0.00546,
+            "as_reported": "5.46 acute kidney injury admissions per 1,000 person-years in the propensity-matched controls who did not start a PPI: 5.46 / 1,000 = 0.00546 per person-year",
+            "citation": {
+              "source": "publication",
+              "section": "Antoniou 2015, Abstract, Results",
+              "url": "https://pubmed.ncbi.nlm.nih.gov/26389094/",
+              "quote": "The rates of acute kidney injury (13.49 v. 5.46 per 1000 person-years, respectively; hazard ratio [HR] 2.52, 95% CI 2.27 to 2.79)",
+              "citation": "Antoniou T et al. CMAJ Open 2015;3(2):E166-71"
+            }
+          },
           "outcome": "aki_hospital",
           "outcome_match": true,
           "exposure_window": "community_oral",
@@ -4072,118 +4058,13 @@
           }
         },
         {
-          "dimension": "sedation_falls",
-          "persona": "all",
-          "condition": null,
-          "medication_type": null,
-          "outcome": "hip_fracture",
-          "outcome_match": true,
-          "exposure_window": "community_oral",
-          "comparator": "non_use",
-          "dose_mg_per_day": null,
-          "measure": "RR",
-          "estimate": 1.2,
-          "ci95": [
-            1.15,
-            1.25
-          ],
-          "grade": "meta_analysis",
-          "exposure": "short-term PPI therapy vs PPI non-users",
-          "population": "24 observational studies, 2,103,800 participants (319,568 hip fracture patients), 1990-2018",
-          "citation": {
-            "source": "publication",
-            "section": "Poly 2019, Abstract, Results",
-            "url": "https://pubmed.ncbi.nlm.nih.gov/30539272/",
-            "quote": "Moreover, the overall pooled risk ratios were 1.20 (95% CI 1.15-1.25, p < 0.0001) and 1.24 (95% CI 1.10-1.40, p < 0.0001) for the patients with short- and long-term PPI therapy, respectively, compared with PPI non-users.",
-            "citation": "Poly TN et al. Osteoporos Int 2019;30(1):103-114"
-          }
-        },
-        {
-          "dimension": "sedation_falls",
-          "persona": "all",
-          "condition": null,
-          "medication_type": null,
-          "outcome": "fracture",
-          "outcome_match": true,
-          "exposure_window": "community_oral",
-          "comparator": "non_use",
-          "dose_mg_per_day": null,
-          "measure": "OR",
-          "estimate": 1.29,
-          "ci95": [
-            1.19,
-            1.4
-          ],
-          "grade": "meta_analysis",
-          "exposure": "short duration PPI use (each study's own shortest category) vs non-users",
-          "population": "33 studies, 2,714,502 individuals, mean age 66.9 years",
-          "citation": {
-            "source": "publication",
-            "section": "Nassar 2018, Abstract; Results section 1",
-            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6135649/",
-            "quote": "There was a trend towards increased fracture incidence from short duration use: OR 1.29 (95% CI, 1.19-1.40), medium duration use: OR 1.33 (95% CI, 1.12-1.55) and long duration use: OR 1.62 (95% CI, 1.33-1.90).",
-            "citation": "Nassar Y, Richter S. Proton-pump Inhibitor Use and Fracture Risk: An Updated Systematic Review and Meta-analysis. J Bone Metab 2018;25(3):141-151"
-          }
-        },
-        {
-          "dimension": "sedation_falls",
-          "persona": "adult_65_plus",
-          "condition": null,
-          "medication_type": null,
-          "outcome": "fracture",
-          "outcome_match": true,
-          "exposure_window": "community_oral",
-          "comparator": "non_use",
-          "dose_mg_per_day": null,
-          "measure": "OR",
-          "estimate": 1.41,
-          "ci95": [
-            1.31,
-            1.51
-          ],
-          "grade": "meta_analysis",
-          "exposure": "PPI prescription vs none (crude ORs pooled)",
-          "population": "11 observational studies in older adults",
-          "citation": {
-            "source": "publication",
-            "section": "Robert 2025, Abstract",
-            "url": "https://pubmed.ncbi.nlm.nih.gov/40848405/",
-            "quote": "Pooled OR, calculated using a random effect model, showed a statistically significant association between PPI prescription and overall fracture risk (OR 1.41, 95 % confidence interval 1.31-1.51, P < 0.001).",
-            "citation": "Robert V et al. Geriatr Nurs 2025;66(Pt A):103596"
-          }
-        },
-        {
-          "dimension": "sedation_falls",
-          "persona": "adult_65_plus",
-          "condition": null,
-          "medication_type": null,
-          "outcome": "fall_injury",
-          "outcome_match": true,
-          "exposure_window": "community_oral",
-          "comparator": "non_use",
-          "dose_mg_per_day": null,
-          "measure": "OR",
-          "estimate": 1.61,
-          "ci95": [
-            1.18,
-            2.2
-          ],
-          "grade": "meta_analysis",
-          "exposure": "PPI use vs non-use (definitions vary by study, including use in the 30 days before the index date)",
-          "population": "5 studies of fall injury requiring hospitalization, within a meta-analysis of 8 observational studies (367,068 patients), mostly older adults",
-          "citation": {
-            "source": "publication",
-            "section": "Lapumnuaypol 2019, Results, sensitivity analysis (full text read through the WebFetch tool; the PubMed record has no abstract)",
-            "url": "https://academic.oup.com/qjmed/article/112/2/115/5145385",
-            "quote": "The pooled OR for fall injury requiring hospitalization in patients using PPIs was 1.61 (95% CI, 1.18–2.20, I2 = 67%).",
-            "citation": "Lapumnuaypol K, Thongprayoon C, Wijarnpreecha K, Tiu A, Cheungpasitporn W. Risk of fall in patients taking proton pump inhibitors: a meta-analysis. QJM 2019;112(2):115-121"
-          }
-        },
-        {
           "dimension": "pregnancy_lactation",
           "persona": "pregnant",
           "condition": null,
           "medication_type": null,
+          "interval": "confidence",
+          "stratum_population": null,
+          "unexposed_incidence": null,
           "outcome": null,
           "outcome_match": true,
           "exposure_window": "community_oral",
@@ -4238,7 +4119,8 @@
           "personas": [],
           "conditions": [],
           "medication_types": [],
-          "reason": "Only estimates that do not meet rules 10 and 11 were found (Han 2023, Abstract; Section 3.3; Table 2 (all studies row))."
+          "require_all": true,
+          "reason": "Only estimates that do not meet the v1.1 and v1.2 rules were found (Han 2023, Abstract; Section 3.3; Table 2 (all studies row))."
         },
         {
           "dimension": "kidney",
@@ -4247,7 +4129,26 @@
             "kidney_disease"
           ],
           "medication_types": [],
-          "reason": "Only estimates that do not meet rules 10 and 11 were found (Liabeuf 2021, Abstract, Results)."
+          "require_all": true,
+          "reason": "Only estimates that do not meet the v1.1 and v1.2 rules were found (Liabeuf 2021, Abstract, Results)."
+        },
+        {
+          "dimension": "sedation_falls",
+          "personas": [],
+          "conditions": [],
+          "medication_types": [],
+          "require_all": true,
+          "reason": "Only estimates that do not meet the v1.1 and v1.2 rules were found (Poly 2019, Abstract, Results)."
+        },
+        {
+          "dimension": "sedation_falls",
+          "personas": [
+            "adult_65_plus"
+          ],
+          "conditions": [],
+          "medication_types": [],
+          "require_all": true,
+          "reason": "Only estimates that do not meet the v1.1 and v1.2 rules were found (Robert 2025, Abstract)."
         },
         {
           "dimension": "anticoagulant_bleeding",
@@ -4256,7 +4157,8 @@
           "medication_types": [
             "anticoagulants"
           ],
-          "reason": "Only estimates that do not meet rules 10 and 11 were found (Ray 2018, Abstract, Results)."
+          "require_all": true,
+          "reason": "Only estimates that do not meet the v1.1 and v1.2 rules were found (Ray 2018, Abstract, Results)."
         },
         {
           "dimension": "cardiovascular_bp",
@@ -4265,14 +4167,16 @@
           "medication_types": [
             "antiplatelets"
           ],
-          "reason": "Only estimates that do not meet rules 10 and 11 were found (Axelsson 2025, Abstract)."
+          "require_all": true,
+          "reason": "Only estimates that do not meet the v1.1 and v1.2 rules were found (Axelsson 2025, Abstract)."
         },
         {
           "dimension": "anticholinergic_cognitive",
           "personas": [],
           "conditions": [],
           "medication_types": [],
-          "reason": "Only estimates that do not meet rules 10 and 11 were found (Shiddapur 2021, Abstract, Results)."
+          "require_all": true,
+          "reason": "Only estimates that do not meet the v1.1 and v1.2 rules were found (Shiddapur 2021, Abstract, Results)."
         }
       ],
       "faers": [
@@ -4454,6 +4358,19 @@
           "persona": "adult_65_plus",
           "condition": null,
           "medication_type": null,
+          "interval": "confidence",
+          "stratum_population": null,
+          "unexposed_incidence": {
+            "annual_incidence": 0.00546,
+            "as_reported": "5.46 acute kidney injury admissions per 1,000 person-years in the propensity-matched controls who did not start a PPI: 5.46 / 1,000 = 0.00546 per person-year",
+            "citation": {
+              "source": "publication",
+              "section": "Antoniou 2015, Abstract, Results",
+              "url": "https://pubmed.ncbi.nlm.nih.gov/26389094/",
+              "quote": "The rates of acute kidney injury (13.49 v. 5.46 per 1000 person-years, respectively; hazard ratio [HR] 2.52, 95% CI 2.27 to 2.79)",
+              "citation": "Antoniou T et al. CMAJ Open 2015;3(2):E166-71"
+            }
+          },
           "outcome": "aki_hospital",
           "outcome_match": true,
           "exposure_window": "community_oral",
@@ -4477,118 +4394,13 @@
           }
         },
         {
-          "dimension": "sedation_falls",
-          "persona": "all",
-          "condition": null,
-          "medication_type": null,
-          "outcome": "hip_fracture",
-          "outcome_match": true,
-          "exposure_window": "community_oral",
-          "comparator": "non_use",
-          "dose_mg_per_day": null,
-          "measure": "RR",
-          "estimate": 1.2,
-          "ci95": [
-            1.15,
-            1.25
-          ],
-          "grade": "meta_analysis",
-          "exposure": "short-term PPI therapy vs PPI non-users",
-          "population": "24 observational studies, 2,103,800 participants (319,568 hip fracture patients), 1990-2018",
-          "citation": {
-            "source": "publication",
-            "section": "Poly 2019, Abstract, Results",
-            "url": "https://pubmed.ncbi.nlm.nih.gov/30539272/",
-            "quote": "Moreover, the overall pooled risk ratios were 1.20 (95% CI 1.15-1.25, p < 0.0001) and 1.24 (95% CI 1.10-1.40, p < 0.0001) for the patients with short- and long-term PPI therapy, respectively, compared with PPI non-users.",
-            "citation": "Poly TN et al. Osteoporos Int 2019;30(1):103-114"
-          }
-        },
-        {
-          "dimension": "sedation_falls",
-          "persona": "all",
-          "condition": null,
-          "medication_type": null,
-          "outcome": "fracture",
-          "outcome_match": true,
-          "exposure_window": "community_oral",
-          "comparator": "non_use",
-          "dose_mg_per_day": null,
-          "measure": "OR",
-          "estimate": 1.29,
-          "ci95": [
-            1.19,
-            1.4
-          ],
-          "grade": "meta_analysis",
-          "exposure": "short duration PPI use (each study's own shortest category) vs non-users",
-          "population": "33 studies, 2,714,502 individuals, mean age 66.9 years",
-          "citation": {
-            "source": "publication",
-            "section": "Nassar 2018, Abstract; Results section 1",
-            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6135649/",
-            "quote": "There was a trend towards increased fracture incidence from short duration use: OR 1.29 (95% CI, 1.19-1.40), medium duration use: OR 1.33 (95% CI, 1.12-1.55) and long duration use: OR 1.62 (95% CI, 1.33-1.90).",
-            "citation": "Nassar Y, Richter S. Proton-pump Inhibitor Use and Fracture Risk: An Updated Systematic Review and Meta-analysis. J Bone Metab 2018;25(3):141-151"
-          }
-        },
-        {
-          "dimension": "sedation_falls",
-          "persona": "adult_65_plus",
-          "condition": null,
-          "medication_type": null,
-          "outcome": "fracture",
-          "outcome_match": true,
-          "exposure_window": "community_oral",
-          "comparator": "non_use",
-          "dose_mg_per_day": null,
-          "measure": "OR",
-          "estimate": 1.41,
-          "ci95": [
-            1.31,
-            1.51
-          ],
-          "grade": "meta_analysis",
-          "exposure": "PPI prescription vs none (crude ORs pooled)",
-          "population": "11 observational studies in older adults",
-          "citation": {
-            "source": "publication",
-            "section": "Robert 2025, Abstract",
-            "url": "https://pubmed.ncbi.nlm.nih.gov/40848405/",
-            "quote": "Pooled OR, calculated using a random effect model, showed a statistically significant association between PPI prescription and overall fracture risk (OR 1.41, 95 % confidence interval 1.31-1.51, P < 0.001).",
-            "citation": "Robert V et al. Geriatr Nurs 2025;66(Pt A):103596"
-          }
-        },
-        {
-          "dimension": "sedation_falls",
-          "persona": "adult_65_plus",
-          "condition": null,
-          "medication_type": null,
-          "outcome": "fall_injury",
-          "outcome_match": true,
-          "exposure_window": "community_oral",
-          "comparator": "non_use",
-          "dose_mg_per_day": null,
-          "measure": "OR",
-          "estimate": 1.61,
-          "ci95": [
-            1.18,
-            2.2
-          ],
-          "grade": "meta_analysis",
-          "exposure": "PPI use vs non-use (definitions vary by study, including use in the 30 days before the index date)",
-          "population": "5 studies of fall injury requiring hospitalization, within a meta-analysis of 8 observational studies (367,068 patients), mostly older adults",
-          "citation": {
-            "source": "publication",
-            "section": "Lapumnuaypol 2019, Results, sensitivity analysis (full text read through the WebFetch tool; the PubMed record has no abstract)",
-            "url": "https://academic.oup.com/qjmed/article/112/2/115/5145385",
-            "quote": "The pooled OR for fall injury requiring hospitalization in patients using PPIs was 1.61 (95% CI, 1.18–2.20, I2 = 67%).",
-            "citation": "Lapumnuaypol K, Thongprayoon C, Wijarnpreecha K, Tiu A, Cheungpasitporn W. Risk of fall in patients taking proton pump inhibitors: a meta-analysis. QJM 2019;112(2):115-121"
-          }
-        },
-        {
           "dimension": "pregnancy_lactation",
           "persona": "pregnant",
           "condition": null,
           "medication_type": null,
+          "interval": "confidence",
+          "stratum_population": null,
+          "unexposed_incidence": null,
           "outcome": null,
           "outcome_match": true,
           "exposure_window": "community_oral",
@@ -4627,7 +4439,8 @@
           "personas": [],
           "conditions": [],
           "medication_types": [],
-          "reason": "Only estimates that do not meet rules 10 and 11 were found (Han 2023, Abstract; Section 3.3; Table 2 (all studies row))."
+          "require_all": true,
+          "reason": "Only estimates that do not meet the v1.1 and v1.2 rules were found (Han 2023, Abstract; Section 3.3; Table 2 (all studies row))."
         },
         {
           "dimension": "kidney",
@@ -4636,7 +4449,26 @@
             "kidney_disease"
           ],
           "medication_types": [],
-          "reason": "Only estimates that do not meet rules 10 and 11 were found (Liabeuf 2021, Abstract, Results)."
+          "require_all": true,
+          "reason": "Only estimates that do not meet the v1.1 and v1.2 rules were found (Liabeuf 2021, Abstract, Results)."
+        },
+        {
+          "dimension": "sedation_falls",
+          "personas": [],
+          "conditions": [],
+          "medication_types": [],
+          "require_all": true,
+          "reason": "Only estimates that do not meet the v1.1 and v1.2 rules were found (Poly 2019, Abstract, Results)."
+        },
+        {
+          "dimension": "sedation_falls",
+          "personas": [
+            "adult_65_plus"
+          ],
+          "conditions": [],
+          "medication_types": [],
+          "require_all": true,
+          "reason": "Only estimates that do not meet the v1.1 and v1.2 rules were found (Robert 2025, Abstract)."
         },
         {
           "dimension": "anticoagulant_bleeding",
@@ -4645,7 +4477,8 @@
           "medication_types": [
             "anticoagulants"
           ],
-          "reason": "Only estimates that do not meet rules 10 and 11 were found (Ray 2018, Abstract, Results)."
+          "require_all": true,
+          "reason": "Only estimates that do not meet the v1.1 and v1.2 rules were found (Ray 2018, Abstract, Results)."
         },
         {
           "dimension": "cardiovascular_bp",
@@ -4654,14 +4487,16 @@
           "medication_types": [
             "antiplatelets"
           ],
-          "reason": "Only estimates that do not meet rules 10 and 11 were found (Axelsson 2025, Abstract)."
+          "require_all": true,
+          "reason": "Only estimates that do not meet the v1.1 and v1.2 rules were found (Axelsson 2025, Abstract)."
         },
         {
           "dimension": "anticholinergic_cognitive",
           "personas": [],
           "conditions": [],
           "medication_types": [],
-          "reason": "Only estimates that do not meet rules 10 and 11 were found (Shiddapur 2021, Abstract, Results)."
+          "require_all": true,
+          "reason": "Only estimates that do not meet the v1.1 and v1.2 rules were found (Shiddapur 2021, Abstract, Results)."
         }
       ],
       "faers": [
@@ -4877,7 +4712,8 @@
             "kidney_disease"
           ],
           "medication_types": [],
-          "reason": "Only estimates that do not meet rules 10 and 11 were found (Hsiao 2026, Results; Table 2a (all CKD patients, 1:1 PS matching))."
+          "require_all": true,
+          "reason": "Only estimates that do not meet the v1.1 and v1.2 rules were found (Hsiao 2026, Results; Table 2a (all CKD patients, 1:1 PS matching))."
         }
       ],
       "faers": [
@@ -5003,6 +4839,9 @@
           "persona": "all",
           "condition": null,
           "medication_type": null,
+          "interval": "confidence",
+          "stratum_population": null,
+          "unexposed_incidence": null,
           "outcome": "upper_gi_bleeding",
           "outcome_match": true,
           "exposure_window": "community_oral",
@@ -5266,6 +5105,19 @@
           "persona": "adult_65_plus",
           "condition": null,
           "medication_type": null,
+          "interval": "confidence",
+          "stratum_population": null,
+          "unexposed_incidence": {
+            "annual_incidence": 0.00546,
+            "as_reported": "5.46 acute kidney injury admissions per 1,000 person-years in the propensity-matched controls who did not start a PPI: 5.46 / 1,000 = 0.00546 per person-year",
+            "citation": {
+              "source": "publication",
+              "section": "Antoniou 2015, Abstract, Results",
+              "url": "https://pubmed.ncbi.nlm.nih.gov/26389094/",
+              "quote": "The rates of acute kidney injury (13.49 v. 5.46 per 1000 person-years, respectively; hazard ratio [HR] 2.52, 95% CI 2.27 to 2.79)",
+              "citation": "Antoniou T et al. CMAJ Open 2015;3(2):E166-71"
+            }
+          },
           "outcome": "aki_hospital",
           "outcome_match": true,
           "exposure_window": "community_oral",
@@ -5289,118 +5141,13 @@
           }
         },
         {
-          "dimension": "sedation_falls",
-          "persona": "all",
-          "condition": null,
-          "medication_type": null,
-          "outcome": "hip_fracture",
-          "outcome_match": true,
-          "exposure_window": "community_oral",
-          "comparator": "non_use",
-          "dose_mg_per_day": null,
-          "measure": "RR",
-          "estimate": 1.2,
-          "ci95": [
-            1.15,
-            1.25
-          ],
-          "grade": "meta_analysis",
-          "exposure": "short-term PPI therapy vs PPI non-users",
-          "population": "24 observational studies, 2,103,800 participants (319,568 hip fracture patients), 1990-2018",
-          "citation": {
-            "source": "publication",
-            "section": "Poly 2019, Abstract, Results",
-            "url": "https://pubmed.ncbi.nlm.nih.gov/30539272/",
-            "quote": "Moreover, the overall pooled risk ratios were 1.20 (95% CI 1.15-1.25, p < 0.0001) and 1.24 (95% CI 1.10-1.40, p < 0.0001) for the patients with short- and long-term PPI therapy, respectively, compared with PPI non-users.",
-            "citation": "Poly TN et al. Osteoporos Int 2019;30(1):103-114"
-          }
-        },
-        {
-          "dimension": "sedation_falls",
-          "persona": "all",
-          "condition": null,
-          "medication_type": null,
-          "outcome": "fracture",
-          "outcome_match": true,
-          "exposure_window": "community_oral",
-          "comparator": "non_use",
-          "dose_mg_per_day": null,
-          "measure": "OR",
-          "estimate": 1.29,
-          "ci95": [
-            1.19,
-            1.4
-          ],
-          "grade": "meta_analysis",
-          "exposure": "short duration PPI use (each study's own shortest category) vs non-users",
-          "population": "33 studies, 2,714,502 individuals, mean age 66.9 years",
-          "citation": {
-            "source": "publication",
-            "section": "Nassar 2018, Abstract; Results section 1",
-            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6135649/",
-            "quote": "There was a trend towards increased fracture incidence from short duration use: OR 1.29 (95% CI, 1.19-1.40), medium duration use: OR 1.33 (95% CI, 1.12-1.55) and long duration use: OR 1.62 (95% CI, 1.33-1.90).",
-            "citation": "Nassar Y, Richter S. Proton-pump Inhibitor Use and Fracture Risk: An Updated Systematic Review and Meta-analysis. J Bone Metab 2018;25(3):141-151"
-          }
-        },
-        {
-          "dimension": "sedation_falls",
-          "persona": "adult_65_plus",
-          "condition": null,
-          "medication_type": null,
-          "outcome": "fracture",
-          "outcome_match": true,
-          "exposure_window": "community_oral",
-          "comparator": "non_use",
-          "dose_mg_per_day": null,
-          "measure": "OR",
-          "estimate": 1.41,
-          "ci95": [
-            1.31,
-            1.51
-          ],
-          "grade": "meta_analysis",
-          "exposure": "PPI prescription vs none (crude ORs pooled)",
-          "population": "11 observational studies in older adults",
-          "citation": {
-            "source": "publication",
-            "section": "Robert 2025, Abstract",
-            "url": "https://pubmed.ncbi.nlm.nih.gov/40848405/",
-            "quote": "Pooled OR, calculated using a random effect model, showed a statistically significant association between PPI prescription and overall fracture risk (OR 1.41, 95 % confidence interval 1.31-1.51, P < 0.001).",
-            "citation": "Robert V et al. Geriatr Nurs 2025;66(Pt A):103596"
-          }
-        },
-        {
-          "dimension": "sedation_falls",
-          "persona": "adult_65_plus",
-          "condition": null,
-          "medication_type": null,
-          "outcome": "fall_injury",
-          "outcome_match": true,
-          "exposure_window": "community_oral",
-          "comparator": "non_use",
-          "dose_mg_per_day": null,
-          "measure": "OR",
-          "estimate": 1.61,
-          "ci95": [
-            1.18,
-            2.2
-          ],
-          "grade": "meta_analysis",
-          "exposure": "PPI use vs non-use (definitions vary by study, including use in the 30 days before the index date)",
-          "population": "5 studies of fall injury requiring hospitalization, within a meta-analysis of 8 observational studies (367,068 patients), mostly older adults",
-          "citation": {
-            "source": "publication",
-            "section": "Lapumnuaypol 2019, Results, sensitivity analysis (full text read through the WebFetch tool; the PubMed record has no abstract)",
-            "url": "https://academic.oup.com/qjmed/article/112/2/115/5145385",
-            "quote": "The pooled OR for fall injury requiring hospitalization in patients using PPIs was 1.61 (95% CI, 1.18–2.20, I2 = 67%).",
-            "citation": "Lapumnuaypol K, Thongprayoon C, Wijarnpreecha K, Tiu A, Cheungpasitporn W. Risk of fall in patients taking proton pump inhibitors: a meta-analysis. QJM 2019;112(2):115-121"
-          }
-        },
-        {
           "dimension": "pregnancy_lactation",
           "persona": "pregnant",
           "condition": null,
           "medication_type": null,
+          "interval": "confidence",
+          "stratum_population": null,
+          "unexposed_incidence": null,
           "outcome": null,
           "outcome_match": true,
           "exposure_window": "community_oral",
@@ -5430,7 +5177,8 @@
           "personas": [],
           "conditions": [],
           "medication_types": [],
-          "reason": "Only estimates that do not meet rules 10 and 11 were found (Han 2023, Abstract; Section 3.3; Table 2 (all studies row))."
+          "require_all": true,
+          "reason": "Only estimates that do not meet the v1.1 and v1.2 rules were found (Han 2023, Abstract; Section 3.3; Table 2 (all studies row))."
         },
         {
           "dimension": "kidney",
@@ -5439,7 +5187,26 @@
             "kidney_disease"
           ],
           "medication_types": [],
-          "reason": "Only estimates that do not meet rules 10 and 11 were found (Liabeuf 2021, Abstract, Results)."
+          "require_all": true,
+          "reason": "Only estimates that do not meet the v1.1 and v1.2 rules were found (Liabeuf 2021, Abstract, Results)."
+        },
+        {
+          "dimension": "sedation_falls",
+          "personas": [],
+          "conditions": [],
+          "medication_types": [],
+          "require_all": true,
+          "reason": "Only estimates that do not meet the v1.1 and v1.2 rules were found (Poly 2019, Abstract, Results)."
+        },
+        {
+          "dimension": "sedation_falls",
+          "personas": [
+            "adult_65_plus"
+          ],
+          "conditions": [],
+          "medication_types": [],
+          "require_all": true,
+          "reason": "Only estimates that do not meet the v1.1 and v1.2 rules were found (Robert 2025, Abstract)."
         },
         {
           "dimension": "anticoagulant_bleeding",
@@ -5448,7 +5215,8 @@
           "medication_types": [
             "anticoagulants"
           ],
-          "reason": "Only estimates that do not meet rules 10 and 11 were found (Ray 2018, Abstract, Results)."
+          "require_all": true,
+          "reason": "Only estimates that do not meet the v1.1 and v1.2 rules were found (Ray 2018, Abstract, Results)."
         },
         {
           "dimension": "cardiovascular_bp",
@@ -5457,14 +5225,16 @@
           "medication_types": [
             "antiplatelets"
           ],
-          "reason": "Only estimates that do not meet rules 10 and 11 were found (Axelsson 2025, Abstract)."
+          "require_all": true,
+          "reason": "Only estimates that do not meet the v1.1 and v1.2 rules were found (Axelsson 2025, Abstract)."
         },
         {
           "dimension": "anticholinergic_cognitive",
           "personas": [],
           "conditions": [],
           "medication_types": [],
-          "reason": "Only estimates that do not meet rules 10 and 11 were found (Shiddapur 2021, Abstract, Results)."
+          "require_all": true,
+          "reason": "Only estimates that do not meet the v1.1 and v1.2 rules were found (Shiddapur 2021, Abstract, Results)."
         }
       ],
       "faers": [
@@ -5660,6 +5430,9 @@
           "persona": "all",
           "condition": null,
           "medication_type": null,
+          "interval": "confidence",
+          "stratum_population": null,
+          "unexposed_incidence": null,
           "outcome": "upper_gi_bleeding",
           "outcome_match": true,
           "exposure_window": "community_oral",
@@ -5689,27 +5462,33 @@
           "dimension": "gi_bleeding",
           "persona": "all",
           "condition": null,
-          "medication_type": "ssri_snri",
+          "medication_type": null,
+          "interval": "confidence",
+          "stratum_population": null,
+          "unexposed_incidence": null,
           "outcome": "upper_gi_bleeding",
           "outcome_match": true,
           "exposure_window": "community_oral",
           "comparator": "non_use",
-          "dose_mg_per_day": null,
+          "dose_mg_per_day": [
+            1200,
+            1799
+          ],
           "measure": "OR",
-          "estimate": 4.25,
+          "estimate": 1.8,
           "ci95": [
-            2.82,
-            6.42
+            0.8,
+            3.7
           ],
           "grade": "meta_analysis",
-          "exposure": "concurrent SSRI plus NSAID use vs use of neither (joint exposure, not NSAID effect within SSRI users)",
-          "population": "15 case-control and 4 cohort studies, adults",
+          "exposure": "ibuprofen 1200-1799 mg/day in the week before the index day, vs non-use (adjusted OR)",
+          "population": "individual patient data from 3 hospital case-control studies (Catalonia, England, Scotland, Sweden); 2,472 cases of upper GI bleeding, 5,877 controls",
           "citation": {
             "source": "publication",
-            "section": "Anglin 2014, Abstract, Results",
-            "url": "https://pubmed.ncbi.nlm.nih.gov/24777151/",
-            "quote": "The risk of upper GI bleeding was further increased with the use of both SSRI and NSAID medications (OR=4.25, 95% CI=2.82,6.42).",
-            "citation": "Anglin R, Yuan Y, Moayyedi P, et al. Risk of upper gastrointestinal bleeding with selective serotonin reuptake inhibitors with or without concurrent nonsteroidal anti-inflammatory use: a systematic review and meta-analysis. Am J Gastroenterol 2014;109(6):811-9"
+            "section": "Lewis 2002, Table 4, Ibuprofen rows (cases, controls, OR (95% CI))",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC1874428/",
+            "quote": "1200–1799 18 39 1.8 (0.8, 3.7)",
+            "citation": "Lewis SC, Langman MJS, Laporte JR, Matthews JNS, Rawlins MD, Wiholm BE. Dose-response relationships between individual nonaspirin nonsteroidal anti-inflammatory drugs (NANSAIDs) and serious upper gastrointestinal bleeding: a meta-analysis based on individual patient data. Br J Clin Pharmacol 2002;54(3):320-6. PMID 12236853"
           }
         },
         {
@@ -5717,6 +5496,19 @@
           "persona": "all",
           "condition": null,
           "medication_type": null,
+          "interval": "confidence",
+          "stratum_population": null,
+          "unexposed_incidence": {
+            "annual_incidence": 0.000185,
+            "as_reported": "207 validated hospitalised ARF cases among 420,600 residents; the database population is resident since May 1990 and cases were collected between 1990 and 1992, taken as May 1990 to December 1992 = 32 months = 2.67 years. 207 / 420,600 / 2.67 = 0.000185 per person-year. This is the whole study population, NSAID users included: the abstract reports no rate for non-users alone, so it slightly overstates the unexposed rate. The end month is not stated in the abstract (full text not opened).",
+            "citation": {
+              "source": "publication",
+              "section": "Evans 1995, Abstract",
+              "url": "https://pubmed.ncbi.nlm.nih.gov/7648241/",
+              "quote": "We conducted a case-control study using a purpose-built record-linkage database for a population of 420,600 patients, resident in Tayside since May 1990. Patients (n = 207) hospitalized with a diagnostic code for ARF between 1990 and 1992 had their diagnosis validated by a renal physician.",
+              "citation": "Evans JM, McGregor E, McMahon AD, et al. Non-steroidal anti-inflammatory drugs and hospitalization for acute renal failure. QJM 1995;88(8):551-7. PMID 7648241"
+            }
+          },
           "outcome": "aki_hospital",
           "outcome_match": true,
           "exposure_window": "community_oral",
@@ -5744,6 +5536,9 @@
           "persona": "adult_65_plus",
           "condition": null,
           "medication_type": null,
+          "interval": "confidence",
+          "stratum_population": null,
+          "unexposed_incidence": null,
           "outcome": "aki_hospital",
           "outcome_match": true,
           "exposure_window": "community_oral",
@@ -5771,6 +5566,9 @@
           "persona": "all",
           "condition": null,
           "medication_type": "diuretics",
+          "interval": "confidence",
+          "stratum_population": null,
+          "unexposed_incidence": null,
           "outcome": "aki_hospital",
           "outcome_match": true,
           "exposure_window": "community_oral",
@@ -5798,25 +5596,31 @@
           "persona": "all",
           "condition": null,
           "medication_type": null,
-          "outcome": "mi_stroke",
+          "interval": "credible",
+          "stratum_population": null,
+          "unexposed_incidence": null,
+          "outcome": "mi",
           "outcome_match": true,
           "exposure_window": "community_oral",
           "comparator": "non_use",
-          "dose_mg_per_day": null,
+          "dose_mg_per_day": [
+            null,
+            1200
+          ],
           "measure": "OR",
-          "estimate": 1.48,
+          "estimate": 1.04,
           "ci95": [
-            1.0,
-            2.26
+            0.72,
+            1.35
           ],
           "grade": "meta_analysis",
-          "exposure": "current use, any dose, for 1-7 days, vs no NSAID in the preceding year",
+          "exposure": "current use, <=1200 mg/day for 8-30 days, vs no NSAID in the preceding year",
           "population": "446,763 people (61,460 acute MI) from Quebec RAMQ (elderly), Finland, UK GPRD and Saskatchewan databases",
           "citation": {
             "source": "publication",
-            "section": "Bally 2017, Table 2, pooled studies column, row 'Current: Any dose for 1-7 days'; CI is a 95% credible interval",
+            "section": "Bally 2017, Table 2, pooled studies column (last), row '<=1200 mg/day for 8-30 days' under Ibuprofen; intervals are 95% credible intervals",
             "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5423546/",
-            "quote": "Any dose for 1-7 days | 192 (0.1) | 1.46 (0.99 to 2.12) | NA | 1.47 (0.89 to 2.61) | 117 (0.7) | 1.41 (0.95 to 2.04) | 15 (0.1) | 1.55 (0.99 to 2.99) | 1.48 (1.00 to 2.26)",
+            "quote": "≤1200 mg/day for 8-30 days | 199 (0.1) | 0.97 (0.61 to 1.33) | | 918 (0.5) | 1.22 (1.03 to 1.46) | | 278 (1.6) | 0.94 (0.66 to 1.25) | | 17 (0.1) | 1.04 (0.57 to 1.61) | | 1.04 (0.72 to 1.35)",
             "citation": "Bally M, Dendukuri N, Rich B, et al. Risk of acute myocardial infarction with NSAIDs in real world use: bayesian meta-analysis of individual patient data. BMJ 2017;357:j1909"
           }
         },
@@ -5825,6 +5629,19 @@
           "persona": "all",
           "condition": "heart_disease",
           "medication_type": "antiplatelets",
+          "interval": "confidence",
+          "stratum_population": null,
+          "unexposed_incidence": {
+            "annual_incidence": 0.083,
+            "as_reported": "8.3 cardiovascular events per 100 person-years without NSAID treatment = 8.3 / 100 = 0.083 per person-year (crude rate in the reference group; composite of cardiovascular death, nonfatal recurrent MI and stroke).",
+            "citation": {
+              "source": "publication",
+              "section": "Schjerning 2015, Abstract, Results",
+              "url": "https://pubmed.ncbi.nlm.nih.gov/25710657/",
+              "quote": "The crude incidence rates of bleeding (events per 100 person-years) were 4.2 (95% CI, 3.8-4.6) with concomitant NSAID treatment and 2.2 (95% CI, 2.1-2.3) without NSAID treatment, whereas the rates of cardiovascular events were 11.2 (95% CI, 10.5-11.9) and 8.3 (95% CI, 8.2-8.4).",
+              "citation": "Schjerning Olsen AM, Gislason GH, McGettigan P, et al. Association of NSAID use with risk of bleeding and cardiovascular events in patients receiving antithrombotic therapy after myocardial infarction. JAMA 2015;313(8):805-14"
+            }
+          },
           "outcome": "mi_stroke",
           "outcome_match": true,
           "exposure_window": "community_oral",
@@ -5852,33 +5669,9 @@
           "persona": "all",
           "condition": null,
           "medication_type": "anticoagulants",
-          "outcome": "major_bleeding",
-          "outcome_match": true,
-          "exposure_window": "community_oral",
-          "comparator": "within_group",
-          "dose_mg_per_day": null,
-          "measure": "OR",
-          "estimate": 1.55,
-          "ci95": [
-            1.04,
-            2.3
-          ],
-          "grade": "meta_analysis",
-          "exposure": "NSAID plus vitamin K antagonist vs vitamin K antagonist alone",
-          "population": "observational studies and trial analyses of VKA users (atrial fibrillation, venous thromboembolism)",
-          "citation": {
-            "source": "publication",
-            "section": "Zheng 2023, Abstract, Results",
-            "url": "https://pubmed.ncbi.nlm.nih.gov/39492109/",
-            "quote": "Taking vitamin K antagonist (VKAs) concurrently with NSAIDs was associated with a higher risk of any bleeding [odds ratio (OR) = 1.55; 95 % CI, 1.21 to 2.00; P = 0.0007), gastrointestinal bleeding (OR = 2.66; 95 % CI, 1.96 to 3.62; P < 0.00001) as well as major bleeding (OR = 1.55; 95 % CI, 1.04 to 2.30; P = 0.03).",
-            "citation": "Zheng Y, Zhang N, Tse G, Li G, Lip GYH, Liu T. Co-administered oral anticoagulants with nonsteroidal anti-inflammatory drugs and the risk of bleeding: a systematic review and meta-analysis. Thromb Res 2023;232:15-26. PMID 39492109"
-          }
-        },
-        {
-          "dimension": "anticoagulant_bleeding",
-          "persona": "all",
-          "condition": null,
-          "medication_type": "anticoagulants",
+          "interval": "confidence",
+          "stratum_population": "doac_users",
+          "unexposed_incidence": null,
           "outcome": "major_bleeding",
           "outcome_match": true,
           "exposure_window": "community_oral",
@@ -5906,6 +5699,19 @@
           "persona": "all",
           "condition": "heart_disease",
           "medication_type": "antiplatelets",
+          "interval": "confidence",
+          "stratum_population": null,
+          "unexposed_incidence": {
+            "annual_incidence": 0.022,
+            "as_reported": "2.2 bleeding events per 100 person-years without NSAID treatment = 2.2 / 100 = 0.022 per person-year (crude rate in the reference group, post-MI patients on antithrombotic therapy not taking NSAIDs).",
+            "citation": {
+              "source": "publication",
+              "section": "Schjerning 2015, Abstract, Results",
+              "url": "https://pubmed.ncbi.nlm.nih.gov/25710657/",
+              "quote": "The crude incidence rates of bleeding (events per 100 person-years) were 4.2 (95% CI, 3.8-4.6) with concomitant NSAID treatment and 2.2 (95% CI, 2.1-2.3) without NSAID treatment",
+              "citation": "Schjerning Olsen AM, Gislason GH, McGettigan P, et al. Association of NSAID use with risk of bleeding and cardiovascular events in patients receiving antithrombotic therapy after myocardial infarction. JAMA 2015;313(8):805-14"
+            }
+          },
           "outcome": "major_bleeding",
           "outcome_match": true,
           "exposure_window": "community_oral",
@@ -5933,6 +5739,9 @@
           "persona": "pregnant",
           "condition": null,
           "medication_type": null,
+          "interval": "confidence",
+          "stratum_population": null,
+          "unexposed_incidence": null,
           "outcome": null,
           "outcome_match": true,
           "exposure_window": "community_oral",
@@ -5964,7 +5773,16 @@
           "medication_types": [
             "blood_pressure_medications"
           ],
-          "reason": "applies_to medication_type blood_pressure_medications: the only within-group estimate found (Lapi et al. BMJ 2013;346:e8525, Table 3, NSAID added to ACE inhibitors or ARBs vs ACE inhibitors or ARBs only, first 30 days, adjusted RR 1.13, 0.66-1.96) covers ACE inhibitor and ARB users only, which is narrower than blood_pressure_medications; no estimate for the whole group was found, and no ID matches ACE inhibitors and ARBs alone."
+          "reason": "applies_to medication_type blood_pressure_medications: no estimate specific to blood_pressure_medications; the general estimate is used. The only within-group estimate found (Lapi et al. BMJ 2013;346:e8525, Table 3, NSAID added to ACE inhibitors or ARBs vs ACE inhibitors or ARBs only, first 30 days, adjusted RR 1.13, 0.66-1.96) covers ACE inhibitor and ARB users only, which is narrower than blood_pressure_medications; no estimate for the whole group was found, and no ID matches ACE inhibitors and ARBs alone."
+        },
+        {
+          "dimension": "gi_bleeding",
+          "personas": [],
+          "conditions": [],
+          "medication_types": [
+            "ssri_snri"
+          ],
+          "reason": "applies_to medication_type ssri_snri: no estimate specific to ssri_snri; the general estimate is used. Anglin et al. Am J Gastroenterol 2014;109:811-9 (PMID 24777151) reports SSRI plus NSAID against neither drug (OR 4.25, 2.82-6.42), a joint estimate that includes the SSRI's own risk (SSRI alone OR 1.66); by rule 23 it may be used only as NSAID plus SSRI against SSRI alone, which the abstract does not give and the full text (Ovid, paywalled) could not be opened. Haghbin et al. Dig Dis Sci 2023 (PMID 36526813) compares SSRI plus NSAID with SSRI alone but pools any GI bleeding, not upper GI bleeding (rule 10). SNRIs not studied."
         },
         {
           "dimension": "kidney",
@@ -5973,7 +5791,8 @@
             "kidney_disease"
           ],
           "medication_types": [],
-          "reason": "Only estimates that do not meet rules 10 and 11 were found (Zhang 2017, Abstract, Results; outcome definitions in Table 1 and Results)."
+          "require_all": true,
+          "reason": "Only estimates that do not meet the v1.1 and v1.2 rules were found (Zhang 2017, Abstract, Results; outcome definitions in Table 1 and Results)."
         }
       ],
       "faers": [
@@ -6197,6 +6016,9 @@
           "persona": "pregnant",
           "condition": null,
           "medication_type": null,
+          "interval": "confidence",
+          "stratum_population": null,
+          "unexposed_incidence": null,
           "outcome": null,
           "outcome_match": true,
           "exposure_window": "community_oral",
@@ -6373,6 +6195,9 @@
           "persona": "adult_65_plus",
           "condition": null,
           "medication_type": null,
+          "interval": "confidence",
+          "stratum_population": null,
+          "unexposed_incidence": null,
           "outcome": "fall_injury",
           "outcome_match": true,
           "exposure_window": "community_oral",
@@ -6400,6 +6225,9 @@
           "persona": "pregnant",
           "condition": null,
           "medication_type": null,
+          "interval": "confidence",
+          "stratum_population": null,
+          "unexposed_incidence": null,
           "outcome": null,
           "outcome_match": true,
           "exposure_window": "community_oral",
@@ -6431,14 +6259,16 @@
           ],
           "conditions": [],
           "medication_types": [],
-          "reason": "Only estimates that do not meet rules 10 and 11 were found (Agostini 2001, Abstract, Results)."
+          "require_all": true,
+          "reason": "Only estimates that do not meet the v1.1 and v1.2 rules were found (Agostini 2001, Abstract, Results)."
         },
         {
           "dimension": "anticholinergic_cognitive",
           "personas": [],
           "conditions": [],
           "medication_types": [],
-          "reason": "Only estimates that do not meet rules 10 and 11 were found (Reisinger 2023, Results, H1-antihistamines paragraph; GRADE evidence profile, Diphenhydramine row ('Pooled aOR 1.50 (0.64 to 3.54)'))."
+          "require_all": true,
+          "reason": "Only estimates that do not meet the v1.1 and v1.2 rules were found (Reisinger 2023, Results, H1-antihistamines paragraph; GRADE evidence profile, Diphenhydramine row ('Pooled aOR 1.50 (0.64 to 3.54)'))."
         }
       ],
       "faers": [
@@ -6634,6 +6464,9 @@
           "persona": "adult_65_plus",
           "condition": null,
           "medication_type": null,
+          "interval": "confidence",
+          "stratum_population": null,
+          "unexposed_incidence": null,
           "outcome": "fall_injury",
           "outcome_match": true,
           "exposure_window": "community_oral",
@@ -6661,6 +6494,9 @@
           "persona": "pregnant",
           "condition": null,
           "medication_type": null,
+          "interval": "confidence",
+          "stratum_population": null,
+          "unexposed_incidence": null,
           "outcome": null,
           "outcome_match": true,
           "exposure_window": "community_oral",
@@ -6879,6 +6715,9 @@
           "persona": "adult_65_plus",
           "condition": null,
           "medication_type": null,
+          "interval": "confidence",
+          "stratum_population": null,
+          "unexposed_incidence": null,
           "outcome": "fall_injury",
           "outcome_match": true,
           "exposure_window": "community_oral",
@@ -6906,6 +6745,9 @@
           "persona": "pregnant",
           "condition": null,
           "medication_type": null,
+          "interval": "confidence",
+          "stratum_population": null,
+          "unexposed_incidence": null,
           "outcome": null,
           "outcome_match": true,
           "exposure_window": "community_oral",
@@ -7026,6 +6868,9 @@
           "persona": "all",
           "condition": null,
           "medication_type": null,
+          "interval": "confidence",
+          "stratum_population": null,
+          "unexposed_incidence": null,
           "outcome": "upper_gi_bleeding",
           "outcome_match": true,
           "exposure_window": "community_oral",
@@ -7055,27 +6900,33 @@
           "dimension": "gi_bleeding",
           "persona": "all",
           "condition": null,
-          "medication_type": "ssri_snri",
+          "medication_type": null,
+          "interval": "confidence",
+          "stratum_population": null,
+          "unexposed_incidence": null,
           "outcome": "upper_gi_bleeding",
           "outcome_match": true,
           "exposure_window": "community_oral",
           "comparator": "non_use",
-          "dose_mg_per_day": null,
+          "dose_mg_per_day": [
+            1200,
+            1799
+          ],
           "measure": "OR",
-          "estimate": 4.25,
+          "estimate": 1.8,
           "ci95": [
-            2.82,
-            6.42
+            0.8,
+            3.7
           ],
           "grade": "meta_analysis",
-          "exposure": "concurrent SSRI plus NSAID use vs use of neither (joint exposure, not NSAID effect within SSRI users)",
-          "population": "15 case-control and 4 cohort studies, adults",
+          "exposure": "ibuprofen 1200-1799 mg/day in the week before the index day, vs non-use (adjusted OR)",
+          "population": "individual patient data from 3 hospital case-control studies (Catalonia, England, Scotland, Sweden); 2,472 cases of upper GI bleeding, 5,877 controls",
           "citation": {
             "source": "publication",
-            "section": "Anglin 2014, Abstract, Results",
-            "url": "https://pubmed.ncbi.nlm.nih.gov/24777151/",
-            "quote": "The risk of upper GI bleeding was further increased with the use of both SSRI and NSAID medications (OR=4.25, 95% CI=2.82,6.42).",
-            "citation": "Anglin R, Yuan Y, Moayyedi P, et al. Risk of upper gastrointestinal bleeding with selective serotonin reuptake inhibitors with or without concurrent nonsteroidal anti-inflammatory use: a systematic review and meta-analysis. Am J Gastroenterol 2014;109(6):811-9"
+            "section": "Lewis 2002, Table 4, Ibuprofen rows (cases, controls, OR (95% CI))",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC1874428/",
+            "quote": "1200–1799 18 39 1.8 (0.8, 3.7)",
+            "citation": "Lewis SC, Langman MJS, Laporte JR, Matthews JNS, Rawlins MD, Wiholm BE. Dose-response relationships between individual nonaspirin nonsteroidal anti-inflammatory drugs (NANSAIDs) and serious upper gastrointestinal bleeding: a meta-analysis based on individual patient data. Br J Clin Pharmacol 2002;54(3):320-6. PMID 12236853"
           }
         },
         {
@@ -7083,6 +6934,19 @@
           "persona": "all",
           "condition": null,
           "medication_type": null,
+          "interval": "confidence",
+          "stratum_population": null,
+          "unexposed_incidence": {
+            "annual_incidence": 0.000185,
+            "as_reported": "207 validated hospitalised ARF cases among 420,600 residents; the database population is resident since May 1990 and cases were collected between 1990 and 1992, taken as May 1990 to December 1992 = 32 months = 2.67 years. 207 / 420,600 / 2.67 = 0.000185 per person-year. This is the whole study population, NSAID users included: the abstract reports no rate for non-users alone, so it slightly overstates the unexposed rate. The end month is not stated in the abstract (full text not opened).",
+            "citation": {
+              "source": "publication",
+              "section": "Evans 1995, Abstract",
+              "url": "https://pubmed.ncbi.nlm.nih.gov/7648241/",
+              "quote": "We conducted a case-control study using a purpose-built record-linkage database for a population of 420,600 patients, resident in Tayside since May 1990. Patients (n = 207) hospitalized with a diagnostic code for ARF between 1990 and 1992 had their diagnosis validated by a renal physician.",
+              "citation": "Evans JM, McGregor E, McMahon AD, et al. Non-steroidal anti-inflammatory drugs and hospitalization for acute renal failure. QJM 1995;88(8):551-7. PMID 7648241"
+            }
+          },
           "outcome": "aki_hospital",
           "outcome_match": true,
           "exposure_window": "community_oral",
@@ -7110,6 +6974,9 @@
           "persona": "adult_65_plus",
           "condition": null,
           "medication_type": null,
+          "interval": "confidence",
+          "stratum_population": null,
+          "unexposed_incidence": null,
           "outcome": "aki_hospital",
           "outcome_match": true,
           "exposure_window": "community_oral",
@@ -7137,6 +7004,9 @@
           "persona": "all",
           "condition": null,
           "medication_type": "diuretics",
+          "interval": "confidence",
+          "stratum_population": null,
+          "unexposed_incidence": null,
           "outcome": "aki_hospital",
           "outcome_match": true,
           "exposure_window": "community_oral",
@@ -7164,25 +7034,31 @@
           "persona": "all",
           "condition": null,
           "medication_type": null,
-          "outcome": "mi_stroke",
+          "interval": "credible",
+          "stratum_population": null,
+          "unexposed_incidence": null,
+          "outcome": "mi",
           "outcome_match": true,
           "exposure_window": "community_oral",
           "comparator": "non_use",
-          "dose_mg_per_day": null,
+          "dose_mg_per_day": [
+            null,
+            1200
+          ],
           "measure": "OR",
-          "estimate": 1.48,
+          "estimate": 1.04,
           "ci95": [
-            1.0,
-            2.26
+            0.72,
+            1.35
           ],
           "grade": "meta_analysis",
-          "exposure": "current use, any dose, for 1-7 days, vs no NSAID in the preceding year",
+          "exposure": "current use, <=1200 mg/day for 8-30 days, vs no NSAID in the preceding year",
           "population": "446,763 people (61,460 acute MI) from Quebec RAMQ (elderly), Finland, UK GPRD and Saskatchewan databases",
           "citation": {
             "source": "publication",
-            "section": "Bally 2017, Table 2, pooled studies column, row 'Current: Any dose for 1-7 days'; CI is a 95% credible interval",
+            "section": "Bally 2017, Table 2, pooled studies column (last), row '<=1200 mg/day for 8-30 days' under Ibuprofen; intervals are 95% credible intervals",
             "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5423546/",
-            "quote": "Any dose for 1-7 days | 192 (0.1) | 1.46 (0.99 to 2.12) | NA | 1.47 (0.89 to 2.61) | 117 (0.7) | 1.41 (0.95 to 2.04) | 15 (0.1) | 1.55 (0.99 to 2.99) | 1.48 (1.00 to 2.26)",
+            "quote": "≤1200 mg/day for 8-30 days | 199 (0.1) | 0.97 (0.61 to 1.33) | | 918 (0.5) | 1.22 (1.03 to 1.46) | | 278 (1.6) | 0.94 (0.66 to 1.25) | | 17 (0.1) | 1.04 (0.57 to 1.61) | | 1.04 (0.72 to 1.35)",
             "citation": "Bally M, Dendukuri N, Rich B, et al. Risk of acute myocardial infarction with NSAIDs in real world use: bayesian meta-analysis of individual patient data. BMJ 2017;357:j1909"
           }
         },
@@ -7191,6 +7067,19 @@
           "persona": "all",
           "condition": "heart_disease",
           "medication_type": "antiplatelets",
+          "interval": "confidence",
+          "stratum_population": null,
+          "unexposed_incidence": {
+            "annual_incidence": 0.083,
+            "as_reported": "8.3 cardiovascular events per 100 person-years without NSAID treatment = 8.3 / 100 = 0.083 per person-year (crude rate in the reference group; composite of cardiovascular death, nonfatal recurrent MI and stroke).",
+            "citation": {
+              "source": "publication",
+              "section": "Schjerning 2015, Abstract, Results",
+              "url": "https://pubmed.ncbi.nlm.nih.gov/25710657/",
+              "quote": "The crude incidence rates of bleeding (events per 100 person-years) were 4.2 (95% CI, 3.8-4.6) with concomitant NSAID treatment and 2.2 (95% CI, 2.1-2.3) without NSAID treatment, whereas the rates of cardiovascular events were 11.2 (95% CI, 10.5-11.9) and 8.3 (95% CI, 8.2-8.4).",
+              "citation": "Schjerning Olsen AM, Gislason GH, McGettigan P, et al. Association of NSAID use with risk of bleeding and cardiovascular events in patients receiving antithrombotic therapy after myocardial infarction. JAMA 2015;313(8):805-14"
+            }
+          },
           "outcome": "mi_stroke",
           "outcome_match": true,
           "exposure_window": "community_oral",
@@ -7218,33 +7107,9 @@
           "persona": "all",
           "condition": null,
           "medication_type": "anticoagulants",
-          "outcome": "major_bleeding",
-          "outcome_match": true,
-          "exposure_window": "community_oral",
-          "comparator": "within_group",
-          "dose_mg_per_day": null,
-          "measure": "OR",
-          "estimate": 1.55,
-          "ci95": [
-            1.04,
-            2.3
-          ],
-          "grade": "meta_analysis",
-          "exposure": "NSAID plus vitamin K antagonist vs vitamin K antagonist alone",
-          "population": "observational studies and trial analyses of VKA users (atrial fibrillation, venous thromboembolism)",
-          "citation": {
-            "source": "publication",
-            "section": "Zheng 2023, Abstract, Results",
-            "url": "https://pubmed.ncbi.nlm.nih.gov/39492109/",
-            "quote": "Taking vitamin K antagonist (VKAs) concurrently with NSAIDs was associated with a higher risk of any bleeding [odds ratio (OR) = 1.55; 95 % CI, 1.21 to 2.00; P = 0.0007), gastrointestinal bleeding (OR = 2.66; 95 % CI, 1.96 to 3.62; P < 0.00001) as well as major bleeding (OR = 1.55; 95 % CI, 1.04 to 2.30; P = 0.03).",
-            "citation": "Zheng Y, Zhang N, Tse G, Li G, Lip GYH, Liu T. Co-administered oral anticoagulants with nonsteroidal anti-inflammatory drugs and the risk of bleeding: a systematic review and meta-analysis. Thromb Res 2023;232:15-26. PMID 39492109"
-          }
-        },
-        {
-          "dimension": "anticoagulant_bleeding",
-          "persona": "all",
-          "condition": null,
-          "medication_type": "anticoagulants",
+          "interval": "confidence",
+          "stratum_population": "doac_users",
+          "unexposed_incidence": null,
           "outcome": "major_bleeding",
           "outcome_match": true,
           "exposure_window": "community_oral",
@@ -7272,6 +7137,19 @@
           "persona": "all",
           "condition": "heart_disease",
           "medication_type": "antiplatelets",
+          "interval": "confidence",
+          "stratum_population": null,
+          "unexposed_incidence": {
+            "annual_incidence": 0.022,
+            "as_reported": "2.2 bleeding events per 100 person-years without NSAID treatment = 2.2 / 100 = 0.022 per person-year (crude rate in the reference group, post-MI patients on antithrombotic therapy not taking NSAIDs).",
+            "citation": {
+              "source": "publication",
+              "section": "Schjerning 2015, Abstract, Results",
+              "url": "https://pubmed.ncbi.nlm.nih.gov/25710657/",
+              "quote": "The crude incidence rates of bleeding (events per 100 person-years) were 4.2 (95% CI, 3.8-4.6) with concomitant NSAID treatment and 2.2 (95% CI, 2.1-2.3) without NSAID treatment",
+              "citation": "Schjerning Olsen AM, Gislason GH, McGettigan P, et al. Association of NSAID use with risk of bleeding and cardiovascular events in patients receiving antithrombotic therapy after myocardial infarction. JAMA 2015;313(8):805-14"
+            }
+          },
           "outcome": "major_bleeding",
           "outcome_match": true,
           "exposure_window": "community_oral",
@@ -7299,6 +7177,9 @@
           "persona": "pregnant",
           "condition": null,
           "medication_type": null,
+          "interval": "confidence",
+          "stratum_population": null,
+          "unexposed_incidence": null,
           "outcome": null,
           "outcome_match": true,
           "exposure_window": "community_oral",
@@ -7330,7 +7211,16 @@
           "medication_types": [
             "blood_pressure_medications"
           ],
-          "reason": "applies_to medication_type blood_pressure_medications: the only within-group estimate found (Lapi et al. BMJ 2013;346:e8525, Table 3, NSAID added to ACE inhibitors or ARBs vs ACE inhibitors or ARBs only, first 30 days, adjusted RR 1.13, 0.66-1.96) covers ACE inhibitor and ARB users only, which is narrower than blood_pressure_medications; no estimate for the whole group was found, and no ID matches ACE inhibitors and ARBs alone."
+          "reason": "applies_to medication_type blood_pressure_medications: no estimate specific to blood_pressure_medications; the general estimate is used. The only within-group estimate found (Lapi et al. BMJ 2013;346:e8525, Table 3, NSAID added to ACE inhibitors or ARBs vs ACE inhibitors or ARBs only, first 30 days, adjusted RR 1.13, 0.66-1.96) covers ACE inhibitor and ARB users only, which is narrower than blood_pressure_medications; no estimate for the whole group was found, and no ID matches ACE inhibitors and ARBs alone."
+        },
+        {
+          "dimension": "gi_bleeding",
+          "personas": [],
+          "conditions": [],
+          "medication_types": [
+            "ssri_snri"
+          ],
+          "reason": "applies_to medication_type ssri_snri: no estimate specific to ssri_snri; the general estimate is used. Anglin et al. Am J Gastroenterol 2014;109:811-9 (PMID 24777151) reports SSRI plus NSAID against neither drug (OR 4.25, 2.82-6.42), a joint estimate that includes the SSRI's own risk (SSRI alone OR 1.66); by rule 23 it may be used only as NSAID plus SSRI against SSRI alone, which the abstract does not give and the full text (Ovid, paywalled) could not be opened. Haghbin et al. Dig Dis Sci 2023 (PMID 36526813) compares SSRI plus NSAID with SSRI alone but pools any GI bleeding, not upper GI bleeding (rule 10). SNRIs not studied."
         },
         {
           "dimension": "kidney",
@@ -7339,7 +7229,8 @@
             "kidney_disease"
           ],
           "medication_types": [],
-          "reason": "Only estimates that do not meet rules 10 and 11 were found (Zhang 2017, Abstract, Results; outcome definitions in Table 1 and Results)."
+          "require_all": true,
+          "reason": "Only estimates that do not meet the v1.1 and v1.2 rules were found (Zhang 2017, Abstract, Results; outcome definitions in Table 1 and Results)."
         }
       ],
       "faers": [
@@ -7565,6 +7456,8 @@
       "outcome": "acute_liver_failure",
       "outcome_match": true,
       "excludes_class_users": false,
+      "age_standardised": false,
+      "stratum_population": null,
       "annual_incidence": 1.13e-05,
       "as_reported": "1.13/100 000 person-years -> 1.13 / 100,000 = 0.0000113 per person-year",
       "population": "Germany, AOK statutory health insurance (26.5 million insured), 2014-2018, all ages, extrapolated to the German population; ICD/OPS-coded acute liver failure",
@@ -7584,6 +7477,8 @@
       "outcome": "acute_liver_injury",
       "outcome_match": true,
       "excludes_class_users": false,
+      "age_standardised": false,
+      "stratum_population": null,
       "annual_incidence": 4.38e-05,
       "as_reported": "19.1 cases per 100,000 inhabitants per year (all DILI); 22 of the 96 cases were hospitalized -> 19.1 x 22 / 96 = 4.38 per 100,000 = 0.0000438 per person-year",
       "population": "Iceland, whole population, 2010-2011, prospective nationwide case collection; drug-induced liver injury (ALT >3x ULN and/or ALP >2x ULN, RUCAM causality); acetaminophen toxicity cases excluded",
@@ -7597,50 +7492,14 @@
     },
     {
       "dimension": "gi_bleeding",
-      "persona": "adult_18_64",
-      "condition": null,
-      "medication_type": null,
-      "outcome": "upper_gi_bleeding",
-      "outcome_match": true,
-      "excludes_class_users": false,
-      "annual_incidence": 0.00048,
-      "as_reported": "48 per 100,000 per year (age 40-59) -> 48 / 100,000 = 0.00048 per person-year",
-      "population": "Iceland, greater Reykjavik metropolitan area residents, 2010, all patients undergoing upper GI endoscopy at the National University Hospital; age band 40-59",
-      "citation": {
-        "source": "publication",
-        "section": "Hreinsson 2013, Table I",
-        "url": "https://europepmc.org/article/PMC/PMC3613943",
-        "quote": "Age standardized incidence rate 18–24 30 25–39 15 40–59 48 60–79 213 80–105 570",
-        "citation": "Hreinsson JP, Kalaitzakis E, Gudmundsson S, Bjornsson ES. Upper gastrointestinal bleeding: incidence, etiology and outcomes in a population-based setting. Scand J Gastroenterol 2013;48:439-447. doi:10.3109/00365521.2012.763174"
-      }
-    },
-    {
-      "dimension": "gi_bleeding",
-      "persona": "adult_65_plus",
-      "condition": null,
-      "medication_type": null,
-      "outcome": "upper_gi_bleeding",
-      "outcome_match": true,
-      "excludes_class_users": false,
-      "annual_incidence": 0.00213,
-      "as_reported": "213 per 100,000 per year (age 60-79) -> 213 / 100,000 = 0.00213 per person-year",
-      "population": "Iceland, greater Reykjavik metropolitan area residents, 2010; age band 60-79",
-      "citation": {
-        "source": "publication",
-        "section": "Hreinsson 2013, Table I",
-        "url": "https://europepmc.org/article/PMC/PMC3613943",
-        "quote": "Age standardized incidence rate 18–24 30 25–39 15 40–59 48 60–79 213 80–105 570",
-        "citation": "Hreinsson JP, Kalaitzakis E, Gudmundsson S, Bjornsson ES. Upper gastrointestinal bleeding: incidence, etiology and outcomes in a population-based setting. Scand J Gastroenterol 2013;48:439-447. doi:10.3109/00365521.2012.763174"
-      }
-    },
-    {
-      "dimension": "gi_bleeding",
       "persona": "all",
       "condition": null,
       "medication_type": null,
       "outcome": "upper_gi_bleeding",
       "outcome_match": true,
       "excludes_class_users": true,
+      "age_standardised": false,
+      "stratum_population": null,
       "annual_incidence": 0.000627,
       "as_reported": "125.42 per 100 000 inhabitants over 2 years (2017-2018, subgroup C) -> 125.42 / 2 = 62.71 per 100,000 per year = 0.000627 per person-year",
       "population": "Netherlands, 12.23 million residents (all ages) who filled no prescription for an NSAID (ATC M01A) or an antithrombotic agent (B01A, which includes low-dose aspirin) in 2017-2018; severe UGIB (hospital admission or death)",
@@ -7654,69 +7513,14 @@
     },
     {
       "dimension": "kidney",
-      "persona": "adult_18_64",
-      "condition": null,
-      "medication_type": null,
-      "outcome": "aki_hospital",
-      "outcome_match": true,
-      "excludes_class_users": false,
-      "annual_incidence": 0.0038,
-      "as_reported": "3.8 per 1,000 patient years (Optum Clinformatics, aged 22+, 2016) -> 3.8 / 1,000 = 0.0038 per person-year",
-      "population": "United States, Optum Clinformatics commercial insurance enrollees aged 22 and older without ESRD, 2016 (mainly working-age adults); hospitalizations with an AKI diagnosis code",
-      "citation": {
-        "source": "publication",
-        "section": "United 2018, Chapter 5, text accompanying Figure 5.3 (page 104)",
-        "url": "https://www.niddk.nih.gov/-/media/Files/USRDS/2018-Previous-ADR/Volume-1/Chapter/v1_c05_aki_18_usrds.pdf",
-        "quote": "Among Optum Clinformatics™ patients, the overall group AKI rate increased over time, peaking at 3.8 per 1,000 patient years in 2016. For the subgroup aged 66 and older, the 2011 rate was 23.7 per 1,000 patient-years and remained somewhat stable at 21.8 per 1,000 in 2016.",
-        "citation": "United States Renal Data System. 2018 USRDS Annual Data Report, Volume 1: CKD in the United States, Chapter 5: Acute Kidney Injury. National Institutes of Health, National Institute of Diabetes and Digestive and Kidney Diseases, Bethesda, MD, 2018"
-      }
-    },
-    {
-      "dimension": "kidney",
-      "persona": "adult_65_plus",
-      "condition": null,
-      "medication_type": null,
-      "outcome": "aki_hospital",
-      "outcome_match": true,
-      "excludes_class_users": false,
-      "annual_incidence": 0.044,
-      "as_reported": "4.4% of beneficiaries aged 66+ with at least one AKI hospitalization in 2016 -> 4.4 / 100 = 0.044 per person-year (an annual proportion of people, not a rate per patient-year)",
-      "population": "United States, Medicare fee-for-service 5% sample, beneficiaries aged 66+ with Parts A and B, no Medicare Advantage, no ESRD, alive on January 1, 2016; at least one hospitalization with an AKI diagnosis code",
-      "citation": {
-        "source": "publication",
-        "section": "United 2018, Chapter 5, highlights (page 99) and Figure 5.1 data source note",
-        "url": "https://www.niddk.nih.gov/-/media/Files/USRDS/2018-Previous-ADR/Volume-1/Chapter/v1_c05_aki_18_usrds.pdf",
-        "quote": "In 2016, 4.4% of Medicare fee-for-service beneficiaries experienced a hospitalization complicated by Acute Kidney Injury (AKI) ... (a) Percent with an AKI hospitalization among all Medicare patients aged 66 and older who had both Medicare Parts A & B, no Medicare Advantage plan, no ESRD by first service date from Medical Evidence form, and were alive on January 1 of year shown.",
-        "citation": "United States Renal Data System. 2018 USRDS Annual Data Report, Volume 1: CKD in the United States, Chapter 5: Acute Kidney Injury. National Institutes of Health, National Institute of Diabetes and Digestive and Kidney Diseases, Bethesda, MD, 2018"
-      }
-    },
-    {
-      "dimension": "kidney",
-      "persona": "adult_65_plus",
-      "condition": "kidney_disease",
-      "medication_type": null,
-      "outcome": "aki_hospital",
-      "outcome_match": true,
-      "excludes_class_users": false,
-      "annual_incidence": 0.1417,
-      "as_reported": "141.7 per 1,000 patient-years (Medicare 66+, non-diabetic with CKD, 2016) -> 141.7 / 1,000 = 0.1417 per person-year",
-      "population": "United States, Medicare fee-for-service 5% sample aged 66+, 2016, beneficiaries with a CKD diagnosis and without diabetes; denominator is all patient-years at risk in that group (population, not tested people)",
-      "citation": {
-        "source": "publication",
-        "section": "United 2018, Chapter 5, text accompanying Figure 5.5 (page 108)",
-        "url": "https://www.niddk.nih.gov/-/media/Files/USRDS/2018-Previous-ADR/Volume-1/Chapter/v1_c05_aki_18_usrds.pdf",
-        "quote": "Non-diabetic patients with CKD experienced an AKI incidence rate of 141.7 per 1,000 patient-years, while the rate in patients with both DM and CKD was 207.4 per 1,000.",
-        "citation": "United States Renal Data System. 2018 USRDS Annual Data Report, Volume 1: CKD in the United States, Chapter 5: Acute Kidney Injury. National Institutes of Health, National Institute of Diabetes and Digestive and Kidney Diseases, Bethesda, MD, 2018"
-      }
-    },
-    {
-      "dimension": "kidney",
       "persona": "all",
       "condition": null,
       "medication_type": "blood_pressure_medications",
       "outcome": "aki_hospital",
       "outcome_match": true,
       "excludes_class_users": false,
+      "age_standardised": false,
+      "stratum_population": null,
       "annual_incidence": 0.0007,
       "as_reported": "7/10 000 person years -> 7 / 10,000 = 0.0007 per person-year",
       "population": "UK CPRD linked to Hospital Episode Statistics, 487,372 new users of any antihypertensive drug (diuretics, ACE inhibitors, ARBs, calcium channel blockers, alpha and beta blockers), 1997-2008, followed to 2010 (mean 5.9 years); first hospital admission with AKI (ICD-10 N17) in primary position",
@@ -7729,22 +7533,108 @@
       }
     },
     {
-      "dimension": "cardiovascular_bp",
-      "persona": "all",
+      "dimension": "kidney",
+      "persona": "adult_65_plus",
       "condition": null,
       "medication_type": null,
-      "outcome": "mi_stroke",
+      "outcome": "aki_hospital",
       "outcome_match": true,
       "excludes_class_users": false,
-      "annual_incidence": 0.00371,
-      "as_reported": "acute coronary syndrome 190 + stroke 181 per 100 000 person years (2017-19) = 371 per 100,000 -> 0.00371 per person-year",
-      "population": "UK, Clinical Practice Research Datalink (GOLD and Aurum, ~20% of UK population) linked to hospital records, 2017-2019; first diagnosis; age-sex standardised to the 2013 European standard population",
+      "age_standardised": "within_range",
+      "stratum_population": null,
+      "annual_incidence": 0.0063,
+      "as_reported": "6.3 per 1000 person-years (hospitalization with AKI as the primary diagnosis, Medicare FFS aged >=66, 2022) -> 6.3 / 1,000 = 0.0063 per person-year",
+      "population": "United States, Medicare 5% fee-for-service sample, January 1 point-prevalent beneficiaries aged >=66 with Parts A and B, no Medicare Advantage in the prior year, no ESRD; hospitalizations in which AKI was the primary diagnosis (recurrent admissions included); rates adjusted for age, sex and race/ethnicity to the 2020 cohort",
       "citation": {
         "source": "publication",
-        "section": "Conrad 2024, Results, first paragraph of incidence results; Fig 1",
-        "url": "https://europepmc.org/article/PMC/PMC11203392",
-        "quote": "followed by acute coronary syndrome (190 per 100 000 person years), venous thromboembolism (183 per 100 000 person years), and stroke (181 per 100 000 patient years)",
-        "citation": "Conrad N, Molenberghs G, Verbeke G, et al. Trends in cardiovascular disease incidence among 22 million people in the UK over 20 years: population based study. BMJ 2024;385:e078523. doi:10.1136/bmj-2023-078523"
+        "section": "United 2024, Chapter 4, text below Figure 4.1a ('Cause of Hospitalizations' tab); Figure 4.1a data source note; Methods",
+        "url": "https://usrds-adr-api.niddk.nih.gov/api/PDF?year=2024&chapterNumber=4&volumeNumber=1",
+        "quote": "In 2022, the rates of CVD-related (13.1 per 1000 person-years), sepsis-related (11.9 per 1000 person-years), and non-sepsis infection-related hospitalizations with AKI (9.8 per 1000 person-years) were higher than rates of hospitalization with AKI as the primary diagnosis (6.3 per 1000 person-years) ... (but not hospitalization for AKI itself, that is, a hospitalization in which AKI was the primary diagnosis) ... Data source: Medicare 5% sample. January 1 point prevalent Medicare FFS beneficiaries aged ≥66 years. For patients who had multiple hospitalizations, all hospitalizations are included. Adjusted for age, sex, and race/ethnicity.",
+        "citation": "United States Renal Data System. 2024 USRDS Annual Data Report: Epidemiology of kidney disease in the United States. Volume 1: Chronic Kidney Disease, Chapter 4: Acute Kidney Injury. National Institutes of Health, National Institute of Diabetes and Digestive and Kidney Diseases, Bethesda, MD, 2024"
+      }
+    },
+    {
+      "dimension": "cardiovascular_bp",
+      "persona": "adult_18_64",
+      "condition": null,
+      "medication_type": null,
+      "outcome": "mi",
+      "outcome_match": true,
+      "excludes_class_users": false,
+      "age_standardised": false,
+      "stratum_population": null,
+      "annual_incidence": 0.000569,
+      "as_reported": "56.9 per 100,000 person-years (age 25-54, 2008) -> 56.9 / 100,000 = 0.000569 per person-year",
+      "population": "United States, Cardiovascular Research Network, members aged >=25 of 7 integrated health care delivery systems (46.6 million person-years), 2000-2008; first hospitalization with a primary discharge diagnosis of AMI (ICD-9-CM 410.x0, 410.x1); age band 25-54",
+      "citation": {
+        "source": "publication",
+        "section": "Reynolds 2017, Table 2 ('Age-Specific Incidence per 100,000 person-years (95% CI) of Hospitalized Acute Myocardial Infarction ...'), AMI row 25-54, 2008 column; Methods",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5318252/",
+        "quote": "25–54 ... 2008: 56.9 (54.4–59.4) ... with a primary discharge diagnosis of acute myocardial infarction ... We defined incident acute myocardial infarction events as the first hospitalization that occurred between 2000–2008",
+        "citation": "Reynolds K, Go AS, Leong TK, et al. Trends in Incidence of Hospitalized Acute Myocardial Infarction in the Cardiovascular Research Network (CVRN). Am J Med 2017;130(3):317-327 (epub 2016). doi:10.1016/j.amjmed.2016.09.014"
+      }
+    },
+    {
+      "dimension": "cardiovascular_bp",
+      "persona": "adult_65_plus",
+      "condition": null,
+      "medication_type": null,
+      "outcome": "mi",
+      "outcome_match": true,
+      "excludes_class_users": false,
+      "age_standardised": false,
+      "stratum_population": null,
+      "annual_incidence": 0.002993,
+      "as_reported": "299.3 per 100,000 person-years (age 55-74, 2008) -> 299.3 / 100,000 = 0.002993 per person-year",
+      "population": "United States, Cardiovascular Research Network, 2000-2008; first hospitalization with a primary discharge diagnosis of AMI; age band 55-74",
+      "citation": {
+        "source": "publication",
+        "section": "Reynolds 2017, Table 2, AMI row 55-74, 2008 column",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5318252/",
+        "quote": "55–74 ... 2008: 299.3 (290.9–308.0) ... 75+ ... 2008: 827.7 (800.5–855.8)",
+        "citation": "Reynolds K, Go AS, Leong TK, et al. Trends in Incidence of Hospitalized Acute Myocardial Infarction in the Cardiovascular Research Network (CVRN). Am J Med 2017;130(3):317-327 (epub 2016). doi:10.1016/j.amjmed.2016.09.014"
+      }
+    },
+    {
+      "dimension": "cardiovascular_bp",
+      "persona": "adult_18_64",
+      "condition": null,
+      "medication_type": null,
+      "outcome": "stroke",
+      "outcome_match": true,
+      "excludes_class_users": false,
+      "age_standardised": false,
+      "stratum_population": null,
+      "annual_incidence": 0.00023,
+      "as_reported": "23 per 100 000 (age 25-44, 2010) -> 23 / 100,000 = 0.00023 per person-year",
+      "population": "United States, Nationwide Inpatient Sample (about 20% stratified sample of nonfederal hospitals, weighted to national counts) over the US civilian population (census), 2000-2010; hospitalizations with a primary discharge diagnosis of acute ischemic stroke; age band 25-44",
+      "citation": {
+        "source": "publication",
+        "section": "Ramirez 2016, Abstract, Results; Table 1, 'Age categories, y' rows, 2010 column; Methods",
+        "url": "https://europepmc.org/article/PMC/PMC4889194",
+        "quote": "Age‐specific AIS hospitalization rates decreased for individuals aged 65 to 84 years (846 to 605 per 100 000) and ≥85 years (2077 to 1618 per 100 000), but increased for individuals aged 25 to 44 years (16 to 23 per 100 000) and 45 to 64 years (149 to 156 per 100 000). ... Acute ischemic stroke (AIS) was defined by the International Classification of Diseases, 9th revision primary discharge diagnosis codes for ischemic stroke",
+        "citation": "Ramirez L, Kim-Tenser MA, Sanossian N, Cen S, Wen G, He S, et al. Trends in Acute Ischemic Stroke Hospitalizations in the United States. J Am Heart Assoc 2016;5(5):e003233. doi:10.1161/JAHA.116.003233"
+      }
+    },
+    {
+      "dimension": "cardiovascular_bp",
+      "persona": "adult_65_plus",
+      "condition": null,
+      "medication_type": null,
+      "outcome": "stroke",
+      "outcome_match": true,
+      "excludes_class_users": false,
+      "age_standardised": false,
+      "stratum_population": null,
+      "annual_incidence": 0.00605,
+      "as_reported": "605 per 100 000 (age 65-84, 2010) -> 605 / 100,000 = 0.00605 per person-year",
+      "population": "United States, Nationwide Inpatient Sample over the US civilian population, 2010; primary-diagnosis acute ischemic stroke hospitalizations; age band 65-84",
+      "citation": {
+        "source": "publication",
+        "section": "Ramirez 2016, Abstract, Results; Table 1, 'Age categories, y' rows, 2010 column",
+        "url": "https://europepmc.org/article/PMC/PMC4889194",
+        "quote": "Age‐specific AIS hospitalization rates decreased for individuals aged 65 to 84 years (846 to 605 per 100 000) and ≥85 years (2077 to 1618 per 100 000)",
+        "citation": "Ramirez L, Kim-Tenser MA, Sanossian N, Cen S, Wen G, He S, et al. Trends in Acute Ischemic Stroke Hospitalizations in the United States. J Am Heart Assoc 2016;5(5):e003233. doi:10.1161/JAHA.116.003233"
       }
     },
     {
@@ -7755,6 +7645,8 @@
       "outcome": "fall_injury",
       "outcome_match": true,
       "excludes_class_users": false,
+      "age_standardised": "within_range",
+      "stratum_population": null,
       "annual_incidence": 0.056673,
       "as_reported": "ED visits (treated and released) 4,362.1 + hospitalizations 1,305.2 per 100,000 (age-adjusted, adults >=65, 2018) = 5,667.3 per 100,000 -> 0.056673 per person-year",
       "population": "United States, Healthcare Cost and Utilization Project, Nationwide Emergency Department Sample and National Inpatient Sample, 2018, adults aged >=65; unintentional fall injury encounters (visits, not persons); age-adjusted to the 2000 US standard population",
@@ -7774,6 +7666,8 @@
       "outcome": "fall_injury",
       "outcome_match": true,
       "excludes_class_users": false,
+      "age_standardised": false,
+      "stratum_population": null,
       "annual_incidence": 0.068446,
       "as_reported": "6844.6 per 100 000 (age 1-2 years, annual average 2010-2013) -> 6844.6 / 100,000 = 0.068446 per person-year",
       "population": "United States, NEISS-AIP, 2010-2013 aggregated, children aged 1-2 years; nonfatal unintentional fall injuries treated in EDs",
@@ -7793,6 +7687,8 @@
       "outcome": "fall_injury",
       "outcome_match": true,
       "excludes_class_users": false,
+      "age_standardised": false,
+      "stratum_population": null,
       "annual_incidence": 0.047664,
       "as_reported": "4766.4 per 100 000 (age 3-4 years) -> 4766.4 / 100,000 = 0.047664 per person-year",
       "population": "United States, NEISS-AIP, 2010-2013 aggregated, children aged 3-4 years",
@@ -7812,6 +7708,8 @@
       "outcome": "fall_injury",
       "outcome_match": true,
       "excludes_class_users": false,
+      "age_standardised": false,
+      "stratum_population": null,
       "annual_incidence": 0.032014,
       "as_reported": "3201.4 per 100 000 (age 5-9 years) -> 3201.4 / 100,000 = 0.032014 per person-year",
       "population": "United States, NEISS-AIP, 2010-2013 aggregated, children aged 5-9 years",
@@ -7831,6 +7729,8 @@
       "outcome": "fall_injury",
       "outcome_match": true,
       "excludes_class_users": false,
+      "age_standardised": false,
+      "stratum_population": null,
       "annual_incidence": 0.021019,
       "as_reported": "2101.9 per 100 000 (age 15-19 years) -> 2101.9 / 100,000 = 0.021019 per person-year",
       "population": "United States, NEISS-AIP, 2010-2013 aggregated, adolescents aged 15-19 years",
@@ -7850,6 +7750,8 @@
       "outcome": "fracture",
       "outcome_match": true,
       "excludes_class_users": false,
+      "age_standardised": false,
+      "stratum_population": null,
       "annual_incidence": 0.00733,
       "as_reported": "73.3 per 10,000 person-years (any fracture, both sexes, age 18-49) -> 73.3 / 10,000 = 0.00733 per person-year",
       "population": "UK Clinical Practice Research Datalink, all permanently registered adults, 1988-2012; first-ever fracture at each site (validated GP records, ICD-9 categories); age band 18-49",
@@ -7869,6 +7771,8 @@
       "outcome": "fracture",
       "outcome_match": true,
       "excludes_class_users": false,
+      "age_standardised": false,
+      "stratum_population": null,
       "annual_incidence": 0.01163,
       "as_reported": "116.3 per 10,000 person-years (any fracture, both sexes, age 50+) -> 116.3 / 10,000 = 0.01163 per person-year",
       "population": "UK Clinical Practice Research Datalink, 1988-2012; first-ever fracture at each site; age band 50+",
@@ -7888,6 +7792,8 @@
       "outcome": "hip_fracture",
       "outcome_match": true,
       "excludes_class_users": false,
+      "age_standardised": false,
+      "stratum_population": null,
       "annual_incidence": 5e-05,
       "as_reported": "0.5 per 10,000 person-years (hip only, both sexes, age 18-49) -> 0.5 / 10,000 = 0.00005 per person-year",
       "population": "UK Clinical Practice Research Datalink, 1988-2012; first-ever hip fracture; age band 18-49",
@@ -7907,6 +7813,8 @@
       "outcome": "hip_fracture",
       "outcome_match": true,
       "excludes_class_users": false,
+      "age_standardised": false,
+      "stratum_population": null,
       "annual_incidence": 0.00196,
       "as_reported": "19.6 per 10,000 person-years (hip only, both sexes, age 50+) -> 19.6 / 10,000 = 0.00196 per person-year",
       "population": "UK Clinical Practice Research Datalink, 1988-2012; first-ever hip fracture; age band 50+",
@@ -7926,6 +7834,8 @@
       "outcome": "major_bleeding",
       "outcome_match": true,
       "excludes_class_users": false,
+      "age_standardised": false,
+      "stratum_population": "doac_users",
       "annual_incidence": 0.082,
       "as_reported": "8.2 (95% CI 4.5-11.8) per 100 person-years at 1 year -> 8.2 / 100 = 0.082 per person-year",
       "population": "Canada and 4 European countries, national EHR/claims registries; 358,143 new oral factor Xa inhibitor users aged >=18 (AF, VTE, valve replacement, other)",

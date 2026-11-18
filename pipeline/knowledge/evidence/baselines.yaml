@@ -7,6 +7,14 @@ compiled: 2026-11-18
 # used (Medicare "66 and older" and MMWR "aged >=65" count as 65 and over); otherwise the source's
 # narrowest band that contains the median age of the persona's US population (persona_median_ages
 # below). All-ages summary rates are recorded as persona all.
+#
+# v1.2 (2026-11-18). Every row also carries age_standardised (rule 26: true when the source
+# standardises the rate to a reference age distribution, whatever the age range; the build
+# drops every true row). Rule 26 order: same-study baseline (in the relative-risk files), then a
+# rate that excludes class users, then the age rule, then the larger population-based source
+# between two rates for the same whole range. Rule 20: an outside AKI baseline must count AKI as
+# the cause of admission (principal diagnosis). Rule 24: cardiovascular_bp rows use mi, stroke
+# or mi_stroke. Rule 25: anticoagulant_bleeding rows carry stratum_population.
 persona_median_ages:
   source:
     citation: "US Census Bureau, Population Division. Annual Estimates of the Resident Population by Single Year of Age and Sex for the United States: April 1, 2020 to July 1, 2024 (NC-EST2024-AGESEX-RES). Vintage 2024"
@@ -23,6 +31,7 @@ baselines:
     outcome: acute_liver_failure
     outcome_match: true
     excludes_class_users: false
+    age_standardised: false
     annual_incidence: 0.0000113
     as_reported: "1.13/100 000 person-years -> 1.13 / 100,000 = 0.0000113 per person-year"
     population: "Germany, AOK statutory health insurance (26.5 million insured), 2014-2018, all ages, extrapolated to the German population; ICD/OPS-coded acute liver failure"
@@ -40,6 +49,7 @@ baselines:
     outcome: acute_liver_injury
     outcome_match: true
     excludes_class_users: false
+    age_standardised: false
     annual_incidence: 0.0000438
     as_reported: "19.1 cases per 100,000 inhabitants per year (all DILI); 22 of the 96 cases were hospitalized -> 19.1 x 22 / 96 = 4.38 per 100,000 = 0.0000438 per person-year"
     population: "Iceland, whole population, 2010-2011, prospective nationwide case collection; drug-induced liver injury (ALT >3x ULN and/or ALP >2x ULN, RUCAM causality); acetaminophen toxicity cases excluded"
@@ -59,6 +69,7 @@ baselines:
     outcome: upper_gi_bleeding
     outcome_match: true
     excludes_class_users: false
+    age_standardised: false
     annual_incidence: 0.00048
     as_reported: "48 per 100,000 per year (age 40-59) -> 48 / 100,000 = 0.00048 per person-year"
     population: "Iceland, greater Reykjavik metropolitan area residents, 2010, all patients undergoing upper GI endoscopy at the National University Hospital; age band 40-59"
@@ -68,7 +79,7 @@ baselines:
       location: "Table I"
       quote: "Age standardized incidence rate 18–24 30 25–39 15 40–59 48 60–79 213 80–105 570"
     selection_note: "Only opened population-based source with a tabulated age-specific UGIB incidence. Small single-year study (132 incident cases in Table I). The Dutch national registry (Bedene 2022) gives age bands only in a figure."
-    match_note: "Acute upper GI bleeding needing hospital or ED care (71% admitted for the bleed, 24% bled in hospital, 5% ED only) matches the section-1 outcome; rule 15 (amended): no 18-64 rate is reported, and the US median age of 18-64 (40) falls in 40-59, so 40-59 is used; the source does not report a rate without NSAID or aspirin users (20% of bleeders took NSAIDs, 40% low-dose aspirin)."
+    match_note: "Acute upper GI bleeding needing hospital or ED care (71% admitted for the bleed, 24% bled in hospital, 5% ED only) matches the section-1 outcome; rule 15 (amended): no 18-64 rate is reported, and the US median age of 18-64 (40) falls in 40-59, so 40-59 is used; the source does not report a rate without NSAID or aspirin users (20% of bleeders took NSAIDs, 40% low-dose aspirin). Rule 26 puts a class-free rate before the age rule, so Bedene 2022 subgroup C (persona all, excludes_class_users true) is used for this dimension and outcome and the build drops this row. Table I's column is headed 'Age standardized incidence rate', but the cells are rates within each age band, not a rate standardised across bands, so age_standardised is false."
   - dimension: gi_bleeding
     persona: adult_65_plus
     condition: null
@@ -76,6 +87,7 @@ baselines:
     outcome: upper_gi_bleeding
     outcome_match: true
     excludes_class_users: false
+    age_standardised: false
     annual_incidence: 0.00213
     as_reported: "213 per 100,000 per year (age 60-79) -> 213 / 100,000 = 0.00213 per person-year"
     population: "Iceland, greater Reykjavik metropolitan area residents, 2010; age band 60-79"
@@ -85,7 +97,7 @@ baselines:
       location: "Table I"
       quote: "Age standardized incidence rate 18–24 30 25–39 15 40–59 48 60–79 213 80–105 570"
     selection_note: "Same source and caveats as the adult_18_64 row. Amended rule 15 keeps the v1 band."
-    match_note: "Same outcome as the adult_18_64 row; rule 15 (amended): no 65-and-over rate is reported, and the US median age of 65 and over (73) falls in 60-79, so 60-79 is used (80-105 is 570); NSAID and aspirin users are not excluded."
+    match_note: "Same outcome as the adult_18_64 row; rule 15 (amended): no 65-and-over rate is reported, and the US median age of 65 and over (73) falls in 60-79, so 60-79 is used (80-105 is 570); NSAID and aspirin users are not excluded. Rule 26: Bedene 2022 subgroup C excludes class users and comes before the age rule, so the build drops this row. Age-band rate, not standardised (see the adult_18_64 row)."
   - dimension: gi_bleeding
     persona: all
     condition: null
@@ -93,6 +105,7 @@ baselines:
     outcome: upper_gi_bleeding
     outcome_match: true
     excludes_class_users: false
+    age_standardised: false
     annual_incidence: 0.0013
     as_reported: "260 per 100 000 inhabitants over 2 years (2017-2018) -> 260 / 2 = 130 per 100,000 per year = 0.0013 per person-year"
     population: "Netherlands, total population (17.47 million, all ages), 2017-2018, linked national hospital and population registries; severe UGIB (hospital admission or death)"
@@ -110,6 +123,7 @@ baselines:
     outcome: upper_gi_bleeding
     outcome_match: true
     excludes_class_users: true
+    age_standardised: false
     annual_incidence: 0.000627
     as_reported: "125.42 per 100 000 inhabitants over 2 years (2017-2018, subgroup C) -> 125.42 / 2 = 62.71 per 100,000 per year = 0.000627 per person-year"
     population: "Netherlands, 12.23 million residents (all ages) who filled no prescription for an NSAID (ATC M01A) or an antithrombotic agent (B01A, which includes low-dose aspirin) in 2017-2018; severe UGIB (hospital admission or death)"
@@ -118,8 +132,8 @@ baselines:
       url: "https://europepmc.org/article/PMC/PMC8753354"
       location: "Table 2, subgroup C, 2017-2018 row, and Table 2 footnote"
       quote: "2017–2018 | 15 338 | 12 229 473 | 125.42 (123.45 to 127.42) ... (C) restricted to the group of individuals who did not receive a prescription for NSAIDs nor antithrombotic agents"
-    selection_note: "Rule 15: the source reports the total population and three restricted subgroups. Subgroup C excludes both NSAID and antithrombotic (including low-dose aspirin) prescription users, the classes whose relative risks pair with this baseline. Subgroup B (no NSAID prescription only) was 236.60 per 100,000 over 2017-2018 (118.3 per year); subgroup D (no prescription for any listed risk drug, including antihypertensives and antidepressants) was 63.34 (31.7 per year), which excludes more than the ingredient's class. Most recent biennium used, halved to an annual rate."
-    match_note: "Same severe UGIB outcome as subgroup A; all ages, so persona all and rule 15's age-band rule does not apply (the source's age-specific rates are only in Figure 2); excludes prescription NSAID and antithrombotic users, but OTC NSAID and aspirin use is not recorded, so some class users remain."
+    selection_note: "Rules 15 and 26: the source reports the total population and three restricted subgroups. Subgroup C excludes both NSAID and antithrombotic (including low-dose aspirin) prescription users, the classes whose relative risks pair with this baseline. Subgroup B (no NSAID prescription only) was 236.60 per 100,000 over 2017-2018 (118.3 per year); subgroup D (no prescription for any listed risk drug, including antihypertensives and antidepressants) was 63.34 (31.7 per year), which excludes more than the ingredient's class. Most recent biennium used, halved to an annual rate."
+    match_note: "Same severe UGIB outcome as subgroup A; excludes prescription NSAID and antithrombotic users, but OTC NSAID and aspirin use is not recorded, so some class users remain. Rule 26 order: no same-study baseline here, then a class-free rate comes before the age rule, so this all-ages row is used for every persona over the Hreinsson age bands (which include class users). Age detail the source reports for subgroup C: only Figure 2C ('age-specific annual cumulative incidence ... per 100 000 inhabitants' for subgroup C in eight bands 0-15, 15-25, 25-45, 45-55, 55-65, 65-75, 75-85, >=85), with no numbers in the text or tables, so no band can be quoted; the text says incidence 'increased with age', so this all-ages rate overstates the rate for children and teens and understates it for 65 and over. It is a crude cumulative incidence (events over residents), not age-standardised."
 
   # ---------------------------------------------------------------- kidney
   - dimension: kidney
@@ -129,6 +143,7 @@ baselines:
     outcome: aki_hospital
     outcome_match: false
     excludes_class_users: false
+    age_standardised: false
     annual_incidence: 0.0089
     as_reported: "89 per 10 000/year (age 40-69, Grampian 2012) -> 89 / 10,000 = 0.0089 per person-year"
     population: "Scotland, Grampian region, all residents aged >=15, 2012 (482,444 adults); biochemistry-defined AKI episodes (KDIGO-based, hospital and community tests); age band 40-69"
@@ -146,6 +161,7 @@ baselines:
     outcome: aki_hospital
     outcome_match: false
     excludes_class_users: false
+    age_standardised: false
     annual_incidence: 0.0572
     as_reported: "572 per 10 000/year (age >=70, Grampian 2012) -> 572 / 10,000 = 0.0572 per person-year"
     population: "Scotland, Grampian region residents, 2012; age band >=70; biochemistry-defined AKI"
@@ -163,6 +179,7 @@ baselines:
     outcome: aki_hospital
     outcome_match: false
     excludes_class_users: false
+    age_standardised: false
     annual_incidence: 0.0756
     as_reported: "756 per 10 000/year among tested people with baseline eGFR 45-59 (Grampian 2012) -> 756 / 10,000 = 0.0756 per person-year"
     population: "Scotland, Grampian 2012, residents with >=2 creatinine tests within 365 days and baseline eGFR 45-59 mL/min/1.73 m2 (CKD stage 3a); rate within tested individuals at risk"
@@ -174,12 +191,13 @@ baselines:
     selection_note: "Kept for the audit trail (review finding B1). Replaced by the USRDS CKD row."
     match_note: "Biochemical AKI with a denominator of tested people rather than the population with CKD, so outcome_match is false; all ages; class users are not excluded."
   - dimension: kidney
-    persona: adult_18_64
+    persona: all
     condition: null
     medication_type: null
     outcome: aki_hospital
-    outcome_match: true
+    outcome_match: false
     excludes_class_users: false
+    age_standardised: false
     annual_incidence: 0.0038
     as_reported: "3.8 per 1,000 patient years (Optum Clinformatics, aged 22+, 2016) -> 3.8 / 1,000 = 0.0038 per person-year"
     population: "United States, Optum Clinformatics commercial insurance enrollees aged 22 and older without ESRD, 2016 (mainly working-age adults); hospitalizations with an AKI diagnosis code"
@@ -188,15 +206,16 @@ baselines:
       url: "https://www.niddk.nih.gov/-/media/Files/USRDS/2018-Previous-ADR/Volume-1/Chapter/v1_c05_aki_18_usrds.pdf"
       location: "Chapter 5, text accompanying Figure 5.3 (page 104)"
       quote: "Among Optum Clinformatics™ patients, the overall group AKI rate increased over time, peaking at 3.8 per 1,000 patient years in 2016. For the subgroup aged 66 and older, the 2011 rate was 23.7 per 1,000 patient-years and remained somewhat stable at 21.8 per 1,000 in 2016."
-    selection_note: "Only opened source giving a hospital-coded AKI rate per person-year for working-age adults. Searched also: Alberta 2009-2018 (PMC12221727; creatinine-defined AKI in hospital, only <40 and >80 rates in text), Stockholm SCREAM 2017-2021 (PMC13477473; KDIGO AKI in hospital, age only as IRRs in a figure), MMWR 2000-2014 NIS trends (PMC5857198; age-standardised, no age bands), Hsu 2007 Kaiser (abstract only, no age bands)."
-    match_note: "Hospitalization with an AKI diagnosis code in any position (the chapter says it was 'not necessarily the primary or admitting diagnosis', so it includes AKI arising during admissions) is the hospital-coded AKI outcome; rule 15 (amended): the text reports no 18-64 rate and only 22+ and 66+, so 22+, the band containing the 18-64 median age (40), is used, which also includes enrollees aged 65 and over (21.8 per 1,000 for 66+) and so overstates the 18-64 rate; class users are not excluded."
+    selection_note: "Kept for the audit trail. Searched also: Alberta 2009-2018 (PMC12221727; creatinine-defined AKI in hospital, only <40 and >80 rates in text), Stockholm SCREAM 2017-2021 (PMC13477473; KDIGO AKI in hospital, age only as IRRs in a figure), MMWR 2000-2014 NIS trends (PMC5857198; age-standardised, no age bands), Hsu 2007 Kaiser (abstract only, no age bands)."
+    match_note: "Not used (review blocker 1). Counts hospitalizations with an AKI code in any position: the chapter says AKI 'was not necessarily the primary or admitting diagnosis' and the claims 'were not limited to the primary diagnosis', so it includes AKI arising during admissions for other causes, broader than AKI as the cause of admission that rule 20 requires of an outside baseline, so outcome_match is false. Band fix: v1.1 recorded this for adult_18_64, but 22+ is not a band inside 18-64; it spans both adult personas (Table 5.1 lists 27,548 hospitalized enrollees aged 65+), so it is an all-adult summary rate and is now recorded as persona all. Unadjusted rate (Figure 5.3 title), so age_standardised is false; class users are not excluded."
   - dimension: kidney
     persona: adult_65_plus
     condition: null
     medication_type: null
     outcome: aki_hospital
-    outcome_match: true
+    outcome_match: false
     excludes_class_users: false
+    age_standardised: false
     annual_incidence: 0.044
     as_reported: "4.4% of beneficiaries aged 66+ with at least one AKI hospitalization in 2016 -> 4.4 / 100 = 0.044 per person-year (an annual proportion of people, not a rate per patient-year)"
     population: "United States, Medicare fee-for-service 5% sample, beneficiaries aged 66+ with Parts A and B, no Medicare Advantage, no ESRD, alive on January 1, 2016; at least one hospitalization with an AKI diagnosis code"
@@ -205,15 +224,16 @@ baselines:
       url: "https://www.niddk.nih.gov/-/media/Files/USRDS/2018-Previous-ADR/Volume-1/Chapter/v1_c05_aki_18_usrds.pdf"
       location: "Chapter 5, highlights (page 99) and Figure 5.1 data source note"
       quote: "In 2016, 4.4% of Medicare fee-for-service beneficiaries experienced a hospitalization complicated by Acute Kidney Injury (AKI) ... (a) Percent with an AKI hospitalization among all Medicare patients aged 66 and older who had both Medicare Parts A & B, no Medicare Advantage plan, no ESRD by first service date from Medical Evidence form, and were alive on January 1 of year shown."
-    selection_note: "Largest opened source of hospital-coded AKI in older adults. Age-banded rates in the same chapter (page 104): 66-69 23.0, 70-74 31.3, 75-79 44.2, 80-84 62.9, 85+ 95.7 per 1,000 patient years in 2016. Non-diabetic, non-CKD Medicare patients: 27.0 per 1,000 patient-years (Figure 5.5)."
-    match_note: "Hospitalization with an AKI code in any position (includes AKI arising during admissions, and the chapter warns of 'code creep' toward milder coded cases) is the hospital-coded AKI outcome; rule 15 (amended): the source reports a rate for 66 and over, the persona's whole range apart from age 65 (a Medicare look-back year), so it is used instead of a band; class users are not excluded."
+    selection_note: "Kept for the audit trail. Age-banded rates in the same chapter (page 104): 66-69 23.0, 70-74 31.3, 75-79 44.2, 80-84 62.9, 85+ 95.7 per 1,000 patient years in 2016. Non-diabetic, non-CKD Medicare patients: 27.0 per 1,000 patient-years (Figure 5.5)."
+    match_note: "Not used (review blocker 1): AKI coded in any position ('a hospitalization complicated by Acute Kidney Injury'; Table 5.1 footnote: 'AKI is defined by a diagnosis code anywhere in the hospitalization claim'), which includes AKI arising after admission, so outcome_match is false; replaced by the USRDS 2024 principal-diagnosis row. Rule 15: 66 and over is the persona's whole range. Rule 26 tie-break (review major 5): the same chapter gives a second whole-range rate, Optum 66+ (21.8 per 1,000 patient-years); between two rates for the same whole range the larger population-based source is used, and the Medicare 5% sample is a random sample of all fee-for-service beneficiaries with 238,839 hospitalized beneficiaries aged 66+ in 2016, against 27,548 hospitalized Optum enrollees aged 65+ from one insurer's commercial plans (Table 5.1), so Medicare is the one recorded. Not age-standardised (an annual percentage of beneficiaries); class users are not excluded."
   - dimension: kidney
     persona: adult_65_plus
     condition: kidney_disease
     medication_type: null
     outcome: aki_hospital
-    outcome_match: true
+    outcome_match: false
     excludes_class_users: false
+    age_standardised: false
     annual_incidence: 0.1417
     as_reported: "141.7 per 1,000 patient-years (Medicare 66+, non-diabetic with CKD, 2016) -> 141.7 / 1,000 = 0.1417 per person-year"
     population: "United States, Medicare fee-for-service 5% sample aged 66+, 2016, beneficiaries with a CKD diagnosis and without diabetes; denominator is all patient-years at risk in that group (population, not tested people)"
@@ -222,8 +242,8 @@ baselines:
       url: "https://www.niddk.nih.gov/-/media/Files/USRDS/2018-Previous-ADR/Volume-1/Chapter/v1_c05_aki_18_usrds.pdf"
       location: "Chapter 5, text accompanying Figure 5.5 (page 108)"
       quote: "Non-diabetic patients with CKD experienced an AKI incidence rate of 141.7 per 1,000 patient-years, while the rate in patients with both DM and CKD was 207.4 per 1,000."
-    selection_note: "Only opened source giving hospital-coded AKI per person-year in a population with CKD. The non-diabetic CKD stratum is used because the profile's kidney_disease condition does not imply diabetes; the CKD-and-diabetes stratum (207.4) is higher. The text gives no age bands within CKD and no CKD rate for under 66 (Optum CKD rates are only in Figure 5.5.c, except CKD with diabetes, 100.9)."
-    match_note: "Same hospital-coded AKI outcome as the general USRDS rows, with a population denominator of Medicare beneficiaries with CKD, which answers review finding B1; the rate covers 66 and over, the persona's whole range for rule 15 (amended), so it is recorded for adult_65_plus; class users are not excluded."
+    selection_note: "Kept for the audit trail. The non-diabetic CKD stratum is used because the profile's kidney_disease condition does not imply diabetes; the CKD-and-diabetes stratum (207.4) is higher. The text gives no age bands within CKD and no CKD rate for under 66 (Optum CKD rates are only in Figure 5.5.c, except CKD with diabetes, 100.9)."
+    match_note: "Not used (review blocker 1): AKI coded in any position, like the general USRDS 2018 rows, so it includes AKI arising after admission and outcome_match is false. The USRDS 2024 chapter gives a principal-diagnosis AKI rate only for all beneficiaries, not by CKD status, so no CKD baseline with AKI as the cause of admission was found. Population denominator of Medicare beneficiaries with CKD aged 66+ (the persona's whole range); unadjusted (Figure 5.5 title), so age_standardised is false; class users are not excluded."
   - dimension: kidney
     persona: all
     condition: null
@@ -231,6 +251,7 @@ baselines:
     outcome: aki_hospital
     outcome_match: true
     excludes_class_users: false
+    age_standardised: false
     annual_incidence: 0.0007
     as_reported: "7/10 000 person years -> 7 / 10,000 = 0.0007 per person-year"
     population: "UK CPRD linked to Hospital Episode Statistics, 487,372 new users of any antihypertensive drug (diuretics, ACE inhibitors, ARBs, calcium channel blockers, alpha and beta blockers), 1997-2008, followed to 2010 (mean 5.9 years); first hospital admission with AKI (ICD-10 N17) in primary position"
@@ -242,6 +263,43 @@ baselines:
     selection_note: "The base cohort of Lapi 2013, the source of the within-group NSAID plus antihypertensive relative risks, so the baseline and those risks share one population and one outcome definition. The paper gives no rate for diuretic-only or ACE inhibitor/ARB-only users, the comparators of its Table 2."
     match_note: "First hospital admission with AKI as the primary diagnosis is the section-1 outcome at the serious level, defined more strictly than the USRDS any-position rows (so this rate is lower than theirs at similar ages); the cohort is users of any antihypertensive, which is exactly blood_pressure_medications but broader than the 'diuretics only' and 'ACE inhibitors or ARBs only' comparators in Lapi's Table 2; all ages pooled, so persona all and rule 15 does not apply; NSAID users are not excluded."
 
+  - dimension: kidney
+    persona: adult_65_plus
+    condition: null
+    medication_type: null
+    outcome: aki_hospital
+    outcome_match: true
+    excludes_class_users: false
+    age_standardised: within_range
+    annual_incidence: 0.0063
+    as_reported: "6.3 per 1000 person-years (hospitalization with AKI as the primary diagnosis, Medicare FFS aged >=66, 2022) -> 6.3 / 1,000 = 0.0063 per person-year"
+    population: "United States, Medicare 5% fee-for-service sample, January 1 point-prevalent beneficiaries aged >=66 with Parts A and B, no Medicare Advantage in the prior year, no ESRD; hospitalizations in which AKI was the primary diagnosis (recurrent admissions included); rates adjusted for age, sex and race/ethnicity to the 2020 cohort"
+    source:
+      citation: "United States Renal Data System. 2024 USRDS Annual Data Report: Epidemiology of kidney disease in the United States. Volume 1: Chronic Kidney Disease, Chapter 4: Acute Kidney Injury. National Institutes of Health, National Institute of Diabetes and Digestive and Kidney Diseases, Bethesda, MD, 2024"
+      url: "https://usrds-adr-api.niddk.nih.gov/api/PDF?year=2024&chapterNumber=4&volumeNumber=1"
+      location: "Chapter 4, text below Figure 4.1a ('Cause of Hospitalizations' tab); Figure 4.1a data source note; Methods"
+      quote: "In 2022, the rates of CVD-related (13.1 per 1000 person-years), sepsis-related (11.9 per 1000 person-years), and non-sepsis infection-related hospitalizations with AKI (9.8 per 1000 person-years) were higher than rates of hospitalization with AKI as the primary diagnosis (6.3 per 1000 person-years) ... (but not hospitalization for AKI itself, that is, a hospitalization in which AKI was the primary diagnosis) ... Data source: Medicare 5% sample. January 1 point prevalent Medicare FFS beneficiaries aged ≥66 years. For patients who had multiple hospitalizations, all hospitalizations are included. Adjusted for age, sex, and race/ethnicity."
+    selection_note: "Rule 20 (review blocker 1): the only opened US source that separates hospitalizations in which AKI was the primary diagnosis from hospitalizations complicated by AKI. The 2023 report gives 6.2 per 1000 person-years for 2021 (same series); the most recent year is used. The text gives no age bands for the primary-diagnosis rate."
+    match_note: "Admission with AKI as the primary diagnosis is AKI as the cause of admission, the section-1 outcome at the serious level, and matches the principal-position definitions of Lapi 2013 and similar risk studies; counts admissions (recurrent ones included), not people. Rule 15: aged 66 and over is the persona's whole range (age 65 is a Medicare look-back year). The rate is standardised for age, sex and race/ethnicity to the 2020 cohort aged 66 and over (Methods: 'standardized to the age, sex, and race/ethnicity distribution of the yearly cohort of 2020'), not to all ages, so age_standardised is within_range; rule 26 bars only rates standardised to all ages. Class users are not excluded."
+  - dimension: kidney
+    persona: all
+    condition: null
+    medication_type: null
+    outcome: aki_hospital
+    outcome_match: true
+    excludes_class_users: false
+    age_standardised: all_ages
+    annual_incidence: 0.000428
+    as_reported: "428 per 1,000,000 inhabitants (2021, age- and sex-standardised annual first-hospitalization rate, AKI as principal diagnosis) -> 428 / 1,000,000 = 0.000428 per person-year"
+    population: "France, whole population, French national health data system (SNDS) hospital discharge database (PMSI-MCO), 2019-2021; first hospitalization in the year with AKI (ICD-10 N17 or N19) as the principal discharge diagnosis, after a 2-year look-back with no kidney-coded hospitalization; standardised by age (5-year bands) and sex to the 2021 French population"
+    source:
+      citation: "Mwamba P, Gerard A, Lombardi Y, Zureik M, et al. Acute kidney phenotypes in France: nationwide annual first-hospitalization rates and phenotype-specific epidemiology from administrative health data. BMC Nephrol 2026;27:614. doi:10.1186/s12882-026-05206-3"
+      url: "https://europepmc.org/article/PMC/PMC13670485"
+      location: "Abstract, Results; Methods, 'Study population' and 'Statistical analysis'"
+      quote: "For acute kidney injury (AKI), age- and sex-standardized annual first-hospitalization rates were 428 [423–433] in 2019, 409 [404–414] in 2020, and 428 [423–433] in 2021. ... Restricting case identification to the principal diagnosis was intended to maximize specificity and to focus on hospitalizations primarily driven by an acute kidney phenotype"
+    selection_note: "Rule 20 (review blocker 1): the only opened general-population source of AKI as the principal diagnosis covering all ages. It reports no age-specific rates (age appears only as the distribution of cases in Figure 3). Also opened: Matrisch et al. Cureus 2023 (PMC10145684; German hospital statistics, AKI per million person-years in age bands <20 to >79, 2000-2019), not used because it does not state whether AKI was the principal or any diagnosis; HCUP Statistical Brief 231 (US principal-diagnosis acute renal failure stays by age, 2005-2014) could not be opened: hcup-us.ahrq.gov refused the connection and the NCBI Bookshelf copy returned a CAPTCHA page; MMWR 2018 (PMC5857198) counts AKI in any position, age-standardised, no bands."
+    match_note: "Principal-diagnosis AKI admission is AKI as the cause of admission, the section-1 outcome; first hospitalization per person per year with a 2-year washout, so it counts people, not stays; N19 (unspecified kidney failure) is included with N17. Persona all (all ages); the rate is standardised to the 2021 French population of all ages, so age_standardised is all_ages and rule 26 bars it for age-band personas. Class users are not excluded."
+
   # ---------------------------------------------------------------- cardiovascular_bp
   - dimension: cardiovascular_bp
     persona: all
@@ -250,6 +308,7 @@ baselines:
     outcome: mi_stroke
     outcome_match: true
     excludes_class_users: false
+    age_standardised: all_ages
     annual_incidence: 0.00371
     as_reported: "acute coronary syndrome 190 + stroke 181 per 100 000 person years (2017-19) = 371 per 100,000 -> 0.00371 per person-year"
     population: "UK, Clinical Practice Research Datalink (GOLD and Aurum, ~20% of UK population) linked to hospital records, 2017-2019; first diagnosis; age-sex standardised to the 2013 European standard population"
@@ -259,7 +318,98 @@ baselines:
       location: "Results, first paragraph of incidence results; Fig 1"
       quote: "followed by acute coronary syndrome (190 per 100 000 person years), venous thromboembolism (183 per 100 000 person years), and stroke (181 per 100 000 patient years)"
     selection_note: "Largest recent population source opened (22 million). Sum of two first-diagnosis rates; people with both are counted twice, a small overstatement. Heart failure (367 per 100 000 person years, same sentence) is not added; flag for pharmacist decision. Age-specific rates exist only in Fig 3, Fig 4 and the supplement; the text says only that the decline was 'largely due to a reduced incidence in those aged >60 years'. A Europe PMC search for an open-access source with a quotable combined MI and stroke rate by age band found none."
-    match_note: "First acute coronary syndrome or stroke is the section-1 MI-or-stroke outcome at the serious level (acute coronary syndrome also includes unstable angina, and first events only, so recurrent events are missed); the rate is age-sex standardised over all ages, so persona all and rule 15's age-band rule does not apply; class users are not excluded."
+    match_note: "First acute coronary syndrome or stroke is the mi_stroke outcome (rule 24) at the serious level (acute coronary syndrome also includes unstable angina, and first events only, so recurrent events are missed); the rate is age-sex standardised to the 2013 European standard population over all ages, so age_standardised is all_ages and rule 26 bars it for every age-band persona (review major 3); recorded as persona all; class users are not excluded."
+
+  - dimension: cardiovascular_bp
+    persona: all
+    condition: null
+    medication_type: null
+    outcome: stroke
+    outcome_match: true
+    excludes_class_users: false
+    age_standardised: all_ages
+    annual_incidence: 0.00181
+    as_reported: "181 per 100 000 patient years (first stroke, 2017-19) -> 181 / 100,000 = 0.00181 per person-year"
+    population: "UK, Clinical Practice Research Datalink linked to hospital records, 2017-2019; first stroke diagnosis; age-sex standardised to the 2013 European standard population"
+    source:
+      citation: "Conrad N, Molenberghs G, Verbeke G, et al. Trends in cardiovascular disease incidence among 22 million people in the UK over 20 years: population based study. BMJ 2024;385:e078523. doi:10.1136/bmj-2023-078523"
+      url: "https://europepmc.org/article/PMC/PMC11203392"
+      location: "Results, first paragraph of incidence results"
+      quote: "followed by acute coronary syndrome (190 per 100 000 person years), venous thromboembolism (183 per 100 000 person years), and stroke (181 per 100 000 patient years)"
+    selection_note: "Rule 24: the stroke component of the mi_stroke row, recorded on its own. No mi row is taken from Conrad because acute coronary syndrome includes unstable angina. Age-specific rates are only in figures and the supplement (BMJ, not opened)."
+    match_note: "First stroke is the stroke outcome id at the serious level (first events only); age-sex standardised over all ages, so age_standardised is all_ages and rule 26 bars it for age-band personas; persona all; class users are not excluded."
+  - dimension: cardiovascular_bp
+    persona: adult_18_64
+    condition: null
+    medication_type: null
+    outcome: mi
+    outcome_match: true
+    excludes_class_users: false
+    age_standardised: false
+    annual_incidence: 0.000569
+    as_reported: "56.9 per 100,000 person-years (age 25-54, 2008) -> 56.9 / 100,000 = 0.000569 per person-year"
+    population: "United States, Cardiovascular Research Network, members aged >=25 of 7 integrated health care delivery systems (46.6 million person-years), 2000-2008; first hospitalization with a primary discharge diagnosis of AMI (ICD-9-CM 410.x0, 410.x1); age band 25-54"
+    source:
+      citation: "Reynolds K, Go AS, Leong TK, et al. Trends in Incidence of Hospitalized Acute Myocardial Infarction in the Cardiovascular Research Network (CVRN). Am J Med 2017;130(3):317-327 (epub 2016). doi:10.1016/j.amjmed.2016.09.014"
+      url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC5318252/"
+      location: "Table 2 ('Age-Specific Incidence per 100,000 person-years (95% CI) of Hospitalized Acute Myocardial Infarction ...'), AMI row 25-54, 2008 column; Methods"
+      quote: "25–54 ... 2008: 56.9 (54.4–59.4) ... with a primary discharge diagnosis of acute myocardial infarction ... We defined incident acute myocardial infarction events as the first hospitalization that occurred between 2000–2008"
+    selection_note: "Rule 24 (review major 3): the only opened source with a quotable age-specific, not age-standardised, incidence of hospitalized MI in a general adult population. The table and Methods were read through a fetch summary of the PMC page (the Europe PMC XML returned an error), asked twice for verbatim cells with identical results. Most recent year (2008) used. Searched also: Korean NHIS AMI and stroke 2011-2020 (Epidemiol Health 2024, PMC10928467 and PMC10928468; age-specific rates only in figures, supplements give counts), Swedish birth-cohort study (PMC13392955; examples by birth cohort and sex only), CVDNOR Norway (not open access)."
+    match_note: "First hospitalization with MI as the primary diagnosis is the mi outcome at the serious level (first events only; out-of-hospital deaths not counted); the insured members of integrated systems are a community population but not the uninsured. Rule 15: no 18-64 rate; the US median age of 18-64 (40) falls in 25-54, so it is used. Age-specific rate, not standardised; class users are not excluded."
+  - dimension: cardiovascular_bp
+    persona: adult_65_plus
+    condition: null
+    medication_type: null
+    outcome: mi
+    outcome_match: true
+    excludes_class_users: false
+    age_standardised: false
+    annual_incidence: 0.002993
+    as_reported: "299.3 per 100,000 person-years (age 55-74, 2008) -> 299.3 / 100,000 = 0.002993 per person-year"
+    population: "United States, Cardiovascular Research Network, 2000-2008; first hospitalization with a primary discharge diagnosis of AMI; age band 55-74"
+    source:
+      citation: "Reynolds K, Go AS, Leong TK, et al. Trends in Incidence of Hospitalized Acute Myocardial Infarction in the Cardiovascular Research Network (CVRN). Am J Med 2017;130(3):317-327 (epub 2016). doi:10.1016/j.amjmed.2016.09.014"
+      url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC5318252/"
+      location: "Table 2, AMI row 55-74, 2008 column"
+      quote: "55–74 ... 2008: 299.3 (290.9–308.0) ... 75+ ... 2008: 827.7 (800.5–855.8)"
+    selection_note: "Same source and caveats as the adult_18_64 mi row."
+    match_note: "Same mi outcome as the adult_18_64 row; rule 15: no 65-and-over rate, and the US median age of 65 and over (73) falls in 55-74, so it is used (it includes 55-64 and understates the rate for 65 and over; 75+ is 827.7). Age-specific rate, not standardised; class users are not excluded."
+  - dimension: cardiovascular_bp
+    persona: adult_18_64
+    condition: null
+    medication_type: null
+    outcome: stroke
+    outcome_match: true
+    excludes_class_users: false
+    age_standardised: false
+    annual_incidence: 0.00023
+    as_reported: "23 per 100 000 (age 25-44, 2010) -> 23 / 100,000 = 0.00023 per person-year"
+    population: "United States, Nationwide Inpatient Sample (about 20% stratified sample of nonfederal hospitals, weighted to national counts) over the US civilian population (census), 2000-2010; hospitalizations with a primary discharge diagnosis of acute ischemic stroke; age band 25-44"
+    source:
+      citation: "Ramirez L, Kim-Tenser MA, Sanossian N, Cen S, Wen G, He S, et al. Trends in Acute Ischemic Stroke Hospitalizations in the United States. J Am Heart Assoc 2016;5(5):e003233. doi:10.1161/JAHA.116.003233"
+      url: "https://europepmc.org/article/PMC/PMC4889194"
+      location: "Abstract, Results; Table 1, 'Age categories, y' rows, 2010 column; Methods"
+      quote: "Age‐specific AIS hospitalization rates decreased for individuals aged 65 to 84 years (846 to 605 per 100 000) and ≥85 years (2077 to 1618 per 100 000), but increased for individuals aged 25 to 44 years (16 to 23 per 100 000) and 45 to 64 years (149 to 156 per 100 000). ... Acute ischemic stroke (AIS) was defined by the International Classification of Diseases, 9th revision primary discharge diagnosis codes for ischemic stroke"
+    selection_note: "Rule 24 (review major 3): the only opened source with quotable age-specific, not age-standardised, US stroke hospitalization rates. Table 1 is headed 'Age-Adjusted' but its age-category rows are the age-specific rates the abstract reports. Searched also: Korean NHIS stroke 2011-2020 (rates by age only in figures), ARIC stroke trends (Koton 2014, not open in Europe PMC)."
+    match_note: "Hospitalization with ischemic stroke as the primary diagnosis is the stroke outcome at the serious level, but it omits hemorrhagic stroke (understating all stroke) and counts hospitalizations, including recurrent strokes, not people. Rule 15: no 18-64 rate; the US median age of 18-64 (40) falls in 25-44, so it is used. Age-specific rate, not standardised; class users are not excluded."
+  - dimension: cardiovascular_bp
+    persona: adult_65_plus
+    condition: null
+    medication_type: null
+    outcome: stroke
+    outcome_match: true
+    excludes_class_users: false
+    age_standardised: false
+    annual_incidence: 0.00605
+    as_reported: "605 per 100 000 (age 65-84, 2010) -> 605 / 100,000 = 0.00605 per person-year"
+    population: "United States, Nationwide Inpatient Sample over the US civilian population, 2010; primary-diagnosis acute ischemic stroke hospitalizations; age band 65-84"
+    source:
+      citation: "Ramirez L, Kim-Tenser MA, Sanossian N, Cen S, Wen G, He S, et al. Trends in Acute Ischemic Stroke Hospitalizations in the United States. J Am Heart Assoc 2016;5(5):e003233. doi:10.1161/JAHA.116.003233"
+      url: "https://europepmc.org/article/PMC/PMC4889194"
+      location: "Abstract, Results; Table 1, 'Age categories, y' rows, 2010 column"
+      quote: "Age‐specific AIS hospitalization rates decreased for individuals aged 65 to 84 years (846 to 605 per 100 000) and ≥85 years (2077 to 1618 per 100 000)"
+    selection_note: "Same source and caveats as the adult_18_64 stroke row."
+    match_note: "Same stroke outcome and caveats (ischemic only, hospitalizations not people) as the adult_18_64 row; rule 15: no 65-and-over rate, and the US median age of 65 and over (73) falls in 65-84, so it is used (85 and over is 1618). Age-specific rate, not standardised; class users are not excluded."
 
   # ---------------------------------------------------------------- anticholinergic_cognitive
   - dimension: anticholinergic_cognitive
@@ -269,6 +419,7 @@ baselines:
     outcome: delirium_hospital
     outcome_match: false
     excludes_class_users: false
+    age_standardised: false
     annual_incidence: 0.0114
     as_reported: "11.4 per 1000 person-years (age 70-74) -> 11.4 / 1,000 = 0.0114 per person-year"
     population: "Norway, HUNT4 70+ population cohort (9956 community participants aged >=70), followed 2017-19 to 31 Dec 2023; first in-hospital delirium by DSM-5 retrospective chart review of all admissions, weighted for non-participation; age band 70-74"
@@ -288,6 +439,7 @@ baselines:
     outcome: fall_injury
     outcome_match: true
     excludes_class_users: false
+    age_standardised: within_range
     annual_incidence: 0.056673
     as_reported: "ED visits (treated and released) 4,362.1 + hospitalizations 1,305.2 per 100,000 (age-adjusted, adults >=65, 2018) = 5,667.3 per 100,000 -> 0.056673 per person-year"
     population: "United States, Healthcare Cost and Utilization Project, Nationwide Emergency Department Sample and National Inpatient Sample, 2018, adults aged >=65; unintentional fall injury encounters (visits, not persons); age-adjusted to the 2000 US standard population"
@@ -297,7 +449,7 @@ baselines:
       location: "Table, 'Unintentional falls', Total row; Table footnotes * and †"
       quote: "Unintentional falls ¶¶ Total †† 2,216,681 4,362.1 (4,249.3–4,474.9) 654,895 1,305.2 (1,285.6–1,324.8) ... † Records for patients who were hospitalized or died in the ED were excluded"
     selection_note: "National US data for fall injuries needing ED or inpatient care. v1 used the ED column only and labelled it NEISS-AIP; the source is HCUP NEDS and NIS (review minor finding). ED visits exclude patients who were admitted, so the two columns are added. Age-specific rates in the same table: 65-74 ED 2,678.2 + hospital 560.7; 75-84 4,899.7 + 1,503.7; >=85 9,867.1 + 3,857.0."
-    match_note: "Fall injuries treated in an ED or admitted are the section-1 fall-injury outcome, but the source counts encounters including follow-up visits ('injury visits should not be interpreted to represent individual patients'), which overstates a per-person rate; rule 15 (amended): the source reports a rate for the persona's whole range (>=65), so that total is used rather than a band; class users are not excluded."
+    match_note: "Fall injuries treated in an ED or admitted are the section-1 fall-injury outcome, but the source counts encounters including follow-up visits ('injury visits should not be interpreted to represent individual patients'), which overstates a per-person rate: it counts visits, not people (review minor finding). A per-person rate (people with at least one fall-injury ED visit or admission a year, aged 65 and over) was searched for and not found in an openable source; BRFSS self-reported fall injuries count injuries that limited activity or led to any doctor visit, a broader outcome. Rule 15 (amended): the source reports a rate for the persona's whole range (>=65), so that total is used rather than a band. The total is age-adjusted to the 2000 US standard population within ages 65 and over (not to all ages), so age_standardised is within_range; the band rates in the same table are not adjusted. Class users are not excluded."
   - dimension: sedation_falls
     persona: under_2
     condition: null
@@ -305,6 +457,7 @@ baselines:
     outcome: fall_injury
     outcome_match: true
     excludes_class_users: false
+    age_standardised: false
     annual_incidence: 0.068446
     as_reported: "6844.6 per 100 000 (age 1-2 years, annual average 2010-2013) -> 6844.6 / 100,000 = 0.068446 per person-year"
     population: "United States, NEISS-AIP, 2010-2013 aggregated, children aged 1-2 years; nonfatal unintentional fall injuries treated in EDs"
@@ -314,7 +467,7 @@ baselines:
       location: "Table 1, 'All' row"
       quote: "Age Group <1 Year 1-2 Years 3-4 Years 5-9 Years 10-14 Years 15-19 Years <1-19 Years All 3642.5 6844.6 4766.4 3201.4 2913.8 2101.9 3368.9"
     selection_note: "Rates are taken as annual averages: 11,146,277 injuries over 4 years among roughly 83 million US children gives ~3,350 per 100,000 per year, matching the 3368.9 total (my arithmetic check; the paper does not state 'per year'). v1 used the <1 band (3642.5)."
-    match_note: "ED-treated fall injuries are the section-1 fall-injury outcome; rule 15 (amended): no 0-1 rate is reported, and the US median age of 0-1 (1) falls in band 1-2, so 1-2 is used (it also includes 2-year-olds); class users are not excluded."
+    match_note: "ED-treated fall injuries are the section-1 fall-injury outcome; rule 15 (amended): no 0-1 rate is reported, and the US median age of 0-1 (1) falls in band 1-2, so 1-2 is used (it also includes 2-year-olds); class users are not excluded NEISS-AIP counts ED-treated injuries (visits), not people. Age-band rate, not standardised."
   - dimension: sedation_falls
     persona: child_2_5
     condition: null
@@ -322,6 +475,7 @@ baselines:
     outcome: fall_injury
     outcome_match: true
     excludes_class_users: false
+    age_standardised: false
     annual_incidence: 0.047664
     as_reported: "4766.4 per 100 000 (age 3-4 years) -> 4766.4 / 100,000 = 0.047664 per person-year"
     population: "United States, NEISS-AIP, 2010-2013 aggregated, children aged 3-4 years"
@@ -331,7 +485,7 @@ baselines:
       location: "Table 1, 'All' row"
       quote: "Age Group <1 Year 1-2 Years 3-4 Years 5-9 Years 10-14 Years 15-19 Years <1-19 Years All 3642.5 6844.6 4766.4 3201.4 2913.8 2101.9 3368.9"
     selection_note: "Same annual-rate caveat as the under_2 row."
-    match_note: "ED-treated fall injuries are the section-1 outcome; rule 15 (amended): no 2-5 rate is reported, and the US median age of 2-5 (4) falls in band 3-4, so 3-4 is used; class users are not excluded."
+    match_note: "ED-treated fall injuries are the section-1 outcome; rule 15 (amended): no 2-5 rate is reported, and the US median age of 2-5 (4) falls in band 3-4, so 3-4 is used; class users are not excluded NEISS-AIP counts ED-treated injuries (visits), not people. Age-band rate, not standardised."
   - dimension: sedation_falls
     persona: child_6_11
     condition: null
@@ -339,6 +493,7 @@ baselines:
     outcome: fall_injury
     outcome_match: true
     excludes_class_users: false
+    age_standardised: false
     annual_incidence: 0.032014
     as_reported: "3201.4 per 100 000 (age 5-9 years) -> 3201.4 / 100,000 = 0.032014 per person-year"
     population: "United States, NEISS-AIP, 2010-2013 aggregated, children aged 5-9 years"
@@ -348,7 +503,7 @@ baselines:
       location: "Table 1, 'All' row"
       quote: "Age Group <1 Year 1-2 Years 3-4 Years 5-9 Years 10-14 Years 15-19 Years <1-19 Years All 3642.5 6844.6 4766.4 3201.4 2913.8 2101.9 3368.9"
     selection_note: "Same annual-rate caveat as the under_2 row."
-    match_note: "ED-treated fall injuries are the section-1 outcome; rule 15 (amended): no 6-11 rate is reported, and the US median age of 6-11 (9) falls in band 5-9, so 5-9 is used; class users are not excluded."
+    match_note: "ED-treated fall injuries are the section-1 outcome; rule 15 (amended): no 6-11 rate is reported, and the US median age of 6-11 (9) falls in band 5-9, so 5-9 is used; class users are not excluded NEISS-AIP counts ED-treated injuries (visits), not people. Age-band rate, not standardised."
   - dimension: sedation_falls
     persona: teen_12_17
     condition: null
@@ -356,6 +511,7 @@ baselines:
     outcome: fall_injury
     outcome_match: true
     excludes_class_users: false
+    age_standardised: false
     annual_incidence: 0.021019
     as_reported: "2101.9 per 100 000 (age 15-19 years) -> 2101.9 / 100,000 = 0.021019 per person-year"
     population: "United States, NEISS-AIP, 2010-2013 aggregated, adolescents aged 15-19 years"
@@ -365,7 +521,7 @@ baselines:
       location: "Table 1, 'All' row"
       quote: "Age Group <1 Year 1-2 Years 3-4 Years 5-9 Years 10-14 Years 15-19 Years <1-19 Years All 3642.5 6844.6 4766.4 3201.4 2913.8 2101.9 3368.9"
     selection_note: "Same annual-rate caveat as the under_2 row. v1 used the 10-14 band (2913.8)."
-    match_note: "ED-treated fall injuries are the section-1 outcome; rule 15 (amended): no 12-17 rate is reported, and the US median age of 12-17 (15) falls in band 15-19, so 15-19 is used; class users are not excluded."
+    match_note: "ED-treated fall injuries are the section-1 outcome; rule 15 (amended): no 12-17 rate is reported, and the US median age of 12-17 (15) falls in band 15-19, so 15-19 is used; class users are not excluded NEISS-AIP counts ED-treated injuries (visits), not people. Age-band rate, not standardised."
   - dimension: sedation_falls
     persona: adult_18_64
     condition: null
@@ -373,6 +529,7 @@ baselines:
     outcome: fracture
     outcome_match: true
     excludes_class_users: false
+    age_standardised: false
     annual_incidence: 0.00733
     as_reported: "73.3 per 10,000 person-years (any fracture, both sexes, age 18-49) -> 73.3 / 10,000 = 0.00733 per person-year"
     population: "UK Clinical Practice Research Datalink, all permanently registered adults, 1988-2012; first-ever fracture at each site (validated GP records, ICD-9 categories); age band 18-49"
@@ -390,6 +547,7 @@ baselines:
     outcome: fracture
     outcome_match: true
     excludes_class_users: false
+    age_standardised: false
     annual_incidence: 0.01163
     as_reported: "116.3 per 10,000 person-years (any fracture, both sexes, age 50+) -> 116.3 / 10,000 = 0.01163 per person-year"
     population: "UK Clinical Practice Research Datalink, 1988-2012; first-ever fracture at each site; age band 50+"
@@ -407,6 +565,7 @@ baselines:
     outcome: hip_fracture
     outcome_match: true
     excludes_class_users: false
+    age_standardised: false
     annual_incidence: 0.00005
     as_reported: "0.5 per 10,000 person-years (hip only, both sexes, age 18-49) -> 0.5 / 10,000 = 0.00005 per person-year"
     population: "UK Clinical Practice Research Datalink, 1988-2012; first-ever hip fracture; age band 18-49"
@@ -424,6 +583,7 @@ baselines:
     outcome: hip_fracture
     outcome_match: true
     excludes_class_users: false
+    age_standardised: false
     annual_incidence: 0.00196
     as_reported: "19.6 per 10,000 person-years (hip only, both sexes, age 50+) -> 19.6 / 10,000 = 0.00196 per person-year"
     population: "UK Clinical Practice Research Datalink, 1988-2012; first-ever hip fracture; age band 50+"
@@ -443,6 +603,8 @@ baselines:
     outcome: major_bleeding
     outcome_match: true
     excludes_class_users: false
+    age_standardised: false
+    stratum_population: doac_users
     annual_incidence: 0.082
     as_reported: "8.2 (95% CI 4.5-11.8) per 100 person-years at 1 year -> 8.2 / 100 = 0.082 per person-year"
     population: "Canada and 4 European countries, national EHR/claims registries; 358,143 new oral factor Xa inhibitor users aged >=18 (AF, VTE, valve replacement, other)"
@@ -452,7 +614,7 @@ baselines:
       location: "Abstract, Results; Essentials box"
       quote: "The pooled incidence rate of major bleeding was 11.0 per 100 person-years (95% CI, 6.1-15.9) at 3 months, 8.2 (95% CI, 4.5-11.8) at 1 year, and 6.7 (95% CI, 3.7-9.7) at 3 years"
     selection_note: "Largest multinational real-world cohort opened; major bleeding defined as ICD-coded bleeding leading to hospital admission, including fatal bleeds. 1-year rate chosen as the annual figure; the 3-month rate (11.0) is higher because early-treatment risk is front-loaded. Factor Xa inhibitors only (apixaban, rivaroxaban, edoxaban), not warfarin or antiplatelets. Wide CI reflects between-country heterogeneity."
-    match_note: "Major bleeding leading to admission or death in anticoagulant users is the section-1 outcome; GI bleeds are the largest share (the text gives 5.4 of 11.0 per 100 person-years at 3 months, about half, and says GI bleeds were also the most common at 1 and 3 years, whose site rates are only in Figure 4), so rule 16 drops the separate gi_bleeding term for these profiles; adults of all ages pooled, so persona all and rule 15 does not apply; the population is all class users by design."
+    match_note: "Major bleeding leading to admission or death in anticoagulant users is the section-1 outcome; GI bleeds are the largest share (the text gives 5.4 of 11.0 per 100 person-years at 3 months, about half, and says GI bleeds were also the most common at 1 and 3 years, whose site rates are only in Figure 4), so rule 16 drops the separate gi_bleeding term for these profiles; adults of all ages pooled, so persona all and rule 15 does not apply; the population is all class users by design. Rule 25: the source states its cohort is first-time users of oral factor Xa inhibitors (apixaban, rivaroxaban, edoxaban), which are direct oral anticoagulants, so stratum_population is doac_users (no vitamin K antagonist users; dabigatran, a DOAC that is not a factor Xa inhibitor, is not included). Crude pooled rate, not age-standardised."
 
 insufficient:
   - {dimension: liver, persona: adult_18_64, condition: null, reason: "No opened source gives an age-banded population incidence of hospitalized acute liver injury or acute liver failure (Bjornsson 2013 and Weiler 2020 abstracts are all-ages; de Abajo 2004 gives no age-specific rates). The persona all rows apply."}
@@ -466,12 +628,14 @@ insufficient:
   - {dimension: gi_bleeding, persona: pregnant, condition: null, reason: "No population incidence opened."}
   - {dimension: gi_bleeding, persona: all, condition: stomach_ulcer_or_bleeding, reason: "Searched Europe PMC for population rebleeding/recurrent ulcer bleeding incidence per person-year after prior peptic ulcer; no source opened that states it. Korean NHIS (34.98 per 100,000 PY) and Swedish register rates are for first ulcer bleeding in the general population, not people with prior ulcer."}
   - {dimension: gi_bleeding, persona: adult_18_64, condition: null, reason: "No age-banded rate that excludes NSAID and aspirin users is quotable: Bedene 2022 gives subgroup C by age only in Figure 2C, and Hreinsson 2013 does not report rates by drug use. The age-banded rows include class users."}
-  - {dimension: kidney, persona: teen_12_17, condition: null, reason: "USRDS 2018 starts at 22 (Optum) and 66 (Medicare); Sawhney 2018 youngest band is <40. JAMA Netw Open 2026 pediatric AKI hospitalization study found but not opened. Applies also to child bands and under_2."}
+  - {dimension: kidney, persona: adult_18_64, condition: null, reason: "Rule 20 (review blocker 1): no opened general-population source gives a rate of admission with AKI as the principal diagnosis for 18-64 or a band containing age 40. USRDS 2018 Optum (22+) and Sawhney 2018 count AKI in any position or by blood test (outcome_match false); Mwamba 2026 (France) is all ages and age-standardised; Matrisch 2023 (Germany) has age bands but does not state the diagnosis position; HCUP Statistical Brief 231 (principal-diagnosis acute renal failure by age) could not be opened (hcup-us.ahrq.gov refused the connection; the NCBI Bookshelf copy returned a CAPTCHA)."}
+  - {dimension: kidney, persona: teen_12_17, condition: null, reason: "No opened source gives principal-diagnosis AKI admissions for children or teens: USRDS covers 22+ and 66+, Sawhney 2018's youngest band is <40, Mwamba 2026 is all ages and age-standardised. JAMA Netw Open 2026 pediatric AKI hospitalization study found but not opened. Applies also to child bands and under_2."}
   - {dimension: kidney, persona: pregnant, condition: null, reason: "No population incidence opened."}
-  - {dimension: kidney, persona: adult_18_64, condition: kidney_disease, reason: "USRDS 2018 gives hospital-coded AKI per person-year with CKD only for Medicare 66+ in the text; the Optum (22+) CKD rates are in Figure 5.5.c except CKD with diabetes (100.9 per 1,000), which needs diabetes too. Sawhney 2018 eGFR strata use tested people as the denominator (outcome_match false)."}
+  - {dimension: kidney, persona: adult_18_64, condition: kidney_disease, reason: "No opened source gives principal-diagnosis AKI admissions per person-year in people with CKD aged 18-64. USRDS 2018 CKD rates count AKI in any position (Optum 22+ CKD rates are in Figure 5.5.c except CKD with diabetes, 100.9 per 1,000); Sawhney 2018 eGFR strata use tested people as the denominator (outcome_match false)."}
+  - {dimension: kidney, persona: adult_65_plus, condition: kidney_disease, reason: "Rule 20 (review blocker 1): the USRDS 2018 CKD rate (141.7 per 1,000) counts AKI in any position (outcome_match false), and the USRDS 2024 chapter gives the principal-diagnosis AKI rate only for all beneficiaries, not by CKD status."}
   - {dimension: kidney, persona: all, condition: null, medication_type: diuretics, reason: "No opened source gives hospital AKI incidence per person-year in diuretic users. Lapi 2013 reports the rate only for all antihypertensive users (recorded as blood_pressure_medications) and Table 2 gives diuretic-only users as case and control counts, not a rate. Alberta 2009-2018 gives diuretic use only as a share of hospitalizations."}
-  - {dimension: cardiovascular_bp, persona: adult_18_64, condition: null, reason: "Conrad 2024 age-specific rates appear only in figures/supplement; Swedish birth-cohort study (Lancet Reg Health Eur 2026) gives single-year-of-age MI rates for men only; no quotable combined MI+stroke rate by age band."}
-  - {dimension: cardiovascular_bp, persona: adult_65_plus, condition: null, reason: "Same as adult_18_64. ARIC stroke-only rates (65+) seen in a search snippet, not opened."}
+  - {dimension: cardiovascular_bp, persona: adult_18_64, condition: null, reason: "Outcome mi_stroke only (rule 24; mi and stroke rows exist for this persona): no opened source gives a combined MI-or-stroke incidence by age band that is not age-standardised. Conrad 2024 gives age-specific rates only in figures and the BMJ supplement; adding Reynolds 2017 (MI, 25-54, CVRN 2008) to Ramirez 2016 (ischemic stroke, 25-44, NIS 2010) would mix two populations, years and band edges, so it is not done. Korean NHIS 2011-2020 papers give age-specific rates only in figures; the Swedish birth-cohort study gives examples by cohort and sex only."}
+  - {dimension: cardiovascular_bp, persona: adult_65_plus, condition: null, reason: "Outcome mi_stroke only, same as adult_18_64 (mi rows use Reynolds 55-74 and stroke rows Ramirez 65-84, which are not summed)."}
   - {dimension: cardiovascular_bp, persona: teen_12_17, condition: null, reason: "No source opened; events are very rare in children/teens. Applies to child bands and under_2."}
   - {dimension: cardiovascular_bp, persona: all, condition: hypertension, reason: "No opened source gives MI+stroke incidence per person-year in people with hypertension."}
   - {dimension: cardiovascular_bp, persona: all, condition: heart_disease, reason: "No opened source gives recurrent MI/stroke incidence per person-year in people with established heart disease."}

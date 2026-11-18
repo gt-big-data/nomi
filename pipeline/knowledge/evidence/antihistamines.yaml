@@ -14,6 +14,7 @@ relative_risks:
     measure: OR
     estimate: 2.03
     ci95: [1.49, 2.76]
+    interval: confidence
     exposure: "first-generation antihistamine use"
     population: "elderly patients; 5 observational studies (3 case-control, 1 cohort, 1 case-crossover) through November 2016"
     grade: meta_analysis
@@ -35,6 +36,7 @@ relative_risks:
     measure: OR
     estimate: 2.03
     ci95: [1.49, 2.76]
+    interval: confidence
     exposure: "first-generation antihistamine use"
     population: "elderly patients; 5 observational studies (3 case-control, 1 cohort, 1 case-crossover) through November 2016"
     grade: meta_analysis
@@ -56,6 +58,7 @@ relative_risks:
     measure: OR
     estimate: 2.03
     ci95: [1.49, 2.76]
+    interval: confidence
     exposure: "first-generation antihistamine use"
     population: "elderly patients; 5 observational studies (3 case-control, 1 cohort, 1 case-crossover) through November 2016"
     grade: meta_analysis
@@ -79,6 +82,7 @@ relative_risks:
     measure: RR
     estimate: 1.7
     ci95: [1.3, 2.3]
+    interval: confidence
     exposure: "diphenhydramine received during hospitalization vs not"
     population: "426 hospitalized medical patients aged 70 years or older, prospective cohort, one US university hospital"
     grade: cohort
@@ -100,6 +104,7 @@ relative_risks:
     measure: OR
     estimate: 1.5
     ci95: [0.64, 3.54]
+    interval: confidence
     exposure: "diphenhydramine use recorded in two prospective cohorts (long-term care residents' medication; postoperative medication in mixed surgical patients) vs no use"
     population: "2 prospective cohorts pooled within a systematic review of 31 prospective studies of incident delirium in adults, searched October 2009 to June 2020"
     grade: meta_analysis
@@ -122,6 +127,7 @@ relative_risks:
     measure: OR
     estimate: 1.07
     ci95: [0.98, 1.16]
+    interval: confidence
     exposure: "first-trimester H1 antihistamine exposure"
     population: "cohort studies within a meta-analysis of 37 studies published to December 2015"
     grade: meta_analysis
@@ -142,6 +148,7 @@ relative_risks:
     measure: OR
     estimate: 1.07
     ci95: [0.98, 1.16]
+    interval: confidence
     exposure: "first-trimester H1 antihistamine exposure"
     population: "cohort studies within a meta-analysis of 37 studies published to December 2015"
     grade: meta_analysis
@@ -162,6 +169,7 @@ relative_risks:
     measure: RR
     estimate: 0.94
     ci95: [0.80, 1.10]
+    interval: confidence
     exposure: "doxylamine exposure in pregnancy (mostly for nausea and vomiting of pregnancy)"
     population: "re-analysis of 22 primary studies from a 1997 meta-analysis; 14,624 doxylamine-exposed women"
     grade: meta_analysis
@@ -182,6 +190,7 @@ relative_risks:
     measure: OR
     estimate: 1.07
     ci95: [0.98, 1.16]
+    interval: confidence
     exposure: "first-trimester H1 antihistamine exposure"
     population: "cohort studies within a meta-analysis of 37 studies published to December 2015"
     grade: meta_analysis
@@ -202,6 +211,7 @@ relative_risks:
     measure: OR
     estimate: 1.07
     ci95: [0.98, 1.16]
+    interval: confidence
     exposure: "first-trimester H1 antihistamine exposure"
     population: "cohort studies within a meta-analysis of 37 studies published to December 2015"
     grade: meta_analysis
@@ -222,6 +232,7 @@ relative_risks:
     measure: OR
     estimate: 1.28
     ci95: [0.69, 2.39]
+    interval: confidence
     exposure: "loratadine use during pregnancy"
     population: "3 case-control and 7 cohort studies, 453,053 male births in 8 countries, 1989-2007"
     grade: meta_analysis
@@ -242,6 +253,7 @@ relative_risks:
     measure: OR
     estimate: 1.07
     ci95: [0.98, 1.16]
+    interval: confidence
     exposure: "first-trimester H1 antihistamine exposure"
     population: "cohort studies within a meta-analysis of 37 studies published to December 2015"
     grade: meta_analysis

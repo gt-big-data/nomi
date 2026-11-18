@@ -4,9 +4,30 @@
 
 ## Rows not used (rules 8.1, 10, 11, 15)
 
+- baseline kidney adult_18_64: outcome does not match (Sawhney 2018, Table 3, 'People with AKI in age strata' row 40-69 years, Grampian 2012 column)
+- baseline kidney adult_65_plus: outcome does not match (Sawhney 2018, Table 3, 'People with AKI in age strata' row >=70 years, Grampian 2012 column)
+- baseline kidney all: outcome does not match (Sawhney 2018, Table 3, 'People with AKI in eGFR strata among people with at least two tests within 365 days (rates expressed within strata of tested individuals at risk)')
+- baseline kidney all: outcome does not match (United 2018, Chapter 5, text accompanying Figure 5.3 (page 104))
+- baseline kidney adult_65_plus: outcome does not match (United 2018, Chapter 5, highlights (page 99) and Figure 5.1 data source note)
+- baseline kidney adult_65_plus: outcome does not match (United 2018, Chapter 5, text accompanying Figure 5.5 (page 108))
+- baseline anticholinergic_cognitive adult_65_plus: outcome does not match (Frich 2026, Abstract, Results; Table 2)
+- baseline kidney all: age-standardised to all ages (rule 26) (Mwamba 2026, Abstract, Results; Methods, 'Study population' and 'Statistical analysis')
+- baseline cardiovascular_bp all: age-standardised to all ages (rule 26) (Conrad 2024, Results, first paragraph of incidence results; Fig 1)
+- baseline cardiovascular_bp all: age-standardised to all ages (rule 26) (Conrad 2024, Results, first paragraph of incidence results)
+- baseline gi_bleeding adult_18_64: a rate without class users exists (Hreinsson 2013, Table I)
+- baseline gi_bleeding adult_65_plus: a rate without class users exists (Hreinsson 2013, Table I)
+- baseline gi_bleeding all: a rate without class users exists (Bedene 2022, Results, 'Risk of severe UGIB in the four different (sub)populations'; Table 2, subgroup A)
 - acetaminophen kidney: outcome does not match (Kanchanasurakit 2020, Abstract, Results)
+- acetaminophen cardiovascular_bp: long_term exposure (Chan 2006, Roberts E et al. Paracetamol: not as safe as we thought? Ann Rheum Dis 2016;75:552-559, Table 1, Chan et al row)
+- acetaminophen cardiovascular_bp: long_term exposure (Chan 2006, Roberts E et al. Paracetamol: not as safe as we thought? Ann Rheum Dis 2016;75:552-559, Table 1, Chan et al row)
+- acetaminophen cardiovascular_bp: long_term exposure (Chan 2006, Roberts E et al. Paracetamol: not as safe as we thought? Ann Rheum Dis 2016;75:552-559, Table 1, Chan et al row)
+- acetaminophen cardiovascular_bp: long_term exposure (Chan 2006, Abstract, Methods and Results)
+- acetaminophen cardiovascular_bp: long_term exposure (Chan 2006, Abstract, Methods and Results)
 - acetaminophen cardiovascular_bp: outcome does not match (Fulton 2015, Abstract)
 - acetaminophen liver: stratum [None, 2999] mg/day, not the label maximum 4000 (Donati 2016, Table 5, paracetamol <3000 mg row)
+- acetaminophen gi_bleeding: stratum [None, 1999] mg/day, not the label maximum 4000 (Lewis 2002, Table 4, Paracetamol rows (cases, controls, OR (95% CI)))
+- acetaminophen gi_bleeding: stratum [2000, 3999] mg/day, not the label maximum 4000 (Lewis 2002, Table 4, Paracetamol rows (cases, controls, OR (95% CI)))
+- acetaminophen gi_bleeding: an estimate at the label maximum dose exists (rule 21) (Gonzalez-Perez 2006, Abstract)
 - diphenhydramine anticholinergic_cognitive: outcome does not match (Agostini 2001, Abstract, Results)
 - diphenhydramine anticholinergic_cognitive: outcome does not match (Reisinger 2023, Results, H1-antihistamines paragraph; GRADE evidence profile, Diphenhydramine row ('Pooled aOR 1.50 (0.64 to 3.54)'))
 - omeprazole kidney: outcome does not match (Han 2023, Abstract; Section 3.3; Table 2 (all studies row))
@@ -14,6 +35,10 @@
 - omeprazole kidney: outcome does not match (Leonard 2012, Abstract, Results)
 - omeprazole kidney: outcome does not match (Liabeuf 2021, Abstract, Results)
 - omeprazole sedation_falls: long_term exposure (Poly 2019, Abstract, Results)
+- omeprazole sedation_falls: long_term exposure (Poly 2019, Abstract, Results)
+- omeprazole sedation_falls: long_term exposure (Nassar 2018, Abstract; Results section 1; Methods (classification of duration); Table 1 (image))
+- omeprazole sedation_falls: long_term exposure (Robert 2025, Abstract)
+- omeprazole sedation_falls: outcome does not match (Lapumnuaypol 2019, Results, sensitivity analysis; Supplementary Material S3 (forest plot of the five studies); Table 1 (full text and S3 opened at academic.oup.com))
 - omeprazole anticoagulant_bleeding: outcome does not match (Ray 2018, Abstract, Results)
 - omeprazole cardiovascular_bp: outcome does not match (Axelsson 2025, Abstract)
 - omeprazole anticholinergic_cognitive: inpatient exposure (Shiddapur 2021, Abstract, Results)
@@ -22,6 +47,10 @@
 - esomeprazole kidney: outcome does not match (Leonard 2012, Abstract, Results)
 - esomeprazole kidney: outcome does not match (Liabeuf 2021, Abstract, Results)
 - esomeprazole sedation_falls: long_term exposure (Poly 2019, Abstract, Results)
+- esomeprazole sedation_falls: long_term exposure (Poly 2019, Abstract, Results)
+- esomeprazole sedation_falls: long_term exposure (Nassar 2018, Abstract; Results section 1; Methods (classification of duration); Table 1 (image))
+- esomeprazole sedation_falls: long_term exposure (Robert 2025, Abstract)
+- esomeprazole sedation_falls: outcome does not match (Lapumnuaypol 2019, Results, sensitivity analysis; Supplementary Material S3 (forest plot of the five studies); Table 1 (full text and S3 opened at academic.oup.com))
 - esomeprazole anticoagulant_bleeding: outcome does not match (Ray 2018, Abstract, Results)
 - esomeprazole cardiovascular_bp: outcome does not match (Axelsson 2025, Abstract)
 - esomeprazole anticholinergic_cognitive: inpatient exposure (Shiddapur 2021, Abstract, Results)
@@ -30,6 +59,10 @@
 - omeprazole_magnesium kidney: outcome does not match (Leonard 2012, Abstract, Results)
 - omeprazole_magnesium kidney: outcome does not match (Liabeuf 2021, Abstract, Results)
 - omeprazole_magnesium sedation_falls: long_term exposure (Poly 2019, Abstract, Results)
+- omeprazole_magnesium sedation_falls: long_term exposure (Poly 2019, Abstract, Results)
+- omeprazole_magnesium sedation_falls: long_term exposure (Nassar 2018, Abstract; Results section 1; Methods (classification of duration); Table 1 (image))
+- omeprazole_magnesium sedation_falls: long_term exposure (Robert 2025, Abstract)
+- omeprazole_magnesium sedation_falls: outcome does not match (Lapumnuaypol 2019, Results, sensitivity analysis; Supplementary Material S3 (forest plot of the five studies); Table 1 (full text and S3 opened at academic.oup.com))
 - omeprazole_magnesium anticoagulant_bleeding: outcome does not match (Ray 2018, Abstract, Results)
 - omeprazole_magnesium cardiovascular_bp: outcome does not match (Axelsson 2025, Abstract)
 - omeprazole_magnesium anticholinergic_cognitive: inpatient exposure (Shiddapur 2021, Abstract, Results)
@@ -38,6 +71,10 @@
 - esomeprazole_magnesium_dihydrate kidney: outcome does not match (Leonard 2012, Abstract, Results)
 - esomeprazole_magnesium_dihydrate kidney: outcome does not match (Liabeuf 2021, Abstract, Results)
 - esomeprazole_magnesium_dihydrate sedation_falls: long_term exposure (Poly 2019, Abstract, Results)
+- esomeprazole_magnesium_dihydrate sedation_falls: long_term exposure (Poly 2019, Abstract, Results)
+- esomeprazole_magnesium_dihydrate sedation_falls: long_term exposure (Nassar 2018, Abstract; Results section 1; Methods (classification of duration); Table 1 (image))
+- esomeprazole_magnesium_dihydrate sedation_falls: long_term exposure (Robert 2025, Abstract)
+- esomeprazole_magnesium_dihydrate sedation_falls: outcome does not match (Lapumnuaypol 2019, Results, sensitivity analysis; Supplementary Material S3 (forest plot of the five studies); Table 1 (full text and S3 opened at academic.oup.com))
 - esomeprazole_magnesium_dihydrate anticoagulant_bleeding: outcome does not match (Ray 2018, Abstract, Results)
 - esomeprazole_magnesium_dihydrate cardiovascular_bp: outcome does not match (Axelsson 2025, Abstract)
 - esomeprazole_magnesium_dihydrate anticholinergic_cognitive: inpatient exposure (Shiddapur 2021, Abstract, Results)
@@ -46,6 +83,10 @@
 - esomeprazole_magnesium_trihydrate kidney: outcome does not match (Leonard 2012, Abstract, Results)
 - esomeprazole_magnesium_trihydrate kidney: outcome does not match (Liabeuf 2021, Abstract, Results)
 - esomeprazole_magnesium_trihydrate sedation_falls: long_term exposure (Poly 2019, Abstract, Results)
+- esomeprazole_magnesium_trihydrate sedation_falls: long_term exposure (Poly 2019, Abstract, Results)
+- esomeprazole_magnesium_trihydrate sedation_falls: long_term exposure (Nassar 2018, Abstract; Results section 1; Methods (classification of duration); Table 1 (image))
+- esomeprazole_magnesium_trihydrate sedation_falls: long_term exposure (Robert 2025, Abstract)
+- esomeprazole_magnesium_trihydrate sedation_falls: outcome does not match (Lapumnuaypol 2019, Results, sensitivity analysis; Supplementary Material S3 (forest plot of the five studies); Table 1 (full text and S3 opened at academic.oup.com))
 - esomeprazole_magnesium_trihydrate anticoagulant_bleeding: outcome does not match (Ray 2018, Abstract, Results)
 - esomeprazole_magnesium_trihydrate cardiovascular_bp: outcome does not match (Axelsson 2025, Abstract)
 - esomeprazole_magnesium_trihydrate anticholinergic_cognitive: inpatient exposure (Shiddapur 2021, Abstract, Results)
@@ -58,12 +99,27 @@
 - ibuprofen kidney: outcome does not match (Zhang 2017, Abstract, Results; outcome definitions in Table 1 and Results)
 - ibuprofen kidney: outcome does not match (Huerta 2005, Abstract, Results)
 - ibuprofen kidney: outcome does not match (Zhang 2017, Abstract, Results; outcome definitions in Table 1 and Results)
+- ibuprofen cardiovascular_bp: long_term exposure (Bally 2017, Table 2, pooled studies column (last), row '<=1200 mg/day for >30 days' under Ibuprofen; intervals are 95% credible intervals)
+- ibuprofen cardiovascular_bp: long_term exposure (Bally 2017, Table 2, pooled studies column (last), row '>1200 mg/day for >30 days' under Ibuprofen; intervals are 95% credible intervals)
 - ibuprofen anticoagulant_bleeding: outcome does not match (Villa 2020, Abstract, Results)
+- ibuprofen anticoagulant_bleeding: stratum vka_users does not match the baseline's population (rule 25) (Zheng 2023, Abstract, Results)
 - ibuprofen gi_bleeding: stratum [1201, None] mg/day, not the label maximum 1200 (Castellsague 2012, Results, dose analysis (text accompanying Figure 3))
+- ibuprofen gi_bleeding: stratum [None, 1199] mg/day, not the label maximum 1200 (Lewis 2002, Table 4, Ibuprofen rows (cases, controls, OR (95% CI)))
+- ibuprofen gi_bleeding: stratum [1800, None] mg/day, not the label maximum 1200 (Lewis 2002, Table 4, Ibuprofen rows (cases, controls, OR (95% CI)))
+- ibuprofen cardiovascular_bp: stratum [1201, None] mg/day, not the label maximum 1200 (Bally 2017, Table 2, pooled studies column (last), row '>1200 mg/day for 8-30 days' under Ibuprofen; intervals are 95% credible intervals)
+- ibuprofen cardiovascular_bp: an estimate at the label maximum dose exists (rule 21) (Bally 2017, Table 2, pooled studies column, row 'Current: Any dose for 1-7 days'; CI is a 95% credible interval)
 - naproxen kidney: outcome does not match (Zhang 2017, Abstract, Results; outcome definitions in Table 1 and Results)
 - naproxen kidney: outcome does not match (Huerta 2005, Abstract, Results)
 - naproxen kidney: outcome does not match (Zhang 2017, Abstract, Results; outcome definitions in Table 1 and Results)
+- naproxen cardiovascular_bp: long_term exposure (Bally 2017, Table 2, pooled studies column (last), row '<=750 mg/day for >30 days' under Naproxen; intervals are 95% credible intervals)
+- naproxen cardiovascular_bp: long_term exposure (Bally 2017, Table 2, pooled studies column (last), row '>750 mg/day for >30 days' under Naproxen; intervals are 95% credible intervals)
 - naproxen anticoagulant_bleeding: outcome does not match (Villa 2020, Abstract, Results)
+- naproxen anticoagulant_bleeding: stratum vka_users does not match the baseline's population (rule 25) (Zheng 2023, Abstract, Results)
+- naproxen gi_bleeding: stratum [None, 499] mg/day, not the label maximum 600 (Lewis 2002, Table 4, Naproxen rows (cases, controls, OR (95% CI)))
+- naproxen gi_bleeding: stratum [1000, None] mg/day, not the label maximum 600 (Lewis 2002, Table 4, Naproxen rows (cases, controls, OR (95% CI)))
+- naproxen cardiovascular_bp: stratum [751, None] mg/day, not the label maximum 600 (Bally 2017, Table 2, pooled studies column (last), row '>750 mg/day for 8-30 days' under Naproxen; intervals are 95% credible intervals)
+- naproxen gi_bleeding: an estimate at the label maximum dose exists (rule 21) (Castellsague 2012, Results, dose analysis (text accompanying Figure 3))
+- naproxen cardiovascular_bp: an estimate at the label maximum dose exists (rule 21) (Bally 2017, Table 2, pooled studies column, row 'Current: Any dose for 1-7 days'; CI is a 95% credible interval)
 - aspirin gi_bleeding: stratum [100, 199] mg/day, not the label maximum 4000 (Lanas 2006, Table 5 (aspirin dose), row '100 mg', adjusted condition RR (columns: cases | controls | age-adjusted RR | adjusted condition RR))
 - aspirin gi_bleeding: stratum [200, 299] mg/day, not the label maximum 4000 (Lanas 2006, Table 5 (aspirin dose), row '200 mg', adjusted condition RR (columns: cases | controls | age-adjusted RR | adjusted condition RR))
 - aspirin gi_bleeding: stratum [300, 499] mg/day, not the label maximum 4000 (Lanas 2006, Table 5 (aspirin dose), row '300 mg', adjusted condition RR (columns: cases | controls | age-adjusted RR | adjusted condition RR))
@@ -72,13 +128,15 @@
 - ibuprofen_sodium kidney: outcome does not match (Zhang 2017, Abstract, Results; outcome definitions in Table 1 and Results)
 - ibuprofen_sodium kidney: outcome does not match (Huerta 2005, Abstract, Results)
 - ibuprofen_sodium kidney: outcome does not match (Zhang 2017, Abstract, Results; outcome definitions in Table 1 and Results)
+- ibuprofen_sodium cardiovascular_bp: long_term exposure (Bally 2017, Table 2, pooled studies column (last), row '<=1200 mg/day for >30 days' under Ibuprofen; intervals are 95% credible intervals)
+- ibuprofen_sodium cardiovascular_bp: long_term exposure (Bally 2017, Table 2, pooled studies column (last), row '>1200 mg/day for >30 days' under Ibuprofen; intervals are 95% credible intervals)
 - ibuprofen_sodium anticoagulant_bleeding: outcome does not match (Villa 2020, Abstract, Results)
+- ibuprofen_sodium anticoagulant_bleeding: stratum vka_users does not match the baseline's population (rule 25) (Zheng 2023, Abstract, Results)
 - ibuprofen_sodium gi_bleeding: stratum [1201, None] mg/day, not the label maximum 1200 (Castellsague 2012, Results, dose analysis (text accompanying Figure 3))
-- baseline kidney adult_18_64: outcome does not match (Sawhney 2018, Table 3, 'People with AKI in age strata' row 40-69 years, Grampian 2012 column)
-- baseline kidney adult_65_plus: outcome does not match (Sawhney 2018, Table 3, 'People with AKI in age strata' row >=70 years, Grampian 2012 column)
-- baseline kidney all: outcome does not match (Sawhney 2018, Table 3, 'People with AKI in eGFR strata among people with at least two tests within 365 days (rates expressed within strata of tested individuals at risk)')
-- baseline anticholinergic_cognitive adult_65_plus: outcome does not match (Frich 2026, Abstract, Results; Table 2)
-- baseline gi_bleeding all: a rate without class users exists (Bedene 2022, Results, 'Risk of severe UGIB in the four different (sub)populations'; Table 2, subgroup A)
+- ibuprofen_sodium gi_bleeding: stratum [None, 1199] mg/day, not the label maximum 1200 (Lewis 2002, Table 4, Ibuprofen rows (cases, controls, OR (95% CI)))
+- ibuprofen_sodium gi_bleeding: stratum [1800, None] mg/day, not the label maximum 1200 (Lewis 2002, Table 4, Ibuprofen rows (cases, controls, OR (95% CI)))
+- ibuprofen_sodium cardiovascular_bp: stratum [1201, None] mg/day, not the label maximum 1200 (Bally 2017, Table 2, pooled studies column (last), row '>1200 mg/day for 8-30 days' under Ibuprofen; intervals are 95% credible intervals)
+- ibuprofen_sodium cardiovascular_bp: an estimate at the label maximum dose exists (rule 21) (Bally 2017, Table 2, pooled studies column, row 'Current: Any dose for 1-7 days'; CI is a 95% credible interval)
 
 ## FAERS signal with no published estimate (flagged for review)
 
@@ -127,6 +185,8 @@
 - acetaminophen anticholinergic_cognitive (all): IC025 0.637, 10576 reports, cognitive_impairment
 - acetaminophen anticoagulant_bleeding (18-64): IC025 0.522, 1671 reports, hemorrhage_coagulation
 - acetaminophen anticoagulant_bleeding (65+): IC025 0.073, 1075 reports, hemorrhage_coagulation
+- acetaminophen cardiovascular_bp (12-17): IC025 0.662, 381 reports, cardiovascular_events
+- acetaminophen cardiovascular_bp (18-64): IC025 0.763, 6931 reports, cardiovascular_events
 - acetaminophen kidney (12-17): IC025 1.279, 411 reports, renal_disorders
 - acetaminophen kidney (18-64): IC025 0.563, 3443 reports, renal_disorders
 - acetaminophen kidney (65+): IC025 0.374, 2066 reports, renal_disorders
@@ -155,6 +215,8 @@
 - esomeprazole_magnesium_dihydrate liver (18-64): IC025 0.328, 944 reports, hepatic_disorders
 - esomeprazole_magnesium_dihydrate liver (65+): IC025 0.789, 694 reports, hepatic_disorders
 - esomeprazole_magnesium_dihydrate liver (all): IC025 0.217, 1963 reports, hepatic_disorders
+- esomeprazole_magnesium_dihydrate sedation_falls (18-64): IC025 0.198, 1738 reports, falls_sedation
+- esomeprazole_magnesium_dihydrate sedation_falls (65+): IC025 0.011, 1311 reports, falls_sedation
 - esomeprazole_magnesium_dihydrate serotonergic_interactions (12-17): IC025 1.169, 7 reports, serotonin_syndrome
 - esomeprazole_magnesium_dihydrate serotonergic_interactions (all): IC025 1.622, 235 reports, serotonin_syndrome
 - omeprazole_magnesium anticholinergic_cognitive (12-17): IC025 1.476, 28 reports, cognitive_impairment
@@ -171,6 +233,8 @@
 - omeprazole_magnesium gi_bleeding (all): IC025 0.103, 1305 reports, gastrointestinal_hemorrhage
 - omeprazole_magnesium liver (12-17): IC025 0.784, 35 reports, hepatic_disorders
 - omeprazole_magnesium liver (65+): IC025 0.147, 583 reports, hepatic_disorders
+- omeprazole_magnesium sedation_falls (12-17): IC025 0.706, 54 reports, falls_sedation
+- omeprazole_magnesium sedation_falls (65+): IC025 0.306, 2071 reports, falls_sedation
 - omeprazole_magnesium serotonergic_interactions (0-11): IC025 0.26, 4 reports, serotonin_syndrome
 - omeprazole_magnesium serotonergic_interactions (12-17): IC025 1.363, 11 reports, serotonin_syndrome
 - omeprazole_magnesium serotonergic_interactions (65+): IC025 0.931, 37 reports, serotonin_syndrome
@@ -348,6 +412,8 @@
 - omeprazole gi_bleeding (all): IC025 0.103, 1305 reports, gastrointestinal_hemorrhage
 - omeprazole liver (12-17): IC025 0.784, 35 reports, hepatic_disorders
 - omeprazole liver (65+): IC025 0.147, 583 reports, hepatic_disorders
+- omeprazole sedation_falls (12-17): IC025 0.706, 54 reports, falls_sedation
+- omeprazole sedation_falls (65+): IC025 0.306, 2071 reports, falls_sedation
 - omeprazole serotonergic_interactions (0-11): IC025 0.26, 4 reports, serotonin_syndrome
 - omeprazole serotonergic_interactions (12-17): IC025 1.363, 11 reports, serotonin_syndrome
 - omeprazole serotonergic_interactions (65+): IC025 0.931, 37 reports, serotonin_syndrome
@@ -369,6 +435,8 @@
 - esomeprazole liver (18-64): IC025 0.328, 944 reports, hepatic_disorders
 - esomeprazole liver (65+): IC025 0.789, 694 reports, hepatic_disorders
 - esomeprazole liver (all): IC025 0.217, 1963 reports, hepatic_disorders
+- esomeprazole sedation_falls (18-64): IC025 0.198, 1738 reports, falls_sedation
+- esomeprazole sedation_falls (65+): IC025 0.011, 1311 reports, falls_sedation
 - esomeprazole serotonergic_interactions (12-17): IC025 1.169, 7 reports, serotonin_syndrome
 - esomeprazole serotonergic_interactions (all): IC025 1.622, 235 reports, serotonin_syndrome
 - magnesium_hydroxide anticholinergic_cognitive (18-64): IC025 1.787, 79 reports, cognitive_impairment
@@ -424,6 +492,8 @@
 - esomeprazole_magnesium_trihydrate liver (18-64): IC025 0.328, 944 reports, hepatic_disorders
 - esomeprazole_magnesium_trihydrate liver (65+): IC025 0.789, 694 reports, hepatic_disorders
 - esomeprazole_magnesium_trihydrate liver (all): IC025 0.217, 1963 reports, hepatic_disorders
+- esomeprazole_magnesium_trihydrate sedation_falls (18-64): IC025 0.198, 1738 reports, falls_sedation
+- esomeprazole_magnesium_trihydrate sedation_falls (65+): IC025 0.011, 1311 reports, falls_sedation
 - esomeprazole_magnesium_trihydrate serotonergic_interactions (12-17): IC025 1.169, 7 reports, serotonin_syndrome
 - esomeprazole_magnesium_trihydrate serotonergic_interactions (all): IC025 1.622, 235 reports, serotonin_syndrome
 - ibuprofen_sodium anticholinergic_cognitive (0-11): IC025 0.068, 62 reports, cognitive_impairment

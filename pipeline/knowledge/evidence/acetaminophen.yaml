@@ -1,6 +1,6 @@
 group: acetaminophen
 compiled: 2026-11-18
-revised: 2026-11-18 (evidence rules v1.1)
+revised: 2026-11-18 (evidence rules v1.2)
 relative_risks:
 - ingredient: acetaminophen
   dimension: liver
@@ -13,6 +13,7 @@ relative_risks:
   measure: OR
   estimate: 2.04
   ci95: [1.35, 3.09]
+  interval: confidence
   exposure: paracetamol use, average daily dose <3000 mg (adjusted OR vs non-use)
   population: adults admitted with acute liver injury, 9 Italian hospitals 2010-2014; 179 cases, 1,770 matched controls; alcohol abuse an exclusion criterion
   grade: case_control
@@ -21,7 +22,12 @@ relative_risks:
     url: https://pmc.ncbi.nlm.nih.gov/articles/PMC4917796/
     location: Table 5, paracetamol <3000 mg row
     quote: <3000 mg | 42 (23.46) | 265 (14.97) | 2.22 (1.48-3.15) | 2.04 (1.35-3.09)
-  selection_note: No meta-analysis of acute liver injury at therapeutic doses was found. Only case-control study opened that reports dose-stratified adjusted ORs for hospitalised acute liver injury vs non-use; both strata of Table 5 are recorded (rule 14). The paper does not state that overdose cases were excluded, so pharmacist review should confirm. A Barcelona surveillance estimate (RR 7.0) is a case series with an exposure-prevalence denominator, so it ranks lower.
+  unexposed_incidence:
+    annual_incidence: 4.1e-05
+    as_reported: 4.1 cases per 100,000 inhabitants per year = 4.1 / 100,000 = 0.000041 per person-year. This is the incidence of the study outcome (acute serious liver injury admissions meeting the primary criteria, 204 cases) in the whole catchment population, paracetamol users included; the paper reports no rate for non-users alone, so it slightly overstates the unexposed rate.
+    location: Results, Population
+    quote: Overall, 2232 patients with diagnosis of acute serious liver injury were recorded; of those, 2028 were not included in the study, according to the primary exclusion criteria. The 204 incident cases resulted in an annual incidence of DILI of 4.1 cases per 100 000 inhabitants.
+  selection_note: 'No meta-analysis of acute liver injury at therapeutic doses was found. Only case-control study opened that reports dose-stratified adjusted ORs for hospitalised acute liver injury vs non-use; both strata of Table 5 are recorded (rule 14). The paper does not state that overdose cases were excluded, so pharmacist review should confirm. A Barcelona surveillance estimate (RR 7.0) is a case series with an exposure-prevalence denominator, so it ranks lower. Rule 20: the paper gives the annual incidence of the study outcome in its catchment population (see unexposed_incidence), not a rate in non-users.'
   match_note: Cases were adults admitted with a primary diagnosis of acute liver injury, matching section 1 at the serious level; exposure is paracetamol use before admission (community, oral); comparator is non-use among hospital controls without liver disease. Stratum <3000 mg/day.
 - ingredient: acetaminophen
   dimension: liver
@@ -34,6 +40,7 @@ relative_risks:
   measure: OR
   estimate: 6.31
   ci95: [3.56, 11.2]
+  interval: confidence
   exposure: paracetamol use, average daily dose ≥3000 mg (adjusted OR vs non-use)
   population: adults admitted with acute liver injury, 9 Italian hospitals 2010-2014; 179 cases, 1,770 matched controls; alcohol abuse an exclusion criterion
   grade: case_control
@@ -42,7 +49,12 @@ relative_risks:
     url: https://pmc.ncbi.nlm.nih.gov/articles/PMC4917796/
     location: Table 5, paracetamol ≥3000 mg row (adjusted OR column)
     quote: ≥ 3000 mg | 26 (14.52) | 44 (2.49) | 7.80 (4.53–13.43) | 6.31 (3.56–11.20)
-  selection_note: No meta-analysis of acute liver injury at therapeutic doses was found. Only case-control study opened that reports dose-stratified adjusted ORs for hospitalised acute liver injury vs non-use; both strata of Table 5 are recorded (rule 14). The paper does not state that overdose cases were excluded, so pharmacist review should confirm. A Barcelona surveillance estimate (RR 7.0) is a case series with an exposure-prevalence denominator, so it ranks lower. The PMC XML renders this row with stray 'I' characters before each number (I26, I44, I7.80, I6.31); the quote drops them.
+  unexposed_incidence:
+    annual_incidence: 4.1e-05
+    as_reported: 4.1 cases per 100,000 inhabitants per year = 4.1 / 100,000 = 0.000041 per person-year. This is the incidence of the study outcome (acute serious liver injury admissions meeting the primary criteria, 204 cases) in the whole catchment population, paracetamol users included; the paper reports no rate for non-users alone, so it slightly overstates the unexposed rate.
+    location: Results, Population
+    quote: Overall, 2232 patients with diagnosis of acute serious liver injury were recorded; of those, 2028 were not included in the study, according to the primary exclusion criteria. The 204 incident cases resulted in an annual incidence of DILI of 4.1 cases per 100 000 inhabitants.
+  selection_note: 'No meta-analysis of acute liver injury at therapeutic doses was found. Only case-control study opened that reports dose-stratified adjusted ORs for hospitalised acute liver injury vs non-use; both strata of Table 5 are recorded (rule 14). The paper does not state that overdose cases were excluded, so pharmacist review should confirm. A Barcelona surveillance estimate (RR 7.0) is a case series with an exposure-prevalence denominator, so it ranks lower. The PMC XML renders this row with stray ''I'' characters before each number (I26, I44, I7.80, I6.31); the quote drops them. Rule 20: the paper gives the annual incidence of the study outcome in its catchment population (see unexposed_incidence), not a rate in non-users.'
   match_note: Cases were adults admitted with a primary diagnosis of acute liver injury, matching section 1 at the serious level; exposure is paracetamol use before admission (community, oral); comparator is non-use among hospital controls without liver disease. Stratum ≥3000 mg/day.
 - ingredient: acetaminophen
   dimension: gi_bleeding
@@ -55,6 +67,7 @@ relative_risks:
   measure: RR
   estimate: 1.3
   ci95: [1.2, 1.5]
+  interval: confidence
   exposure: paracetamol use vs non-use (summary of 12 studies)
   population: 12 observational studies 1980-2004 of upper GI complications (bleeding or perforation)
   grade: meta_analysis
@@ -63,8 +76,96 @@ relative_risks:
     url: https://pubmed.ncbi.nlm.nih.gov/16611205/
     location: Abstract
     quote: Among the twelve studies identified in the systematic review, estimates ranged from 0.2 through 2.0 with a summary estimate of 1.3 (95% CI, 1.2-1.5).
-  selection_note: Most recent pooled estimate found, and the largest (12 studies). The alternative, Lewis et al. Br J Clin Pharmacol 2002;54:320-326 (IPD meta-analysis of 3 case-control studies, 2,472 cases), gives OR 1.2 (1.1-1.5) for any use and 1.2 (1.0-1.4) for <2000 mg/day, consistent with this. Gonzalez-Perez's own nested case-control found RR 3.6 (2.6-5.1) above 2 g/day and no increase below; the authors attribute much of the association to channelling/confounding. Not stratified by dose here because applies_to cannot express dose.
+  selection_note: 'Most recent pooled estimate found, and the largest (12 studies). Rule 21: dose strata from the authors'' own nested case-control study (>2 g/day) and from Lewis et al. Br J Clin Pharmacol 2002 (IPD meta-analysis of 3 case-control studies, Table 4) are recorded as separate rows; the build picks by rule. Rule 20: meta-analysis summary; the abstract reports no incidence in non-users.'
   match_note: Outcome is upper GI complications (bleeding or perforation), section 1's outcome; exposure is paracetamol use in community studies; comparator non-use. The summary estimate is not dose-stratified.
+- ingredient: acetaminophen
+  dimension: gi_bleeding
+  applies_to: {persona: all, condition: null, medication_type: null}
+  outcome: upper_gi_bleeding
+  outcome_match: true
+  exposure_window: community_oral
+  comparator: non_use
+  dose_mg_per_day: [2001, null]
+  measure: RR
+  estimate: 3.6
+  ci95: [2.6, 5.1]
+  interval: confidence
+  exposure: paracetamol use of more than 2 g daily vs non-use (nested case-control)
+  population: UK General Practice Research Database, April 1993 to October 1998, nested case-control study of upper GI complications (bleeding or perforation)
+  grade: case_control
+  source:
+    citation: Gonzalez-Perez A, Rodriguez LA. Upper gastrointestinal complications among users of paracetamol. Basic Clin Pharmacol Toxicol 2006;98(3):297-303. PMID 16611205
+    url: https://pubmed.ncbi.nlm.nih.gov/16611205/
+    location: Abstract (nested case-control study)
+    quote: The RR was 3.6 (95% CI, 2.6-5.1) among paracetamol users of more than 2 g daily, whereas smaller doses did not increase the risk.
+  selection_note: 'Rule 21: the dose stratum the abstract reports for the authors'' own nested case-control study. The lower stratum is described only in words ("smaller doses did not increase the risk"), with no number, so it is not recorded; the full text (Wiley) could not be opened (a bot check blocks it). The authors attribute much of the association to channelling and confounding. Rule 20: the abstract reports no incidence in non-users.'
+  match_note: Outcome is upper GI complications (bleeding or perforation), section 1's outcome; exposure is current paracetamol use above 2,000 mg a day in general practice (community, oral); comparator non-use. Stratum >2,000 mg/day.
+- ingredient: acetaminophen
+  dimension: gi_bleeding
+  applies_to: {persona: all, condition: null, medication_type: null}
+  outcome: upper_gi_bleeding
+  outcome_match: true
+  exposure_window: community_oral
+  comparator: non_use
+  dose_mg_per_day: [null, 1999]
+  measure: OR
+  estimate: 1.2
+  ci95: [1.0, 1.4]
+  interval: confidence
+  exposure: paracetamol <2000 mg/day in the week before the index day, vs non-use (adjusted OR)
+  population: individual patient data from 3 hospital case-control studies (Catalonia, England, Scotland, Sweden); 2,472 cases of upper GI bleeding, 5,877 controls
+  grade: meta_analysis
+  source:
+    citation: 'Lewis SC, Langman MJS, Laporte JR, Matthews JNS, Rawlins MD, Wiholm BE. Dose-response relationships between individual nonaspirin nonsteroidal anti-inflammatory drugs (NANSAIDs) and serious upper gastrointestinal bleeding: a meta-analysis based on individual patient data. Br J Clin Pharmacol 2002;54(3):320-6. PMID 12236853'
+    url: https://pmc.ncbi.nlm.nih.gov/articles/PMC1874428/
+    location: Table 4, Paracetamol rows (cases, controls, OR (95% CI))
+    quote: Paracetamol < 2000 351 593 1.2 (1.0, 1.4)
+  selection_note: 'Rule 21: every dose stratum of Lewis Table 4 for this ingredient is recorded; the build picks the one holding the label maximum. Table 4 footnotes: ''(*) All doses in mg day-1'' and ''All odds ratios are relative to nonuse of any NANSAID or aspirin''. The PDF (scanned 2002 typesetting) renders the ''>='' sign of the top stratum as a control glyph; the row order (<, range, then the open top stratum) shows it is ''>=''. Rule 20: a case-control design; the paper reports no incidence in non-users.'
+  match_note: Outcome is serious upper GI bleeding in hospital cases (Lewis title and Methods), section 1's outcome; exposure is the daily dose taken in the week before the index day, community use; comparator is non-use (Table 4 footnote). Stratum <2000 mg/day.
+- ingredient: acetaminophen
+  dimension: gi_bleeding
+  applies_to: {persona: all, condition: null, medication_type: null}
+  outcome: upper_gi_bleeding
+  outcome_match: true
+  exposure_window: community_oral
+  comparator: non_use
+  dose_mg_per_day: [2000, 3999]
+  measure: OR
+  estimate: 1.2
+  ci95: [0.8, 1.7]
+  interval: confidence
+  exposure: paracetamol 2000-3999 mg/day in the week before the index day, vs non-use (adjusted OR)
+  population: individual patient data from 3 hospital case-control studies (Catalonia, England, Scotland, Sweden); 2,472 cases of upper GI bleeding, 5,877 controls
+  grade: meta_analysis
+  source:
+    citation: 'Lewis SC, Langman MJS, Laporte JR, Matthews JNS, Rawlins MD, Wiholm BE. Dose-response relationships between individual nonaspirin nonsteroidal anti-inflammatory drugs (NANSAIDs) and serious upper gastrointestinal bleeding: a meta-analysis based on individual patient data. Br J Clin Pharmacol 2002;54(3):320-6. PMID 12236853'
+    url: https://pmc.ncbi.nlm.nih.gov/articles/PMC1874428/
+    location: Table 4, Paracetamol rows (cases, controls, OR (95% CI))
+    quote: 2000–3999 96 150 1.2 (0.8, 1.7)
+  selection_note: 'Rule 21: every dose stratum of Lewis Table 4 for this ingredient is recorded; the build picks the one holding the label maximum. Table 4 footnotes: ''(*) All doses in mg day-1'' and ''All odds ratios are relative to nonuse of any NANSAID or aspirin''. The PDF (scanned 2002 typesetting) renders the ''>='' sign of the top stratum as a control glyph; the row order (<, range, then the open top stratum) shows it is ''>=''. Rule 20: a case-control design; the paper reports no incidence in non-users.'
+  match_note: Outcome is serious upper GI bleeding in hospital cases (Lewis title and Methods), section 1's outcome; exposure is the daily dose taken in the week before the index day, community use; comparator is non-use (Table 4 footnote). Stratum 2000-3999 mg/day.
+- ingredient: acetaminophen
+  dimension: gi_bleeding
+  applies_to: {persona: all, condition: null, medication_type: null}
+  outcome: upper_gi_bleeding
+  outcome_match: true
+  exposure_window: community_oral
+  comparator: non_use
+  dose_mg_per_day: [4000, null]
+  measure: OR
+  estimate: 1.0
+  ci95: [0.5, 1.9]
+  interval: confidence
+  exposure: paracetamol >=4000 mg/day in the week before the index day, vs non-use (adjusted OR)
+  population: individual patient data from 3 hospital case-control studies (Catalonia, England, Scotland, Sweden); 2,472 cases of upper GI bleeding, 5,877 controls
+  grade: meta_analysis
+  source:
+    citation: 'Lewis SC, Langman MJS, Laporte JR, Matthews JNS, Rawlins MD, Wiholm BE. Dose-response relationships between individual nonaspirin nonsteroidal anti-inflammatory drugs (NANSAIDs) and serious upper gastrointestinal bleeding: a meta-analysis based on individual patient data. Br J Clin Pharmacol 2002;54(3):320-6. PMID 12236853'
+    url: https://pmc.ncbi.nlm.nih.gov/articles/PMC1874428/
+    location: Table 4, Paracetamol rows (cases, controls, OR (95% CI))
+    quote: ≥ 4000 31 42 1.0 (0.5, 1.9)
+  selection_note: 'Rule 21: every dose stratum of Lewis Table 4 for this ingredient is recorded; the build picks the one holding the label maximum. Table 4 footnotes: ''(*) All doses in mg day-1'' and ''All odds ratios are relative to nonuse of any NANSAID or aspirin''. The PDF (scanned 2002 typesetting) renders the ''>='' sign of the top stratum as a control glyph; the row order (<, range, then the open top stratum) shows it is ''>=''. Rule 20: a case-control design; the paper reports no incidence in non-users.'
+  match_note: Outcome is serious upper GI bleeding in hospital cases (Lewis title and Methods), section 1's outcome; exposure is the daily dose taken in the week before the index day, community use; comparator is non-use (Table 4 footnote). Stratum >=4000 mg/day.
 - ingredient: acetaminophen
   dimension: kidney
   applies_to: {persona: all, condition: null, medication_type: null}
@@ -76,6 +177,7 @@ relative_risks:
   measure: OR
   estimate: 1.23
   ci95: [1.07, 1.4]
+  interval: confidence
   exposure: acetaminophen use vs non-use (adjusted, random-effects pool of cohort studies)
   population: adults; 5 observational studies (2 cohort, 3 case-control), 13,114 participants
   grade: meta_analysis
@@ -84,29 +186,118 @@ relative_risks:
     url: https://pubmed.ncbi.nlm.nih.gov/32172553/
     location: Abstract, Results
     quote: In the random-effects meta-analysis of the cohort study, acetaminophen use was shown to have statistically significant effects on the increased risk of renal impairment (adjusted odds ratio 1.23; 95% confidence interval, 1.07-1.40).
-  selection_note: Only meta-analysis found. Kept for the audit trail; the pair is insufficient (see insufficient list).
+  selection_note: 'Only meta-analysis found. Kept for the audit trail; the pair is insufficient (see insufficient list). Rule 20: meta-analysis; it reports no incidence in non-users.'
   match_note: 'Outcome does not match rule 10: the abstract''s outcome is ''renal impairment'' (AKI and/or chronic impairment), not hospital AKI. The abstract does not define exposure duration, so the window is recorded as community_oral; comparator non-use.'
 - ingredient: acetaminophen
   dimension: cardiovascular_bp
   applies_to: {persona: all, condition: null, medication_type: null}
   outcome: mi_stroke
   outcome_match: true
-  exposure_window: community_oral
+  exposure_window: long_term
+  comparator: non_use
+  dose_mg_per_day: null
+  measure: RR
+  estimate: 0.98
+  ci95: [0.84, 1.14]
+  interval: confidence
+  exposure: acetaminophen use 1-4 days/month vs non-use (habitual use)
+  population: Nurses' Health Study, 70,971 US women aged 44-69 free of CVD or cancer at baseline, 12 years of follow-up; outcome nonfatal MI, fatal CHD, nonfatal and fatal stroke
+  grade: cohort
+  source:
+    citation: Chan AT, Manson JE, Albert CM, et al. Nonsteroidal antiinflammatory drugs, acetaminophen, and the risk of cardiovascular events. Circulation 2006;113(12):1578-1587. PMID 16534006
+    url: https://pmc.ncbi.nlm.nih.gov/articles/PMC4789700/
+    location: 'Roberts E et al. Paracetamol: not as safe as we thought? Ann Rheum Dis 2016;75:552-559, Table 1, Chan et al row'
+    quote: Chan et al10 | USA | Cohort | 70 971 | 12 | Female registered nurses aged 30–55 years | Risk ratio | Cardiovascular AEs (confirmed or probable non-fatal myocardial infarction, non-fatal stroke, fatal coronary heart disease or fatal stroke) | 1–4 days/month use5–14 days/month use15–21 days/month use>22 days/month use | 0.98 (0.84 to 1.14)1.09 (0.91 to 1.30)1.22 (0.95 to 1.56)1.35 (1.14 to 1.59)
+  selection_note: 'No meta-analysis pools paracetamol and MI or stroke (Roberts 2016 could not pool CV outcomes). Rule 22: every stratum the Chan abstract and the Roberts table report is recorded. Days a month and tablets a week: neither the abstract nor Roberts states the tablet strength, so dose_mg_per_day is null. Neither reports an overall any-use estimate; the full text (ahajournals, paywalled) could not be opened. Rule 20: the abstract and Roberts give no incidence in non-users. Women only.'
+  match_note: 'Exposure is habitual use reported on questionnaires every two years over 12 years (abstract: women ''who provided medication data biennially since 1990''), so long_term (rule 22). Outcome is nonfatal MI, fatal CHD and nonfatal and fatal stroke, so mi_stroke; comparator is non-users.'
+- ingredient: acetaminophen
+  dimension: cardiovascular_bp
+  applies_to: {persona: all, condition: null, medication_type: null}
+  outcome: mi_stroke
+  outcome_match: true
+  exposure_window: long_term
   comparator: non_use
   dose_mg_per_day: null
   measure: RR
   estimate: 1.09
   ci95: [0.91, 1.3]
-  exposure: acetaminophen use 5-14 days/month vs non-use
-  population: Nurses' Health Study, 70,971 US women aged 44-69 free of CVD at baseline, 12 years follow-up; outcome nonfatal MI, fatal CHD, nonfatal and fatal stroke
+  interval: confidence
+  exposure: acetaminophen use 5-14 days/month vs non-use (habitual use)
+  population: Nurses' Health Study, 70,971 US women aged 44-69 free of CVD or cancer at baseline, 12 years of follow-up; outcome nonfatal MI, fatal CHD, nonfatal and fatal stroke
   grade: cohort
   source:
-    citation: 'Chan AT, Manson JE, Albert CM, et al. Nonsteroidal antiinflammatory drugs, acetaminophen, and the risk of cardiovascular events. Circulation 2006;113(12):1578-1587 (stratum as tabulated in Roberts E et al. Paracetamol: not as safe as we thought? Ann Rheum Dis 2016;75:552-559, Table 1)'
+    citation: Chan AT, Manson JE, Albert CM, et al. Nonsteroidal antiinflammatory drugs, acetaminophen, and the risk of cardiovascular events. Circulation 2006;113(12):1578-1587. PMID 16534006
     url: https://pmc.ncbi.nlm.nih.gov/articles/PMC4789700/
-    location: Roberts et al. Table 1, Chan et al. row; Chan et al. abstract (PMID 16534006)
-    quote: 'Roberts Table 1: 5-14 days/month 1.09 (0.91 to 1.30). Chan abstract: ''Women who reported occasional (1 to 21 d/mo) use of NSAIDs or acetaminophen did not experience a significant increase in the risk of cardiovascular events.'''
-  selection_note: No meta-analysis pools paracetamol and MI/stroke (Roberts 2016 systematic review could not pool CV outcomes). Chan 2006 is the largest prospective cohort with a dose-frequency gradient vs non-users. The 5-14 days/month stratum best matches a 10-day OTC course. Frequent use (>=22 d/mo) gave RR 1.35 (1.14-1.59) and >=15 tablets/week RR 1.68 (1.10-2.58) per the abstract; these reflect chronic use, not the course v1 scores. Women only.
-  match_note: Outcome is nonfatal MI, fatal CHD and stroke (Chan abstract), matching section 1; exposure is self-reported current frequency of use, updated every two years, not a continuous-use duration, so community_oral; comparator non-users.
+    location: 'Roberts E et al. Paracetamol: not as safe as we thought? Ann Rheum Dis 2016;75:552-559, Table 1, Chan et al row'
+    quote: Chan et al10 | USA | Cohort | 70 971 | 12 | Female registered nurses aged 30–55 years | Risk ratio | Cardiovascular AEs (confirmed or probable non-fatal myocardial infarction, non-fatal stroke, fatal coronary heart disease or fatal stroke) | 1–4 days/month use5–14 days/month use15–21 days/month use>22 days/month use | 0.98 (0.84 to 1.14)1.09 (0.91 to 1.30)1.22 (0.95 to 1.56)1.35 (1.14 to 1.59)
+  selection_note: 'No meta-analysis pools paracetamol and MI or stroke (Roberts 2016 could not pool CV outcomes). Rule 22: every stratum the Chan abstract and the Roberts table report is recorded. Days a month and tablets a week: neither the abstract nor Roberts states the tablet strength, so dose_mg_per_day is null. Neither reports an overall any-use estimate; the full text (ahajournals, paywalled) could not be opened. Rule 20: the abstract and Roberts give no incidence in non-users. Women only.'
+  match_note: 'Exposure is habitual use reported on questionnaires every two years over 12 years (abstract: women ''who provided medication data biennially since 1990''), so long_term (rule 22). Outcome is nonfatal MI, fatal CHD and nonfatal and fatal stroke, so mi_stroke; comparator is non-users.'
+- ingredient: acetaminophen
+  dimension: cardiovascular_bp
+  applies_to: {persona: all, condition: null, medication_type: null}
+  outcome: mi_stroke
+  outcome_match: true
+  exposure_window: long_term
+  comparator: non_use
+  dose_mg_per_day: null
+  measure: RR
+  estimate: 1.22
+  ci95: [0.95, 1.56]
+  interval: confidence
+  exposure: acetaminophen use 15-21 days/month vs non-use (habitual use)
+  population: Nurses' Health Study, 70,971 US women aged 44-69 free of CVD or cancer at baseline, 12 years of follow-up; outcome nonfatal MI, fatal CHD, nonfatal and fatal stroke
+  grade: cohort
+  source:
+    citation: Chan AT, Manson JE, Albert CM, et al. Nonsteroidal antiinflammatory drugs, acetaminophen, and the risk of cardiovascular events. Circulation 2006;113(12):1578-1587. PMID 16534006
+    url: https://pmc.ncbi.nlm.nih.gov/articles/PMC4789700/
+    location: 'Roberts E et al. Paracetamol: not as safe as we thought? Ann Rheum Dis 2016;75:552-559, Table 1, Chan et al row'
+    quote: Chan et al10 | USA | Cohort | 70 971 | 12 | Female registered nurses aged 30–55 years | Risk ratio | Cardiovascular AEs (confirmed or probable non-fatal myocardial infarction, non-fatal stroke, fatal coronary heart disease or fatal stroke) | 1–4 days/month use5–14 days/month use15–21 days/month use>22 days/month use | 0.98 (0.84 to 1.14)1.09 (0.91 to 1.30)1.22 (0.95 to 1.56)1.35 (1.14 to 1.59)
+  selection_note: 'No meta-analysis pools paracetamol and MI or stroke (Roberts 2016 could not pool CV outcomes). Rule 22: every stratum the Chan abstract and the Roberts table report is recorded. Days a month and tablets a week: neither the abstract nor Roberts states the tablet strength, so dose_mg_per_day is null. Neither reports an overall any-use estimate; the full text (ahajournals, paywalled) could not be opened. Rule 20: the abstract and Roberts give no incidence in non-users. Women only.'
+  match_note: 'Exposure is habitual use reported on questionnaires every two years over 12 years (abstract: women ''who provided medication data biennially since 1990''), so long_term (rule 22). Outcome is nonfatal MI, fatal CHD and nonfatal and fatal stroke, so mi_stroke; comparator is non-users.'
+- ingredient: acetaminophen
+  dimension: cardiovascular_bp
+  applies_to: {persona: all, condition: null, medication_type: null}
+  outcome: mi_stroke
+  outcome_match: true
+  exposure_window: long_term
+  comparator: non_use
+  dose_mg_per_day: null
+  measure: RR
+  estimate: 1.35
+  ci95: [1.14, 1.59]
+  interval: confidence
+  exposure: acetaminophen use 22 or more days/month vs non-use (habitual use)
+  population: Nurses' Health Study, 70,971 US women aged 44-69 free of CVD or cancer at baseline, 12 years of follow-up; outcome nonfatal MI, fatal CHD, nonfatal and fatal stroke
+  grade: cohort
+  source:
+    citation: Chan AT, Manson JE, Albert CM, et al. Nonsteroidal antiinflammatory drugs, acetaminophen, and the risk of cardiovascular events. Circulation 2006;113(12):1578-1587. PMID 16534006
+    url: https://pubmed.ncbi.nlm.nih.gov/16534006/
+    location: Abstract, Methods and Results
+    quote: after adjustment for cardiovascular risk factors, women who frequently (> or =22 d/mo) used NSAIDs had a relative risk (RR) for a cardiovascular event of 1.44 (95% CI, 1.27 to 1.65) compared with nonusers, whereas those who frequently consumed acetaminophen had a RR of 1.35 (95% CI, 1.14 to 1.59).
+  selection_note: 'No meta-analysis pools paracetamol and MI or stroke (Roberts 2016 could not pool CV outcomes). Rule 22: every stratum the Chan abstract and the Roberts table report is recorded. Days a month and tablets a week: neither the abstract nor Roberts states the tablet strength, so dose_mg_per_day is null. Neither reports an overall any-use estimate; the full text (ahajournals, paywalled) could not be opened. Rule 20: the abstract and Roberts give no incidence in non-users. Women only.'
+  match_note: 'Exposure is habitual use reported on questionnaires every two years over 12 years (abstract: women ''who provided medication data biennially since 1990''), so long_term (rule 22). Outcome is nonfatal MI, fatal CHD and nonfatal and fatal stroke, so mi_stroke; comparator is non-users.'
+- ingredient: acetaminophen
+  dimension: cardiovascular_bp
+  applies_to: {persona: all, condition: null, medication_type: null}
+  outcome: mi_stroke
+  outcome_match: true
+  exposure_window: long_term
+  comparator: non_use
+  dose_mg_per_day: null
+  measure: RR
+  estimate: 1.68
+  ci95: [1.1, 2.58]
+  interval: confidence
+  exposure: acetaminophen 15 or more tablets/week vs non-use (habitual use)
+  population: Nurses' Health Study, 70,971 US women aged 44-69 free of CVD or cancer at baseline, 12 years of follow-up; outcome nonfatal MI, fatal CHD, nonfatal and fatal stroke
+  grade: cohort
+  source:
+    citation: Chan AT, Manson JE, Albert CM, et al. Nonsteroidal antiinflammatory drugs, acetaminophen, and the risk of cardiovascular events. Circulation 2006;113(12):1578-1587. PMID 16534006
+    url: https://pubmed.ncbi.nlm.nih.gov/16534006/
+    location: Abstract, Methods and Results
+    quote: Compared with nonusers, the RRs for a cardiovascular event among women who used > or =15 tablets per week were 1.86 (95% CI, 1.27 to 2.73) for NSAIDs and 1.68 (95% CI, 1.10 to 2.58) for acetaminophen.
+  selection_note: 'No meta-analysis pools paracetamol and MI or stroke (Roberts 2016 could not pool CV outcomes). Rule 22: every stratum the Chan abstract and the Roberts table report is recorded. Days a month and tablets a week: neither the abstract nor Roberts states the tablet strength, so dose_mg_per_day is null. Neither reports an overall any-use estimate; the full text (ahajournals, paywalled) could not be opened. Rule 20: the abstract and Roberts give no incidence in non-users. Women only.'
+  match_note: 'Exposure is habitual use reported on questionnaires every two years over 12 years (abstract: women ''who provided medication data biennially since 1990''), so long_term (rule 22). Outcome is nonfatal MI, fatal CHD and nonfatal and fatal stroke, so mi_stroke; comparator is non-users.'
 - ingredient: acetaminophen
   dimension: cardiovascular_bp
   applies_to: {persona: adult_65_plus, condition: hypertension, medication_type: null}
@@ -118,6 +309,7 @@ relative_risks:
   measure: HR
   estimate: 1.17
   ci95: [0.99, 1.37]
+  interval: confidence
   exposure: prescribed acetaminophen, time-dependent exposure over 10 years vs unexposed
   population: 24,496 hypertensive adults aged >=65, UK Clinical Practice Research Datalink
   grade: cohort
@@ -126,7 +318,7 @@ relative_risks:
     url: https://pubmed.ncbi.nlm.nih.gov/25801870/
     location: Abstract
     quote: There was no relationship between risk of myocardial infarction, stroke, or any cardiovascular event and acetaminophen exposure on adjusted analysis (hazard ratio, 0.98; 95% confidence interval, 0.76-1.27; hazard ratio, 1.09; 95% confidence interval, 0.86-1.38; and hazard ratio, 1.17; 95% confidence interval, 0.99-1.37; respectively).
-  selection_note: Largest cohort reporting the hypertension subgroup with verified prescriptions. 'Any cardiovascular event' (HR 1.17) chosen because the v1 outcome combines MI, stroke and HF; MI alone HR 0.98, stroke alone HR 1.09. No increased risk detected.
+  selection_note: 'Largest cohort reporting the hypertension subgroup with verified prescriptions. ''Any cardiovascular event'' (HR 1.17) chosen because the v1 outcome combines MI, stroke and HF; MI alone HR 0.98, stroke alone HR 1.09. No increased risk detected. Rule 20: the abstract reports no incidence in the unexposed group.'
   match_note: 'Rule 11: the abstract defines exposure as prescribed acetaminophen ''during a 10-year period'' (10,878 exposed vs 13,618 not), analysed as time-dependent over that period, so it is long_term, not a current short course. Rule 10: ''any cardiovascular event'' is not defined in the abstract and may be broader than MI, stroke or heart failure admission. Comparator is unexposed hypertensive patients aged 65 and over (non_use).'
 - ingredient: acetaminophen
   dimension: pregnancy_lactation
@@ -138,6 +330,7 @@ relative_risks:
   measure: OR
   estimate: 0.95
   ci95: [0.86, 1.05]
+  interval: confidence
   exposure: prenatal paracetamol exposure vs unexposed sibling (sibling-comparison, adjusted)
   population: sibling-comparison studies in a systematic review of 43 studies (17 in meta-analysis); outcome child ADHD
   grade: meta_analysis
@@ -146,17 +339,17 @@ relative_risks:
     url: https://openaccess.sgul.ac.uk/id/eprint/118190
     location: Abstract, Findings
     quote: ADHD (0·95, 0·86–1·05; p=0·31)
-  selection_note: 'Most recent meta-analysis; restricted to sibling designs, which control for familial confounding that drove the earlier pooled RRs of about 1.2-1.4 (BMJ 2025 umbrella review). Same paper: autism OR 0.98 (0.93-1.03), intellectual disability OR 0.93 (0.69-1.24). No increased risk detected. Outcome is a childhood neurodevelopmental diagnosis, not a neonatal harm; pharmacist to confirm fit.'
+  selection_note: 'Most recent meta-analysis; restricted to sibling designs, which control for familial confounding that drove the earlier pooled RRs of about 1.2-1.4 (BMJ 2025 umbrella review). Same paper: autism OR 0.98 (0.93-1.03), intellectual disability OR 0.93 (0.69-1.24). No increased risk detected. Outcome is a childhood neurodevelopmental diagnosis, not a neonatal harm; pharmacist to confirm fit. Rule 20: meta-analysis; it reports no incidence in non-users.'
   match_note: Outcome is child ADHD diagnosis, the specific harm the source studies (section 1); exposure is prenatal paracetamol use; comparator is the unexposed sibling.
 insufficient:
 - ingredient: acetaminophen
   applies_to: {condition: [heavy_alcohol_use]}
   dimension: liver
-  reason: 'applies_to condition heavy_alcohol_use: no study opened gives a relative risk of serious liver injury at therapeutic doses in heavy drinkers vs non-use. Louvet et al. Hepatology 2021 is a case series (reports proportions, e.g. 93% of therapeutic-dose ALI cases were excessive drinkers); RCT meta-analyses in alcoholics report no injury but no serious-outcome RR. Donati 2016 excluded alcohol abuse.'
+  reason: 'applies_to condition heavy_alcohol_use: no estimate specific to heavy_alcohol_use; the general estimate is used. No study opened gives a relative risk of serious liver injury at therapeutic doses in heavy drinkers vs non-use: Louvet et al. Hepatology 2021 is a case series (reports proportions, e.g. 93% of therapeutic-dose ALI cases were excessive drinkers); RCT meta-analyses in alcoholics report no injury but no serious-outcome RR. Donati 2016, the general estimate, excluded alcohol abuse.'
 - ingredient: acetaminophen
   applies_to: {condition: [liver_disease]}
   dimension: liver
-  reason: 'applies_to condition liver_disease: no relative risk for acute liver injury/failure at therapeutic doses in chronic liver disease or cirrhosis found; only a secondhand mention of a 170-patient case-control with no OR.'
+  reason: 'applies_to condition liver_disease: no estimate specific to liver_disease; the general estimate is used. No relative risk for acute liver injury or failure at therapeutic doses in chronic liver disease or cirrhosis was found; only a secondhand mention of a 170-patient case-control with no OR.'
 - ingredient: acetaminophen
   applies_to: {medication_type: [anticoagulants]}
   dimension: anticoagulant_bleeding
@@ -168,6 +361,9 @@ insufficient:
 - ingredient: acetaminophen
   dimension: kidney
   reason: no relative risk of hospital acute kidney injury vs non-use was found. Kanchanasurakit 2020 pools renal impairment (AKI and/or chronic), which fails rule 10. PubMed search (acetaminophen OR paracetamol AND acute kidney injury OR acute renal failure, case-control OR cohort OR meta-analysis) returned perioperative, ICU and overdose studies, and Weinstein 2020 (Drug Saf, CPRD) compares paracetamol with ibuprofen, not with non-use.
+- ingredient: acetaminophen
+  dimension: cardiovascular_bp
+  reason: 'no community_oral estimate of MI or stroke against non-use was found: every Chan 2006 stratum (Nurses'' Health Study) measures habitual use reported every two years over 12 years, long_term by rule 22, and Fulton 2015 is long_term prescribed use in hypertensive adults 65 and over.'
 max_daily_doses:
 - ingredient: acetaminophen
   max_daily_dose_mg: 4000
@@ -176,3 +372,4 @@ max_daily_doses:
     url: https://www.accessdata.fda.gov/drugsatfda_docs/omuf/monographs/OTC%20Monograph_M013-Internal%20Analgesic%2C%20Antipyretic%2C%20and%20Antirheumatic%20Drug%20Products%20for%20OTC%20Human%20Use%2010.14.2022.pdf
     location: § M013.50(d)(2), page 16 (eCFR 21 CFR part 343 currently holds only the professional cardiovascular and rheumatologic aspirin labeling, with no OTC analgesic daily maximum)
     quote: 'For products containing acetaminophen, aspirin, or sodium salicylate identified in §§ M013.10(a), (b), and (f). Adults: Oral dosage is 325 to 650 milligrams every 4 hours or 325 to 500 milligrams every 3 hours or 650 to 1,000 milligrams every 6 hours, while symptoms persist, not to exceed 4,000 milligrams in 24 hours, or as directed by a doctor.'
+  note: 'The monograph states the cap outright ("not to exceed 4,000 milligrams in 24 hours"); the largest regimen reaches it: 1,000 mg every 6 hours = 1,000 mg x 4 = 4,000 mg (also 500 mg every 3 hours = 500 mg x 8 = 4,000 mg).'
