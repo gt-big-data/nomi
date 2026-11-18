@@ -191,8 +191,8 @@ function scanAgain() {
 const REVIEWED = new Set(["sampled_ok", "pharmacist_reviewed"]);
 
 /**
- * The v0 engine's score for this product and profile, or the active ingredients it has no ratings
- * for. The one place scores come from.
+ * The v1 engine's score for this product and profile (docs/scoring/v1-method.md), or the active
+ * ingredients that haven't been through the evidence review. The one place scores come from.
  */
 function scoreFor(product: Product, profile: Profile): Scored {
   const { medication_types, ...rest } = toScoringProfile(profile);
@@ -434,7 +434,7 @@ function unscoredBody(lookup: Found, missing: string[]): string {
   }
   if (missing.length > 0) {
     const names = missing.map((name) => name.toLowerCase()).join(", ");
-    return `Nomi scores a product once every active ingredient is rated. Not rated yet: ${names}.`;
+    return `Nomi scores a product once the published evidence for every active ingredient has been reviewed. Not reviewed yet: ${names}.`;
   }
   return "Nomi hasn't rated this product's ingredients yet.";
 }

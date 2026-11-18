@@ -114,13 +114,13 @@ function applies(modifier: Modifier, profile: Profile): boolean {
 
 const sameCitation = (a: Citation, b: Citation) => JSON.stringify(a) === JSON.stringify(b);
 
-const capitalized = (text: string) => text.charAt(0).toUpperCase() + text.slice(1);
+export const capitalized = (text: string) => text.charAt(0).toUpperCase() + text.slice(1);
 
 /** The dataset spells ingredient names in capitals ("DOXYLAMINE SUCCINATE"). */
 const plain = (name: string) => name.toLowerCase();
 
 /** "heavy_alcohol_use" as words. */
-const words = (id: string) => id.replaceAll("_", " ");
+export const words = (id: string) => id.replaceAll("_", " ");
 
 /**
  * One line per risk: who is rated how high, what in the profile raised it, and the source's

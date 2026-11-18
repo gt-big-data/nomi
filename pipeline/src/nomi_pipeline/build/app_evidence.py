@@ -1,8 +1,9 @@
 """Write the v1 evidence table the app's scoring engine bundles (apps/mobile/src/scoring).
 
-Reads the cited relative risks and baselines in pipeline/knowledge/evidence/ and, when the FAERS
-stage has run, the IC025 signals in silver/faers_signals.parquet. The engine applies the formula
-in docs/scoring/v1-method.md to them; nothing here changes a number, it only checks and copies.
+Reads the cited relative risks and baselines in pipeline/knowledge/evidence/ and the FAERS signal
+summary (pipeline/derived/faers_signals.json, written by `pipeline evidence signals`). The engine
+applies the formula in docs/scoring/v1-method.md to them; nothing here changes a number, it only
+checks and copies.
 
 Usage:
     uv run python -m nomi_pipeline.build.app_evidence
@@ -11,20 +12,19 @@ Usage:
 from __future__ import annotations
 
 import json
-import logging
 import re
 from pathlib import Path
 from typing import Any
 
 import yaml
 
-ROOT = Path(__file__).resolve().parents[4]
-KNOWLEDGE = ROOT / "pipeline" / "knowledge" / "ingredients"
-EVIDENCE = ROOT / "pipeline" / "knowledge" / "evidence"
-OUTPUT = ROOT / "apps" / "mobile" / "src" / "scoring" / "evidence.json"
-REPORT = ROOT / "pipeline" / "reports" / "evidence_coverage.md"
+from nomi_pipeline.config import REPO_ROOT
 
-log = logging.getLogger(__name__)
+KNOWLEDGE = REPO_ROOT / "pipeline" / "knowledge" / "ingredients"
+EVIDENCE = REPO_ROOT / "pipeline" / "knowledge" / "evidence"
+SIGNALS = REPO_ROOT / "pipeline" / "derived" / "faers_signals.json"
+OUTPUT = REPO_ROOT / "apps" / "mobile" / "src" / "scoring" / "evidence.json"
+REPORT = REPO_ROOT / "pipeline" / "reports" / "evidence_coverage.md"
 
 # v1-method.md section 1: the dimensions with a serious outcome. The rest give no points.
 OUTCOME_DIMENSIONS = (
@@ -38,22 +38,61 @@ OUTCOME_DIMENSIONS = (
     "anticoagulant_bleeding",
     "pregnancy_lactation",
 )
-PERSONAS = {
-    "all",
-    "adult_18_64",
-    "adult_65_plus",
-    "teen_12_17",
-    "child_6_11",
-    "child_2_5",
-    "under_2",
-    "pregnant",
-    "breastfeeding",
-}
+PERSONAS = frozenset(
+    {
+        "adult_18_64",
+        "adult_65_plus",
+        "teen_12_17",
+        "child_6_11",
+        "child_2_5",
+        "under_2",
+        "pregnant",
+        "breastfeeding",
+    }
+)
+CONDITIONS = frozenset(
+    {
+        "hypertension",
+        "heart_disease",
+        "kidney_disease",
+        "liver_disease",
+        "stomach_ulcer_or_bleeding",
+        "glaucoma",
+        "enlarged_prostate",
+        "asthma",
+        "diabetes",
+        "thyroid_disease",
+        "phenylketonuria",
+        "heavy_alcohol_use",
+    }
+)
+MEDICATION_TYPES = frozenset(
+    {
+        "anticoagulants",
+        "antiplatelets",
+        "maoi",
+        "ssri_snri",
+        "sedatives",
+        "diuretics",
+        "blood_pressure_medications",
+        "corticosteroids",
+    }
+)
+SCOPE_KEYS = {"persona": PERSONAS, "condition": CONDITIONS, "medication_type": MEDICATION_TYPES}
 MEASURES = {"RR", "OR", "HR", "IRR"}
 GRADES = {"meta_analysis", "cohort", "case_control", "regulatory"}
-# v1-method.md section 7 rule 7: an insufficient reason that names who it is about.
-APPLIES_TO = re.compile(r"applies_to (persona|condition|medication_type) ([a-z0-9_]+)")
+TOKEN = re.compile(r"[a-z0-9_]+")
 YEAR = re.compile(r"\b(19|20)\d\d\b")
+
+
+def leading_scope(reason: str) -> dict[str, list[str]]:
+    """The personas, conditions and co-medications a reason names before its first colon, the
+    way the evidence files state who an insufficient entry is about ("breastfeeding: ...",
+    "applies_to condition heavy_alcohol_use: ...", "pregnant/breastfeeding: ...")."""
+    head = reason.split(":", 1)[0] if ":" in reason else ""
+    tokens = TOKEN.findall(head.lower())
+    scope = {key: sorted({t for t in tokens if t in known}) for key, known in SCOPE_KEYS.items()}
+    return {key: values for key, values in scope.items() if values}
 
 
 def _short(citation: str) -> str:
@@ -76,21 +115,27 @@ def _source(source: dict[str, Any], where: str) -> dict[str, Any]:
     }
 
 
+def _dimension(row: dict[str, Any], where: str) -> str:
+    if row["dimension"] not in OUTCOME_DIMENSIONS:
+        raise ValueError(f"{where}: {row['dimension']} is not a v1 outcome")
+    return str(row["dimension"])
+
+
 def _applies(row: dict[str, Any], where: str) -> dict[str, Any]:
     applies = row.get("applies_to") or {}
     persona = applies.get("persona") or row.get("persona") or "all"
-    if persona not in PERSONAS:
+    condition = applies.get("condition", row.get("condition"))
+    medication = applies.get("medication_type", row.get("medication_type"))
+    if persona != "all" and persona not in PERSONAS:
         raise ValueError(f"{where}: unknown persona {persona}")
-    return {
-        "persona": persona,
-        "condition": applies.get("condition", row.get("condition")),
-        "medication_type": applies.get("medication_type", row.get("medication_type")),
-    }
+    if condition is not None and condition not in CONDITIONS:
+        raise ValueError(f"{where}: unknown condition {condition}")
+    if medication is not None and medication not in MEDICATION_TYPES:
+        raise ValueError(f"{where}: unknown medication type {medication}")
+    return {"persona": persona, "condition": condition, "medication_type": medication}
 
 
 def _relative_risk(row: dict[str, Any], where: str) -> dict[str, Any]:
-    if row["dimension"] not in OUTCOME_DIMENSIONS:
-        raise ValueError(f"{where}: {row['dimension']} is not a v1 outcome")
     if row["measure"] not in MEASURES:
         raise ValueError(f"{where}: unknown measure {row['measure']}")
     if row["grade"] not in GRADES:
@@ -100,7 +145,7 @@ def _relative_risk(row: dict[str, Any], where: str) -> dict[str, Any]:
     if not (0 < low <= estimate <= high):
         raise ValueError(f"{where}: estimate {estimate} outside its interval {low}-{high}")
     return {
-        "dimension": row["dimension"],
+        "dimension": _dimension(row, where),
         **_applies(row, where),
         "measure": row["measure"],
         "estimate": estimate,
@@ -112,21 +157,32 @@ def _relative_risk(row: dict[str, Any], where: str) -> dict[str, Any]:
     }
 
 
-def _insufficient(row: dict[str, Any]) -> dict[str, Any]:
-    out: dict[str, Any] = {"dimension": row["dimension"], "reason": row["reason"]}
-    for key, value in APPLIES_TO.findall(row["reason"]):
-        out.setdefault(key, value)
-    return out
+def _insufficient(row: dict[str, Any], where: str) -> dict[str, Any]:
+    """Rule 7: an entry is shown to profiles with any persona, condition or co-medication its
+    structured applies_to lists; with none listed, to every profile."""
+    scope = {key: sorted(row.get("applies_to", {}).get(key) or []) for key in SCOPE_KEYS}
+    for key, values in scope.items():
+        unknown = set(values) - SCOPE_KEYS[key]
+        if unknown:
+            raise ValueError(f"{where}: unknown {key} {sorted(unknown)}")
+    stated = leading_scope(row["reason"])
+    if any(scope[key] != stated.get(key, []) for key in SCOPE_KEYS):
+        raise ValueError(f"{where}: applies_to {scope} does not match the reason's {stated}")
+    return {
+        "dimension": _dimension(row, where),
+        "personas": scope["persona"],
+        "conditions": scope["condition"],
+        "medication_types": scope["medication_type"],
+        "reason": row["reason"],
+    }
 
 
 def _baseline(row: dict[str, Any], where: str) -> dict[str, Any]:
-    if row["dimension"] not in OUTCOME_DIMENSIONS:
-        raise ValueError(f"{where}: {row['dimension']} is not a v1 outcome")
     incidence = float(row["annual_incidence"])
     if not 0 < incidence < 1:
         raise ValueError(f"{where}: annual incidence {incidence} is not a probability")
     return {
-        "dimension": row["dimension"],
+        "dimension": _dimension(row, where),
         **_applies(row, where),
         "annual_incidence": incidence,
         "as_reported": row["as_reported"],
@@ -135,62 +191,39 @@ def _baseline(row: dict[str, Any], where: str) -> dict[str, Any]:
     }
 
 
-def _faers(signals_path: Path | None) -> dict[str, list[dict[str, Any]]]:
-    """By UNII: the strongest signal (IC025 above 0) per dimension and age band, sexes pooled."""
-    if signals_path is None or not signals_path.exists():
-        return {}
-    import polars as pl
-
-    rows = (
-        pl.read_parquet(signals_path)
-        .filter(pl.col("sex") == "all", pl.col("ic025") > 0)
-        .sort("ic025", descending=True)
-        .unique(["unii", "dimension", "age_band"], keep="first")
-        .sort("unii", "dimension", "age_band")
-    )
-    out: dict[str, list[dict[str, Any]]] = {}
-    for r in rows.iter_rows(named=True):
-        out.setdefault(r["unii"], []).append(
-            {
-                "dimension": r["dimension"],
-                "age_band": r["age_band"],
-                "event_group": r["event_group"],
-                "ic025": round(r["ic025"], 3),
-                "reports": r["report_count"],
-            }
-        )
-    return out
+def _read_yaml(path: Path) -> Any:
+    return yaml.safe_load(path.read_text(encoding="utf-8"))
 
 
-def build(signals_path: Path | None = None) -> dict[str, Any]:
-    kb = {p.stem: yaml.safe_load(p.read_text(encoding="utf-8")) for p in KNOWLEDGE.glob("*.yaml")}
+def collect(signals_path: Path = SIGNALS) -> tuple[dict[str, Any], dict[str, list[str]]]:
+    """The evidence table and, by ingredient file, the dimensions it is missing (rule 9)."""
+    if not signals_path.exists():
+        raise FileNotFoundError(f"{signals_path} missing; run `uv run pipeline evidence signals`")
+    signals: dict[str, list[dict[str, Any]]] = json.loads(signals_path.read_text(encoding="utf-8"))
+    kb = {p.stem: _read_yaml(p) for p in sorted(KNOWLEDGE.glob("*.yaml"))}
     rows: dict[str, list[dict[str, Any]]] = {}
     gaps: dict[str, list[dict[str, Any]]] = {}
     baselines: list[dict[str, Any]] = []
     for path in sorted(EVIDENCE.glob("*.yaml")):
-        data = yaml.safe_load(path.read_text(encoding="utf-8"))
+        data = _read_yaml(path)
         for i, row in enumerate(data.get("baselines") or []):
             baselines.append(_baseline(row, f"{path.name} baseline {i}"))
-        for i, row in enumerate(data.get("relative_risks") or []):
-            where = f"{path.name} row {i} ({row.get('ingredient')} {row.get('dimension')})"
-            if row["ingredient"] not in kb:
-                raise ValueError(f"{where}: no ingredient file {row['ingredient']}.yaml")
-            rows.setdefault(row["ingredient"], []).append(_relative_risk(row, where))
         if data.get("group") == "baselines":
             continue
-        for row in data.get("insufficient") or []:
-            if row["ingredient"] not in kb:
-                raise ValueError(f"{path.name}: no ingredient file {row['ingredient']}.yaml")
-            gaps.setdefault(row["ingredient"], []).append(_insufficient(row))
+        for kind, target in (("relative_risks", rows), ("insufficient", gaps)):
+            for i, row in enumerate(data.get(kind) or []):
+                where = f"{path.name} {kind} {i} ({row.get('ingredient')} {row.get('dimension')})"
+                if row["ingredient"] not in kb:
+                    raise ValueError(f"{where}: no ingredient file {row['ingredient']}.yaml")
+                parse = _relative_risk if kind == "relative_risks" else _insufficient
+                target.setdefault(row["ingredient"], []).append(parse(row, where))
 
     # Rule 9: an ingredient is covered when every outcome dimension v0 rated above 0 for it has
     # a row or an insufficient entry. Uncovered ingredients are left out, so products with them
     # are unrated rather than scored on part of the evidence.
-    signals = _faers(signals_path)
     ingredients: dict[str, Any] = {}
     uncovered: dict[str, list[str]] = {}
-    for stem in sorted(kb):
-        entry = kb[stem]
+    for stem, entry in kb.items():
         rated = {
             r["dimension"]
             for r in entry.get("ratings", []) + entry.get("modifiers", [])
@@ -208,22 +241,26 @@ def build(signals_path: Path | None = None) -> dict[str, Any]:
             "insufficient": gaps.get(stem, []),
             "faers": signals.get(entry["unii"], []),
         }
-    _write_report(kb, ingredients, uncovered, bool(signals))
-    return {
+    table = {
         "method": "docs/scoring/v1-method.md",
         "course_days": 10,
-        "ingredients": ingredients,
+        "ingredients": dict(sorted(ingredients.items())),
         "baselines": baselines,
     }
+    return table, uncovered
 
 
-def _write_report(
-    kb: dict[str, Any], ingredients: dict[str, Any], uncovered: dict[str, list[str]], faers: bool
-) -> None:
+def render(signals_path: Path = SIGNALS) -> str:
+    return json.dumps(collect(signals_path)[0], indent=2, ensure_ascii=False) + "\n"
+
+
+def coverage_report(signals_path: Path = SIGNALS) -> str:
+    table, uncovered = collect(signals_path)
+    ingredients = table["ingredients"]
     lines = [
         "# Evidence coverage (v1)",
         "",
-        f"{len(ingredients)} of {len(kb)} ingredients covered.",
+        f"{len(ingredients)} of {len(ingredients) + len(uncovered)} ingredients covered.",
         "",
     ]
     if uncovered:
@@ -231,8 +268,6 @@ def _write_report(
         lines += [f"- {stem}: no row for {', '.join(dims)}" for stem, dims in uncovered.items()]
         lines.append("")
     lines += ["## FAERS signal with no published estimate (flagged for review)", ""]
-    if not faers:
-        lines.append("FAERS signals not built; run `uv run pipeline evidence signals`.")
     for entry in ingredients.values():
         estimated = {r["dimension"] for r in entry["relative_risks"]}
         for s in entry["faers"]:
@@ -241,15 +276,10 @@ def _write_report(
                     f"- {entry['name']} {s['dimension']} ({s['age_band']}): "
                     f"IC025 {s['ic025']}, {s['reports']} reports, {s['event_group']}"
                 )
-    REPORT.parent.mkdir(parents=True, exist_ok=True)
-    REPORT.write_text("\n".join(lines) + "\n", encoding="utf-8")
-
-
-def render(signals_path: Path | None = None) -> str:
-    return json.dumps(build(signals_path), indent=2, ensure_ascii=False) + "\n"
+    return "\n".join(lines) + "\n"
 
 
 if __name__ == "__main__":
-    from nomi_pipeline.config import Settings
-
-    OUTPUT.write_text(render(Settings().silver_dir / "faers_signals.parquet"), encoding="utf-8")
+    OUTPUT.write_text(render(), encoding="utf-8")
+    REPORT.parent.mkdir(parents=True, exist_ok=True)
+    REPORT.write_text(coverage_report(), encoding="utf-8")

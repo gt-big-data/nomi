@@ -113,7 +113,7 @@ export function checkRecords(records: unknown[]): ScoreRecord[] {
       throw new Error(`${where}: incomplete profile`);
     }
     if (!TIERS.includes(record.tier)) throw new Error(`${where}: unknown tier ${record.tier}`);
-    if (typeof record.score !== "number") throw new Error(`${where}: no score`);
+    if (!Number.isFinite(record.score)) throw new Error(`${where}: no score`);
     if (!Array.isArray(record.hard_stops_triggered)) throw new Error(`${where}: no hard stops`);
     const stopIds = new Set<string>();
     for (const stop of record.hard_stops_triggered) {
@@ -133,7 +133,7 @@ export function checkRecords(records: unknown[]): ScoreRecord[] {
     }
     for (const contribution of record.contributions) {
       const at = `${where} ${contribution?.dimension}`;
-      if (typeof contribution?.points !== "number") throw new Error(`${at}: no points`);
+      if (!Number.isFinite(contribution?.points)) throw new Error(`${at}: no points`);
       if (!(contribution.dimension in DIMENSION_NAMES)) throw new Error(`${at}: unknown dimension`);
       checkCitations(contribution.citations, at);
       const explained = record.explanation.some(

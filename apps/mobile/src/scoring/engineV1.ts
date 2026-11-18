@@ -7,7 +7,18 @@
  * Hard stops and the child-label rule are the label's, as in v0, so they come from engine.ts.
  */
 
-import { score as scoreV0, type Citation, type EngineRecord, type Profile, type Ratings, type ScorableProduct, type ScoreResult } from "./engine.ts";
+import {
+  capitalized,
+  score as scoreV0,
+  tier,
+  words,
+  type Citation,
+  type EngineRecord,
+  type Profile,
+  type Ratings,
+  type ScorableProduct,
+  type ScoreResult,
+} from "./engine.ts";
 
 interface Applies {
   persona: string;
@@ -15,20 +26,39 @@ interface Applies {
   medication_type: string | null;
 }
 
+type EvidenceCitation = Citation & { citation: string };
+
 export interface RelativeRisk extends Applies {
   dimension: string;
   measure: string;
   estimate: number;
-  ci95: [number, number];
+  ci95: number[];
   grade: string;
-  citation: Citation & { citation: string };
+  citation: EvidenceCitation;
 }
 
 export interface Baseline extends Applies {
   dimension: string;
   annual_incidence: number;
   as_reported: string;
-  citation: Citation & { citation: string };
+  citation: EvidenceCitation;
+}
+
+export interface Insufficient {
+  dimension: string;
+  /** Shown to profiles with any of these; to every profile when all three are empty. */
+  personas: string[];
+  conditions: string[];
+  medication_types: string[];
+  reason: string;
+}
+
+export interface FaersSignal {
+  dimension: string;
+  age_band: string;
+  event_group: string;
+  ic025: number;
+  reports: number;
 }
 
 export interface Evidence {
@@ -38,8 +68,8 @@ export interface Evidence {
     {
       name: string;
       relative_risks: RelativeRisk[];
-      insufficient: { dimension: string; reason: string; persona?: string; condition?: string; medication_type?: string }[];
-      faers: { dimension: string; age_band: string; event_group: string; ic025: number; reports: number }[];
+      insufficient: Insufficient[];
+      faers: FaersSignal[];
     }
   >;
   baselines: Baseline[];
@@ -56,6 +86,16 @@ const OUTCOMES: Record<string, string> = {
   serotonergic_interactions: "serotonin syndrome",
   anticoagulant_bleeding: "major bleeding",
   pregnancy_lactation: "the pregnancy harm studied",
+};
+
+/**
+ * Rule 7: dimensions whose outcome only exists for some profiles, so a gap in them is only news
+ * to those profiles.
+ */
+const DIMENSION_SCOPE: Record<string, (profile: Profile) => boolean> = {
+  pregnancy_lactation: (p) => p.persona === "pregnant" || p.persona === "breastfeeding",
+  anticoagulant_bleeding: (p) =>
+    p.medicationTypes.includes("anticoagulants") || p.medicationTypes.includes("antiplatelets"),
 };
 
 const MEASURES: Record<string, string> = {
@@ -84,11 +124,38 @@ const AGE_BANDS: Record<string, string> = {
   under_2: "0-11",
 };
 
-/** Rule 5: personas whose baseline age band is another persona's when no row names them. */
-const BASELINE_AGE: Record<string, string> = { pregnant: "adult_18_64", breastfeeding: "adult_18_64" };
+/** Rule 5: personas whose baseline is their age band's when no row names them. */
+const BASELINE_AGE: Record<string, string> = {
+  pregnant: "adult_18_64",
+  breastfeeding: "adult_18_64",
+};
 
-const words = (id: string) => id.replaceAll("_", " ");
-const capitalized = (text: string) => text.charAt(0).toUpperCase() + text.slice(1);
+/** Throws unless every number the formula reads is a finite number in range. */
+export function checkEvidence(evidence: Evidence): Evidence {
+  const finite = (value: unknown, where: string, low = 0) => {
+    if (typeof value !== "number" || !Number.isFinite(value) || value <= low) {
+      throw new Error(`evidence ${where}: ${String(value)} is not a number above ${low}`);
+    }
+  };
+  finite(evidence.course_days, "course_days");
+  for (const [unii, entry] of Object.entries(evidence.ingredients)) {
+    for (const row of entry.relative_risks) {
+      finite(row.estimate, `${unii} ${row.dimension} estimate`);
+      if (!(row.dimension in OUTCOMES)) throw new Error(`evidence ${unii}: ${row.dimension}`);
+    }
+    for (const gap of entry.insufficient) {
+      if (![gap.personas, gap.conditions, gap.medication_types].every(Array.isArray)) {
+        throw new Error(`evidence ${unii} ${gap.dimension}: insufficient scope missing`);
+      }
+    }
+  }
+  for (const row of evidence.baselines) {
+    finite(row.annual_incidence, `baseline ${row.dimension} ${row.persona}`);
+    if (row.annual_incidence >= 1)
+      throw new Error(`evidence baseline ${row.dimension}: not a rate`);
+  }
+  return evidence;
+}
 
 function matches(row: Applies, persona: string, profile: Profile): boolean {
   return (
@@ -102,18 +169,45 @@ const specific = (row: Applies) =>
   row.persona !== "all" || row.condition != null || row.medication_type != null;
 
 /** Rule 3: the largest applying specific row, else the largest applying general row. */
-function pick<T extends Applies>(rows: T[], persona: string, profile: Profile, value: (row: T) => number): T | undefined {
+function pick<T extends Applies>(
+  rows: T[],
+  persona: string,
+  profile: Profile,
+  value: (row: T) => number,
+): T | undefined {
   const applying = rows.filter((row) => matches(row, persona, profile));
   const pool = applying.some(specific) ? applying.filter(specific) : applying;
-  return pool.reduce<T | undefined>((best, row) => (best && value(best) >= value(row) ? best : row), undefined);
+  return pool.reduce<T | undefined>(
+    (best, row) => (best && value(best) >= value(row) ? best : row),
+    undefined,
+  );
 }
 
-/** Rule 5: the profile's own persona first, then its age band. */
-function baselineFor(evidence: Evidence, dimension: string, profile: Profile): Baseline | undefined {
+/**
+ * Rule 5: a pregnant or breastfeeding profile uses its age band's rows (adult_18_64 over "all")
+ * unless some row names its own persona.
+ */
+function baselineFor(
+  evidence: Evidence,
+  dimension: string,
+  profile: Profile,
+): Baseline | undefined {
   const rows = evidence.baselines.filter((row) => row.dimension === dimension);
-  const own = pick(rows, profile.persona, profile, (row) => row.annual_incidence);
-  if (own || !(profile.persona in BASELINE_AGE)) return own;
-  return pick(rows, BASELINE_AGE[profile.persona], profile, (row) => row.annual_incidence);
+  const named = rows.some((row) => row.persona === profile.persona);
+  const persona = named ? profile.persona : (BASELINE_AGE[profile.persona] ?? profile.persona);
+  return pick(rows, persona, profile, (row) => row.annual_incidence);
+}
+
+/** Rule 7. */
+function gapApplies(gap: Insufficient, profile: Profile): boolean {
+  if (DIMENSION_SCOPE[gap.dimension] && !DIMENSION_SCOPE[gap.dimension](profile)) return false;
+  const scoped = gap.personas.length + gap.conditions.length + gap.medication_types.length > 0;
+  return (
+    !scoped ||
+    gap.personas.includes(profile.persona) ||
+    gap.conditions.some((c) => profile.conditions.includes(c)) ||
+    gap.medication_types.some((m) => profile.medicationTypes.includes(m))
+  );
 }
 
 /** "1 in 25,000" */
@@ -125,17 +219,22 @@ function oneIn(probability: number): string {
 
 /** Score on the CIOMS-anchored scale (section 3): 1e-5 is 100, 1e-4 is 75, 1e-3 is 50. */
 export function scaleScore(excessRisk: number): number {
-  if (excessRisk <= 0) return 100;
+  if (!Number.isFinite(excessRisk) || excessRisk < 0) {
+    throw new Error(`excess risk ${excessRisk} is not a probability`);
+  }
+  if (excessRisk === 0) return 100;
   return Math.min(100, Math.max(0, 100 - 25 * (Math.log10(excessRisk) + 5)));
 }
 
 /** Rule 8: whole points that add up to total, by largest remainder. */
-function apportion(total: number, weights: number[]): number[] {
+export function apportion(total: number, weights: number[]): number[] {
   const sum = weights.reduce((a, b) => a + b, 0);
   if (sum === 0 || total === 0) return weights.map(() => 0);
   const exact = weights.map((w) => (total * w) / sum);
   const out = exact.map(Math.floor);
-  const order = exact.map((x, i) => [x - Math.floor(x), i] as const).sort((a, b) => b[0] - a[0] || a[1] - b[1]);
+  const order = exact
+    .map((x, i) => [x - Math.floor(x), i] as const)
+    .sort((a, b) => b[0] - a[0] || a[1] - b[1]);
   const remaining = total - out.reduce((a, b) => a + b, 0);
   for (let k = 0; k < remaining; k++) out[order[k][1]] += 1;
   return out;
@@ -148,15 +247,19 @@ export function scoreV1(
   evidence: Evidence,
 ): ScoreResult {
   // Rule 9: every active ingredient must have been through the evidence review.
-  const missing = product.ingredients.filter((i) => !(i.unii in evidence.ingredients)).map((i) => i.name);
-  if (product.ingredients.length === 0 || missing.length > 0) return { status: "unrated", missing };
+  const missing = product.ingredients
+    .filter((i) => !(i.unii in evidence.ingredients))
+    .map((i) => i.name);
+  if (product.ingredients.length === 0 || missing.length > 0) {
+    return { status: "unrated", missing };
+  }
 
   // Hard stops and the child-label rule come from the label, exactly as in v0.
   const v0 = scoreV0(product, profile, ratings);
   if ("status" in v0) return v0;
 
   const uniis = [...new Set(product.ingredients.map((i) => i.unii))].sort();
-  const name = (unii: string) => evidence.ingredients[unii].name.replaceAll("_", " ");
+  const name = (unii: string) => words(evidence.ingredients[unii].name);
   const band = AGE_BANDS[profile.persona];
 
   interface Term {
@@ -164,13 +267,14 @@ export function scoreV1(
     ear: number;
     used: { unii: string; row: RelativeRisk }[];
     baseline: Baseline;
-    rr: number;
   }
   const terms: Term[] = [];
   const gaps: string[] = [];
   for (const dimension of Object.keys(OUTCOMES)) {
     const used = uniis.flatMap((unii) => {
-      const rows = evidence.ingredients[unii].relative_risks.filter((r) => r.dimension === dimension);
+      const rows = evidence.ingredients[unii].relative_risks.filter(
+        (r) => r.dimension === dimension,
+      );
       const row = pick(rows, profile.persona, profile, (r) => r.estimate);
       return row ? [{ unii, row }] : [];
     });
@@ -180,38 +284,54 @@ export function scoreV1(
     const baseline = baselineFor(evidence, dimension, profile);
     if (!baseline) {
       // Rule 6.
-      gaps.push(`${OUTCOMES[dimension]}: no published baseline rate for this profile`);
+      gaps.push(`${OUTCOMES[dimension]} (no published baseline rate for this profile)`);
       continue;
     }
     const ear = (baseline.annual_incidence * (rr - 1) * evidence.course_days) / 365;
-    terms.push({ dimension, ear, used, baseline, rr });
+    terms.push({ dimension, ear, used, baseline });
   }
 
-  // Rule 7: insufficient-evidence pairs that apply to this profile.
   for (const unii of uniis) {
     for (const gap of evidence.ingredients[unii].insufficient) {
-      if (gap.persona && gap.persona !== profile.persona) continue;
-      if (gap.condition && !profile.conditions.includes(gap.condition)) continue;
-      if (gap.medication_type && !profile.medicationTypes.includes(gap.medication_type)) continue;
-      const who = gap.condition ?? gap.medication_type ?? gap.persona;
-      gaps.push(`${OUTCOMES[gap.dimension] ?? words(gap.dimension)} with ${name(unii)}${who ? ` (${words(who)})` : ""}`);
+      if (gapApplies(gap, profile)) gaps.push(`${OUTCOMES[gap.dimension]} with ${name(unii)}`);
     }
   }
 
   const excess = terms.reduce((sum, t) => sum + t.ear, 0);
   const total = Math.round(scaleScore(excess));
-  const points = apportion(100 - total, terms.map((t) => t.ear));
+  const points = apportion(
+    100 - total,
+    terms.map((t) => t.ear),
+  );
+
+  const signalFor = (unii: string, dimension: string) => {
+    const signals = evidence.ingredients[unii].faers.filter((s) => s.dimension === dimension);
+    return signals.find((s) => s.age_band === band) ?? signals.find((s) => s.age_band === "all");
+  };
 
   const contributions: EngineRecord["contributions"] = [];
   const explanation: EngineRecord["explanation"] = [];
+  const small: string[] = [];
   terms.forEach((term, i) => {
-    if (points[i] === 0) return;
+    const sentence = `${capitalized(OUTCOMES[term.dimension])}: ${term.used
+      .map(({ unii, row }) => {
+        const short = row.citation.section?.split(",")[0] ?? "";
+        const measure = MEASURES[row.measure] ?? row.measure;
+        const grade = GRADES[row.grade] ?? row.grade;
+        return `${name(unii)} ${row.estimate} times as likely (${measure}, 95% CI ${row.ci95[0]} to ${row.ci95[1]}; ${grade}, ${short})`;
+      })
+      .join("; ")}. Baseline ${oneIn(term.baseline.annual_incidence)} a year, so one ${
+      evidence.course_days
+    }-day course adds about ${oneIn(term.ear)}.`;
+    if (points[i] === 0) {
+      // Too small to take a whole point, but it still counts toward the score.
+      small.push(sentence);
+      return;
+    }
     const citations: Citation[] = [];
     for (const { unii, row } of term.used) {
       citations.push(row.citation);
-      const signal = evidence.ingredients[unii].faers
-        .filter((s) => s.dimension === term.dimension && s.age_band === band)
-        .sort((a, b) => b.ic025 - a.ic025)[0];
+      const signal = signalFor(unii, term.dimension);
       if (signal) {
         citations.push({
           source: "faers",
@@ -226,21 +346,16 @@ export function scoreV1(
       ingredient_uniis: term.used.map((u) => u.unii),
       citations,
     });
-    const factors = term.used
-      .map(({ unii, row }) => {
-        const short = row.citation.section?.split(",")[0] ?? "";
-        return `${name(unii)} ${row.estimate} times as likely (${MEASURES[row.measure] ?? row.measure}, 95% CI ${row.ci95[0]} to ${row.ci95[1]}; ${GRADES[row.grade] ?? row.grade}, ${short})`;
-      })
-      .join("; ");
-    explanation.push({
-      template_id: `engine_v1_${term.dimension}`,
-      text:
-        `${capitalized(OUTCOMES[term.dimension])}: ${factors}. ` +
-        `Baseline ${oneIn(term.baseline.annual_incidence)} a year, so one ${evidence.course_days}-day course adds about ${oneIn(term.ear)}.`,
-    });
+    explanation.push({ template_id: `engine_v1_${term.dimension}`, text: sentence });
   });
   contributions.sort((a, b) => b.points - a.points || (a.dimension < b.dimension ? -1 : 1));
 
+  if (small.length > 0) {
+    explanation.push({
+      template_id: "engine_v1_under_one_point",
+      text: `Under one point each: ${small.join(" ")}`,
+    });
+  }
   if (gaps.length > 0) {
     explanation.push({
       template_id: "engine_v1_insufficient",
@@ -251,7 +366,7 @@ export function scoreV1(
   return {
     ...v0,
     score: total,
-    tier: v0.hard_stops_triggered.length > 0 ? "red" : total >= 75 ? "green" : total >= 50 ? "yellow" : "red",
+    tier: tier(total, v0.hard_stops_triggered),
     contributions,
     explanation,
   };

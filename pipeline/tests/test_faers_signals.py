@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import json
 import math
 from pathlib import Path
 from types import SimpleNamespace
@@ -47,13 +48,20 @@ def _pairs(path: Path) -> None:
         [("ADVIL PM", "IBUPROFEN SODIUM\\DIPHENHYDRAMINE CITRATE")],
         [("hepatic failure", "hepatic_disorders"), ("jaundice", "hepatic_disorders")],
     )
+    # A salt under its INN name, and a report with unknown age.
+    report([("PIRITON", "CHLORPHENAMINE MALEATE")], [("somnolence", "falls_sedation")])
+    report([("ACETAMINOPHEN", None)], [("nausea", None)], age="unknown")
     pl.DataFrame(rows).write_parquet(path / "faers_pairs.parquet")
 
 
 @pytest.fixture
 def signals(tmp_path: Path) -> pl.DataFrame:
     _pairs(tmp_path)
-    fs.build_faers_signals(SimpleNamespace(silver_dir=tmp_path), reports_dir=tmp_path)  # type: ignore[arg-type]
+    fs.build_faers_signals(
+        SimpleNamespace(silver_dir=tmp_path),  # type: ignore[arg-type]
+        reports_dir=tmp_path,
+        summary_path=tmp_path / "summary.json",
+    )
     return pl.read_parquet(tmp_path / "faers_signals.parquet")
 
 
@@ -69,10 +77,11 @@ def _row(df: pl.DataFrame, moiety: str, group: str = "hepatic_disorders") -> dic
 
 def test_counts_reports_and_expected(signals: pl.DataFrame) -> None:
     row = _row(signals, "ACETAMINOPHEN")
-    # 100 acetaminophen reports (PARACETAMOL included), 41 hepatic reports, 1011 reports.
+    # 101 acetaminophen reports (PARACETAMOL and the drugname-only report included), 41 hepatic
+    # reports, 1013 reports. The unknown-age report counts in the pooled stratum only.
     assert row["report_count"] == 30
-    assert row["expected_count"] == pytest.approx(100 * 41 / 1011)
-    assert row["ic"] == pytest.approx(math.log2(30.5 / (100 * 41 / 1011 + 0.5)))
+    assert row["expected_count"] == pytest.approx(101 * 41 / 1013)
+    assert row["ic"] == pytest.approx(math.log2(30.5 / (101 * 41 / 1013 + 0.5)))
     assert row["ic025"] > 0
     assert row["dimension"] == "liver"
 
@@ -104,3 +113,24 @@ def test_expected_count_does_not_overflow() -> None:
         schema={"n_x": pl.UInt32, "n_y": pl.UInt32, "n": pl.UInt32},
     )
     assert counts.select(fs._expected())[0, 0] == pytest.approx(50_000 * 350_000 / 17_000_000)
+
+
+def test_inn_salt_names_match(signals: pl.DataFrame) -> None:
+    assert _row(signals, "CHLORPHENIRAMINE", "falls_sedation")["report_count"] == 1
+
+
+def test_unknown_age_only_in_pooled_strata(signals: pl.DataFrame) -> None:
+    adults = signals.filter(
+        pl.col("moiety") == "ACETAMINOPHEN",
+        pl.col("event_group") == "hepatic_disorders",
+        pl.col("age_band") == "18-64",
+        pl.col("sex") == "all",
+    ).row(0, named=True)
+    # 1012 known-age reports, 100 acetaminophen among them.
+    assert adults["expected_count"] == pytest.approx(100 * 41 / 1012)
+
+
+def test_summary_keeps_signals_only(tmp_path: Path, signals: pl.DataFrame) -> None:
+    summary = json.loads((tmp_path / "summary.json").read_text())
+    rows = [r for entries in summary.values() for r in entries]
+    assert rows and all(r["ic025"] > 0 for r in rows)

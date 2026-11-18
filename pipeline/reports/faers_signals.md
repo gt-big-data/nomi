@@ -230,9 +230,9 @@ never set a score (docs/scoring/v1-method.md section 4).
 | cetirizine | serotonin_syndrome | all | 10 | 42.1 | -2.02 | -3.05 |  |
 | chlorpheniramine | cardiovascular_events | 0-11 | 15 | 4.0 | 1.78 | 0.96 | yes |
 | chlorpheniramine | cardiovascular_events | 12-17 | 35 | 6.7 | 2.31 | 1.79 | yes |
-| chlorpheniramine | cardiovascular_events | 18-64 | 227 | 98.3 | 1.20 | 1.01 | yes |
+| chlorpheniramine | cardiovascular_events | 18-64 | 227 | 98.4 | 1.20 | 1.01 | yes |
 | chlorpheniramine | cardiovascular_events | 65+ | 122 | 54.6 | 1.15 | 0.89 | yes |
-| chlorpheniramine | cardiovascular_events | all | 521 | 279.9 | 0.90 | 0.77 | yes |
+| chlorpheniramine | cardiovascular_events | all | 521 | 280.1 | 0.89 | 0.77 | yes |
 | chlorpheniramine | cognitive_impairment | 0-11 | 1 | 1.0 | -0.02 | -4.07 |  |
 | chlorpheniramine | cognitive_impairment | 12-17 | 12 | 2.8 | 1.91 | 0.98 | yes |
 | chlorpheniramine | cognitive_impairment | 18-64 | 75 | 41.0 | 0.86 | 0.52 | yes |
@@ -240,29 +240,29 @@ never set a score (docs/scoring/v1-method.md section 4).
 | chlorpheniramine | cognitive_impairment | all | 194 | 121.6 | 0.67 | 0.46 | yes |
 | chlorpheniramine | falls_sedation | 0-11 | 14 | 4.7 | 1.49 | 0.64 | yes |
 | chlorpheniramine | falls_sedation | 12-17 | 26 | 11.0 | 1.20 | 0.60 | yes |
-| chlorpheniramine | falls_sedation | 18-64 | 294 | 121.2 | 1.27 | 1.10 | yes |
+| chlorpheniramine | falls_sedation | 18-64 | 294 | 121.4 | 1.27 | 1.10 | yes |
 | chlorpheniramine | falls_sedation | 65+ | 226 | 60.8 | 1.89 | 1.69 | yes |
-| chlorpheniramine | falls_sedation | all | 763 | 333.2 | 1.19 | 1.09 | yes |
+| chlorpheniramine | falls_sedation | all | 763 | 333.4 | 1.19 | 1.09 | yes |
 | chlorpheniramine | gastrointestinal_hemorrhage | 12-17 | 1 | 2.6 | -1.06 | -5.11 |  |
-| chlorpheniramine | gastrointestinal_hemorrhage | 18-64 | 61 | 26.3 | 1.20 | 0.81 | yes |
+| chlorpheniramine | gastrointestinal_hemorrhage | 18-64 | 61 | 26.4 | 1.19 | 0.81 | yes |
 | chlorpheniramine | gastrointestinal_hemorrhage | 65+ | 38 | 19.0 | 0.98 | 0.49 | yes |
 | chlorpheniramine | gastrointestinal_hemorrhage | all | 130 | 78.9 | 0.72 | 0.46 | yes |
 | chlorpheniramine | hemorrhage_coagulation | 0-11 | 2 | 2.7 | -0.38 | -3.02 |  |
 | chlorpheniramine | hemorrhage_coagulation | 18-64 | 30 | 27.3 | 0.13 | -0.43 |  |
 | chlorpheniramine | hemorrhage_coagulation | 65+ | 4 | 19.6 | -2.16 | -3.91 |  |
-| chlorpheniramine | hemorrhage_coagulation | all | 57 | 89.5 | -0.65 | -1.04 |  |
+| chlorpheniramine | hemorrhage_coagulation | all | 57 | 89.5 | -0.65 | -1.05 |  |
 | chlorpheniramine | hepatic_disorders | 0-11 | 7 | 4.4 | 0.60 | -0.66 |  |
 | chlorpheniramine | hepatic_disorders | 12-17 | 21 | 6.2 | 1.68 | 1.00 | yes |
-| chlorpheniramine | hepatic_disorders | 18-64 | 133 | 59.2 | 1.16 | 0.91 | yes |
+| chlorpheniramine | hepatic_disorders | 18-64 | 135 | 59.2 | 1.18 | 0.93 | yes |
 | chlorpheniramine | hepatic_disorders | 65+ | 80 | 18.4 | 2.09 | 1.76 | yes |
-| chlorpheniramine | hepatic_disorders | all | 312 | 128.1 | 1.28 | 1.12 | yes |
+| chlorpheniramine | hepatic_disorders | all | 314 | 128.1 | 1.29 | 1.13 | yes |
 | chlorpheniramine | pediatric_adverse_events | 18-64 | 1 | 0.1 | 1.27 | -2.78 |  |
 | chlorpheniramine | pediatric_adverse_events | all | 1 | 3.6 | -1.44 | -5.49 |  |
 | chlorpheniramine | renal_disorders | 0-11 | 5 | 2.4 | 0.91 | -0.63 |  |
 | chlorpheniramine | renal_disorders | 12-17 | 6 | 4.7 | 0.32 | -1.06 |  |
-| chlorpheniramine | renal_disorders | 18-64 | 43 | 55.5 | -0.36 | -0.83 |  |
+| chlorpheniramine | renal_disorders | 18-64 | 43 | 55.6 | -0.37 | -0.83 |  |
 | chlorpheniramine | renal_disorders | 65+ | 73 | 31.1 | 1.22 | 0.87 | yes |
-| chlorpheniramine | renal_disorders | all | 154 | 157.4 | -0.03 | -0.27 |  |
+| chlorpheniramine | renal_disorders | all | 154 | 157.5 | -0.03 | -0.27 |  |
 | chlorpheniramine | serotonin_syndrome | 12-17 | 7 | 0.8 | 2.54 | 1.28 | yes |
 | chlorpheniramine | serotonin_syndrome | 18-64 | 39 | 2.9 | 3.52 | 3.03 | yes |
 | chlorpheniramine | serotonin_syndrome | all | 56 | 5.3 | 3.29 | 2.89 | yes |

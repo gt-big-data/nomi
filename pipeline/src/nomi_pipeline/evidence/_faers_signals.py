@@ -13,6 +13,7 @@ no denominator, so they never set a score (docs/scoring/v1-method.md section 4).
 
 from __future__ import annotations
 
+import json
 import logging
 import math
 from pathlib import Path
@@ -27,6 +28,8 @@ log = logging.getLogger(__name__)
 
 INGREDIENTS_DIR = REPO_ROOT / "pipeline" / "knowledge" / "ingredients"
 EVENT_GROUPS = REPO_ROOT / "pipeline" / "knowledge" / "faers_event_groups.yaml"
+# What the app bundles: small enough to commit, so the evidence build needs no FAERS download.
+SUMMARY = REPO_ROOT / "pipeline" / "derived" / "faers_signals.json"
 
 # Words a FAERS active-ingredient name can end with that only name the salt or hydrate. They
 # are stripped from the end only when what is left is one of our moieties, so "MAGNESIUM
@@ -61,23 +64,33 @@ SYNONYMS = {
 Z_025 = -1.959963984540054
 
 
-def build_faers_signals(settings: Settings, reports_dir: Path | None = None) -> None:
+def build_faers_signals(
+    settings: Settings, reports_dir: Path | None = None, summary_path: Path | None = None
+) -> None:
     pairs_path = settings.silver_dir / "faers_pairs.parquet"
-    moieties = _moieties()
+    unii_moieties = _unii_moieties()
+    match = _moiety_of(set(unii_moieties.values()))
     groups = _event_group_dimensions()
     pairs = pl.scan_parquet(pairs_path)
 
-    drugs = (
+    names = (
         pairs.select("primaryid", "drugname", "prod_ai", "age_band", "sex")
         .unique(["primaryid", "drugname"])
         .with_columns(pl.coalesce("prod_ai", "drugname").alias("ai"))
         .with_columns(pl.col("ai").str.split("\\"))
         .explode("ai")
-        .with_columns(pl.col("ai").map_elements(_moiety_of(moieties), return_dtype=pl.String))
+        .collect()
+    )
+    # Match each distinct name once in Python, not once per row.
+    mapping = {raw: match(raw) for raw in names["ai"].unique().drop_nulls().to_list()}
+    mapping = {raw: moiety for raw, moiety in mapping.items() if moiety is not None}
+    drugs = (
+        names.with_columns(
+            pl.col("ai").replace_strict(mapping, default=None, return_dtype=pl.String)
+        )
         .filter(pl.col("ai").is_not_null())
         .select("primaryid", pl.col("ai").alias("moiety"), "age_band", "sex")
         .unique(["primaryid", "moiety"])
-        .collect()
     )
     events = (
         pairs.filter(pl.col("event_group").is_not_null())
@@ -94,7 +107,7 @@ def build_faers_signals(settings: Settings, reports_dir: Path | None = None) -> 
     signals = pl.concat(rows)
 
     unii_rows = pl.DataFrame(
-        [{"moiety": m, "unii": u} for u, m in _unii_moieties().items()],
+        [{"moiety": m, "unii": u} for u, m in unii_moieties.items()],
         schema={"moiety": pl.String, "unii": pl.String},
     )
     signals = (
@@ -128,6 +141,7 @@ def build_faers_signals(settings: Settings, reports_dir: Path | None = None) -> 
     signals.write_parquet(out)
     log.info("Wrote %d signal rows to %s", len(signals), out)
     _write_report(signals, reports_dir or REPO_ROOT / "pipeline" / "reports")
+    _write_summary(signals, summary_path or SUMMARY)
 
 
 def _stratum(
@@ -186,10 +200,6 @@ def _ic025(observed: int, expected: float) -> float:
     return math.log2(q) if q > 0 else float("-inf")
 
 
-def _moieties() -> set[str]:
-    return set(_unii_moieties().values())
-
-
 def _unii_moieties() -> dict[str, str]:
     """UNII to the upper-case moiety name FAERS reports would use."""
     out = {}
@@ -208,6 +218,7 @@ def _strip_salt(name: str, known: set[str] | None) -> str | None:
     while len(words) > 1 and words[-1] in SALT_WORDS:
         words = words[:-1]
         candidate = " ".join(words)
+        candidate = SYNONYMS.get(candidate, candidate)
         if known is not None and candidate in known:
             return candidate
         stripped = candidate
@@ -222,8 +233,7 @@ def _moiety_of(known: set[str]):  # type: ignore[no-untyped-def]
         name = SYNONYMS.get(name, name)
         if name in known:
             return name
-        stripped = _strip_salt(name, known)
-        return SYNONYMS.get(stripped, stripped) if stripped else None
+        return _strip_salt(name, known)
 
     return match
 
@@ -258,3 +268,27 @@ def _write_report(signals: pl.DataFrame, reports_dir: Path) -> None:
             f"{r['ic025']:.2f} | {'yes' if r['ic025'] > 0 else ''} |"
         )
     (reports_dir / "faers_signals.md").write_text("\n".join(lines) + "\n")
+
+
+def _write_summary(signals: pl.DataFrame, path: Path) -> None:
+    """By UNII: the strongest signal (IC025 above 0) per dimension and age band, sexes pooled.
+    Ties go to the event group that sorts first, so the file is the same on every run."""
+    rows = (
+        signals.filter(pl.col("sex") == "all", pl.col("ic025") > 0)
+        .sort(["ic025", "event_group"], descending=[True, False])
+        .unique(["unii", "dimension", "age_band"], keep="first", maintain_order=True)
+        .sort("unii", "dimension", "age_band")
+    )
+    out: dict[str, list[dict[str, Any]]] = {}
+    for r in rows.iter_rows(named=True):
+        out.setdefault(r["unii"], []).append(
+            {
+                "dimension": r["dimension"],
+                "age_band": r["age_band"],
+                "event_group": r["event_group"],
+                "ic025": round(r["ic025"], 3),
+                "reports": r["report_count"],
+            }
+        )
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(out, indent=2, sort_keys=True) + "\n", encoding="utf-8")

@@ -5,6 +5,6 @@
 
 import evidence from "./evidence.json";
 
-import type { Evidence } from "./engineV1";
+import { checkEvidence, type Evidence } from "./engineV1";
 
-export const EVIDENCE = evidence as unknown as Evidence;
+export const EVIDENCE = checkEvidence(evidence as Evidence);

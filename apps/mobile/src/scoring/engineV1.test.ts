@@ -4,16 +4,32 @@ import { test } from "node:test";
 
 import { checkRecords, riskRows } from "../lib/referenceScores.ts";
 import type { Profile, Ratings, ScoreResult } from "./engine.ts";
-import { scaleScore, scoreV1, type Evidence, type RelativeRisk } from "./engineV1.ts";
+import {
+  checkEvidence,
+  scaleScore,
+  scoreV1,
+  type Evidence,
+  type Insufficient,
+  type RelativeRisk,
+} from "./engineV1.ts";
 
 const read = (path: string | URL) => JSON.parse(readFileSync(path, "utf8"));
 const RATINGS: Ratings = read(new URL("./ratings.json", import.meta.url));
 const EVIDENCE: Evidence = read(new URL("./evidence.json", import.meta.url));
 
 const ADULT: Profile = { persona: "adult_18_64", conditions: [], medicationTypes: [] };
-const cite = { source: "publication" as const, section: "Test 2020, Table 1", url: "https://example.org", citation: "Test A. 2020" };
+const cite = {
+  source: "publication" as const,
+  section: "Test 2020, Table 1",
+  url: "https://example.org",
+  citation: "Test A. 2020",
+};
 
-function rr(dimension: string, estimate: number, applies: Partial<RelativeRisk> = {}): RelativeRisk {
+function rr(
+  dimension: string,
+  estimate: number,
+  applies: Partial<RelativeRisk> = {},
+): RelativeRisk {
   return {
     dimension,
     persona: "all",
@@ -31,10 +47,22 @@ function rr(dimension: string, estimate: number, applies: Partial<RelativeRisk> 
 // Two real UNIIs with made-up evidence, scored for an adult (no v0 hard stops), so only the v1
 // arithmetic is under test.
 const [A, B] = Object.keys(RATINGS.ingredients).sort();
-const product = (uniis: string[]) => ({ ndc11: "00000000000", ingredients: uniis.map((unii) => ({ unii, name: unii })) });
+const product = (uniis: string[]) => ({
+  ndc11: "00000000000",
+  ingredients: uniis.map((unii) => ({ unii, name: unii })),
+});
 
-function evidence(rowsA: RelativeRisk[], rowsB: RelativeRisk[] = [], baselines: Evidence["baselines"] = []): Evidence {
-  const entry = (rows: RelativeRisk[]) => ({ name: "x", relative_risks: rows, insufficient: [], faers: [] });
+function evidence(
+  rowsA: RelativeRisk[],
+  rowsB: RelativeRisk[] = [],
+  baselines: Evidence["baselines"] = [],
+): Evidence {
+  const entry = (rows: RelativeRisk[]) => ({
+    name: "x",
+    relative_risks: rows,
+    insufficient: [],
+    faers: [],
+  });
   return { course_days: 10, ingredients: { [A]: entry(rowsA), [B]: entry(rowsB) }, baselines };
 }
 const base = (dimension: string, annual: number, applies: Partial<RelativeRisk> = {}) => ({
@@ -120,7 +148,10 @@ test("row points add up to 100 minus the score", () => {
     [base("liver", 0.0365), base("kidney", 0.02), base("gi_bleeding", 0.001)],
   );
   const record = scored(scoreV1(product([A]), ADULT, RATINGS, ev));
-  assert.equal(record.contributions.reduce((s, c) => s + c.points, 0), 100 - record.score);
+  assert.equal(
+    record.contributions.reduce((s, c) => s + c.points, 0),
+    100 - record.score,
+  );
 });
 
 test("an ingredient outside the evidence review is unrated", () => {
@@ -130,21 +161,132 @@ test("an ingredient outside the evidence review is unrated", () => {
   assert.ok("status" in result && result.status === "unrated");
 });
 
-// Every reference product and persona the bundled evidence covers makes a record the screen can show.
+test("pregnancy uses the adult baseline over an all-ages one", () => {
+  const ev = evidence(
+    [rr("liver", 2)],
+    [],
+    [base("liver", 0.0365, { persona: "adult_18_64" }), base("liver", 0.365)],
+  );
+  const record = scored(scoreV1(product([A]), { ...ADULT, persona: "pregnant" }, RATINGS, ev));
+  assert.equal(record.score, 50);
+});
+
+test("a risk under one point still counts and is explained", () => {
+  // 1e-3 from liver takes 50 points; 1e-6 from kidney rounds to 0 but is still listed.
+  const ev = evidence(
+    [rr("liver", 2), rr("kidney", 2)],
+    [],
+    [base("liver", 0.0365), base("kidney", 0.0000365)],
+  );
+  const record = scored(scoreV1(product([A]), ADULT, RATINGS, ev));
+  assert.deepEqual(
+    record.contributions.map((c) => c.dimension),
+    ["liver"],
+  );
+  assert.ok(record.explanation.some((e) => e.template_id === "engine_v1_under_one_point"));
+});
+
+test("insufficient-evidence notes follow their scope", () => {
+  const gap = (dimension: string, scope: Partial<Insufficient> = {}): Insufficient => ({
+    dimension,
+    personas: [],
+    conditions: [],
+    medication_types: [],
+    reason: "",
+    ...scope,
+  });
+  const ev = evidence([]);
+  ev.ingredients[A].insufficient = [
+    gap("liver", { conditions: ["liver_disease"] }),
+    gap("pregnancy_lactation"),
+    gap("anticoagulant_bleeding"),
+    gap("kidney"),
+  ];
+  const note = (profile: Profile) => {
+    const record = scored(scoreV1(product([A]), profile, RATINGS, ev));
+    return record.explanation.find((e) => e.template_id === "engine_v1_insufficient")?.text ?? "";
+  };
+  const adult = note(ADULT);
+  assert.ok(adult.includes("acute kidney injury"));
+  assert.ok(!adult.includes("liver") && !adult.includes("pregnancy") && !adult.includes("major"));
+  assert.ok(note({ ...ADULT, conditions: ["liver_disease"] }).includes("acute liver injury"));
+  assert.ok(note({ ...ADULT, persona: "pregnant" }).includes("pregnancy"));
+  assert.ok(note({ ...ADULT, medicationTypes: ["anticoagulants"] }).includes("major bleeding"));
+});
+
+test("a FAERS signal is cited on its row, falling back to all ages", () => {
+  const ev = evidence([rr("liver", 2)], [], [base("liver", 0.0365)]);
+  ev.ingredients[A].faers = [
+    {
+      dimension: "liver",
+      age_band: "all",
+      event_group: "hepatic_disorders",
+      ic025: 1.5,
+      reports: 900,
+    },
+  ];
+  const record = scored(scoreV1(product([A]), ADULT, RATINGS, ev));
+  assert.ok(record.contributions[0].citations.some((c) => c.source === "faers"));
+});
+
+test("bad evidence numbers fail the check", () => {
+  const ev = evidence([rr("liver", Number.NaN)]);
+  assert.throws(() => checkEvidence(ev));
+  assert.throws(() => scaleScore(Number.NaN));
+});
+
+// The bundled evidence: every reference product is rated for these personas, and the scores are
+// pinned so a change to the evidence shows up here as a deliberate update.
+const GOLDEN: Record<string, Record<string, number>> = {
+  aleve: { adult_18_64: 55, adult_65_plus: 40, pregnant: 55 },
+  nyquil: { adult_18_64: 79, adult_65_plus: 45, pregnant: 79 },
+  "store-brand-diphenhydramine": { adult_18_64: 100, adult_65_plus: 43, pregnant: 100 },
+  tylenol: { adult_18_64: 79, adult_65_plus: 60, pregnant: 79 },
+  zzzquil: { adult_18_64: 100, adult_65_plus: 43, pregnant: 100 },
+};
 const EXAMPLES = new URL("../../../../packages/schema/examples/", import.meta.url);
-for (const folder of readdirSync(EXAMPLES, { withFileTypes: true }).filter((e) => e.isDirectory())) {
+for (const folder of readdirSync(EXAMPLES, { withFileTypes: true }).filter((e) =>
+  e.isDirectory(),
+)) {
   const p = read(new URL(`${folder.name}/product.json`, EXAMPLES));
   const scorable = {
     ndc11: p.ndc11,
     setId: p.spl_set_id,
-    ingredients: p.ingredients.map((i: { unii: string; name: string }) => ({ unii: i.unii, name: i.name })),
+    ingredients: p.ingredients.map((i: { unii: string; name: string }) => ({
+      unii: i.unii,
+      name: i.name,
+    })),
   };
   for (const persona of ["adult_18_64", "adult_65_plus", "pregnant"]) {
-    test(`${folder.name}, ${persona}: the bundled evidence gives a valid record`, () => {
-      const result = scoreV1(scorable, { ...ADULT, persona }, RATINGS, EVIDENCE);
-      if ("status" in result) return;
-      checkRecords([result]);
-      riskRows(result);
+    test(`${folder.name}, ${persona}: the bundled evidence gives the pinned score`, () => {
+      const record = scored(scoreV1(scorable, { ...ADULT, persona }, RATINGS, EVIDENCE));
+      checkRecords([record]);
+      riskRows(record);
+      assert.equal(record.score, GOLDEN[folder.name]?.[persona]);
     });
   }
 }
+
+test("a hard stop from the label makes the record red", () => {
+  // ZzzQuil's label forbids under 12.
+  const p = read(new URL("zzzquil/product.json", EXAMPLES));
+  const result = scoreV1(
+    { ndc11: p.ndc11, setId: p.spl_set_id, ingredients: p.ingredients },
+    { ...ADULT, persona: "child_6_11" },
+    RATINGS,
+    EVIDENCE,
+  );
+  const record = scored(result);
+  assert.ok(record.hard_stops_triggered.length > 0);
+  assert.equal(record.tier, "red");
+});
+
+test("a child whose age the label wasn't checked for is unrated", () => {
+  const result = scoreV1(
+    product([A]),
+    { ...ADULT, persona: "child_6_11" },
+    RATINGS,
+    EVIDENCE.ingredients[A] ? EVIDENCE : evidence([]),
+  );
+  assert.ok("status" in result && result.reason === "child_label");
+});

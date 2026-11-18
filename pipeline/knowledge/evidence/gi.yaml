@@ -813,21 +813,27 @@ relative_risks:
     selection_note: "Largest study of loperamide in pregnancy found (register-based); no meta-analysis exists. Einarson 2000 (PMID 10758415, n=105) found no difference but reports no estimate. Based on 43 cases; authors call for confirmation. Exposure is any early-pregnancy use, plausibly similar to OTC use."
 insufficient:
   - ingredient: famotidine
+    applies_to: {condition: [kidney_disease]}
     dimension: kidney
     reason: "kidney_disease (v0 modifier): no study reports a quantitative AKI or serious-harm risk for famotidine or H2RAs in CKD; searched PubMed for H2RA/famotidine with acute kidney injury and CKD. Label concern is renal clearance and CNS effects, not AKI."
   - ingredient: cimetidine
+    applies_to: {condition: [kidney_disease]}
     dimension: kidney
     reason: "kidney_disease (v0 modifier): no quantitative AKI estimate for cimetidine or H2RAs in CKD found; searched PubMed for H2RA/cimetidine with acute kidney injury."
   - ingredient: cimetidine
+    applies_to: {condition: [liver_disease]}
     dimension: liver
     reason: "liver_disease (v0 modifier): no study reports a quantitative acute liver injury risk for cimetidine; searched PubMed. Concern is reduced clearance/interactions, not a measured liver outcome."
   - ingredient: famotidine
+    applies_to: {condition: [kidney_disease], persona: [adult_65_plus]}
     dimension: anticholinergic_cognitive
     reason: "adult_65_plus and kidney_disease: no community or older-adult study gives a delirium estimate for famotidine; only case series (e.g. PMIDs 8701013, 28153970) and a 21-patient postoperative study (PMID 31086675) without a usable ratio. General class row from an ICU cohort is recorded under relative_risks."
   - ingredient: omeprazole
+    applies_to: {condition: [liver_disease]}
     dimension: liver
     reason: "liver_disease: no quantitative estimate of serious harm from PPIs specific to liver disease found in the searched meta-analyses; not a v0-rated pair, recorded because liver_disease is a requested modifier."
   - ingredient: esomeprazole
+    applies_to: {condition: [liver_disease]}
     dimension: liver
     reason: "liver_disease: as omeprazole; no quantitative estimate found."
   - ingredient: omeprazole
@@ -837,36 +843,46 @@ insufficient:
     dimension: gi_bleeding
     reason: "H2RAs are gastroprotective; no source reports a harmful upper GI bleeding association. Not a harm pair."
   - ingredient: famotidine
+    applies_to: {persona: [breastfeeding]}
     dimension: pregnancy_lactation
     reason: "breastfeeding: no quantitative neonatal-harm estimate found (pregnant row recorded under relative_risks)."
   - ingredient: cimetidine
+    applies_to: {persona: [breastfeeding]}
     dimension: pregnancy_lactation
     reason: "breastfeeding: no quantitative neonatal-harm estimate found (pregnant row recorded under relative_risks)."
   - ingredient: omeprazole
+    applies_to: {persona: [breastfeeding]}
     dimension: pregnancy_lactation
     reason: "breastfeeding: no quantitative neonatal-harm estimate found (pregnant row recorded under relative_risks). Applies equally to omeprazole_magnesium, esomeprazole and its magnesium salts."
   - ingredient: calcium_carbonate
+    applies_to: {condition: [kidney_disease]}
     dimension: kidney
     reason: "kidney_disease (v0 modifier): milk-alkali syndrome and hypercalcemic AKI are described in case reports and series only; no study gives a relative risk for calcium carbonate antacid use. Searched PubMed."
   - ingredient: calcium_carbonate
+    applies_to: {persona: [breastfeeding, pregnant]}
     dimension: pregnancy_lactation
     reason: "pregnant/breastfeeding: no study reports a quantitative fetal or neonatal harm for calcium carbonate antacids."
   - ingredient: magnesium_hydroxide
     dimension: kidney
     reason: "general population (no CKD): no quantitative AKI estimate found for magnesium hydroxide; CKD row recorded under relative_risks."
   - ingredient: magnesium_hydroxide
+    applies_to: {persona: [breastfeeding, pregnant]}
     dimension: pregnancy_lactation
     reason: "pregnant/breastfeeding: no study reports a quantitative fetal or neonatal harm for oral magnesium hydroxide."
   - ingredient: polyethylene_glycol_3350
+    applies_to: {condition: [kidney_disease]}
     dimension: kidney
     reason: "kidney_disease (v0 modifier): no study reports a quantitative AKI risk for OTC PEG 3350 laxative doses in CKD (bowel-prep AKI literature uses different products and volumes). Searched PubMed."
   - ingredient: polyethylene_glycol_3350
+    applies_to: {persona: [breastfeeding, pregnant]}
     dimension: pregnancy_lactation
     reason: "pregnant/breastfeeding: no study reports a quantitative fetal or neonatal harm for PEG 3350."
   - ingredient: bisacodyl
+    applies_to: {persona: [breastfeeding, pregnant]}
     dimension: pregnancy_lactation
     reason: "pregnant/breastfeeding: no study reports a quantitative fetal or neonatal harm for bisacodyl."
   - ingredient: simethicone
+    applies_to: {persona: [breastfeeding, pregnant]}
     dimension: pregnancy_lactation
     reason: "pregnant/breastfeeding: no study reports a quantitative fetal or neonatal harm for simethicone (not systemically absorbed)."
   - ingredient: loperamide
@@ -879,8 +895,10 @@ insufficient:
     dimension: sedation_falls
     reason: "No quantitative fall or fracture estimate for loperamide found; searched PubMed."
   - ingredient: loperamide
+    applies_to: {condition: [liver_disease]}
     dimension: liver
     reason: "liver_disease (v0 modifier): no quantitative serious-harm estimate for loperamide in liver disease; concern is reduced first-pass metabolism (pharmacokinetic), not a measured outcome."
   - ingredient: loperamide
+    applies_to: {persona: [breastfeeding]}
     dimension: pregnancy_lactation
     reason: "breastfeeding: no quantitative neonatal-harm estimate found (pregnant row recorded under relative_risks)."

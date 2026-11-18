@@ -93,14 +93,18 @@ relative_risks:
     selection_note: "Most recent meta-analysis; restricted to sibling designs, which control for familial confounding that drove the earlier pooled RRs of about 1.2-1.4 (BMJ 2025 umbrella review). Same paper: autism OR 0.98 (0.93-1.03), intellectual disability OR 0.93 (0.69-1.24). No increased risk detected. Outcome is a childhood neurodevelopmental diagnosis, not a neonatal harm; pharmacist to confirm fit."
 insufficient:
   - ingredient: acetaminophen
+    applies_to: {condition: [heavy_alcohol_use]}
     dimension: liver
     reason: "applies_to condition heavy_alcohol_use: no study opened gives a relative risk of serious liver injury at therapeutic doses in heavy drinkers vs non-use. Louvet et al. Hepatology 2021 is a case series (reports proportions, e.g. 93% of therapeutic-dose ALI cases were excessive drinkers); RCT meta-analyses in alcoholics report no injury but no serious-outcome RR. Donati 2016 excluded alcohol abuse."
   - ingredient: acetaminophen
+    applies_to: {condition: [liver_disease]}
     dimension: liver
     reason: "applies_to condition liver_disease: no relative risk for acute liver injury/failure at therapeutic doses in chronic liver disease or cirrhosis found; only a secondhand mention of a 170-patient case-control with no OR."
   - ingredient: acetaminophen
+    applies_to: {medication_type: [anticoagulants]}
     dimension: anticoagulant_bleeding
     reason: "applies_to medication_type anticoagulants: no study gives a relative risk of major bleeding for acetaminophen plus warfarin. Hylek et al. JAMA 1998 (case-control) reports INR >6 only; Shalansky et al. (171 patients, OR 1.42, 1.05-1.90) counts any bleeding including minor; a 111-patient VKA study gave bleeding OR 2.09 (0.66-6.65), mostly minor. Searched web and PubMed for population-based cohort/nested case-control of acetaminophen-warfarin major bleeding."
   - ingredient: acetaminophen
+    applies_to: {persona: [breastfeeding]}
     dimension: pregnancy_lactation
     reason: "applies_to persona breastfeeding: no meta-analysis or cohort reporting a quantitative infant harm from acetaminophen during lactation found."
