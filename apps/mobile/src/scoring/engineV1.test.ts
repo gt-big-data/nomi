@@ -300,11 +300,11 @@ test("stomach bleeding is not counted again for anticoagulant users", () => {
 // The bundled evidence: every reference product is rated for these personas, and the scores are
 // pinned so a change to the evidence shows up here as a deliberate update.
 const GOLDEN: Record<string, Record<string, number>> = {
-  aleve: { adult_18_64: 55, adult_65_plus: 40, pregnant: 55 },
-  nyquil: { adult_18_64: 79, adult_65_plus: 45, pregnant: 79 },
-  "store-brand-diphenhydramine": { adult_18_64: 100, adult_65_plus: 43, pregnant: 100 },
-  tylenol: { adult_18_64: 79, adult_65_plus: 60, pregnant: 79 },
-  zzzquil: { adult_18_64: 100, adult_65_plus: 43, pregnant: 100 },
+  aleve: { adult_18_64: 67, adult_65_plus: 43, pregnant: 67 },
+  nyquil: { adult_18_64: 93, adult_65_plus: 45, pregnant: 93 },
+  "store-brand-diphenhydramine": { adult_18_64: 100, adult_65_plus: 45, pregnant: 100 },
+  tylenol: { adult_18_64: 93, adult_65_plus: 87, pregnant: 93 },
+  zzzquil: { adult_18_64: 100, adult_65_plus: 45, pregnant: 100 },
 };
 const EXAMPLES = new URL("../../../../packages/schema/examples/", import.meta.url);
 for (const folder of readdirSync(EXAMPLES, { withFileTypes: true }).filter((e) =>

@@ -155,9 +155,13 @@ the inputs, not from any score, and apply to every ingredient alike.
 14. **Dose strata.** Where a source reports dose strata, every stratum is recorded with its
     `dose_mg_per_day` range. The stratum used is set in section 8.1.
 15. **Baselines.** A baseline that excludes users of the ingredient's class is used over one that
-    does not, when the source reports both. Where the source's age bands do not match the
-    persona's, the band that covers the largest share of the persona's age range is used; ties go
-    to the older band.
+    does not, when the source reports both. Where a source reports a rate for the
+    persona's whole age range (for example 65 and over), that rate is used. Otherwise the source's
+    band that contains the median age of the persona's US population (US Census Bureau, cited
+    once in baselines.yaml as `persona_median_ages`) is used. (Amended before any v1.1 score was
+    computed: the first wording, "the band covering the largest share of the age range", picks
+    an open-ended oldest band such as 85 and over for every older-adult baseline, which does not
+    represent the persona.)
 16. **No double counting.** When `anticoagulant_bleeding` has a term for a profile, its baseline
     already includes gastrointestinal bleeding, so the `gi_bleeding` term is dropped for that
     profile.

@@ -4,6 +4,33 @@ relative_risks:
   - ingredient: omeprazole
     dimension: kidney
     applies_to: {persona: all, condition: null, medication_type: null}
+    outcome: aki_hospital
+    outcome_match: false
+    exposure_window: long_term
+    comparator: non_use
+    dose_mg_per_day: null
+    match_note: "Long-term and outcome mismatch: Han pools 'PPI therapy' from 12 studies without a common exposure window and states 'we were unable to examine the risk of AKI among PPI users based on the duration of PPI use'; its Table 1 includes multi-year cohorts such as Lazarus ARIC (1996-2011) and Liabeuf (CKD-REIN, median cumulative prescription 1 year), so the pooled exposure is not current community use. The outcome is not restricted to hospital AKI: 'Ten studies included AKI patients based on the International Classification of Disease (ICD) criteria, one study included based on the Oxford Medical Information System (OXMIS), and one study was based on the Kidney Disease Improving Global Outcomes (KDIGO)', and 'Two studies used laboratory data to detect AKI'. Comparator is PPI non-use."
+    measure: RR
+    estimate: 1.75
+    ci95: [1.4, 2.19]
+    exposure: "PPI therapy vs control (pooled adjusted estimates; exposure windows and durations differ across the 12 studies)"
+    population: "12 observational studies (9 cohort, 3 case-control), 2,492,125 individuals, published 2012-2022, mean age above 50 in all studies"
+    grade: meta_analysis
+    source:
+      citation: "Han CT, Islam MM, Poly TN, Lu YC, Lin MC. A Meta-Analysis of Proton Pump Inhibitor Use and the Risk of Acute Kidney Injury: Geographical Differences and Associated Factors. J Clin Med 2023;12(7):2467"
+      url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC10095047/"
+      location: "Abstract; Section 3.3; Table 2 (all studies row)"
+      quote: "The pooled adjusted RR demonstrated a significant positive association between PPI therapy and the risk of AKI (adjusted RR 1.75, 95% CI: 1.40-2.19, p < 0.001)"
+    selection_note: "Class-level PPI estimate. Rule 13: the most recent meta-analysis of PPI and AKI with the largest population (2023, 2,492,125 individuals), so it supersedes Nochaiwong 2018 and Yang 2017 (PMID 28479851, 2,404,236 participants, RR 1.61, 1.16-2.22). Full text opened via Europe PMC. Fails rules 10 and 11, so it is kept for the audit trail and not used."
+  - ingredient: omeprazole
+    dimension: kidney
+    applies_to: {persona: all, condition: null, medication_type: null}
+    outcome: aki_hospital
+    outcome_match: false
+    exposure_window: long_term
+    comparator: non_use
+    dose_mg_per_day: null
+    match_note: "Long-term and outcome mismatch: pools 'PPI users' vs 'non-PPI users' from 4 cohort and 5 case-control studies without restricting to current use; the cohort studies follow users for years (the same cohorts appear in Han 2023 Table 1). The abstract does not restrict AKI to hospital-treated events, so the serious-level outcome is not shown. Superseded by Han 2023 under rule 13."
     measure: RR
     estimate: 1.44
     ci95: [1.08, 1.91]
@@ -15,25 +42,58 @@ relative_risks:
       url: "https://pubmed.ncbi.nlm.nih.gov/28339835/"
       location: "Abstract, Results"
       quote: "Compared with non-PPI users, PPI users experienced a significantly higher risk of AKI [RR 1.44 (95% CI 1.08-1.91); P = 0.013; SOE, low]"
-    selection_note: "Class-level PPI estimate. Largest dedicated meta-analysis of PPI and AKI found (~2.6M patients); umbrella reviews (Salvo 2021, PMID 34114655) cite RR 1.61 (1.16-2.22, n=2,396,640) from a smaller pooled population. Exposure mismatch: included studies mostly measured prescription PPI use over months to years, not a 10-day OTC course. GRADE strength of evidence low."
+    selection_note: "Class-level PPI estimate. Kept for the audit trail only: Han 2023 (PMC10095047) is more recent and is the rule 13 choice. The 2.6 million figure covers all kidney outcomes, not AKI alone. GRADE strength of evidence low."
+  - ingredient: omeprazole
+    dimension: kidney
+    applies_to: {persona: all, condition: null, medication_type: null}
+    outcome: aki_hospital
+    outcome_match: false
+    exposure_window: community_oral
+    comparator: non_use
+    dose_mg_per_day: null
+    match_note: "Community current use: exposure is a PPI 'on the index date' in UK general practice records, against neither PPI nor tNSAID. Outcome not shown to be serious-level: cases were 'diagnostic-coded' AKI events in the General Practice Research Database, and the abstract does not say they were hospital-treated, so rule 10 is not met."
+    measure: OR
+    estimate: 1.05
+    ci95: [0.97, 1.14]
+    exposure: "PPI alone on the index date (current use) vs neither PPI nor traditional NSAID"
+    population: "UK General Practice Research Database; 27,982 AKI cases and 1,323,850 controls matched on age, sex and practice"
+    grade: case_control
+    source:
+      citation: "Leonard CE, Freeman CP, Newcomb CW, et al. Proton pump inhibitors and traditional nonsteroidal anti-inflammatory drugs and the risk of acute interstitial nephritis and acute kidney injury. Pharmacoepidemiol Drug Saf 2012;21(11):1155-72"
+      url: "https://pubmed.ncbi.nlm.nih.gov/22887960/"
+      location: "Abstract, Results"
+      quote: "The adjusted ORs for PPI alone, tNSAID alone, and PPI + tNSAID exposures were 1.05 (0.97-1.14), 1.31 (1.25-1.37), and 1.33 (1.07-1.64), respectively."
+    selection_note: "Class-level PPI estimate. Largest community current-use study of PPIs and AKI found (searched PubMed for proton pump inhibitor AND acute kidney injury in titles, 2026-11-18). Recorded because the meta-analyses fail rule 11; it fails rule 10 itself, so adults under 65 have no usable kidney row. Other community studies were not usable: Klepser 2013 (PMID 23865955) outcome is any 'renal disease' diagnosis; Ikuta 2021 (PMID 33589451) compares current with past PPI use, unadjusted."
   - ingredient: omeprazole
     dimension: kidney
     applies_to: {persona: adult_65_plus, condition: null, medication_type: null}
+    outcome: aki_hospital
+    outcome_match: true
+    exposure_window: community_oral
+    comparator: non_use
+    dose_mg_per_day: null
+    match_note: "Community oral use: Ontario residents aged 66+ 'who initiated PPI therapy' (outpatient prescription) against propensity-matched non-users, followed for 120 days, which is under the one-year threshold and not defined by months of continuous use. Outcome is 'hospital admission with acute kidney injury within 120 days', the section-1 outcome."
     measure: HR
     estimate: 2.52
     ci95: [2.27, 2.79]
-    exposure: "PPI initiation (new prescription); hospital admission with AKI within 120 days"
+    exposure: "PPI initiation (new outpatient prescription); hospital admission with AKI within 120 days"
     population: "Ontario residents aged 66+ starting a PPI 2002-2011, 290,592 initiators vs propensity-matched controls"
     grade: cohort
     source:
       citation: "Antoniou T et al. CMAJ Open 2015;3(2):E166-71"
       url: "https://pubmed.ncbi.nlm.nih.gov/26389094/"
-      location: "Abstract, Results"
+      location: "Abstract, Methods and Results"
       quote: "The rates of acute kidney injury (13.49 v. 5.46 per 1000 person-years, respectively; hazard ratio [HR] 2.52, 95% CI 2.27 to 2.79)"
-    selection_note: "Class-level PPI estimate. No meta-analysis reports an age-stratified AKI estimate; this is the largest cohort in older adults. Outcome is hospital admission with AKI (matches v1). 120-day window after initiation is closer to a short course than multi-year studies, but still longer than 10 days and prescription doses."
+    selection_note: "Class-level PPI estimate. No meta-analysis reports an older-adult or current-use AKI estimate; this is the largest cohort in older adults. Age cut is 66, not 65. Prescription doses, not OTC."
   - ingredient: omeprazole
     dimension: kidney
     applies_to: {persona: all, condition: kidney_disease, medication_type: null}
+    outcome: aki_hospital
+    outcome_match: false
+    exposure_window: long_term
+    comparator: within_group
+    dose_mg_per_day: null
+    match_note: "Long-term: 'new PPI prescriptions as a time-dependent variable' over 'a median follow-up of 3.9 years', with 'median cumulative duration of prescription ... 1 year'. Within-group: users vs non-users inside a CKD stage 2-5 nephrology cohort, so applies_to kidney_disease. The abstract does not define AKI or say it was hospital-treated, so the serious-level outcome is not shown."
     measure: HR
     estimate: 2.89
     ci95: [1.91, 4.38]
@@ -45,14 +105,20 @@ relative_risks:
       url: "https://pubmed.ncbi.nlm.nih.gov/33368448/"
       location: "Abstract, Results"
       quote: "The adjusted HR for AKI associated with PPI prescription was 2.89 (95% CI, 1.91-4.38)."
-    selection_note: "Class-level PPI estimate. Only CKD-specific AKI estimate found. Exposure mismatch: long-term prescription use (median 1 year), not a 10-day OTC course. Abstract does not state whether AKI required hospital care."
+    selection_note: "Class-level PPI estimate. Only CKD-specific AKI estimate found; no community current-use estimate in CKD found. Full text is not open access."
   - ingredient: omeprazole
     dimension: sedation_falls
     applies_to: {persona: all, condition: null, medication_type: null}
+    outcome: hip_fracture
+    outcome_match: true
+    exposure_window: long_term
+    comparator: non_use
+    dose_mg_per_day: null
+    match_note: "Long-term: Poly 'included only the large (n >= 500) observational studies with a follow-up duration of at least one year', so the overall estimate pools exposure accumulated over years. Outcome is hip fracture (outcome id hip_fracture). Comparator is PPI non-users. The low, medium and high dose strata in the abstract (RR 1.17, 1.28, 1.30) give no mg/day ranges, so they are not recorded as dose rows."
     measure: RR
     estimate: 1.2
     ci95: [1.14, 1.28]
-    exposure: "PPI use vs no PPI (studies with follow-up >= 1 year); short-term use RR 1.20 (1.15-1.25), low dose RR 1.17 (1.05-1.29)"
+    exposure: "PPI use vs no PPI, studies with follow-up of at least one year"
     population: "24 observational studies, 2,103,800 participants (319,568 hip fracture patients), 1990-2018"
     grade: meta_analysis
     source:
@@ -60,10 +126,58 @@ relative_risks:
       url: "https://pubmed.ncbi.nlm.nih.gov/30539272/"
       location: "Abstract, Results"
       quote: "Patients with PPIs had a greater risk of hip fracture than those without PPI therapy (RR 1.20, 95% CI 1.14-1.28, p < 0.0001)."
-    selection_note: "Class-level PPI estimate. Most recent general-population meta-analysis with the largest population (2.1M); outcome is hip fracture only (a subset of v1 fall injury). Zhou 2016 (PMID 26462494) gives any-site RR 1.33 (1.15-1.54) in a smaller pool. Mechanism is bone/calcium absorption, not sedation; the source's short-term category is still months of use, not a 10-day course."
+    selection_note: "Class-level PPI estimate. Most recent hip-fracture meta-analysis with the largest population (2.1M). Overall estimate kept for the audit trail; the short-term stratum of the same abstract is recorded separately. Mechanism is bone/calcium absorption, not sedation."
+  - ingredient: omeprazole
+    dimension: sedation_falls
+    applies_to: {persona: all, condition: null, medication_type: null}
+    outcome: hip_fracture
+    outcome_match: true
+    exposure_window: community_oral
+    comparator: non_use
+    dose_mg_per_day: null
+    match_note: "Community oral use: the abstract's 'short-term PPI therapy' stratum, compared with PPI non-users in community observational studies; it is defined by use shorter than the long-term stratum, not by months of continuous use (the cut-off is not stated in the abstract; the full text is not open access). Outcome is hip fracture (hip_fracture)."
+    measure: RR
+    estimate: 1.2
+    ci95: [1.15, 1.25]
+    exposure: "short-term PPI therapy vs PPI non-users"
+    population: "24 observational studies, 2,103,800 participants (319,568 hip fracture patients), 1990-2018"
+    grade: meta_analysis
+    source:
+      citation: "Poly TN et al. Osteoporos Int 2019;30(1):103-114"
+      url: "https://pubmed.ncbi.nlm.nih.gov/30539272/"
+      location: "Abstract, Results"
+      quote: "Moreover, the overall pooled risk ratios were 1.20 (95% CI 1.15-1.25, p < 0.0001) and 1.24 (95% CI 1.10-1.40, p < 0.0001) for the patients with short- and long-term PPI therapy, respectively, compared with PPI non-users."
+    selection_note: "Class-level PPI estimate. The shortest-duration stratum of the most recent and largest hip-fracture meta-analysis (rule 13); Ngamruengphong 2011 (PMID 21483462) gives a short-duration hip OR 1.24 (1.19-1.28) in a smaller, older pool. The source's short-term category is still longer than a 10-day course."
+  - ingredient: omeprazole
+    dimension: sedation_falls
+    applies_to: {persona: all, condition: null, medication_type: null}
+    outcome: fracture
+    outcome_match: true
+    exposure_window: community_oral
+    comparator: non_use
+    dose_mg_per_day: null
+    match_note: "Community oral use: the 'short duration use' stratum, pooled from community observational studies against PPI non-users; the full text says the duration categories 'were those of individual' studies, so the stratum is the shortest use each study reported, not a months-long requirement. Outcome is any-site fracture (fracture)."
+    measure: OR
+    estimate: 1.29
+    ci95: [1.19, 1.4]
+    exposure: "short duration PPI use (each study's own shortest category) vs non-users"
+    population: "33 studies, 2,714,502 individuals, mean age 66.9 years"
+    grade: meta_analysis
+    source:
+      citation: "Nassar Y, Richter S. Proton-pump Inhibitor Use and Fracture Risk: An Updated Systematic Review and Meta-analysis. J Bone Metab 2018;25(3):141-151"
+      url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC6135649/"
+      location: "Abstract; Results section 1"
+      quote: "There was a trend towards increased fracture incidence from short duration use: OR 1.29 (95% CI, 1.19-1.40), medium duration use: OR 1.33 (95% CI, 1.12-1.55) and long duration use: OR 1.62 (95% CI, 1.33-1.90)."
+    selection_note: "Class-level PPI estimate. Largest any-site fracture meta-analysis found (2.7M), more recent than Zhou 2016 (PMID 26462494, any-site RR 1.33 with no duration stratum in the abstract). Its overall estimate (1.28, 1.22-1.35; mean follow-up 73 months) and medium and long strata are long-term and not recorded as usable rows. Pools 85 ratios, several per study, so studies are weighted more than once."
   - ingredient: omeprazole
     dimension: sedation_falls
     applies_to: {persona: adult_65_plus, condition: null, medication_type: null}
+    outcome: fracture
+    outcome_match: true
+    exposure_window: community_oral
+    comparator: non_use
+    dose_mg_per_day: null
+    match_note: "Community oral use as far as the source states: 'PPI prescription' in observational studies of older adults, with no duration requirement in the abstract (full text not open access). Outcome is 'overall fracture risk' (fracture). Pools crude ORs, so confounding is not addressed."
     measure: OR
     estimate: 1.41
     ci95: [1.31, 1.51]
@@ -75,10 +189,36 @@ relative_risks:
       url: "https://pubmed.ncbi.nlm.nih.gov/40848405/"
       location: "Abstract"
       quote: "Pooled OR, calculated using a random effect model, showed a statistically significant association between PPI prescription and overall fracture risk (OR 1.41, 95 % confidence interval 1.31-1.51, P < 0.001)."
-    selection_note: "Class-level PPI estimate. Only meta-analysis restricted to older adults. Pools crude (unadjusted) ORs, so confounding is not addressed; exposure is prescription use of unstated duration, not a 10-day course."
+    selection_note: "Class-level PPI estimate. Only meta-analysis restricted to older adults. Unadjusted estimates; prescription use of unstated duration, not a 10-day OTC course."
+  - ingredient: omeprazole
+    dimension: sedation_falls
+    applies_to: {persona: adult_65_plus, condition: null, medication_type: null}
+    outcome: fall_injury
+    outcome_match: true
+    exposure_window: community_oral
+    comparator: non_use
+    dose_mg_per_day: null
+    match_note: "Outcome is the section-1 fall injury at the serious level: the sensitivity analysis pools 'five studies evaluating the risk of fall injury requiring hospitalization' (fall_injury). Exposure is PPI use in observational studies with no duration requirement; one included cohort (Lewis 2014) used use of a year or more, the others current or recorded use, so it is classed community_oral. Persona: the included studies are mostly of adults aged 65 or 70 and over; the five studies are not named."
+    measure: OR
+    estimate: 1.61
+    ci95: [1.18, 2.2]
+    exposure: "PPI use vs non-use (definitions vary by study, including use in the 30 days before the index date)"
+    population: "5 studies of fall injury requiring hospitalization, within a meta-analysis of 8 observational studies (367,068 patients), mostly older adults"
+    grade: meta_analysis
+    source:
+      citation: "Lapumnuaypol K, Thongprayoon C, Wijarnpreecha K, Tiu A, Cheungpasitporn W. Risk of fall in patients taking proton pump inhibitors: a meta-analysis. QJM 2019;112(2):115-121"
+      url: "https://academic.oup.com/qjmed/article/112/2/115/5145385"
+      location: "Results, sensitivity analysis (full text read through the WebFetch tool; the PubMed record has no abstract)"
+      quote: "The pooled OR for fall injury requiring hospitalization in patients using PPIs was 1.61 (95% CI, 1.18–2.20, I2 = 67%)."
+    selection_note: "Class-level PPI estimate. Only meta-analysis of PPIs and falls found (PubMed search 2026-11-18); its all-falls estimate (OR 1.27, 1.07-1.50) includes self-reported falls, so the hospitalized fall-injury estimate is the one that matches section 1. The publisher page blocks direct download, so the quote was read through a fetch tool; verify against the PDF before release."
   - ingredient: omeprazole
     dimension: pregnancy_lactation
     applies_to: {persona: pregnant, condition: null, medication_type: null}
+    outcome_match: true
+    exposure_window: community_oral
+    comparator: non_use
+    dose_mg_per_day: null
+    match_note: "Outcome is the specific fetal harm studied (congenital malformations). Exposure is maternal use during pregnancy outside hospital; comparator non-use."
     measure: OR
     estimate: 1.28
     ci95: [1.09, 1.52]
@@ -94,6 +234,12 @@ relative_risks:
   - ingredient: omeprazole
     dimension: anticoagulant_bleeding
     applies_to: {persona: all, condition: null, medication_type: anticoagulants}
+    outcome: other
+    outcome_match: false
+    exposure_window: community_oral
+    comparator: within_group
+    dose_mg_per_day: null
+    match_note: "Within-group: anticoagulant treatment with vs without PPI cotherapy, all oral anticoagulant users (medication_type anticoagulants). Community oral use in Medicare outpatients. Outcome is 'hospitalizations for upper gastrointestinal tract bleeding', a part of major bleeding, not the all-site major bleeding the dimension's baseline measures, so rule 10 is not met."
     measure: IRR
     estimate: 0.66
     ci95: [0.62, 0.69]
@@ -105,10 +251,16 @@ relative_risks:
       url: "https://pubmed.ncbi.nlm.nih.gov/30512099/"
       location: "Abstract, Results"
       quote: "risk of upper gastrointestinal tract bleeding hospitalizations (n = 2245) was lower overall (IRR, 0.66 [95% CI, 0.62-0.69])"
-    selection_note: "Class-level PPI estimate. Largest study of PPI cotherapy with anticoagulants; PPIs are protective (IRR < 1), so this gives 0 points. v0 modifier for anticoagulants is therefore not supported as a harm."
+    selection_note: "Class-level PPI estimate. Largest study of PPI cotherapy with anticoagulants; PPIs are protective (IRR < 1). v0 modifier for anticoagulants is not supported as a harm."
   - ingredient: omeprazole
     dimension: cardiovascular_bp
     applies_to: {persona: all, condition: null, medication_type: antiplatelets}
+    outcome: other
+    outcome_match: false
+    exposure_window: community_oral
+    comparator: within_group
+    dose_mg_per_day: null
+    match_note: "Not used. Outcome is 'a composite of cardiovascular events', not MI or stroke alone (outcome other). Within-group: clopidogrel users with vs without a PPI; 'antiplatelets' is broader than clopidogrel users, so under the brief this pair is insufficient. Trial-allocated oral PPI; trial durations are not stated in the abstract."
     measure: RR
     estimate: 1.08
     ci95: [0.78, 1.5]
@@ -120,10 +272,16 @@ relative_risks:
       url: "https://pubmed.ncbi.nlm.nih.gov/40685887/"
       location: "Abstract"
       quote: "Regarding efficacy with or without a PPI, the pooled risk ratio (RR) and risk difference (RD) were 1.08 (95% confidence interval (CI) 0.78; 1.50)"
-    selection_note: "Most recent meta-analysis of RCTs on the clopidogrel-PPI interaction, restricted to low risk-of-bias trials; (es)omeprazole specifically. Exposure is prescription PPI over the trial duration with clopidogrel. Not significant."
+    selection_note: "Most recent meta-analysis of RCTs on the clopidogrel-PPI interaction, restricted to low risk-of-bias trials; (es)omeprazole specifically. Not significant. Kept for the audit trail."
   - ingredient: omeprazole
     dimension: anticholinergic_cognitive
     applies_to: {persona: all, condition: null, medication_type: null}
+    outcome: delirium_hospital
+    outcome_match: true
+    exposure_window: inpatient
+    comparator: non_use
+    dose_mg_per_day: null
+    match_note: "Inpatient: PPI administered during a medical ICU encounter (mostly stress-ulcer prophylaxis), so rule 11 drops it. Outcome is delirium identified in hospital by 'an International Classification of Diseases-based algorithm' (delirium_hospital). Comparator: ICU patients receiving neither drug. No community estimate of delirium needing hospital care with PPIs was found."
     measure: RR
     estimate: 1.15
     ci95: [1.07, 1.24]
@@ -135,10 +293,37 @@ relative_risks:
       url: "https://pubmed.ncbi.nlm.nih.gov/34396144/"
       location: "Abstract, Results"
       quote: "compared with controls receiving neither medication, after controlling for mechanical ventilation and age (risk ratio, 1.36; 1.25-1.47; p < 0.001) and (risk ratio, 1.15; 1.07-1.24; p < 0.001, respectively)"
-    selection_note: "Class-level PPI estimate (second figure in quote is PPI). Only quantitative delirium estimate found. Strong mismatch: critically ill ICU patients, mostly IV stress-ulcer prophylaxis, adjusted only for ventilation and age; does not represent OTC use."
+    selection_note: "Class-level PPI estimate (second figure in quote is PPI). Only quantitative delirium estimate found. Critically ill ICU patients, adjusted only for ventilation and age."
   - ingredient: esomeprazole
     dimension: kidney
     applies_to: {persona: all, condition: null, medication_type: null}
+    outcome: aki_hospital
+    outcome_match: false
+    exposure_window: long_term
+    comparator: non_use
+    dose_mg_per_day: null
+    match_note: "Long-term and outcome mismatch: Han pools 'PPI therapy' from 12 studies without a common exposure window and states 'we were unable to examine the risk of AKI among PPI users based on the duration of PPI use'; its Table 1 includes multi-year cohorts such as Lazarus ARIC (1996-2011) and Liabeuf (CKD-REIN, median cumulative prescription 1 year), so the pooled exposure is not current community use. The outcome is not restricted to hospital AKI: 'Ten studies included AKI patients based on the International Classification of Disease (ICD) criteria, one study included based on the Oxford Medical Information System (OXMIS), and one study was based on the Kidney Disease Improving Global Outcomes (KDIGO)', and 'Two studies used laboratory data to detect AKI'. Comparator is PPI non-use."
+    measure: RR
+    estimate: 1.75
+    ci95: [1.4, 2.19]
+    exposure: "PPI therapy vs control (pooled adjusted estimates; exposure windows and durations differ across the 12 studies)"
+    population: "12 observational studies (9 cohort, 3 case-control), 2,492,125 individuals, published 2012-2022, mean age above 50 in all studies"
+    grade: meta_analysis
+    source:
+      citation: "Han CT, Islam MM, Poly TN, Lu YC, Lin MC. A Meta-Analysis of Proton Pump Inhibitor Use and the Risk of Acute Kidney Injury: Geographical Differences and Associated Factors. J Clin Med 2023;12(7):2467"
+      url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC10095047/"
+      location: "Abstract; Section 3.3; Table 2 (all studies row)"
+      quote: "The pooled adjusted RR demonstrated a significant positive association between PPI therapy and the risk of AKI (adjusted RR 1.75, 95% CI: 1.40-2.19, p < 0.001)"
+    selection_note: "Class-level PPI estimate. Rule 13: the most recent meta-analysis of PPI and AKI with the largest population (2023, 2,492,125 individuals), so it supersedes Nochaiwong 2018 and Yang 2017 (PMID 28479851, 2,404,236 participants, RR 1.61, 1.16-2.22). Full text opened via Europe PMC. Fails rules 10 and 11, so it is kept for the audit trail and not used."
+  - ingredient: esomeprazole
+    dimension: kidney
+    applies_to: {persona: all, condition: null, medication_type: null}
+    outcome: aki_hospital
+    outcome_match: false
+    exposure_window: long_term
+    comparator: non_use
+    dose_mg_per_day: null
+    match_note: "Long-term and outcome mismatch: pools 'PPI users' vs 'non-PPI users' from 4 cohort and 5 case-control studies without restricting to current use; the cohort studies follow users for years (the same cohorts appear in Han 2023 Table 1). The abstract does not restrict AKI to hospital-treated events, so the serious-level outcome is not shown. Superseded by Han 2023 under rule 13."
     measure: RR
     estimate: 1.44
     ci95: [1.08, 1.91]
@@ -150,25 +335,58 @@ relative_risks:
       url: "https://pubmed.ncbi.nlm.nih.gov/28339835/"
       location: "Abstract, Results"
       quote: "Compared with non-PPI users, PPI users experienced a significantly higher risk of AKI [RR 1.44 (95% CI 1.08-1.91); P = 0.013; SOE, low]"
-    selection_note: "Class-level PPI estimate. Largest dedicated meta-analysis of PPI and AKI found (~2.6M patients); umbrella reviews (Salvo 2021, PMID 34114655) cite RR 1.61 (1.16-2.22, n=2,396,640) from a smaller pooled population. Exposure mismatch: included studies mostly measured prescription PPI use over months to years, not a 10-day OTC course. GRADE strength of evidence low."
+    selection_note: "Class-level PPI estimate. Kept for the audit trail only: Han 2023 (PMC10095047) is more recent and is the rule 13 choice. The 2.6 million figure covers all kidney outcomes, not AKI alone. GRADE strength of evidence low."
+  - ingredient: esomeprazole
+    dimension: kidney
+    applies_to: {persona: all, condition: null, medication_type: null}
+    outcome: aki_hospital
+    outcome_match: false
+    exposure_window: community_oral
+    comparator: non_use
+    dose_mg_per_day: null
+    match_note: "Community current use: exposure is a PPI 'on the index date' in UK general practice records, against neither PPI nor tNSAID. Outcome not shown to be serious-level: cases were 'diagnostic-coded' AKI events in the General Practice Research Database, and the abstract does not say they were hospital-treated, so rule 10 is not met."
+    measure: OR
+    estimate: 1.05
+    ci95: [0.97, 1.14]
+    exposure: "PPI alone on the index date (current use) vs neither PPI nor traditional NSAID"
+    population: "UK General Practice Research Database; 27,982 AKI cases and 1,323,850 controls matched on age, sex and practice"
+    grade: case_control
+    source:
+      citation: "Leonard CE, Freeman CP, Newcomb CW, et al. Proton pump inhibitors and traditional nonsteroidal anti-inflammatory drugs and the risk of acute interstitial nephritis and acute kidney injury. Pharmacoepidemiol Drug Saf 2012;21(11):1155-72"
+      url: "https://pubmed.ncbi.nlm.nih.gov/22887960/"
+      location: "Abstract, Results"
+      quote: "The adjusted ORs for PPI alone, tNSAID alone, and PPI + tNSAID exposures were 1.05 (0.97-1.14), 1.31 (1.25-1.37), and 1.33 (1.07-1.64), respectively."
+    selection_note: "Class-level PPI estimate. Largest community current-use study of PPIs and AKI found (searched PubMed for proton pump inhibitor AND acute kidney injury in titles, 2026-11-18). Recorded because the meta-analyses fail rule 11; it fails rule 10 itself, so adults under 65 have no usable kidney row. Other community studies were not usable: Klepser 2013 (PMID 23865955) outcome is any 'renal disease' diagnosis; Ikuta 2021 (PMID 33589451) compares current with past PPI use, unadjusted."
   - ingredient: esomeprazole
     dimension: kidney
     applies_to: {persona: adult_65_plus, condition: null, medication_type: null}
+    outcome: aki_hospital
+    outcome_match: true
+    exposure_window: community_oral
+    comparator: non_use
+    dose_mg_per_day: null
+    match_note: "Community oral use: Ontario residents aged 66+ 'who initiated PPI therapy' (outpatient prescription) against propensity-matched non-users, followed for 120 days, which is under the one-year threshold and not defined by months of continuous use. Outcome is 'hospital admission with acute kidney injury within 120 days', the section-1 outcome."
     measure: HR
     estimate: 2.52
     ci95: [2.27, 2.79]
-    exposure: "PPI initiation (new prescription); hospital admission with AKI within 120 days"
+    exposure: "PPI initiation (new outpatient prescription); hospital admission with AKI within 120 days"
     population: "Ontario residents aged 66+ starting a PPI 2002-2011, 290,592 initiators vs propensity-matched controls"
     grade: cohort
     source:
       citation: "Antoniou T et al. CMAJ Open 2015;3(2):E166-71"
       url: "https://pubmed.ncbi.nlm.nih.gov/26389094/"
-      location: "Abstract, Results"
+      location: "Abstract, Methods and Results"
       quote: "The rates of acute kidney injury (13.49 v. 5.46 per 1000 person-years, respectively; hazard ratio [HR] 2.52, 95% CI 2.27 to 2.79)"
-    selection_note: "Class-level PPI estimate. No meta-analysis reports an age-stratified AKI estimate; this is the largest cohort in older adults. Outcome is hospital admission with AKI (matches v1). 120-day window after initiation is closer to a short course than multi-year studies, but still longer than 10 days and prescription doses."
+    selection_note: "Class-level PPI estimate. No meta-analysis reports an older-adult or current-use AKI estimate; this is the largest cohort in older adults. Age cut is 66, not 65. Prescription doses, not OTC."
   - ingredient: esomeprazole
     dimension: kidney
     applies_to: {persona: all, condition: kidney_disease, medication_type: null}
+    outcome: aki_hospital
+    outcome_match: false
+    exposure_window: long_term
+    comparator: within_group
+    dose_mg_per_day: null
+    match_note: "Long-term: 'new PPI prescriptions as a time-dependent variable' over 'a median follow-up of 3.9 years', with 'median cumulative duration of prescription ... 1 year'. Within-group: users vs non-users inside a CKD stage 2-5 nephrology cohort, so applies_to kidney_disease. The abstract does not define AKI or say it was hospital-treated, so the serious-level outcome is not shown."
     measure: HR
     estimate: 2.89
     ci95: [1.91, 4.38]
@@ -180,14 +398,20 @@ relative_risks:
       url: "https://pubmed.ncbi.nlm.nih.gov/33368448/"
       location: "Abstract, Results"
       quote: "The adjusted HR for AKI associated with PPI prescription was 2.89 (95% CI, 1.91-4.38)."
-    selection_note: "Class-level PPI estimate. Only CKD-specific AKI estimate found. Exposure mismatch: long-term prescription use (median 1 year), not a 10-day OTC course. Abstract does not state whether AKI required hospital care."
+    selection_note: "Class-level PPI estimate. Only CKD-specific AKI estimate found; no community current-use estimate in CKD found. Full text is not open access."
   - ingredient: esomeprazole
     dimension: sedation_falls
     applies_to: {persona: all, condition: null, medication_type: null}
+    outcome: hip_fracture
+    outcome_match: true
+    exposure_window: long_term
+    comparator: non_use
+    dose_mg_per_day: null
+    match_note: "Long-term: Poly 'included only the large (n >= 500) observational studies with a follow-up duration of at least one year', so the overall estimate pools exposure accumulated over years. Outcome is hip fracture (outcome id hip_fracture). Comparator is PPI non-users. The low, medium and high dose strata in the abstract (RR 1.17, 1.28, 1.30) give no mg/day ranges, so they are not recorded as dose rows."
     measure: RR
     estimate: 1.2
     ci95: [1.14, 1.28]
-    exposure: "PPI use vs no PPI (studies with follow-up >= 1 year); short-term use RR 1.20 (1.15-1.25), low dose RR 1.17 (1.05-1.29)"
+    exposure: "PPI use vs no PPI, studies with follow-up of at least one year"
     population: "24 observational studies, 2,103,800 participants (319,568 hip fracture patients), 1990-2018"
     grade: meta_analysis
     source:
@@ -195,10 +419,58 @@ relative_risks:
       url: "https://pubmed.ncbi.nlm.nih.gov/30539272/"
       location: "Abstract, Results"
       quote: "Patients with PPIs had a greater risk of hip fracture than those without PPI therapy (RR 1.20, 95% CI 1.14-1.28, p < 0.0001)."
-    selection_note: "Class-level PPI estimate. Most recent general-population meta-analysis with the largest population (2.1M); outcome is hip fracture only (a subset of v1 fall injury). Zhou 2016 (PMID 26462494) gives any-site RR 1.33 (1.15-1.54) in a smaller pool. Mechanism is bone/calcium absorption, not sedation; the source's short-term category is still months of use, not a 10-day course."
+    selection_note: "Class-level PPI estimate. Most recent hip-fracture meta-analysis with the largest population (2.1M). Overall estimate kept for the audit trail; the short-term stratum of the same abstract is recorded separately. Mechanism is bone/calcium absorption, not sedation."
+  - ingredient: esomeprazole
+    dimension: sedation_falls
+    applies_to: {persona: all, condition: null, medication_type: null}
+    outcome: hip_fracture
+    outcome_match: true
+    exposure_window: community_oral
+    comparator: non_use
+    dose_mg_per_day: null
+    match_note: "Community oral use: the abstract's 'short-term PPI therapy' stratum, compared with PPI non-users in community observational studies; it is defined by use shorter than the long-term stratum, not by months of continuous use (the cut-off is not stated in the abstract; the full text is not open access). Outcome is hip fracture (hip_fracture)."
+    measure: RR
+    estimate: 1.2
+    ci95: [1.15, 1.25]
+    exposure: "short-term PPI therapy vs PPI non-users"
+    population: "24 observational studies, 2,103,800 participants (319,568 hip fracture patients), 1990-2018"
+    grade: meta_analysis
+    source:
+      citation: "Poly TN et al. Osteoporos Int 2019;30(1):103-114"
+      url: "https://pubmed.ncbi.nlm.nih.gov/30539272/"
+      location: "Abstract, Results"
+      quote: "Moreover, the overall pooled risk ratios were 1.20 (95% CI 1.15-1.25, p < 0.0001) and 1.24 (95% CI 1.10-1.40, p < 0.0001) for the patients with short- and long-term PPI therapy, respectively, compared with PPI non-users."
+    selection_note: "Class-level PPI estimate. The shortest-duration stratum of the most recent and largest hip-fracture meta-analysis (rule 13); Ngamruengphong 2011 (PMID 21483462) gives a short-duration hip OR 1.24 (1.19-1.28) in a smaller, older pool. The source's short-term category is still longer than a 10-day course."
+  - ingredient: esomeprazole
+    dimension: sedation_falls
+    applies_to: {persona: all, condition: null, medication_type: null}
+    outcome: fracture
+    outcome_match: true
+    exposure_window: community_oral
+    comparator: non_use
+    dose_mg_per_day: null
+    match_note: "Community oral use: the 'short duration use' stratum, pooled from community observational studies against PPI non-users; the full text says the duration categories 'were those of individual' studies, so the stratum is the shortest use each study reported, not a months-long requirement. Outcome is any-site fracture (fracture)."
+    measure: OR
+    estimate: 1.29
+    ci95: [1.19, 1.4]
+    exposure: "short duration PPI use (each study's own shortest category) vs non-users"
+    population: "33 studies, 2,714,502 individuals, mean age 66.9 years"
+    grade: meta_analysis
+    source:
+      citation: "Nassar Y, Richter S. Proton-pump Inhibitor Use and Fracture Risk: An Updated Systematic Review and Meta-analysis. J Bone Metab 2018;25(3):141-151"
+      url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC6135649/"
+      location: "Abstract; Results section 1"
+      quote: "There was a trend towards increased fracture incidence from short duration use: OR 1.29 (95% CI, 1.19-1.40), medium duration use: OR 1.33 (95% CI, 1.12-1.55) and long duration use: OR 1.62 (95% CI, 1.33-1.90)."
+    selection_note: "Class-level PPI estimate. Largest any-site fracture meta-analysis found (2.7M), more recent than Zhou 2016 (PMID 26462494, any-site RR 1.33 with no duration stratum in the abstract). Its overall estimate (1.28, 1.22-1.35; mean follow-up 73 months) and medium and long strata are long-term and not recorded as usable rows. Pools 85 ratios, several per study, so studies are weighted more than once."
   - ingredient: esomeprazole
     dimension: sedation_falls
     applies_to: {persona: adult_65_plus, condition: null, medication_type: null}
+    outcome: fracture
+    outcome_match: true
+    exposure_window: community_oral
+    comparator: non_use
+    dose_mg_per_day: null
+    match_note: "Community oral use as far as the source states: 'PPI prescription' in observational studies of older adults, with no duration requirement in the abstract (full text not open access). Outcome is 'overall fracture risk' (fracture). Pools crude ORs, so confounding is not addressed."
     measure: OR
     estimate: 1.41
     ci95: [1.31, 1.51]
@@ -210,10 +482,36 @@ relative_risks:
       url: "https://pubmed.ncbi.nlm.nih.gov/40848405/"
       location: "Abstract"
       quote: "Pooled OR, calculated using a random effect model, showed a statistically significant association between PPI prescription and overall fracture risk (OR 1.41, 95 % confidence interval 1.31-1.51, P < 0.001)."
-    selection_note: "Class-level PPI estimate. Only meta-analysis restricted to older adults. Pools crude (unadjusted) ORs, so confounding is not addressed; exposure is prescription use of unstated duration, not a 10-day course."
+    selection_note: "Class-level PPI estimate. Only meta-analysis restricted to older adults. Unadjusted estimates; prescription use of unstated duration, not a 10-day OTC course."
+  - ingredient: esomeprazole
+    dimension: sedation_falls
+    applies_to: {persona: adult_65_plus, condition: null, medication_type: null}
+    outcome: fall_injury
+    outcome_match: true
+    exposure_window: community_oral
+    comparator: non_use
+    dose_mg_per_day: null
+    match_note: "Outcome is the section-1 fall injury at the serious level: the sensitivity analysis pools 'five studies evaluating the risk of fall injury requiring hospitalization' (fall_injury). Exposure is PPI use in observational studies with no duration requirement; one included cohort (Lewis 2014) used use of a year or more, the others current or recorded use, so it is classed community_oral. Persona: the included studies are mostly of adults aged 65 or 70 and over; the five studies are not named."
+    measure: OR
+    estimate: 1.61
+    ci95: [1.18, 2.2]
+    exposure: "PPI use vs non-use (definitions vary by study, including use in the 30 days before the index date)"
+    population: "5 studies of fall injury requiring hospitalization, within a meta-analysis of 8 observational studies (367,068 patients), mostly older adults"
+    grade: meta_analysis
+    source:
+      citation: "Lapumnuaypol K, Thongprayoon C, Wijarnpreecha K, Tiu A, Cheungpasitporn W. Risk of fall in patients taking proton pump inhibitors: a meta-analysis. QJM 2019;112(2):115-121"
+      url: "https://academic.oup.com/qjmed/article/112/2/115/5145385"
+      location: "Results, sensitivity analysis (full text read through the WebFetch tool; the PubMed record has no abstract)"
+      quote: "The pooled OR for fall injury requiring hospitalization in patients using PPIs was 1.61 (95% CI, 1.18–2.20, I2 = 67%)."
+    selection_note: "Class-level PPI estimate. Only meta-analysis of PPIs and falls found (PubMed search 2026-11-18); its all-falls estimate (OR 1.27, 1.07-1.50) includes self-reported falls, so the hospitalized fall-injury estimate is the one that matches section 1. The publisher page blocks direct download, so the quote was read through a fetch tool; verify against the PDF before release."
   - ingredient: esomeprazole
     dimension: pregnancy_lactation
     applies_to: {persona: pregnant, condition: null, medication_type: null}
+    outcome_match: true
+    exposure_window: community_oral
+    comparator: non_use
+    dose_mg_per_day: null
+    match_note: "Outcome is the specific fetal harm studied (congenital malformations). Exposure is maternal use during pregnancy outside hospital; comparator non-use."
     measure: OR
     estimate: 1.28
     ci95: [1.09, 1.52]
@@ -229,6 +527,12 @@ relative_risks:
   - ingredient: esomeprazole
     dimension: anticoagulant_bleeding
     applies_to: {persona: all, condition: null, medication_type: anticoagulants}
+    outcome: other
+    outcome_match: false
+    exposure_window: community_oral
+    comparator: within_group
+    dose_mg_per_day: null
+    match_note: "Within-group: anticoagulant treatment with vs without PPI cotherapy, all oral anticoagulant users (medication_type anticoagulants). Community oral use in Medicare outpatients. Outcome is 'hospitalizations for upper gastrointestinal tract bleeding', a part of major bleeding, not the all-site major bleeding the dimension's baseline measures, so rule 10 is not met."
     measure: IRR
     estimate: 0.66
     ci95: [0.62, 0.69]
@@ -240,10 +544,16 @@ relative_risks:
       url: "https://pubmed.ncbi.nlm.nih.gov/30512099/"
       location: "Abstract, Results"
       quote: "risk of upper gastrointestinal tract bleeding hospitalizations (n = 2245) was lower overall (IRR, 0.66 [95% CI, 0.62-0.69])"
-    selection_note: "Class-level PPI estimate. Largest study of PPI cotherapy with anticoagulants; PPIs are protective (IRR < 1), so this gives 0 points. v0 modifier for anticoagulants is therefore not supported as a harm."
+    selection_note: "Class-level PPI estimate. Largest study of PPI cotherapy with anticoagulants; PPIs are protective (IRR < 1). v0 modifier for anticoagulants is not supported as a harm."
   - ingredient: esomeprazole
     dimension: cardiovascular_bp
     applies_to: {persona: all, condition: null, medication_type: antiplatelets}
+    outcome: other
+    outcome_match: false
+    exposure_window: community_oral
+    comparator: within_group
+    dose_mg_per_day: null
+    match_note: "Not used. Outcome is 'a composite of cardiovascular events', not MI or stroke alone (outcome other). Within-group: clopidogrel users with vs without a PPI; 'antiplatelets' is broader than clopidogrel users, so under the brief this pair is insufficient. Trial-allocated oral PPI; trial durations are not stated in the abstract."
     measure: RR
     estimate: 1.08
     ci95: [0.78, 1.5]
@@ -255,10 +565,16 @@ relative_risks:
       url: "https://pubmed.ncbi.nlm.nih.gov/40685887/"
       location: "Abstract"
       quote: "Regarding efficacy with or without a PPI, the pooled risk ratio (RR) and risk difference (RD) were 1.08 (95% confidence interval (CI) 0.78; 1.50)"
-    selection_note: "Most recent meta-analysis of RCTs on the clopidogrel-PPI interaction, restricted to low risk-of-bias trials; (es)omeprazole specifically. Exposure is prescription PPI over the trial duration with clopidogrel. Not significant."
+    selection_note: "Most recent meta-analysis of RCTs on the clopidogrel-PPI interaction, restricted to low risk-of-bias trials; (es)omeprazole specifically. Not significant. Kept for the audit trail."
   - ingredient: esomeprazole
     dimension: anticholinergic_cognitive
     applies_to: {persona: all, condition: null, medication_type: null}
+    outcome: delirium_hospital
+    outcome_match: true
+    exposure_window: inpatient
+    comparator: non_use
+    dose_mg_per_day: null
+    match_note: "Inpatient: PPI administered during a medical ICU encounter (mostly stress-ulcer prophylaxis), so rule 11 drops it. Outcome is delirium identified in hospital by 'an International Classification of Diseases-based algorithm' (delirium_hospital). Comparator: ICU patients receiving neither drug. No community estimate of delirium needing hospital care with PPIs was found."
     measure: RR
     estimate: 1.15
     ci95: [1.07, 1.24]
@@ -270,10 +586,37 @@ relative_risks:
       url: "https://pubmed.ncbi.nlm.nih.gov/34396144/"
       location: "Abstract, Results"
       quote: "compared with controls receiving neither medication, after controlling for mechanical ventilation and age (risk ratio, 1.36; 1.25-1.47; p < 0.001) and (risk ratio, 1.15; 1.07-1.24; p < 0.001, respectively)"
-    selection_note: "Class-level PPI estimate (second figure in quote is PPI). Only quantitative delirium estimate found. Strong mismatch: critically ill ICU patients, mostly IV stress-ulcer prophylaxis, adjusted only for ventilation and age; does not represent OTC use."
+    selection_note: "Class-level PPI estimate (second figure in quote is PPI). Only quantitative delirium estimate found. Critically ill ICU patients, adjusted only for ventilation and age."
   - ingredient: omeprazole_magnesium
     dimension: kidney
     applies_to: {persona: all, condition: null, medication_type: null}
+    outcome: aki_hospital
+    outcome_match: false
+    exposure_window: long_term
+    comparator: non_use
+    dose_mg_per_day: null
+    match_note: "Long-term and outcome mismatch: Han pools 'PPI therapy' from 12 studies without a common exposure window and states 'we were unable to examine the risk of AKI among PPI users based on the duration of PPI use'; its Table 1 includes multi-year cohorts such as Lazarus ARIC (1996-2011) and Liabeuf (CKD-REIN, median cumulative prescription 1 year), so the pooled exposure is not current community use. The outcome is not restricted to hospital AKI: 'Ten studies included AKI patients based on the International Classification of Disease (ICD) criteria, one study included based on the Oxford Medical Information System (OXMIS), and one study was based on the Kidney Disease Improving Global Outcomes (KDIGO)', and 'Two studies used laboratory data to detect AKI'. Comparator is PPI non-use."
+    measure: RR
+    estimate: 1.75
+    ci95: [1.4, 2.19]
+    exposure: "PPI therapy vs control (pooled adjusted estimates; exposure windows and durations differ across the 12 studies)"
+    population: "12 observational studies (9 cohort, 3 case-control), 2,492,125 individuals, published 2012-2022, mean age above 50 in all studies"
+    grade: meta_analysis
+    source:
+      citation: "Han CT, Islam MM, Poly TN, Lu YC, Lin MC. A Meta-Analysis of Proton Pump Inhibitor Use and the Risk of Acute Kidney Injury: Geographical Differences and Associated Factors. J Clin Med 2023;12(7):2467"
+      url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC10095047/"
+      location: "Abstract; Section 3.3; Table 2 (all studies row)"
+      quote: "The pooled adjusted RR demonstrated a significant positive association between PPI therapy and the risk of AKI (adjusted RR 1.75, 95% CI: 1.40-2.19, p < 0.001)"
+    selection_note: "same moiety as omeprazole"
+  - ingredient: omeprazole_magnesium
+    dimension: kidney
+    applies_to: {persona: all, condition: null, medication_type: null}
+    outcome: aki_hospital
+    outcome_match: false
+    exposure_window: long_term
+    comparator: non_use
+    dose_mg_per_day: null
+    match_note: "Long-term and outcome mismatch: pools 'PPI users' vs 'non-PPI users' from 4 cohort and 5 case-control studies without restricting to current use; the cohort studies follow users for years (the same cohorts appear in Han 2023 Table 1). The abstract does not restrict AKI to hospital-treated events, so the serious-level outcome is not shown. Superseded by Han 2023 under rule 13."
     measure: RR
     estimate: 1.44
     ci95: [1.08, 1.91]
@@ -288,22 +631,55 @@ relative_risks:
     selection_note: "same moiety as omeprazole"
   - ingredient: omeprazole_magnesium
     dimension: kidney
+    applies_to: {persona: all, condition: null, medication_type: null}
+    outcome: aki_hospital
+    outcome_match: false
+    exposure_window: community_oral
+    comparator: non_use
+    dose_mg_per_day: null
+    match_note: "Community current use: exposure is a PPI 'on the index date' in UK general practice records, against neither PPI nor tNSAID. Outcome not shown to be serious-level: cases were 'diagnostic-coded' AKI events in the General Practice Research Database, and the abstract does not say they were hospital-treated, so rule 10 is not met."
+    measure: OR
+    estimate: 1.05
+    ci95: [0.97, 1.14]
+    exposure: "PPI alone on the index date (current use) vs neither PPI nor traditional NSAID"
+    population: "UK General Practice Research Database; 27,982 AKI cases and 1,323,850 controls matched on age, sex and practice"
+    grade: case_control
+    source:
+      citation: "Leonard CE, Freeman CP, Newcomb CW, et al. Proton pump inhibitors and traditional nonsteroidal anti-inflammatory drugs and the risk of acute interstitial nephritis and acute kidney injury. Pharmacoepidemiol Drug Saf 2012;21(11):1155-72"
+      url: "https://pubmed.ncbi.nlm.nih.gov/22887960/"
+      location: "Abstract, Results"
+      quote: "The adjusted ORs for PPI alone, tNSAID alone, and PPI + tNSAID exposures were 1.05 (0.97-1.14), 1.31 (1.25-1.37), and 1.33 (1.07-1.64), respectively."
+    selection_note: "same moiety as omeprazole"
+  - ingredient: omeprazole_magnesium
+    dimension: kidney
     applies_to: {persona: adult_65_plus, condition: null, medication_type: null}
+    outcome: aki_hospital
+    outcome_match: true
+    exposure_window: community_oral
+    comparator: non_use
+    dose_mg_per_day: null
+    match_note: "Community oral use: Ontario residents aged 66+ 'who initiated PPI therapy' (outpatient prescription) against propensity-matched non-users, followed for 120 days, which is under the one-year threshold and not defined by months of continuous use. Outcome is 'hospital admission with acute kidney injury within 120 days', the section-1 outcome."
     measure: HR
     estimate: 2.52
     ci95: [2.27, 2.79]
-    exposure: "PPI initiation (new prescription); hospital admission with AKI within 120 days"
+    exposure: "PPI initiation (new outpatient prescription); hospital admission with AKI within 120 days"
     population: "Ontario residents aged 66+ starting a PPI 2002-2011, 290,592 initiators vs propensity-matched controls"
     grade: cohort
     source:
       citation: "Antoniou T et al. CMAJ Open 2015;3(2):E166-71"
       url: "https://pubmed.ncbi.nlm.nih.gov/26389094/"
-      location: "Abstract, Results"
+      location: "Abstract, Methods and Results"
       quote: "The rates of acute kidney injury (13.49 v. 5.46 per 1000 person-years, respectively; hazard ratio [HR] 2.52, 95% CI 2.27 to 2.79)"
     selection_note: "same moiety as omeprazole"
   - ingredient: omeprazole_magnesium
     dimension: kidney
     applies_to: {persona: all, condition: kidney_disease, medication_type: null}
+    outcome: aki_hospital
+    outcome_match: false
+    exposure_window: long_term
+    comparator: within_group
+    dose_mg_per_day: null
+    match_note: "Long-term: 'new PPI prescriptions as a time-dependent variable' over 'a median follow-up of 3.9 years', with 'median cumulative duration of prescription ... 1 year'. Within-group: users vs non-users inside a CKD stage 2-5 nephrology cohort, so applies_to kidney_disease. The abstract does not define AKI or say it was hospital-treated, so the serious-level outcome is not shown."
     measure: HR
     estimate: 2.89
     ci95: [1.91, 4.38]
@@ -319,10 +695,16 @@ relative_risks:
   - ingredient: omeprazole_magnesium
     dimension: sedation_falls
     applies_to: {persona: all, condition: null, medication_type: null}
+    outcome: hip_fracture
+    outcome_match: true
+    exposure_window: long_term
+    comparator: non_use
+    dose_mg_per_day: null
+    match_note: "Long-term: Poly 'included only the large (n >= 500) observational studies with a follow-up duration of at least one year', so the overall estimate pools exposure accumulated over years. Outcome is hip fracture (outcome id hip_fracture). Comparator is PPI non-users. The low, medium and high dose strata in the abstract (RR 1.17, 1.28, 1.30) give no mg/day ranges, so they are not recorded as dose rows."
     measure: RR
     estimate: 1.2
     ci95: [1.14, 1.28]
-    exposure: "PPI use vs no PPI (studies with follow-up >= 1 year); short-term use RR 1.20 (1.15-1.25), low dose RR 1.17 (1.05-1.29)"
+    exposure: "PPI use vs no PPI, studies with follow-up of at least one year"
     population: "24 observational studies, 2,103,800 participants (319,568 hip fracture patients), 1990-2018"
     grade: meta_analysis
     source:
@@ -333,7 +715,55 @@ relative_risks:
     selection_note: "same moiety as omeprazole"
   - ingredient: omeprazole_magnesium
     dimension: sedation_falls
+    applies_to: {persona: all, condition: null, medication_type: null}
+    outcome: hip_fracture
+    outcome_match: true
+    exposure_window: community_oral
+    comparator: non_use
+    dose_mg_per_day: null
+    match_note: "Community oral use: the abstract's 'short-term PPI therapy' stratum, compared with PPI non-users in community observational studies; it is defined by use shorter than the long-term stratum, not by months of continuous use (the cut-off is not stated in the abstract; the full text is not open access). Outcome is hip fracture (hip_fracture)."
+    measure: RR
+    estimate: 1.2
+    ci95: [1.15, 1.25]
+    exposure: "short-term PPI therapy vs PPI non-users"
+    population: "24 observational studies, 2,103,800 participants (319,568 hip fracture patients), 1990-2018"
+    grade: meta_analysis
+    source:
+      citation: "Poly TN et al. Osteoporos Int 2019;30(1):103-114"
+      url: "https://pubmed.ncbi.nlm.nih.gov/30539272/"
+      location: "Abstract, Results"
+      quote: "Moreover, the overall pooled risk ratios were 1.20 (95% CI 1.15-1.25, p < 0.0001) and 1.24 (95% CI 1.10-1.40, p < 0.0001) for the patients with short- and long-term PPI therapy, respectively, compared with PPI non-users."
+    selection_note: "same moiety as omeprazole"
+  - ingredient: omeprazole_magnesium
+    dimension: sedation_falls
+    applies_to: {persona: all, condition: null, medication_type: null}
+    outcome: fracture
+    outcome_match: true
+    exposure_window: community_oral
+    comparator: non_use
+    dose_mg_per_day: null
+    match_note: "Community oral use: the 'short duration use' stratum, pooled from community observational studies against PPI non-users; the full text says the duration categories 'were those of individual' studies, so the stratum is the shortest use each study reported, not a months-long requirement. Outcome is any-site fracture (fracture)."
+    measure: OR
+    estimate: 1.29
+    ci95: [1.19, 1.4]
+    exposure: "short duration PPI use (each study's own shortest category) vs non-users"
+    population: "33 studies, 2,714,502 individuals, mean age 66.9 years"
+    grade: meta_analysis
+    source:
+      citation: "Nassar Y, Richter S. Proton-pump Inhibitor Use and Fracture Risk: An Updated Systematic Review and Meta-analysis. J Bone Metab 2018;25(3):141-151"
+      url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC6135649/"
+      location: "Abstract; Results section 1"
+      quote: "There was a trend towards increased fracture incidence from short duration use: OR 1.29 (95% CI, 1.19-1.40), medium duration use: OR 1.33 (95% CI, 1.12-1.55) and long duration use: OR 1.62 (95% CI, 1.33-1.90)."
+    selection_note: "same moiety as omeprazole"
+  - ingredient: omeprazole_magnesium
+    dimension: sedation_falls
     applies_to: {persona: adult_65_plus, condition: null, medication_type: null}
+    outcome: fracture
+    outcome_match: true
+    exposure_window: community_oral
+    comparator: non_use
+    dose_mg_per_day: null
+    match_note: "Community oral use as far as the source states: 'PPI prescription' in observational studies of older adults, with no duration requirement in the abstract (full text not open access). Outcome is 'overall fracture risk' (fracture). Pools crude ORs, so confounding is not addressed."
     measure: OR
     estimate: 1.41
     ci95: [1.31, 1.51]
@@ -347,8 +777,34 @@ relative_risks:
       quote: "Pooled OR, calculated using a random effect model, showed a statistically significant association between PPI prescription and overall fracture risk (OR 1.41, 95 % confidence interval 1.31-1.51, P < 0.001)."
     selection_note: "same moiety as omeprazole"
   - ingredient: omeprazole_magnesium
+    dimension: sedation_falls
+    applies_to: {persona: adult_65_plus, condition: null, medication_type: null}
+    outcome: fall_injury
+    outcome_match: true
+    exposure_window: community_oral
+    comparator: non_use
+    dose_mg_per_day: null
+    match_note: "Outcome is the section-1 fall injury at the serious level: the sensitivity analysis pools 'five studies evaluating the risk of fall injury requiring hospitalization' (fall_injury). Exposure is PPI use in observational studies with no duration requirement; one included cohort (Lewis 2014) used use of a year or more, the others current or recorded use, so it is classed community_oral. Persona: the included studies are mostly of adults aged 65 or 70 and over; the five studies are not named."
+    measure: OR
+    estimate: 1.61
+    ci95: [1.18, 2.2]
+    exposure: "PPI use vs non-use (definitions vary by study, including use in the 30 days before the index date)"
+    population: "5 studies of fall injury requiring hospitalization, within a meta-analysis of 8 observational studies (367,068 patients), mostly older adults"
+    grade: meta_analysis
+    source:
+      citation: "Lapumnuaypol K, Thongprayoon C, Wijarnpreecha K, Tiu A, Cheungpasitporn W. Risk of fall in patients taking proton pump inhibitors: a meta-analysis. QJM 2019;112(2):115-121"
+      url: "https://academic.oup.com/qjmed/article/112/2/115/5145385"
+      location: "Results, sensitivity analysis (full text read through the WebFetch tool; the PubMed record has no abstract)"
+      quote: "The pooled OR for fall injury requiring hospitalization in patients using PPIs was 1.61 (95% CI, 1.18–2.20, I2 = 67%)."
+    selection_note: "same moiety as omeprazole"
+  - ingredient: omeprazole_magnesium
     dimension: pregnancy_lactation
     applies_to: {persona: pregnant, condition: null, medication_type: null}
+    outcome_match: true
+    exposure_window: community_oral
+    comparator: non_use
+    dose_mg_per_day: null
+    match_note: "Outcome is the specific fetal harm studied (congenital malformations). Exposure is maternal use during pregnancy outside hospital; comparator non-use."
     measure: OR
     estimate: 1.28
     ci95: [1.09, 1.52]
@@ -364,6 +820,12 @@ relative_risks:
   - ingredient: omeprazole_magnesium
     dimension: anticoagulant_bleeding
     applies_to: {persona: all, condition: null, medication_type: anticoagulants}
+    outcome: other
+    outcome_match: false
+    exposure_window: community_oral
+    comparator: within_group
+    dose_mg_per_day: null
+    match_note: "Within-group: anticoagulant treatment with vs without PPI cotherapy, all oral anticoagulant users (medication_type anticoagulants). Community oral use in Medicare outpatients. Outcome is 'hospitalizations for upper gastrointestinal tract bleeding', a part of major bleeding, not the all-site major bleeding the dimension's baseline measures, so rule 10 is not met."
     measure: IRR
     estimate: 0.66
     ci95: [0.62, 0.69]
@@ -379,6 +841,12 @@ relative_risks:
   - ingredient: omeprazole_magnesium
     dimension: cardiovascular_bp
     applies_to: {persona: all, condition: null, medication_type: antiplatelets}
+    outcome: other
+    outcome_match: false
+    exposure_window: community_oral
+    comparator: within_group
+    dose_mg_per_day: null
+    match_note: "Not used. Outcome is 'a composite of cardiovascular events', not MI or stroke alone (outcome other). Within-group: clopidogrel users with vs without a PPI; 'antiplatelets' is broader than clopidogrel users, so under the brief this pair is insufficient. Trial-allocated oral PPI; trial durations are not stated in the abstract."
     measure: RR
     estimate: 1.08
     ci95: [0.78, 1.5]
@@ -394,6 +862,12 @@ relative_risks:
   - ingredient: omeprazole_magnesium
     dimension: anticholinergic_cognitive
     applies_to: {persona: all, condition: null, medication_type: null}
+    outcome: delirium_hospital
+    outcome_match: true
+    exposure_window: inpatient
+    comparator: non_use
+    dose_mg_per_day: null
+    match_note: "Inpatient: PPI administered during a medical ICU encounter (mostly stress-ulcer prophylaxis), so rule 11 drops it. Outcome is delirium identified in hospital by 'an International Classification of Diseases-based algorithm' (delirium_hospital). Comparator: ICU patients receiving neither drug. No community estimate of delirium needing hospital care with PPIs was found."
     measure: RR
     estimate: 1.15
     ci95: [1.07, 1.24]
@@ -409,6 +883,33 @@ relative_risks:
   - ingredient: esomeprazole_magnesium_dihydrate
     dimension: kidney
     applies_to: {persona: all, condition: null, medication_type: null}
+    outcome: aki_hospital
+    outcome_match: false
+    exposure_window: long_term
+    comparator: non_use
+    dose_mg_per_day: null
+    match_note: "Long-term and outcome mismatch: Han pools 'PPI therapy' from 12 studies without a common exposure window and states 'we were unable to examine the risk of AKI among PPI users based on the duration of PPI use'; its Table 1 includes multi-year cohorts such as Lazarus ARIC (1996-2011) and Liabeuf (CKD-REIN, median cumulative prescription 1 year), so the pooled exposure is not current community use. The outcome is not restricted to hospital AKI: 'Ten studies included AKI patients based on the International Classification of Disease (ICD) criteria, one study included based on the Oxford Medical Information System (OXMIS), and one study was based on the Kidney Disease Improving Global Outcomes (KDIGO)', and 'Two studies used laboratory data to detect AKI'. Comparator is PPI non-use."
+    measure: RR
+    estimate: 1.75
+    ci95: [1.4, 2.19]
+    exposure: "PPI therapy vs control (pooled adjusted estimates; exposure windows and durations differ across the 12 studies)"
+    population: "12 observational studies (9 cohort, 3 case-control), 2,492,125 individuals, published 2012-2022, mean age above 50 in all studies"
+    grade: meta_analysis
+    source:
+      citation: "Han CT, Islam MM, Poly TN, Lu YC, Lin MC. A Meta-Analysis of Proton Pump Inhibitor Use and the Risk of Acute Kidney Injury: Geographical Differences and Associated Factors. J Clin Med 2023;12(7):2467"
+      url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC10095047/"
+      location: "Abstract; Section 3.3; Table 2 (all studies row)"
+      quote: "The pooled adjusted RR demonstrated a significant positive association between PPI therapy and the risk of AKI (adjusted RR 1.75, 95% CI: 1.40-2.19, p < 0.001)"
+    selection_note: "same moiety as esomeprazole"
+  - ingredient: esomeprazole_magnesium_dihydrate
+    dimension: kidney
+    applies_to: {persona: all, condition: null, medication_type: null}
+    outcome: aki_hospital
+    outcome_match: false
+    exposure_window: long_term
+    comparator: non_use
+    dose_mg_per_day: null
+    match_note: "Long-term and outcome mismatch: pools 'PPI users' vs 'non-PPI users' from 4 cohort and 5 case-control studies without restricting to current use; the cohort studies follow users for years (the same cohorts appear in Han 2023 Table 1). The abstract does not restrict AKI to hospital-treated events, so the serious-level outcome is not shown. Superseded by Han 2023 under rule 13."
     measure: RR
     estimate: 1.44
     ci95: [1.08, 1.91]
@@ -423,22 +924,55 @@ relative_risks:
     selection_note: "same moiety as esomeprazole"
   - ingredient: esomeprazole_magnesium_dihydrate
     dimension: kidney
+    applies_to: {persona: all, condition: null, medication_type: null}
+    outcome: aki_hospital
+    outcome_match: false
+    exposure_window: community_oral
+    comparator: non_use
+    dose_mg_per_day: null
+    match_note: "Community current use: exposure is a PPI 'on the index date' in UK general practice records, against neither PPI nor tNSAID. Outcome not shown to be serious-level: cases were 'diagnostic-coded' AKI events in the General Practice Research Database, and the abstract does not say they were hospital-treated, so rule 10 is not met."
+    measure: OR
+    estimate: 1.05
+    ci95: [0.97, 1.14]
+    exposure: "PPI alone on the index date (current use) vs neither PPI nor traditional NSAID"
+    population: "UK General Practice Research Database; 27,982 AKI cases and 1,323,850 controls matched on age, sex and practice"
+    grade: case_control
+    source:
+      citation: "Leonard CE, Freeman CP, Newcomb CW, et al. Proton pump inhibitors and traditional nonsteroidal anti-inflammatory drugs and the risk of acute interstitial nephritis and acute kidney injury. Pharmacoepidemiol Drug Saf 2012;21(11):1155-72"
+      url: "https://pubmed.ncbi.nlm.nih.gov/22887960/"
+      location: "Abstract, Results"
+      quote: "The adjusted ORs for PPI alone, tNSAID alone, and PPI + tNSAID exposures were 1.05 (0.97-1.14), 1.31 (1.25-1.37), and 1.33 (1.07-1.64), respectively."
+    selection_note: "same moiety as esomeprazole"
+  - ingredient: esomeprazole_magnesium_dihydrate
+    dimension: kidney
     applies_to: {persona: adult_65_plus, condition: null, medication_type: null}
+    outcome: aki_hospital
+    outcome_match: true
+    exposure_window: community_oral
+    comparator: non_use
+    dose_mg_per_day: null
+    match_note: "Community oral use: Ontario residents aged 66+ 'who initiated PPI therapy' (outpatient prescription) against propensity-matched non-users, followed for 120 days, which is under the one-year threshold and not defined by months of continuous use. Outcome is 'hospital admission with acute kidney injury within 120 days', the section-1 outcome."
     measure: HR
     estimate: 2.52
     ci95: [2.27, 2.79]
-    exposure: "PPI initiation (new prescription); hospital admission with AKI within 120 days"
+    exposure: "PPI initiation (new outpatient prescription); hospital admission with AKI within 120 days"
     population: "Ontario residents aged 66+ starting a PPI 2002-2011, 290,592 initiators vs propensity-matched controls"
     grade: cohort
     source:
       citation: "Antoniou T et al. CMAJ Open 2015;3(2):E166-71"
       url: "https://pubmed.ncbi.nlm.nih.gov/26389094/"
-      location: "Abstract, Results"
+      location: "Abstract, Methods and Results"
       quote: "The rates of acute kidney injury (13.49 v. 5.46 per 1000 person-years, respectively; hazard ratio [HR] 2.52, 95% CI 2.27 to 2.79)"
     selection_note: "same moiety as esomeprazole"
   - ingredient: esomeprazole_magnesium_dihydrate
     dimension: kidney
     applies_to: {persona: all, condition: kidney_disease, medication_type: null}
+    outcome: aki_hospital
+    outcome_match: false
+    exposure_window: long_term
+    comparator: within_group
+    dose_mg_per_day: null
+    match_note: "Long-term: 'new PPI prescriptions as a time-dependent variable' over 'a median follow-up of 3.9 years', with 'median cumulative duration of prescription ... 1 year'. Within-group: users vs non-users inside a CKD stage 2-5 nephrology cohort, so applies_to kidney_disease. The abstract does not define AKI or say it was hospital-treated, so the serious-level outcome is not shown."
     measure: HR
     estimate: 2.89
     ci95: [1.91, 4.38]
@@ -454,10 +988,16 @@ relative_risks:
   - ingredient: esomeprazole_magnesium_dihydrate
     dimension: sedation_falls
     applies_to: {persona: all, condition: null, medication_type: null}
+    outcome: hip_fracture
+    outcome_match: true
+    exposure_window: long_term
+    comparator: non_use
+    dose_mg_per_day: null
+    match_note: "Long-term: Poly 'included only the large (n >= 500) observational studies with a follow-up duration of at least one year', so the overall estimate pools exposure accumulated over years. Outcome is hip fracture (outcome id hip_fracture). Comparator is PPI non-users. The low, medium and high dose strata in the abstract (RR 1.17, 1.28, 1.30) give no mg/day ranges, so they are not recorded as dose rows."
     measure: RR
     estimate: 1.2
     ci95: [1.14, 1.28]
-    exposure: "PPI use vs no PPI (studies with follow-up >= 1 year); short-term use RR 1.20 (1.15-1.25), low dose RR 1.17 (1.05-1.29)"
+    exposure: "PPI use vs no PPI, studies with follow-up of at least one year"
     population: "24 observational studies, 2,103,800 participants (319,568 hip fracture patients), 1990-2018"
     grade: meta_analysis
     source:
@@ -468,7 +1008,55 @@ relative_risks:
     selection_note: "same moiety as esomeprazole"
   - ingredient: esomeprazole_magnesium_dihydrate
     dimension: sedation_falls
+    applies_to: {persona: all, condition: null, medication_type: null}
+    outcome: hip_fracture
+    outcome_match: true
+    exposure_window: community_oral
+    comparator: non_use
+    dose_mg_per_day: null
+    match_note: "Community oral use: the abstract's 'short-term PPI therapy' stratum, compared with PPI non-users in community observational studies; it is defined by use shorter than the long-term stratum, not by months of continuous use (the cut-off is not stated in the abstract; the full text is not open access). Outcome is hip fracture (hip_fracture)."
+    measure: RR
+    estimate: 1.2
+    ci95: [1.15, 1.25]
+    exposure: "short-term PPI therapy vs PPI non-users"
+    population: "24 observational studies, 2,103,800 participants (319,568 hip fracture patients), 1990-2018"
+    grade: meta_analysis
+    source:
+      citation: "Poly TN et al. Osteoporos Int 2019;30(1):103-114"
+      url: "https://pubmed.ncbi.nlm.nih.gov/30539272/"
+      location: "Abstract, Results"
+      quote: "Moreover, the overall pooled risk ratios were 1.20 (95% CI 1.15-1.25, p < 0.0001) and 1.24 (95% CI 1.10-1.40, p < 0.0001) for the patients with short- and long-term PPI therapy, respectively, compared with PPI non-users."
+    selection_note: "same moiety as esomeprazole"
+  - ingredient: esomeprazole_magnesium_dihydrate
+    dimension: sedation_falls
+    applies_to: {persona: all, condition: null, medication_type: null}
+    outcome: fracture
+    outcome_match: true
+    exposure_window: community_oral
+    comparator: non_use
+    dose_mg_per_day: null
+    match_note: "Community oral use: the 'short duration use' stratum, pooled from community observational studies against PPI non-users; the full text says the duration categories 'were those of individual' studies, so the stratum is the shortest use each study reported, not a months-long requirement. Outcome is any-site fracture (fracture)."
+    measure: OR
+    estimate: 1.29
+    ci95: [1.19, 1.4]
+    exposure: "short duration PPI use (each study's own shortest category) vs non-users"
+    population: "33 studies, 2,714,502 individuals, mean age 66.9 years"
+    grade: meta_analysis
+    source:
+      citation: "Nassar Y, Richter S. Proton-pump Inhibitor Use and Fracture Risk: An Updated Systematic Review and Meta-analysis. J Bone Metab 2018;25(3):141-151"
+      url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC6135649/"
+      location: "Abstract; Results section 1"
+      quote: "There was a trend towards increased fracture incidence from short duration use: OR 1.29 (95% CI, 1.19-1.40), medium duration use: OR 1.33 (95% CI, 1.12-1.55) and long duration use: OR 1.62 (95% CI, 1.33-1.90)."
+    selection_note: "same moiety as esomeprazole"
+  - ingredient: esomeprazole_magnesium_dihydrate
+    dimension: sedation_falls
     applies_to: {persona: adult_65_plus, condition: null, medication_type: null}
+    outcome: fracture
+    outcome_match: true
+    exposure_window: community_oral
+    comparator: non_use
+    dose_mg_per_day: null
+    match_note: "Community oral use as far as the source states: 'PPI prescription' in observational studies of older adults, with no duration requirement in the abstract (full text not open access). Outcome is 'overall fracture risk' (fracture). Pools crude ORs, so confounding is not addressed."
     measure: OR
     estimate: 1.41
     ci95: [1.31, 1.51]
@@ -482,8 +1070,34 @@ relative_risks:
       quote: "Pooled OR, calculated using a random effect model, showed a statistically significant association between PPI prescription and overall fracture risk (OR 1.41, 95 % confidence interval 1.31-1.51, P < 0.001)."
     selection_note: "same moiety as esomeprazole"
   - ingredient: esomeprazole_magnesium_dihydrate
+    dimension: sedation_falls
+    applies_to: {persona: adult_65_plus, condition: null, medication_type: null}
+    outcome: fall_injury
+    outcome_match: true
+    exposure_window: community_oral
+    comparator: non_use
+    dose_mg_per_day: null
+    match_note: "Outcome is the section-1 fall injury at the serious level: the sensitivity analysis pools 'five studies evaluating the risk of fall injury requiring hospitalization' (fall_injury). Exposure is PPI use in observational studies with no duration requirement; one included cohort (Lewis 2014) used use of a year or more, the others current or recorded use, so it is classed community_oral. Persona: the included studies are mostly of adults aged 65 or 70 and over; the five studies are not named."
+    measure: OR
+    estimate: 1.61
+    ci95: [1.18, 2.2]
+    exposure: "PPI use vs non-use (definitions vary by study, including use in the 30 days before the index date)"
+    population: "5 studies of fall injury requiring hospitalization, within a meta-analysis of 8 observational studies (367,068 patients), mostly older adults"
+    grade: meta_analysis
+    source:
+      citation: "Lapumnuaypol K, Thongprayoon C, Wijarnpreecha K, Tiu A, Cheungpasitporn W. Risk of fall in patients taking proton pump inhibitors: a meta-analysis. QJM 2019;112(2):115-121"
+      url: "https://academic.oup.com/qjmed/article/112/2/115/5145385"
+      location: "Results, sensitivity analysis (full text read through the WebFetch tool; the PubMed record has no abstract)"
+      quote: "The pooled OR for fall injury requiring hospitalization in patients using PPIs was 1.61 (95% CI, 1.18–2.20, I2 = 67%)."
+    selection_note: "same moiety as esomeprazole"
+  - ingredient: esomeprazole_magnesium_dihydrate
     dimension: pregnancy_lactation
     applies_to: {persona: pregnant, condition: null, medication_type: null}
+    outcome_match: true
+    exposure_window: community_oral
+    comparator: non_use
+    dose_mg_per_day: null
+    match_note: "Outcome is the specific fetal harm studied (congenital malformations). Exposure is maternal use during pregnancy outside hospital; comparator non-use."
     measure: OR
     estimate: 1.28
     ci95: [1.09, 1.52]
@@ -499,6 +1113,12 @@ relative_risks:
   - ingredient: esomeprazole_magnesium_dihydrate
     dimension: anticoagulant_bleeding
     applies_to: {persona: all, condition: null, medication_type: anticoagulants}
+    outcome: other
+    outcome_match: false
+    exposure_window: community_oral
+    comparator: within_group
+    dose_mg_per_day: null
+    match_note: "Within-group: anticoagulant treatment with vs without PPI cotherapy, all oral anticoagulant users (medication_type anticoagulants). Community oral use in Medicare outpatients. Outcome is 'hospitalizations for upper gastrointestinal tract bleeding', a part of major bleeding, not the all-site major bleeding the dimension's baseline measures, so rule 10 is not met."
     measure: IRR
     estimate: 0.66
     ci95: [0.62, 0.69]
@@ -514,6 +1134,12 @@ relative_risks:
   - ingredient: esomeprazole_magnesium_dihydrate
     dimension: cardiovascular_bp
     applies_to: {persona: all, condition: null, medication_type: antiplatelets}
+    outcome: other
+    outcome_match: false
+    exposure_window: community_oral
+    comparator: within_group
+    dose_mg_per_day: null
+    match_note: "Not used. Outcome is 'a composite of cardiovascular events', not MI or stroke alone (outcome other). Within-group: clopidogrel users with vs without a PPI; 'antiplatelets' is broader than clopidogrel users, so under the brief this pair is insufficient. Trial-allocated oral PPI; trial durations are not stated in the abstract."
     measure: RR
     estimate: 1.08
     ci95: [0.78, 1.5]
@@ -529,6 +1155,12 @@ relative_risks:
   - ingredient: esomeprazole_magnesium_dihydrate
     dimension: anticholinergic_cognitive
     applies_to: {persona: all, condition: null, medication_type: null}
+    outcome: delirium_hospital
+    outcome_match: true
+    exposure_window: inpatient
+    comparator: non_use
+    dose_mg_per_day: null
+    match_note: "Inpatient: PPI administered during a medical ICU encounter (mostly stress-ulcer prophylaxis), so rule 11 drops it. Outcome is delirium identified in hospital by 'an International Classification of Diseases-based algorithm' (delirium_hospital). Comparator: ICU patients receiving neither drug. No community estimate of delirium needing hospital care with PPIs was found."
     measure: RR
     estimate: 1.15
     ci95: [1.07, 1.24]
@@ -544,6 +1176,33 @@ relative_risks:
   - ingredient: esomeprazole_magnesium_trihydrate
     dimension: kidney
     applies_to: {persona: all, condition: null, medication_type: null}
+    outcome: aki_hospital
+    outcome_match: false
+    exposure_window: long_term
+    comparator: non_use
+    dose_mg_per_day: null
+    match_note: "Long-term and outcome mismatch: Han pools 'PPI therapy' from 12 studies without a common exposure window and states 'we were unable to examine the risk of AKI among PPI users based on the duration of PPI use'; its Table 1 includes multi-year cohorts such as Lazarus ARIC (1996-2011) and Liabeuf (CKD-REIN, median cumulative prescription 1 year), so the pooled exposure is not current community use. The outcome is not restricted to hospital AKI: 'Ten studies included AKI patients based on the International Classification of Disease (ICD) criteria, one study included based on the Oxford Medical Information System (OXMIS), and one study was based on the Kidney Disease Improving Global Outcomes (KDIGO)', and 'Two studies used laboratory data to detect AKI'. Comparator is PPI non-use."
+    measure: RR
+    estimate: 1.75
+    ci95: [1.4, 2.19]
+    exposure: "PPI therapy vs control (pooled adjusted estimates; exposure windows and durations differ across the 12 studies)"
+    population: "12 observational studies (9 cohort, 3 case-control), 2,492,125 individuals, published 2012-2022, mean age above 50 in all studies"
+    grade: meta_analysis
+    source:
+      citation: "Han CT, Islam MM, Poly TN, Lu YC, Lin MC. A Meta-Analysis of Proton Pump Inhibitor Use and the Risk of Acute Kidney Injury: Geographical Differences and Associated Factors. J Clin Med 2023;12(7):2467"
+      url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC10095047/"
+      location: "Abstract; Section 3.3; Table 2 (all studies row)"
+      quote: "The pooled adjusted RR demonstrated a significant positive association between PPI therapy and the risk of AKI (adjusted RR 1.75, 95% CI: 1.40-2.19, p < 0.001)"
+    selection_note: "same moiety as esomeprazole"
+  - ingredient: esomeprazole_magnesium_trihydrate
+    dimension: kidney
+    applies_to: {persona: all, condition: null, medication_type: null}
+    outcome: aki_hospital
+    outcome_match: false
+    exposure_window: long_term
+    comparator: non_use
+    dose_mg_per_day: null
+    match_note: "Long-term and outcome mismatch: pools 'PPI users' vs 'non-PPI users' from 4 cohort and 5 case-control studies without restricting to current use; the cohort studies follow users for years (the same cohorts appear in Han 2023 Table 1). The abstract does not restrict AKI to hospital-treated events, so the serious-level outcome is not shown. Superseded by Han 2023 under rule 13."
     measure: RR
     estimate: 1.44
     ci95: [1.08, 1.91]
@@ -558,22 +1217,55 @@ relative_risks:
     selection_note: "same moiety as esomeprazole"
   - ingredient: esomeprazole_magnesium_trihydrate
     dimension: kidney
+    applies_to: {persona: all, condition: null, medication_type: null}
+    outcome: aki_hospital
+    outcome_match: false
+    exposure_window: community_oral
+    comparator: non_use
+    dose_mg_per_day: null
+    match_note: "Community current use: exposure is a PPI 'on the index date' in UK general practice records, against neither PPI nor tNSAID. Outcome not shown to be serious-level: cases were 'diagnostic-coded' AKI events in the General Practice Research Database, and the abstract does not say they were hospital-treated, so rule 10 is not met."
+    measure: OR
+    estimate: 1.05
+    ci95: [0.97, 1.14]
+    exposure: "PPI alone on the index date (current use) vs neither PPI nor traditional NSAID"
+    population: "UK General Practice Research Database; 27,982 AKI cases and 1,323,850 controls matched on age, sex and practice"
+    grade: case_control
+    source:
+      citation: "Leonard CE, Freeman CP, Newcomb CW, et al. Proton pump inhibitors and traditional nonsteroidal anti-inflammatory drugs and the risk of acute interstitial nephritis and acute kidney injury. Pharmacoepidemiol Drug Saf 2012;21(11):1155-72"
+      url: "https://pubmed.ncbi.nlm.nih.gov/22887960/"
+      location: "Abstract, Results"
+      quote: "The adjusted ORs for PPI alone, tNSAID alone, and PPI + tNSAID exposures were 1.05 (0.97-1.14), 1.31 (1.25-1.37), and 1.33 (1.07-1.64), respectively."
+    selection_note: "same moiety as esomeprazole"
+  - ingredient: esomeprazole_magnesium_trihydrate
+    dimension: kidney
     applies_to: {persona: adult_65_plus, condition: null, medication_type: null}
+    outcome: aki_hospital
+    outcome_match: true
+    exposure_window: community_oral
+    comparator: non_use
+    dose_mg_per_day: null
+    match_note: "Community oral use: Ontario residents aged 66+ 'who initiated PPI therapy' (outpatient prescription) against propensity-matched non-users, followed for 120 days, which is under the one-year threshold and not defined by months of continuous use. Outcome is 'hospital admission with acute kidney injury within 120 days', the section-1 outcome."
     measure: HR
     estimate: 2.52
     ci95: [2.27, 2.79]
-    exposure: "PPI initiation (new prescription); hospital admission with AKI within 120 days"
+    exposure: "PPI initiation (new outpatient prescription); hospital admission with AKI within 120 days"
     population: "Ontario residents aged 66+ starting a PPI 2002-2011, 290,592 initiators vs propensity-matched controls"
     grade: cohort
     source:
       citation: "Antoniou T et al. CMAJ Open 2015;3(2):E166-71"
       url: "https://pubmed.ncbi.nlm.nih.gov/26389094/"
-      location: "Abstract, Results"
+      location: "Abstract, Methods and Results"
       quote: "The rates of acute kidney injury (13.49 v. 5.46 per 1000 person-years, respectively; hazard ratio [HR] 2.52, 95% CI 2.27 to 2.79)"
     selection_note: "same moiety as esomeprazole"
   - ingredient: esomeprazole_magnesium_trihydrate
     dimension: kidney
     applies_to: {persona: all, condition: kidney_disease, medication_type: null}
+    outcome: aki_hospital
+    outcome_match: false
+    exposure_window: long_term
+    comparator: within_group
+    dose_mg_per_day: null
+    match_note: "Long-term: 'new PPI prescriptions as a time-dependent variable' over 'a median follow-up of 3.9 years', with 'median cumulative duration of prescription ... 1 year'. Within-group: users vs non-users inside a CKD stage 2-5 nephrology cohort, so applies_to kidney_disease. The abstract does not define AKI or say it was hospital-treated, so the serious-level outcome is not shown."
     measure: HR
     estimate: 2.89
     ci95: [1.91, 4.38]
@@ -589,10 +1281,16 @@ relative_risks:
   - ingredient: esomeprazole_magnesium_trihydrate
     dimension: sedation_falls
     applies_to: {persona: all, condition: null, medication_type: null}
+    outcome: hip_fracture
+    outcome_match: true
+    exposure_window: long_term
+    comparator: non_use
+    dose_mg_per_day: null
+    match_note: "Long-term: Poly 'included only the large (n >= 500) observational studies with a follow-up duration of at least one year', so the overall estimate pools exposure accumulated over years. Outcome is hip fracture (outcome id hip_fracture). Comparator is PPI non-users. The low, medium and high dose strata in the abstract (RR 1.17, 1.28, 1.30) give no mg/day ranges, so they are not recorded as dose rows."
     measure: RR
     estimate: 1.2
     ci95: [1.14, 1.28]
-    exposure: "PPI use vs no PPI (studies with follow-up >= 1 year); short-term use RR 1.20 (1.15-1.25), low dose RR 1.17 (1.05-1.29)"
+    exposure: "PPI use vs no PPI, studies with follow-up of at least one year"
     population: "24 observational studies, 2,103,800 participants (319,568 hip fracture patients), 1990-2018"
     grade: meta_analysis
     source:
@@ -603,7 +1301,55 @@ relative_risks:
     selection_note: "same moiety as esomeprazole"
   - ingredient: esomeprazole_magnesium_trihydrate
     dimension: sedation_falls
+    applies_to: {persona: all, condition: null, medication_type: null}
+    outcome: hip_fracture
+    outcome_match: true
+    exposure_window: community_oral
+    comparator: non_use
+    dose_mg_per_day: null
+    match_note: "Community oral use: the abstract's 'short-term PPI therapy' stratum, compared with PPI non-users in community observational studies; it is defined by use shorter than the long-term stratum, not by months of continuous use (the cut-off is not stated in the abstract; the full text is not open access). Outcome is hip fracture (hip_fracture)."
+    measure: RR
+    estimate: 1.2
+    ci95: [1.15, 1.25]
+    exposure: "short-term PPI therapy vs PPI non-users"
+    population: "24 observational studies, 2,103,800 participants (319,568 hip fracture patients), 1990-2018"
+    grade: meta_analysis
+    source:
+      citation: "Poly TN et al. Osteoporos Int 2019;30(1):103-114"
+      url: "https://pubmed.ncbi.nlm.nih.gov/30539272/"
+      location: "Abstract, Results"
+      quote: "Moreover, the overall pooled risk ratios were 1.20 (95% CI 1.15-1.25, p < 0.0001) and 1.24 (95% CI 1.10-1.40, p < 0.0001) for the patients with short- and long-term PPI therapy, respectively, compared with PPI non-users."
+    selection_note: "same moiety as esomeprazole"
+  - ingredient: esomeprazole_magnesium_trihydrate
+    dimension: sedation_falls
+    applies_to: {persona: all, condition: null, medication_type: null}
+    outcome: fracture
+    outcome_match: true
+    exposure_window: community_oral
+    comparator: non_use
+    dose_mg_per_day: null
+    match_note: "Community oral use: the 'short duration use' stratum, pooled from community observational studies against PPI non-users; the full text says the duration categories 'were those of individual' studies, so the stratum is the shortest use each study reported, not a months-long requirement. Outcome is any-site fracture (fracture)."
+    measure: OR
+    estimate: 1.29
+    ci95: [1.19, 1.4]
+    exposure: "short duration PPI use (each study's own shortest category) vs non-users"
+    population: "33 studies, 2,714,502 individuals, mean age 66.9 years"
+    grade: meta_analysis
+    source:
+      citation: "Nassar Y, Richter S. Proton-pump Inhibitor Use and Fracture Risk: An Updated Systematic Review and Meta-analysis. J Bone Metab 2018;25(3):141-151"
+      url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC6135649/"
+      location: "Abstract; Results section 1"
+      quote: "There was a trend towards increased fracture incidence from short duration use: OR 1.29 (95% CI, 1.19-1.40), medium duration use: OR 1.33 (95% CI, 1.12-1.55) and long duration use: OR 1.62 (95% CI, 1.33-1.90)."
+    selection_note: "same moiety as esomeprazole"
+  - ingredient: esomeprazole_magnesium_trihydrate
+    dimension: sedation_falls
     applies_to: {persona: adult_65_plus, condition: null, medication_type: null}
+    outcome: fracture
+    outcome_match: true
+    exposure_window: community_oral
+    comparator: non_use
+    dose_mg_per_day: null
+    match_note: "Community oral use as far as the source states: 'PPI prescription' in observational studies of older adults, with no duration requirement in the abstract (full text not open access). Outcome is 'overall fracture risk' (fracture). Pools crude ORs, so confounding is not addressed."
     measure: OR
     estimate: 1.41
     ci95: [1.31, 1.51]
@@ -617,8 +1363,34 @@ relative_risks:
       quote: "Pooled OR, calculated using a random effect model, showed a statistically significant association between PPI prescription and overall fracture risk (OR 1.41, 95 % confidence interval 1.31-1.51, P < 0.001)."
     selection_note: "same moiety as esomeprazole"
   - ingredient: esomeprazole_magnesium_trihydrate
+    dimension: sedation_falls
+    applies_to: {persona: adult_65_plus, condition: null, medication_type: null}
+    outcome: fall_injury
+    outcome_match: true
+    exposure_window: community_oral
+    comparator: non_use
+    dose_mg_per_day: null
+    match_note: "Outcome is the section-1 fall injury at the serious level: the sensitivity analysis pools 'five studies evaluating the risk of fall injury requiring hospitalization' (fall_injury). Exposure is PPI use in observational studies with no duration requirement; one included cohort (Lewis 2014) used use of a year or more, the others current or recorded use, so it is classed community_oral. Persona: the included studies are mostly of adults aged 65 or 70 and over; the five studies are not named."
+    measure: OR
+    estimate: 1.61
+    ci95: [1.18, 2.2]
+    exposure: "PPI use vs non-use (definitions vary by study, including use in the 30 days before the index date)"
+    population: "5 studies of fall injury requiring hospitalization, within a meta-analysis of 8 observational studies (367,068 patients), mostly older adults"
+    grade: meta_analysis
+    source:
+      citation: "Lapumnuaypol K, Thongprayoon C, Wijarnpreecha K, Tiu A, Cheungpasitporn W. Risk of fall in patients taking proton pump inhibitors: a meta-analysis. QJM 2019;112(2):115-121"
+      url: "https://academic.oup.com/qjmed/article/112/2/115/5145385"
+      location: "Results, sensitivity analysis (full text read through the WebFetch tool; the PubMed record has no abstract)"
+      quote: "The pooled OR for fall injury requiring hospitalization in patients using PPIs was 1.61 (95% CI, 1.18–2.20, I2 = 67%)."
+    selection_note: "same moiety as esomeprazole"
+  - ingredient: esomeprazole_magnesium_trihydrate
     dimension: pregnancy_lactation
     applies_to: {persona: pregnant, condition: null, medication_type: null}
+    outcome_match: true
+    exposure_window: community_oral
+    comparator: non_use
+    dose_mg_per_day: null
+    match_note: "Outcome is the specific fetal harm studied (congenital malformations). Exposure is maternal use during pregnancy outside hospital; comparator non-use."
     measure: OR
     estimate: 1.28
     ci95: [1.09, 1.52]
@@ -634,6 +1406,12 @@ relative_risks:
   - ingredient: esomeprazole_magnesium_trihydrate
     dimension: anticoagulant_bleeding
     applies_to: {persona: all, condition: null, medication_type: anticoagulants}
+    outcome: other
+    outcome_match: false
+    exposure_window: community_oral
+    comparator: within_group
+    dose_mg_per_day: null
+    match_note: "Within-group: anticoagulant treatment with vs without PPI cotherapy, all oral anticoagulant users (medication_type anticoagulants). Community oral use in Medicare outpatients. Outcome is 'hospitalizations for upper gastrointestinal tract bleeding', a part of major bleeding, not the all-site major bleeding the dimension's baseline measures, so rule 10 is not met."
     measure: IRR
     estimate: 0.66
     ci95: [0.62, 0.69]
@@ -649,6 +1427,12 @@ relative_risks:
   - ingredient: esomeprazole_magnesium_trihydrate
     dimension: cardiovascular_bp
     applies_to: {persona: all, condition: null, medication_type: antiplatelets}
+    outcome: other
+    outcome_match: false
+    exposure_window: community_oral
+    comparator: within_group
+    dose_mg_per_day: null
+    match_note: "Not used. Outcome is 'a composite of cardiovascular events', not MI or stroke alone (outcome other). Within-group: clopidogrel users with vs without a PPI; 'antiplatelets' is broader than clopidogrel users, so under the brief this pair is insufficient. Trial-allocated oral PPI; trial durations are not stated in the abstract."
     measure: RR
     estimate: 1.08
     ci95: [0.78, 1.5]
@@ -664,6 +1448,12 @@ relative_risks:
   - ingredient: esomeprazole_magnesium_trihydrate
     dimension: anticholinergic_cognitive
     applies_to: {persona: all, condition: null, medication_type: null}
+    outcome: delirium_hospital
+    outcome_match: true
+    exposure_window: inpatient
+    comparator: non_use
+    dose_mg_per_day: null
+    match_note: "Inpatient: PPI administered during a medical ICU encounter (mostly stress-ulcer prophylaxis), so rule 11 drops it. Outcome is delirium identified in hospital by 'an International Classification of Diseases-based algorithm' (delirium_hospital). Comparator: ICU patients receiving neither drug. No community estimate of delirium needing hospital care with PPIs was found."
     measure: RR
     estimate: 1.15
     ci95: [1.07, 1.24]
@@ -679,6 +1469,12 @@ relative_risks:
   - ingredient: famotidine
     dimension: anticholinergic_cognitive
     applies_to: {persona: all, condition: null, medication_type: null}
+    outcome: delirium_hospital
+    outcome_match: true
+    exposure_window: inpatient
+    comparator: non_use
+    dose_mg_per_day: null
+    match_note: "Inpatient: H2RA administered during a medical ICU encounter (mostly stress-ulcer prophylaxis), so rule 11 drops it. Outcome is delirium identified in hospital by an ICD-based algorithm (delirium_hospital). Comparator: ICU patients receiving neither drug."
     measure: RR
     estimate: 1.36
     ci95: [1.25, 1.47]
@@ -690,25 +1486,36 @@ relative_risks:
       url: "https://pubmed.ncbi.nlm.nih.gov/34396144/"
       location: "Abstract, Results"
       quote: "The histamine-2 receptor antagonist group had a greater association with delirium than the proton-pump inhibitor group compared with controls receiving neither medication, after controlling for mechanical ventilation and age (risk ratio, 1.36; 1.25-1.47; p < 0.001)"
-    selection_note: "Class-level H2RA estimate (individual agents not reported). Only quantitative H2RA-delirium estimate found; no meta-analysis or community study in older adults located (other reports are case series). Strong mismatch: critically ill ICU patients, mostly IV stress-ulcer prophylaxis, adjusted only for ventilation and age; not OTC use. Not reported separately for 65+."
+    selection_note: "Class-level H2RA estimate (individual agents not reported). Only quantitative H2RA-delirium estimate found; no meta-analysis or community study in older adults located (other reports are case series). Critically ill ICU patients, adjusted only for ventilation and age."
   - ingredient: famotidine
     dimension: sedation_falls
     applies_to: {persona: all, condition: null, medication_type: null}
+    outcome: fracture
+    outcome_match: true
+    exposure_window: long_term
+    comparator: non_use
+    dose_mg_per_day: null
+    match_note: "Long-term: the full text extracts each study's longest exposure: 'Long-term use was defined as use for more than 1 year before the index date ... In studies wherein users did not use the PPI or H2RA for more than 1 year, we chose the longest available period of use.' Outcome is any fracture (fracture), so it is not paired with the fall-injury baselines. Comparator non-use. Population is adults, mostly older; it does not apply to children."
     measure: OR
     estimate: 1.1
     ci95: [0.99, 1.23]
-    exposure: "H2RA use vs non-use (pooled observational definitions)"
+    exposure: "H2RA use vs non-use, longest available period of use in each study"
     population: "11 observational studies (5 case-control, 3 nested case-control, 3 cohort) to Dec 2010"
     grade: meta_analysis
     source:
       citation: "Eom CS et al. Ann Fam Med 2011;9(3):257-67"
       url: "https://pubmed.ncbi.nlm.nih.gov/21555754/"
-      location: "Abstract, Results"
+      location: "Abstract, Results; Methods (exposure duration), Table 2"
       quote: "The pooled odds ratio (OR) for fracture was 1.29 (95% confidence interval [CI], 1.18-1.41) with use of PPIs and 1.10 (95% CI, 0.99-1.23) with use of H(2)RAs"
-    selection_note: "Class-level H2RA estimate (second figure in quote). Only meta-analysis found that reports a pooled H2RA fracture estimate; Poly 2019 states no H2RA association but its abstract gives no number. Not significant. Exposure is prescription use of varying duration."
+    selection_note: "Class-level H2RA estimate (second figure in quote). Full text opened (publisher PDF). Yu 2011 (PMID 21605729) reports H2RA hip fracture RR 1.12 (0.97-1.30) in its abstract, but its full text could not be opened to classify the exposure window. Not significant."
   - ingredient: famotidine
     dimension: pregnancy_lactation
     applies_to: {persona: pregnant, condition: null, medication_type: null}
+    outcome_match: true
+    exposure_window: community_oral
+    comparator: non_use
+    dose_mg_per_day: null
+    match_note: "Outcome is the specific fetal harm studied (congenital malformations). Exposure is maternal use in pregnancy outside hospital, mostly first trimester; comparator non-exposed pregnancies."
     measure: OR
     estimate: 1.14
     ci95: [0.89, 1.45]
@@ -724,6 +1531,12 @@ relative_risks:
   - ingredient: cimetidine
     dimension: anticholinergic_cognitive
     applies_to: {persona: all, condition: null, medication_type: null}
+    outcome: delirium_hospital
+    outcome_match: true
+    exposure_window: inpatient
+    comparator: non_use
+    dose_mg_per_day: null
+    match_note: "Inpatient: H2RA administered during a medical ICU encounter (mostly stress-ulcer prophylaxis), so rule 11 drops it. Outcome is delirium identified in hospital by an ICD-based algorithm (delirium_hospital). Comparator: ICU patients receiving neither drug."
     measure: RR
     estimate: 1.36
     ci95: [1.25, 1.47]
@@ -735,25 +1548,36 @@ relative_risks:
       url: "https://pubmed.ncbi.nlm.nih.gov/34396144/"
       location: "Abstract, Results"
       quote: "The histamine-2 receptor antagonist group had a greater association with delirium than the proton-pump inhibitor group compared with controls receiving neither medication, after controlling for mechanical ventilation and age (risk ratio, 1.36; 1.25-1.47; p < 0.001)"
-    selection_note: "Class-level H2RA estimate (individual agents not reported). Only quantitative H2RA-delirium estimate found; no meta-analysis or community study in older adults located (other reports are case series). Strong mismatch: critically ill ICU patients, mostly IV stress-ulcer prophylaxis, adjusted only for ventilation and age; not OTC use. Not reported separately for 65+."
+    selection_note: "Class-level H2RA estimate (individual agents not reported). Only quantitative H2RA-delirium estimate found; no meta-analysis or community study in older adults located (other reports are case series). Critically ill ICU patients, adjusted only for ventilation and age."
   - ingredient: cimetidine
     dimension: sedation_falls
     applies_to: {persona: all, condition: null, medication_type: null}
+    outcome: fracture
+    outcome_match: true
+    exposure_window: long_term
+    comparator: non_use
+    dose_mg_per_day: null
+    match_note: "Long-term: the full text extracts each study's longest exposure: 'Long-term use was defined as use for more than 1 year before the index date ... In studies wherein users did not use the PPI or H2RA for more than 1 year, we chose the longest available period of use.' Outcome is any fracture (fracture), so it is not paired with the fall-injury baselines. Comparator non-use. Population is adults, mostly older; it does not apply to children."
     measure: OR
     estimate: 1.1
     ci95: [0.99, 1.23]
-    exposure: "H2RA use vs non-use (pooled observational definitions)"
+    exposure: "H2RA use vs non-use, longest available period of use in each study"
     population: "11 observational studies (5 case-control, 3 nested case-control, 3 cohort) to Dec 2010"
     grade: meta_analysis
     source:
       citation: "Eom CS et al. Ann Fam Med 2011;9(3):257-67"
       url: "https://pubmed.ncbi.nlm.nih.gov/21555754/"
-      location: "Abstract, Results"
+      location: "Abstract, Results; Methods (exposure duration), Table 2"
       quote: "The pooled odds ratio (OR) for fracture was 1.29 (95% confidence interval [CI], 1.18-1.41) with use of PPIs and 1.10 (95% CI, 0.99-1.23) with use of H(2)RAs"
-    selection_note: "Class-level H2RA estimate (second figure in quote). Only meta-analysis found that reports a pooled H2RA fracture estimate; Poly 2019 states no H2RA association but its abstract gives no number. Not significant. Exposure is prescription use of varying duration."
+    selection_note: "Class-level H2RA estimate (second figure in quote). Full text opened (publisher PDF). Yu 2011 (PMID 21605729) reports H2RA hip fracture RR 1.12 (0.97-1.30) in its abstract, but its full text could not be opened to classify the exposure window. Not significant."
   - ingredient: cimetidine
     dimension: pregnancy_lactation
     applies_to: {persona: pregnant, condition: null, medication_type: null}
+    outcome_match: true
+    exposure_window: community_oral
+    comparator: non_use
+    dose_mg_per_day: null
+    match_note: "Outcome is the specific fetal harm studied (congenital malformations). Exposure is maternal use in pregnancy outside hospital, mostly first trimester; comparator non-exposed pregnancies."
     measure: OR
     estimate: 1.14
     ci95: [0.89, 1.45]
@@ -769,6 +1593,12 @@ relative_risks:
   - ingredient: calcium_carbonate
     dimension: cardiovascular_bp
     applies_to: {persona: all, condition: null, medication_type: null}
+    outcome: mi_stroke
+    outcome_match: true
+    exposure_window: long_term
+    comparator: non_use
+    dose_mg_per_day: null
+    match_note: "Long-term: trials had 'study duration more than one year' and the trial-level pool a 'mean duration 4.0 years' of daily supplements. Outcome is myocardial infarction (part of mi_stroke). Comparator placebo."
     measure: RR
     estimate: 1.27
     ci95: [1.01, 1.59]
@@ -778,27 +1608,38 @@ relative_risks:
     source:
       citation: "Bolland MJ et al. BMJ 2010;341:c3691"
       url: "https://pubmed.ncbi.nlm.nih.gov/20671013/"
-      location: "Abstract, Results"
+      location: "Abstract, Study selection and Results"
       quote: "The meta-analysis of trial level data showed similar results: 296 people had a myocardial infarction (166 allocated to calcium, 130 to placebo), with an increased incidence of myocardial infarction in those allocated to calcium (pooled relative risk 1.27, 95% confidence interval 1.01 to 1.59, P=0.038)."
-    selection_note: "Trial-level pooled estimate chosen over the 5-trial patient-level HR 1.31 (1.02-1.67) because it covers more trials and participants. Strong exposure mismatch: years of daily calcium supplementation, not a 10-day antacid course; calcium salt not restricted to carbonate. Outcome is MI only (part of v1 cardiovascular_bp)."
+    selection_note: "Trial-level pooled estimate chosen over the 5-trial patient-level HR 1.31 (1.02-1.67) because it covers more trials and participants. Calcium salt not restricted to carbonate. No community estimate for short antacid courses found."
   - ingredient: magnesium_hydroxide
     dimension: kidney
     applies_to: {persona: all, condition: kidney_disease, medication_type: null}
+    outcome: aki_hospital
+    outcome_match: true
+    exposure_window: long_term
+    comparator: within_group
+    dose_mg_per_day: null
+    match_note: "Long-term: magnesium oxide users were required to have 'a minimum of 2 years of data available following' the index date, with adherence measured by medication possession ratio over follow-up. Within-group: MgO users vs 'those never used MgO' among non-dialysis CKD patients, so applies_to kidney_disease. Outcome is hospitalization for AKI (aki_hospital). Different salt (oxide)."
     measure: HR
     estimate: 1.97
     ci95: [1.15, 3.37]
-    exposure: "magnesium oxide prescription claims (with ACEI/ARB within 3 months), adherence by medication possession ratio; outcome hospitalization for AKI"
-    population: "non-dialysis CKD patients, Taipei Medical University Clinical Research Database 1998-2021, 1:1 propensity-matched"
+    exposure: "magnesium oxide use vs never use, propensity-matched; adherence by medication possession ratio; outcome hospitalization for AKI"
+    population: "non-dialysis CKD patients aged 30+, Taipei Medical University Clinical Research Database 1998-2021, 1:1 propensity-matched (about 6,000 per arm)"
     grade: cohort
     source:
       citation: "Hsiao PJ et al. Int J Med Sci 2026;23(4):1519-1534"
       url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC13048899/"
-      location: "Results; Table 2a (1:1 PS matching)"
+      location: "Results; Table 2a (all CKD patients, 1:1 PS matching)"
       quote: "hospitalization of acute kidney injury (aHR=1.97, 95%CI=1.15, 3.37)"
-    selection_note: "Only quantitative estimate found for a magnesium laxative/antacid in CKD. Used hospitalization for AKI (matches v1 outcome) rather than the any-AKI aHR 37.0 (16.46-83.41), whose event split (239 vs 6) suggests ascertainment differences. Mismatch: different magnesium salt (oxide, not hydroxide), chronic prescription use in Taiwan, inconsistent MPR categories in the paper. Pharmacist should confirm the salt substitution."
+    selection_note: "Only quantitative estimate found for a magnesium laxative/antacid in CKD. Used hospitalization for AKI (matches v1 outcome) rather than the any-AKI aHR 37.0 (16.46-83.41), whose event split (239 vs 6) suggests ascertainment differences. The earlier note that this cohort was restricted to ACEI/ARB users was wrong: Table 2a is all CKD patients; the ACEI/ARB subcohort is Table 2b. Pharmacist should confirm the salt substitution."
   - ingredient: loperamide
     dimension: pregnancy_lactation
     applies_to: {persona: pregnant, condition: null, medication_type: null}
+    outcome_match: true
+    exposure_window: community_oral
+    comparator: non_use
+    dose_mg_per_day: null
+    match_note: "Outcome is the specific fetal harm studied (any congenital malformation). Exposure is maternal report of use in early pregnancy outside hospital; comparator all other women in the register."
     measure: OR
     estimate: 1.43
     ci95: [1.04, 1.96]
@@ -810,7 +1651,7 @@ relative_risks:
       url: "https://pubmed.ncbi.nlm.nih.gov/18394096/"
       location: "Abstract, Results"
       quote: "The risk of any congenital malformation was increased (OR = 1.43, 95% CI 1.04-1.96), based on 43 cases, but no major contributing type could be identified."
-    selection_note: "Largest study of loperamide in pregnancy found (register-based); no meta-analysis exists. Einarson 2000 (PMID 10758415, n=105) found no difference but reports no estimate. Based on 43 cases; authors call for confirmation. Exposure is any early-pregnancy use, plausibly similar to OTC use."
+    selection_note: "Largest study of loperamide in pregnancy found (register-based); no meta-analysis exists. Einarson 2000 (PMID 10758415, n=105) found no difference but reports no estimate. Based on 43 cases; authors call for confirmation."
 insufficient:
   - ingredient: famotidine
     applies_to: {condition: [kidney_disease]}

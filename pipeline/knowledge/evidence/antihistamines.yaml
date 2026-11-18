@@ -5,6 +5,12 @@ relative_risks:
   - ingredient: diphenhydramine
     dimension: sedation_falls
     applies_to: {persona: adult_65_plus, condition: null, medication_type: null}
+    outcome: fall_injury
+    outcome_match: true
+    exposure_window: community_oral
+    comparator: non_use
+    dose_mg_per_day: null
+    match_note: "Outcome is 'injurious falls or fracture' pooled together; a fall fracture is a fall injury, so the honest single id is fall_injury (not fracture). Community oral use: the abstract separates the studies 'dealing with falls during hospitalization' (all-generation or unspecified antihistamines, OR 2.89), so the first-generation estimate comes from the other observational studies of elderly users. Comparator non-use. Pooled studies were largely unadjusted."
     measure: OR
     estimate: 2.03
     ci95: [1.49, 2.76]
@@ -20,6 +26,12 @@ relative_risks:
   - ingredient: doxylamine
     dimension: sedation_falls
     applies_to: {persona: adult_65_plus, condition: null, medication_type: null}
+    outcome: fall_injury
+    outcome_match: true
+    exposure_window: community_oral
+    comparator: non_use
+    dose_mg_per_day: null
+    match_note: "Same class row as diphenhydramine: outcome 'injurious falls or fracture' recorded as fall_injury; first-generation estimate is separate from the in-hospital falls studies; comparator non-use."
     measure: OR
     estimate: 2.03
     ci95: [1.49, 2.76]
@@ -35,6 +47,12 @@ relative_risks:
   - ingredient: chlorpheniramine
     dimension: sedation_falls
     applies_to: {persona: adult_65_plus, condition: null, medication_type: null}
+    outcome: fall_injury
+    outcome_match: true
+    exposure_window: community_oral
+    comparator: non_use
+    dose_mg_per_day: null
+    match_note: "Same class row as diphenhydramine: outcome 'injurious falls or fracture' recorded as fall_injury; first-generation estimate is separate from the in-hospital falls studies; comparator non-use."
     measure: OR
     estimate: 2.03
     ci95: [1.49, 2.76]
@@ -52,6 +70,12 @@ relative_risks:
   - ingredient: diphenhydramine
     dimension: anticholinergic_cognitive
     applies_to: {persona: adult_65_plus, condition: null, medication_type: null}
+    outcome: delirium_hospital
+    outcome_match: false
+    exposure_window: inpatient
+    comparator: non_use
+    dose_mg_per_day: null
+    match_note: "Inpatient: 426 'hospitalized medical patients' aged 70+ who 'received diphenhydramine during hospitalization', so rule 11 drops it. Outcome is 'any delirium symptoms' on daily CAM ratings, broader than delirium, so rule 10 is not met. Comparator: non-exposed inpatients."
     measure: RR
     estimate: 1.7
     ci95: [1.3, 2.3]
@@ -63,12 +87,38 @@ relative_risks:
       url: "https://pubmed.ncbi.nlm.nih.gov/11570937/"
       location: "Abstract, Results"
       quote: "The diphenhydramine-exposed group was at an increased risk for any delirium symptoms (relative risk [RR], 1.7; 95% confidence interval [CI], 1.3-2.3)"
-    selection_note: "No meta-analysis with a pooled delirium estimate exists (Clegg & Young 2011 review is narrative). Only ingredient-specific cohort with delirium (CAM-rated) vs non-use. Inpatient setting and outcome is delirium symptoms, not adjudicated delirium; pharmacist should confirm transfer to OTC community use. No quantitative estimate found for adults under 65 or for the glaucoma or enlarged_prostate modifiers."
+    selection_note: "Ingredient-specific cohort with CAM-rated delirium symptoms vs non-use. Reisinger 2023 (below) pools this question for diphenhydramine and is the rule 13 meta-analysis; both are inpatient or institutional and neither is used. No community estimate of delirium needing hospital care with first-generation antihistamines in older adults was found (PubMed 2026-11-18: antihistamine, diphenhydramine, chlorpheniramine, doxylamine AND delirium/confusion AND cohort/case-control/case-crossover/meta-analysis; results were inpatient, emergency-department-administered or case reports). No estimate found for adults under 65 or for the glaucoma or enlarged_prostate modifiers."
+  - ingredient: diphenhydramine
+    dimension: anticholinergic_cognitive
+    applies_to: {persona: all, condition: null, medication_type: null}
+    outcome: other
+    outcome_match: false
+    exposure_window: inpatient
+    comparator: non_use
+    dose_mg_per_day: null
+    match_note: "Exposure is not community use: the two pooled cohorts are 'long term care facilities vs. mixed surgical' (postoperative medication in hospital and residents' medication), classed inpatient. Outcome is incident delirium found by research screening (CAM) during the stay, not delirium needing hospital care, so outcome other and rule 10 is not met."
+    measure: OR
+    estimate: 1.5
+    ci95: [0.64, 3.54]
+    exposure: "diphenhydramine use recorded in two prospective cohorts (long-term care residents' medication; postoperative medication in mixed surgical patients) vs no use"
+    population: "2 prospective cohorts pooled within a systematic review of 31 prospective studies of incident delirium in adults, searched October 2009 to June 2020"
+    grade: meta_analysis
+    source:
+      citation: "Reisinger M, Reininghaus EZ, Biasi J, Fellendorf FT, Schoberer D. Delirium-associated medication in people at risk: A systematic update review, meta-analyses, and GRADE-profiles. Acta Psychiatr Scand 2023;147(1):16-42"
+      url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC10092229/"
+      location: "Results, H1-antihistamines paragraph; GRADE evidence profile, Diphenhydramine row ('Pooled aOR 1.50 (0.64 to 3.54)')"
+      quote: "The effect estimate indicates an insignificant positive association (aOR 1.50, 95% CI: 0.64–3.54; AR: 35 more per 1000, 95% CI: 27 fewer to 153 more)."
+    selection_note: "Only meta-analysis with a diphenhydramine-specific pooled delirium estimate (rule 13); full text opened via Europe PMC. GRADE very low. Its H1-antihistamine class estimate (aOR 0.75, 0.14-4.16) mixes a class exposure with diphenhydramine, so it is not used for other first-generation agents. Not used: institutional and postoperative exposure, and delirium found by screening rather than delirium needing hospital care."
 
   # --- pregnancy_lactation ---
   - ingredient: diphenhydramine
     dimension: pregnancy_lactation
     applies_to: {persona: pregnant, condition: null, medication_type: null}
+    outcome_match: true
+    exposure_window: community_oral
+    comparator: non_use
+    dose_mg_per_day: null
+    match_note: "Outcome is the specific fetal harm studied (major malformation). Exposure is first-trimester maternal use outside hospital; comparator unexposed control population."
     measure: OR
     estimate: 1.07
     ci95: [0.98, 1.16]
@@ -84,6 +134,11 @@ relative_risks:
   - ingredient: chlorpheniramine
     dimension: pregnancy_lactation
     applies_to: {persona: pregnant, condition: null, medication_type: null}
+    outcome_match: true
+    exposure_window: community_oral
+    comparator: non_use
+    dose_mg_per_day: null
+    match_note: "Outcome is the specific fetal harm studied (major malformation). Exposure is first-trimester maternal use outside hospital; comparator unexposed control population."
     measure: OR
     estimate: 1.07
     ci95: [0.98, 1.16]
@@ -99,6 +154,11 @@ relative_risks:
   - ingredient: doxylamine
     dimension: pregnancy_lactation
     applies_to: {persona: pregnant, condition: null, medication_type: null}
+    outcome_match: true
+    exposure_window: community_oral
+    comparator: non_use
+    dose_mg_per_day: null
+    match_note: "Outcome is the specific fetal harm studied (congenital malformations). Exposure is maternal use in pregnancy outside hospital; comparator unexposed women."
     measure: RR
     estimate: 0.94
     ci95: [0.80, 1.10]
@@ -114,6 +174,11 @@ relative_risks:
   - ingredient: cetirizine
     dimension: pregnancy_lactation
     applies_to: {persona: pregnant, condition: null, medication_type: null}
+    outcome_match: true
+    exposure_window: community_oral
+    comparator: non_use
+    dose_mg_per_day: null
+    match_note: "Outcome is the specific fetal harm studied (major malformation). Exposure is first-trimester maternal use outside hospital; comparator unexposed control population."
     measure: OR
     estimate: 1.07
     ci95: [0.98, 1.16]
@@ -129,6 +194,11 @@ relative_risks:
   - ingredient: levocetirizine
     dimension: pregnancy_lactation
     applies_to: {persona: pregnant, condition: null, medication_type: null}
+    outcome_match: true
+    exposure_window: community_oral
+    comparator: non_use
+    dose_mg_per_day: null
+    match_note: "Outcome is the specific fetal harm studied (major malformation). Exposure is first-trimester maternal use outside hospital; comparator unexposed control population."
     measure: OR
     estimate: 1.07
     ci95: [0.98, 1.16]
@@ -144,6 +214,11 @@ relative_risks:
   - ingredient: loratadine
     dimension: pregnancy_lactation
     applies_to: {persona: pregnant, condition: null, medication_type: null}
+    outcome_match: true
+    exposure_window: community_oral
+    comparator: non_use
+    dose_mg_per_day: null
+    match_note: "Outcome is the specific fetal harm studied (hypospadias). Exposure is maternal loratadine use in pregnancy outside hospital; comparator women who did not use it."
     measure: OR
     estimate: 1.28
     ci95: [0.69, 2.39]
@@ -159,6 +234,11 @@ relative_risks:
   - ingredient: fexofenadine
     dimension: pregnancy_lactation
     applies_to: {persona: pregnant, condition: null, medication_type: null}
+    outcome_match: true
+    exposure_window: community_oral
+    comparator: non_use
+    dose_mg_per_day: null
+    match_note: "Outcome is the specific fetal harm studied (major malformation). Exposure is first-trimester maternal use outside hospital; comparator unexposed control population."
     measure: OR
     estimate: 1.07
     ci95: [0.98, 1.16]

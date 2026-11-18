@@ -2,6 +2,84 @@
 
 32 of 32 ingredients covered.
 
+## Rows not used (rules 8.1, 10, 11, 15)
+
+- acetaminophen kidney: outcome does not match (Kanchanasurakit 2020, Abstract, Results)
+- acetaminophen cardiovascular_bp: outcome does not match (Fulton 2015, Abstract)
+- acetaminophen liver: stratum [None, 2999] mg/day, not the label maximum 4000 (Donati 2016, Table 5, paracetamol <3000 mg row)
+- diphenhydramine anticholinergic_cognitive: outcome does not match (Agostini 2001, Abstract, Results)
+- diphenhydramine anticholinergic_cognitive: outcome does not match (Reisinger 2023, Results, H1-antihistamines paragraph; GRADE evidence profile, Diphenhydramine row ('Pooled aOR 1.50 (0.64 to 3.54)'))
+- omeprazole kidney: outcome does not match (Han 2023, Abstract; Section 3.3; Table 2 (all studies row))
+- omeprazole kidney: outcome does not match (Nochaiwong 2018, Abstract, Results)
+- omeprazole kidney: outcome does not match (Leonard 2012, Abstract, Results)
+- omeprazole kidney: outcome does not match (Liabeuf 2021, Abstract, Results)
+- omeprazole sedation_falls: long_term exposure (Poly 2019, Abstract, Results)
+- omeprazole anticoagulant_bleeding: outcome does not match (Ray 2018, Abstract, Results)
+- omeprazole cardiovascular_bp: outcome does not match (Axelsson 2025, Abstract)
+- omeprazole anticholinergic_cognitive: inpatient exposure (Shiddapur 2021, Abstract, Results)
+- esomeprazole kidney: outcome does not match (Han 2023, Abstract; Section 3.3; Table 2 (all studies row))
+- esomeprazole kidney: outcome does not match (Nochaiwong 2018, Abstract, Results)
+- esomeprazole kidney: outcome does not match (Leonard 2012, Abstract, Results)
+- esomeprazole kidney: outcome does not match (Liabeuf 2021, Abstract, Results)
+- esomeprazole sedation_falls: long_term exposure (Poly 2019, Abstract, Results)
+- esomeprazole anticoagulant_bleeding: outcome does not match (Ray 2018, Abstract, Results)
+- esomeprazole cardiovascular_bp: outcome does not match (Axelsson 2025, Abstract)
+- esomeprazole anticholinergic_cognitive: inpatient exposure (Shiddapur 2021, Abstract, Results)
+- omeprazole_magnesium kidney: outcome does not match (Han 2023, Abstract; Section 3.3; Table 2 (all studies row))
+- omeprazole_magnesium kidney: outcome does not match (Nochaiwong 2018, Abstract, Results)
+- omeprazole_magnesium kidney: outcome does not match (Leonard 2012, Abstract, Results)
+- omeprazole_magnesium kidney: outcome does not match (Liabeuf 2021, Abstract, Results)
+- omeprazole_magnesium sedation_falls: long_term exposure (Poly 2019, Abstract, Results)
+- omeprazole_magnesium anticoagulant_bleeding: outcome does not match (Ray 2018, Abstract, Results)
+- omeprazole_magnesium cardiovascular_bp: outcome does not match (Axelsson 2025, Abstract)
+- omeprazole_magnesium anticholinergic_cognitive: inpatient exposure (Shiddapur 2021, Abstract, Results)
+- esomeprazole_magnesium_dihydrate kidney: outcome does not match (Han 2023, Abstract; Section 3.3; Table 2 (all studies row))
+- esomeprazole_magnesium_dihydrate kidney: outcome does not match (Nochaiwong 2018, Abstract, Results)
+- esomeprazole_magnesium_dihydrate kidney: outcome does not match (Leonard 2012, Abstract, Results)
+- esomeprazole_magnesium_dihydrate kidney: outcome does not match (Liabeuf 2021, Abstract, Results)
+- esomeprazole_magnesium_dihydrate sedation_falls: long_term exposure (Poly 2019, Abstract, Results)
+- esomeprazole_magnesium_dihydrate anticoagulant_bleeding: outcome does not match (Ray 2018, Abstract, Results)
+- esomeprazole_magnesium_dihydrate cardiovascular_bp: outcome does not match (Axelsson 2025, Abstract)
+- esomeprazole_magnesium_dihydrate anticholinergic_cognitive: inpatient exposure (Shiddapur 2021, Abstract, Results)
+- esomeprazole_magnesium_trihydrate kidney: outcome does not match (Han 2023, Abstract; Section 3.3; Table 2 (all studies row))
+- esomeprazole_magnesium_trihydrate kidney: outcome does not match (Nochaiwong 2018, Abstract, Results)
+- esomeprazole_magnesium_trihydrate kidney: outcome does not match (Leonard 2012, Abstract, Results)
+- esomeprazole_magnesium_trihydrate kidney: outcome does not match (Liabeuf 2021, Abstract, Results)
+- esomeprazole_magnesium_trihydrate sedation_falls: long_term exposure (Poly 2019, Abstract, Results)
+- esomeprazole_magnesium_trihydrate anticoagulant_bleeding: outcome does not match (Ray 2018, Abstract, Results)
+- esomeprazole_magnesium_trihydrate cardiovascular_bp: outcome does not match (Axelsson 2025, Abstract)
+- esomeprazole_magnesium_trihydrate anticholinergic_cognitive: inpatient exposure (Shiddapur 2021, Abstract, Results)
+- famotidine anticholinergic_cognitive: inpatient exposure (Shiddapur 2021, Abstract, Results)
+- famotidine sedation_falls: long_term exposure (Eom 2011, Abstract, Results; Methods (exposure duration), Table 2)
+- cimetidine anticholinergic_cognitive: inpatient exposure (Shiddapur 2021, Abstract, Results)
+- cimetidine sedation_falls: long_term exposure (Eom 2011, Abstract, Results; Methods (exposure duration), Table 2)
+- calcium_carbonate cardiovascular_bp: long_term exposure (Bolland 2010, Abstract, Study selection and Results)
+- magnesium_hydroxide kidney: long_term exposure (Hsiao 2026, Results; Table 2a (all CKD patients, 1:1 PS matching))
+- ibuprofen kidney: outcome does not match (Zhang 2017, Abstract, Results; outcome definitions in Table 1 and Results)
+- ibuprofen kidney: outcome does not match (Huerta 2005, Abstract, Results)
+- ibuprofen kidney: outcome does not match (Zhang 2017, Abstract, Results; outcome definitions in Table 1 and Results)
+- ibuprofen anticoagulant_bleeding: outcome does not match (Villa 2020, Abstract, Results)
+- ibuprofen gi_bleeding: stratum [1201, None] mg/day, not the label maximum 1200 (Castellsague 2012, Results, dose analysis (text accompanying Figure 3))
+- naproxen kidney: outcome does not match (Zhang 2017, Abstract, Results; outcome definitions in Table 1 and Results)
+- naproxen kidney: outcome does not match (Huerta 2005, Abstract, Results)
+- naproxen kidney: outcome does not match (Zhang 2017, Abstract, Results; outcome definitions in Table 1 and Results)
+- naproxen anticoagulant_bleeding: outcome does not match (Villa 2020, Abstract, Results)
+- aspirin gi_bleeding: stratum [100, 199] mg/day, not the label maximum 4000 (Lanas 2006, Table 5 (aspirin dose), row '100 mg', adjusted condition RR (columns: cases | controls | age-adjusted RR | adjusted condition RR))
+- aspirin gi_bleeding: stratum [200, 299] mg/day, not the label maximum 4000 (Lanas 2006, Table 5 (aspirin dose), row '200 mg', adjusted condition RR (columns: cases | controls | age-adjusted RR | adjusted condition RR))
+- aspirin gi_bleeding: stratum [300, 499] mg/day, not the label maximum 4000 (Lanas 2006, Table 5 (aspirin dose), row '300 mg', adjusted condition RR (columns: cases | controls | age-adjusted RR | adjusted condition RR))
+- aspirin gi_bleeding: stratum [500, 999] mg/day, not the label maximum 4000 (Lanas 2006, Table 5 (aspirin dose), row '500 mg', adjusted condition RR (columns: cases | controls | age-adjusted RR | adjusted condition RR))
+- aspirin gi_bleeding: stratum [1000, 1000.5] mg/day, not the label maximum 4000 (Lanas 2006, Table 5 (aspirin dose), row '1 g', adjusted condition RR (columns: cases | controls | age-adjusted RR | adjusted condition RR))
+- ibuprofen_sodium kidney: outcome does not match (Zhang 2017, Abstract, Results; outcome definitions in Table 1 and Results)
+- ibuprofen_sodium kidney: outcome does not match (Huerta 2005, Abstract, Results)
+- ibuprofen_sodium kidney: outcome does not match (Zhang 2017, Abstract, Results; outcome definitions in Table 1 and Results)
+- ibuprofen_sodium anticoagulant_bleeding: outcome does not match (Villa 2020, Abstract, Results)
+- ibuprofen_sodium gi_bleeding: stratum [1201, None] mg/day, not the label maximum 1200 (Castellsague 2012, Results, dose analysis (text accompanying Figure 3))
+- baseline kidney adult_18_64: outcome does not match (Sawhney 2018, Table 3, 'People with AKI in age strata' row 40-69 years, Grampian 2012 column)
+- baseline kidney adult_65_plus: outcome does not match (Sawhney 2018, Table 3, 'People with AKI in age strata' row >=70 years, Grampian 2012 column)
+- baseline kidney all: outcome does not match (Sawhney 2018, Table 3, 'People with AKI in eGFR strata among people with at least two tests within 365 days (rates expressed within strata of tested individuals at risk)')
+- baseline anticholinergic_cognitive adult_65_plus: outcome does not match (Frich 2026, Abstract, Results; Table 2)
+- baseline gi_bleeding all: a rate without class users exists (Bedene 2022, Results, 'Risk of severe UGIB in the four different (sub)populations'; Table 2, subgroup A)
+
 ## FAERS signal with no published estimate (flagged for review)
 
 - phenylephrine anticholinergic_cognitive (12-17): IC025 1.144, 9 reports, cognitive_impairment
@@ -49,6 +127,9 @@
 - acetaminophen anticholinergic_cognitive (all): IC025 0.637, 10576 reports, cognitive_impairment
 - acetaminophen anticoagulant_bleeding (18-64): IC025 0.522, 1671 reports, hemorrhage_coagulation
 - acetaminophen anticoagulant_bleeding (65+): IC025 0.073, 1075 reports, hemorrhage_coagulation
+- acetaminophen kidney (12-17): IC025 1.279, 411 reports, renal_disorders
+- acetaminophen kidney (18-64): IC025 0.563, 3443 reports, renal_disorders
+- acetaminophen kidney (65+): IC025 0.374, 2066 reports, renal_disorders
 - acetaminophen sedation_falls (12-17): IC025 1.265, 920 reports, falls_sedation
 - acetaminophen sedation_falls (18-64): IC025 0.807, 8798 reports, falls_sedation
 - acetaminophen sedation_falls (65+): IC025 0.517, 4400 reports, falls_sedation
@@ -57,6 +138,14 @@
 - acetaminophen serotonergic_interactions (18-64): IC025 1.63, 409 reports, serotonin_syndrome
 - acetaminophen serotonergic_interactions (65+): IC025 1.289, 78 reports, serotonin_syndrome
 - acetaminophen serotonergic_interactions (all): IC025 1.384, 812 reports, serotonin_syndrome
+- esomeprazole_magnesium_dihydrate anticholinergic_cognitive (18-64): IC025 0.688, 842 reports, cognitive_impairment
+- esomeprazole_magnesium_dihydrate anticholinergic_cognitive (65+): IC025 0.62, 741 reports, cognitive_impairment
+- esomeprazole_magnesium_dihydrate anticholinergic_cognitive (all): IC025 0.283, 1951 reports, cognitive_impairment
+- esomeprazole_magnesium_dihydrate anticoagulant_bleeding (65+): IC025 0.121, 473 reports, hemorrhage_coagulation
+- esomeprazole_magnesium_dihydrate cardiovascular_bp (12-17): IC025 0.468, 18 reports, cardiovascular_events
+- esomeprazole_magnesium_dihydrate cardiovascular_bp (18-64): IC025 0.497, 1733 reports, cardiovascular_events
+- esomeprazole_magnesium_dihydrate cardiovascular_bp (65+): IC025 0.259, 1396 reports, cardiovascular_events
+- esomeprazole_magnesium_dihydrate cardiovascular_bp (all): IC025 0.139, 4008 reports, cardiovascular_events
 - esomeprazole_magnesium_dihydrate gi_bleeding (0-11): IC025 1.621, 23 reports, gastrointestinal_hemorrhage
 - esomeprazole_magnesium_dihydrate gi_bleeding (18-64): IC025 0.494, 484 reports, gastrointestinal_hemorrhage
 - esomeprazole_magnesium_dihydrate gi_bleeding (65+): IC025 0.049, 437 reports, gastrointestinal_hemorrhage
@@ -68,6 +157,14 @@
 - esomeprazole_magnesium_dihydrate liver (all): IC025 0.217, 1963 reports, hepatic_disorders
 - esomeprazole_magnesium_dihydrate serotonergic_interactions (12-17): IC025 1.169, 7 reports, serotonin_syndrome
 - esomeprazole_magnesium_dihydrate serotonergic_interactions (all): IC025 1.622, 235 reports, serotonin_syndrome
+- omeprazole_magnesium anticholinergic_cognitive (12-17): IC025 1.476, 28 reports, cognitive_impairment
+- omeprazole_magnesium anticholinergic_cognitive (18-64): IC025 0.26, 722 reports, cognitive_impairment
+- omeprazole_magnesium anticholinergic_cognitive (65+): IC025 1.035, 1264 reports, cognitive_impairment
+- omeprazole_magnesium anticholinergic_cognitive (all): IC025 0.44, 2502 reports, cognitive_impairment
+- omeprazole_magnesium anticoagulant_bleeding (12-17): IC025 0.202, 18 reports, hemorrhage_coagulation
+- omeprazole_magnesium cardiovascular_bp (12-17): IC025 0.636, 34 reports, cardiovascular_events
+- omeprazole_magnesium cardiovascular_bp (18-64): IC025 0.163, 1581 reports, cardiovascular_events
+- omeprazole_magnesium cardiovascular_bp (65+): IC025 0.004, 1519 reports, cardiovascular_events
 - omeprazole_magnesium gi_bleeding (0-11): IC025 0.6, 27 reports, gastrointestinal_hemorrhage
 - omeprazole_magnesium gi_bleeding (12-17): IC025 0.453, 15 reports, gastrointestinal_hemorrhage
 - omeprazole_magnesium gi_bleeding (18-64): IC025 0.398, 518 reports, gastrointestinal_hemorrhage
@@ -89,6 +186,8 @@
 - guaifenesin serotonergic_interactions (18-64): IC025 1.621, 31 reports, serotonin_syndrome
 - guaifenesin serotonergic_interactions (65+): IC025 1.798, 21 reports, serotonin_syndrome
 - guaifenesin serotonergic_interactions (all): IC025 1.518, 64 reports, serotonin_syndrome
+- famotidine anticholinergic_cognitive (18-64): IC025 0.081, 92 reports, cognitive_impairment
+- famotidine anticholinergic_cognitive (65+): IC025 0.238, 99 reports, cognitive_impairment
 - famotidine anticoagulant_bleeding (12-17): IC025 2.657, 23 reports, hemorrhage_coagulation
 - famotidine cardiovascular_bp (12-17): IC025 2.283, 26 reports, cardiovascular_events
 - famotidine kidney (0-11): IC025 0.05, 11 reports, renal_disorders
@@ -163,6 +262,8 @@
 - loratadine sedation_falls (18-64): IC025 0.766, 950 reports, falls_sedation
 - loratadine sedation_falls (65+): IC025 0.331, 576 reports, falls_sedation
 - loratadine sedation_falls (all): IC025 0.492, 2492 reports, falls_sedation
+- cimetidine anticholinergic_cognitive (18-64): IC025 0.164, 17 reports, cognitive_impairment
+- cimetidine anticholinergic_cognitive (all): IC025 0.191, 34 reports, cognitive_impairment
 - cimetidine cardiovascular_bp (12-17): IC025 1.802, 9 reports, cardiovascular_events
 - cimetidine cardiovascular_bp (18-64): IC025 1.736, 88 reports, cardiovascular_events
 - cimetidine cardiovascular_bp (all): IC025 1.242, 134 reports, cardiovascular_events
@@ -172,6 +273,9 @@
 - cimetidine kidney (all): IC025 1.465, 92 reports, renal_disorders
 - cimetidine liver (65+): IC025 1.552, 29 reports, hepatic_disorders
 - cimetidine liver (all): IC025 0.83, 52 reports, hepatic_disorders
+- cimetidine sedation_falls (12-17): IC025 0.488, 6 reports, falls_sedation
+- cimetidine sedation_falls (18-64): IC025 0.381, 46 reports, falls_sedation
+- cimetidine sedation_falls (all): IC025 0.153, 79 reports, falls_sedation
 - cimetidine serotonergic_interactions (18-64): IC025 2.697, 13 reports, serotonin_syndrome
 - cimetidine serotonergic_interactions (all): IC025 2.389, 13 reports, serotonin_syndrome
 - simethicone kidney (all): IC025 0.03, 5 reports, renal_disorders
@@ -213,6 +317,10 @@
 - calcium_carbonate anticholinergic_cognitive (65+): IC025 1.834, 406 reports, cognitive_impairment
 - calcium_carbonate anticholinergic_cognitive (all): IC025 2.983, 2204 reports, cognitive_impairment
 - calcium_carbonate anticoagulant_bleeding (65+): IC025 0.005, 111 reports, hemorrhage_coagulation
+- calcium_carbonate cardiovascular_bp (12-17): IC025 0.572, 7 reports, cardiovascular_events
+- calcium_carbonate cardiovascular_bp (18-64): IC025 2.313, 1204 reports, cardiovascular_events
+- calcium_carbonate cardiovascular_bp (65+): IC025 1.232, 645 reports, cardiovascular_events
+- calcium_carbonate cardiovascular_bp (all): IC025 1.961, 2490 reports, cardiovascular_events
 - calcium_carbonate gi_bleeding (18-64): IC025 4.232, 1227 reports, gastrointestinal_hemorrhage
 - calcium_carbonate gi_bleeding (65+): IC025 1.429, 269 reports, gastrointestinal_hemorrhage
 - calcium_carbonate gi_bleeding (all): IC025 3.445, 1976 reports, gastrointestinal_hemorrhage
@@ -226,6 +334,14 @@
 - calcium_carbonate sedation_falls (18-64): IC025 1.959, 1163 reports, falls_sedation
 - calcium_carbonate sedation_falls (65+): IC025 1.032, 626 reports, falls_sedation
 - calcium_carbonate sedation_falls (all): IC025 1.582, 2283 reports, falls_sedation
+- omeprazole anticholinergic_cognitive (12-17): IC025 1.476, 28 reports, cognitive_impairment
+- omeprazole anticholinergic_cognitive (18-64): IC025 0.26, 722 reports, cognitive_impairment
+- omeprazole anticholinergic_cognitive (65+): IC025 1.035, 1264 reports, cognitive_impairment
+- omeprazole anticholinergic_cognitive (all): IC025 0.44, 2502 reports, cognitive_impairment
+- omeprazole anticoagulant_bleeding (12-17): IC025 0.202, 18 reports, hemorrhage_coagulation
+- omeprazole cardiovascular_bp (12-17): IC025 0.636, 34 reports, cardiovascular_events
+- omeprazole cardiovascular_bp (18-64): IC025 0.163, 1581 reports, cardiovascular_events
+- omeprazole cardiovascular_bp (65+): IC025 0.004, 1519 reports, cardiovascular_events
 - omeprazole gi_bleeding (0-11): IC025 0.6, 27 reports, gastrointestinal_hemorrhage
 - omeprazole gi_bleeding (12-17): IC025 0.453, 15 reports, gastrointestinal_hemorrhage
 - omeprazole gi_bleeding (18-64): IC025 0.398, 518 reports, gastrointestinal_hemorrhage
@@ -236,6 +352,14 @@
 - omeprazole serotonergic_interactions (12-17): IC025 1.363, 11 reports, serotonin_syndrome
 - omeprazole serotonergic_interactions (65+): IC025 0.931, 37 reports, serotonin_syndrome
 - omeprazole serotonergic_interactions (all): IC025 0.287, 114 reports, serotonin_syndrome
+- esomeprazole anticholinergic_cognitive (18-64): IC025 0.688, 842 reports, cognitive_impairment
+- esomeprazole anticholinergic_cognitive (65+): IC025 0.62, 741 reports, cognitive_impairment
+- esomeprazole anticholinergic_cognitive (all): IC025 0.283, 1951 reports, cognitive_impairment
+- esomeprazole anticoagulant_bleeding (65+): IC025 0.121, 473 reports, hemorrhage_coagulation
+- esomeprazole cardiovascular_bp (12-17): IC025 0.468, 18 reports, cardiovascular_events
+- esomeprazole cardiovascular_bp (18-64): IC025 0.497, 1733 reports, cardiovascular_events
+- esomeprazole cardiovascular_bp (65+): IC025 0.259, 1396 reports, cardiovascular_events
+- esomeprazole cardiovascular_bp (all): IC025 0.139, 4008 reports, cardiovascular_events
 - esomeprazole gi_bleeding (0-11): IC025 1.621, 23 reports, gastrointestinal_hemorrhage
 - esomeprazole gi_bleeding (18-64): IC025 0.494, 484 reports, gastrointestinal_hemorrhage
 - esomeprazole gi_bleeding (65+): IC025 0.049, 437 reports, gastrointestinal_hemorrhage
@@ -255,6 +379,8 @@
 - magnesium_hydroxide gi_bleeding (18-64): IC025 1.813, 55 reports, gastrointestinal_hemorrhage
 - magnesium_hydroxide gi_bleeding (65+): IC025 1.287, 94 reports, gastrointestinal_hemorrhage
 - magnesium_hydroxide gi_bleeding (all): IC025 1.594, 178 reports, gastrointestinal_hemorrhage
+- magnesium_hydroxide kidney (65+): IC025 0.44, 86 reports, renal_disorders
+- magnesium_hydroxide kidney (all): IC025 0.273, 144 reports, renal_disorders
 - magnesium_hydroxide liver (18-64): IC025 1.348, 83 reports, hepatic_disorders
 - magnesium_hydroxide liver (65+): IC025 0.659, 62 reports, hepatic_disorders
 - magnesium_hydroxide liver (all): IC025 0.782, 165 reports, hepatic_disorders
@@ -281,6 +407,14 @@
 - aspirin sedation_falls (18-64): IC025 0.191, 1985 reports, falls_sedation
 - aspirin sedation_falls (65+): IC025 0.105, 4288 reports, falls_sedation
 - aspirin sedation_falls (all): IC025 0.026, 7686 reports, falls_sedation
+- esomeprazole_magnesium_trihydrate anticholinergic_cognitive (18-64): IC025 0.688, 842 reports, cognitive_impairment
+- esomeprazole_magnesium_trihydrate anticholinergic_cognitive (65+): IC025 0.62, 741 reports, cognitive_impairment
+- esomeprazole_magnesium_trihydrate anticholinergic_cognitive (all): IC025 0.283, 1951 reports, cognitive_impairment
+- esomeprazole_magnesium_trihydrate anticoagulant_bleeding (65+): IC025 0.121, 473 reports, hemorrhage_coagulation
+- esomeprazole_magnesium_trihydrate cardiovascular_bp (12-17): IC025 0.468, 18 reports, cardiovascular_events
+- esomeprazole_magnesium_trihydrate cardiovascular_bp (18-64): IC025 0.497, 1733 reports, cardiovascular_events
+- esomeprazole_magnesium_trihydrate cardiovascular_bp (65+): IC025 0.259, 1396 reports, cardiovascular_events
+- esomeprazole_magnesium_trihydrate cardiovascular_bp (all): IC025 0.139, 4008 reports, cardiovascular_events
 - esomeprazole_magnesium_trihydrate gi_bleeding (0-11): IC025 1.621, 23 reports, gastrointestinal_hemorrhage
 - esomeprazole_magnesium_trihydrate gi_bleeding (18-64): IC025 0.494, 484 reports, gastrointestinal_hemorrhage
 - esomeprazole_magnesium_trihydrate gi_bleeding (65+): IC025 0.049, 437 reports, gastrointestinal_hemorrhage
@@ -323,6 +457,11 @@
 - levocetirizine sedation_falls (18-64): IC025 2.065, 1559 reports, falls_sedation
 - levocetirizine sedation_falls (65+): IC025 1.462, 339 reports, falls_sedation
 - levocetirizine sedation_falls (all): IC025 2.027, 2551 reports, falls_sedation
+- diphenhydramine anticholinergic_cognitive (0-11): IC025 0.995, 26 reports, cognitive_impairment
+- diphenhydramine anticholinergic_cognitive (12-17): IC025 3.138, 136 reports, cognitive_impairment
+- diphenhydramine anticholinergic_cognitive (18-64): IC025 1.274, 837 reports, cognitive_impairment
+- diphenhydramine anticholinergic_cognitive (65+): IC025 1.19, 316 reports, cognitive_impairment
+- diphenhydramine anticholinergic_cognitive (all): IC025 1.245, 1702 reports, cognitive_impairment
 - diphenhydramine anticoagulant_bleeding (12-17): IC025 1.118, 53 reports, hemorrhage_coagulation
 - diphenhydramine cardiovascular_bp (0-11): IC025 0.524, 61 reports, cardiovascular_events
 - diphenhydramine cardiovascular_bp (12-17): IC025 2.962, 264 reports, cardiovascular_events

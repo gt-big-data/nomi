@@ -7,6 +7,12 @@ relative_risks:
   - ingredient: pseudoephedrine
     dimension: cardiovascular_bp
     applies_to: {persona: all, condition: null, medication_type: null}
+    outcome: mi_stroke
+    outcome_match: true
+    exposure_window: community_oral
+    comparator: non_use
+    dose_mg_per_day: null
+    match_note: "Outcome is incident MI or stroke (mi_stroke). Community use of OTC-type decongestants ('median 4 days') in the week before the event. Case-crossover: each case's week -1 is compared with its own week -3 without exposure, so the comparator is non-use."
     measure: OR
     estimate: 0.78
     ci95: [0.43, 1.42]
@@ -22,6 +28,12 @@ relative_risks:
   - ingredient: pseudoephedrine
     dimension: cardiovascular_bp
     applies_to: {persona: adult_65_plus, condition: null, medication_type: null}
+    outcome: mi_stroke
+    outcome_match: true
+    exposure_window: community_oral
+    comparator: non_use
+    dose_mg_per_day: null
+    match_note: "Age stratum (>= 66) of the same case-crossover, recorded by persona. Outcome MI or stroke; community use; self-controlled non-use comparator. Only 8 exposed people."
     measure: OR
     estimate: 1.48
     ci95: [0.33, 6.72]
@@ -33,10 +45,37 @@ relative_risks:
       url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC7893034/"
       location: "Table 2, stratified analyses, '≥ 66 years' row, adjusted conditional OR"
       quote: "≥ 66 years | n = 577 | Definite exposure n, % | 5 (0.9%) | 3 (0.5%) | 1.33 [0.30–5.96] | 1.48 [0.33–6.72]"
-    selection_note: "Class-level, exploratory stratum (Table 2 footnote '***Exploratory analysis'), 8 exposed patients; authors state results 'cannot be generalized to elderly patients over 70 years of age'. Age cut is 66, not 65."
+    selection_note: "Class-level, exploratory age stratum (Table 2 footnote '***Exploratory analysis'). Only 8 exposed patients (5 in week -1, 3 in week -3), so the estimate is very imprecise; authors state results 'cannot be generalized to elderly patients over 70 years of age'. Age cut is 66, not 65. The <66 stratum from the same table is recorded as an adult_18_64 row."
+  - ingredient: pseudoephedrine
+    dimension: cardiovascular_bp
+    applies_to: {persona: adult_18_64, condition: null, medication_type: null}
+    outcome: mi_stroke
+    outcome_match: true
+    exposure_window: community_oral
+    comparator: non_use
+    dose_mg_per_day: null
+    match_note: "Age stratum (< 66) of the same case-crossover, recorded by persona. Outcome MI or stroke; community use; self-controlled non-use comparator."
+    measure: OR
+    estimate: 0.69
+    ci95: [0.36, 1.33]
+    exposure: "definite use of any decongestant (ATC R01A, R01B, R05X) in week -1 vs week -3"
+    population: "incident MI or stroke aged under 66, French registries 2013-2016, n=2220"
+    grade: case_control
+    source:
+      citation: "Grimaldi-Bensouda L, et al. Decongestant use and the risk of myocardial infarction and stroke: a case-crossover study. Sci Rep 2021;11:4160"
+      url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC7893034/"
+      location: "Table 2, stratified analyses, '< 66 years' row, adjusted conditional OR"
+      quote: "< 66 years | n = 2220 | n = 2220 | Definite Exposure n, % | 23 (1.0%) | 28 (1.3%) | 0.69 [0.36–1.32] | 0.69 [0.36–1.33]"
+    selection_note: "Class-level, exploratory age stratum (Table 2 footnote '***Exploratory analysis'), 51 exposed patients (23 in week -1, 28 in week -3). Age strata are recorded by persona, not dose: under 66 stands in for adult_18_64 (it also includes age 65; the lower age limit is not stated in Table 2). Paired with the >=66 row from the same table."
   - ingredient: phenylephrine
     dimension: cardiovascular_bp
     applies_to: {persona: all, condition: null, medication_type: null}
+    outcome: mi_stroke
+    outcome_match: true
+    exposure_window: community_oral
+    comparator: non_use
+    dose_mg_per_day: null
+    match_note: "Outcome is incident MI or stroke (mi_stroke). Community use of OTC-type decongestants ('median 4 days') in the week before the event. Case-crossover: each case's week -1 is compared with its own week -3 without exposure, so the comparator is non-use."
     measure: OR
     estimate: 0.78
     ci95: [0.43, 1.42]
@@ -52,6 +91,12 @@ relative_risks:
   - ingredient: phenylephrine
     dimension: cardiovascular_bp
     applies_to: {persona: adult_65_plus, condition: null, medication_type: null}
+    outcome: mi_stroke
+    outcome_match: true
+    exposure_window: community_oral
+    comparator: non_use
+    dose_mg_per_day: null
+    match_note: "Age stratum (>= 66) of the same case-crossover, recorded by persona. Outcome MI or stroke; community use; self-controlled non-use comparator. Only 8 exposed people."
     measure: OR
     estimate: 1.48
     ci95: [0.33, 6.72]
@@ -63,10 +108,37 @@ relative_risks:
       url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC7893034/"
       location: "Table 2, stratified analyses, '≥ 66 years' row, adjusted conditional OR"
       quote: "≥ 66 years | n = 577 | Definite exposure n, % | 5 (0.9%) | 3 (0.5%) | 1.33 [0.30–5.96] | 1.48 [0.33–6.72]"
-    selection_note: "Class-level, exploratory stratum with 8 exposed patients; age cut is 66, not 65."
+    selection_note: "Class-level, exploratory age stratum (Table 2 footnote '***Exploratory analysis'). Only 8 exposed patients (5 in week -1, 3 in week -3), so the estimate is very imprecise; authors state results 'cannot be generalized to elderly patients over 70 years of age'. Age cut is 66, not 65. The <66 stratum from the same table is recorded as an adult_18_64 row."
+  - ingredient: phenylephrine
+    dimension: cardiovascular_bp
+    applies_to: {persona: adult_18_64, condition: null, medication_type: null}
+    outcome: mi_stroke
+    outcome_match: true
+    exposure_window: community_oral
+    comparator: non_use
+    dose_mg_per_day: null
+    match_note: "Age stratum (< 66) of the same case-crossover, recorded by persona. Outcome MI or stroke; community use; self-controlled non-use comparator."
+    measure: OR
+    estimate: 0.69
+    ci95: [0.36, 1.33]
+    exposure: "definite use of any decongestant (ATC R01A, R01B, R05X) in week -1 vs week -3"
+    population: "incident MI or stroke aged under 66, French registries 2013-2016, n=2220"
+    grade: case_control
+    source:
+      citation: "Grimaldi-Bensouda L, et al. Decongestant use and the risk of myocardial infarction and stroke: a case-crossover study. Sci Rep 2021;11:4160"
+      url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC7893034/"
+      location: "Table 2, stratified analyses, '< 66 years' row, adjusted conditional OR"
+      quote: "< 66 years | n = 2220 | n = 2220 | Definite Exposure n, % | 23 (1.0%) | 28 (1.3%) | 0.69 [0.36–1.32] | 0.69 [0.36–1.33]"
+    selection_note: "Class-level, exploratory age stratum (Table 2 footnote '***Exploratory analysis'), 51 exposed patients (23 in week -1, 28 in week -3). Age strata are recorded by persona, not dose: under 66 stands in for adult_18_64 (it also includes age 65; the lower age limit is not stated in Table 2). Paired with the >=66 row from the same table."
   - ingredient: oxymetazoline
     dimension: cardiovascular_bp
     applies_to: {persona: all, condition: null, medication_type: null}
+    outcome: mi_stroke
+    outcome_match: true
+    exposure_window: community_oral
+    comparator: non_use
+    dose_mg_per_day: null
+    match_note: "Outcome is incident MI or stroke (mi_stroke). Community use of decongestants including nasal products (ATC R01A, the product's route), median 4 days. Case-crossover with self-controlled non-use comparator."
     measure: OR
     estimate: 0.78
     ci95: [0.43, 1.42]
@@ -82,6 +154,12 @@ relative_risks:
   - ingredient: oxymetazoline
     dimension: cardiovascular_bp
     applies_to: {persona: adult_65_plus, condition: null, medication_type: null}
+    outcome: mi_stroke
+    outcome_match: true
+    exposure_window: community_oral
+    comparator: non_use
+    dose_mg_per_day: null
+    match_note: "Age stratum (>= 66) of the same case-crossover, recorded by persona. Outcome MI or stroke; community use including nasal route; self-controlled non-use comparator. Only 8 exposed people."
     measure: OR
     estimate: 1.48
     ci95: [0.33, 6.72]
@@ -93,12 +171,38 @@ relative_risks:
       url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC7893034/"
       location: "Table 2, stratified analyses, '≥ 66 years' row, adjusted conditional OR"
       quote: "≥ 66 years | n = 577 | Definite exposure n, % | 5 (0.9%) | 3 (0.5%) | 1.33 [0.30–5.96] | 1.48 [0.33–6.72]"
-    selection_note: "Class-level, exploratory stratum with 8 exposed patients; age cut is 66, not 65."
+    selection_note: "Class-level, exploratory age stratum (Table 2 footnote '***Exploratory analysis'). Only 8 exposed patients (5 in week -1, 3 in week -3), so the estimate is very imprecise; authors state results 'cannot be generalized to elderly patients over 70 years of age'. Age cut is 66, not 65. The <66 stratum from the same table is recorded as an adult_18_64 row."
+  - ingredient: oxymetazoline
+    dimension: cardiovascular_bp
+    applies_to: {persona: adult_18_64, condition: null, medication_type: null}
+    outcome: mi_stroke
+    outcome_match: true
+    exposure_window: community_oral
+    comparator: non_use
+    dose_mg_per_day: null
+    match_note: "Age stratum (< 66) of the same case-crossover, recorded by persona. Outcome MI or stroke; community use including nasal route; self-controlled non-use comparator."
+    measure: OR
+    estimate: 0.69
+    ci95: [0.36, 1.33]
+    exposure: "definite use of any decongestant (ATC R01A, R01B, R05X) in week -1 vs week -3"
+    population: "incident MI or stroke aged under 66, French registries 2013-2016, n=2220"
+    grade: case_control
+    source:
+      citation: "Grimaldi-Bensouda L, et al. Decongestant use and the risk of myocardial infarction and stroke: a case-crossover study. Sci Rep 2021;11:4160"
+      url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC7893034/"
+      location: "Table 2, stratified analyses, '< 66 years' row, adjusted conditional OR"
+      quote: "< 66 years | n = 2220 | n = 2220 | Definite Exposure n, % | 23 (1.0%) | 28 (1.3%) | 0.69 [0.36–1.32] | 0.69 [0.36–1.33]"
+    selection_note: "Class-level, exploratory age stratum (Table 2 footnote '***Exploratory analysis'), 51 exposed patients (23 in week -1, 28 in week -3). Age strata are recorded by persona, not dose: under 66 stands in for adult_18_64 (it also includes age 65; the lower age limit is not stated in Table 2). Paired with the >=66 row from the same table."
 
   # pregnancy_lactation
   - ingredient: pseudoephedrine
     dimension: pregnancy_lactation
     applies_to: {persona: pregnant, condition: null, medication_type: null}
+    outcome_match: true
+    exposure_window: community_oral
+    comparator: non_use
+    dose_mg_per_day: null
+    match_note: "Outcome is the specific fetal harm studied (gastroschisis). Exposure is maternal use during pregnancy outside hospital, use vs non-use."
     measure: RR
     estimate: 1.51
     ci95: [1.16, 1.97]
@@ -114,6 +218,11 @@ relative_risks:
   - ingredient: phenylephrine
     dimension: pregnancy_lactation
     applies_to: {persona: pregnant, condition: null, medication_type: null}
+    outcome_match: true
+    exposure_window: community_oral
+    comparator: non_use
+    dose_mg_per_day: null
+    match_note: "Outcome is the specific fetal harm studied (endocardial cushion defect). Exposure is first-trimester maternal use outside hospital; comparator mothers not exposed to decongestants."
     measure: OR
     estimate: 8.0
     ci95: [2.5, 25.3]
@@ -129,6 +238,11 @@ relative_risks:
   - ingredient: oxymetazoline
     dimension: pregnancy_lactation
     applies_to: {persona: pregnant, condition: null, medication_type: null}
+    outcome_match: true
+    exposure_window: community_oral
+    comparator: non_use
+    dose_mg_per_day: null
+    match_note: "Outcome is the specific fetal harm studied (pyloric stenosis). Exposure is first-trimester intranasal use (the product's route) with no other decongestant; comparator mothers of non-malformed infants not exposed."
     measure: OR
     estimate: 1.8
     ci95: [0.7, 4.8]
@@ -139,8 +253,8 @@ relative_risks:
       citation: "Yau WP, Mitchell AA, Lin KJ, Werler MM, Hernandez-Diaz S. Use of decongestants during pregnancy and the risk of birth defects. Am J Epidemiol 2013;178:198-208"
       url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC3816336/"
       location: "Table 4, pyloric stenosis, oxymetazoline only"
-      quote: "Pyloric stenosis was associated with intranasal decongestants overall (OR = 1.9, 95% CI: 1.0, 3.5). Table 4: oxymetazoline only, pyloric stenosis OR 1.8, 95% CI 0.7, 4.8"
-    selection_note: "Only study with oxymetazoline-specific estimates. Pyloric stenosis chosen because it is the defect the authors report as associated with intranasal decongestants; oxymetazoline-only estimate used over the class estimate (1.9, 1.0-3.5). Hypothesis-generating analysis with multiple comparisons. Other Table 4 oxymetazoline cells: VSD 1.4 (0.6-3.1), cleft lip 1.4 (0.5-3.9). Table 4 cells were read through a page-summarizing fetch, not the raw table; verify before release. No breastfeeding estimate found."
+      quote: "Table 4, Imidazoline Derivative: Oxymetazoline Only (n = 82), Pyloric stenosis: No. 5 | % 0.7 | Adjusted OR 1.8 | 95% CI 0.7, 4.8"
+    selection_note: "Only study with oxymetazoline-specific estimates. Pyloric stenosis chosen because it is the defect the authors report as associated with intranasal decongestants; oxymetazoline-only estimate used over the class estimate (1.9, 1.0-3.5). Hypothesis-generating analysis with multiple comparisons. Other Table 4 oxymetazoline cells: VSD 1.4 (0.6-3.1), cleft lip 1.4 (0.5-3.9). Table 4 confirmed 2026-11-18 from the raw PMC HTML of PMC3816336 (adjusted OR 1.8 with footnote g, adjusted for maternal race/ethnicity; 5 exposed cases). No breastfeeding estimate found."
 insufficient:
   - ingredient: dextromethorphan
     dimension: serotonergic_interactions
