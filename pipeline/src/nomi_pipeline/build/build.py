@@ -8,6 +8,7 @@ from pathlib import Path
 from typing import Any
 
 import polars as pl
+import yaml
 from fsspec.core import url_to_fs
 
 from nomi_pipeline.config import REPO_ROOT, Settings
@@ -15,6 +16,7 @@ from nomi_pipeline.identity.resolver import package_codes
 
 # The app's tables; the app refuses a file whose user_version differs from its own.
 SCHEMA_PATH = REPO_ROOT / "packages" / "schema" / "sqlite" / "nomi.sql"
+KNOWLEDGE_DIR = REPO_ROOT / "pipeline" / "knowledge" / "ingredients"
 
 
 def git(*args: str) -> str:
@@ -29,11 +31,23 @@ def build_time() -> str:
     return datetime.fromtimestamp(int(epoch), UTC).strftime("%Y-%m-%dT%H:%M:%SZ")
 
 
-def scope_flag(product: dict[str, Any]) -> str:
-    """The app scores only in_scope, so a product without a scope yet (#26) is never in_scope."""
+def rated_uniis(knowledge_dir: Path = KNOWLEDGE_DIR) -> frozenset[str]:
+    """UNIIs with a ratings file in pipeline/knowledge/ingredients."""
+    return frozenset(
+        str(yaml.safe_load(path.read_text(encoding="utf-8"))["unii"])
+        for path in knowledge_dir.glob("*.yaml")
+    )
+
+
+def scope_flag(product: dict[str, Any], rated: frozenset[str]) -> str:
+    """The app scores only in_scope. Until #26 sets a scope, a product is in_scope (v0) when every
+    active ingredient has ratings, since scoring reads a missing rating as no risk."""
     if product["marketing_category"] == "unapproved_homeopathic":
         return "homeopathic"
-    return str(product.get("scope") or "out_of_scope")
+    if product.get("scope"):
+        return str(product["scope"])
+    uniis = {ingredient["unii"] for ingredient in product["ingredients"]}
+    return "in_scope" if uniis and uniis <= rated else "out_of_scope"
 
 
 def dashed_ndc(ndc10: str, ndc11: str) -> str:
@@ -66,6 +80,8 @@ def build_database(
         .iter_rows()
     )
 
+    rated = rated_uniis()
+
     con = sqlite3.connect(str(db_path))
     con.executescript(SCHEMA_PATH.read_text())
 
@@ -87,7 +103,7 @@ def build_database(
                 # otc_category comes from #26, review_status from no ticket yet;
                 # .get() avoids crashing until #26 lands
                 product.get("otc_category"),
-                scope_flag(product),
+                scope_flag(product, rated),
                 product.get("review_status"),
             ),
         )

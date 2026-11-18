@@ -13,6 +13,8 @@ from nomi_pipeline.build.build import (
     build_database,
     build_time,
     publish,
+    rated_uniis,
+    scope_flag,
     write_manifest,
 )
 from nomi_pipeline.config import REPO_ROOT, Settings
@@ -252,6 +254,45 @@ def test_homeopathic_product_is_never_in_scope(tmp_path: Path, identity_results:
 
     con = sqlite3.connect(str(db_path))
     assert con.execute("SELECT scope_flag FROM products").fetchall() == [("homeopathic",)]
+
+
+def test_rated_uniis_reads_the_knowledge_base() -> None:
+    rated = rated_uniis()
+    # acetaminophen, naproxen sodium, diphenhydramine HCl
+    assert {"362O9ITL9D", "9TN87S3A3C", "TC2D6JAD40"} <= rated
+
+
+def test_product_is_in_scope_when_every_ingredient_is_rated() -> None:
+    rated = frozenset({"AAAAAAAAAA", "BBBBBBBBBB"})
+    product = {
+        "marketing_category": "otc_monograph_drug",
+        "ingredients": [{"unii": "AAAAAAAAAA"}, {"unii": "BBBBBBBBBB"}],
+    }
+    assert scope_flag(product, rated) == "in_scope"
+
+    product["ingredients"].append({"unii": "CCCCCCCCCC"})
+    assert scope_flag(product, rated) == "out_of_scope"
+
+    product["ingredients"] = []
+    assert scope_flag(product, rated) == "out_of_scope"
+
+
+def test_homeopathic_product_with_rated_ingredients_is_homeopathic() -> None:
+    product = {"marketing_category": "unapproved_homeopathic", "ingredients": [{"unii": "A"}]}
+    assert scope_flag(product, frozenset({"A"})) == "homeopathic"
+
+
+def test_product_with_rated_ingredients_builds_in_scope(
+    tmp_path: Path, identity_results: Path
+) -> None:
+    product = next(p for p in reference_products() if p["brand_name"] == "Tylenol Extra Strength")
+    del product["scope"]
+    products = write_products(tmp_path / "product.parquet", [product])
+    db_path = tmp_path / "nomi.sqlite"
+    build_fixture(products, identity_results, db_path)
+
+    con = sqlite3.connect(str(db_path))
+    assert con.execute("SELECT scope_flag FROM products").fetchall() == [("in_scope",)]
 
 
 def test_app_finds_the_five_reference_products(tmp_path: Path, identity_results: Path) -> None:
