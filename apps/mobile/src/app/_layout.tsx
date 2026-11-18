@@ -4,6 +4,9 @@ import * as SplashScreen from "expo-splash-screen";
 
 import { ThemeProvider, useNomiFonts, useTheme } from "@/theme";
 
+// A deep link to /result still gets the camera underneath it, so Back has somewhere to go.
+export const unstable_settings = { initialRouteName: "index" };
+
 // Keep the splash screen up until the fonts are ready.
 SplashScreen.preventAutoHideAsync();
 
