@@ -1,6 +1,6 @@
 # Running the Nomi demo
 
-How to present Nomi from the `demo/v1-path` build. To put the app on a phone first, see
+How to present Nomi from the `demo/v1-evidence` build. To put the app on a phone first, see
 [apps/mobile/INSTALL.md](../../apps/mobile/INSTALL.md).
 
 ## Before you present
@@ -27,10 +27,12 @@ How to present Nomi from the `demo/v1-path` build. To put the app on a phone fir
 1. **Open Nomi.** It opens to the camera. The pill at the top says who it's scoring for.
 2. **Scan Tylenol.** Hold the barcode inside the rounded frame. The result shows a score out of 100, a
    tier word and how many risks took points off.
-3. **Tap a row under "Why this score".** A sheet slides up with the reason, the quote from the FDA label and
-   the source. If the source has a link icon, tap it to open the label. Drag the sheet down to close it.
+3. **Tap a row under "Why this score".** A sheet slides up with the harm, how much more likely the medicine
+   makes it (from a published study), how often it happens anyway, and the sources. Drag the sheet down to
+   close it.
 4. **Switch who will take it.** Use the switcher under the score (you, Adult, 65+, Child). The score changes
-   with the person. Some products say **Do not use** for some people, and then the screen offers only
+   with the person: Equate Allergy Relief is 100 for an adult and 45 for 65+, because the same antihistamine
+   doubles the chance of a fall injury in older adults. Some products say **Do not use** for some people, and then the screen offers only
    "Scan again".
 5. **Tap "I take this".** Then tap Home (top left on the camera). The product is listed under Taking.
 6. **Scan a store brand** (Good Neighbor or CVS) to show that it isn't limited to name brands.
@@ -38,8 +40,23 @@ How to present Nomi from the `demo/v1-path` build. To put the app on a phone fir
 Points worth saying out loud:
 
 - Everything runs on the phone. No account, no internet, and no health answers leave the device.
-- Every point taken off links back to a public source (FDA labels, FAERS).
-- Scores marked **Preliminary** come from rubric v0 and haven't been reviewed by a pharmacist yet.
+- Every point taken off links back to a published study and a baseline rate. FDA adverse-event reports
+  (FAERS) appear as supporting citations but never change the score.
+- Scores marked **Preliminary** come from the v1 method (`docs/scoring/v1-method.md`) and haven't been
+  reviewed by a pharmacist yet. Rules 29 and 30 in particular are waiting for sign-off.
+
+## Expected scores (v1.4 evidence)
+
+| Product | Adult 18-64 | 65+ | Pregnant | Child 6-11 |
+| --- | --- | --- | --- | --- |
+| Tylenol Extra Strength | 75 | 75 | 75 | 75 |
+| CVS Extra Strength Acetaminophen | 75 | 75 | 75 | Not scored for this age |
+| Aleve Liquid Gels | 78 | 62 | 78 | 78 |
+| Vicks NyQuil Cold and Flu | 75 | 44 | 75 | 75 |
+| Equate Allergy Relief | 100 | 45 | 100 | 100 |
+| ZzzQuil Nighttime Sleep-Aid | 100 | 45 | 100 | Do not use |
+
+These are for a person with no conditions or other medicines. Teens show "Not scored for this age yet".
 
 ## If something goes wrong
 
