@@ -4,7 +4,7 @@ import * as SplashScreen from "expo-splash-screen";
 
 import { loadProfile, useSavedProfile } from "@/storage/activeProfile";
 import { loadCabinet } from "@/storage/cabinet";
-import { ThemeProvider, useNomiFonts, useTheme } from "@/theme";
+import { fontFamily, ThemeProvider, useNomiFonts, useTheme } from "@/theme";
 
 // A deep link to /result still gets the camera underneath it, so Back has somewhere to go.
 export const unstable_settings = { initialRouteName: "index" };
@@ -50,7 +50,18 @@ function Navigator() {
 
   return (
     <NavThemeProvider value={navTheme}>
-      <Stack />
+      <Stack
+        screenOptions={{
+          // iOS draws the back button as a glass circle with just the chevron.
+          headerBackButtonDisplayMode: "minimal",
+          headerShadowVisible: false,
+          headerStyle: { backgroundColor: colors.bg.canvas },
+          headerTitleStyle: { fontFamily: fontFamily.semiBold, color: colors.text.primary },
+          headerLargeTitleStyle: { fontFamily: fontFamily.bold, color: colors.text.primary },
+          headerLargeTitleShadowVisible: false,
+          contentStyle: { backgroundColor: colors.bg.canvas },
+        }}
+      />
     </NavThemeProvider>
   );
 }

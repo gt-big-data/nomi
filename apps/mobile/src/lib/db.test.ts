@@ -19,6 +19,7 @@ import {
   DATASET_SCHEMA_VERSION,
   LOOKUP_SQL,
   lookupBarcode,
+  RETAIL_BARCODES,
   strengthText,
   type Dataset,
   type LookupStatus,
@@ -131,6 +132,22 @@ test("finds a product from its EAN-13 form", async () => {
   assert.equal(result.status, "resolved");
   assert.ok("product" in result);
   assert.equal(result.product.brand, "Tylenol Extra Strength");
+});
+
+test("finds a store-brand box by its retail barcode", async () => {
+  // Points the one retail barcode at a reference product, so the test needs no CVS fixture.
+  const saved = RETAIL_BARCODES["050428164181"];
+  (RETAIL_BARCODES as Record<string, string>)["050428164181"] = "5058044905";
+  try {
+    for (const scan of ["050428164181", "0050428164181"]) {
+      const result = await lookup(scan);
+      assert.equal(result.status, "resolved");
+      assert.ok("product" in result);
+      assert.equal(result.product.packageNdc, "50580-449-05");
+    }
+  } finally {
+    (RETAIL_BARCODES as Record<string, string>)["050428164181"] = saved;
+  }
 });
 
 test("finds Tylenol from the old McNeil code printed on the box", async () => {

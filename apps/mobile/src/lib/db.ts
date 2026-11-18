@@ -104,15 +104,32 @@ function mcneilCode(ndc10: string): string | undefined {
   return ndc10.startsWith("00450") ? "50580" + ndc10.slice(5) : undefined;
 }
 
+/**
+ * Store-brand boxes whose barcode is a retail UPC with no drug code in it, matched by hand to the
+ * NDC printed on the same box. Keyed by the 12-digit UPC-A; the value is the package's NDC10.
+ * A stopgap for the demo: the real fix is a UPC table built from the FDA labels' upc field.
+ */
+export const RETAIL_BARCODES: Readonly<Record<string, string>> = {
+  // CVS Health Extra Strength Acetaminophen 500 mg; the box prints NDC 69842-915-08.
+  "050428164181": "6984291508",
+};
+
+/** The 12-digit UPC-A for a scan, whether the camera read it as UPC-A or as EAN-13. */
+function upcA(raw: string): string {
+  const digits = raw.trim();
+  return digits.length === 13 && digits.startsWith("0") ? digits.slice(1) : digits;
+}
+
 /** Returns the product a scanned barcode is, or why there isn't exactly one. */
 export async function lookupBarcode(raw: string, db: Dataset): Promise<Lookup> {
+  const retail = RETAIL_BARCODES[upcA(raw)];
   const parsed = ndcCandidates(raw);
-  if (parsed.status !== "ok") {
+  if (parsed.status !== "ok" && !retail) {
     return { status: parsed.status };
   }
   // The 4-4-2 candidate is "0" + the 10 digits in the barcode. Match those exactly, as the
   // pipeline's resolver does; the NDC11 candidates could hit a package with other digits.
-  const ndc10 = parsed.candidates[0].slice(1);
+  const ndc10 = retail ?? parsed.candidates[0].slice(1);
   let rows = await db.getAllAsync<Row>(LOOKUP_SQL, [ndc10]);
   const current = mcneilCode(ndc10);
   if (rows.length === 0 && current) {

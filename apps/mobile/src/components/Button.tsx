@@ -2,7 +2,7 @@ import { Pressable, StyleSheet, Text } from "react-native";
 
 import { type Colors, minHeight, opacity, useIconScale, useTheme } from "@/theme";
 
-import { Icon } from "./Icon";
+import { Icon, type IconName } from "./Icon";
 export type ButtonType = "primary" | "secondary" | "ghost" | "destructive";
 
 type ButtonProps = {
@@ -16,6 +16,8 @@ type ButtonProps = {
   gem?: boolean;
   /** Extra screen-reader hint, e.g. "Opens the comparison". */
   accessibilityHint?: string;
+  /** An icon before the label, e.g. "scan" on Scan again. */
+  icon?: IconName;
 };
 
 function typeColors(c: Colors, type: ButtonType) {
@@ -72,8 +74,9 @@ export function Button({
   type = "primary",
   gem = false,
   accessibilityHint,
+  icon,
 }: ButtonProps) {
-  const { colors, radius, space, text } = useTheme();
+  const { colors, space, text } = useTheme();
   const c = typeColors(colors, type);
   const iconScale = useIconScale();
 
@@ -87,16 +90,18 @@ export function Button({
         styles.button,
         {
           backgroundColor: c.background,
-          borderRadius: radius.md,
+          // A capsule: half the minimum height.
+          borderRadius: minHeight.button / 2,
           gap: space[8],
           paddingHorizontal: space[20],
-          paddingVertical: space[16],
+          paddingVertical: space[12],
         },
         pressed && styles.pressed,
       ]}
     >
       {gem && <Icon name="gem" size="button" scale={iconScale} color={c.foreground} />}
-      <Text style={[text("button"), styles.label, { color: c.foreground }]}>{label}</Text>
+      {icon && <Icon name={icon} size="nav" scale={iconScale} color={c.foreground} />}
+      <Text style={[text("headline"), styles.label, { color: c.foreground }]}>{label}</Text>
     </Pressable>
   );
 }

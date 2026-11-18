@@ -11,7 +11,9 @@ type TappableProps = {
   /** What tapping does, when the label doesn't make it obvious. Only used with `onPress`. */
   accessibilityHint?: string;
   /** What screen readers call it when it can be tapped. Defaults to `button`. */
-  role?: "button" | "link";
+  role?: "button" | "link" | "radio";
+  /** Whether it is on: a selected segment, a toggle that's on. Screen readers say so. */
+  selected?: boolean;
   /** Extra space around the area that still counts as a tap, in points. */
   hitSlop?: number;
   /** Hide it from screen readers when the row it sits in already says it. Only without `onPress`. */
@@ -40,6 +42,7 @@ export function Tappable({
   accessibilityLabel,
   accessibilityHint,
   role = "button",
+  selected,
   hitSlop,
   decorative = false,
   style,
@@ -69,6 +72,9 @@ export function Tappable({
     <Pressable
       onPress={onPress}
       accessibilityRole={role}
+      accessibilityState={
+        selected === undefined ? undefined : role === "radio" ? { checked: selected } : { selected }
+      }
       accessibilityLabel={accessibilityLabel}
       accessibilityHint={accessibilityHint}
       hitSlop={hitSlop}

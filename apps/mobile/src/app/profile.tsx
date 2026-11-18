@@ -1,12 +1,12 @@
 import { router, Stack } from "expo-router";
 import { ScrollView, Text } from "react-native";
 
-import { Button, ProfileSummary } from "@/components";
+import { Button, ListGroup, ListRow } from "@/components";
 import { useSavedProfile } from "@/storage/activeProfile";
-import { defaultProfile } from "@/storage/profile";
+import { defaultProfile, profileSummary } from "@/storage/profile";
 import { useTheme } from "@/theme";
 
-/** Who scores are for, with ways to change it, type a barcode or get back to the camera. */
+/** Who scores are for, with ways to change it or type a barcode. */
 export default function ProfileScreen() {
   const { colors, space, text } = useTheme();
   const profile = useSavedProfile() ?? defaultProfile;
@@ -14,23 +14,53 @@ export default function ProfileScreen() {
   return (
     <ScrollView
       contentInsetAdjustmentBehavior="automatic"
-      style={{ backgroundColor: colors.bg.surface }}
-      contentContainerStyle={{ padding: space[24], gap: space[16] }}
+      style={{ backgroundColor: colors.bg.canvas }}
+      contentContainerStyle={{
+        paddingHorizontal: space[20],
+        paddingBottom: space[48],
+        gap: space[32],
+      }}
     >
-      <Stack.Screen options={{ title: "Profile" }} />
-      <Text style={[text("body"), { color: colors.text.secondary }]}>
-        Nomi scores medicines for this person once every active ingredient is rated. Your answers
-        stay on this phone.
+      <Stack.Screen options={{ title: "Profile", headerTitle: "" }} />
+      <Text accessibilityRole="header" style={[text("largeTitle"), { color: colors.text.primary }]}>
+        Profile
       </Text>
-      <ProfileSummary profile={profile} />
-      <Button label="Scan a medicine" onPress={() => router.dismissTo("/")} />
-      <Button
-        type="secondary"
-        label="Answer again"
-        onPress={() => router.push("/onboarding")}
-        accessibilityHint="Asks the profile questions again"
-      />
-      <Button type="ghost" label="Type a barcode" onPress={() => router.push("/enter")} />
+      <ListGroup
+        title="Your answers"
+        footer="Your answers stay on this phone. Nomi scores a medicine for this person once every active ingredient is rated."
+      >
+        {profileSummary(profile).map((row) => (
+          <ListRow
+            key={row.label}
+            title={row.label}
+            trailing={
+              <Text
+                numberOfLines={2}
+                style={[
+                  text("bodyLarge"),
+                  { color: colors.text.secondary, maxWidth: "55%", textAlign: "right" },
+                ]}
+              >
+                {row.value}
+              </Text>
+            }
+            accessibilityLabel={`${row.label}: ${row.value}`}
+          />
+        ))}
+        <ListRow
+          title="Answer the questions again"
+          onPress={() => router.push("/onboarding")}
+          accessibilityLabel="Answer the questions again"
+          accessibilityHint="Asks the profile questions again"
+        />
+      </ListGroup>
+      <ListGroup>
+        <ListRow
+          title="Type a barcode"
+          onPress={() => router.push("/enter")}
+          accessibilityLabel="Type a barcode"
+        />
+      </ListGroup>
       {__DEV__ && <Button type="ghost" label="Dev menu" onPress={() => router.push("/dev")} />}
     </ScrollView>
   );

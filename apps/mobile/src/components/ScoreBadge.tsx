@@ -16,11 +16,11 @@ type ScoreBadgeProps = {
   decorative?: boolean;
 };
 
-const LARGE = 156;
-const SMALL = 44;
-/** The ring is 12% of the radius thick, and the disc sits inside it with a gap. */
-const RING = (LARGE / 2) * 0.12;
-const DISC = LARGE - 36;
+const LARGE = 136;
+const SMALL = 40;
+/** Ring line widths. */
+const RING = 12;
+const DOT_RING = 4;
 /** Numbers sit inside a fixed circle, so they grow with large text only up to these limits. */
 const MAX_SCALE = { number: 1.2, dot: 1.15 };
 
@@ -67,17 +67,14 @@ export function ScoreBadge({
     }
     const isNone = tier === "none";
     return (
-      <View
-        {...a11y}
-        style={[
-          styles.dot,
-          {
-            backgroundColor: colors.bg.surface,
-            borderColor: c.mark,
-            borderWidth: isNone ? 2 : 3,
-          },
-        ]}
-      >
+      <View {...a11y} style={styles.dot}>
+        <Arc
+          size={SMALL}
+          width={DOT_RING}
+          fill={isNone ? 0 : value}
+          track={colors.bg.fill}
+          mark={c.mark}
+        />
         <Text
           maxFontSizeMultiplier={MAX_SCALE.dot}
           style={[text("scoreSmall", { maxScale: MAX_SCALE.dot }), { color: c.text }]}
@@ -88,57 +85,79 @@ export function ScoreBadge({
     );
   }
 
-  // Large: a raised disc inside a ring in the tier color. The ring fills to the score; Stop is a
-  // full ring and None shows only the track.
-  const r = LARGE / 2 - RING / 2;
-  const circumference = 2 * Math.PI * r;
-  const fill = tier === "stop" ? 100 : tier === "none" ? 0 : value;
+  // Large: Stop is a solid disc with a stop sign and no number; otherwise a ring that fills to
+  // the score, with the number and "of 100" inside. None shows only the track.
+  if (tier === "stop") {
+    return (
+      <View {...a11y} style={[styles.ring, { backgroundColor: colors.tier.stop.fill }]}>
+        <Icon name="stop" size="ring" color={colors.tier.stop.on} />
+      </View>
+    );
+  }
+  const isNone = tier === "none";
   return (
     <View {...a11y} style={styles.ring}>
-      <Svg width={LARGE} height={LARGE} style={StyleSheet.absoluteFill}>
-        <Circle
-          cx={LARGE / 2}
-          cy={LARGE / 2}
-          r={r}
-          stroke={tier === "none" ? colors.border.subtle : c.tint}
-          strokeWidth={RING}
-          fill="none"
-        />
-        {fill > 0 && (
-          <Circle
-            cx={LARGE / 2}
-            cy={LARGE / 2}
-            r={r}
-            stroke={c.mark}
-            strokeWidth={RING}
-            strokeLinecap={fill < 100 ? "round" : "butt"}
-            fill="none"
-            strokeDasharray={[(circumference * fill) / 100, circumference]}
-            transform={`rotate(-90 ${LARGE / 2} ${LARGE / 2})`}
-          />
-        )}
-      </Svg>
-      <View
+      <Arc
+        size={LARGE}
+        width={RING}
+        fill={isNone ? 0 : value}
+        track={colors.bg.fill}
+        mark={c.mark}
+      />
+      <Text
+        maxFontSizeMultiplier={MAX_SCALE.number}
         style={[
-          styles.disc,
-          { backgroundColor: colors.bg.surface, shadowColor: colors.brand.primary },
+          text("scoreHero", { maxScale: MAX_SCALE.number }),
+          { color: isNone ? colors.text.secondary : colors.text.primary },
         ]}
       >
-        {tier === "stop" ? (
-          <Icon name="stop" size="ring" color={c.text} />
-        ) : (
-          <Text
-            maxFontSizeMultiplier={MAX_SCALE.number}
-            style={[
-              text("scoreLarge", { maxScale: MAX_SCALE.number }),
-              { color: tier === "none" ? colors.text.secondary : colors.text.primary },
-            ]}
-          >
-            {tier === "none" ? "—" : value}
-          </Text>
-        )}
-      </View>
+        {isNone ? "—" : value}
+      </Text>
+      {!isNone && (
+        <Text
+          maxFontSizeMultiplier={MAX_SCALE.number}
+          style={[text("footnote"), { color: colors.text.tertiary }]}
+        >
+          of 100
+        </Text>
+      )}
     </View>
+  );
+}
+
+/** A track circle with an arc from 12 o'clock, clockwise, to `fill` percent. */
+function Arc({
+  size,
+  width,
+  fill,
+  track,
+  mark,
+}: {
+  size: number;
+  width: number;
+  fill: number;
+  track: string;
+  mark: string;
+}) {
+  const r = size / 2 - width / 2;
+  const circumference = 2 * Math.PI * r;
+  return (
+    <Svg width={size} height={size} style={StyleSheet.absoluteFill}>
+      <Circle cx={size / 2} cy={size / 2} r={r} stroke={track} strokeWidth={width} fill="none" />
+      {fill > 0 && (
+        <Circle
+          cx={size / 2}
+          cy={size / 2}
+          r={r}
+          stroke={mark}
+          strokeWidth={width}
+          strokeLinecap={fill < 100 ? "round" : "butt"}
+          fill="none"
+          strokeDasharray={[(circumference * fill) / 100, circumference]}
+          transform={`rotate(-90 ${size / 2} ${size / 2})`}
+        />
+      )}
+    </Svg>
   );
 }
 
@@ -149,17 +168,6 @@ const styles = StyleSheet.create({
     borderRadius: LARGE / 2,
     alignItems: "center",
     justifyContent: "center",
-  },
-  disc: {
-    width: DISC,
-    height: DISC,
-    borderRadius: DISC / 2,
-    alignItems: "center",
-    justifyContent: "center",
-    shadowOpacity: 0.16,
-    shadowRadius: 16,
-    shadowOffset: { width: 0, height: 10 },
-    elevation: 8,
   },
   dot: {
     width: SMALL,

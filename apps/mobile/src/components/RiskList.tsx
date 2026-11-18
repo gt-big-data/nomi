@@ -1,13 +1,19 @@
 import { useState } from "react";
 import { Modal, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-import { borderWidth, riskSeverity, riskSeverityColors, useIconScale, useTheme } from "@/theme";
+import {
+  riskSeverity,
+  riskSeverityColors,
+  riskSeverityText,
+  useIconScale,
+  useTheme,
+} from "@/theme";
 
-import { Button } from "./Button";
-import { CitationChip } from "./CitationChip";
+import { citationSourceText } from "./CitationChip";
 import { Icon } from "./Icon";
+import { ListGroup, ListRow } from "./ListGroup";
 import type { RiskCitation } from "./RiskFactorRow";
-import { RiskSeverityLabel } from "./RiskSeverityLabel";
 import { spokenLabel, Tappable } from "./Tappable";
 
 /** One risk that took points off the score. */
@@ -23,59 +29,64 @@ export type RiskItem = {
   citations: RiskCitation[];
 };
 
+/** The record's line is "<rating>. Source: "<quote>"". The sheet shows the two apart. */
+function splitDetail(detail: string): { rating: string; quote?: string } {
+  const at = detail.indexOf(' Source: "');
+  if (at < 0) return { rating: detail };
+  return { rating: detail.slice(0, at), quote: detail.slice(at + 9).replace(/^"|"$/g, "") };
+}
+
+function sources(item: RiskItem): string {
+  return [...new Set(item.citations.map((c) => citationSourceText[c.source]))].join(", ");
+}
+
 /**
- * "Why this score" as one line per risk: the name, the points it took off and a chevron.
- * Tapping a line opens a sheet with the reason and its sources.
+ * "Why this score" as a grouped list: one row per risk with its severity and sources, and the
+ * points it took off. Tapping a row opens a sheet with the reason, the quote and the source.
  *
  * @example
  * ```tsx
  * <RiskList items={rows} />
  * ```
  */
-export function RiskList({ items }: { items: RiskItem[] }) {
-  const { colors, radius, space, text } = useTheme();
-  const iconScale = useIconScale();
+export function RiskList({
+  items,
+  title = "Why this score",
+}: {
+  items: RiskItem[];
+  /** The section header. */
+  title?: string;
+}) {
+  const { colors, text } = useTheme();
   const [open, setOpen] = useState<RiskItem | null>(null);
 
   return (
     <>
-      <View
-        style={[
-          styles.card,
-          {
-            backgroundColor: colors.bg.surface,
-            borderColor: colors.border.subtle,
-            borderRadius: radius.md,
-            paddingHorizontal: space[16],
-          },
-        ]}
-      >
-        {items.map((item, index) => {
-          const c = riskSeverityColors(colors, riskSeverity(item.points));
+      <ListGroup title={title}>
+        {items.map((item) => {
+          const severity = riskSeverity(item.points);
+          const c = riskSeverityColors(colors, severity);
           return (
-            <Tappable
+            <ListRow
               key={item.id}
+              title={item.factor}
+              subtitle={[riskSeverityText[severity], sources(item)].filter(Boolean).join(" · ")}
+              trailing={
+                <Text style={[text("headline"), styles.points, { color: c.text }]}>
+                  −{item.points}
+                </Text>
+              }
               onPress={() => setOpen(item)}
-              accessibilityLabel={spokenLabel([item.factor, `Minus ${item.points} points`])}
-              accessibilityHint="Shows why"
-              style={[
-                styles.row,
-                { gap: space[8] },
-                index > 0 && {
-                  borderTopWidth: StyleSheet.hairlineWidth,
-                  borderTopColor: colors.border.subtle,
-                },
-              ]}
-            >
-              <Text style={[text("bodyStrong"), styles.factor, { color: colors.text.primary }]}>
-                {item.factor}
-              </Text>
-              <Text style={[text("bodyStrong"), { color: c.text }]}>−{item.points}</Text>
-              <Icon name="chevron" size="chevron" scale={iconScale} color={colors.text.secondary} />
-            </Tappable>
+              accessibilityLabel={spokenLabel([
+                item.factor,
+                riskSeverityText[severity],
+                `minus ${item.points} points`,
+              ])}
+              accessibilityHint="Shows why, with the source"
+            />
           );
         })}
-      </View>
+      </ListGroup>
       <RiskSheet item={open} onClose={() => setOpen(null)} />
     </>
   );
@@ -83,8 +94,14 @@ export function RiskList({ items }: { items: RiskItem[] }) {
 
 function RiskSheet({ item, onClose }: { item: RiskItem | null; onClose: () => void }) {
   const { colors, space, text } = useTheme();
+  const iconScale = useIconScale();
+  const insets = useSafeAreaInsets();
+  const severity = item ? riskSeverity(item.points) : "low";
+  const c = riskSeverityColors(colors, severity);
+  const { rating, quote } = item ? splitDetail(item.detail) : { rating: "", quote: undefined };
+
   return (
-    <Modal visible={item !== null} transparent animationType="fade" onRequestClose={onClose}>
+    <Modal visible={item !== null} transparent animationType="slide" onRequestClose={onClose}>
       <View style={styles.backdrop}>
         <Pressable
           style={StyleSheet.absoluteFill}
@@ -94,35 +111,101 @@ function RiskSheet({ item, onClose }: { item: RiskItem | null; onClose: () => vo
         />
         {item && (
           <View
+            accessibilityViewIsModal
             style={[
               styles.sheet,
-              { backgroundColor: colors.bg.surface, padding: space[24], gap: space[12] },
+              {
+                backgroundColor: colors.bg.surface,
+                paddingTop: space[8],
+                paddingHorizontal: space[20],
+                paddingBottom: insets.bottom + space[24],
+              },
             ]}
           >
-            <View style={[styles.grabber, { backgroundColor: colors.border.subtle }]} />
-            <ScrollView contentContainerStyle={{ gap: space[12] }} bounces={false}>
-              <Text
-                accessibilityRole="header"
-                style={[text("titleSmall"), { color: colors.text.primary }]}
-              >
-                {item.factor}
-              </Text>
-              <View style={[styles.labelRow, { gap: space[8] }]}>
-                <RiskSeverityLabel severity={riskSeverity(item.points)} />
-                <Text style={[text("footnote"), { color: colors.text.secondary }]}>
-                  −{item.points} pts
-                </Text>
+            <View style={[styles.grabber, { backgroundColor: colors.border.separator }]} />
+            <ScrollView contentContainerStyle={{ gap: space[16] }} bounces={false}>
+              <View style={[styles.header, { gap: space[12] }]}>
+                <View style={[styles.flex, { gap: space[4] }]}>
+                  <Text
+                    accessibilityRole="header"
+                    style={[text("title"), { color: colors.text.primary }]}
+                  >
+                    {item.factor}
+                  </Text>
+                  <Text style={[text("subhead"), { color: c.text }]}>
+                    <Text style={{ fontFamily: text("headline").fontFamily }}>
+                      {riskSeverityText[severity]}
+                    </Text>
+                    {` · −${item.points} points`}
+                  </Text>
+                </View>
+                <Tappable
+                  onPress={onClose}
+                  accessibilityLabel="Close"
+                  style={[styles.close, { backgroundColor: colors.bg.fill }]}
+                >
+                  <Icon name="close" size="nav" scale={iconScale} color={colors.text.secondary} />
+                </Tappable>
               </View>
-              <Text style={[text("body"), { color: colors.text.primary }]}>{item.detail}</Text>
+
+              <Text style={[text("bodyLarge"), { color: colors.text.primary }]}>{rating}</Text>
+
+              {quote ? (
+                <View
+                  style={[
+                    styles.quote,
+                    { borderLeftColor: colors.border.separator, paddingLeft: space[12] },
+                  ]}
+                >
+                  <Text style={[text("bodyLarge"), { color: colors.text.secondary }]}>
+                    “{quote}”
+                  </Text>
+                </View>
+              ) : null}
+
               {item.citations.length > 0 && (
-                <View style={[styles.chips, { gap: space[8] }]}>
-                  {item.citations.map((c, i) => (
-                    <CitationChip key={`${c.source}-${i}`} source={c.source} onPress={c.onPress} />
+                <View style={{ gap: space[8] }}>
+                  <Text style={[text("footnote"), { color: colors.text.tertiary }]}>
+                    {item.citations.length === 1 ? "Source" : "Sources"}
+                  </Text>
+                  {item.citations.map((citation, index) => (
+                    <Tappable
+                      key={`${citation.source}-${index}`}
+                      onPress={citation.onPress}
+                      role="link"
+                      accessibilityLabel={spokenLabel([
+                        citationSourceText[citation.source],
+                        citation.section,
+                      ])}
+                      accessibilityHint={citation.onPress ? "Opens the source" : undefined}
+                      style={[
+                        styles.source,
+                        { backgroundColor: colors.bg.canvas, padding: space[12], gap: space[12] },
+                      ]}
+                    >
+                      <View style={[styles.flex, { gap: space[2] }]}>
+                        <Text style={[text("headline"), { color: colors.text.primary }]}>
+                          {citationSourceText[citation.source]}
+                        </Text>
+                        {citation.section ? (
+                          <Text style={[text("footnote"), { color: colors.text.secondary }]}>
+                            {citation.section}
+                          </Text>
+                        ) : null}
+                      </View>
+                      {citation.onPress && (
+                        <Icon
+                          name="external"
+                          size="nav"
+                          scale={iconScale}
+                          color={colors.brand.text}
+                        />
+                      )}
+                    </Tappable>
                   ))}
                 </View>
               )}
             </ScrollView>
-            <Button label="Done" type="secondary" onPress={onClose} />
           </View>
         )}
       </View>
@@ -131,17 +214,19 @@ function RiskSheet({ item, onClose }: { item: RiskItem | null; onClose: () => vo
 }
 
 const styles = StyleSheet.create({
-  card: { borderWidth: borderWidth.card, alignSelf: "stretch" },
-  row: { flexDirection: "row", alignItems: "center", minHeight: 56 },
-  factor: { flex: 1, minWidth: 0 },
-  backdrop: { flex: 1, justifyContent: "flex-end", backgroundColor: "rgba(23,19,31,0.4)" },
-  sheet: {
-    borderTopLeftRadius: 28,
-    borderTopRightRadius: 28,
-    paddingBottom: 40,
-    maxHeight: "80%",
+  points: { fontVariant: ["tabular-nums"] },
+  backdrop: { flex: 1, justifyContent: "flex-end", backgroundColor: "rgba(23,19,31,0.32)" },
+  sheet: { borderTopLeftRadius: 34, borderTopRightRadius: 34, maxHeight: "75%" },
+  grabber: { alignSelf: "center", width: 36, height: 5, borderRadius: 3, marginBottom: 12 },
+  header: { flexDirection: "row", alignItems: "flex-start" },
+  flex: { flex: 1, minWidth: 0 },
+  close: {
+    width: 44,
+    height: 44,
+    borderRadius: 22,
+    alignItems: "center",
+    justifyContent: "center",
   },
-  grabber: { alignSelf: "center", width: 40, height: 5, borderRadius: 3 },
-  labelRow: { flexDirection: "row", flexWrap: "wrap", alignItems: "center" },
-  chips: { flexDirection: "row", flexWrap: "wrap" },
+  quote: { borderLeftWidth: 3 },
+  source: { flexDirection: "row", alignItems: "center", borderRadius: 12, minHeight: 52 },
 });

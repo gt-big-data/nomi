@@ -2,10 +2,10 @@ import { router, Stack } from "expo-router";
 import { useState } from "react";
 import { ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
 
-import { Button } from "@/components";
-import { spokenLabel, Tappable } from "@/components/Tappable";
+import { Button, ListGroup, ListRow } from "@/components";
+import { spokenLabel } from "@/components/Tappable";
 import { REFERENCE_BARCODES, STATE_BARCODES } from "@/lib/testBarcodes";
-import { borderWidth, minHeight, useTheme } from "@/theme";
+import { minHeight, useTheme } from "@/theme";
 
 function open(barcode: string) {
   router.push({ pathname: "/result", params: { barcode } });
@@ -17,7 +17,7 @@ function open(barcode: string) {
  */
 export default function EnterBarcode() {
   const [digits, setDigits] = useState("");
-  const { colors, radius, space, text } = useTheme();
+  const { colors, space, text } = useTheme();
   const ready = digits.length >= 12;
 
   return (
@@ -25,33 +25,43 @@ export default function EnterBarcode() {
       contentInsetAdjustmentBehavior="automatic"
       keyboardShouldPersistTaps="handled"
       keyboardDismissMode="on-drag"
-      contentContainerStyle={{ padding: space[24], gap: space[24] }}
+      style={{ backgroundColor: colors.bg.canvas }}
+      contentContainerStyle={{
+        paddingHorizontal: space[20],
+        paddingBottom: space[48],
+        gap: space[32],
+      }}
     >
-      <Stack.Screen options={{ title: "Type a barcode" }} />
+      <Stack.Screen options={{ title: "Type a barcode", headerTitle: "" }} />
+      <Text accessibilityRole="header" style={[text("largeTitle"), { color: colors.text.primary }]}>
+        Type a barcode
+      </Text>
       <View style={{ gap: space[12] }}>
-        <Text style={[text("bodyStrong"), { color: colors.text.primary }]}>
-          The 12 or 13 numbers under the barcode
-        </Text>
         <TextInput
           value={digits}
           onChangeText={(value) => setDigits(value.replace(/\D/g, "").slice(0, 13))}
           keyboardType="number-pad"
           placeholder="e.g. 350580449059"
-          placeholderTextColor={colors.text.secondary}
+          placeholderTextColor={colors.text.tertiary}
+          selectionColor={colors.brand.primary}
           accessibilityLabel="Barcode numbers"
           accessibilityHint="Type 12 or 13 numbers. A Look it up button appears below."
           style={[
-            text("body"),
+            text("bodyLarge"),
             styles.input,
             {
               color: colors.text.primary,
               backgroundColor: colors.bg.surface,
-              borderColor: colors.border.subtle,
-              borderRadius: radius.sm,
+              borderRadius: 12,
               paddingHorizontal: space[16],
             },
           ]}
         />
+        <Text
+          style={[text("footnote"), { color: colors.text.tertiary, paddingHorizontal: space[16] }]}
+        >
+          The 12 or 13 numbers under the barcode
+        </Text>
         {/* Button has no disabled state, so it only appears once there are enough digits. */}
         {ready && <Button label="Look it up" onPress={() => open(digits)} />}
       </View>
@@ -70,49 +80,22 @@ function Section({
   title: string;
   items: readonly { name: string; barcode: string }[];
 }) {
-  const { colors, radius, space, text } = useTheme();
   return (
-    <View style={{ gap: space[8] }}>
-      <Text accessibilityRole="header" style={[text("titleSmall"), { color: colors.text.primary }]}>
-        {title}
-      </Text>
-      <View
-        style={[
-          styles.list,
-          {
-            backgroundColor: colors.bg.surface,
-            borderColor: colors.border.subtle,
-            borderRadius: radius.md,
-          },
-        ]}
-      >
-        {items.map(({ name, barcode }, index) => (
-          <Tappable
-            key={barcode}
-            onPress={() => open(barcode)}
-            accessibilityLabel={spokenLabel([name, `barcode ${barcode}`])}
-            accessibilityHint="Opens the result"
-            style={[
-              styles.item,
-              {
-                padding: space[16],
-                gap: space[2],
-                borderTopColor: colors.border.subtle,
-                borderTopWidth: index === 0 ? 0 : StyleSheet.hairlineWidth,
-              },
-            ]}
-          >
-            <Text style={[text("bodyStrong"), { color: colors.text.primary }]}>{name}</Text>
-            <Text style={[text("footnote"), { color: colors.text.secondary }]}>{barcode}</Text>
-          </Tappable>
-        ))}
-      </View>
-    </View>
+    <ListGroup title={title}>
+      {items.map(({ name, barcode }) => (
+        <ListRow
+          key={barcode}
+          title={name}
+          subtitle={barcode}
+          onPress={() => open(barcode)}
+          accessibilityLabel={spokenLabel([name, `barcode ${barcode}`])}
+          accessibilityHint="Opens the result"
+        />
+      ))}
+    </ListGroup>
   );
 }
 
 const styles = StyleSheet.create({
-  input: { minHeight: minHeight.button, borderWidth: borderWidth.control },
-  list: { borderWidth: borderWidth.card, overflow: "hidden" },
-  item: { minHeight: minHeight.chip, justifyContent: "center" },
+  input: { minHeight: minHeight.button, fontVariant: ["tabular-nums"], letterSpacing: 1 },
 });

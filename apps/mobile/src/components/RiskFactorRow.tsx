@@ -7,7 +7,12 @@ import { spokenLabel, Tappable } from "./Tappable";
 import { RiskSeverityLabel } from "./RiskSeverityLabel";
 
 /** One of the contribution's citations[]. Leave out `onPress` when there's nothing to open. */
-export type RiskCitation = { source: CitationSource; onPress?: () => void };
+export type RiskCitation = {
+  source: CitationSource;
+  onPress?: () => void;
+  /** Where in the source, e.g. "21 CFR 201.326 (a)(2)(iii)(A)". */
+  section?: string;
+};
 
 type RiskFactorRowProps = {
   /** The dimension's display name, e.g. "Memory & thinking" (from contributions[].dimension). */

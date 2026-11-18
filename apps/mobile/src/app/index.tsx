@@ -18,12 +18,14 @@ import {
   useBarcodeScannerOutput,
 } from "react-native-vision-camera-barcode-scanner";
 
-import { Button, Icon, type IconName } from "@/components";
+import { Button, GlassButton, GlassSurface } from "@/components";
 import { Tappable } from "@/components/Tappable";
 import { ndcCandidates } from "@/lib/barcode";
 import { openDataset } from "@/lib/dataset";
+import { DEMO_PROFILES, useScoredFor } from "@/lib/demoProfiles";
 import { useSavedProfile } from "@/storage/activeProfile";
-import { borderWidth, minHeight, opacity, useIconScale, useTheme } from "@/theme";
+import { personaText } from "@/storage/profile";
+import { opacity, useTheme } from "@/theme";
 
 /** The scan frame's width over its height, about a UPC-A barcode with its digits. */
 const FRAME_ASPECT = 1.6;
@@ -133,11 +135,21 @@ export default function Scanner() {
       <View
         style={[
           styles.topBar,
-          { top: insets.top + space[8], left: space[16], right: space[16] },
+          { top: insets.top + space[8], left: space[16], right: space[16], gap: space[8] },
         ]}
       >
-        <CameraButton icon="home" label="Home" hint="Shows what you’ve scanned" onPress={openHome} />
-        <CameraButton
+        <GlassButton
+          dark
+          iconOnly
+          icon="home"
+          label="Home"
+          hint="Shows what you’ve scanned"
+          onPress={openHome}
+        />
+        <ScoringFor />
+        <GlassButton
+          dark
+          iconOnly
           icon="person"
           label="Profile"
           hint="Shows who scores are for"
@@ -145,9 +157,47 @@ export default function Scanner() {
         />
       </View>
       <View style={[styles.bottomBar, { bottom: insets.bottom + space[24] }]}>
-        <CameraButton label="Type a barcode" onPress={() => router.push("/enter")} />
+        <GlassButton
+          dark
+          icon="keyboard"
+          label="Type a barcode"
+          onPress={() => router.push("/enter")}
+        />
       </View>
     </View>
+  );
+}
+
+/** Who the next score is for, between the top buttons. Opens the profile. */
+function ScoringFor() {
+  const saved = useSavedProfile();
+  const scoredFor = useScoredFor();
+  const { space, text } = useTheme();
+  const demo = DEMO_PROFILES.find((profile) => profile.id === scoredFor);
+  const who = demo
+    ? demo.label
+    : saved?.relation === "child"
+      ? "your child"
+      : saved?.relation === "someone_else"
+        ? "them"
+        : "you";
+  const detail = demo ? demo.description : saved ? personaText[saved.persona] : "";
+  return (
+    <Tappable
+      onPress={openProfile}
+      accessibilityLabel={`Scoring for ${who}, ${detail}`}
+      accessibilityHint="Shows who scores are for"
+      style={styles.scoringFor}
+    >
+      <GlassSurface dark style={[styles.scoringInner, { paddingHorizontal: space[16] }]}>
+        <Text numberOfLines={1} style={[text("caption"), styles.white]}>
+          Scoring for {who}
+        </Text>
+        <Text numberOfLines={1} style={[text("footnote"), styles.whiteSoft]}>
+          {detail}
+        </Text>
+      </GlassSurface>
+    </Tappable>
   );
 }
 
@@ -159,74 +209,63 @@ function openProfile() {
   router.push("/profile");
 }
 
+/** How long each corner bracket's arms are, and how thick. */
+const CORNER = 28;
+const CORNER_WIDTH = 4;
+
 /**
- * A barcode-sized frame with the picture around it dimmed, and a hint under it. Only a guide:
- * the scanner reads barcodes anywhere in the picture.
+ * Four corner brackets around a barcode-sized window, the picture around it dimmed, and a hint
+ * under it. Only a guide: the scanner reads barcodes anywhere in the picture.
  */
 function ScanFrame() {
-  const { colors, radius, space, text } = useTheme();
+  const { colors, space, text } = useTheme();
   const { width } = useWindowDimensions();
   const frameWidth = Math.min(width - 2 * space[48], FRAME_MAX_WIDTH);
+  const frameHeight = frameWidth / FRAME_ASPECT;
   const dim = [styles.fill, { backgroundColor: colors.bg.camera, opacity: opacity.scrim }];
   return (
     <View style={StyleSheet.absoluteFill} pointerEvents="none">
       <View style={dim} />
       <View style={styles.row}>
         <View style={dim} />
-        <View
-          style={{
-            width: frameWidth,
-            height: frameWidth / FRAME_ASPECT,
-            borderRadius: radius.md,
-            borderWidth: borderWidth.scanFrame,
-            // White in both modes, like the camera background it sits on.
-            borderColor: colors.brand.onPrimary,
-          }}
-        />
+        <View style={{ width: frameWidth, height: frameHeight }}>
+          {(["tl", "tr", "bl", "br"] as const).map((corner) => (
+            <View
+              key={corner}
+              style={[
+                styles.corner,
+                {
+                  width: CORNER,
+                  height: CORNER,
+                  borderTopWidth: corner[0] === "t" ? CORNER_WIDTH : 0,
+                  borderBottomWidth: corner[0] === "b" ? CORNER_WIDTH : 0,
+                  borderLeftWidth: corner[1] === "l" ? CORNER_WIDTH : 0,
+                  borderRightWidth: corner[1] === "r" ? CORNER_WIDTH : 0,
+                  borderTopLeftRadius: corner === "tl" ? 14 : 0,
+                  borderTopRightRadius: corner === "tr" ? 14 : 0,
+                  borderBottomLeftRadius: corner === "bl" ? 14 : 0,
+                  borderBottomRightRadius: corner === "br" ? 14 : 0,
+                  top: corner[0] === "t" ? 0 : undefined,
+                  bottom: corner[0] === "b" ? 0 : undefined,
+                  left: corner[1] === "l" ? 0 : undefined,
+                  right: corner[1] === "r" ? 0 : undefined,
+                },
+              ]}
+            />
+          ))}
+        </View>
         <View style={dim} />
       </View>
       <View style={[styles.fill, styles.hint]}>
         <View style={[StyleSheet.absoluteFill, dim]} />
-        <Text style={[text("bodyStrong"), { color: colors.brand.onPrimary, marginTop: space[16] }]}>
+        <Text style={[text("headline"), styles.white, { marginTop: space[32] }]}>
           Point at the barcode
+        </Text>
+        <Text style={[text("subhead"), styles.whiteSoft, { marginTop: space[4] }]}>
+          On the back or bottom of the box
         </Text>
       </View>
     </View>
-  );
-}
-
-/** A pill on the camera picture, in the surface color so it reads on any picture. */
-function CameraButton({
-  icon,
-  label,
-  hint,
-  onPress,
-}: {
-  icon?: IconName;
-  label: string;
-  hint?: string;
-  onPress: () => void;
-}) {
-  const { colors, radius, space, text } = useTheme();
-  const iconScale = useIconScale();
-  return (
-    <Tappable
-      onPress={onPress}
-      accessibilityLabel={label}
-      accessibilityHint={hint}
-      style={[
-        styles.pill,
-        {
-          gap: space[8],
-          paddingHorizontal: space[16],
-          borderRadius: radius.pill,
-          backgroundColor: colors.bg.surface,
-        },
-      ]}
-    >
-      {icon && <Icon name={icon} size="button" scale={iconScale} color={colors.text.primary} />}
-      <Text style={[text("button"), { color: colors.text.primary }]}>{label}</Text>
-    </Tappable>
   );
 }
 
@@ -240,9 +279,19 @@ const styles = StyleSheet.create({
   fill: { flex: 1 },
   row: { flexDirection: "row" },
   hint: { alignItems: "center" },
-  topBar: { position: "absolute", flexDirection: "row", justifyContent: "space-between" },
+  topBar: { position: "absolute", flexDirection: "row", alignItems: "center" },
   bottomBar: { position: "absolute", alignSelf: "center" },
-  pill: { minHeight: minHeight.chip, flexDirection: "row", alignItems: "center" },
+  corner: { position: "absolute", borderColor: "#FFFFFF" },
+  white: { color: "#FFFFFF" },
+  whiteSoft: { color: "rgba(255,255,255,0.75)" },
+  scoringFor: { flex: 1, minHeight: 44, borderRadius: 22 },
+  scoringInner: {
+    minHeight: 44,
+    borderRadius: 22,
+    justifyContent: "center",
+    alignItems: "center",
+    overflow: "hidden",
+  },
 });
 
 /**

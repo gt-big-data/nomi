@@ -17,16 +17,26 @@ export type Colors = {
     surface: string;
     /** Scanner background (same in both modes) */
     camera: string;
+    /** Segmented control track, score ring track */
+    fill: string;
+    /** The selected segment's thumb, lighter than the track in both modes */
+    thumb: string;
   };
   border: {
     /** Card borders and dividers */
     subtle: string;
+    /** Hairlines between rows inside a grouped list */
+    separator: string;
   };
   text: {
     /** Main text */
     primary: string;
     /** Supporting text, inactive tabs */
     secondary: string;
+    /** Footnotes and disclaimers; still 4.5:1 on the canvas */
+    tertiary: string;
+    /** Chevrons and quiet glyphs */
+    glyph: string;
   };
   brand: {
     /** Primary buttons, selected chips, scan button */
@@ -59,9 +69,15 @@ export type Colors = {
 
 export const colors: Record<ColorScheme, Colors> = {
   light: {
-    bg: { canvas: "#F6F5F9", surface: "#FFFFFF", camera: "#0F0C15" },
-    border: { subtle: "#D6D1E0" },
-    text: { primary: "#17131F", secondary: "#5E5869" },
+    bg: {
+      canvas: "#F6F5F9",
+      surface: "#FFFFFF",
+      camera: "#0F0C15",
+      fill: "#EEECF2",
+      thumb: "#FFFFFF",
+    },
+    border: { subtle: "#D6D1E0", separator: "#E7E4EE" },
+    text: { primary: "#17131F", secondary: "#5E5869", tertiary: "#6E6878", glyph: "#8F8999" },
     brand: { primary: "#5A21B5", onPrimary: "#FFFFFF", tint: "#EFE8FB", text: "#5A21B5" },
     tier: {
       low: { mark: "#005733", text: "#005733", tint: "#E3F5EC" },
@@ -73,9 +89,15 @@ export const colors: Record<ColorScheme, Colors> = {
     destructive: { fill: "#B5103F", on: "#FFFFFF" },
   },
   dark: {
-    bg: { canvas: "#121018", surface: "#1E1A26", camera: "#0F0C15" },
-    border: { subtle: "#3A3346" },
-    text: { primary: "#F4F1FA", secondary: "#A9A2B6" },
+    bg: {
+      canvas: "#121018",
+      surface: "#1E1A26",
+      camera: "#0F0C15",
+      fill: "#2A2633",
+      thumb: "#3A3446",
+    },
+    border: { subtle: "#3A3346", separator: "#2E2938" },
+    text: { primary: "#F4F1FA", secondary: "#A9A2B6", tertiary: "#9890A6", glyph: "#6E6878" },
     brand: { primary: "#7B4CE0", onPrimary: "#FFFFFF", tint: "#2A2140", text: "#C9B3F5" },
     tier: {
       low: { mark: "#1EA987", text: "#3CC79C", tint: "#102C25" },
@@ -152,11 +174,17 @@ export const iconSize = {
   back: { size: 20, strokeWidth: 1.67 },
   /** Icons in the circles on the welcome screen */
   feature: { size: 20, strokeWidth: 1.5 },
+  /** Glass circle buttons: close, home, profile */
+  nav: { size: 20, strokeWidth: 2 },
+  /** Stop sign in the "Do not use" disc */
+  stop: { size: 30, strokeWidth: 2.5 },
+  /** The one icon on an empty or error screen */
+  empty: { size: 40, strokeWidth: 1.75 },
 } as const;
 
 export type IconSize = keyof typeof iconSize;
 
-/** Inter, loaded by `useNomiFonts()` (fonts.ts). Three weights: regular, semibold and bold. */
+/** Figtree, loaded by `useNomiFonts()` (fonts.ts). Three weights: regular, semibold and bold. */
 export const fontFamily = {
   regular: "Figtree_400Regular",
   semiBold: "Figtree_600SemiBold",
@@ -190,10 +218,30 @@ export const typography = {
     letterSpacing: tracking(46, -3),
     fontVariant: ["tabular-nums"],
   },
+  /** Score number in the result's verdict ring */
+  scoreHero: {
+    fontFamily: fontFamily.bold,
+    fontSize: 56,
+    lineHeight: 60,
+    letterSpacing: -2,
+    fontVariant: ["tabular-nums"],
+  },
+  /** The verdict word next to the ring, e.g. "Use with caution" */
+  verdict: { fontFamily: fontFamily.bold, fontSize: 26, lineHeight: 30, letterSpacing: -0.4 },
+  /** Page titles: Home, Profile, Type a barcode */
+  largeTitle: { fontFamily: fontFamily.bold, fontSize: 34, lineHeight: 40, letterSpacing: -0.8 },
+  /** Product name on the result, sheet titles */
+  title: { fontFamily: fontFamily.bold, fontSize: 28, lineHeight: 34, letterSpacing: -0.6 },
+  /** Row titles and buttons in grouped lists */
+  headline: { fontFamily: fontFamily.semiBold, fontSize: 17, lineHeight: 22, letterSpacing: 0 },
+  /** Reading text: reasons, quotes */
+  bodyLarge: { fontFamily: fontFamily.regular, fontSize: 17, lineHeight: 23, letterSpacing: 0 },
+  /** Subtitles under titles, captions under controls */
+  subhead: { fontFamily: fontFamily.regular, fontSize: 15, lineHeight: 20, letterSpacing: 0 },
   /** Score number in dots and list rows */
   scoreSmall: {
     fontFamily: fontFamily.bold,
-    fontSize: 15,
+    fontSize: 16,
     lineHeight: 20,
     letterSpacing: 0,
     fontVariant: ["tabular-nums"],

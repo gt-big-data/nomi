@@ -17,3 +17,7 @@ export { RiskList, type RiskItem } from "./RiskList";
 export { RiskSeverityLabel } from "./RiskSeverityLabel";
 export { ScoreBadge } from "./ScoreBadge";
 export { TierLabel } from "./TierLabel";
+export { GlassButton, GlassSurface } from "./Glass";
+export { ListGroup, ListRow } from "./ListGroup";
+export { BottomBar, useBottomBarSpace } from "./BottomBar";
+export { SegmentedControl } from "./SegmentedControl";

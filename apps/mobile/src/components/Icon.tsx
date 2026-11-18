@@ -8,9 +8,15 @@ import Gem from "lucide-react-native/icons/gem";
 import House from "lucide-react-native/icons/house";
 import Info from "lucide-react-native/icons/info";
 import OctagonAlert from "lucide-react-native/icons/octagon-alert";
+import Keyboard from "lucide-react-native/icons/keyboard";
+import Plus from "lucide-react-native/icons/plus";
+import ScanBarcode from "lucide-react-native/icons/scan-barcode";
+import SearchX from "lucide-react-native/icons/search-x";
 import ShieldCheck from "lucide-react-native/icons/shield-check";
 import TriangleAlert from "lucide-react-native/icons/triangle-alert";
 import User from "lucide-react-native/icons/user";
+import X from "lucide-react-native/icons/x";
+import ArrowUpRight from "lucide-react-native/icons/arrow-up-right";
 
 import { iconSize, type IconSize } from "@/theme";
 
@@ -31,6 +37,12 @@ const icons = {
   home: House, // Scanner: opens Home, what you've scanned
   person: User, // Welcome: scores for who it's for
   shield: ShieldCheck, // Welcome: privacy promise
+  scan: ScanBarcode, // Scan again, Scan a medicine
+  plus: Plus, // I take this
+  close: X, // Close a sheet
+  external: ArrowUpRight, // Opens a source outside the app
+  keyboard: Keyboard, // Type a barcode
+  notFound: SearchX, // Not found
 } as const;
 
 export type IconName = keyof typeof icons;
