@@ -5,3 +5,4 @@ packages/schema/generated/
 packages/schema/schemas/
 packages/schema/fixtures/
 apps/mobile/src/scoring/ratings.json
+apps/mobile/src/scoring/evidence.json

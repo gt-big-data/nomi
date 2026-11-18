@@ -297,13 +297,79 @@ test("stomach bleeding is not counted again for anticoagulant users", () => {
   );
 });
 
+test("a source's own unexposed rate is the baseline before any outside rate", () => {
+  const own = {
+    annual_incidence: 0.0365,
+    as_reported: "x",
+    citation: cite,
+  };
+  const ev = evidence([rr("kidney", 2, { unexposed_incidence: own })], [], [base("kidney", 0.365)]);
+  // 0.0365 * 1 * 10/365 = 1e-3, not the outside rate's 1e-2.
+  assert.equal(scored(scoreV1(product([A]), ADULT, RATINGS, ev)).score, 50);
+});
+
+test("a sentence names the outcome the study measured", () => {
+  const ev = evidence(
+    [rr("cardiovascular_bp", 2, { outcome: "mi" })],
+    [],
+    [base("cardiovascular_bp", 0.0365, { outcome: "mi" })],
+  );
+  const record = scored(scoreV1(product([A]), ADULT, RATINGS, ev));
+  assert.ok(record.explanation[0].text.startsWith("Heart attack:"));
+});
+
+test("a credible interval is labelled as one", () => {
+  const ev = evidence([rr("liver", 2, { interval: "credible" })], [], [base("liver", 0.0365)]);
+  const record = scored(scoreV1(product([A]), ADULT, RATINGS, ev));
+  assert.ok(record.explanation[0].text.includes("credible interval"));
+});
+
+test("an all-attributes note shows only to profiles with every attribute", () => {
+  const ev = evidence([]);
+  ev.ingredients[A].insufficient = [
+    {
+      dimension: "kidney",
+      personas: ["adult_65_plus"],
+      conditions: ["hypertension"],
+      medication_types: [],
+      require_all: true,
+      reason: "",
+    },
+  ];
+  const note = (profile: Profile) =>
+    scored(scoreV1(product([A]), profile, RATINGS, ev)).explanation.some(
+      (e) => e.template_id === "engine_v1_insufficient",
+    );
+  assert.equal(note({ ...ADULT, persona: "adult_65_plus" }), false);
+  assert.equal(note({ ...ADULT, conditions: ["hypertension"] }), false);
+  assert.equal(note({ ...ADULT, persona: "adult_65_plus", conditions: ["hypertension"] }), true);
+});
+
+test("a subgroup note says when the general estimate is still used", () => {
+  const ev = evidence([rr("liver", 2)], [], [base("liver", 0.0365)]);
+  ev.ingredients[A].insufficient = [
+    {
+      dimension: "liver",
+      personas: [],
+      conditions: ["heavy_alcohol_use"],
+      medication_types: [],
+      reason: "",
+    },
+  ];
+  const record = scored(
+    scoreV1(product([A]), { ...ADULT, conditions: ["heavy_alcohol_use"] }, RATINGS, ev),
+  );
+  const note = record.explanation.find((e) => e.template_id === "engine_v1_insufficient")!;
+  assert.ok(note.text.includes("the general estimate is used"));
+});
+
 // The bundled evidence: every reference product is rated for these personas, and the scores are
 // pinned so a change to the evidence shows up here as a deliberate update.
 const GOLDEN: Record<string, Record<string, number>> = {
-  aleve: { adult_18_64: 67, adult_65_plus: 43, pregnant: 67 },
-  nyquil: { adult_18_64: 93, adult_65_plus: 45, pregnant: 93 },
+  aleve: { adult_18_64: 77, adult_65_plus: 62, pregnant: 77 },
+  nyquil: { adult_18_64: 82, adult_65_plus: 45, pregnant: 82 },
   "store-brand-diphenhydramine": { adult_18_64: 100, adult_65_plus: 45, pregnant: 100 },
-  tylenol: { adult_18_64: 93, adult_65_plus: 87, pregnant: 93 },
+  tylenol: { adult_18_64: 82, adult_65_plus: 82, pregnant: 82 },
   zzzquil: { adult_18_64: 100, adult_65_plus: 45, pregnant: 100 },
 };
 const EXAMPLES = new URL("../../../../packages/schema/examples/", import.meta.url);

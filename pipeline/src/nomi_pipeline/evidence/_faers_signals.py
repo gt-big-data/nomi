@@ -50,6 +50,9 @@ SALT_WORDS = frozenset(
         "MONOHYDRATE",
         "TARTRATE",
         "CITRATE",
+        "SULFATE",
+        "BITARTRATE",
+        "TANNATE",
     }
 )
 

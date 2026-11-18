@@ -87,7 +87,7 @@ OUTCOME_IDS = {
     "liver": {"acute_liver_injury", "acute_liver_failure"},
     "gi_bleeding": {"upper_gi_bleeding"},
     "kidney": {"aki_hospital"},
-    "cardiovascular_bp": {"mi_stroke"},
+    "cardiovascular_bp": {"mi", "stroke", "mi_stroke"},
     "anticholinergic_cognitive": {"delirium_hospital"},
     "sedation_falls": {"fall_injury", "fracture", "hip_fracture"},
     "serotonergic_interactions": {"serotonin_syndrome"},
@@ -96,6 +96,11 @@ OUTCOME_IDS = {
 }
 EXPOSURE_WINDOWS = {"community_oral", "long_term", "inpatient"}
 COMPARATORS = {"non_use", "within_group"}
+INTERVALS = {"confidence", "credible"}
+# Rule 26: a baseline's age standardisation. Only all_ages bars it.
+STANDARDISATION = {False, "within_range", "all_ages"}
+# Rule 13 and 21: lower is preferred.
+GRADE_RANK = {"meta_analysis": 0, "cohort": 1, "case_control": 1, "regulatory": 2}
 GRADES = {"meta_analysis", "cohort", "case_control", "regulatory"}
 TOKEN = re.compile(r"[a-z0-9_]+")
 YEAR = re.compile(r"\b(19|20)\d\d\b")
@@ -193,9 +198,35 @@ def _relative_risk(row: dict[str, Any], where: str) -> dict[str, Any]:
     low, high = (float(x) for x in row["ci95"])
     if not (0 < low <= estimate <= high):
         raise ValueError(f"{where}: estimate {estimate} outside its interval {low}-{high}")
+    interval = row.get("interval", "confidence")
+    if interval not in INTERVALS:
+        raise ValueError(f"{where}: interval must be one of {sorted(INTERVALS)}")
+    population = _stratum_population(row, where)
+    own = row.get("unexposed_incidence")
+    unexposed = None
+    if own is not None:
+        rate = float(own["annual_incidence"])
+        if not 0 < rate < 1:
+            raise ValueError(f"{where}: unexposed incidence {rate} is not a probability")
+        for key in ("as_reported", "location", "quote"):
+            if not str(own.get(key) or "").strip():
+                raise ValueError(f"{where}: unexposed_incidence has no {key}")
+        cited = _source(row["source"], where)
+        unexposed = {
+            "annual_incidence": rate,
+            "as_reported": own["as_reported"],
+            "citation": {
+                **cited,
+                "section": f"{cited['section'].split(',')[0]}, {own['location']}",
+                "quote": own["quote"],
+            },
+        }
     return {
         "dimension": dimension,
         **applies,
+        "interval": interval,
+        "stratum_population": population,
+        "unexposed_incidence": unexposed,
         "outcome": outcome,
         "outcome_match": outcome_match,
         "exposure_window": row["exposure_window"],
@@ -236,6 +267,8 @@ def _baseline(row: dict[str, Any], where: str) -> dict[str, Any]:
     outcome_match, outcome = _outcome(row, dimension, where)
     if not isinstance(row.get("excludes_class_users"), bool):
         raise ValueError(f"{where}: excludes_class_users must be true or false")
+    if row.get("age_standardised", False) not in STANDARDISATION:
+        raise ValueError(f"{where}: age_standardised must be one of false, within_range, all_ages")
     incidence = float(row["annual_incidence"])
     if not 0 < incidence < 1:
         raise ValueError(f"{where}: annual incidence {incidence} is not a probability")
@@ -245,11 +278,21 @@ def _baseline(row: dict[str, Any], where: str) -> dict[str, Any]:
         "outcome": outcome,
         "outcome_match": outcome_match,
         "excludes_class_users": row["excludes_class_users"],
+        "age_standardised": row.get("age_standardised", False),
+        "stratum_population": _stratum_population(row, where),
         "annual_incidence": incidence,
         "as_reported": row["as_reported"],
         "population": row["population"],
         "citation": _source(row["source"], where),
     }
+
+
+def _stratum_population(row: dict[str, Any], where: str) -> str | None:
+    """Rule 25: the subgroup a stratum or baseline measures, as a lowercase id."""
+    population = row.get("stratum_population")
+    if population is not None and not TOKEN.fullmatch(str(population)):
+        raise ValueError(f"{where}: stratum_population must be a lowercase id")
+    return population
 
 
 def _read_yaml(path: Path) -> Any:
@@ -287,8 +330,15 @@ def collect(
                 target.setdefault(row["ingredient"], []).append(parse(row, where))
 
     dropped: list[str] = []
+    baselines, why = _usable_baselines(baselines)
+    dropped += why
+    populations: dict[tuple[Any, ...], set[str]] = {}
+    for b in baselines:
+        if b["stratum_population"]:
+            key = (b["dimension"], b["outcome"], b["medication_type"])
+            populations.setdefault(key, set()).add(b["stratum_population"])
     for stem in list(rows):
-        rows[stem], auto, why = _usable(stem, rows[stem], max_doses.get(stem))
+        rows[stem], auto, why = _usable(stem, rows[stem], max_doses.get(stem), populations)
         dropped += why
         gaps.setdefault(stem, []).extend(
             g
@@ -298,8 +348,6 @@ def collect(
                 for e in gaps.get(stem, [])
             )
         )
-    baselines, why = _usable_baselines(baselines)
-    dropped += why
 
     # Rule 9: an ingredient is covered when every outcome dimension v0 rated above 0 for it has
     # a row or an insufficient entry. Uncovered ingredients are left out, so products with them
@@ -326,7 +374,7 @@ def collect(
         }
     table = {
         "method": "docs/scoring/v1-method.md",
-        "version": "1.1",
+        "version": "1.2",
         "course_days": 10,
         "ingredients": dict(sorted(ingredients.items())),
         "baselines": baselines,
@@ -339,10 +387,14 @@ def _scope(gap: dict[str, Any]) -> tuple[tuple[str, ...], ...]:
 
 
 def _usable(
-    stem: str, rows: list[dict[str, Any]], max_dose: float | None
+    stem: str,
+    rows: list[dict[str, Any]],
+    max_dose: float | None,
+    populations: dict[tuple[Any, ...], set[str]] | None = None,
 ) -> tuple[list[dict[str, Any]], list[dict[str, Any]], list[str]]:
-    """Rules 8.1, 10, 11 and 19: the rows the engine may use, insufficient entries for pairs left
-    with none, and a line per dropped row for the coverage report."""
+    """Rules 8.1, 10, 11, 13, 19, 21 and 25: the rows the engine may use, insufficient entries
+    for pairs left with none, and a line per dropped row for the coverage report. populations
+    maps (dimension, outcome, medication_type) to the stratum_population ids of its baselines."""
     keep: list[dict[str, Any]] = []
     dropped: list[str] = []
     for row in rows:
@@ -351,6 +403,13 @@ def _usable(
             dropped.append(f"{stem} {row['dimension']}: outcome does not match ({cite})")
         elif row["exposure_window"] != "community_oral":
             dropped.append(f"{stem} {row['dimension']}: {row['exposure_window']} exposure ({cite})")
+        elif row["stratum_population"] and row["stratum_population"] not in (populations or {}).get(
+            (row["dimension"], row["outcome"], row["medication_type"]), set()
+        ):
+            dropped.append(
+                f"{stem} {row['dimension']}: stratum {row['stratum_population']} does not match "
+                f"the baseline's population (rule 25) ({cite})"
+            )
         else:
             keep.append(row)
 
@@ -378,29 +437,77 @@ def _usable(
                     f"not the label maximum {max_dose:g} ({row['citation']['section']})"
                 )
 
-    # Rule 19: a pair whose rows were all dropped is insufficient for the profiles they covered.
+    # Rules 13 and 21: within one pair and scope, a stratum holding the label maximum beats an
+    # undosed pool; otherwise the best grade wins. Ties stay for rule 3 (the largest).
+    groups: dict[tuple[Any, ...], list[dict[str, Any]]] = {}
+    for row in keep:
+        key = (
+            row["dimension"],
+            row["persona"],
+            row["condition"],
+            row["medication_type"],
+            row["outcome"],
+        )
+        groups.setdefault(key, []).append(row)
+    for group in groups.values():
+        at_max = [
+            r
+            for r in group
+            if r["dose_mg_per_day"] is not None
+            and max_dose is not None
+            and _holds(r["dose_mg_per_day"], max_dose)
+        ]
+        if at_max:
+            winners = at_max
+            why = "an estimate at the label maximum dose exists (rule 21)"
+        else:
+            best = min(GRADE_RANK[r["grade"]] for r in group)
+            winners = [r for r in group if GRADE_RANK[r["grade"]] == best]
+            why = "a higher-grade estimate exists (rule 13)"
+        for row in group:
+            if row not in winners:
+                keep.remove(row)
+                dropped.append(f"{stem} {row['dimension']}: {why} ({row['citation']['section']})")
+
+    # Rules 19 and 28: a dropped row's profiles get an insufficient entry only when no usable
+    # row covers them. A within-group row is never covered by a general one (rule 12).
     auto: list[dict[str, Any]] = []
     for row in rows:
-        same = [
-            k
-            for k in keep
-            if k["dimension"] == row["dimension"]
-            and (k["persona"], k["condition"], k["medication_type"])
-            == (row["persona"], row["condition"], row["medication_type"])
-        ]
-        if row in keep or same:
+        if row in keep:
+            continue
+
+        def covers(k: dict[str, Any], row: dict[str, Any] = row) -> bool:
+            if k["dimension"] != row["dimension"]:
+                return False
+            if (k["persona"], k["condition"], k["medication_type"]) == (
+                row["persona"],
+                row["condition"],
+                row["medication_type"],
+            ):
+                return True
+            general = k["persona"] == "all" and not k["condition"] and not k["medication_type"]
+            return general and row["comparator"] != "within_group"
+
+        if any(covers(k) for k in keep):
             continue
         gap = {
             "dimension": row["dimension"],
             "personas": [] if row["persona"] == "all" else [row["persona"]],
             "conditions": [row["condition"]] if row["condition"] else [],
             "medication_types": [row["medication_type"]] if row["medication_type"] else [],
-            "reason": "Only estimates that do not meet rules 10 and 11 were found "
+            "require_all": True,
+            "reason": "Only estimates that do not meet the v1.1 and v1.2 rules were found "
             f"({row['citation']['section']}).",
         }
         if not any(a["dimension"] == gap["dimension"] and _scope(a) == _scope(gap) for a in auto):
             auto.append(gap)
     return keep, auto, dropped
+
+
+def _holds(dose: list[float | None], max_dose: float) -> bool:
+    low = dose[0] or 0.0
+    high = dose[1] if dose[1] is not None else math.inf
+    return low <= max_dose <= high
 
 
 def _stratum_for(group: list[dict[str, Any]], max_dose: float) -> dict[str, Any]:
@@ -434,8 +541,18 @@ def _usable_baselines(
                 f"({b['citation']['section']})"
             )
 
+    standardised = [b for b in keep if b["age_standardised"] == "all_ages"]
+    for b in standardised:
+        keep.remove(b)
+        dropped.append(
+            f"baseline {b['dimension']} {b['persona']}: age-standardised to all ages (rule 26) "
+            f"({b['citation']['section']})"
+        )
+
+    # Rule 26: a rate without class users comes before the age rule, so the persona is not part
+    # of the key.
     def key(b: dict[str, Any]) -> tuple[Any, ...]:
-        return (b["dimension"], b["outcome"], b["persona"], b["condition"], b["medication_type"])
+        return (b["dimension"], b["outcome"], b["condition"], b["medication_type"])
 
     excluding = {key(b) for b in keep if b["excludes_class_users"]}
     out = []

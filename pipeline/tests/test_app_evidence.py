@@ -151,6 +151,7 @@ def test_baselines_without_class_users_win() -> None:
             "outcome": "upper_gi_bleeding",
             "outcome_match": True,
             "excludes_class_users": excludes,
+            "age_standardised": False,
             "annual_incidence": rate,
             "citation": {"section": "x"},
         }
@@ -158,3 +159,110 @@ def test_baselines_without_class_users_win() -> None:
     keep, dropped = ae._usable_baselines([b(False, 0.002), b(True, 0.001)])
     assert [k["annual_incidence"] for k in keep] == [0.001]
     assert len(dropped) == 1
+
+
+def test_a_stratum_at_the_label_maximum_beats_an_undosed_pool() -> None:
+    pool = _parsed(estimate=1.3, ci95=[1.2, 1.5], grade="meta_analysis")
+    stratum = _parsed(
+        estimate=3.6, ci95=[2.6, 5.1], grade="case_control", dose_mg_per_day=[2001, None]
+    )
+    keep, _, dropped = ae._usable("acetaminophen", [pool, stratum], 4000)
+    assert [r["estimate"] for r in keep] == [3.6]
+    assert any("rule 21" in d for d in dropped)
+
+
+def test_a_meta_analysis_beats_a_single_study_without_dose() -> None:
+    meta = _parsed(estimate=1.7, ci95=[1.4, 2.1], grade="meta_analysis")
+    single = _parsed(estimate=3.2, ci95=[1.8, 5.8], grade="case_control")
+    keep, _, _ = ae._usable("acetaminophen", [meta, single], None)
+    assert [r["estimate"] for r in keep] == [1.7]
+
+
+def test_a_dropped_subgroup_row_covered_by_a_general_row_makes_no_note() -> None:
+    general = _parsed()
+    subgroup = _parsed(
+        applies_to={
+            "persona": "adult_65_plus",
+            "condition": "hypertension",
+            "medication_type": None,
+        },
+        exposure_window="long_term",
+    )
+    _, auto, _ = ae._usable("acetaminophen", [general, subgroup], None)
+    assert auto == []
+
+
+def test_a_dropped_within_group_row_is_not_covered_by_a_general_row() -> None:
+    general = _parsed()
+    group = _parsed(
+        applies_to={"persona": "all", "condition": None, "medication_type": "diuretics"},
+        comparator="within_group",
+        outcome_match=False,
+    )
+    _, auto, _ = ae._usable("acetaminophen", [general, group], None)
+    assert auto and auto[0]["require_all"] and auto[0]["medication_types"] == ["diuretics"]
+
+
+def test_unexposed_incidence_needs_a_quote() -> None:
+    with pytest.raises(ValueError):
+        _parsed(
+            unexposed_incidence={"annual_incidence": 0.001, "as_reported": "x", "location": "y"}
+        )
+    ok = _parsed(
+        unexposed_incidence={
+            "annual_incidence": 0.001,
+            "as_reported": "x",
+            "location": "T2",
+            "quote": "q",
+        }
+    )
+    assert ok["unexposed_incidence"]["citation"]["section"] == "Doe 2020, T2"
+
+
+def test_age_standardised_and_class_user_baselines_give_way() -> None:
+    def b(persona: str, excludes: bool, standardised: Any, rate: float) -> dict[str, Any]:
+        return {
+            "dimension": "gi_bleeding",
+            "persona": persona,
+            "condition": None,
+            "medication_type": None,
+            "outcome": "upper_gi_bleeding",
+            "outcome_match": True,
+            "excludes_class_users": excludes,
+            "age_standardised": standardised,
+            "annual_incidence": rate,
+            "citation": {"section": "x"},
+        }
+
+    keep, dropped = ae._usable_baselines(
+        [
+            b("adult_65_plus", False, False, 0.002),
+            b("all", True, False, 0.0006),
+            b("all", False, "all_ages", 0.001),
+            b("adult_65_plus", True, "within_range", 0.0009),
+        ]
+    )
+    assert [k["annual_incidence"] for k in keep] == [0.0006, 0.0009]
+    assert len(dropped) == 2
+
+
+def test_the_stratum_matching_the_baseline_population_is_used() -> None:
+    def stratum(population: str, estimate: float) -> dict[str, Any]:
+        return _parsed(
+            dimension="anticoagulant_bleeding",
+            outcome="major_bleeding",
+            applies_to={"persona": "all", "condition": None, "medication_type": "anticoagulants"},
+            comparator="within_group",
+            estimate=estimate,
+            ci95=[1.1, 2.0],
+            stratum_population=population,
+        )
+
+    rows = [stratum("vka_users", 1.55), stratum("doac_users", 1.42)]
+    key = ("anticoagulant_bleeding", "major_bleeding", "anticoagulants")
+    keep, _, dropped = ae._usable("ibuprofen", rows, None, {key: {"doac_users"}})
+    assert [r["estimate"] for r in keep] == [1.42]
+    assert any("rule 25" in d for d in dropped)
+    # A baseline of no named population matches neither stratum.
+    keep, auto, _ = ae._usable("ibuprofen", rows, None, {})
+    assert keep == [] and auto[0]["medication_types"] == ["anticoagulants"]

@@ -37,6 +37,14 @@ export interface RelativeRisk extends Applies {
   measure: string;
   estimate: number;
   ci95: number[];
+  /** Rule 27. */
+  interval?: "confidence" | "credible";
+  /** Rule 20: the source's own unexposed group's rate, used as the baseline when present. */
+  unexposed_incidence?: {
+    annual_incidence: number;
+    as_reported: string;
+    citation: EvidenceCitation;
+  } | null;
   grade: string;
   citation: EvidenceCitation;
 }
@@ -55,6 +63,8 @@ export interface Insufficient {
   personas: string[];
   conditions: string[];
   medication_types: string[];
+  /** Rule 28: shown only to profiles with every listed attribute, not any. */
+  require_all?: boolean;
   reason: string;
 }
 
@@ -91,6 +101,16 @@ const OUTCOMES: Record<string, string> = {
   serotonergic_interactions: "serotonin syndrome",
   anticoagulant_bleeding: "major bleeding",
   pregnancy_lactation: "the pregnancy harm studied",
+};
+
+/** Rule 18 and 24: the outcome a row measured, when it is narrower than its dimension's. */
+const OUTCOME_IDS: Record<string, string> = {
+  acute_liver_failure: "acute liver failure",
+  mi: "heart attack",
+  stroke: "stroke",
+  mi_stroke: "heart attack or stroke",
+  fracture: "a fracture",
+  hip_fracture: "a hip fracture",
 };
 
 /**
@@ -217,6 +237,13 @@ function baselineFor(
 function gapApplies(gap: Insufficient, profile: Profile): boolean {
   if (DIMENSION_SCOPE[gap.dimension] && !DIMENSION_SCOPE[gap.dimension](profile)) return false;
   const scoped = gap.personas.length + gap.conditions.length + gap.medication_types.length > 0;
+  if (gap.require_all) {
+    return (
+      gap.personas.every((p) => p === profile.persona) &&
+      gap.conditions.every((c) => profile.conditions.includes(c)) &&
+      gap.medication_types.every((m) => profile.medicationTypes.includes(m))
+    );
+  }
   return (
     !scoped ||
     gap.personas.includes(profile.persona) ||
@@ -279,9 +306,10 @@ export function scoreV1(
 
   interface Term {
     dimension: string;
+    outcome: string | null;
     ear: number;
     used: { unii: string; row: RelativeRisk }[];
-    baseline: Baseline;
+    baseline: Pick<Baseline, "annual_incidence" | "citation">;
   }
   const terms: Term[] = [];
   const gaps: string[] = [];
@@ -314,13 +342,17 @@ export function scoreV1(
         continue;
       }
       const group = same.find(({ row }) => row.comparator === "within_group")?.row;
-      const baseline = baselineFor(evidence, dimension, outcome, group, profile);
+      // Rule 20: a source's own unexposed rate first (the largest relative risk's, if several).
+      const own = same
+        .filter(({ row }) => row.unexposed_incidence)
+        .sort((a, b) => b.row.estimate - a.row.estimate)[0]?.row.unexposed_incidence;
+      const baseline = own ?? baselineFor(evidence, dimension, outcome, group, profile);
       if (!baseline) {
         missingBaseline = true;
         continue;
       }
       const ear = (baseline.annual_incidence * (rr - 1) * evidence.course_days) / 365;
-      if (!best || ear > best.ear) best = { dimension, ear, used: same, baseline };
+      if (!best || ear > best.ear) best = { dimension, outcome, ear, used: same, baseline };
     }
     if (best) terms.push(best);
     else if (missingBaseline) {
@@ -336,7 +368,17 @@ export function scoreV1(
 
   for (const unii of uniis) {
     for (const gap of evidence.ingredients[unii].insufficient) {
-      if (gapApplies(gap, profile)) gaps.push(`${OUTCOMES[gap.dimension]} with ${name(unii)}`);
+      if (!gapApplies(gap, profile)) continue;
+      const scoped = [...gap.personas, ...gap.conditions, ...gap.medication_types];
+      const covered = terms.some(
+        (t) => t.dimension === gap.dimension && t.used.some((u) => u.unii === unii),
+      );
+      // Rule 28: say when the general estimate still covers this profile.
+      gaps.push(
+        covered && scoped.length > 0
+          ? `${OUTCOMES[gap.dimension]} with ${name(unii)} specific to ${scoped.map(words).join(" and ")} (the general estimate is used)`
+          : `${OUTCOMES[gap.dimension]} with ${name(unii)}`,
+      );
     }
   }
 
@@ -356,12 +398,12 @@ export function scoreV1(
   const explanation: EngineRecord["explanation"] = [];
   const small: string[] = [];
   terms.forEach((term, i) => {
-    const sentence = `${capitalized(OUTCOMES[term.dimension])}: ${term.used
+    const sentence = `${capitalized((term.outcome && OUTCOME_IDS[term.outcome]) || OUTCOMES[term.dimension])}: ${term.used
       .map(({ unii, row }) => {
         const short = row.citation.section?.split(",")[0] ?? "";
         const measure = MEASURES[row.measure] ?? row.measure;
         const grade = GRADES[row.grade] ?? row.grade;
-        return `${name(unii)} ${row.estimate} times as likely (${measure}, 95% CI ${row.ci95[0]} to ${row.ci95[1]}; ${grade}, ${short})`;
+        return `${name(unii)} ${row.estimate} times as likely (${measure}, 95% ${row.interval === "credible" ? "credible interval" : "CI"} ${row.ci95[0]} to ${row.ci95[1]}; ${grade}, ${short})`;
       })
       .join("; ")}. Baseline ${oneIn(term.baseline.annual_incidence)} a year, so one ${
       evidence.course_days
