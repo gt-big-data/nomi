@@ -1,5 +1,16 @@
-import { useState } from "react";
-import { Modal, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
+import { useEffect, useRef, useState } from "react";
+import {
+  AccessibilityInfo,
+  Animated,
+  Easing,
+  Modal,
+  PanResponder,
+  Pressable,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import {
@@ -92,27 +103,118 @@ export function RiskList({
   );
 }
 
+/** How far below its resting place the sheet starts, in points: past the bottom of any phone. */
+const OFFSCREEN = 900;
+/** Dragging the sheet down this far, or flicking it, closes it. */
+const DISMISS_DISTANCE = 120;
+const DISMISS_VELOCITY = 0.8;
+
+/**
+ * The risk detail as a bottom sheet. The dim backdrop fades in on its own while the sheet springs
+ * up from the bottom; closing reverses both. Drag the sheet down, tap the backdrop or tap Close to
+ * dismiss. With Reduce Motion on, it fades instead of moving.
+ */
 function RiskSheet({ item, onClose }: { item: RiskItem | null; onClose: () => void }) {
   const { colors, space, text } = useTheme();
   const iconScale = useIconScale();
   const insets = useSafeAreaInsets();
-  const severity = item ? riskSeverity(item.points) : "low";
+  // Kept while the sheet animates out, after the parent has already cleared `item`.
+  const [shown, setShown] = useState<RiskItem | null>(null);
+  const progress = useRef(new Animated.Value(0)).current;
+  const drag = useRef(new Animated.Value(0)).current;
+  const reduceMotion = useRef(false);
+  const closing = useRef(false);
+
+  useEffect(() => {
+    AccessibilityInfo.isReduceMotionEnabled().then((on) => (reduceMotion.current = on));
+  }, []);
+
+  useEffect(() => {
+    if (!item) return;
+    closing.current = false;
+    setShown(item);
+    drag.setValue(0);
+    progress.setValue(0);
+    const open = reduceMotion.current
+      ? Animated.timing(progress, { toValue: 1, duration: 200, useNativeDriver: true })
+      : Animated.spring(progress, {
+          toValue: 1,
+          damping: 30,
+          stiffness: 300,
+          mass: 1,
+          useNativeDriver: true,
+        });
+    open.start();
+  }, [item, drag, progress]);
+
+  const close = () => {
+    if (closing.current) return;
+    closing.current = true;
+    Animated.timing(progress, {
+      toValue: 0,
+      duration: 220,
+      easing: Easing.in(Easing.cubic),
+      useNativeDriver: true,
+    }).start(() => {
+      setShown(null);
+      onClose();
+    });
+  };
+
+  const pan = useRef(
+    PanResponder.create({
+      onMoveShouldSetPanResponder: (_, g) => g.dy > 6 && Math.abs(g.dy) > Math.abs(g.dx),
+      onPanResponderMove: (_, g) => drag.setValue(Math.max(0, g.dy)),
+      onPanResponderRelease: (_, g) => {
+        if (g.dy > DISMISS_DISTANCE || g.vy > DISMISS_VELOCITY) closeRef.current();
+        else
+          Animated.spring(drag, {
+            toValue: 0,
+            damping: 30,
+            stiffness: 300,
+            useNativeDriver: true,
+          }).start();
+      },
+    }),
+  ).current;
+  const closeRef = useRef(close);
+  closeRef.current = close;
+
+  const sheetMotion = reduceMotion.current
+    ? { opacity: progress }
+    : {
+        transform: [
+          {
+            translateY: Animated.add(
+              progress.interpolate({ inputRange: [0, 1], outputRange: [OFFSCREEN, 0] }),
+              drag,
+            ),
+          },
+        ],
+      };
+
+  const severity = shown ? riskSeverity(shown.points) : "low";
   const c = riskSeverityColors(colors, severity);
-  const { rating, quote } = item ? splitDetail(item.detail) : { rating: "", quote: undefined };
+  const { rating, quote } = shown ? splitDetail(shown.detail) : { rating: "", quote: undefined };
+  const item_ = shown;
 
   return (
-    <Modal visible={item !== null} transparent animationType="slide" onRequestClose={onClose}>
+    <Modal visible={shown !== null} transparent animationType="none" onRequestClose={close}>
       <View style={styles.backdrop}>
-        <Pressable
-          style={StyleSheet.absoluteFill}
-          onPress={onClose}
-          accessibilityRole="button"
-          accessibilityLabel="Close"
-        />
-        {item && (
-          <View
+        <Animated.View style={[StyleSheet.absoluteFill, styles.scrim, { opacity: progress }]}>
+          <Pressable
+            style={StyleSheet.absoluteFill}
+            onPress={close}
+            accessibilityRole="button"
+            accessibilityLabel="Close"
+          />
+        </Animated.View>
+        {item_ && (
+          <Animated.View
             accessibilityViewIsModal
+            {...pan.panHandlers}
             style={[
+              sheetMotion,
               styles.sheet,
               {
                 backgroundColor: colors.bg.surface,
@@ -130,17 +232,17 @@ function RiskSheet({ item, onClose }: { item: RiskItem | null; onClose: () => vo
                     accessibilityRole="header"
                     style={[text("title"), { color: colors.text.primary }]}
                   >
-                    {item.factor}
+                    {item_.factor}
                   </Text>
                   <Text style={[text("subhead"), { color: c.text }]}>
                     <Text style={{ fontFamily: text("headline").fontFamily }}>
                       {riskSeverityText[severity]}
                     </Text>
-                    {` · −${item.points} points`}
+                    {` · −${item_.points} points`}
                   </Text>
                 </View>
                 <Tappable
-                  onPress={onClose}
+                  onPress={close}
                   accessibilityLabel="Close"
                   style={[styles.close, { backgroundColor: colors.bg.fill }]}
                 >
@@ -163,12 +265,12 @@ function RiskSheet({ item, onClose }: { item: RiskItem | null; onClose: () => vo
                 </View>
               ) : null}
 
-              {item.citations.length > 0 && (
+              {item_.citations.length > 0 && (
                 <View style={{ gap: space[8] }}>
                   <Text style={[text("footnote"), { color: colors.text.tertiary }]}>
-                    {item.citations.length === 1 ? "Source" : "Sources"}
+                    {item_.citations.length === 1 ? "Source" : "Sources"}
                   </Text>
-                  {item.citations.map((citation, index) => (
+                  {item_.citations.map((citation, index) => (
                     <Tappable
                       key={`${citation.source}-${index}`}
                       onPress={citation.onPress}
@@ -206,7 +308,7 @@ function RiskSheet({ item, onClose }: { item: RiskItem | null; onClose: () => vo
                 </View>
               )}
             </ScrollView>
-          </View>
+          </Animated.View>
         )}
       </View>
     </Modal>
@@ -215,7 +317,8 @@ function RiskSheet({ item, onClose }: { item: RiskItem | null; onClose: () => vo
 
 const styles = StyleSheet.create({
   points: { fontVariant: ["tabular-nums"] },
-  backdrop: { flex: 1, justifyContent: "flex-end", backgroundColor: "rgba(23,19,31,0.32)" },
+  backdrop: { flex: 1, justifyContent: "flex-end" },
+  scrim: { backgroundColor: "rgba(23,19,31,0.32)" },
   sheet: { borderTopLeftRadius: 34, borderTopRightRadius: 34, maxHeight: "75%" },
   grabber: { alignSelf: "center", width: 36, height: 5, borderRadius: 3, marginBottom: 12 },
   header: { flexDirection: "row", alignItems: "flex-start" },

@@ -12,6 +12,7 @@ import {
   type ViewStyle,
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import Svg, { Path } from "react-native-svg";
 import { Camera, useCameraDevice, useCameraPermission } from "react-native-vision-camera";
 import {
   type BarcodeScannerOutputOptions,
@@ -212,6 +213,8 @@ function openProfile() {
 /** How long each corner bracket's arms are, and how thick. */
 const CORNER = 28;
 const CORNER_WIDTH = 4;
+/** The window's corner radius, shared by the brackets and the cut-out. */
+const CORNER_RADIUS = 14;
 
 /**
  * Four corner brackets around a barcode-sized window, the picture around it dimmed, and a hint
@@ -219,48 +222,52 @@ const CORNER_WIDTH = 4;
  */
 function ScanFrame() {
   const { colors, space, text } = useTheme();
-  const { width } = useWindowDimensions();
+  const { width, height } = useWindowDimensions();
   const frameWidth = Math.min(width - 2 * space[48], FRAME_MAX_WIDTH);
   const frameHeight = frameWidth / FRAME_ASPECT;
-  const dim = [styles.fill, { backgroundColor: colors.bg.camera, opacity: opacity.scrim }];
+  const x = (width - frameWidth) / 2;
+  const y = (height - frameHeight) / 2;
+  const r = CORNER_RADIUS;
+  // The whole screen, with a rounded window cut out of it (even-odd fill), so the clear window has
+  // the same rounded corners as the brackets.
+  const scrim =
+    `M0 0H${width}V${height}H0Z` +
+    `M${x + r} ${y}H${x + frameWidth - r}A${r} ${r} 0 0 1 ${x + frameWidth} ${y + r}` +
+    `V${y + frameHeight - r}A${r} ${r} 0 0 1 ${x + frameWidth - r} ${y + frameHeight}` +
+    `H${x + r}A${r} ${r} 0 0 1 ${x} ${y + frameHeight - r}V${y + r}A${r} ${r} 0 0 1 ${x + r} ${y}Z`;
   return (
     <View style={StyleSheet.absoluteFill} pointerEvents="none">
-      <View style={dim} />
-      <View style={styles.row}>
-        <View style={dim} />
-        <View style={{ width: frameWidth, height: frameHeight }}>
-          {(["tl", "tr", "bl", "br"] as const).map((corner) => (
-            <View
-              key={corner}
-              style={[
-                styles.corner,
-                {
-                  width: CORNER,
-                  height: CORNER,
-                  borderTopWidth: corner[0] === "t" ? CORNER_WIDTH : 0,
-                  borderBottomWidth: corner[0] === "b" ? CORNER_WIDTH : 0,
-                  borderLeftWidth: corner[1] === "l" ? CORNER_WIDTH : 0,
-                  borderRightWidth: corner[1] === "r" ? CORNER_WIDTH : 0,
-                  borderTopLeftRadius: corner === "tl" ? 14 : 0,
-                  borderTopRightRadius: corner === "tr" ? 14 : 0,
-                  borderBottomLeftRadius: corner === "bl" ? 14 : 0,
-                  borderBottomRightRadius: corner === "br" ? 14 : 0,
-                  top: corner[0] === "t" ? 0 : undefined,
-                  bottom: corner[0] === "b" ? 0 : undefined,
-                  left: corner[1] === "l" ? 0 : undefined,
-                  right: corner[1] === "r" ? 0 : undefined,
-                },
-              ]}
-            />
-          ))}
-        </View>
-        <View style={dim} />
+      <Svg width={width} height={height} style={StyleSheet.absoluteFill}>
+        <Path d={scrim} fill={colors.bg.camera} fillOpacity={opacity.scrim} fillRule="evenodd" />
+      </Svg>
+      <View style={[styles.window, { left: x, top: y, width: frameWidth, height: frameHeight }]}>
+        {(["tl", "tr", "bl", "br"] as const).map((corner) => (
+          <View
+            key={corner}
+            style={[
+              styles.corner,
+              {
+                width: CORNER,
+                height: CORNER,
+                borderTopWidth: corner[0] === "t" ? CORNER_WIDTH : 0,
+                borderBottomWidth: corner[0] === "b" ? CORNER_WIDTH : 0,
+                borderLeftWidth: corner[1] === "l" ? CORNER_WIDTH : 0,
+                borderRightWidth: corner[1] === "r" ? CORNER_WIDTH : 0,
+                borderTopLeftRadius: corner === "tl" ? r : 0,
+                borderTopRightRadius: corner === "tr" ? r : 0,
+                borderBottomLeftRadius: corner === "bl" ? r : 0,
+                borderBottomRightRadius: corner === "br" ? r : 0,
+                top: corner[0] === "t" ? 0 : undefined,
+                bottom: corner[0] === "b" ? 0 : undefined,
+                left: corner[1] === "l" ? 0 : undefined,
+                right: corner[1] === "r" ? 0 : undefined,
+              },
+            ]}
+          />
+        ))}
       </View>
-      <View style={[styles.fill, styles.hint]}>
-        <View style={[StyleSheet.absoluteFill, dim]} />
-        <Text style={[text("headline"), styles.white, { marginTop: space[32] }]}>
-          Point at the barcode
-        </Text>
+      <View style={[styles.hint, { top: y + frameHeight + space[32] }]}>
+        <Text style={[text("headline"), styles.white]}>Point at the barcode</Text>
         <Text style={[text("subhead"), styles.whiteSoft, { marginTop: space[4] }]}>
           On the back or bottom of the box
         </Text>
@@ -276,9 +283,8 @@ const styles = StyleSheet.create({
   container: { flex: 1 },
   center: { flex: 1, alignItems: "stretch", justifyContent: "center" },
   message: { textAlign: "center" },
-  fill: { flex: 1 },
-  row: { flexDirection: "row" },
-  hint: { alignItems: "center" },
+  hint: { position: "absolute", left: 0, right: 0, alignItems: "center" },
+  window: { position: "absolute" },
   topBar: { position: "absolute", flexDirection: "row", alignItems: "center" },
   bottomBar: { position: "absolute", alignSelf: "center" },
   corner: { position: "absolute", borderColor: "#FFFFFF" },
