@@ -65,6 +65,10 @@ The first time, iOS blocks the app. On the iPhone, go to Settings › General �
 ## Good to know
 
 - **It expires after 7 days** with a free Apple ID. Run step 4 again to reinstall.
-- **Your answers survive reinstalling.** To answer the setup questions again, open Profile › Answer again.
+- **Your answers survive reinstalling.** To answer the setup questions again, open Profile › Answer the questions again. Deleting the app clears your answers and Home.
 - **"Device unavailable" or "not paired" errors:** unplug the iPhone, plug it back in, unlock it, and try again. Opening Xcode › Window › Devices and Simulators can help it find the phone.
 - **"No account for team" errors:** sign in to your Apple ID in Xcode (step 3.1), then try again.
+
+## Next
+
+To present the demo, see [docs/demo/README.md](../../docs/demo/README.md).
