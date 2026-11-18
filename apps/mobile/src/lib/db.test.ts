@@ -75,10 +75,13 @@ buildDataset(
     // The same 10 digits, split two ways: two real packages behind one barcode.
     made("1234-5678-90", "in_scope"),
     made("12345-678-90", "in_scope"),
+    // Its scope_flag is changed below to one the app doesn't know.
+    made("44444-444-44", "in_scope"),
   ],
   "test",
 );
 db.exec("PRAGMA foreign_keys = OFF; DELETE FROM ingredients WHERE unii = '0000000000'");
+db.exec("UPDATE products SET scope_flag = 'new_scope' WHERE package_ndc = '44444-444-44'");
 
 function adapt(db: DatabaseSync): Dataset {
   return {
@@ -96,11 +99,8 @@ function referenceDb(path = ":memory:"): DatabaseSync {
   return fresh;
 }
 
-const seen = new Set<LookupStatus>();
-async function lookup(raw: string) {
-  const result = await lookupBarcode(raw, dataset);
-  seen.add(result.status);
-  return result;
+function lookup(raw: string) {
+  return lookupBarcode(raw, dataset);
 }
 
 for (const { packageNdc, product } of reference) {
@@ -164,6 +164,13 @@ test("shows an out-of-scope product", async () => {
   assert.equal(result.status, "out_of_scope");
   assert.ok("product" in result);
   assert.equal(result.product.ingredients.length, 1);
+});
+
+test("shows a product with an unknown scope as out of scope, never as resolved", async () => {
+  const result = await lookup(barcode("44444-444-44"));
+  assert.equal(result.status, "out_of_scope");
+  assert.ok("product" in result);
+  assert.equal(result.product.scope, "out_of_scope");
 });
 
 test("tells apart two packages that pad to one NDC11", async () => {
@@ -233,7 +240,12 @@ test("rejects a half-copied dataset", async (t) => {
   referenceDb(path).close();
   const bytes = readFileSync(path);
   writeFileSync(path, bytes.subarray(0, bytes.length / 2));
-  await assert.rejects(checkDataset(adapt(new DatabaseSync(path))), /malformed/);
+  const half = new DatabaseSync(path);
+  try {
+    await assert.rejects(checkDataset(adapt(half)), /malformed/);
+  } finally {
+    half.close();
+  }
 });
 
 test("formats strengths", () => {
@@ -242,16 +254,19 @@ test("formats strengths", () => {
   assert.equal(strengthText({ ...ingredient, perAmount: 30, perUnit: "mL" }), "50 mg per 30 mL");
 });
 
-test("covers every status", () => {
-  const expected = new Set([
-    "invalid_format",
-    "bad_check_digit",
-    "not_ndc_barcode",
-    "not_found",
-    "ambiguous_ndc",
-    "resolved",
-    "homeopathic",
-    "out_of_scope",
-  ]);
-  assert.deepEqual(seen, expected);
+test("covers every status", async () => {
+  // A Record, so a new status doesn't compile until it is added here.
+  const examples: Record<LookupStatus, string> = {
+    invalid_format: "not a barcode",
+    bad_check_digit: "350580449058",
+    not_ndc_barcode: "012345678905",
+    not_found: barcode("99999-999-99"),
+    ambiguous_ndc: barcode("1234-5678-90"),
+    resolved: barcode("50580-449-05"),
+    homeopathic: barcode("11111-111-11"),
+    out_of_scope: barcode("22222-222-22"),
+  };
+  for (const [status, raw] of Object.entries(examples)) {
+    assert.equal((await lookup(raw)).status, status, raw);
+  }
 });

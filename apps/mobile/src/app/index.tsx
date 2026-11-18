@@ -6,6 +6,7 @@ import { useCameraPermission } from "react-native-vision-camera";
 import { CodeScanner } from "react-native-vision-camera-barcode-scanner";
 
 import { Button } from "@/components";
+import { ndcCandidates } from "@/lib/barcode";
 import { openDataset } from "@/lib/dataset";
 import { minHeight, useTheme } from "@/theme";
 
@@ -82,7 +83,11 @@ export default function Scanner() {
             return;
           }
           scanned.current = true;
-          Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+          Haptics.notificationAsync(
+            ndcCandidates(value).status === "ok"
+              ? Haptics.NotificationFeedbackType.Success
+              : Haptics.NotificationFeedbackType.Warning,
+          );
           router.push({ pathname: "/result", params: { barcode: value } });
         }}
         onError={(error) => console.error("Scanner error:", error)}
@@ -116,6 +121,5 @@ const styles = StyleSheet.create({
     minHeight: minHeight.chip,
     overflow: "hidden",
     backgroundColor: "white",
-    color: "black",
   },
 });

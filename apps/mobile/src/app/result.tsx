@@ -49,7 +49,8 @@ function useLookup(barcode: string): Loaded | undefined {
 }
 
 export default function Result() {
-  const { barcode = "" } = useLocalSearchParams<{ barcode: string }>();
+  const params = useLocalSearchParams<{ barcode?: string | string[] }>();
+  const barcode = (Array.isArray(params.barcode) ? params.barcode[0] : params.barcode) ?? "";
   const lookup = useLookup(barcode);
   const { colors, space, text } = useTheme();
 
@@ -66,6 +67,7 @@ export default function Result() {
       ) : (
         <Message lookup={lookup} />
       )}
+      {lookup !== undefined && <Button label="Scan again" onPress={scanAgain} />}
       <Text
         accessibilityLabel={`Barcode ${barcode.split("").join(" ")}`}
         style={[text("footnote"), { color: colors.text.secondary }]}
@@ -90,39 +92,39 @@ function title(lookup: Loaded): string {
     case "ambiguous_ndc":
       return "Not found";
     case "not_ndc_barcode":
-      return "Not a medicine";
+      return "Can't look up";
     case "invalid_format":
     case "bad_check_digit":
       return "Couldn't read barcode";
   }
 }
 
+// What to say when there is no single product to show. Nothing here is ever scored.
 const MESSAGES: Record<Exclude<NotFound, "error">["status"] | "error", string> = {
-  invalid_format: "Those numbers aren't a whole barcode. Check them and try again.",
-  bad_check_digit: "One of the numbers is off. Scan it again or check the numbers.",
-  not_ndc_barcode: "This barcode isn't on a medicine we can look up.",
+  invalid_format: "The barcode didn't read cleanly. Please try again.",
+  bad_check_digit: "The barcode didn't read cleanly. Please try again.",
+  not_ndc_barcode: "We can't look up this barcode yet.",
   not_found: "We don't have this product yet.",
   ambiguous_ndc: "This barcode matches more than one product, so we won't guess which one it is.",
   error: "Couldn't open the product database. Close Nomi and open it again.",
 };
 
 function Message({ lookup }: { lookup: NotFound }) {
-  const { colors, space, text } = useTheme();
+  const { colors, text } = useTheme();
   return (
-    <View style={{ gap: space[24] }}>
-      <Text style={[text("body"), { color: colors.text.primary }]}>
-        {MESSAGES[lookup === "error" ? lookup : lookup.status]}
-      </Text>
-      <Button label="Try another barcode" onPress={goBack} />
-    </View>
+    <Text style={[text("body"), { color: colors.text.primary }]}>
+      {MESSAGES[lookup === "error" ? lookup : lookup.status]}
+    </Text>
   );
 }
 
-/** Back to the camera or the barcode list, whichever opened this. A deep link has neither. */
-function goBack() {
-  if (router.canGoBack()) router.back();
-  else router.replace("/");
+/** Back to the camera, even from a result opened from the typed barcode screen or a deep link. */
+function scanAgain() {
+  router.dismissTo("/");
 }
+
+// Found but not yet checked by a second person: shown with a "preliminary" badge (system design 8.2).
+const REVIEWED = new Set(["sampled_ok", "pharmacist_reviewed"]);
 
 function ProductResult({ lookup }: { lookup: Found }) {
   const { product } = lookup;
@@ -137,6 +139,9 @@ function ProductResult({ lookup }: { lookup: Found }) {
   return (
     <>
       <View style={{ gap: space[4] }}>
+        {lookup.status === "resolved" && !REVIEWED.has(product.reviewStatus ?? "") && (
+          <Text style={[text("label"), { color: colors.text.primary }]}>Preliminary</Text>
+        )}
         <Text
           accessibilityRole="header"
           style={[text("titleLarge"), { color: colors.text.primary }]}
