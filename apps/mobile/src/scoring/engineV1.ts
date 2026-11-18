@@ -30,6 +30,10 @@ type EvidenceCitation = Citation & { citation: string };
 
 export interface RelativeRisk extends Applies {
   dimension: string;
+  /** Rule 18: pairs the row with a baseline for the same outcome. */
+  outcome: string | null;
+  /** Rule 12: within_group rows need a baseline for the same group. */
+  comparator: "non_use" | "within_group";
   measure: string;
   estimate: number;
   ci95: number[];
@@ -39,6 +43,7 @@ export interface RelativeRisk extends Applies {
 
 export interface Baseline extends Applies {
   dimension: string;
+  outcome: string | null;
   annual_incidence: number;
   as_reported: string;
   citation: EvidenceCitation;
@@ -190,9 +195,19 @@ function pick<T extends Applies>(
 function baselineFor(
   evidence: Evidence,
   dimension: string,
+  outcome: string | null,
+  group: Applies | undefined,
   profile: Profile,
 ): Baseline | undefined {
-  const rows = evidence.baselines.filter((row) => row.dimension === dimension);
+  let rows = evidence.baselines.filter(
+    (row) => row.dimension === dimension && row.outcome === outcome,
+  );
+  // Rule 12: a risk measured inside a group needs that group's own rate.
+  if (group) {
+    rows = rows.filter(
+      (row) => row.condition === group.condition && row.medication_type === group.medication_type,
+    );
+  }
   const named = rows.some((row) => row.persona === profile.persona);
   const persona = named ? profile.persona : (BASELINE_AGE[profile.persona] ?? profile.persona);
   return pick(rows, persona, profile, (row) => row.annual_incidence);
@@ -278,17 +293,45 @@ export function scoreV1(
       const row = pick(rows, profile.persona, profile, (r) => r.estimate);
       return row ? [{ unii, row }] : [];
     });
-    // Rule 4: ingredients without a row are a factor of 1.
-    const rr = used.reduce((product, { row }) => product * row.estimate, 1);
-    if (rr <= 1) continue;
-    const baseline = baselineFor(evidence, dimension, profile);
-    if (!baseline) {
-      // Rule 6.
-      gaps.push(`${OUTCOMES[dimension]} (no published baseline rate for this profile)`);
-      continue;
+    // Rule 18: one term per outcome; the dimension counts the largest.
+    const outcomes = [...new Set(used.map(({ row }) => row.outcome))].sort();
+    let best: Term | undefined;
+    let missingBaseline = false;
+    for (const outcome of outcomes) {
+      const same = used.filter(({ row }) => row.outcome === outcome);
+      // Rule 4: ingredients without a row are a factor of 1.
+      const rr = same.reduce((product, { row }) => product * row.estimate, 1);
+      if (rr <= 1) continue;
+      const groups = [
+        ...new Set(
+          same
+            .filter(({ row }) => row.comparator === "within_group")
+            .map(({ row }) => `${row.condition}|${row.medication_type}`),
+        ),
+      ];
+      if (groups.length > 1) {
+        missingBaseline = true;
+        continue;
+      }
+      const group = same.find(({ row }) => row.comparator === "within_group")?.row;
+      const baseline = baselineFor(evidence, dimension, outcome, group, profile);
+      if (!baseline) {
+        missingBaseline = true;
+        continue;
+      }
+      const ear = (baseline.annual_incidence * (rr - 1) * evidence.course_days) / 365;
+      if (!best || ear > best.ear) best = { dimension, ear, used: same, baseline };
     }
-    const ear = (baseline.annual_incidence * (rr - 1) * evidence.course_days) / 365;
-    terms.push({ dimension, ear, used, baseline });
+    if (best) terms.push(best);
+    else if (missingBaseline) {
+      // Rules 6 and 12.
+      gaps.push(`${OUTCOMES[dimension]} (no published baseline rate for this profile)`);
+    }
+  }
+  // Rule 16: the anticoagulant major-bleeding rate already includes stomach bleeding.
+  if (terms.some((t) => t.dimension === "anticoagulant_bleeding")) {
+    const gi = terms.findIndex((t) => t.dimension === "gi_bleeding");
+    if (gi >= 0) terms.splice(gi, 1);
   }
 
   for (const unii of uniis) {

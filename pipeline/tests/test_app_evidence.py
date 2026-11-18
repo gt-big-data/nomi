@@ -16,7 +16,7 @@ def test_the_app_evidence_matches_the_knowledge_base() -> None:
 
 
 def test_every_ingredient_is_covered() -> None:
-    _, uncovered = ae.collect()
+    _, uncovered, _ = ae.collect()
     assert uncovered == {}
 
 
@@ -25,6 +25,11 @@ def _row(**changes: Any) -> dict[str, Any]:
         "ingredient": "acetaminophen",
         "dimension": "liver",
         "applies_to": {"persona": "all", "condition": None, "medication_type": None},
+        "outcome": "acute_liver_injury",
+        "outcome_match": True,
+        "exposure_window": "community_oral",
+        "comparator": "non_use",
+        "dose_mg_per_day": None,
         "measure": "OR",
         "estimate": 2.0,
         "ci95": [1.5, 3.0],
@@ -54,6 +59,10 @@ def test_a_valid_row_is_copied() -> None:
         {"applies_to": {"persona": "adults"}},
         {"applies_to": {"persona": "all", "condition": "gout"}},
         {"source": {"citation": "Doe 2020", "url": "u", "location": "T1", "quote": ""}},
+        {"outcome": "fracture"},
+        {"outcome_match": "yes"},
+        {"exposure_window": "chronic"},
+        {"comparator": "within_group"},
     ],
 )
 def test_a_bad_row_fails_the_build(changes: dict[str, Any]) -> None:
@@ -84,6 +93,9 @@ def test_baseline_must_be_a_probability() -> None:
     row = {
         "dimension": "kidney",
         "persona": "all",
+        "outcome": "aki_hospital",
+        "outcome_match": True,
+        "excludes_class_users": False,
         "annual_incidence": 1.2,
         "as_reported": "x",
         "population": "y",
@@ -91,3 +103,58 @@ def test_baseline_must_be_a_probability() -> None:
     }
     with pytest.raises(ValueError):
         ae._baseline(row, "t")
+
+
+def _parsed(**changes: Any) -> dict[str, Any]:
+    return ae._relative_risk(_row(**changes), "t")
+
+
+def test_rows_failing_rules_10_and_11_are_dropped_and_become_insufficient() -> None:
+    keep, auto, dropped = ae._usable(
+        "acetaminophen",
+        [_parsed(outcome_match=False), _parsed(exposure_window="long_term")],
+        None,
+    )
+    assert keep == []
+    assert len(dropped) == 2
+    assert [g["dimension"] for g in auto] == ["liver"]
+
+
+def test_the_stratum_holding_the_label_maximum_is_used() -> None:
+    strata = [
+        _parsed(estimate=2.0, ci95=[1.5, 3.0], dose_mg_per_day=[0, 2999]),
+        _parsed(estimate=6.0, ci95=[3.5, 11.0], dose_mg_per_day=[3000, None]),
+    ]
+    keep, _, dropped = ae._usable("acetaminophen", strata, 4000)
+    assert [r["estimate"] for r in keep] == [6.0]
+    assert len(dropped) == 1
+    with pytest.raises(ValueError):
+        ae._usable("acetaminophen", strata, None)
+
+
+def test_a_stratum_below_the_maximum_is_used_when_none_holds_it() -> None:
+    strata = [
+        _parsed(estimate=2.0, ci95=[1.5, 3.0], dose_mg_per_day=[0, 500]),
+        _parsed(estimate=3.0, ci95=[2.5, 4.0], dose_mg_per_day=[501, 1000]),
+    ]
+    keep, _, _ = ae._usable("aspirin", strata, 4000)
+    assert [r["estimate"] for r in keep] == [3.0]
+
+
+def test_baselines_without_class_users_win() -> None:
+    def b(excludes: bool, rate: float) -> dict[str, Any]:
+        return {
+            "dimension": "gi_bleeding",
+            "persona": "all",
+            "condition": None,
+            "medication_type": None,
+            "outcome": "upper_gi_bleeding",
+            "outcome_match": True,
+            "excludes_class_users": excludes,
+            "annual_incidence": rate,
+            "citation": {"section": "x"},
+        }
+
+    keep, dropped = ae._usable_baselines([b(False, 0.002), b(True, 0.001)])
+    assert [k["annual_incidence"] for k in keep] == [0.001]
+    assert len(dropped) == 1

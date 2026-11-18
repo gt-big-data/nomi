@@ -12,6 +12,7 @@ Usage:
 from __future__ import annotations
 
 import json
+import math
 import re
 from pathlib import Path
 from typing import Any
@@ -80,6 +81,21 @@ MEDICATION_TYPES = frozenset(
 )
 SCOPE_KEYS = {"persona": PERSONAS, "condition": CONDITIONS, "medication_type": MEDICATION_TYPES}
 MEASURES = {"RR", "OR", "HR", "IRR"}
+# Rule 18: the outcome ids each dimension's rows may carry. pregnancy_lactation rows name their
+# own outcome and are never paired with a baseline, so they carry none.
+OUTCOME_IDS = {
+    "liver": {"acute_liver_injury", "acute_liver_failure"},
+    "gi_bleeding": {"upper_gi_bleeding"},
+    "kidney": {"aki_hospital"},
+    "cardiovascular_bp": {"mi_stroke"},
+    "anticholinergic_cognitive": {"delirium_hospital"},
+    "sedation_falls": {"fall_injury", "fracture", "hip_fracture"},
+    "serotonergic_interactions": {"serotonin_syndrome"},
+    "anticoagulant_bleeding": {"major_bleeding"},
+    "pregnancy_lactation": set(),
+}
+EXPOSURE_WINDOWS = {"community_oral", "long_term", "inpatient"}
+COMPARATORS = {"non_use", "within_group"}
 GRADES = {"meta_analysis", "cohort", "case_control", "regulatory"}
 TOKEN = re.compile(r"[a-z0-9_]+")
 YEAR = re.compile(r"\b(19|20)\d\d\b")
@@ -135,7 +151,40 @@ def _applies(row: dict[str, Any], where: str) -> dict[str, Any]:
     return {"persona": persona, "condition": condition, "medication_type": medication}
 
 
+def _outcome(row: dict[str, Any], dimension: str, where: str) -> tuple[bool, str | None]:
+    """Rule 10 and 18: whether the row measures the dimension's outcome, and which one."""
+    match = row.get("outcome_match")
+    if not isinstance(match, bool):
+        raise ValueError(f"{where}: outcome_match must be true or false")
+    outcome = row.get("outcome")
+    if outcome == "other" or (dimension == "pregnancy_lactation" and outcome is None):
+        if outcome == "other" and match:
+            raise ValueError(f"{where}: outcome other cannot match")
+        return match, None
+    if outcome not in OUTCOME_IDS[dimension]:
+        raise ValueError(
+            f"{where}: outcome {outcome} is not one of {sorted(OUTCOME_IDS[dimension])}"
+        )
+    return match, outcome
+
+
 def _relative_risk(row: dict[str, Any], where: str) -> dict[str, Any]:
+    dimension = _dimension(row, where)
+    outcome_match, outcome = _outcome(row, dimension, where)
+    if row.get("exposure_window") not in EXPOSURE_WINDOWS:
+        raise ValueError(f"{where}: exposure_window must be one of {sorted(EXPOSURE_WINDOWS)}")
+    if row.get("comparator") not in COMPARATORS:
+        raise ValueError(f"{where}: comparator must be one of {sorted(COMPARATORS)}")
+    dose = row.get("dose_mg_per_day")
+    if dose is not None:
+        low, high = dose
+        if not (low is None or high is None or 0 <= low < high):
+            raise ValueError(f"{where}: dose range {dose}")
+    applies = _applies(row, where)
+    if row["comparator"] == "within_group" and not (
+        applies["condition"] or applies["medication_type"]
+    ):
+        raise ValueError(f"{where}: a within_group row must name its group in applies_to")
     if row["measure"] not in MEASURES:
         raise ValueError(f"{where}: unknown measure {row['measure']}")
     if row["grade"] not in GRADES:
@@ -145,8 +194,13 @@ def _relative_risk(row: dict[str, Any], where: str) -> dict[str, Any]:
     if not (0 < low <= estimate <= high):
         raise ValueError(f"{where}: estimate {estimate} outside its interval {low}-{high}")
     return {
-        "dimension": _dimension(row, where),
-        **_applies(row, where),
+        "dimension": dimension,
+        **applies,
+        "outcome": outcome,
+        "outcome_match": outcome_match,
+        "exposure_window": row["exposure_window"],
+        "comparator": row["comparator"],
+        "dose_mg_per_day": dose,
         "measure": row["measure"],
         "estimate": estimate,
         "ci95": [low, high],
@@ -178,12 +232,19 @@ def _insufficient(row: dict[str, Any], where: str) -> dict[str, Any]:
 
 
 def _baseline(row: dict[str, Any], where: str) -> dict[str, Any]:
+    dimension = _dimension(row, where)
+    outcome_match, outcome = _outcome(row, dimension, where)
+    if not isinstance(row.get("excludes_class_users"), bool):
+        raise ValueError(f"{where}: excludes_class_users must be true or false")
     incidence = float(row["annual_incidence"])
     if not 0 < incidence < 1:
         raise ValueError(f"{where}: annual incidence {incidence} is not a probability")
     return {
-        "dimension": _dimension(row, where),
+        "dimension": dimension,
         **_applies(row, where),
+        "outcome": outcome,
+        "outcome_match": outcome_match,
+        "excludes_class_users": row["excludes_class_users"],
         "annual_incidence": incidence,
         "as_reported": row["as_reported"],
         "population": row["population"],
@@ -195,8 +256,11 @@ def _read_yaml(path: Path) -> Any:
     return yaml.safe_load(path.read_text(encoding="utf-8"))
 
 
-def collect(signals_path: Path = SIGNALS) -> tuple[dict[str, Any], dict[str, list[str]]]:
-    """The evidence table and, by ingredient file, the dimensions it is missing (rule 9)."""
+def collect(
+    signals_path: Path = SIGNALS,
+) -> tuple[dict[str, Any], dict[str, list[str]], list[str]]:
+    """The evidence table, by ingredient file the dimensions it is missing (rule 9), and the rows
+    the v1.1 rules dropped."""
     if not signals_path.exists():
         raise FileNotFoundError(f"{signals_path} missing; run `uv run pipeline evidence signals`")
     signals: dict[str, list[dict[str, Any]]] = json.loads(signals_path.read_text(encoding="utf-8"))
@@ -204,10 +268,14 @@ def collect(signals_path: Path = SIGNALS) -> tuple[dict[str, Any], dict[str, lis
     rows: dict[str, list[dict[str, Any]]] = {}
     gaps: dict[str, list[dict[str, Any]]] = {}
     baselines: list[dict[str, Any]] = []
+    max_doses: dict[str, float] = {}
     for path in sorted(EVIDENCE.glob("*.yaml")):
         data = _read_yaml(path)
         for i, row in enumerate(data.get("baselines") or []):
             baselines.append(_baseline(row, f"{path.name} baseline {i}"))
+        for row in data.get("max_daily_doses") or []:
+            _source(row["source"], f"{path.name} max dose {row['ingredient']}")
+            max_doses[row["ingredient"]] = float(row["max_daily_dose_mg"])
         if data.get("group") == "baselines":
             continue
         for kind, target in (("relative_risks", rows), ("insufficient", gaps)):
@@ -217,6 +285,21 @@ def collect(signals_path: Path = SIGNALS) -> tuple[dict[str, Any], dict[str, lis
                     raise ValueError(f"{where}: no ingredient file {row['ingredient']}.yaml")
                 parse = _relative_risk if kind == "relative_risks" else _insufficient
                 target.setdefault(row["ingredient"], []).append(parse(row, where))
+
+    dropped: list[str] = []
+    for stem in list(rows):
+        rows[stem], auto, why = _usable(stem, rows[stem], max_doses.get(stem))
+        dropped += why
+        gaps.setdefault(stem, []).extend(
+            g
+            for g in auto
+            if not any(
+                e["dimension"] == g["dimension"] and _scope(e) == _scope(g)
+                for e in gaps.get(stem, [])
+            )
+        )
+    baselines, why = _usable_baselines(baselines)
+    dropped += why
 
     # Rule 9: an ingredient is covered when every outcome dimension v0 rated above 0 for it has
     # a row or an insufficient entry. Uncovered ingredients are left out, so products with them
@@ -243,11 +326,128 @@ def collect(signals_path: Path = SIGNALS) -> tuple[dict[str, Any], dict[str, lis
         }
     table = {
         "method": "docs/scoring/v1-method.md",
+        "version": "1.1",
         "course_days": 10,
         "ingredients": dict(sorted(ingredients.items())),
         "baselines": baselines,
     }
-    return table, uncovered
+    return table, uncovered, dropped
+
+
+def _scope(gap: dict[str, Any]) -> tuple[tuple[str, ...], ...]:
+    return tuple(tuple(gap[k]) for k in ("personas", "conditions", "medication_types"))
+
+
+def _usable(
+    stem: str, rows: list[dict[str, Any]], max_dose: float | None
+) -> tuple[list[dict[str, Any]], list[dict[str, Any]], list[str]]:
+    """Rules 8.1, 10, 11 and 19: the rows the engine may use, insufficient entries for pairs left
+    with none, and a line per dropped row for the coverage report."""
+    keep: list[dict[str, Any]] = []
+    dropped: list[str] = []
+    for row in rows:
+        cite = row["citation"]["section"]
+        if not row["outcome_match"]:
+            dropped.append(f"{stem} {row['dimension']}: outcome does not match ({cite})")
+        elif row["exposure_window"] != "community_oral":
+            dropped.append(f"{stem} {row['dimension']}: {row['exposure_window']} exposure ({cite})")
+        else:
+            keep.append(row)
+
+    # Rule 8.1: of a source's dose strata for one pair, the one holding the label maximum.
+    strata: dict[tuple[Any, ...], list[dict[str, Any]]] = {}
+    for row in keep:
+        if row["dose_mg_per_day"] is not None:
+            key = (
+                row["dimension"],
+                row["persona"],
+                row["condition"],
+                row["medication_type"],
+                row["citation"]["url"],
+            )
+            strata.setdefault(key, []).append(row)
+    for group in strata.values():
+        if max_dose is None:
+            raise ValueError(f"{stem}: dose strata but no max_daily_doses entry (rule 8.1)")
+        chosen = _stratum_for(group, max_dose)
+        for row in group:
+            if row is not chosen:
+                keep.remove(row)
+                dropped.append(
+                    f"{stem} {row['dimension']}: stratum {row['dose_mg_per_day']} mg/day, "
+                    f"not the label maximum {max_dose:g} ({row['citation']['section']})"
+                )
+
+    # Rule 19: a pair whose rows were all dropped is insufficient for the profiles they covered.
+    auto: list[dict[str, Any]] = []
+    for row in rows:
+        same = [
+            k
+            for k in keep
+            if k["dimension"] == row["dimension"]
+            and (k["persona"], k["condition"], k["medication_type"])
+            == (row["persona"], row["condition"], row["medication_type"])
+        ]
+        if row in keep or same:
+            continue
+        gap = {
+            "dimension": row["dimension"],
+            "personas": [] if row["persona"] == "all" else [row["persona"]],
+            "conditions": [row["condition"]] if row["condition"] else [],
+            "medication_types": [row["medication_type"]] if row["medication_type"] else [],
+            "reason": "Only estimates that do not meet rules 10 and 11 were found "
+            f"({row['citation']['section']}).",
+        }
+        if not any(a["dimension"] == gap["dimension"] and _scope(a) == _scope(gap) for a in auto):
+            auto.append(gap)
+    return keep, auto, dropped
+
+
+def _stratum_for(group: list[dict[str, Any]], max_dose: float) -> dict[str, Any]:
+    def low(r: dict[str, Any]) -> float:
+        return r["dose_mg_per_day"][0] or 0.0
+
+    def high(r: dict[str, Any]) -> float:
+        return r["dose_mg_per_day"][1] if r["dose_mg_per_day"][1] is not None else math.inf
+
+    holding = [r for r in group if low(r) <= max_dose <= high(r)]
+    if holding:
+        return min(holding, key=low)
+    below = [r for r in group if high(r) < max_dose]
+    if not below:
+        raise ValueError(f"no stratum at or below the label maximum {max_dose}")
+    return max(below, key=high)
+
+
+def _usable_baselines(
+    baselines: list[dict[str, Any]],
+) -> tuple[list[dict[str, Any]], list[str]]:
+    """Rules 10 and 15."""
+    dropped = []
+    keep = []
+    for b in baselines:
+        if b["outcome_match"]:
+            keep.append(b)
+        else:
+            dropped.append(
+                f"baseline {b['dimension']} {b['persona']}: outcome does not match "
+                f"({b['citation']['section']})"
+            )
+
+    def key(b: dict[str, Any]) -> tuple[Any, ...]:
+        return (b["dimension"], b["outcome"], b["persona"], b["condition"], b["medication_type"])
+
+    excluding = {key(b) for b in keep if b["excludes_class_users"]}
+    out = []
+    for b in keep:
+        if key(b) in excluding and not b["excludes_class_users"]:
+            dropped.append(
+                f"baseline {b['dimension']} {b['persona']}: a rate without class users exists "
+                f"({b['citation']['section']})"
+            )
+        else:
+            out.append(b)
+    return out, dropped
 
 
 def render(signals_path: Path = SIGNALS) -> str:
@@ -255,7 +455,7 @@ def render(signals_path: Path = SIGNALS) -> str:
 
 
 def coverage_report(signals_path: Path = SIGNALS) -> str:
-    table, uncovered = collect(signals_path)
+    table, uncovered, dropped = collect(signals_path)
     ingredients = table["ingredients"]
     lines = [
         "# Evidence coverage (v1)",
@@ -267,6 +467,9 @@ def coverage_report(signals_path: Path = SIGNALS) -> str:
         lines += ["## Not covered (products with these are unrated)", ""]
         lines += [f"- {stem}: no row for {', '.join(dims)}" for stem, dims in uncovered.items()]
         lines.append("")
+    lines += ["## Rows not used (rules 8.1, 10, 11, 15)", ""]
+    lines += [f"- {line}" for line in dropped] or ["None."]
+    lines.append("")
     lines += ["## FAERS signal with no published estimate (flagged for review)", ""]
     for entry in ingredients.values():
         estimated = {r["dimension"] for r in entry["relative_risks"]}

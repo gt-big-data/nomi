@@ -1,6 +1,7 @@
 # Scoring v1: evidence-based excess risk
 
-Status: locked on 2026-11-18, before any v1 score was computed. Changing a rule in this file
+Status: v1.0 locked on 2026-11-18, before any v1 score was computed. v1.1 (section 8) added on
+2026-11-18 after the independent evidence review; see its change log. Changing a rule in this file
 needs a new version number, and the change log says why. No rule here may be changed because of
 the score it gives a particular product.
 
@@ -123,3 +124,66 @@ evidence table was still being collected, before any v1 score existed.
 9. **Coverage.** A product is scored only when every active ingredient has been through the
    evidence review: each outcome dimension the v0 knowledge base rated above 0 for it has a
    relative-risk row or an insufficient-evidence entry. Otherwise it is unrated, as in v0.
+
+## 8. Version 1.1: rules from the independent evidence review
+
+Change log. The first independent review (2026-11-18) found inputs that did not measure what
+sections 1 and 2 require: a kidney baseline counting mild blood-test AKI, a kidney risk for
+chronic renal impairment, a single study used where a meta-analysis existed, risks measured
+inside a subgroup multiplied by whole-population rates, multi-year and in-hospital exposures
+standing in for a 10-day course, and bleeding counted twice for anticoagulant users. These rules
+make sections 1 and 2 checkable on every row. They were written from the review's findings about
+the inputs, not from any score, and apply to every ingredient alike.
+
+10. **Outcome match.** Every relative-risk and baseline row records `outcome_match: true` only
+    when its outcome is the dimension's outcome in section 1 at the serious level (hospital
+    admission, emergency visit or death). A broader outcome (any AKI from blood tests, chronic
+    kidney disease, any bleeding) or a different one (fracture for a fall-injury baseline) is
+    `false`. Rows with `false` are not used; if nothing else applies the pair is insufficient
+    evidence. A relative risk and its baseline must measure the same outcome.
+11. **Exposure match.** Every relative-risk row records `exposure: community_oral` (current or
+    recent use outside hospital, any duration, oral or the product's route), `long_term`
+    (exposure defined by months or years of continuous use) or `inpatient` (given in hospital,
+    including intravenous). Only `community_oral` rows are used.
+12. **Comparator.** Every relative-risk row records `comparator: non_use` or `within_group`. A
+    `within_group` row (for example NSAID plus diuretic against diuretic alone) is used only with
+    a baseline for that same group (same condition or co-medication). Without one, the pair is
+    insufficient evidence for that profile; the general row is not used in its place.
+13. **Preference order is strict.** A meta-analysis that reports a quotable pooled estimate for
+    the outcome and exposure is used over any single study, whether or not its full text could
+    be opened. Among meta-analyses, the most recent with the largest population.
+14. **Dose strata.** Where a source reports dose strata, every stratum is recorded with its
+    `dose_mg_per_day` range. The stratum used is set in section 8.1.
+15. **Baselines.** A baseline that excludes users of the ingredient's class is used over one that
+    does not, when the source reports both. Where the source's age bands do not match the
+    persona's, the band that covers the largest share of the persona's age range is used; ties go
+    to the older band.
+16. **No double counting.** When `anticoagulant_bleeding` has a term for a profile, its baseline
+    already includes gastrointestinal bleeding, so the `gi_bleeding` term is dropped for that
+    profile.
+17. **Scoped notes** (supersedes the open part of rule 7). Insufficient-evidence notes for
+    `pregnancy_lactation` are shown only to pregnant and breastfeeding profiles, and for
+    `anticoagulant_bleeding` only to profiles on anticoagulants or antiplatelets.
+
+### 8.1 Dose stratum (decided 2026-11-18, before any v1.1 score)
+
+Where an ingredient has dose-stratified rows, the stratum used is the one whose
+`dose_mg_per_day` range contains the most the ingredient may be taken per day for adults
+without a doctor: the daily maximum in the FDA OTC monograph, or, for an ingredient sold OTC
+under an NDA, its approved OTC label. That maximum is recorded once per ingredient as
+`max_daily_dose_mg` with its citation. The score then covers any use the label permits. When no
+stratum contains the maximum, the highest stratum below it is used.
+
+### 8.2 How v1.1 is applied (fixed before any v1.1 score)
+
+18. **Outcome ids.** Every relative-risk and baseline row carries an `outcome` id from a fixed list
+    per dimension (for falls: `fall_injury`, `fracture` or `hip_fracture`). A relative risk is
+    paired only with a baseline that has the same id. Within one dimension, ingredients whose
+    rows measure different outcomes form separate terms, and the dimension counts the largest
+    of them, since one outcome contains the other (a fracture is a fall injury) and adding them
+    would count the same harm twice.
+19. **What the build drops.** Relative-risk rows with `outcome_match: false` or an exposure
+    other than `community_oral`, dose strata other than the one rule 8.1 picks, and baselines
+    with `outcome_match: false` are left out of the app's table and listed in
+    `pipeline/reports/evidence_coverage.md`. A pair left with no usable row becomes insufficient
+    evidence for the profiles the dropped rows applied to.

@@ -25,6 +25,15 @@ const cite = {
   citation: "Test A. 2020",
 };
 
+// One outcome id per dimension for the made-up rows (rule 18).
+const OUTCOME: Record<string, string> = {
+  liver: "acute_liver_injury",
+  kidney: "aki_hospital",
+  gi_bleeding: "upper_gi_bleeding",
+  sedation_falls: "fall_injury",
+  anticoagulant_bleeding: "major_bleeding",
+};
+
 function rr(
   dimension: string,
   estimate: number,
@@ -35,6 +44,8 @@ function rr(
     persona: "all",
     condition: null,
     medication_type: null,
+    outcome: OUTCOME[dimension] ?? null,
+    comparator: "non_use",
     measure: "RR",
     estimate,
     ci95: [estimate * 0.8, estimate * 1.2],
@@ -70,6 +81,7 @@ const base = (dimension: string, annual: number, applies: Partial<RelativeRisk> 
   persona: "all",
   condition: null,
   medication_type: null,
+  outcome: OUTCOME[dimension] ?? null,
   annual_incidence: annual,
   as_reported: "",
   citation: cite,
@@ -233,6 +245,56 @@ test("bad evidence numbers fail the check", () => {
   const ev = evidence([rr("liver", Number.NaN)]);
   assert.throws(() => checkEvidence(ev));
   assert.throws(() => scaleScore(Number.NaN));
+});
+
+test("a risk measured inside a group needs that group's baseline", () => {
+  const diuretics = { ...ADULT, medicationTypes: ["diuretics"] };
+  const rows = [
+    rr("kidney", 1.2),
+    rr("kidney", 3, { medication_type: "diuretics", comparator: "within_group" }),
+  ];
+  // Only a whole-population baseline: the group row can't use it, and the general row is not
+  // used in its place.
+  const without = evidence(rows, [], [base("kidney", 0.0365)]);
+  const record = scored(scoreV1(product([A]), diuretics, RATINGS, without));
+  assert.equal(record.score, 100);
+  assert.ok(record.explanation.some((e) => e.template_id === "engine_v1_insufficient"));
+  // With the diuretic users' own rate: 0.0365 * 2 * 10/365 = 2e-3.
+  const withGroup = evidence(
+    rows,
+    [],
+    [base("kidney", 0.0365), base("kidney", 0.0365, { medication_type: "diuretics" })],
+  );
+  const grouped = scored(scoreV1(product([A]), diuretics, RATINGS, withGroup));
+  assert.equal(grouped.score, Math.round(100 - 25 * (Math.log10(2e-3) + 5)));
+});
+
+test("a risk pairs only with a baseline for the same outcome, and the larger outcome counts", () => {
+  const ev = evidence(
+    [rr("sedation_falls", 2, { outcome: "fracture" })],
+    [rr("sedation_falls", 3)],
+    [base("sedation_falls", 0.0365, { outcome: "fracture" }), base("sedation_falls", 0.00365)],
+  );
+  const record = scored(scoreV1(product([A, B]), ADULT, RATINGS, ev));
+  // Fracture term 1e-3 beats the fall-injury term 2e-4; they are not added.
+  assert.equal(record.score, 50);
+});
+
+test("stomach bleeding is not counted again for anticoagulant users", () => {
+  const ev = evidence(
+    [rr("gi_bleeding", 2), rr("anticoagulant_bleeding", 2, { medication_type: "anticoagulants" })],
+    [],
+    [
+      base("gi_bleeding", 0.0365),
+      base("anticoagulant_bleeding", 0.0365, { medication_type: "anticoagulants" }),
+    ],
+  );
+  const onBloodThinner = { ...ADULT, medicationTypes: ["anticoagulants"] };
+  const record = scored(scoreV1(product([A]), onBloodThinner, RATINGS, ev));
+  assert.deepEqual(
+    record.contributions.map((c) => c.dimension),
+    ["anticoagulant_bleeding"],
+  );
 });
 
 // The bundled evidence: every reference product is rated for these personas, and the scores are
