@@ -17,12 +17,15 @@ class Settings(BaseSettings):
     raw_store: str | None = "hf://datasets/nomi-bdbi-gt/nomi-raw-data"
     hf_token: str | None = None
 
-    # Cloudflare R2, reserved for publishing the app dataset (NOMI-038)
+    # Cloudflare R2 (ADR-0003); unused while the build publishes to DATASET_STORE
     r2_account_id: str | None = None
     r2_access_key_id: str | None = None
     r2_secret_access_key: str | None = None
     r2_bucket: str | None = None
     r2_endpoint: str | None = None
+
+    # Published app dataset store (NOMI-038)
+    dataset_store: str = "hf://datasets/nomi-bdbi-gt/nomi-dataset"
 
     @field_validator("data_dir")
     @classmethod
