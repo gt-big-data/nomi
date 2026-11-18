@@ -111,7 +111,7 @@ relative_risks:
     location: Table 4, Paracetamol rows (cases, controls, OR (95% CI))
     quote: Paracetamol < 2000 351 593 1.2 (1.0, 1.4)
   selection_note: 'Rule 21: every dose stratum of Lewis Table 4 for this ingredient is recorded; the build picks the one holding the label maximum. Table 4 footnotes: ''(*) All doses in mg day-1'' and ''All odds ratios are relative to nonuse of any NANSAID or aspirin''. The PDF (scanned 2002 typesetting) renders the ''>='' sign of the top stratum as a control glyph; the row order (<, range, then the open top stratum) shows it is ''>=''. Rule 20: a case-control design; the paper reports no incidence in non-users.'
-  match_note: 'Not used (third review, rule 12): Table 4 footnote ''All odds ratios are relative to nonuse of any NANSAID or aspirin''; the source does not state that the reference group did not use paracetamol, so the comparator is not stated non-use of the ingredient.'
+  match_note: 'Not used (rule 29): Table 4 footnote ''All odds ratios are relative to nonuse of any NANSAID or aspirin''. The stated reference group does not exclude paracetamol users, so the comparator is not non-use of paracetamol or its class.'
 - ingredient: acetaminophen
   dimension: gi_bleeding
   applies_to: {persona: all, condition: null, medication_type: null}
@@ -133,7 +133,7 @@ relative_risks:
     location: Table 4, Paracetamol rows (cases, controls, OR (95% CI))
     quote: 2000–3999 96 150 1.2 (0.8, 1.7)
   selection_note: 'Rule 21: every dose stratum of Lewis Table 4 for this ingredient is recorded; the build picks the one holding the label maximum. Table 4 footnotes: ''(*) All doses in mg day-1'' and ''All odds ratios are relative to nonuse of any NANSAID or aspirin''. The PDF (scanned 2002 typesetting) renders the ''>='' sign of the top stratum as a control glyph; the row order (<, range, then the open top stratum) shows it is ''>=''. Rule 20: a case-control design; the paper reports no incidence in non-users.'
-  match_note: 'Not used (third review, rule 12): Table 4 footnote ''All odds ratios are relative to nonuse of any NANSAID or aspirin''; the source does not state that the reference group did not use paracetamol, so the comparator is not stated non-use of the ingredient.'
+  match_note: 'Not used (rule 29): Table 4 footnote ''All odds ratios are relative to nonuse of any NANSAID or aspirin''. The stated reference group does not exclude paracetamol users, so the comparator is not non-use of paracetamol or its class.'
 - ingredient: acetaminophen
   dimension: gi_bleeding
   applies_to: {persona: all, condition: null, medication_type: null}
@@ -155,7 +155,7 @@ relative_risks:
     location: Table 4, Paracetamol rows (cases, controls, OR (95% CI))
     quote: ≥ 4000 31 42 1.0 (0.5, 1.9)
   selection_note: 'Rule 21: every dose stratum of Lewis Table 4 for this ingredient is recorded; the build picks the one holding the label maximum. Table 4 footnotes: ''(*) All doses in mg day-1'' and ''All odds ratios are relative to nonuse of any NANSAID or aspirin''. The PDF (scanned 2002 typesetting) renders the ''>='' sign of the top stratum as a control glyph; the row order (<, range, then the open top stratum) shows it is ''>=''. Rule 20: a case-control design; the paper reports no incidence in non-users.'
-  match_note: 'Not used (third review, rule 12): Table 4 footnote ''All odds ratios are relative to nonuse of any NANSAID or aspirin''; the source does not state that the reference group did not use paracetamol, so the comparator is not stated non-use of the ingredient.'
+  match_note: 'Not used (rule 29): Table 4 footnote ''All odds ratios are relative to nonuse of any NANSAID or aspirin''. The stated reference group does not exclude paracetamol users, so the comparator is not non-use of paracetamol or its class.'
 - ingredient: acetaminophen
   dimension: kidney
   applies_to: {persona: all, condition: null, medication_type: null}

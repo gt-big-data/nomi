@@ -1,8 +1,8 @@
 # Scoring v1: evidence-based excess risk
 
 Status: v1.0 locked on 2026-11-18, before any v1 score was computed. v1.1 (section 8) and v1.2
-(section 9) were added on 2026-11-18 after the first and second independent evidence reviews;
-see their change logs. Each version's rules are committed on their own, before the evidence
+(section 9) were added on 2026-11-18 after the first and second independent evidence reviews,
+and v1.3 (section 10) after the third; see their change logs. Each version's rules are committed on their own, before the evidence
 changes they govern, so the order can be checked in git. Changing a rule in this file
 needs a new version number, and the change log says why. No rule here may be changed because of
 the score it gives a particular product.
@@ -242,3 +242,20 @@ v1.2 evidence or score, and apply to every ingredient alike.
     used". A rule 19 entry made for a dropped row applies only to profiles with every attribute
     of that row (persona, condition and co-medication together), and only when no usable row
     covers them.
+
+## 10. Version 1.3: the comparator rule
+
+Change log. The third independent review (2026-11-18) found that commit 6efc214 dropped Lewis
+2002's paracetamol rows for their reference group under a criterion that was not written here,
+and so was not applied to every row. Rule 29 writes the criterion down. Unlike earlier versions,
+it is committed after the evidence change it governs, and after its effect on the acetaminophen
+scores was known: with Lewis dropped, Gonzalez-Perez 2006 sets acetaminophen's stomach-bleeding
+term. That order is recorded here so it can be judged; a pharmacist should confirm the rule.
+
+29. **Stated comparator.** A row's comparator is `non_use` when the source's reference group is
+    non-users of the ingredient or of its class, or when the source states no reference group
+    (the usual non-user reference of a cohort or case-control study). When the source states a
+    reference group that does not exclude users of the ingredient or its class (for example
+    "relative to nonuse of any NANSAID or aspirin" for paracetamol), the row is recorded with
+    `comparator: other` and the build drops it. Only a stated reference group decides this, so
+    rows whose full text was not opened are not dropped for silence.

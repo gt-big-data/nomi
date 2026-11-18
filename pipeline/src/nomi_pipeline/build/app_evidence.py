@@ -95,8 +95,8 @@ OUTCOME_IDS = {
     "pregnancy_lactation": set(),
 }
 EXPOSURE_WINDOWS = {"community_oral", "long_term", "inpatient"}
-# Rule 12: "other" records a reference group the source does not state is non-use of the
-# ingredient; the build drops it.
+# Rule 29: "other" records a stated reference group that does not exclude users of the
+# ingredient or its class; the build drops it.
 COMPARATORS = {"non_use", "within_group", "other"}
 INTERVALS = {"confidence", "credible"}
 # Rule 26: a baseline's age standardisation. Only all_ages bars it.
@@ -411,7 +411,7 @@ def _usable(
             dropped.append(f"{stem} {row['dimension']}: outcome does not match ({cite})")
         elif row["comparator"] == "other":
             dropped.append(
-                f"{stem} {row['dimension']}: comparator is not non-use (rule 12) ({cite})"
+                f"{stem} {row['dimension']}: stated comparator is not non-use (rule 29) ({cite})"
             )
         elif row["exposure_window"] != "community_oral":
             dropped.append(f"{stem} {row['dimension']}: {row['exposure_window']} exposure ({cite})")
@@ -473,14 +473,14 @@ def _usable(
         pool = at_max or group
         best = min(GRADE_RANK[r["grade"]] for r in pool)
         winners = [r for r in pool if GRADE_RANK[r["grade"]] == best]
-        why = (
-            "an estimate at the label maximum dose exists (rule 21)"
-            if at_max
-            else "a higher-grade estimate exists (rule 13)"
-        )
         for row in group:
             if row not in winners:
                 keep.remove(row)
+                why = (
+                    "an estimate at the label maximum dose exists (rule 21)"
+                    if at_max and row not in at_max
+                    else "a higher-grade estimate exists (rule 13)"
+                )
                 dropped.append(f"{stem} {row['dimension']}: {why} ({row['citation']['section']})")
 
     # Rules 19 and 28: a dropped row's profiles get an insufficient entry only when no usable

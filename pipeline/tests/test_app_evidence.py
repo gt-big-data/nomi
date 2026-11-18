@@ -295,4 +295,4 @@ def test_a_meta_analysis_beats_a_single_study_among_strata_at_the_maximum() -> N
 
 def test_a_comparator_other_than_non_use_is_dropped() -> None:
     keep, _, dropped = ae._usable("acetaminophen", [_parsed(comparator="other")], None)
-    assert keep == [] and "rule 12" in dropped[0]
+    assert keep == [] and "rule 29" in dropped[0]
