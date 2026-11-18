@@ -2,7 +2,7 @@
 
 32 of 32 ingredients covered.
 
-## Rows not used (rules 8.1, 10, 11, 15)
+## Rows not used (rules 8.1, 10, 11, 13, 21, 25, 26, 29, 30)
 
 - baseline kidney adult_18_64: outcome does not match (Sawhney 2018, Table 3, 'People with AKI in age strata' row 40-69 years, Grampian 2012 column)
 - baseline kidney adult_65_plus: outcome does not match (Sawhney 2018, Table 3, 'People with AKI in age strata' row >=70 years, Grampian 2012 column)
@@ -17,6 +17,7 @@
 - baseline gi_bleeding adult_18_64: a rate without class users exists (Hreinsson 2013, Table I)
 - baseline gi_bleeding adult_65_plus: a rate without class users exists (Hreinsson 2013, Table I)
 - baseline gi_bleeding all: a rate without class users exists (Bedene 2022, Results, 'Risk of severe UGIB in the four different (sub)populations'; Table 2, subgroup A)
+- acetaminophen gi_bleeding: long_term exposure (Gonzalez-Perez 2006, Table 1, paracetamol duration, adjusted RR)
 - acetaminophen gi_bleeding: stated comparator is not non-use (rule 29) (Lewis 2002, Table 4, Paracetamol rows (cases, controls, OR (95% CI)))
 - acetaminophen gi_bleeding: stated comparator is not non-use (rule 29) (Lewis 2002, Table 4, Paracetamol rows (cases, controls, OR (95% CI)))
 - acetaminophen gi_bleeding: stated comparator is not non-use (rule 29) (Lewis 2002, Table 4, Paracetamol rows (cases, controls, OR (95% CI)))
@@ -28,12 +29,13 @@
 - acetaminophen cardiovascular_bp: long_term exposure (Chan 2006, Abstract, Methods and Results)
 - acetaminophen cardiovascular_bp: outcome does not match (Fulton 2015, Abstract)
 - acetaminophen liver: stratum [None, 2999] mg/day, not the label maximum 4000 (Donati 2016, Table 5, paracetamol <3000 mg row)
+- acetaminophen gi_bleeding: stratum [2001, None] mg/day, holds the label maximum 4000 but a narrower stratum does (rule 30) (Gonzalez-Perez 2006, Abstract (nested case-control study))
 - acetaminophen gi_bleeding: stratum [None, 1000] mg/day, not the label maximum 4000 (Gonzalez-Perez 2006, Table 1, paracetamol dose, adjusted RR)
 - acetaminophen gi_bleeding: stratum [1001, 1999] mg/day, not the label maximum 4000 (Gonzalez-Perez 2006, Table 1, paracetamol dose, adjusted RR)
 - acetaminophen gi_bleeding: stratum [2000, 2000] mg/day, not the label maximum 4000 (Gonzalez-Perez 2006, Table 1, paracetamol dose, adjusted RR)
 - acetaminophen gi_bleeding: stratum [2001, 3999] mg/day, not the label maximum 4000 (Gonzalez-Perez 2006, Table 1, paracetamol dose, adjusted RR)
 - acetaminophen gi_bleeding: an estimate at the label maximum dose exists (rule 21) (Gonzalez-Perez 2006, Abstract)
-- acetaminophen gi_bleeding: an estimate at the label maximum dose exists (rule 21) (Gonzalez-Perez 2006, Abstract (nested case-control study))
+- acetaminophen gi_bleeding: an estimate at the label maximum dose exists (rule 21) (Gonzalez-Perez 2006, Table 1, paracetamol duration, adjusted RR)
 - diphenhydramine anticholinergic_cognitive: outcome does not match (Agostini 2001, Abstract, Results)
 - diphenhydramine anticholinergic_cognitive: outcome does not match (Reisinger 2023, Results, H1-antihistamines paragraph; GRADE evidence profile, Diphenhydramine row ('Pooled aOR 1.50 (0.64 to 3.54)'))
 - omeprazole kidney: outcome does not match (Han 2023, Abstract; Section 3.3; Table 2 (all studies row))

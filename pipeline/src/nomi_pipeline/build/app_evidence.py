@@ -444,9 +444,14 @@ def _usable(
         for row in group:
             if row is not chosen:
                 keep.remove(row)
+                why = (
+                    f"holds the label maximum {max_dose:g} but a narrower stratum does (rule 30)"
+                    if _holds(row["dose_mg_per_day"], max_dose)
+                    else f"not the label maximum {max_dose:g}"
+                )
                 dropped.append(
                     f"{stem} {row['dimension']}: stratum {row['dose_mg_per_day']} mg/day, "
-                    f"not the label maximum {max_dose:g} ({row['citation']['section']})"
+                    f"{why} ({row['citation']['section']})"
                 )
 
     # Rules 13 and 21: within one pair and scope, a stratum holding the label maximum beats an
@@ -533,7 +538,8 @@ def _stratum_for(group: list[dict[str, Any]], max_dose: float) -> dict[str, Any]
 
     holding = [r for r in group if low(r) <= max_dose <= high(r)]
     if holding:
-        return min(holding, key=low)
+        # Rule 30: the narrowest, by highest floor and then lowest ceiling.
+        return min(holding, key=lambda r: (-low(r), high(r)))
     below = [r for r in group if high(r) < max_dose]
     if not below:
         raise ValueError(f"no stratum at or below the label maximum {max_dose}")
@@ -598,7 +604,7 @@ def coverage_report(signals_path: Path = SIGNALS) -> str:
         lines += ["## Not covered (products with these are unrated)", ""]
         lines += [f"- {stem}: no row for {', '.join(dims)}" for stem, dims in uncovered.items()]
         lines.append("")
-    lines += ["## Rows not used (rules 8.1, 10, 11, 15)", ""]
+    lines += ["## Rows not used (rules 8.1, 10, 11, 13, 21, 25, 26, 29, 30)", ""]
     lines += [f"- {line}" for line in dropped] or ["None."]
     lines.append("")
     lines += ["## FAERS signal with no published estimate (flagged for review)", ""]

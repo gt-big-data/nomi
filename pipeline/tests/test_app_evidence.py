@@ -296,3 +296,10 @@ def test_a_meta_analysis_beats_a_single_study_among_strata_at_the_maximum() -> N
 def test_a_comparator_other_than_non_use_is_dropped() -> None:
     keep, _, dropped = ae._usable("acetaminophen", [_parsed(comparator="other")], None)
     assert keep == [] and "rule 29" in dropped[0]
+
+
+def test_the_narrowest_stratum_holding_the_maximum_is_used() -> None:
+    wide = _parsed(estimate=3.6, ci95=[2.6, 5.1], dose_mg_per_day=[2001, None])
+    narrow = _parsed(estimate=6.5, ci95=[2.4, 17.6], dose_mg_per_day=[4000, None])
+    keep, _, _ = ae._usable("acetaminophen", [wide, narrow], 4000)
+    assert [r["estimate"] for r in keep] == [6.5]

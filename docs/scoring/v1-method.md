@@ -2,10 +2,10 @@
 
 Status: v1.0 locked on 2026-11-18, before any v1 score was computed. v1.1 (section 8) and v1.2
 (section 9) were added on 2026-11-18 after the first and second independent evidence reviews,
-and v1.3 (section 10) after the third; see their change logs. Versions 1.0 to 1.2 were committed on their own, before the evidence
-changes they govern, so the order can be checked in git. v1.3 is the one exception: its rule
-was written after the evidence change and with its score effect known, and is pending
-pharmacist sign-off (section 10). Changing a rule in this file needs a new version number, and
+and v1.3 and v1.4 (sections 10 and 11) after the third; see their change logs. Versions 1.0 to 1.2 were committed on their own, before the evidence
+changes they govern, so the order can be checked in git. v1.3 and v1.4 are the exceptions: their rules
+were written after the evidence changes and with their score effects known, and are pending
+pharmacist sign-off (sections 10 and 11). Changing a rule in this file needs a new version number, and
 the change log says why. No rule here may be changed because of the score it gives a particular
 product.
 
@@ -274,3 +274,19 @@ prefer, are used.
     "relative to nonuse of any NANSAID or aspirin" for paracetamol), the row is recorded with
     `comparator: other` and the build drops it. Only a stated reference group decides this, so
     rows whose full text was not opened are not dropped for silence.
+
+## 11. Version 1.4: nested dose strata
+
+Change log. The third review found that Gonzalez-Perez 2006 reports three estimates that all
+contain the 4,000 mg label maximum: more than 2 g a day (RR 3.6), 4,000 mg or more (6.5), and
+more than 2 g a day for under 3 months (10.5). No rule chose between them, and the build's
+tie-break (the stratum with the lowest floor) was undocumented. The user chose rule 30 on
+2026-11-18 from three written options, knowing their effects on acetaminophen (82, 75 or about
+69); it is recorded here so it can be judged. No other source in the table has nested strata
+that contain the label maximum, so the rule changes no other score.
+
+30. **Nested strata.** When several dose strata from one source contain the label maximum, the
+    narrowest is used: the highest floor, then the lowest ceiling. Every stratum is still
+    recorded with its stated range (rule 14). A stratum defined by duration as well as dose is
+    not a dose stratum; it is recorded with `dose_mg_per_day: null` and a note, and rule 21
+    gives way to the dose stratum that contains the maximum.
