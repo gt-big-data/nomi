@@ -21,7 +21,8 @@ import { openDataset } from "@/lib/dataset";
 import { lookupBarcode, strengthText, type Lookup, type Product } from "@/lib/db";
 import { DEMO_PROFILES, type ScoredFor, setScoredFor, useScoredFor } from "@/lib/demoProfiles";
 import { profileNotes, recordTier, riskRows, type ScoreRecord } from "@/lib/referenceScores";
-import { score } from "@/scoring/engine";
+import { scoreV1 } from "@/scoring/engineV1";
+import { EVIDENCE } from "@/scoring/evidenceData";
 import { RATINGS } from "@/scoring/ratingsData";
 import { useSavedProfile } from "@/storage/activeProfile";
 import { recordScan, setTaking, useCabinet } from "@/storage/cabinet";
@@ -195,7 +196,7 @@ const REVIEWED = new Set(["sampled_ok", "pharmacist_reviewed"]);
  */
 function scoreFor(product: Product, profile: Profile): Scored {
   const { medication_types, ...rest } = toScoringProfile(profile);
-  const result = score(product, { ...rest, medicationTypes: medication_types }, RATINGS);
+  const result = scoreV1(product, { ...rest, medicationTypes: medication_types }, RATINGS, EVIDENCE);
   return "missing" in result
     ? { missing: result.missing, childLabel: result.reason === "child_label" }
     : { record: result, missing: [], childLabel: false };

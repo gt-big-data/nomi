@@ -1,0 +1,106 @@
+group: acetaminophen
+compiled: 2026-11-18
+relative_risks:
+  - ingredient: acetaminophen
+    dimension: liver
+    applies_to: {persona: all, condition: null, medication_type: null}
+    measure: OR
+    estimate: 2.04
+    ci95: [1.35, 3.09]
+    exposure: "paracetamol use, average daily dose <3000 mg (adjusted OR vs non-use)"
+    population: "adults admitted with acute liver injury, 9 Italian hospitals 2010-2014; 179 cases, 1,770 matched controls; alcohol abuse an exclusion criterion"
+    grade: case_control
+    source:
+      citation: "Donati M, Conforti A, Lenti MC, et al. Risk of acute and serious liver injury associated to nimesulide and other NSAIDs: data from drug-induced liver injury case-control study in Italy. Br J Clin Pharmacol 2016;82(1):238-248"
+      url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC4917796/"
+      location: "Table 5, paracetamol <3000 mg row"
+      quote: "<3000 mg | 42 (23.46) | 265 (14.97) | 2.22 (1.48-3.15) | 2.04 (1.35-3.09)"
+    selection_note: "No meta-analysis of acute liver injury at therapeutic doses was found. This is the only case-control study opened that reports a dose-stratified adjusted OR for serious (hospitalised) acute liver injury vs non-use; the <3000 mg stratum is within labeled dosing, so it is the therapeutic-dose estimate. Same table gives >=3000 mg adjusted OR 6.31 (3.56-11.20), which may include supratherapeutic use. The paper does not state that overdose cases were excluded, so pharmacist review should confirm. A Barcelona prospective surveillance study (cited in Sabate et al. BMC Gastroenterol 2011) gave RR 7.0 (99% CI 3.3-13.9) but is a case series with an exposure-prevalence denominator, so it ranks lower."
+  - ingredient: acetaminophen
+    dimension: gi_bleeding
+    applies_to: {persona: all, condition: null, medication_type: null}
+    measure: RR
+    estimate: 1.3
+    ci95: [1.2, 1.5]
+    exposure: "paracetamol use vs non-use (summary of 12 studies)"
+    population: "12 observational studies 1980-2004 of upper GI complications (bleeding or perforation)"
+    grade: meta_analysis
+    source:
+      citation: "Gonzalez-Perez A, Rodriguez LA. Upper gastrointestinal complications among users of paracetamol. Basic Clin Pharmacol Toxicol 2006;98(3):297-303. PMID 16611205"
+      url: "https://pubmed.ncbi.nlm.nih.gov/16611205/"
+      location: "Abstract"
+      quote: "Among the twelve studies identified in the systematic review, estimates ranged from 0.2 through 2.0 with a summary estimate of 1.3 (95% CI, 1.2-1.5)."
+    selection_note: "Most recent pooled estimate found, and the largest (12 studies). The alternative, Lewis et al. Br J Clin Pharmacol 2002;54:320-326 (IPD meta-analysis of 3 case-control studies, 2,472 cases), gives OR 1.2 (1.1-1.5) for any use and 1.2 (1.0-1.4) for <2000 mg/day, consistent with this. Gonzalez-Perez's own nested case-control found RR 3.6 (2.6-5.1) above 2 g/day and no increase below; the authors attribute much of the association to channelling/confounding. Not stratified by dose here because applies_to cannot express dose."
+  - ingredient: acetaminophen
+    dimension: kidney
+    applies_to: {persona: all, condition: null, medication_type: null}
+    measure: OR
+    estimate: 1.23
+    ci95: [1.07, 1.40]
+    exposure: "acetaminophen use vs non-use (adjusted, random-effects pool of cohort studies)"
+    population: "adults; 5 observational studies (2 cohort, 3 case-control), 13,114 participants"
+    grade: meta_analysis
+    source:
+      citation: "Kanchanasurakit S, Arsu A, Siriplabpla W, Duangjai A, Saokaew S. Acetaminophen use and risk of renal impairment: a systematic review and meta-analysis. Kidney Res Clin Pract 2020;39(1):81-92. PMID 32172553"
+      url: "https://pubmed.ncbi.nlm.nih.gov/32172553/"
+      location: "Abstract, Results"
+      quote: "In the random-effects meta-analysis of the cohort study, acetaminophen use was shown to have statistically significant effects on the increased risk of renal impairment (adjusted odds ratio 1.23; 95% confidence interval, 1.07-1.40)."
+    selection_note: "Only meta-analysis found. Caveat: the outcome is 'renal impairment' (AKI and/or CKD, definitions not uniform per the accompanying editorial, Park KRCP 2020;39:4-6), not AKI alone, and exposure is largely long-term use, so it likely overstates risk for a 10-day course. Single-cohort AKI-specific estimates (de Vries et al., acute renal failure relative rates 1.16-1.44 by adherence, as tabulated in Roberts et al. Ann Rheum Dis 2016) are of similar size."
+  - ingredient: acetaminophen
+    dimension: cardiovascular_bp
+    applies_to: {persona: all, condition: null, medication_type: null}
+    measure: RR
+    estimate: 1.09
+    ci95: [0.91, 1.30]
+    exposure: "acetaminophen use 5-14 days/month vs non-use"
+    population: "Nurses' Health Study, 70,971 US women aged 44-69 free of CVD at baseline, 12 years follow-up; outcome nonfatal MI, fatal CHD, nonfatal and fatal stroke"
+    grade: cohort
+    source:
+      citation: "Chan AT, Manson JE, Albert CM, et al. Nonsteroidal antiinflammatory drugs, acetaminophen, and the risk of cardiovascular events. Circulation 2006;113(12):1578-1587 (stratum as tabulated in Roberts E et al. Paracetamol: not as safe as we thought? Ann Rheum Dis 2016;75:552-559, Table 1)"
+      url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC4789700/"
+      location: "Roberts et al. Table 1, Chan et al. row; Chan et al. abstract (PMID 16534006)"
+      quote: "Roberts Table 1: 5-14 days/month 1.09 (0.91 to 1.30). Chan abstract: 'Women who reported occasional (1 to 21 d/mo) use of NSAIDs or acetaminophen did not experience a significant increase in the risk of cardiovascular events.'"
+    selection_note: "No meta-analysis pools paracetamol and MI/stroke (Roberts 2016 systematic review could not pool CV outcomes). Chan 2006 is the largest prospective cohort with a dose-frequency gradient vs non-users. The 5-14 days/month stratum best matches a 10-day OTC course. Frequent use (>=22 d/mo) gave RR 1.35 (1.14-1.59) and >=15 tablets/week RR 1.68 (1.10-2.58) per the abstract; these reflect chronic use, not the course v1 scores. Women only."
+  - ingredient: acetaminophen
+    dimension: cardiovascular_bp
+    applies_to: {persona: adult_65_plus, condition: hypertension, medication_type: null}
+    measure: HR
+    estimate: 1.17
+    ci95: [0.99, 1.37]
+    exposure: "prescribed acetaminophen, time-dependent exposure over 10 years vs unexposed"
+    population: "24,496 hypertensive adults aged >=65, UK Clinical Practice Research Datalink"
+    grade: cohort
+    source:
+      citation: "Fulton RL, Walters MR, Morton R, et al. Acetaminophen use and risk of myocardial infarction and stroke in a hypertensive cohort. Hypertension 2015;65(5):1008-1014. PMID 25801870"
+      url: "https://pubmed.ncbi.nlm.nih.gov/25801870/"
+      location: "Abstract"
+      quote: "There was no relationship between risk of myocardial infarction, stroke, or any cardiovascular event and acetaminophen exposure on adjusted analysis (hazard ratio, 0.98; 95% confidence interval, 0.76-1.27; hazard ratio, 1.09; 95% confidence interval, 0.86-1.38; and hazard ratio, 1.17; 95% confidence interval, 0.99-1.37; respectively)."
+    selection_note: "Largest cohort reporting the hypertension subgroup with verified prescriptions. 'Any cardiovascular event' (HR 1.17) chosen because the v1 outcome combines MI, stroke and HF; MI alone HR 0.98, stroke alone HR 1.09. No increased risk detected."
+  - ingredient: acetaminophen
+    dimension: pregnancy_lactation
+    applies_to: {persona: pregnant, condition: null, medication_type: null}
+    measure: OR
+    estimate: 0.95
+    ci95: [0.86, 1.05]
+    exposure: "prenatal paracetamol exposure vs unexposed sibling (sibling-comparison, adjusted)"
+    population: "sibling-comparison studies in a systematic review of 43 studies (17 in meta-analysis); outcome child ADHD"
+    grade: meta_analysis
+    source:
+      citation: "D'Antonio F, Flacco ME, Valle LD, Prasad S, Manzoli L, Samara A, Khalil A. Prenatal paracetamol exposure and child neurodevelopment: a systematic review and meta-analysis. Lancet Obstet Gynaecol Womens Health 2026;2(3):e190-e198. doi:10.1016/S3050-5038(25)00211-0"
+      url: "https://openaccess.sgul.ac.uk/id/eprint/118190"
+      location: "Abstract, Findings"
+      quote: "ADHD (0·95, 0·86–1·05; p=0·31)"
+    selection_note: "Most recent meta-analysis; restricted to sibling designs, which control for familial confounding that drove the earlier pooled RRs of about 1.2-1.4 (BMJ 2025 umbrella review). Same paper: autism OR 0.98 (0.93-1.03), intellectual disability OR 0.93 (0.69-1.24). No increased risk detected. Outcome is a childhood neurodevelopmental diagnosis, not a neonatal harm; pharmacist to confirm fit."
+insufficient:
+  - ingredient: acetaminophen
+    dimension: liver
+    reason: "applies_to condition heavy_alcohol_use: no study opened gives a relative risk of serious liver injury at therapeutic doses in heavy drinkers vs non-use. Louvet et al. Hepatology 2021 is a case series (reports proportions, e.g. 93% of therapeutic-dose ALI cases were excessive drinkers); RCT meta-analyses in alcoholics report no injury but no serious-outcome RR. Donati 2016 excluded alcohol abuse."
+  - ingredient: acetaminophen
+    dimension: liver
+    reason: "applies_to condition liver_disease: no relative risk for acute liver injury/failure at therapeutic doses in chronic liver disease or cirrhosis found; only a secondhand mention of a 170-patient case-control with no OR."
+  - ingredient: acetaminophen
+    dimension: anticoagulant_bleeding
+    reason: "applies_to medication_type anticoagulants: no study gives a relative risk of major bleeding for acetaminophen plus warfarin. Hylek et al. JAMA 1998 (case-control) reports INR >6 only; Shalansky et al. (171 patients, OR 1.42, 1.05-1.90) counts any bleeding including minor; a 111-patient VKA study gave bleeding OR 2.09 (0.66-6.65), mostly minor. Searched web and PubMed for population-based cohort/nested case-control of acetaminophen-warfarin major bleeding."
+  - ingredient: acetaminophen
+    dimension: pregnancy_lactation
+    reason: "applies_to persona breastfeeding: no meta-analysis or cohort reporting a quantitative infant harm from acetaminophen during lactation found."

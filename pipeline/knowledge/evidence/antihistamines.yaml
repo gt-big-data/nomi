@@ -1,0 +1,213 @@
+group: antihistamines
+compiled: 2026-11-18
+relative_risks:
+  # --- sedation_falls: first-generation class estimate (Cho 2018 meta-analysis) ---
+  - ingredient: diphenhydramine
+    dimension: sedation_falls
+    applies_to: {persona: adult_65_plus, condition: null, medication_type: null}
+    measure: OR
+    estimate: 2.03
+    ci95: [1.49, 2.76]
+    exposure: "first-generation antihistamine use"
+    population: "elderly patients; 5 observational studies (3 case-control, 1 cohort, 1 case-crossover) through November 2016"
+    grade: meta_analysis
+    source:
+      citation: "Cho H, Myung J, Suh HS, Kang HY. Osteoporos Int 2018;29(10):2163-2170"
+      url: "https://pubmed.ncbi.nlm.nih.gov/30046925/"
+      location: "Abstract, Results"
+      quote: "First-generation antihistamine use showed significantly increased risk of injurious falls or fracture (odds ratio [OR] 2.03, 95% confidence interval [CI] 1.49-2.76, heterogeneity: p = 0.41, I2 = 0%)."
+    selection_note: "Class estimate for first-generation antihistamines; the only meta-analysis of antihistamines and injurious falls or fracture found (PubMed search 2026-11-18). Outcome is injurious falls or fracture combined, which matches the v1 outcome. Authors note the pooled studies were largely unadjusted. No estimate found for adults 18-64 or for co-medication with sedatives."
+  - ingredient: doxylamine
+    dimension: sedation_falls
+    applies_to: {persona: adult_65_plus, condition: null, medication_type: null}
+    measure: OR
+    estimate: 2.03
+    ci95: [1.49, 2.76]
+    exposure: "first-generation antihistamine use"
+    population: "elderly patients; 5 observational studies (3 case-control, 1 cohort, 1 case-crossover) through November 2016"
+    grade: meta_analysis
+    source:
+      citation: "Cho H, Myung J, Suh HS, Kang HY. Osteoporos Int 2018;29(10):2163-2170"
+      url: "https://pubmed.ncbi.nlm.nih.gov/30046925/"
+      location: "Abstract, Results"
+      quote: "First-generation antihistamine use showed significantly increased risk of injurious falls or fracture (odds ratio [OR] 2.03, 95% confidence interval [CI] 1.49-2.76, heterogeneity: p = 0.41, I2 = 0%)."
+    selection_note: "Class estimate for first-generation antihistamines applied to doxylamine; no doxylamine-specific falls estimate found. Only meta-analysis on this question. No estimate found for adults 18-64 or for co-medication with sedatives."
+  - ingredient: chlorpheniramine
+    dimension: sedation_falls
+    applies_to: {persona: adult_65_plus, condition: null, medication_type: null}
+    measure: OR
+    estimate: 2.03
+    ci95: [1.49, 2.76]
+    exposure: "first-generation antihistamine use"
+    population: "elderly patients; 5 observational studies (3 case-control, 1 cohort, 1 case-crossover) through November 2016"
+    grade: meta_analysis
+    source:
+      citation: "Cho H, Myung J, Suh HS, Kang HY. Osteoporos Int 2018;29(10):2163-2170"
+      url: "https://pubmed.ncbi.nlm.nih.gov/30046925/"
+      location: "Abstract, Results"
+      quote: "First-generation antihistamine use showed significantly increased risk of injurious falls or fracture (odds ratio [OR] 2.03, 95% confidence interval [CI] 1.49-2.76, heterogeneity: p = 0.41, I2 = 0%)."
+    selection_note: "Class estimate for first-generation antihistamines applied to chlorpheniramine; no chlorpheniramine-specific falls estimate found. Only meta-analysis on this question. No estimate found for adults 18-64 or for co-medication with sedatives."
+
+  # --- anticholinergic_cognitive: diphenhydramine (Agostini 2001 cohort) ---
+  - ingredient: diphenhydramine
+    dimension: anticholinergic_cognitive
+    applies_to: {persona: adult_65_plus, condition: null, medication_type: null}
+    measure: RR
+    estimate: 1.7
+    ci95: [1.3, 2.3]
+    exposure: "diphenhydramine received during hospitalization vs not"
+    population: "426 hospitalized medical patients aged 70 years or older, prospective cohort, one US university hospital"
+    grade: cohort
+    source:
+      citation: "Agostini JV, Leo-Summers LS, Inouye SK. Arch Intern Med 2001;161(17):2091-2097"
+      url: "https://pubmed.ncbi.nlm.nih.gov/11570937/"
+      location: "Abstract, Results"
+      quote: "The diphenhydramine-exposed group was at an increased risk for any delirium symptoms (relative risk [RR], 1.7; 95% confidence interval [CI], 1.3-2.3)"
+    selection_note: "No meta-analysis with a pooled delirium estimate exists (Clegg & Young 2011 review is narrative). Only ingredient-specific cohort with delirium (CAM-rated) vs non-use. Inpatient setting and outcome is delirium symptoms, not adjudicated delirium; pharmacist should confirm transfer to OTC community use. No quantitative estimate found for adults under 65 or for the glaucoma or enlarged_prostate modifiers."
+
+  # --- pregnancy_lactation ---
+  - ingredient: diphenhydramine
+    dimension: pregnancy_lactation
+    applies_to: {persona: pregnant, condition: null, medication_type: null}
+    measure: OR
+    estimate: 1.07
+    ci95: [0.98, 1.16]
+    exposure: "first-trimester H1 antihistamine exposure"
+    population: "cohort studies within a meta-analysis of 37 studies published to December 2015"
+    grade: meta_analysis
+    source:
+      citation: "Etwel F, Faught LH, Rieder MJ, Koren G. Drug Saf 2017;40(2):121-132"
+      url: "https://pubmed.ncbi.nlm.nih.gov/27878468/"
+      location: "Abstract, Results"
+      quote: "In cohort studies, the risk of major malformation in the offspring of women exposed to H1 antihistamines was not higher than that of the control population (OR 1.07; 95% CI 0.98-1.16)."
+    selection_note: "Class estimate for all H1 antihistamines (major malformation). Most recent and largest meta-analysis; per-drug results not available in the accessible abstract. Cohort pooled estimate preferred over case-control (OR 1.05; 95% CI 0.90-1.23) as it is the primary reported result. Breastfeeding: no study reports a quantitative risk of serious neonatal harm, so no breastfeeding row."
+  - ingredient: chlorpheniramine
+    dimension: pregnancy_lactation
+    applies_to: {persona: pregnant, condition: null, medication_type: null}
+    measure: OR
+    estimate: 1.07
+    ci95: [0.98, 1.16]
+    exposure: "first-trimester H1 antihistamine exposure"
+    population: "cohort studies within a meta-analysis of 37 studies published to December 2015"
+    grade: meta_analysis
+    source:
+      citation: "Etwel F, Faught LH, Rieder MJ, Koren G. Drug Saf 2017;40(2):121-132"
+      url: "https://pubmed.ncbi.nlm.nih.gov/27878468/"
+      location: "Abstract, Results"
+      quote: "In cohort studies, the risk of major malformation in the offspring of women exposed to H1 antihistamines was not higher than that of the control population (OR 1.07; 95% CI 0.98-1.16)."
+    selection_note: "Class estimate for all H1 antihistamines; no chlorpheniramine-specific meta-analysis found. Breastfeeding: no study reports a quantitative risk of serious neonatal harm, so no breastfeeding row."
+  - ingredient: doxylamine
+    dimension: pregnancy_lactation
+    applies_to: {persona: pregnant, condition: null, medication_type: null}
+    measure: RR
+    estimate: 0.94
+    ci95: [0.80, 1.10]
+    exposure: "doxylamine exposure in pregnancy (mostly for nausea and vomiting of pregnancy)"
+    population: "re-analysis of 22 primary studies from a 1997 meta-analysis; 14,624 doxylamine-exposed women"
+    grade: meta_analysis
+    source:
+      citation: "Chin JW, Gregor S, Persaud N. Am J Perinatol 2014;31(8):701-710"
+      url: "https://pubmed.ncbi.nlm.nih.gov/24323370/"
+      location: "Abstract"
+      quote: "for doxylamine exposure, the summary relative risk and odds ratio were 0.94 (95% CI: 0.80-1.10) and 1.07 (95% CI: 0.93-1.23), respectively."
+    selection_note: "Ingredient-specific pooled estimate for congenital malformations (cohort studies, RR). Preferred over the class estimate of Etwel 2017 because it is doxylamine-specific. Breastfeeding: no study reports a quantitative risk of serious neonatal harm, so no breastfeeding row."
+  - ingredient: cetirizine
+    dimension: pregnancy_lactation
+    applies_to: {persona: pregnant, condition: null, medication_type: null}
+    measure: OR
+    estimate: 1.07
+    ci95: [0.98, 1.16]
+    exposure: "first-trimester H1 antihistamine exposure"
+    population: "cohort studies within a meta-analysis of 37 studies published to December 2015"
+    grade: meta_analysis
+    source:
+      citation: "Etwel F, Faught LH, Rieder MJ, Koren G. Drug Saf 2017;40(2):121-132"
+      url: "https://pubmed.ncbi.nlm.nih.gov/27878468/"
+      location: "Abstract, Results"
+      quote: "In cohort studies, the risk of major malformation in the offspring of women exposed to H1 antihistamines was not higher than that of the control population (OR 1.07; 95% CI 0.98-1.16)."
+    selection_note: "Class estimate. A cetirizine-specific meta-analysis exists (Etwel et al. J Obstet Gynaecol 2014;34:392-399) but its abstract gives no number and the full text could not be opened. Breastfeeding: no study reports a quantitative risk of serious neonatal harm, so no breastfeeding row."
+  - ingredient: levocetirizine
+    dimension: pregnancy_lactation
+    applies_to: {persona: pregnant, condition: null, medication_type: null}
+    measure: OR
+    estimate: 1.07
+    ci95: [0.98, 1.16]
+    exposure: "first-trimester H1 antihistamine exposure"
+    population: "cohort studies within a meta-analysis of 37 studies published to December 2015"
+    grade: meta_analysis
+    source:
+      citation: "Etwel F, Faught LH, Rieder MJ, Koren G. Drug Saf 2017;40(2):121-132"
+      url: "https://pubmed.ncbi.nlm.nih.gov/27878468/"
+      location: "Abstract, Results"
+      quote: "In cohort studies, the risk of major malformation in the offspring of women exposed to H1 antihistamines was not higher than that of the control population (OR 1.07; 95% CI 0.98-1.16)."
+    selection_note: "Class estimate for all H1 antihistamines; no levocetirizine-specific estimate found. Breastfeeding: no study reports a quantitative risk of serious neonatal harm, so no breastfeeding row."
+  - ingredient: loratadine
+    dimension: pregnancy_lactation
+    applies_to: {persona: pregnant, condition: null, medication_type: null}
+    measure: OR
+    estimate: 1.28
+    ci95: [0.69, 2.39]
+    exposure: "loratadine use during pregnancy"
+    population: "3 case-control and 7 cohort studies, 453,053 male births in 8 countries, 1989-2007"
+    grade: meta_analysis
+    source:
+      citation: "Schwarz EB, Moretti ME, Nayak S, Koren G. Drug Saf 2008;31(9):775-788"
+      url: "https://pubmed.ncbi.nlm.nih.gov/18707192/"
+      location: "Abstract, Results"
+      quote: "Women who used loratadine during pregnancy were not significantly more likely to have a son with hypospadias (unadjusted odds ratio [OR] 1.27, 95% CI 0.73, 2.23; adjusted OR 1.28, 95% CI 0.69, 2.39)."
+    selection_note: "Ingredient-specific meta-analysis of the specific harm suspected for loratadine (hypospadias); adjusted OR used. Chosen over the class estimate because it is loratadine-specific. Breastfeeding: no study reports a quantitative risk of serious neonatal harm, so no breastfeeding row."
+  - ingredient: fexofenadine
+    dimension: pregnancy_lactation
+    applies_to: {persona: pregnant, condition: null, medication_type: null}
+    measure: OR
+    estimate: 1.07
+    ci95: [0.98, 1.16]
+    exposure: "first-trimester H1 antihistamine exposure"
+    population: "cohort studies within a meta-analysis of 37 studies published to December 2015"
+    grade: meta_analysis
+    source:
+      citation: "Etwel F, Faught LH, Rieder MJ, Koren G. Drug Saf 2017;40(2):121-132"
+      url: "https://pubmed.ncbi.nlm.nih.gov/27878468/"
+      location: "Abstract, Results"
+      quote: "In cohort studies, the risk of major malformation in the offspring of women exposed to H1 antihistamines was not higher than that of the control population (OR 1.07; 95% CI 0.98-1.16)."
+    selection_note: "Class estimate. The fexofenadine-specific Danish cohort (Andersson et al. JAMA Pediatr 2020;174:e201316) compares fexofenadine with cetirizine (prevalence OR 1.06; 95% CI 0.81-1.37), not with non-use, so it does not give an RR vs no use. Breastfeeding: no study reports a quantitative risk of serious neonatal harm, so no breastfeeding row."
+insufficient:
+  - ingredient: doxylamine
+    dimension: anticholinergic_cognitive
+    reason: "No doxylamine-specific delirium estimate and no meta-analysis with a first-generation class estimate. Only class-level evidence is Bridgman et al. J Am Geriatr Soc 2025;73:3475 (cross-sectional, physician-preference design; encounter-level sensitivity OR 1.45, 95% CI 1.38-1.51, all first-generation agents, inpatients 65+), which is not a cohort/case-control or meta-analysis and cannot establish temporality. Searched PubMed (antihistamine/doxylamine AND delirium/confusion)."
+  - ingredient: chlorpheniramine
+    dimension: anticholinergic_cognitive
+    reason: "No chlorpheniramine-specific delirium estimate and no meta-analysis with a class estimate. Bridgman et al. 2025 (cross-sectional, class-level OR 1.45, 95% CI 1.38-1.51 at encounter level) noted for pharmacist review but not admissible under v1 grades. Searched PubMed."
+  - ingredient: cetirizine
+    dimension: anticholinergic_cognitive
+    reason: "No study reports delirium or acute confusion risk for cetirizine vs non-use. Searched PubMed (cetirizine AND delirium/confusion AND cohort/case-control/meta-analysis)."
+  - ingredient: levocetirizine
+    dimension: anticholinergic_cognitive
+    reason: "No study reports delirium risk for levocetirizine vs non-use; enlarged_prostate modifier also has no quantitative estimate. Searched PubMed."
+  - ingredient: loratadine
+    dimension: anticholinergic_cognitive
+    reason: "No study reports delirium risk for loratadine vs non-use. Searched PubMed."
+  - ingredient: cetirizine
+    dimension: sedation_falls
+    reason: "No estimate vs non-use. Taniguchi et al. Br J Clin Pharmacol 2026;92:2230 (1.3 million Japanese patients) compares higher-sedation (cetirizine, levocetirizine, loratadine) with lower-sedation second-generation agents and finds no difference (risk difference -0.0%, 95% CI -0.1 to 0.0), but has no non-user comparator. Cho 2018 meta-analysis gives no second-generation pooled estimate in its abstract."
+  - ingredient: levocetirizine
+    dimension: sedation_falls
+    reason: "Same as cetirizine: only head-to-head second-generation comparison (Taniguchi 2026, no difference), no estimate vs non-use."
+  - ingredient: cetirizine
+    dimension: kidney
+    reason: "No study reports acute kidney injury risk with cetirizine vs non-use (v0 rating reflects renal dose adjustment, not nephrotoxicity). Searched PubMed (cetirizine AND kidney/renal AND cohort/case-control/meta-analysis)."
+  - ingredient: levocetirizine
+    dimension: kidney
+    reason: "No study reports acute kidney injury risk with levocetirizine vs non-use (v0 rating reflects renal clearance/dose adjustment). Searched PubMed."
+  - ingredient: fexofenadine
+    dimension: kidney
+    reason: "No study reports acute kidney injury risk with fexofenadine vs non-use (v0 rating reflects renal dose adjustment). Searched PubMed."
+  - ingredient: loratadine
+    dimension: kidney
+    reason: "v0 has only a kidney_disease modifier (dose adjustment); no study reports acute kidney injury risk for loratadine. Searched PubMed."
+  - ingredient: cetirizine
+    dimension: liver
+    reason: "v0 has only a liver_disease modifier; no study reports a quantitative acute liver injury risk for cetirizine vs non-use (case reports only)."
+  - ingredient: loratadine
+    dimension: liver
+    reason: "v0 has only a liver_disease modifier (dose adjustment); no study reports a quantitative acute liver injury risk for loratadine."

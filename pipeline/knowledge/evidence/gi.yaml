@@ -1,0 +1,886 @@
+group: gi
+compiled: 2026-11-18
+relative_risks:
+  - ingredient: omeprazole
+    dimension: kidney
+    applies_to: {persona: all, condition: null, medication_type: null}
+    measure: RR
+    estimate: 1.44
+    ci95: [1.08, 1.91]
+    exposure: "PPI use vs non-use (pooled observational definitions; mostly prescription use, not limited to short courses)"
+    population: "4 cohort and 5 case-control studies, about 2.6 million patients (534,003 PPI users), searched to Oct 2016"
+    grade: meta_analysis
+    source:
+      citation: "Nochaiwong S et al. Nephrol Dial Transplant 2018;33(2):331-342"
+      url: "https://pubmed.ncbi.nlm.nih.gov/28339835/"
+      location: "Abstract, Results"
+      quote: "Compared with non-PPI users, PPI users experienced a significantly higher risk of AKI [RR 1.44 (95% CI 1.08-1.91); P = 0.013; SOE, low]"
+    selection_note: "Class-level PPI estimate. Largest dedicated meta-analysis of PPI and AKI found (~2.6M patients); umbrella reviews (Salvo 2021, PMID 34114655) cite RR 1.61 (1.16-2.22, n=2,396,640) from a smaller pooled population. Exposure mismatch: included studies mostly measured prescription PPI use over months to years, not a 10-day OTC course. GRADE strength of evidence low."
+  - ingredient: omeprazole
+    dimension: kidney
+    applies_to: {persona: adult_65_plus, condition: null, medication_type: null}
+    measure: HR
+    estimate: 2.52
+    ci95: [2.27, 2.79]
+    exposure: "PPI initiation (new prescription); hospital admission with AKI within 120 days"
+    population: "Ontario residents aged 66+ starting a PPI 2002-2011, 290,592 initiators vs propensity-matched controls"
+    grade: cohort
+    source:
+      citation: "Antoniou T et al. CMAJ Open 2015;3(2):E166-71"
+      url: "https://pubmed.ncbi.nlm.nih.gov/26389094/"
+      location: "Abstract, Results"
+      quote: "The rates of acute kidney injury (13.49 v. 5.46 per 1000 person-years, respectively; hazard ratio [HR] 2.52, 95% CI 2.27 to 2.79)"
+    selection_note: "Class-level PPI estimate. No meta-analysis reports an age-stratified AKI estimate; this is the largest cohort in older adults. Outcome is hospital admission with AKI (matches v1). 120-day window after initiation is closer to a short course than multi-year studies, but still longer than 10 days and prescription doses."
+  - ingredient: omeprazole
+    dimension: kidney
+    applies_to: {persona: all, condition: kidney_disease, medication_type: null}
+    measure: HR
+    estimate: 2.89
+    ci95: [1.91, 4.38]
+    exposure: "new PPI prescription as time-dependent variable; median cumulative prescription 1 year"
+    population: "CKD-REIN cohort, France: 1,940 nephrology outpatients with CKD stages 2-5 (eGFR >= 15) not using PPI at baseline"
+    grade: cohort
+    source:
+      citation: "Liabeuf S et al. Br J Clin Pharmacol 2021;87(7):2967-2976"
+      url: "https://pubmed.ncbi.nlm.nih.gov/33368448/"
+      location: "Abstract, Results"
+      quote: "The adjusted HR for AKI associated with PPI prescription was 2.89 (95% CI, 1.91-4.38)."
+    selection_note: "Class-level PPI estimate. Only CKD-specific AKI estimate found. Exposure mismatch: long-term prescription use (median 1 year), not a 10-day OTC course. Abstract does not state whether AKI required hospital care."
+  - ingredient: omeprazole
+    dimension: sedation_falls
+    applies_to: {persona: all, condition: null, medication_type: null}
+    measure: RR
+    estimate: 1.2
+    ci95: [1.14, 1.28]
+    exposure: "PPI use vs no PPI (studies with follow-up >= 1 year); short-term use RR 1.20 (1.15-1.25), low dose RR 1.17 (1.05-1.29)"
+    population: "24 observational studies, 2,103,800 participants (319,568 hip fracture patients), 1990-2018"
+    grade: meta_analysis
+    source:
+      citation: "Poly TN et al. Osteoporos Int 2019;30(1):103-114"
+      url: "https://pubmed.ncbi.nlm.nih.gov/30539272/"
+      location: "Abstract, Results"
+      quote: "Patients with PPIs had a greater risk of hip fracture than those without PPI therapy (RR 1.20, 95% CI 1.14-1.28, p < 0.0001)."
+    selection_note: "Class-level PPI estimate. Most recent general-population meta-analysis with the largest population (2.1M); outcome is hip fracture only (a subset of v1 fall injury). Zhou 2016 (PMID 26462494) gives any-site RR 1.33 (1.15-1.54) in a smaller pool. Mechanism is bone/calcium absorption, not sedation; the source's short-term category is still months of use, not a 10-day course."
+  - ingredient: omeprazole
+    dimension: sedation_falls
+    applies_to: {persona: adult_65_plus, condition: null, medication_type: null}
+    measure: OR
+    estimate: 1.41
+    ci95: [1.31, 1.51]
+    exposure: "PPI prescription vs none (crude ORs pooled)"
+    population: "11 observational studies in older adults"
+    grade: meta_analysis
+    source:
+      citation: "Robert V et al. Geriatr Nurs 2025;66(Pt A):103596"
+      url: "https://pubmed.ncbi.nlm.nih.gov/40848405/"
+      location: "Abstract"
+      quote: "Pooled OR, calculated using a random effect model, showed a statistically significant association between PPI prescription and overall fracture risk (OR 1.41, 95 % confidence interval 1.31-1.51, P < 0.001)."
+    selection_note: "Class-level PPI estimate. Only meta-analysis restricted to older adults. Pools crude (unadjusted) ORs, so confounding is not addressed; exposure is prescription use of unstated duration, not a 10-day course."
+  - ingredient: omeprazole
+    dimension: pregnancy_lactation
+    applies_to: {persona: pregnant, condition: null, medication_type: null}
+    measure: OR
+    estimate: 1.28
+    ci95: [1.09, 1.52]
+    exposure: "maternal PPI use during pregnancy vs non-use; outcome congenital malformations"
+    population: "26 observational studies (20 cohort, 6 case-control), 19 assessing PPIs, searched to June 2019"
+    grade: meta_analysis
+    source:
+      citation: "Li CM et al. Aliment Pharmacol Ther 2020;51(4):410-420"
+      url: "https://pubmed.ncbi.nlm.nih.gov/31909512/"
+      location: "Abstract, Results"
+      quote: "PPI use was associated with an increased risk of congenital malformations (OR 1.28, 95% CI 1.09-1.52), especially in case-control studies (OR 2.04, 1.46-2.86)."
+    selection_note: "Class-level PPI estimate. Most recent and largest meta-analysis of PPI pregnancy outcomes found; supersedes Gill 2009. Authors note power was insufficient for specific drugs or malformations. Applies to pregnant persona only; no lactation estimate found."
+  - ingredient: omeprazole
+    dimension: anticoagulant_bleeding
+    applies_to: {persona: all, condition: null, medication_type: anticoagulants}
+    measure: IRR
+    estimate: 0.66
+    ci95: [0.62, 0.69]
+    exposure: "oral anticoagulant treatment with vs without PPI cotherapy; hospitalization for upper GI bleeding"
+    population: "Medicare beneficiaries 2011-2015, 1,643,123 patients starting apixaban, dabigatran, rivaroxaban or warfarin (mean age 76.4)"
+    grade: cohort
+    source:
+      citation: "Ray WA et al. JAMA 2018;320(21):2221-2230"
+      url: "https://pubmed.ncbi.nlm.nih.gov/30512099/"
+      location: "Abstract, Results"
+      quote: "risk of upper gastrointestinal tract bleeding hospitalizations (n = 2245) was lower overall (IRR, 0.66 [95% CI, 0.62-0.69])"
+    selection_note: "Class-level PPI estimate. Largest study of PPI cotherapy with anticoagulants; PPIs are protective (IRR < 1), so this gives 0 points. v0 modifier for anticoagulants is therefore not supported as a harm."
+  - ingredient: omeprazole
+    dimension: cardiovascular_bp
+    applies_to: {persona: all, condition: null, medication_type: antiplatelets}
+    measure: RR
+    estimate: 1.08
+    ci95: [0.78, 1.5]
+    exposure: "PPI (98% omeprazole or esomeprazole) added to clopidogrel vs clopidogrel without PPI; composite cardiovascular events"
+    population: "4 RCTs, 4,341 patients on clopidogrel (96% also on aspirin)"
+    grade: meta_analysis
+    source:
+      citation: "Axelsson MAB et al. Basic Clin Pharmacol Toxicol 2025;137(2):e70087"
+      url: "https://pubmed.ncbi.nlm.nih.gov/40685887/"
+      location: "Abstract"
+      quote: "Regarding efficacy with or without a PPI, the pooled risk ratio (RR) and risk difference (RD) were 1.08 (95% confidence interval (CI) 0.78; 1.50)"
+    selection_note: "Most recent meta-analysis of RCTs on the clopidogrel-PPI interaction, restricted to low risk-of-bias trials; (es)omeprazole specifically. Exposure is prescription PPI over the trial duration with clopidogrel. Not significant."
+  - ingredient: omeprazole
+    dimension: anticholinergic_cognitive
+    applies_to: {persona: all, condition: null, medication_type: null}
+    measure: RR
+    estimate: 1.15
+    ci95: [1.07, 1.24]
+    exposure: "PPI administered during a medical ICU encounter (no H2RA) vs neither drug; ICD-based delirium"
+    population: "6,645 adults admitted to one US academic medical ICU 2015-2019 (45% aged 65+)"
+    grade: cohort
+    source:
+      citation: "Shiddapur A et al. Crit Care Explor 2021;3(8):e0507"
+      url: "https://pubmed.ncbi.nlm.nih.gov/34396144/"
+      location: "Abstract, Results"
+      quote: "compared with controls receiving neither medication, after controlling for mechanical ventilation and age (risk ratio, 1.36; 1.25-1.47; p < 0.001) and (risk ratio, 1.15; 1.07-1.24; p < 0.001, respectively)"
+    selection_note: "Class-level PPI estimate (second figure in quote is PPI). Only quantitative delirium estimate found. Strong mismatch: critically ill ICU patients, mostly IV stress-ulcer prophylaxis, adjusted only for ventilation and age; does not represent OTC use."
+  - ingredient: esomeprazole
+    dimension: kidney
+    applies_to: {persona: all, condition: null, medication_type: null}
+    measure: RR
+    estimate: 1.44
+    ci95: [1.08, 1.91]
+    exposure: "PPI use vs non-use (pooled observational definitions; mostly prescription use, not limited to short courses)"
+    population: "4 cohort and 5 case-control studies, about 2.6 million patients (534,003 PPI users), searched to Oct 2016"
+    grade: meta_analysis
+    source:
+      citation: "Nochaiwong S et al. Nephrol Dial Transplant 2018;33(2):331-342"
+      url: "https://pubmed.ncbi.nlm.nih.gov/28339835/"
+      location: "Abstract, Results"
+      quote: "Compared with non-PPI users, PPI users experienced a significantly higher risk of AKI [RR 1.44 (95% CI 1.08-1.91); P = 0.013; SOE, low]"
+    selection_note: "Class-level PPI estimate. Largest dedicated meta-analysis of PPI and AKI found (~2.6M patients); umbrella reviews (Salvo 2021, PMID 34114655) cite RR 1.61 (1.16-2.22, n=2,396,640) from a smaller pooled population. Exposure mismatch: included studies mostly measured prescription PPI use over months to years, not a 10-day OTC course. GRADE strength of evidence low."
+  - ingredient: esomeprazole
+    dimension: kidney
+    applies_to: {persona: adult_65_plus, condition: null, medication_type: null}
+    measure: HR
+    estimate: 2.52
+    ci95: [2.27, 2.79]
+    exposure: "PPI initiation (new prescription); hospital admission with AKI within 120 days"
+    population: "Ontario residents aged 66+ starting a PPI 2002-2011, 290,592 initiators vs propensity-matched controls"
+    grade: cohort
+    source:
+      citation: "Antoniou T et al. CMAJ Open 2015;3(2):E166-71"
+      url: "https://pubmed.ncbi.nlm.nih.gov/26389094/"
+      location: "Abstract, Results"
+      quote: "The rates of acute kidney injury (13.49 v. 5.46 per 1000 person-years, respectively; hazard ratio [HR] 2.52, 95% CI 2.27 to 2.79)"
+    selection_note: "Class-level PPI estimate. No meta-analysis reports an age-stratified AKI estimate; this is the largest cohort in older adults. Outcome is hospital admission with AKI (matches v1). 120-day window after initiation is closer to a short course than multi-year studies, but still longer than 10 days and prescription doses."
+  - ingredient: esomeprazole
+    dimension: kidney
+    applies_to: {persona: all, condition: kidney_disease, medication_type: null}
+    measure: HR
+    estimate: 2.89
+    ci95: [1.91, 4.38]
+    exposure: "new PPI prescription as time-dependent variable; median cumulative prescription 1 year"
+    population: "CKD-REIN cohort, France: 1,940 nephrology outpatients with CKD stages 2-5 (eGFR >= 15) not using PPI at baseline"
+    grade: cohort
+    source:
+      citation: "Liabeuf S et al. Br J Clin Pharmacol 2021;87(7):2967-2976"
+      url: "https://pubmed.ncbi.nlm.nih.gov/33368448/"
+      location: "Abstract, Results"
+      quote: "The adjusted HR for AKI associated with PPI prescription was 2.89 (95% CI, 1.91-4.38)."
+    selection_note: "Class-level PPI estimate. Only CKD-specific AKI estimate found. Exposure mismatch: long-term prescription use (median 1 year), not a 10-day OTC course. Abstract does not state whether AKI required hospital care."
+  - ingredient: esomeprazole
+    dimension: sedation_falls
+    applies_to: {persona: all, condition: null, medication_type: null}
+    measure: RR
+    estimate: 1.2
+    ci95: [1.14, 1.28]
+    exposure: "PPI use vs no PPI (studies with follow-up >= 1 year); short-term use RR 1.20 (1.15-1.25), low dose RR 1.17 (1.05-1.29)"
+    population: "24 observational studies, 2,103,800 participants (319,568 hip fracture patients), 1990-2018"
+    grade: meta_analysis
+    source:
+      citation: "Poly TN et al. Osteoporos Int 2019;30(1):103-114"
+      url: "https://pubmed.ncbi.nlm.nih.gov/30539272/"
+      location: "Abstract, Results"
+      quote: "Patients with PPIs had a greater risk of hip fracture than those without PPI therapy (RR 1.20, 95% CI 1.14-1.28, p < 0.0001)."
+    selection_note: "Class-level PPI estimate. Most recent general-population meta-analysis with the largest population (2.1M); outcome is hip fracture only (a subset of v1 fall injury). Zhou 2016 (PMID 26462494) gives any-site RR 1.33 (1.15-1.54) in a smaller pool. Mechanism is bone/calcium absorption, not sedation; the source's short-term category is still months of use, not a 10-day course."
+  - ingredient: esomeprazole
+    dimension: sedation_falls
+    applies_to: {persona: adult_65_plus, condition: null, medication_type: null}
+    measure: OR
+    estimate: 1.41
+    ci95: [1.31, 1.51]
+    exposure: "PPI prescription vs none (crude ORs pooled)"
+    population: "11 observational studies in older adults"
+    grade: meta_analysis
+    source:
+      citation: "Robert V et al. Geriatr Nurs 2025;66(Pt A):103596"
+      url: "https://pubmed.ncbi.nlm.nih.gov/40848405/"
+      location: "Abstract"
+      quote: "Pooled OR, calculated using a random effect model, showed a statistically significant association between PPI prescription and overall fracture risk (OR 1.41, 95 % confidence interval 1.31-1.51, P < 0.001)."
+    selection_note: "Class-level PPI estimate. Only meta-analysis restricted to older adults. Pools crude (unadjusted) ORs, so confounding is not addressed; exposure is prescription use of unstated duration, not a 10-day course."
+  - ingredient: esomeprazole
+    dimension: pregnancy_lactation
+    applies_to: {persona: pregnant, condition: null, medication_type: null}
+    measure: OR
+    estimate: 1.28
+    ci95: [1.09, 1.52]
+    exposure: "maternal PPI use during pregnancy vs non-use; outcome congenital malformations"
+    population: "26 observational studies (20 cohort, 6 case-control), 19 assessing PPIs, searched to June 2019"
+    grade: meta_analysis
+    source:
+      citation: "Li CM et al. Aliment Pharmacol Ther 2020;51(4):410-420"
+      url: "https://pubmed.ncbi.nlm.nih.gov/31909512/"
+      location: "Abstract, Results"
+      quote: "PPI use was associated with an increased risk of congenital malformations (OR 1.28, 95% CI 1.09-1.52), especially in case-control studies (OR 2.04, 1.46-2.86)."
+    selection_note: "Class-level PPI estimate. Most recent and largest meta-analysis of PPI pregnancy outcomes found; supersedes Gill 2009. Authors note power was insufficient for specific drugs or malformations. Applies to pregnant persona only; no lactation estimate found."
+  - ingredient: esomeprazole
+    dimension: anticoagulant_bleeding
+    applies_to: {persona: all, condition: null, medication_type: anticoagulants}
+    measure: IRR
+    estimate: 0.66
+    ci95: [0.62, 0.69]
+    exposure: "oral anticoagulant treatment with vs without PPI cotherapy; hospitalization for upper GI bleeding"
+    population: "Medicare beneficiaries 2011-2015, 1,643,123 patients starting apixaban, dabigatran, rivaroxaban or warfarin (mean age 76.4)"
+    grade: cohort
+    source:
+      citation: "Ray WA et al. JAMA 2018;320(21):2221-2230"
+      url: "https://pubmed.ncbi.nlm.nih.gov/30512099/"
+      location: "Abstract, Results"
+      quote: "risk of upper gastrointestinal tract bleeding hospitalizations (n = 2245) was lower overall (IRR, 0.66 [95% CI, 0.62-0.69])"
+    selection_note: "Class-level PPI estimate. Largest study of PPI cotherapy with anticoagulants; PPIs are protective (IRR < 1), so this gives 0 points. v0 modifier for anticoagulants is therefore not supported as a harm."
+  - ingredient: esomeprazole
+    dimension: cardiovascular_bp
+    applies_to: {persona: all, condition: null, medication_type: antiplatelets}
+    measure: RR
+    estimate: 1.08
+    ci95: [0.78, 1.5]
+    exposure: "PPI (98% omeprazole or esomeprazole) added to clopidogrel vs clopidogrel without PPI; composite cardiovascular events"
+    population: "4 RCTs, 4,341 patients on clopidogrel (96% also on aspirin)"
+    grade: meta_analysis
+    source:
+      citation: "Axelsson MAB et al. Basic Clin Pharmacol Toxicol 2025;137(2):e70087"
+      url: "https://pubmed.ncbi.nlm.nih.gov/40685887/"
+      location: "Abstract"
+      quote: "Regarding efficacy with or without a PPI, the pooled risk ratio (RR) and risk difference (RD) were 1.08 (95% confidence interval (CI) 0.78; 1.50)"
+    selection_note: "Most recent meta-analysis of RCTs on the clopidogrel-PPI interaction, restricted to low risk-of-bias trials; (es)omeprazole specifically. Exposure is prescription PPI over the trial duration with clopidogrel. Not significant."
+  - ingredient: esomeprazole
+    dimension: anticholinergic_cognitive
+    applies_to: {persona: all, condition: null, medication_type: null}
+    measure: RR
+    estimate: 1.15
+    ci95: [1.07, 1.24]
+    exposure: "PPI administered during a medical ICU encounter (no H2RA) vs neither drug; ICD-based delirium"
+    population: "6,645 adults admitted to one US academic medical ICU 2015-2019 (45% aged 65+)"
+    grade: cohort
+    source:
+      citation: "Shiddapur A et al. Crit Care Explor 2021;3(8):e0507"
+      url: "https://pubmed.ncbi.nlm.nih.gov/34396144/"
+      location: "Abstract, Results"
+      quote: "compared with controls receiving neither medication, after controlling for mechanical ventilation and age (risk ratio, 1.36; 1.25-1.47; p < 0.001) and (risk ratio, 1.15; 1.07-1.24; p < 0.001, respectively)"
+    selection_note: "Class-level PPI estimate (second figure in quote is PPI). Only quantitative delirium estimate found. Strong mismatch: critically ill ICU patients, mostly IV stress-ulcer prophylaxis, adjusted only for ventilation and age; does not represent OTC use."
+  - ingredient: omeprazole_magnesium
+    dimension: kidney
+    applies_to: {persona: all, condition: null, medication_type: null}
+    measure: RR
+    estimate: 1.44
+    ci95: [1.08, 1.91]
+    exposure: "PPI use vs non-use (pooled observational definitions; mostly prescription use, not limited to short courses)"
+    population: "4 cohort and 5 case-control studies, about 2.6 million patients (534,003 PPI users), searched to Oct 2016"
+    grade: meta_analysis
+    source:
+      citation: "Nochaiwong S et al. Nephrol Dial Transplant 2018;33(2):331-342"
+      url: "https://pubmed.ncbi.nlm.nih.gov/28339835/"
+      location: "Abstract, Results"
+      quote: "Compared with non-PPI users, PPI users experienced a significantly higher risk of AKI [RR 1.44 (95% CI 1.08-1.91); P = 0.013; SOE, low]"
+    selection_note: "same moiety as omeprazole"
+  - ingredient: omeprazole_magnesium
+    dimension: kidney
+    applies_to: {persona: adult_65_plus, condition: null, medication_type: null}
+    measure: HR
+    estimate: 2.52
+    ci95: [2.27, 2.79]
+    exposure: "PPI initiation (new prescription); hospital admission with AKI within 120 days"
+    population: "Ontario residents aged 66+ starting a PPI 2002-2011, 290,592 initiators vs propensity-matched controls"
+    grade: cohort
+    source:
+      citation: "Antoniou T et al. CMAJ Open 2015;3(2):E166-71"
+      url: "https://pubmed.ncbi.nlm.nih.gov/26389094/"
+      location: "Abstract, Results"
+      quote: "The rates of acute kidney injury (13.49 v. 5.46 per 1000 person-years, respectively; hazard ratio [HR] 2.52, 95% CI 2.27 to 2.79)"
+    selection_note: "same moiety as omeprazole"
+  - ingredient: omeprazole_magnesium
+    dimension: kidney
+    applies_to: {persona: all, condition: kidney_disease, medication_type: null}
+    measure: HR
+    estimate: 2.89
+    ci95: [1.91, 4.38]
+    exposure: "new PPI prescription as time-dependent variable; median cumulative prescription 1 year"
+    population: "CKD-REIN cohort, France: 1,940 nephrology outpatients with CKD stages 2-5 (eGFR >= 15) not using PPI at baseline"
+    grade: cohort
+    source:
+      citation: "Liabeuf S et al. Br J Clin Pharmacol 2021;87(7):2967-2976"
+      url: "https://pubmed.ncbi.nlm.nih.gov/33368448/"
+      location: "Abstract, Results"
+      quote: "The adjusted HR for AKI associated with PPI prescription was 2.89 (95% CI, 1.91-4.38)."
+    selection_note: "same moiety as omeprazole"
+  - ingredient: omeprazole_magnesium
+    dimension: sedation_falls
+    applies_to: {persona: all, condition: null, medication_type: null}
+    measure: RR
+    estimate: 1.2
+    ci95: [1.14, 1.28]
+    exposure: "PPI use vs no PPI (studies with follow-up >= 1 year); short-term use RR 1.20 (1.15-1.25), low dose RR 1.17 (1.05-1.29)"
+    population: "24 observational studies, 2,103,800 participants (319,568 hip fracture patients), 1990-2018"
+    grade: meta_analysis
+    source:
+      citation: "Poly TN et al. Osteoporos Int 2019;30(1):103-114"
+      url: "https://pubmed.ncbi.nlm.nih.gov/30539272/"
+      location: "Abstract, Results"
+      quote: "Patients with PPIs had a greater risk of hip fracture than those without PPI therapy (RR 1.20, 95% CI 1.14-1.28, p < 0.0001)."
+    selection_note: "same moiety as omeprazole"
+  - ingredient: omeprazole_magnesium
+    dimension: sedation_falls
+    applies_to: {persona: adult_65_plus, condition: null, medication_type: null}
+    measure: OR
+    estimate: 1.41
+    ci95: [1.31, 1.51]
+    exposure: "PPI prescription vs none (crude ORs pooled)"
+    population: "11 observational studies in older adults"
+    grade: meta_analysis
+    source:
+      citation: "Robert V et al. Geriatr Nurs 2025;66(Pt A):103596"
+      url: "https://pubmed.ncbi.nlm.nih.gov/40848405/"
+      location: "Abstract"
+      quote: "Pooled OR, calculated using a random effect model, showed a statistically significant association between PPI prescription and overall fracture risk (OR 1.41, 95 % confidence interval 1.31-1.51, P < 0.001)."
+    selection_note: "same moiety as omeprazole"
+  - ingredient: omeprazole_magnesium
+    dimension: pregnancy_lactation
+    applies_to: {persona: pregnant, condition: null, medication_type: null}
+    measure: OR
+    estimate: 1.28
+    ci95: [1.09, 1.52]
+    exposure: "maternal PPI use during pregnancy vs non-use; outcome congenital malformations"
+    population: "26 observational studies (20 cohort, 6 case-control), 19 assessing PPIs, searched to June 2019"
+    grade: meta_analysis
+    source:
+      citation: "Li CM et al. Aliment Pharmacol Ther 2020;51(4):410-420"
+      url: "https://pubmed.ncbi.nlm.nih.gov/31909512/"
+      location: "Abstract, Results"
+      quote: "PPI use was associated with an increased risk of congenital malformations (OR 1.28, 95% CI 1.09-1.52), especially in case-control studies (OR 2.04, 1.46-2.86)."
+    selection_note: "same moiety as omeprazole"
+  - ingredient: omeprazole_magnesium
+    dimension: anticoagulant_bleeding
+    applies_to: {persona: all, condition: null, medication_type: anticoagulants}
+    measure: IRR
+    estimate: 0.66
+    ci95: [0.62, 0.69]
+    exposure: "oral anticoagulant treatment with vs without PPI cotherapy; hospitalization for upper GI bleeding"
+    population: "Medicare beneficiaries 2011-2015, 1,643,123 patients starting apixaban, dabigatran, rivaroxaban or warfarin (mean age 76.4)"
+    grade: cohort
+    source:
+      citation: "Ray WA et al. JAMA 2018;320(21):2221-2230"
+      url: "https://pubmed.ncbi.nlm.nih.gov/30512099/"
+      location: "Abstract, Results"
+      quote: "risk of upper gastrointestinal tract bleeding hospitalizations (n = 2245) was lower overall (IRR, 0.66 [95% CI, 0.62-0.69])"
+    selection_note: "same moiety as omeprazole"
+  - ingredient: omeprazole_magnesium
+    dimension: cardiovascular_bp
+    applies_to: {persona: all, condition: null, medication_type: antiplatelets}
+    measure: RR
+    estimate: 1.08
+    ci95: [0.78, 1.5]
+    exposure: "PPI (98% omeprazole or esomeprazole) added to clopidogrel vs clopidogrel without PPI; composite cardiovascular events"
+    population: "4 RCTs, 4,341 patients on clopidogrel (96% also on aspirin)"
+    grade: meta_analysis
+    source:
+      citation: "Axelsson MAB et al. Basic Clin Pharmacol Toxicol 2025;137(2):e70087"
+      url: "https://pubmed.ncbi.nlm.nih.gov/40685887/"
+      location: "Abstract"
+      quote: "Regarding efficacy with or without a PPI, the pooled risk ratio (RR) and risk difference (RD) were 1.08 (95% confidence interval (CI) 0.78; 1.50)"
+    selection_note: "same moiety as omeprazole"
+  - ingredient: omeprazole_magnesium
+    dimension: anticholinergic_cognitive
+    applies_to: {persona: all, condition: null, medication_type: null}
+    measure: RR
+    estimate: 1.15
+    ci95: [1.07, 1.24]
+    exposure: "PPI administered during a medical ICU encounter (no H2RA) vs neither drug; ICD-based delirium"
+    population: "6,645 adults admitted to one US academic medical ICU 2015-2019 (45% aged 65+)"
+    grade: cohort
+    source:
+      citation: "Shiddapur A et al. Crit Care Explor 2021;3(8):e0507"
+      url: "https://pubmed.ncbi.nlm.nih.gov/34396144/"
+      location: "Abstract, Results"
+      quote: "compared with controls receiving neither medication, after controlling for mechanical ventilation and age (risk ratio, 1.36; 1.25-1.47; p < 0.001) and (risk ratio, 1.15; 1.07-1.24; p < 0.001, respectively)"
+    selection_note: "same moiety as omeprazole"
+  - ingredient: esomeprazole_magnesium_dihydrate
+    dimension: kidney
+    applies_to: {persona: all, condition: null, medication_type: null}
+    measure: RR
+    estimate: 1.44
+    ci95: [1.08, 1.91]
+    exposure: "PPI use vs non-use (pooled observational definitions; mostly prescription use, not limited to short courses)"
+    population: "4 cohort and 5 case-control studies, about 2.6 million patients (534,003 PPI users), searched to Oct 2016"
+    grade: meta_analysis
+    source:
+      citation: "Nochaiwong S et al. Nephrol Dial Transplant 2018;33(2):331-342"
+      url: "https://pubmed.ncbi.nlm.nih.gov/28339835/"
+      location: "Abstract, Results"
+      quote: "Compared with non-PPI users, PPI users experienced a significantly higher risk of AKI [RR 1.44 (95% CI 1.08-1.91); P = 0.013; SOE, low]"
+    selection_note: "same moiety as esomeprazole"
+  - ingredient: esomeprazole_magnesium_dihydrate
+    dimension: kidney
+    applies_to: {persona: adult_65_plus, condition: null, medication_type: null}
+    measure: HR
+    estimate: 2.52
+    ci95: [2.27, 2.79]
+    exposure: "PPI initiation (new prescription); hospital admission with AKI within 120 days"
+    population: "Ontario residents aged 66+ starting a PPI 2002-2011, 290,592 initiators vs propensity-matched controls"
+    grade: cohort
+    source:
+      citation: "Antoniou T et al. CMAJ Open 2015;3(2):E166-71"
+      url: "https://pubmed.ncbi.nlm.nih.gov/26389094/"
+      location: "Abstract, Results"
+      quote: "The rates of acute kidney injury (13.49 v. 5.46 per 1000 person-years, respectively; hazard ratio [HR] 2.52, 95% CI 2.27 to 2.79)"
+    selection_note: "same moiety as esomeprazole"
+  - ingredient: esomeprazole_magnesium_dihydrate
+    dimension: kidney
+    applies_to: {persona: all, condition: kidney_disease, medication_type: null}
+    measure: HR
+    estimate: 2.89
+    ci95: [1.91, 4.38]
+    exposure: "new PPI prescription as time-dependent variable; median cumulative prescription 1 year"
+    population: "CKD-REIN cohort, France: 1,940 nephrology outpatients with CKD stages 2-5 (eGFR >= 15) not using PPI at baseline"
+    grade: cohort
+    source:
+      citation: "Liabeuf S et al. Br J Clin Pharmacol 2021;87(7):2967-2976"
+      url: "https://pubmed.ncbi.nlm.nih.gov/33368448/"
+      location: "Abstract, Results"
+      quote: "The adjusted HR for AKI associated with PPI prescription was 2.89 (95% CI, 1.91-4.38)."
+    selection_note: "same moiety as esomeprazole"
+  - ingredient: esomeprazole_magnesium_dihydrate
+    dimension: sedation_falls
+    applies_to: {persona: all, condition: null, medication_type: null}
+    measure: RR
+    estimate: 1.2
+    ci95: [1.14, 1.28]
+    exposure: "PPI use vs no PPI (studies with follow-up >= 1 year); short-term use RR 1.20 (1.15-1.25), low dose RR 1.17 (1.05-1.29)"
+    population: "24 observational studies, 2,103,800 participants (319,568 hip fracture patients), 1990-2018"
+    grade: meta_analysis
+    source:
+      citation: "Poly TN et al. Osteoporos Int 2019;30(1):103-114"
+      url: "https://pubmed.ncbi.nlm.nih.gov/30539272/"
+      location: "Abstract, Results"
+      quote: "Patients with PPIs had a greater risk of hip fracture than those without PPI therapy (RR 1.20, 95% CI 1.14-1.28, p < 0.0001)."
+    selection_note: "same moiety as esomeprazole"
+  - ingredient: esomeprazole_magnesium_dihydrate
+    dimension: sedation_falls
+    applies_to: {persona: adult_65_plus, condition: null, medication_type: null}
+    measure: OR
+    estimate: 1.41
+    ci95: [1.31, 1.51]
+    exposure: "PPI prescription vs none (crude ORs pooled)"
+    population: "11 observational studies in older adults"
+    grade: meta_analysis
+    source:
+      citation: "Robert V et al. Geriatr Nurs 2025;66(Pt A):103596"
+      url: "https://pubmed.ncbi.nlm.nih.gov/40848405/"
+      location: "Abstract"
+      quote: "Pooled OR, calculated using a random effect model, showed a statistically significant association between PPI prescription and overall fracture risk (OR 1.41, 95 % confidence interval 1.31-1.51, P < 0.001)."
+    selection_note: "same moiety as esomeprazole"
+  - ingredient: esomeprazole_magnesium_dihydrate
+    dimension: pregnancy_lactation
+    applies_to: {persona: pregnant, condition: null, medication_type: null}
+    measure: OR
+    estimate: 1.28
+    ci95: [1.09, 1.52]
+    exposure: "maternal PPI use during pregnancy vs non-use; outcome congenital malformations"
+    population: "26 observational studies (20 cohort, 6 case-control), 19 assessing PPIs, searched to June 2019"
+    grade: meta_analysis
+    source:
+      citation: "Li CM et al. Aliment Pharmacol Ther 2020;51(4):410-420"
+      url: "https://pubmed.ncbi.nlm.nih.gov/31909512/"
+      location: "Abstract, Results"
+      quote: "PPI use was associated with an increased risk of congenital malformations (OR 1.28, 95% CI 1.09-1.52), especially in case-control studies (OR 2.04, 1.46-2.86)."
+    selection_note: "same moiety as esomeprazole"
+  - ingredient: esomeprazole_magnesium_dihydrate
+    dimension: anticoagulant_bleeding
+    applies_to: {persona: all, condition: null, medication_type: anticoagulants}
+    measure: IRR
+    estimate: 0.66
+    ci95: [0.62, 0.69]
+    exposure: "oral anticoagulant treatment with vs without PPI cotherapy; hospitalization for upper GI bleeding"
+    population: "Medicare beneficiaries 2011-2015, 1,643,123 patients starting apixaban, dabigatran, rivaroxaban or warfarin (mean age 76.4)"
+    grade: cohort
+    source:
+      citation: "Ray WA et al. JAMA 2018;320(21):2221-2230"
+      url: "https://pubmed.ncbi.nlm.nih.gov/30512099/"
+      location: "Abstract, Results"
+      quote: "risk of upper gastrointestinal tract bleeding hospitalizations (n = 2245) was lower overall (IRR, 0.66 [95% CI, 0.62-0.69])"
+    selection_note: "same moiety as esomeprazole"
+  - ingredient: esomeprazole_magnesium_dihydrate
+    dimension: cardiovascular_bp
+    applies_to: {persona: all, condition: null, medication_type: antiplatelets}
+    measure: RR
+    estimate: 1.08
+    ci95: [0.78, 1.5]
+    exposure: "PPI (98% omeprazole or esomeprazole) added to clopidogrel vs clopidogrel without PPI; composite cardiovascular events"
+    population: "4 RCTs, 4,341 patients on clopidogrel (96% also on aspirin)"
+    grade: meta_analysis
+    source:
+      citation: "Axelsson MAB et al. Basic Clin Pharmacol Toxicol 2025;137(2):e70087"
+      url: "https://pubmed.ncbi.nlm.nih.gov/40685887/"
+      location: "Abstract"
+      quote: "Regarding efficacy with or without a PPI, the pooled risk ratio (RR) and risk difference (RD) were 1.08 (95% confidence interval (CI) 0.78; 1.50)"
+    selection_note: "same moiety as esomeprazole"
+  - ingredient: esomeprazole_magnesium_dihydrate
+    dimension: anticholinergic_cognitive
+    applies_to: {persona: all, condition: null, medication_type: null}
+    measure: RR
+    estimate: 1.15
+    ci95: [1.07, 1.24]
+    exposure: "PPI administered during a medical ICU encounter (no H2RA) vs neither drug; ICD-based delirium"
+    population: "6,645 adults admitted to one US academic medical ICU 2015-2019 (45% aged 65+)"
+    grade: cohort
+    source:
+      citation: "Shiddapur A et al. Crit Care Explor 2021;3(8):e0507"
+      url: "https://pubmed.ncbi.nlm.nih.gov/34396144/"
+      location: "Abstract, Results"
+      quote: "compared with controls receiving neither medication, after controlling for mechanical ventilation and age (risk ratio, 1.36; 1.25-1.47; p < 0.001) and (risk ratio, 1.15; 1.07-1.24; p < 0.001, respectively)"
+    selection_note: "same moiety as esomeprazole"
+  - ingredient: esomeprazole_magnesium_trihydrate
+    dimension: kidney
+    applies_to: {persona: all, condition: null, medication_type: null}
+    measure: RR
+    estimate: 1.44
+    ci95: [1.08, 1.91]
+    exposure: "PPI use vs non-use (pooled observational definitions; mostly prescription use, not limited to short courses)"
+    population: "4 cohort and 5 case-control studies, about 2.6 million patients (534,003 PPI users), searched to Oct 2016"
+    grade: meta_analysis
+    source:
+      citation: "Nochaiwong S et al. Nephrol Dial Transplant 2018;33(2):331-342"
+      url: "https://pubmed.ncbi.nlm.nih.gov/28339835/"
+      location: "Abstract, Results"
+      quote: "Compared with non-PPI users, PPI users experienced a significantly higher risk of AKI [RR 1.44 (95% CI 1.08-1.91); P = 0.013; SOE, low]"
+    selection_note: "same moiety as esomeprazole"
+  - ingredient: esomeprazole_magnesium_trihydrate
+    dimension: kidney
+    applies_to: {persona: adult_65_plus, condition: null, medication_type: null}
+    measure: HR
+    estimate: 2.52
+    ci95: [2.27, 2.79]
+    exposure: "PPI initiation (new prescription); hospital admission with AKI within 120 days"
+    population: "Ontario residents aged 66+ starting a PPI 2002-2011, 290,592 initiators vs propensity-matched controls"
+    grade: cohort
+    source:
+      citation: "Antoniou T et al. CMAJ Open 2015;3(2):E166-71"
+      url: "https://pubmed.ncbi.nlm.nih.gov/26389094/"
+      location: "Abstract, Results"
+      quote: "The rates of acute kidney injury (13.49 v. 5.46 per 1000 person-years, respectively; hazard ratio [HR] 2.52, 95% CI 2.27 to 2.79)"
+    selection_note: "same moiety as esomeprazole"
+  - ingredient: esomeprazole_magnesium_trihydrate
+    dimension: kidney
+    applies_to: {persona: all, condition: kidney_disease, medication_type: null}
+    measure: HR
+    estimate: 2.89
+    ci95: [1.91, 4.38]
+    exposure: "new PPI prescription as time-dependent variable; median cumulative prescription 1 year"
+    population: "CKD-REIN cohort, France: 1,940 nephrology outpatients with CKD stages 2-5 (eGFR >= 15) not using PPI at baseline"
+    grade: cohort
+    source:
+      citation: "Liabeuf S et al. Br J Clin Pharmacol 2021;87(7):2967-2976"
+      url: "https://pubmed.ncbi.nlm.nih.gov/33368448/"
+      location: "Abstract, Results"
+      quote: "The adjusted HR for AKI associated with PPI prescription was 2.89 (95% CI, 1.91-4.38)."
+    selection_note: "same moiety as esomeprazole"
+  - ingredient: esomeprazole_magnesium_trihydrate
+    dimension: sedation_falls
+    applies_to: {persona: all, condition: null, medication_type: null}
+    measure: RR
+    estimate: 1.2
+    ci95: [1.14, 1.28]
+    exposure: "PPI use vs no PPI (studies with follow-up >= 1 year); short-term use RR 1.20 (1.15-1.25), low dose RR 1.17 (1.05-1.29)"
+    population: "24 observational studies, 2,103,800 participants (319,568 hip fracture patients), 1990-2018"
+    grade: meta_analysis
+    source:
+      citation: "Poly TN et al. Osteoporos Int 2019;30(1):103-114"
+      url: "https://pubmed.ncbi.nlm.nih.gov/30539272/"
+      location: "Abstract, Results"
+      quote: "Patients with PPIs had a greater risk of hip fracture than those without PPI therapy (RR 1.20, 95% CI 1.14-1.28, p < 0.0001)."
+    selection_note: "same moiety as esomeprazole"
+  - ingredient: esomeprazole_magnesium_trihydrate
+    dimension: sedation_falls
+    applies_to: {persona: adult_65_plus, condition: null, medication_type: null}
+    measure: OR
+    estimate: 1.41
+    ci95: [1.31, 1.51]
+    exposure: "PPI prescription vs none (crude ORs pooled)"
+    population: "11 observational studies in older adults"
+    grade: meta_analysis
+    source:
+      citation: "Robert V et al. Geriatr Nurs 2025;66(Pt A):103596"
+      url: "https://pubmed.ncbi.nlm.nih.gov/40848405/"
+      location: "Abstract"
+      quote: "Pooled OR, calculated using a random effect model, showed a statistically significant association between PPI prescription and overall fracture risk (OR 1.41, 95 % confidence interval 1.31-1.51, P < 0.001)."
+    selection_note: "same moiety as esomeprazole"
+  - ingredient: esomeprazole_magnesium_trihydrate
+    dimension: pregnancy_lactation
+    applies_to: {persona: pregnant, condition: null, medication_type: null}
+    measure: OR
+    estimate: 1.28
+    ci95: [1.09, 1.52]
+    exposure: "maternal PPI use during pregnancy vs non-use; outcome congenital malformations"
+    population: "26 observational studies (20 cohort, 6 case-control), 19 assessing PPIs, searched to June 2019"
+    grade: meta_analysis
+    source:
+      citation: "Li CM et al. Aliment Pharmacol Ther 2020;51(4):410-420"
+      url: "https://pubmed.ncbi.nlm.nih.gov/31909512/"
+      location: "Abstract, Results"
+      quote: "PPI use was associated with an increased risk of congenital malformations (OR 1.28, 95% CI 1.09-1.52), especially in case-control studies (OR 2.04, 1.46-2.86)."
+    selection_note: "same moiety as esomeprazole"
+  - ingredient: esomeprazole_magnesium_trihydrate
+    dimension: anticoagulant_bleeding
+    applies_to: {persona: all, condition: null, medication_type: anticoagulants}
+    measure: IRR
+    estimate: 0.66
+    ci95: [0.62, 0.69]
+    exposure: "oral anticoagulant treatment with vs without PPI cotherapy; hospitalization for upper GI bleeding"
+    population: "Medicare beneficiaries 2011-2015, 1,643,123 patients starting apixaban, dabigatran, rivaroxaban or warfarin (mean age 76.4)"
+    grade: cohort
+    source:
+      citation: "Ray WA et al. JAMA 2018;320(21):2221-2230"
+      url: "https://pubmed.ncbi.nlm.nih.gov/30512099/"
+      location: "Abstract, Results"
+      quote: "risk of upper gastrointestinal tract bleeding hospitalizations (n = 2245) was lower overall (IRR, 0.66 [95% CI, 0.62-0.69])"
+    selection_note: "same moiety as esomeprazole"
+  - ingredient: esomeprazole_magnesium_trihydrate
+    dimension: cardiovascular_bp
+    applies_to: {persona: all, condition: null, medication_type: antiplatelets}
+    measure: RR
+    estimate: 1.08
+    ci95: [0.78, 1.5]
+    exposure: "PPI (98% omeprazole or esomeprazole) added to clopidogrel vs clopidogrel without PPI; composite cardiovascular events"
+    population: "4 RCTs, 4,341 patients on clopidogrel (96% also on aspirin)"
+    grade: meta_analysis
+    source:
+      citation: "Axelsson MAB et al. Basic Clin Pharmacol Toxicol 2025;137(2):e70087"
+      url: "https://pubmed.ncbi.nlm.nih.gov/40685887/"
+      location: "Abstract"
+      quote: "Regarding efficacy with or without a PPI, the pooled risk ratio (RR) and risk difference (RD) were 1.08 (95% confidence interval (CI) 0.78; 1.50)"
+    selection_note: "same moiety as esomeprazole"
+  - ingredient: esomeprazole_magnesium_trihydrate
+    dimension: anticholinergic_cognitive
+    applies_to: {persona: all, condition: null, medication_type: null}
+    measure: RR
+    estimate: 1.15
+    ci95: [1.07, 1.24]
+    exposure: "PPI administered during a medical ICU encounter (no H2RA) vs neither drug; ICD-based delirium"
+    population: "6,645 adults admitted to one US academic medical ICU 2015-2019 (45% aged 65+)"
+    grade: cohort
+    source:
+      citation: "Shiddapur A et al. Crit Care Explor 2021;3(8):e0507"
+      url: "https://pubmed.ncbi.nlm.nih.gov/34396144/"
+      location: "Abstract, Results"
+      quote: "compared with controls receiving neither medication, after controlling for mechanical ventilation and age (risk ratio, 1.36; 1.25-1.47; p < 0.001) and (risk ratio, 1.15; 1.07-1.24; p < 0.001, respectively)"
+    selection_note: "same moiety as esomeprazole"
+  - ingredient: famotidine
+    dimension: anticholinergic_cognitive
+    applies_to: {persona: all, condition: null, medication_type: null}
+    measure: RR
+    estimate: 1.36
+    ci95: [1.25, 1.47]
+    exposure: "H2RA administered during a medical ICU encounter (no PPI) vs neither drug; ICD-based delirium"
+    population: "6,645 adults admitted to one US academic medical ICU 2015-2019 (45% aged 65+)"
+    grade: cohort
+    source:
+      citation: "Shiddapur A et al. Crit Care Explor 2021;3(8):e0507"
+      url: "https://pubmed.ncbi.nlm.nih.gov/34396144/"
+      location: "Abstract, Results"
+      quote: "The histamine-2 receptor antagonist group had a greater association with delirium than the proton-pump inhibitor group compared with controls receiving neither medication, after controlling for mechanical ventilation and age (risk ratio, 1.36; 1.25-1.47; p < 0.001)"
+    selection_note: "Class-level H2RA estimate (individual agents not reported). Only quantitative H2RA-delirium estimate found; no meta-analysis or community study in older adults located (other reports are case series). Strong mismatch: critically ill ICU patients, mostly IV stress-ulcer prophylaxis, adjusted only for ventilation and age; not OTC use. Not reported separately for 65+."
+  - ingredient: famotidine
+    dimension: sedation_falls
+    applies_to: {persona: all, condition: null, medication_type: null}
+    measure: OR
+    estimate: 1.1
+    ci95: [0.99, 1.23]
+    exposure: "H2RA use vs non-use (pooled observational definitions)"
+    population: "11 observational studies (5 case-control, 3 nested case-control, 3 cohort) to Dec 2010"
+    grade: meta_analysis
+    source:
+      citation: "Eom CS et al. Ann Fam Med 2011;9(3):257-67"
+      url: "https://pubmed.ncbi.nlm.nih.gov/21555754/"
+      location: "Abstract, Results"
+      quote: "The pooled odds ratio (OR) for fracture was 1.29 (95% confidence interval [CI], 1.18-1.41) with use of PPIs and 1.10 (95% CI, 0.99-1.23) with use of H(2)RAs"
+    selection_note: "Class-level H2RA estimate (second figure in quote). Only meta-analysis found that reports a pooled H2RA fracture estimate; Poly 2019 states no H2RA association but its abstract gives no number. Not significant. Exposure is prescription use of varying duration."
+  - ingredient: famotidine
+    dimension: pregnancy_lactation
+    applies_to: {persona: pregnant, condition: null, medication_type: null}
+    measure: OR
+    estimate: 1.14
+    ci95: [0.89, 1.45]
+    exposure: "H2 blocker use in pregnancy (mostly first trimester) vs non-exposed; congenital malformations"
+    population: "2,398 exposed and 119,892 unexposed pregnancies"
+    grade: meta_analysis
+    source:
+      citation: "Gill SK et al. Dig Dis Sci 2009;54(9):1835-8"
+      url: "https://pubmed.ncbi.nlm.nih.gov/19051023/"
+      location: "Abstract"
+      quote: "With data from 2,398 exposed and 119,892 nonexposed to H2 blockers, overall odds ratio was 1.14 [0.89, 1.45]."
+    selection_note: "Class-level H2RA estimate. Li 2020 (PMID 31909512) is more recent and reports no H2RA-malformation association, but its abstract gives no H2RA malformation OR and full text was not opened; Gill 2009 is the most recent meta-analysis whose number I could verify. Not significant."
+  - ingredient: cimetidine
+    dimension: anticholinergic_cognitive
+    applies_to: {persona: all, condition: null, medication_type: null}
+    measure: RR
+    estimate: 1.36
+    ci95: [1.25, 1.47]
+    exposure: "H2RA administered during a medical ICU encounter (no PPI) vs neither drug; ICD-based delirium"
+    population: "6,645 adults admitted to one US academic medical ICU 2015-2019 (45% aged 65+)"
+    grade: cohort
+    source:
+      citation: "Shiddapur A et al. Crit Care Explor 2021;3(8):e0507"
+      url: "https://pubmed.ncbi.nlm.nih.gov/34396144/"
+      location: "Abstract, Results"
+      quote: "The histamine-2 receptor antagonist group had a greater association with delirium than the proton-pump inhibitor group compared with controls receiving neither medication, after controlling for mechanical ventilation and age (risk ratio, 1.36; 1.25-1.47; p < 0.001)"
+    selection_note: "Class-level H2RA estimate (individual agents not reported). Only quantitative H2RA-delirium estimate found; no meta-analysis or community study in older adults located (other reports are case series). Strong mismatch: critically ill ICU patients, mostly IV stress-ulcer prophylaxis, adjusted only for ventilation and age; not OTC use. Not reported separately for 65+."
+  - ingredient: cimetidine
+    dimension: sedation_falls
+    applies_to: {persona: all, condition: null, medication_type: null}
+    measure: OR
+    estimate: 1.1
+    ci95: [0.99, 1.23]
+    exposure: "H2RA use vs non-use (pooled observational definitions)"
+    population: "11 observational studies (5 case-control, 3 nested case-control, 3 cohort) to Dec 2010"
+    grade: meta_analysis
+    source:
+      citation: "Eom CS et al. Ann Fam Med 2011;9(3):257-67"
+      url: "https://pubmed.ncbi.nlm.nih.gov/21555754/"
+      location: "Abstract, Results"
+      quote: "The pooled odds ratio (OR) for fracture was 1.29 (95% confidence interval [CI], 1.18-1.41) with use of PPIs and 1.10 (95% CI, 0.99-1.23) with use of H(2)RAs"
+    selection_note: "Class-level H2RA estimate (second figure in quote). Only meta-analysis found that reports a pooled H2RA fracture estimate; Poly 2019 states no H2RA association but its abstract gives no number. Not significant. Exposure is prescription use of varying duration."
+  - ingredient: cimetidine
+    dimension: pregnancy_lactation
+    applies_to: {persona: pregnant, condition: null, medication_type: null}
+    measure: OR
+    estimate: 1.14
+    ci95: [0.89, 1.45]
+    exposure: "H2 blocker use in pregnancy (mostly first trimester) vs non-exposed; congenital malformations"
+    population: "2,398 exposed and 119,892 unexposed pregnancies"
+    grade: meta_analysis
+    source:
+      citation: "Gill SK et al. Dig Dis Sci 2009;54(9):1835-8"
+      url: "https://pubmed.ncbi.nlm.nih.gov/19051023/"
+      location: "Abstract"
+      quote: "With data from 2,398 exposed and 119,892 nonexposed to H2 blockers, overall odds ratio was 1.14 [0.89, 1.45]."
+    selection_note: "Class-level H2RA estimate. Li 2020 (PMID 31909512) is more recent and reports no H2RA-malformation association, but its abstract gives no H2RA malformation OR and full text was not opened; Gill 2009 is the most recent meta-analysis whose number I could verify. Not significant."
+  - ingredient: calcium_carbonate
+    dimension: cardiovascular_bp
+    applies_to: {persona: all, condition: null, medication_type: null}
+    measure: RR
+    estimate: 1.27
+    ci95: [1.01, 1.59]
+    exposure: "calcium supplements >= 500 mg/day vs placebo, trials > 1 year (mean 4.0 years), without vitamin D; outcome myocardial infarction"
+    population: "11 placebo-controlled RCTs, 11,921 participants, mean age > 40"
+    grade: meta_analysis
+    source:
+      citation: "Bolland MJ et al. BMJ 2010;341:c3691"
+      url: "https://pubmed.ncbi.nlm.nih.gov/20671013/"
+      location: "Abstract, Results"
+      quote: "The meta-analysis of trial level data showed similar results: 296 people had a myocardial infarction (166 allocated to calcium, 130 to placebo), with an increased incidence of myocardial infarction in those allocated to calcium (pooled relative risk 1.27, 95% confidence interval 1.01 to 1.59, P=0.038)."
+    selection_note: "Trial-level pooled estimate chosen over the 5-trial patient-level HR 1.31 (1.02-1.67) because it covers more trials and participants. Strong exposure mismatch: years of daily calcium supplementation, not a 10-day antacid course; calcium salt not restricted to carbonate. Outcome is MI only (part of v1 cardiovascular_bp)."
+  - ingredient: magnesium_hydroxide
+    dimension: kidney
+    applies_to: {persona: all, condition: kidney_disease, medication_type: null}
+    measure: HR
+    estimate: 1.97
+    ci95: [1.15, 3.37]
+    exposure: "magnesium oxide prescription claims (with ACEI/ARB within 3 months), adherence by medication possession ratio; outcome hospitalization for AKI"
+    population: "non-dialysis CKD patients, Taipei Medical University Clinical Research Database 1998-2021, 1:1 propensity-matched"
+    grade: cohort
+    source:
+      citation: "Hsiao PJ et al. Int J Med Sci 2026;23(4):1519-1534"
+      url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC13048899/"
+      location: "Results; Table 2a (1:1 PS matching)"
+      quote: "hospitalization of acute kidney injury (aHR=1.97, 95%CI=1.15, 3.37)"
+    selection_note: "Only quantitative estimate found for a magnesium laxative/antacid in CKD. Used hospitalization for AKI (matches v1 outcome) rather than the any-AKI aHR 37.0 (16.46-83.41), whose event split (239 vs 6) suggests ascertainment differences. Mismatch: different magnesium salt (oxide, not hydroxide), chronic prescription use in Taiwan, inconsistent MPR categories in the paper. Pharmacist should confirm the salt substitution."
+  - ingredient: loperamide
+    dimension: pregnancy_lactation
+    applies_to: {persona: pregnant, condition: null, medication_type: null}
+    measure: OR
+    estimate: 1.43
+    ci95: [1.04, 1.96]
+    exposure: "maternal report of loperamide use in early pregnancy vs other women; any congenital malformation"
+    population: "Swedish Medical Birth Register, deliveries July 1995-2004"
+    grade: cohort
+    source:
+      citation: "Källén B et al. Acta Paediatr 2008;97(5):541-5"
+      url: "https://pubmed.ncbi.nlm.nih.gov/18394096/"
+      location: "Abstract, Results"
+      quote: "The risk of any congenital malformation was increased (OR = 1.43, 95% CI 1.04-1.96), based on 43 cases, but no major contributing type could be identified."
+    selection_note: "Largest study of loperamide in pregnancy found (register-based); no meta-analysis exists. Einarson 2000 (PMID 10758415, n=105) found no difference but reports no estimate. Based on 43 cases; authors call for confirmation. Exposure is any early-pregnancy use, plausibly similar to OTC use."
+insufficient:
+  - ingredient: famotidine
+    dimension: kidney
+    reason: "kidney_disease (v0 modifier): no study reports a quantitative AKI or serious-harm risk for famotidine or H2RAs in CKD; searched PubMed for H2RA/famotidine with acute kidney injury and CKD. Label concern is renal clearance and CNS effects, not AKI."
+  - ingredient: cimetidine
+    dimension: kidney
+    reason: "kidney_disease (v0 modifier): no quantitative AKI estimate for cimetidine or H2RAs in CKD found; searched PubMed for H2RA/cimetidine with acute kidney injury."
+  - ingredient: cimetidine
+    dimension: liver
+    reason: "liver_disease (v0 modifier): no study reports a quantitative acute liver injury risk for cimetidine; searched PubMed. Concern is reduced clearance/interactions, not a measured liver outcome."
+  - ingredient: famotidine
+    dimension: anticholinergic_cognitive
+    reason: "adult_65_plus and kidney_disease: no community or older-adult study gives a delirium estimate for famotidine; only case series (e.g. PMIDs 8701013, 28153970) and a 21-patient postoperative study (PMID 31086675) without a usable ratio. General class row from an ICU cohort is recorded under relative_risks."
+  - ingredient: omeprazole
+    dimension: liver
+    reason: "liver_disease: no quantitative estimate of serious harm from PPIs specific to liver disease found in the searched meta-analyses; not a v0-rated pair, recorded because liver_disease is a requested modifier."
+  - ingredient: esomeprazole
+    dimension: liver
+    reason: "liver_disease: as omeprazole; no quantitative estimate found."
+  - ingredient: omeprazole
+    dimension: gi_bleeding
+    reason: "PPIs are gastroprotective; no source reports a harmful upper GI bleeding association. Not a harm pair."
+  - ingredient: famotidine
+    dimension: gi_bleeding
+    reason: "H2RAs are gastroprotective; no source reports a harmful upper GI bleeding association. Not a harm pair."
+  - ingredient: famotidine
+    dimension: pregnancy_lactation
+    reason: "breastfeeding: no quantitative neonatal-harm estimate found (pregnant row recorded under relative_risks)."
+  - ingredient: cimetidine
+    dimension: pregnancy_lactation
+    reason: "breastfeeding: no quantitative neonatal-harm estimate found (pregnant row recorded under relative_risks)."
+  - ingredient: omeprazole
+    dimension: pregnancy_lactation
+    reason: "breastfeeding: no quantitative neonatal-harm estimate found (pregnant row recorded under relative_risks). Applies equally to omeprazole_magnesium, esomeprazole and its magnesium salts."
+  - ingredient: calcium_carbonate
+    dimension: kidney
+    reason: "kidney_disease (v0 modifier): milk-alkali syndrome and hypercalcemic AKI are described in case reports and series only; no study gives a relative risk for calcium carbonate antacid use. Searched PubMed."
+  - ingredient: calcium_carbonate
+    dimension: pregnancy_lactation
+    reason: "pregnant/breastfeeding: no study reports a quantitative fetal or neonatal harm for calcium carbonate antacids."
+  - ingredient: magnesium_hydroxide
+    dimension: kidney
+    reason: "general population (no CKD): no quantitative AKI estimate found for magnesium hydroxide; CKD row recorded under relative_risks."
+  - ingredient: magnesium_hydroxide
+    dimension: pregnancy_lactation
+    reason: "pregnant/breastfeeding: no study reports a quantitative fetal or neonatal harm for oral magnesium hydroxide."
+  - ingredient: polyethylene_glycol_3350
+    dimension: kidney
+    reason: "kidney_disease (v0 modifier): no study reports a quantitative AKI risk for OTC PEG 3350 laxative doses in CKD (bowel-prep AKI literature uses different products and volumes). Searched PubMed."
+  - ingredient: polyethylene_glycol_3350
+    dimension: pregnancy_lactation
+    reason: "pregnant/breastfeeding: no study reports a quantitative fetal or neonatal harm for PEG 3350."
+  - ingredient: bisacodyl
+    dimension: pregnancy_lactation
+    reason: "pregnant/breastfeeding: no study reports a quantitative fetal or neonatal harm for bisacodyl."
+  - ingredient: simethicone
+    dimension: pregnancy_lactation
+    reason: "pregnant/breastfeeding: no study reports a quantitative fetal or neonatal harm for simethicone (not systemically absorbed)."
+  - ingredient: loperamide
+    dimension: cardiovascular_bp
+    reason: "No study gives a quantitative MI, stroke, heart failure or arrhythmia risk for loperamide at OTC doses; cardiac harm is documented in case series of misuse at very high doses (e.g. PMID 30585509) and FDA safety communications without a rate. heart_disease modifier also unsupported. Searched PubMed for loperamide with arrhythmia, QT, cardiac arrest, cohort."
+  - ingredient: loperamide
+    dimension: anticholinergic_cognitive
+    reason: "No quantitative delirium estimate for loperamide at OTC doses found; searched PubMed."
+  - ingredient: loperamide
+    dimension: sedation_falls
+    reason: "No quantitative fall or fracture estimate for loperamide found; searched PubMed."
+  - ingredient: loperamide
+    dimension: liver
+    reason: "liver_disease (v0 modifier): no quantitative serious-harm estimate for loperamide in liver disease; concern is reduced first-pass metabolism (pharmacokinetic), not a measured outcome."
+  - ingredient: loperamide
+    dimension: pregnancy_lactation
+    reason: "breastfeeding: no quantitative neonatal-harm estimate found (pregnant row recorded under relative_risks)."

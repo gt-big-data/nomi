@@ -1,0 +1,238 @@
+group: baselines
+compiled: 2026-11-18
+baselines:
+  # ---------------------------------------------------------------- liver
+  - dimension: liver
+    persona: all
+    condition: null
+    medication_type: null
+    annual_incidence: 0.0000113
+    as_reported: "1.13/100 000 person-years -> 1.13 / 100,000 = 0.0000113 per person-year"
+    population: "Germany, AOK statutory health insurance (26.5 million insured), 2014-2018, all ages, extrapolated to the German population; ICD/OPS-coded acute liver failure"
+    source:
+      citation: "Weiler N, Schlotmann A, Schnitzbauer AA, Zeuzem S, Welker MW. The Epidemiology of Acute Liver Failure. Dtsch Arztebl Int 2020;117:43-50. doi:10.3238/arztebl.2020.0043"
+      url: "https://europepmc.org/article/MED/32036852"
+      location: "Abstract, Results"
+      quote: "The calculated incidence of ALF was 1.13/100 000 person-years, representing 4652 cases."
+    selection_note: "Largest Western claims-based population estimate opened. Outcome is acute liver FAILURE only, not the broader hospitalized acute liver injury, so it understates the v1 liver outcome. Not age-stratified in the abstract (age peak in ninth decade per search snippet, not verified), so recorded as persona all. A Thai nationwide hospital database (BMC Gastroenterol 2019, PMC6348628) reported 62.9 per million per year; not chosen because coding validity and etiology mix (69% indeterminate) differ from the OTC-using Western population."
+
+  # ---------------------------------------------------------------- gi_bleeding
+  - dimension: gi_bleeding
+    persona: adult_18_64
+    condition: null
+    medication_type: null
+    annual_incidence: 0.00048
+    as_reported: "48 per 100,000 per year (age 40-59) -> 48 / 100,000 = 0.00048 per person-year"
+    population: "Iceland, greater Reykjavik metropolitan area residents, 2010, all patients undergoing upper GI endoscopy at the National University Hospital; age band 40-59"
+    source:
+      citation: "Hreinsson JP, Kalaitzakis E, Gudmundsson S, Bjornsson ES. Upper gastrointestinal bleeding: incidence, etiology and outcomes in a population-based setting. Scand J Gastroenterol 2013;48:439-447. doi:10.3109/00365521.2012.763174"
+      url: "https://europepmc.org/article/PMC/PMC3613943"
+      location: "Table I"
+      quote: "Age standardized incidence rate 18–24 30 25–39 15 40–59 48 60–79 213 80–105 570"
+    selection_note: "Only opened population-based source with a tabulated age-specific UGIB incidence. The 40-59 band stands in for adult_18_64 (it is the upper, higher-risk part of that range; 18-24 = 30 and 25-39 = 15 per 100,000). Small single-year study (132 incident cases). The Dutch national registry (Bedene 2022, BMJ Open Gastroenterol) gives age bands only in a figure, so it could not be quoted."
+  - dimension: gi_bleeding
+    persona: adult_65_plus
+    condition: null
+    medication_type: null
+    annual_incidence: 0.00213
+    as_reported: "213 per 100,000 per year (age 60-79) -> 213 / 100,000 = 0.00213 per person-year"
+    population: "Iceland, greater Reykjavik metropolitan area residents, 2010; age band 60-79"
+    source:
+      citation: "Hreinsson JP, Kalaitzakis E, Gudmundsson S, Bjornsson ES. Upper gastrointestinal bleeding: incidence, etiology and outcomes in a population-based setting. Scand J Gastroenterol 2013;48:439-447. doi:10.3109/00365521.2012.763174"
+      url: "https://europepmc.org/article/PMC/PMC3613943"
+      location: "Table I"
+      quote: "Age standardized incidence rate 18–24 30 25–39 15 40–59 48 60–79 213 80–105 570"
+    selection_note: "60-79 band stands in for adult_65_plus; 80-105 is 570 per 100,000, so this understates risk for the oldest. Same source and caveats as the adult_18_64 row."
+  - dimension: gi_bleeding
+    persona: all
+    condition: null
+    medication_type: null
+    annual_incidence: 0.0013
+    as_reported: "260 per 100 000 inhabitants over 2 years (2017-2018) -> 260 / 2 = 130 per 100,000 per year = 0.0013 per person-year"
+    population: "Netherlands, total population (17.47 million, all ages), 2017-2018, linked national hospital and population registries; severe UGIB"
+    source:
+      citation: "Bedene A, van Dorp ELA, Rosendaal FR, Dahan A, Lijfering WM. Risk of drug-related upper gastrointestinal bleeding in the total population of the Netherlands: a time-trend analysis. BMJ Open Gastroenterol 2022;9:e000733. doi:10.1136/bmjgast-2021-000733"
+      url: "https://europepmc.org/article/PMC/PMC8753354"
+      location: "Results, 'Risk of severe UGIB in the four different (sub)populations'; Table 2"
+      quote: "In the total Dutch population, the 2 years’ worth cumulative incidence of severe UGIB was 199 per 100 000 inhabitants (95% CI 197 to 201) in 2013–2014, and in 2017–2018 it was 260 per 100 000 inhabitants (95% CI 258 to 263)"
+    selection_note: "Largest and most recent national registry opened (whole Dutch population). Biennial cumulative incidence halved to an annual rate; cumulative incidence and rate are near-identical at this magnitude. All ages including children, so it is a fallback for personas without an age-specific row."
+
+  # ---------------------------------------------------------------- kidney
+  - dimension: kidney
+    persona: adult_18_64
+    condition: null
+    medication_type: null
+    annual_incidence: 0.0089
+    as_reported: "89 per 10 000/year (age 40-69, Grampian 2012) -> 89 / 10,000 = 0.0089 per person-year"
+    population: "Scotland, Grampian region, all residents aged >=15, 2012 (482,444 adults); biochemistry-defined AKI episodes (KDIGO-based, hospital and community tests); age band 40-69"
+    source:
+      citation: "Sawhney S, Robinson HA, van der Veer SN, et al. Acute kidney injury in the UK: a replication cohort study of the variation across three regional populations. BMJ Open 2018;8:e019435. doi:10.1136/bmjopen-2017-019435"
+      url: "https://europepmc.org/article/PMC/PMC6042563"
+      location: "Table 3, 'People with AKI in age strata' row 40-69 years, Grampian 2012 column"
+      quote: "People with AKI in age strata ≥70 years 3205 (562) 3561 (587) 3705 (572) 3785 (584) 1299 (544) 40–69 years 1765 (88) 1903 (89) 2021 (89) 1699 (89) 740 (92) <40 years 392 (22) 466 (25) 551 (29) 363 (23) 169 (19)"
+    selection_note: "Population-based, all-resident denominator, age-stratified, replicated across 3 UK regions (40-69 rate 88-92 in every dataset). 40-69 stands in for adult_18_64; the <40 band is 29 per 10,000, so this overstates risk for younger adults. Outcome is biochemical AKI (includes community-detected episodes, not only hospital AKI); 'AKI using hospital tests only' was 93 vs 130 per 10,000 overall in Grampian 2012, so roughly 70% are hospital-detected."
+  - dimension: kidney
+    persona: adult_65_plus
+    condition: null
+    medication_type: null
+    annual_incidence: 0.0572
+    as_reported: "572 per 10 000/year (age >=70, Grampian 2012) -> 572 / 10,000 = 0.0572 per person-year"
+    population: "Scotland, Grampian region residents, 2012; age band >=70; biochemistry-defined AKI"
+    source:
+      citation: "Sawhney S, Robinson HA, van der Veer SN, et al. Acute kidney injury in the UK: a replication cohort study of the variation across three regional populations. BMJ Open 2018;8:e019435. doi:10.1136/bmjopen-2017-019435"
+      url: "https://europepmc.org/article/PMC/PMC6042563"
+      location: "Table 3, 'People with AKI in age strata' row >=70 years, Grampian 2012 column"
+      quote: "People with AKI in age strata ≥70 years 3205 (562) 3561 (587) 3705 (572) 3785 (584) 1299 (544)"
+    selection_note: ">=70 stands in for adult_65_plus (65-69 fall in the source's 40-69 band). Includes community-detected biochemical AKI, so it is higher than hospital-coded AKI. Consistent 544-587 across all five datasets."
+  - dimension: kidney
+    persona: all
+    condition: kidney_disease
+    medication_type: null
+    annual_incidence: 0.0756
+    as_reported: "756 per 10 000/year among tested people with baseline eGFR 45-59 (Grampian 2012) -> 756 / 10,000 = 0.0756 per person-year"
+    population: "Scotland, Grampian 2012, residents with >=2 creatinine tests within 365 days and baseline eGFR 45-59 mL/min/1.73 m2 (CKD stage 3a); rate within tested individuals at risk"
+    source:
+      citation: "Sawhney S, Robinson HA, van der Veer SN, et al. Acute kidney injury in the UK: a replication cohort study of the variation across three regional populations. BMJ Open 2018;8:e019435. doi:10.1136/bmjopen-2017-019435"
+      url: "https://europepmc.org/article/PMC/PMC6042563"
+      location: "Table 3, 'People with AKI in eGFR strata among people with at least two tests within 365 days (rates expressed within strata of tested individuals at risk)'"
+      quote: "Baseline eGFR 45–59 809 (673) 940 (496) 894 (756) 1044 (618) 323 (607) Baseline eGFR 30–44 597 (1222) 723 (1000) 661 (1282) 732 (1097) 202 (867) Baseline eGFR <30 344 (2064) 393 (1861) 303 (1781) 423 (1778) 171 (1921)"
+    selection_note: "Stage 3a (eGFR 45-59) chosen as the most common CKD stage; more advanced CKD is higher (eGFR 30-44: 1282, <30: 1781 per 10,000 in Grampian 2012). Denominator is tested people, not all residents, which inflates the rate (people are tested because they are unwell). Grampian 2012 chosen for consistency with the age rows; the eGFR 45-59 rate ranges 496-756 across datasets."
+
+  # ---------------------------------------------------------------- cardiovascular_bp
+  - dimension: cardiovascular_bp
+    persona: all
+    condition: null
+    medication_type: null
+    annual_incidence: 0.00371
+    as_reported: "acute coronary syndrome 190 + stroke 181 per 100 000 person years (2017-19) = 371 per 100,000 -> 0.00371 per person-year"
+    population: "UK, Clinical Practice Research Datalink (GOLD and Aurum, ~20% of UK population), 2017-2019; first diagnosis; age-sex standardised to the 2013 European standard population"
+    source:
+      citation: "Conrad N, Molenberghs G, Verbeke G, et al. Trends in cardiovascular disease incidence among 22 million people in the UK over 20 years: population based study. BMJ 2024;385:e078523. doi:10.1136/bmj-2023-078523"
+      url: "https://europepmc.org/article/PMC/PMC11203392"
+      location: "Results, first paragraph of incidence results; Fig 1"
+      quote: "followed by acute coronary syndrome (190 per 100 000 person years), venous thromboembolism (183 per 100 000 person years), and stroke (181 per 100 000 patient years)"
+    selection_note: "Largest recent population source opened (22 million). Sum of two first-diagnosis rates; people with both are counted twice, a small overstatement. Heart failure (367 per 100 000 person years, same sentence) is excluded because it is a first diagnosis, not an admission, and would double the baseline; flag for pharmacist decision. Age-specific rates exist only in figures (Fig 3, Fig 4) and supplement, which could not be quoted, so no age-band rows."
+
+  # ---------------------------------------------------------------- anticholinergic_cognitive
+  - dimension: anticholinergic_cognitive
+    persona: adult_65_plus
+    condition: null
+    medication_type: null
+    annual_incidence: 0.0331
+    as_reported: "33.1 (95% CI 31.5-34.9) per 1000 person-years -> 33.1 / 1,000 = 0.0331 per person-year"
+    population: "Norway, HUNT4 70+ population cohort (9956 community participants aged >=70), followed 2017-19 to 31 Dec 2023; in-hospital delirium by DSM-5 chart review, weighted for non-participation"
+    source:
+      citation: "Frich W, Verlo KR, Borda MG, et al. Population-based incidence rate of in-hospital delirium in older adults in Norway - a HUNT study. Age Ageing 2026;55:afag297. doi:10.1093/ageing/afag297"
+      url: "https://europepmc.org/article/PMC/PMC13654089"
+      location: "Abstract, Results"
+      quote: "The weighted incidence rate was 33.1 (95% CI 31.5–34.9) per 1000 person-years and increased with age from 11.4 (age 70–74) to 109.0 (age ≥90) per 1000 person-years."
+    selection_note: "Only population-based, person-year delirium incidence found; community-dwelling older adults, hospital-diagnosed. Aged >=70 stands in for adult_65_plus; age 70-74 alone is 11.4 per 1000 PY, so 65-69 is likely lower than 33.1. Chart review finds ~10x more than ICD coding (11.9% coded), so an ICD-based RR applied to this baseline may mismatch."
+
+  # ---------------------------------------------------------------- sedation_falls
+  - dimension: sedation_falls
+    persona: adult_65_plus
+    condition: null
+    medication_type: null
+    annual_incidence: 0.043621
+    as_reported: "4,362.1 per 100,000 (age-adjusted, adults >=65, 2018) -> 4,362.1 / 100,000 = 0.043621 per person-year"
+    population: "United States, NEISS-AIP national estimates, 2018, adults aged >=65; ED visits for unintentional fall injuries; age-adjusted to 2000 US standard population"
+    source:
+      citation: "Moreland B, Lee R. Emergency Department Visits and Hospitalizations for Selected Nonfatal Injuries Among Adults Aged >=65 Years - United States, 2018. MMWR Morb Mortal Wkly Rep 2021;70(18):661-666 (erratum MMWR 2021;70(28), age-range wording only)"
+      url: "https://www.cdc.gov/mmwr/volumes/70/wr/mm7018a1.htm"
+      location: "Table, unintentional falls, Total row"
+      quote: "Table cells, unintentional falls, Total: '2,216,681' visits; rate '4,362.1' ('4,249.3–4,474.9'). Note: 'Rates are age adjusted using the 2000 U.S. standard population except for the age group-specific rates.'"
+    selection_note: "National US surveillance, fall injuries needing ED care (matches v1 outcome). Erratum (mm7028a3) corrects only the '65-74' wording in the text sentence; table values unchanged. Age-specific 65-74 rate is 2,678.2 if a younger-old row is wanted."
+  - dimension: sedation_falls
+    persona: under_2
+    condition: null
+    medication_type: null
+    annual_incidence: 0.036425
+    as_reported: "3642.5 per 100 000 (age <1 year, annual average 2010-2013) -> 3642.5 / 100,000 = 0.036425 per person-year"
+    population: "United States, NEISS-AIP, 2010-2013 aggregated, children <1 year; nonfatal unintentional fall injuries treated in EDs"
+    source:
+      citation: "Ali B, Lawrence B, Miller T, Swedler D, Allison J. Consumer Products Contributing to Fall Injuries in Children Aged <1 to 19 Years Treated in US Emergency Departments, 2010 to 2013: An Observational Study. Glob Pediatr Health 2019;6:2333794X18821941. doi:10.1177/2333794X18821941"
+      url: "https://europepmc.org/article/PMC/PMC6328948"
+      location: "Table 1, 'All' row"
+      quote: "Age Group <1 Year 1-2 Years 3-4 Years 5-9 Years 10-14 Years 15-19 Years <1-19 Years All 3642.5 6844.6 4766.4 3201.4 2913.8 2101.9 3368.9"
+    selection_note: "<1 year stands in for under_2; the 1-2 year band (6844.6) partly overlaps under_2 and is higher. Rates are taken as annual averages: 11,146,277 injuries over 4 years among roughly 83 million US children gives ~3,350 per 100,000 per year, matching the 3368.9 total (my arithmetic check; the paper does not state 'per year')."
+  - dimension: sedation_falls
+    persona: child_2_5
+    condition: null
+    medication_type: null
+    annual_incidence: 0.047664
+    as_reported: "4766.4 per 100 000 (age 3-4 years) -> 4766.4 / 100,000 = 0.047664 per person-year"
+    population: "United States, NEISS-AIP, 2010-2013 aggregated, children aged 3-4 years"
+    source:
+      citation: "Ali B, Lawrence B, Miller T, Swedler D, Allison J. Consumer Products Contributing to Fall Injuries in Children Aged <1 to 19 Years Treated in US Emergency Departments, 2010 to 2013. Glob Pediatr Health 2019;6:2333794X18821941."
+      url: "https://europepmc.org/article/PMC/PMC6328948"
+      location: "Table 1, 'All' row"
+      quote: "Age Group <1 Year 1-2 Years 3-4 Years 5-9 Years 10-14 Years 15-19 Years <1-19 Years All 3642.5 6844.6 4766.4 3201.4 2913.8 2101.9 3368.9"
+    selection_note: "3-4 years stands in for child_2_5 (2-year-olds are in the 1-2 band at 6844.6; 5-year-olds in 5-9 at 3201.4). Same annual-rate caveat as the under_2 row."
+  - dimension: sedation_falls
+    persona: child_6_11
+    condition: null
+    medication_type: null
+    annual_incidence: 0.032014
+    as_reported: "3201.4 per 100 000 (age 5-9 years) -> 3201.4 / 100,000 = 0.032014 per person-year"
+    population: "United States, NEISS-AIP, 2010-2013 aggregated, children aged 5-9 years"
+    source:
+      citation: "Ali B, Lawrence B, Miller T, Swedler D, Allison J. Consumer Products Contributing to Fall Injuries in Children Aged <1 to 19 Years Treated in US Emergency Departments, 2010 to 2013. Glob Pediatr Health 2019;6:2333794X18821941."
+      url: "https://europepmc.org/article/PMC/PMC6328948"
+      location: "Table 1, 'All' row"
+      quote: "Age Group <1 Year 1-2 Years 3-4 Years 5-9 Years 10-14 Years 15-19 Years <1-19 Years All 3642.5 6844.6 4766.4 3201.4 2913.8 2101.9 3368.9"
+    selection_note: "5-9 years stands in for child_6_11 (10-11 are in the 10-14 band at 2913.8). Same annual-rate caveat as the under_2 row."
+  - dimension: sedation_falls
+    persona: teen_12_17
+    condition: null
+    medication_type: null
+    annual_incidence: 0.029138
+    as_reported: "2913.8 per 100 000 (age 10-14 years) -> 2913.8 / 100,000 = 0.029138 per person-year"
+    population: "United States, NEISS-AIP, 2010-2013 aggregated, children aged 10-14 years"
+    source:
+      citation: "Ali B, Lawrence B, Miller T, Swedler D, Allison J. Consumer Products Contributing to Fall Injuries in Children Aged <1 to 19 Years Treated in US Emergency Departments, 2010 to 2013. Glob Pediatr Health 2019;6:2333794X18821941."
+      url: "https://europepmc.org/article/PMC/PMC6328948"
+      location: "Table 1, 'All' row"
+      quote: "Age Group <1 Year 1-2 Years 3-4 Years 5-9 Years 10-14 Years 15-19 Years <1-19 Years All 3642.5 6844.6 4766.4 3201.4 2913.8 2101.9 3368.9"
+    selection_note: "10-14 stands in for teen_12_17; the 15-19 band is 2101.9, so the true 12-17 rate likely lies between the two. Same annual-rate caveat as the under_2 row."
+
+  # ---------------------------------------------------------------- anticoagulant_bleeding
+  - dimension: anticoagulant_bleeding
+    persona: all
+    condition: null
+    medication_type: anticoagulants
+    annual_incidence: 0.082
+    as_reported: "8.2 (95% CI 4.5-11.8) per 100 person-years at 1 year -> 8.2 / 100 = 0.082 per person-year"
+    population: "Canada and 4 European countries, national EHR/claims registries; 358,143 new oral factor Xa inhibitor users aged >=18 (AF, VTE, valve replacement, other)"
+    source:
+      citation: "Cohen AT, Welsh RC, Leentjens J, Canbay A, et al. Incidence and outcomes of major bleeding among first-time oral factor Xa inhibitor users: multinational observational cohort studies. Res Pract Thromb Haemost 2026;10:103351. doi:10.1016/j.rpth.2026.103351"
+      url: "https://europepmc.org/article/PMC/PMC12990360"
+      location: "Abstract, Results; Essentials box"
+      quote: "The pooled incidence rate of major bleeding was 11.0 per 100 person-years (95% CI, 6.1-15.9) at 3 months, 8.2 (95% CI, 4.5-11.8) at 1 year, and 6.7 (95% CI, 3.7-9.7) at 3 years"
+    selection_note: "Largest multinational real-world cohort opened; major bleeding defined as critical-site bleeding or bleeding leading to hospitalization or death (matches v1). 1-year rate chosen as the annual figure; the 3-month rate (11.0) is higher because early-treatment risk is front-loaded. Factor Xa inhibitors only (apixaban, rivaroxaban, edoxaban), not warfarin or antiplatelets. Wide CI reflects between-country heterogeneity; authors include industry affiliations (not verified in detail)."
+
+insufficient:
+  - {dimension: liver, persona: adult_18_64, condition: null, reason: "No opened source gives an age-banded population incidence of hospitalized acute liver injury or ALF; Weiler 2020 (Germany) abstract is all-ages only. Use the persona all row."}
+  - {dimension: liver, persona: adult_65_plus, condition: null, reason: "Same as adult_18_64; no age-specific rate quotable."}
+  - {dimension: liver, persona: child_2_5, condition: null, reason: "Pediatric ALF in California (Lee 2026, Hepatol Commun) reported as 16.75 per 100,000 live births, which cannot be converted to per person-year by age band; German ESPED pediatric figure (3.7 per million children per year) seen only in a search snippet, source not opened. Applies to all child personas and under_2."}
+  - {dimension: liver, persona: all, condition: liver_disease, reason: "No population source opened giving incidence of acute liver injury/ALF (or acute-on-chronic liver failure) per person-year in people with chronic liver disease."}
+  - {dimension: liver, persona: all, condition: heavy_alcohol_use, reason: "No population source opened giving incidence of acute liver injury in heavy drinkers per person-year."}
+  - {dimension: liver, persona: pregnant, condition: null, reason: "No population incidence opened."}
+  - {dimension: gi_bleeding, persona: teen_12_17, condition: null, reason: "Hreinsson 2013 starts at 18; Bedene 2022 has 0-15 and 15-25 bands only in a figure, not quotable."}
+  - {dimension: gi_bleeding, persona: child_6_11, condition: null, reason: "No quotable pediatric population UGIB incidence opened. Applies also to child_2_5 and under_2."}
+  - {dimension: gi_bleeding, persona: pregnant, condition: null, reason: "No population incidence opened."}
+  - {dimension: gi_bleeding, persona: all, condition: stomach_ulcer_or_bleeding, reason: "Searched Europe PMC for population rebleeding/recurrent ulcer bleeding incidence per person-year after prior peptic ulcer; no source opened that states it. Korean NHIS (34.98 per 100,000 PY) and Swedish register rates are for first ulcer bleeding in the general population, not people with prior ulcer."}
+  - {dimension: kidney, persona: teen_12_17, condition: null, reason: "Sawhney 2018 youngest band is <40 (15-39, 29 per 10,000); not specific to teens. JAMA Netw Open 2026 pediatric AKI hospitalization study found but not opened. Applies also to child bands and under_2."}
+  - {dimension: kidney, persona: pregnant, condition: null, reason: "No population incidence opened."}
+  - {dimension: cardiovascular_bp, persona: adult_18_64, condition: null, reason: "Conrad 2024 age-specific rates appear only in figures/supplement; Swedish birth-cohort study (Lancet Reg Health Eur 2026) gives single-year-of-age MI rates for men only; no quotable combined MI+stroke rate by age band."}
+  - {dimension: cardiovascular_bp, persona: adult_65_plus, condition: null, reason: "Same as adult_18_64. ARIC stroke-only rates (65+) seen in a search snippet, not opened."}
+  - {dimension: cardiovascular_bp, persona: teen_12_17, condition: null, reason: "No source opened; events are very rare in children/teens. Applies to child bands and under_2."}
+  - {dimension: cardiovascular_bp, persona: all, condition: hypertension, reason: "No opened source gives MI+stroke incidence per person-year in people with hypertension."}
+  - {dimension: cardiovascular_bp, persona: all, condition: heart_disease, reason: "No opened source gives recurrent MI/stroke incidence per person-year in people with established heart disease."}
+  - {dimension: cardiovascular_bp, persona: pregnant, condition: null, reason: "No population incidence opened."}
+  - {dimension: anticholinergic_cognitive, persona: adult_18_64, condition: null, reason: "HUNT study covers >=70 only; Frich 2026 notes population delirium incidence estimates are scarce. No younger-adult source found."}
+  - {dimension: anticholinergic_cognitive, persona: teen_12_17, condition: null, reason: "No population incidence found. Applies to child bands, under_2 and pregnant."}
+  - {dimension: sedation_falls, persona: adult_18_64, condition: null, reason: "NEISS-AIP/WISQARS age-specific rates for 18-64 not found in an openable publication; WISQARS interactive tool not fetchable."}
+  - {dimension: sedation_falls, persona: pregnant, condition: null, reason: "No population incidence opened."}
+  - {dimension: serotonergic_interactions, persona: all, condition: null, reason: "No general-population incidence of serotonin syndrome found; Europe PMC search returned only drug-exposed cohorts (linezolid, tedizolid, fentanyl, fluvoxamine) with incidence per patient, not per person-year in the population."}
+  - {dimension: anticoagulant_bleeding, persona: adult_65_plus, condition: null, reason: "Cohen 2026 abstract gives only the pooled all-adult rate; age-specific rates not quoted."}
+  - {dimension: anticoagulant_bleeding, persona: all, condition: null, reason: "medication_type antiplatelets: no population major-bleeding incidence for antiplatelet users opened."}

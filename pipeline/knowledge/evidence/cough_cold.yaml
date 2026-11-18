@@ -1,0 +1,165 @@
+group: cough_cold
+compiled: 2026-11-18
+relative_risks:
+  # cardiovascular_bp: the only study with serious events (MI or stroke) and current decongestant use
+  # is a class-level case-crossover (any decongestant, ATC R01A nasal, R01B systemic, R05X). It does
+  # not report estimates by ingredient, so the same class estimate is repeated for each decongestant.
+  - ingredient: pseudoephedrine
+    dimension: cardiovascular_bp
+    applies_to: {persona: all, condition: null, medication_type: null}
+    measure: OR
+    estimate: 0.78
+    ci95: [0.43, 1.42]
+    exposure: "definite use of any decongestant (ATC R01A, R01B, R05X, any dose) in week -1 vs week -3 before the event"
+    population: "incident MI or stroke, French registries 2013-2016, mainly 70 years or younger, n=2797"
+    grade: case_control
+    source:
+      citation: "Grimaldi-Bensouda L, Begaud B, Benichou J, Nordon C, et al. Decongestant use and the risk of myocardial infarction and stroke: a case-crossover study. Sci Rep 2021;11:4160"
+      url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC7893034/"
+      location: "Table 2, All events (Stroke + MI), adjusted conditional OR"
+      quote: "28 (1.0% of cases) occurring during the time window immediately preceding the event (week -1) vs. 31 (1.1%) during the reference time window (week -3); aOR: 0.78 [95%CI 0.43–1.42] (Table 2)"
+    selection_note: "Class-level estimate, not pseudoephedrine-specific: exposure was 'any decongestant, corresponding to the following ATC codes: R01A, R01B, and R05X, regardless of the dose'. Only study found with MI/stroke as outcome and current OTC-type decongestant use (case-crossover, self-controlled). No meta-analysis of serious CV events exists. BP meta-analyses report only mmHg change: Salerno 2005 (Arch Intern Med 165:1686, PMID 16087815) 'Pseudoephedrine caused a small but significant increase in SBP (0.99, mm Hg; 95% CI, 0.08 to 1.90)'; in controlled hypertension 'SBP increase of similar magnitude (1.20 mm Hg; 95% CI, 0.56 to 1.84 mm Hg)'. Cochrane 2025 (CD007895.pub3, PMID 40145549) class MD SBP 0.91 mmHg (95% CI -0.57 to 2.38). No serious-event estimate for hypertension, heart_disease, thyroid_disease, diabetes or maoi modifiers was found; Table 2 strata 'Cardiovascular risk factors (> 1)' aOR 0.55 [0.18-1.63] is risk-factor count, not heart_disease, so not mapped."
+  - ingredient: pseudoephedrine
+    dimension: cardiovascular_bp
+    applies_to: {persona: adult_65_plus, condition: null, medication_type: null}
+    measure: OR
+    estimate: 1.48
+    ci95: [0.33, 6.72]
+    exposure: "definite use of any decongestant (ATC R01A, R01B, R05X) in week -1 vs week -3"
+    population: "incident MI or stroke aged 66 or older, French registries 2013-2016, n=577"
+    grade: case_control
+    source:
+      citation: "Grimaldi-Bensouda L, et al. Decongestant use and the risk of myocardial infarction and stroke: a case-crossover study. Sci Rep 2021;11:4160"
+      url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC7893034/"
+      location: "Table 2, stratified analyses, '≥ 66 years' row, adjusted conditional OR"
+      quote: "≥ 66 years | n = 577 | Definite exposure n, % | 5 (0.9%) | 3 (0.5%) | 1.33 [0.30–5.96] | 1.48 [0.33–6.72]"
+    selection_note: "Class-level, exploratory stratum (Table 2 footnote '***Exploratory analysis'), 8 exposed patients; authors state results 'cannot be generalized to elderly patients over 70 years of age'. Age cut is 66, not 65."
+  - ingredient: phenylephrine
+    dimension: cardiovascular_bp
+    applies_to: {persona: all, condition: null, medication_type: null}
+    measure: OR
+    estimate: 0.78
+    ci95: [0.43, 1.42]
+    exposure: "definite use of any decongestant (ATC R01A, R01B, R05X, any dose) in week -1 vs week -3 before the event"
+    population: "incident MI or stroke, French registries 2013-2016, mainly 70 years or younger, n=2797"
+    grade: case_control
+    source:
+      citation: "Grimaldi-Bensouda L, et al. Decongestant use and the risk of myocardial infarction and stroke: a case-crossover study. Sci Rep 2021;11:4160"
+      url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC7893034/"
+      location: "Table 2, All events (Stroke + MI), adjusted conditional OR"
+      quote: "28 (1.0% of cases) occurring during the time window immediately preceding the event (week -1) vs. 31 (1.1%) during the reference time window (week -3); aOR: 0.78 [95%CI 0.43–1.42] (Table 2)"
+    selection_note: "Class-level estimate, not phenylephrine-specific (any decongestant, ATC R01A/R01B/R05X). No phenylephrine-specific serious-event study found; Cochrane 2025 BP review (PMID 40145549) included only ephedrine, pseudoephedrine and phenylpropanolamine trials, so no phenylephrine BP pooled estimate either. No modifier estimates for hypertension, heart_disease, thyroid_disease, diabetes or maoi."
+  - ingredient: phenylephrine
+    dimension: cardiovascular_bp
+    applies_to: {persona: adult_65_plus, condition: null, medication_type: null}
+    measure: OR
+    estimate: 1.48
+    ci95: [0.33, 6.72]
+    exposure: "definite use of any decongestant (ATC R01A, R01B, R05X) in week -1 vs week -3"
+    population: "incident MI or stroke aged 66 or older, French registries 2013-2016, n=577"
+    grade: case_control
+    source:
+      citation: "Grimaldi-Bensouda L, et al. Decongestant use and the risk of myocardial infarction and stroke: a case-crossover study. Sci Rep 2021;11:4160"
+      url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC7893034/"
+      location: "Table 2, stratified analyses, '≥ 66 years' row, adjusted conditional OR"
+      quote: "≥ 66 years | n = 577 | Definite exposure n, % | 5 (0.9%) | 3 (0.5%) | 1.33 [0.30–5.96] | 1.48 [0.33–6.72]"
+    selection_note: "Class-level, exploratory stratum with 8 exposed patients; age cut is 66, not 65."
+  - ingredient: oxymetazoline
+    dimension: cardiovascular_bp
+    applies_to: {persona: all, condition: null, medication_type: null}
+    measure: OR
+    estimate: 0.78
+    ci95: [0.43, 1.42]
+    exposure: "definite use of any decongestant (ATC R01A nasal, R01B, R05X, any dose) in week -1 vs week -3 before the event"
+    population: "incident MI or stroke, French registries 2013-2016, mainly 70 years or younger, n=2797"
+    grade: case_control
+    source:
+      citation: "Grimaldi-Bensouda L, et al. Decongestant use and the risk of myocardial infarction and stroke: a case-crossover study. Sci Rep 2021;11:4160"
+      url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC7893034/"
+      location: "Table 2, All events (Stroke + MI), adjusted conditional OR"
+      quote: "28 (1.0% of cases) occurring during the time window immediately preceding the event (week -1) vs. 31 (1.1%) during the reference time window (week -3); aOR: 0.78 [95%CI 0.43–1.42] (Table 2)"
+    selection_note: "Class-level estimate including nasal decongestants (ATC R01A), not oxymetazoline-specific. No oxymetazoline-specific serious-event study found (PubMed 'oxymetazoline stroke' returns case reports and reviews only). No modifier estimates for hypertension, heart_disease, thyroid_disease or diabetes."
+  - ingredient: oxymetazoline
+    dimension: cardiovascular_bp
+    applies_to: {persona: adult_65_plus, condition: null, medication_type: null}
+    measure: OR
+    estimate: 1.48
+    ci95: [0.33, 6.72]
+    exposure: "definite use of any decongestant (ATC R01A, R01B, R05X) in week -1 vs week -3"
+    population: "incident MI or stroke aged 66 or older, French registries 2013-2016, n=577"
+    grade: case_control
+    source:
+      citation: "Grimaldi-Bensouda L, et al. Decongestant use and the risk of myocardial infarction and stroke: a case-crossover study. Sci Rep 2021;11:4160"
+      url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC7893034/"
+      location: "Table 2, stratified analyses, '≥ 66 years' row, adjusted conditional OR"
+      quote: "≥ 66 years | n = 577 | Definite exposure n, % | 5 (0.9%) | 3 (0.5%) | 1.33 [0.30–5.96] | 1.48 [0.33–6.72]"
+    selection_note: "Class-level, exploratory stratum with 8 exposed patients; age cut is 66, not 65."
+
+  # pregnancy_lactation
+  - ingredient: pseudoephedrine
+    dimension: pregnancy_lactation
+    applies_to: {persona: pregnant, condition: null, medication_type: null}
+    measure: RR
+    estimate: 1.51
+    ci95: [1.16, 1.97]
+    exposure: "use of pseudoephedrine or phenylpropanolamine during pregnancy, use vs non-use"
+    population: "10 observational studies, 25,761 pregnancies; outcome gastroschisis"
+    grade: meta_analysis
+    source:
+      citation: "Baldacci S, Santoro M, Mezzasalma L, Pierini A, Coi A. Medication use during pregnancy and the risk of gastroschisis: a systematic review and meta-analysis of observational studies. Orphanet J Rare Dis 2024;19:31"
+      url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC10826191/"
+      location: "Results, Decongestants section; Fig. 4"
+      quote: "Ten studies comprising 25,761 pregnancies were included in this analysis. The pooled effect estimate showed that the use of pseudoephedrine and phenylpropanolamine during pregnancy significantly increased the RR by 1.51 (95% CI 1.16–1.97, p = 0.00)"
+    selection_note: "Most recent meta-analysis for a specific fetal harm (gastroschisis). Pools pseudoephedrine with phenylpropanolamine; no pseudoephedrine-only pooled estimate reported. First-trimester subgroup RR 1.83 (1.41-2.39). For overall major malformations the largest cohort (Dor S et al. Br J Clin Pharmacol 2025;91:1834, PMID 39957013, 120 mg PSE with loratadine, n=313 exposed) found 'aRR = 0.90, 95% confidence interval [CI] 0.558-1.45'; not used because the meta-analysis ranks higher and studies the specific harm. No quantitative estimate for breastfeeding found."
+  - ingredient: phenylephrine
+    dimension: pregnancy_lactation
+    applies_to: {persona: pregnant, condition: null, medication_type: null}
+    measure: OR
+    estimate: 8.0
+    ci95: [2.5, 25.3]
+    exposure: "first-trimester phenylephrine use (only decongestant used)"
+    population: "Slone Birth Defects Study, US and Canada 1993-2010, 12,734 malformed cases and 7,606 controls; outcome endocardial cushion defect"
+    grade: case_control
+    source:
+      citation: "Yau WP, Mitchell AA, Lin KJ, Werler MM, Hernandez-Diaz S. Use of decongestants during pregnancy and the risk of birth defects. Am J Epidemiol 2013;178:198-208"
+      url: "https://pubmed.ncbi.nlm.nih.gov/23825167/"
+      location: "Abstract; Table 2, endocardial cushion defect, phenylephrine only"
+      quote: "phenylephrine and endocardial cushion defect (odds ratio = 8.0; 95% confidence interval: 2.5, 25.3; 4 exposed cases)"
+    selection_note: "No meta-analysis or cohort found for phenylephrine in pregnancy. Largest case-control study; this was a prespecified hypothesis it confirmed. Based on 4 exposed cases. Other phenylephrine estimates in Table 2 (VSD OR 1.4, 0.7-2.9) were not significant. No breastfeeding estimate found."
+  - ingredient: oxymetazoline
+    dimension: pregnancy_lactation
+    applies_to: {persona: pregnant, condition: null, medication_type: null}
+    measure: OR
+    estimate: 1.8
+    ci95: [0.7, 4.8]
+    exposure: "first-trimester intranasal oxymetazoline use (only decongestant used)"
+    population: "Slone Birth Defects Study, US and Canada 1993-2010; outcome pyloric stenosis"
+    grade: case_control
+    source:
+      citation: "Yau WP, Mitchell AA, Lin KJ, Werler MM, Hernandez-Diaz S. Use of decongestants during pregnancy and the risk of birth defects. Am J Epidemiol 2013;178:198-208"
+      url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC3816336/"
+      location: "Table 4, pyloric stenosis, oxymetazoline only"
+      quote: "Pyloric stenosis was associated with intranasal decongestants overall (OR = 1.9, 95% CI: 1.0, 3.5). Table 4: oxymetazoline only, pyloric stenosis OR 1.8, 95% CI 0.7, 4.8"
+    selection_note: "Only study with oxymetazoline-specific estimates. Pyloric stenosis chosen because it is the defect the authors report as associated with intranasal decongestants; oxymetazoline-only estimate used over the class estimate (1.9, 1.0-3.5). Hypothesis-generating analysis with multiple comparisons. Other Table 4 oxymetazoline cells: VSD 1.4 (0.6-3.1), cleft lip 1.4 (0.5-3.9). Table 4 cells were read through a page-summarizing fetch, not the raw table; verify before release. No breastfeeding estimate found."
+insufficient:
+  - ingredient: dextromethorphan
+    dimension: serotonergic_interactions
+    reason: "No incidence or relative risk of serotonin syndrome for dextromethorphan with ssri_snri or maoi found. PubMed searches (dextromethorphan serotonin syndrome antidepressant/SSRI/cohort/incidence; dextromethorphan coprescription) return only case reports (e.g. escitalopram, fluoxetine, moclobemide, PMIDs 28784915, 38569181, 40107075), reviews and a selegiline review stating interactions 'have not been reported' (Jacob 2003, PMID 12639177). Label/hard-stop handling (MAOI) applies instead."
+  - ingredient: dextromethorphan
+    dimension: sedation_falls
+    reason: "No fall or fracture risk estimate for dextromethorphan at OTC doses found. PubMed 'dextromethorphan falls' returns only dextromethorphan-quinidine dementia agitation trials and reviews, not OTC antitussive use."
+  - ingredient: dextromethorphan
+    dimension: pregnancy_lactation
+    reason: "Only controlled study (Einarson 2001, Chest 119:466, PMID 11171724, n=184) reports rates without a ratio: 'three major malformations (2.3%) among the babies of women who used DM in the first trimester' vs control 'five major malformations ... (2.8%)'. No RR/OR or meta-analysis found; no breastfeeding estimate."
+  - ingredient: guaifenesin
+    dimension: pregnancy_lactation
+    reason: "No quantitative estimate found. PubMed 'guaifenesin pregnancy' (26 hits) returns a rat developmental study, case reports and a clinical-inquiry note (Silva 2007, PMID 17669294) without data; no cohort, case-control or meta-analysis with RR/OR; no breastfeeding estimate."
+  - ingredient: pseudoephedrine
+    dimension: anticholinergic_cognitive
+    reason: "No delirium or acute confusion risk estimate found. PubMed 'pseudoephedrine AND (delirium OR confusion)' returns case reports only (PRES after oral decongestant PMID 35321464, toddler hallucinations after ingestion PMID 9270396); 'decongestant* AND delirium AND (cohort OR case-control OR meta-analysis)' returns nothing. v0 rates the base dimension 0 for all personas; its only entry is an enlarged_prostate modifier (+2, label urinary-retention warning), which is not a delirium outcome."
+  - ingredient: phenylephrine
+    dimension: anticholinergic_cognitive
+    reason: "No delirium or acute confusion risk estimate found. PubMed 'phenylephrine AND (delirium OR confusion)' returns only intraoperative IV phenylephrine vs ephedrine postoperative-delirium trials and cohorts (e.g. PMIDs 37725759, 39068245), not oral OTC decongestant use; 'decongestant* AND delirium AND (cohort OR case-control OR meta-analysis)' returns nothing. v0 rates the base dimension 0 for all personas; its only entry is an enlarged_prostate modifier (+2, label urinary-retention warning), which is not a delirium outcome."
+  - ingredient: oxymetazoline
+    dimension: anticholinergic_cognitive
+    reason: "No delirium or acute confusion risk estimate found. PubMed 'oxymetazoline AND (delirium OR confusion)' returns no clinical studies (pharmacology papers and a pharmacist survey only); 'decongestant* AND delirium AND (cohort OR case-control OR meta-analysis)' returns nothing. v0 rates the base dimension 0 for all personas; its only entry is an enlarged_prostate modifier (+2, label urinary-retention warning), which is not a delirium outcome."
