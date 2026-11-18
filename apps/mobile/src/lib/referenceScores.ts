@@ -67,7 +67,7 @@ const DRAFT_LINE = /_fixture_draft$/;
 /** What the label's directions say for the profile's age. */
 const CHILD_DIRECTIONS_LINE = /_child_directions$/;
 /** A hard stop because the label forbids this age ("hs_zzzquil_under_12"). */
-const AGE_STOP = /_under_\d+$/;
+const AGE_STOP = /^hs_(?!rated_).*_under_\d+$/;
 
 /** The dimension an explanation line is about, from its template id ("NOMI-015_gi_bleeding"). */
 function lineDimension(templateId: string): string | undefined {

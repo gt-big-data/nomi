@@ -39,10 +39,15 @@ export interface Modifier {
 export interface Ratings {
   /** By UNII. Only ratings above 0 are listed. */
   ingredients: Record<string, { name: string; ratings: Rating[]; modifiers: Modifier[] }>;
-  /** By NDC11: where a product's own label differs from its ingredients' ratings. */
+  /**
+   * By SPL set id, so every package of one label gets the same answer: where a product's own
+   * label differs from its ingredients' ratings, for the personas it was checked for.
+   */
   labels: Record<
     string,
     {
+      /** The personas this label was checked for. */
+      personas: string[];
       /** These replace the ingredient's rating for that dimension and persona; 0 removes it. */
       ratings: (Rating & { unii: string })[];
       hard_stops: { persona: string; id: string; message: string }[];
@@ -58,6 +63,8 @@ export interface Profile {
 
 export interface ScorableProduct {
   ndc11: string;
+  /** The label (SPL set id) the package belongs to. */
+  setId?: string | null;
   ingredients: { unii: string; name: string }[];
 }
 
@@ -68,7 +75,26 @@ export interface EngineRecord extends ScoreRecord {
   })[];
 }
 
-export type ScoreResult = EngineRecord | { status: "unrated"; missing: string[] };
+/**
+ * "unrated": missing names the active ingredients with no ratings. With reason "child_label", every
+ * ingredient is rated but the profile is a child whose age this product's label wasn't checked
+ * for: what a label allows by age differs between products with the same ingredient (a sleep aid
+ * that says "do not use under 12" against an allergy tablet that doses from 6), so the ingredient
+ * ratings alone can't be trusted to say it.
+ */
+export type ScoreResult =
+  EngineRecord | { status: "unrated"; missing: string[]; reason?: "child_label" };
+
+/** Personas whose label directions depend on age. */
+export const CHILD_PERSONAS: readonly string[] = [
+  "under_2",
+  "child_2_5",
+  "child_6_11",
+  "teen_12_17",
+];
+
+/** Hard stops the engine makes from a rating, rather than taken from the product's label. */
+export const RATED_STOP_PREFIX = "hs_rated_";
 
 /** Points for severity 1, 2 and 3 under the draft convention (tests/test_examples.py POINTS). */
 export const POINTS: Record<number, number> = { 1: 5, 2: 15, 3: 51 };
@@ -90,10 +116,25 @@ const sameCitation = (a: Citation, b: Citation) => JSON.stringify(a) === JSON.st
 
 const capitalized = (text: string) => text.charAt(0).toUpperCase() + text.slice(1);
 
-/** One line per risk, from the ratings alone: who is rated how high, and the source's words. */
-function explanationText(names: string[], severity: number, citations: Citation[]): string {
-  const who = capitalized(names.join(" and "));
-  const rated = `${who} ${names.length > 1 ? "are" : "is"} rated ${severity} of 3 for this profile.`;
+/** The dataset spells ingredient names in capitals ("DOXYLAMINE SUCCINATE"). */
+const plain = (name: string) => name.toLowerCase();
+
+/** "heavy_alcohol_use" as words. */
+const words = (id: string) => id.replaceAll("_", " ");
+
+/**
+ * One line per risk: who is rated how high, what in the profile raised it, and the source's
+ * words. A modifier's quote goes first, since it says why this profile is different.
+ */
+function explanationText(
+  names: string[],
+  severity: number,
+  raisedBy: string[],
+  citations: Citation[],
+): string {
+  const who = capitalized(names.map(plain).join(" and "));
+  const because = raisedBy.length > 0 ? `, higher because of ${raisedBy.join(" and ")}` : "";
+  const rated = `${who} ${names.length > 1 ? "are" : "is"} rated ${severity} of 3 for this profile${because}.`;
   const quote = citations.find((citation) => citation.quote)?.quote;
   return quote ? `${rated} Source: "${quote}"` : rated;
 }
@@ -109,11 +150,15 @@ export function score(product: ScorableProduct, profile: Profile, ratings: Ratin
   if (product.ingredients.length === 0 || missing.length > 0) {
     return { status: "unrated", missing };
   }
-  const label = ratings.labels[product.ndc11];
+  const label = product.setId ? ratings.labels[product.setId] : undefined;
+  const labelChecked = label?.personas.includes(profile.persona) ?? false;
   const names = new Map(product.ingredients.map((i) => [i.unii, i.name]));
 
   // dimension -> unii -> severity and citations
-  const found = new Map<string, Map<string, { severity: number; citations: Citation[] }>>();
+  const found = new Map<
+    string,
+    Map<string, { severity: number; raisedBy: string[]; citations: Citation[] }>
+  >();
   const pediatricStops: string[] = [];
   for (const unii of [...new Set(names.keys())]) {
     const own = new Map<string, Rating>();
@@ -137,9 +182,13 @@ export function score(product: ScorableProduct, profile: Profile, ratings: Ratin
         (rating?.severity ?? 0) + used.reduce((sum, m) => sum + m.severity_change, 0),
       );
       if (severity > 0) {
-        const citations = [...(rating?.citations ?? []), ...used.flatMap((m) => m.citations)];
+        // The modifiers' sources first: they say why this profile is different.
+        const citations = [...used.flatMap((m) => m.citations), ...(rating?.citations ?? [])];
+        const raisedBy = used
+          .filter((m) => m.severity_change > 0)
+          .map((m) => words(m.condition ?? m.medication_type!));
         if (!found.has(dimension)) found.set(dimension, new Map());
-        found.get(dimension)!.set(unii, { severity, citations });
+        found.get(dimension)!.set(unii, { severity, raisedBy, citations });
       }
     }
   }
@@ -150,6 +199,7 @@ export function score(product: ScorableProduct, profile: Profile, ratings: Ratin
     const top = Math.max(...[...byUnii.values()].map((entry) => entry.severity));
     const uniis = [...byUnii.keys()].filter((unii) => byUnii.get(unii)!.severity === top).sort();
     const citations: Citation[] = [];
+    const raisedBy = [...new Set(uniis.flatMap((unii) => byUnii.get(unii)!.raisedBy))];
     for (const unii of uniis) {
       for (const citation of byUnii.get(unii)!.citations) {
         if (!citations.some((seen) => sameCitation(seen, citation))) citations.push(citation);
@@ -161,6 +211,7 @@ export function score(product: ScorableProduct, profile: Profile, ratings: Ratin
       text: explanationText(
         uniis.map((unii) => names.get(unii)!),
         top,
+        raisedBy,
         citations,
       ),
     });
@@ -176,9 +227,15 @@ export function score(product: ScorableProduct, profile: Profile, ratings: Ratin
       : labelStops.length > 0
         ? labelStops
         : pediatricStops.map((unii) => ({
-            id: `hs_${unii}_${profile.persona}`,
-            message: `${capitalized(names.get(unii)!)} is rated 3 of 3 for use at this age.`,
+            id: `${RATED_STOP_PREFIX}${unii}_${profile.persona}`,
+            message: `${capitalized(plain(names.get(unii)!))} is not considered safe at this age. Ask a pharmacist or doctor first.`,
           }));
+
+  // A child whose age this label wasn't checked for: a hard stop from the ratings still shows
+  // (it can only be more careful than the label), but a score that could be too kind does not.
+  if (CHILD_PERSONAS.includes(profile.persona) && !labelChecked && hardStops.length === 0) {
+    return { status: "unrated", missing: [], reason: "child_label" };
+  }
 
   const total = Math.max(0, 100 - contributions.reduce((sum, c) => sum + c.points, 0));
   return {

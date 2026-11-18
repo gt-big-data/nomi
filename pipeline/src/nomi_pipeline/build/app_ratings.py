@@ -88,7 +88,7 @@ def _label(folder: Path, kb: dict[str, dict[str, Any]]) -> dict[str, Any]:
         for record in records
         for stop in record["hard_stops_triggered"]
     ]
-    return {"ratings": ratings, "hard_stops": hard_stops}
+    return {"personas": sorted(set(personas)), "ratings": ratings, "hard_stops": hard_stops}
 
 
 def build() -> dict[str, Any]:
@@ -100,7 +100,7 @@ def build() -> dict[str, Any]:
         )
     }
     labels = {
-        _read_json(folder / "product.json")["ndc11"]: _label(folder, kb)
+        _read_json(folder / "product.json")["spl_set_id"]: _label(folder, kb)
         for folder in sorted(p for p in EXAMPLES.iterdir() if p.is_dir())
     }
     return {

@@ -15,7 +15,7 @@ import { openDataset } from "@/lib/dataset";
 import { lookupBarcode, strengthText, type Lookup, type Product } from "@/lib/db";
 import { DEMO_PROFILES, type ScoredFor, setScoredFor, useScoredFor } from "@/lib/demoProfiles";
 import { profileNotes, recordTier, riskRows, type ScoreRecord } from "@/lib/referenceScores";
-import { score } from "@/scoring/engine";
+import { RATED_STOP_PREFIX, score } from "@/scoring/engine";
 import { RATINGS } from "@/scoring/ratingsData";
 import { useSavedProfile } from "@/storage/activeProfile";
 import {
@@ -135,11 +135,15 @@ const REVIEWED = new Set(["sampled_ok", "pharmacist_reviewed"]);
  * The v0 engine's score for this product and profile, or the active ingredients it has no ratings
  * for. The one place scores come from.
  */
-function scoreFor(product: Product, profile: Profile): { record?: ScoreRecord; missing: string[] } {
+function scoreFor(product: Product, profile: Profile): Scored {
   const { medication_types, ...rest } = toScoringProfile(profile);
   const result = score(product, { ...rest, medicationTypes: medication_types }, RATINGS);
-  return "missing" in result ? { missing: result.missing } : { record: result, missing: [] };
+  return "missing" in result
+    ? { missing: result.missing, childLabel: result.reason === "child_label" }
+    : { record: result, missing: [], childLabel: false };
 }
+
+type Scored = { record?: ScoreRecord; missing: string[]; childLabel: boolean };
 
 function ProductResult({ lookup }: { lookup: Found }) {
   const { product } = lookup;
@@ -148,8 +152,10 @@ function ProductResult({ lookup }: { lookup: Found }) {
   const profile = options.find((option) => option.id === scoredFor) ?? options[0];
   const { colors, space, text } = useTheme();
   // Only an in-scope product that resolved to one package may show a score.
-  const { record, missing } =
-    lookup.status === "homeopathic" ? { missing: [] } : scoreFor(product, profile);
+  const { record, missing, childLabel }: Scored =
+    lookup.status === "homeopathic"
+      ? { missing: [], childLabel: false }
+      : scoreFor(product, profile);
   const shown = lookup.status === "resolved" ? record : undefined;
   const tier: ProductTier = shown ? recordTier(shown) : "none";
 
@@ -179,7 +185,7 @@ function ProductResult({ lookup }: { lookup: Found }) {
             Draft score, rubric v0
           </Text>
         )}
-        {shown && <ProfileSwitcher options={options} selected={profile} />}
+        {(shown || childLabel) && <ProfileSwitcher options={options} selected={profile} />}
       </View>
 
       {shown ? (
@@ -187,8 +193,12 @@ function ProductResult({ lookup }: { lookup: Found }) {
       ) : (
         <AlertBanner
           type="info"
-          title={unscoredTitle(lookup)}
-          body={unscoredBody(lookup, missing)}
+          title={childLabel ? "Not scored for this age yet" : unscoredTitle(lookup)}
+          body={
+            childLabel
+              ? "Labels with the same ingredients can allow different ages, and Nomi hasn't checked this one's yet. Follow the label's directions for age, and ask a pharmacist."
+              : unscoredBody(lookup, missing)
+          }
         />
       )}
 
@@ -221,9 +231,11 @@ function unscoredBody(lookup: Found, missing: string[]): string {
   if (lookup.status === "homeopathic") {
     return "It hasn't been evaluated by the FDA, so Nomi doesn't score it.";
   }
-  return missing.length > 0
-    ? `Nomi scores a product once every active ingredient is rated. Not rated yet: ${missing.join(", ")}.`
-    : "Nomi doesn't score this kind of product yet.";
+  if (missing.length > 0) {
+    const names = missing.map((name) => name.toLowerCase()).join(", ");
+    return `Nomi scores a product once every active ingredient is rated. Not rated yet: ${names}.`;
+  }
+  return "Nomi hasn't rated this product's ingredients yet.";
 }
 
 /** What the saved profile's chip says. */
@@ -291,7 +303,11 @@ function ScoreDetails({ record }: { record: ScoreRecord }) {
         <AlertBanner
           key={stop.id}
           type="danger"
-          title="The label says not to use it"
+          title={
+            stop.id.startsWith(RATED_STOP_PREFIX)
+              ? "Not for this age"
+              : "The label says not to use it"
+          }
           body={stop.message}
         />
       ))}
@@ -316,9 +332,9 @@ function ScoreDetails({ record }: { record: ScoreRecord }) {
               factor={row.name}
               detail={row.detail}
               points={row.points}
-              citations={row.citations.map((citation) => ({
-                source: citation.source,
-                onPress: citation.url ? () => openSource(citation.url!) : undefined,
+              citations={row.citations.map(({ source, url }) => ({
+                source,
+                onPress: url ? () => openSource(url) : undefined,
               }))}
             />
           ))

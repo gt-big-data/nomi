@@ -19,13 +19,14 @@ export default function ProfileScreen() {
     >
       <Stack.Screen options={{ title: "Profile" }} />
       <Text style={[text("body"), { color: colors.text.secondary }]}>
-        Nomi scores every medicine for this person. Your answers stay on this phone.
+        Nomi scores medicines for this person once every active ingredient is rated. Your answers
+        stay on this phone.
       </Text>
       <ProfileSummary profile={profile} />
       <Button label="Scan a medicine" onPress={() => router.dismissTo("/")} />
       <Button
         type="secondary"
-        label="Edit answers"
+        label="Answer again"
         onPress={() => router.push("/onboarding")}
         accessibilityHint="Asks the profile questions again"
       />

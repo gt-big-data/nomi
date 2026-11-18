@@ -28,6 +28,8 @@ export interface Product {
   // The package's dashed NDC10, e.g. 50580-449-05.
   packageNdc: string;
   ndc11: string;
+  // The SPL set id of the label it belongs to.
+  setId: string | null;
   brand: string | null;
   generic: string | null;
   form: string | null;
@@ -50,6 +52,7 @@ export type LookupStatus = Lookup["status"];
 interface Row {
   package_ndc: string;
   ndc11: string;
+  set_id: string | null;
   brand: string | null;
   generic: string | null;
   form: string | null;
@@ -83,7 +86,7 @@ export async function checkDataset(db: Dataset): Promise<void> {
 
 // One indexed query per scan: products by ndc10, with each one's ingredients.
 export const LOOKUP_SQL = `
-  SELECT p.package_ndc, p.ndc11, p.brand, p.generic, p.form, p.scope_flag, p.review_status,
+  SELECT p.package_ndc, p.ndc11, p.set_id, p.brand, p.generic, p.form, p.scope_flag, p.review_status,
          pi.unii, i.name, pi.strength, pi.unit, pi.per_amount, pi.per_unit
   FROM products p
   LEFT JOIN product_ingredients pi ON pi.package_ndc = p.package_ndc
@@ -117,6 +120,7 @@ export async function lookupBarcode(raw: string, db: Dataset): Promise<Lookup> {
   const product: Product = {
     packageNdc: first.package_ndc,
     ndc11: first.ndc11,
+    setId: first.set_id,
     brand: first.brand,
     generic: first.generic,
     form: first.form,

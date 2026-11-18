@@ -18,6 +18,9 @@ const FRAME_ASPECT = 1.6;
 /** The widest the scan frame gets, in points, so it stays barcode-sized on a tablet. */
 const FRAME_MAX_WIDTH = 320;
 
+/** How long the same barcode is ignored after coming back to the camera. */
+const SAME_BARCODE_MS = 2000;
+
 export default function Scanner() {
   const { hasPermission, canRequestPermission, requestPermission } = useCameraPermission();
   const { colors, space, text } = useTheme();
@@ -26,6 +29,9 @@ export default function Scanner() {
   // A ref, not state: the camera fires many times per second, and a ref changes instantly,
   // so a second frame can't open a second result screen.
   const scanned = useRef(false);
+  // The barcode just shown and when scanning came back: Back from its result would otherwise
+  // reopen it at once, since it is usually still in front of the camera.
+  const last = useRef<{ value: string; since: number }>(undefined);
   const [appActive, setAppActive] = useState(AppState.currentState === "active");
 
   // Turn the camera off while the app is in the background.
@@ -47,6 +53,7 @@ export default function Scanner() {
   useFocusEffect(
     useCallback(() => {
       scanned.current = false;
+      if (last.current) last.current.since = Date.now();
       setFocused(true);
       return () => setFocused(false);
     }, []),
@@ -96,7 +103,11 @@ export default function Scanner() {
           if (scanned.current || !value) {
             return;
           }
+          if (value === last.current?.value && Date.now() - last.current.since < SAME_BARCODE_MS) {
+            return;
+          }
           scanned.current = true;
+          last.current = { value, since: Date.now() };
           Haptics.notificationAsync(
             ndcCandidates(value).status === "ok"
               ? Haptics.NotificationFeedbackType.Success

@@ -28,7 +28,7 @@ for (const folder of FOLDERS) {
     const { persona, conditions, medication_types } = expected.profile;
     test(`${folder}, ${persona}: matches the hand-checked record`, () => {
       const profile = { persona, conditions, medicationTypes: medication_types };
-      const record = scored(score(product, profile, RATINGS));
+      const record = scored(score({ ...product, setId: product.spl_set_id }, profile, RATINGS));
       assert.equal(record.score, expected.score);
       assert.equal(record.tier, expected.tier);
       assert.deepEqual(record.hard_stops_triggered, expected.hard_stops_triggered);
@@ -93,7 +93,7 @@ test("a pediatric 3 without a label hard stop gets one named for the ingredient"
   const record = scored(score(product, { ...ADULT, persona: "under_2" }, RATINGS));
   assert.deepEqual(
     record.hard_stops_triggered.map((stop) => stop.id),
-    ["hs_TC2D6JAD40_under_2"],
+    ["hs_rated_TC2D6JAD40_under_2"],
   );
   assert.equal(record.tier, "red");
 });
@@ -104,4 +104,44 @@ test("tiers: green 75+, yellow 50 to 74, red below 50 or with a hard stop", () =
     ["green", "yellow", "yellow", "red"],
   );
   assert.equal(tier(100, [{ id: "x" }]), "red");
+});
+
+const ZZZQUIL = read(new URL("zzzquil/product.json", EXAMPLES));
+const CHILD: Profile = { ...ADULT, persona: "child_6_11" };
+
+test("every package of a label gets the label's answer, not just the reference package", () => {
+  const sibling = { ...ZZZQUIL, ndc11: "84126031699", setId: ZZZQUIL.spl_set_id };
+  const record = scored(score(sibling, CHILD, RATINGS));
+  assert.equal(record.tier, "red");
+  assert.ok(record.hard_stops_triggered.length > 0);
+});
+
+test("a child's score is withheld when the label wasn't checked for that age", () => {
+  const otherLabel = { ...ZZZQUIL, ndc11: "37000050001", setId: "not-a-checked-label" };
+  assert.deepEqual(score(otherLabel, CHILD, RATINGS), {
+    status: "unrated",
+    missing: [],
+    reason: "child_label",
+  });
+  // The reference label was checked for 6 to 11, not for 2 to 5.
+  const reference = { ...ZZZQUIL, setId: ZZZQUIL.spl_set_id };
+  assert.equal(
+    (score(reference, { ...ADULT, persona: "child_2_5" }, RATINGS) as { reason?: string }).reason,
+    "child_label",
+  );
+  // Adults are still scored from the ratings alone.
+  assert.ok(!("missing" in score(otherLabel, ADULT, RATINGS)));
+});
+
+test("a raised severity names what raised it", () => {
+  const product = {
+    ndc11: "00000000000",
+    ingredients: [{ unii: "362O9ITL9D", name: "ACETAMINOPHEN" }],
+  };
+  const record = scored(score(product, { ...ADULT, conditions: ["heavy_alcohol_use"] }, RATINGS));
+  const liver = record.explanation.find((line) => line.template_id === "engine_v0_liver")!;
+  assert.match(
+    liver.text,
+    /^Acetaminophen is rated \d of 3 for this profile, higher because of heavy alcohol use\./,
+  );
 });
