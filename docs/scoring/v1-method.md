@@ -1,7 +1,9 @@
 # Scoring v1: evidence-based excess risk
 
-Status: v1.0 locked on 2026-11-18, before any v1 score was computed. v1.1 (section 8) added on
-2026-11-18 after the independent evidence review; see its change log. Changing a rule in this file
+Status: v1.0 locked on 2026-11-18, before any v1 score was computed. v1.1 (section 8) and v1.2
+(section 9) were added on 2026-11-18 after the first and second independent evidence reviews;
+see their change logs. Each version's rules are committed on their own, before the evidence
+changes they govern, so the order can be checked in git. Changing a rule in this file
 needs a new version number, and the change log says why. No rule here may be changed because of
 the score it gives a particular product.
 
@@ -191,3 +193,52 @@ stratum contains the maximum, the highest stratum below it is used.
     with `outcome_match: false` are left out of the app's table and listed in
     `pipeline/reports/evidence_coverage.md`. A pair left with no usable row becomes insufficient
     evidence for the profiles the dropped rows applied to.
+
+## 9. Version 1.2: rules from the second independent evidence review
+
+Change log. The second review (2026-11-18) found that most remaining errors came from pairing a
+study's relative risk with a baseline from a different population or outcome definition, and from
+dose strata settled by judgment rather than rule 8.1. It also noted that the rule 15 amendment was
+committed with the evidence it governed, so its order could not be checked; from v1.2 on, rules are
+committed first. These rules were written from the review's findings about the inputs, before any
+v1.2 evidence or score, and apply to every ingredient alike.
+
+20. **Same-study baseline first.** When a relative-risk source reports the incidence of the
+    outcome in its own unexposed group (non-users, or the reference group of a within-group
+    comparison), that incidence, converted to per person-year with the arithmetic shown, is the
+    baseline for that row (`unexposed_incidence`, with its own quote). Only when the source
+    reports none is an outside baseline used, and then it must use the same outcome definition
+    (rule 10) and the same kind of population (general population, or the same group for a
+    within-group row). Otherwise the pair is insufficient. When several ingredients in one term
+    carry their own baselines, the baseline of the row with the largest relative risk is used.
+21. **Dose at the label maximum beats an undosed pool.** Rule 8.1 applies to every source with
+    dose strata, including a single study inside a meta-analysis paper. A stratum that contains
+    the label maximum, from a cohort, case-control study or meta-analysis, is used over a pooled
+    estimate that does not report dose, because the pooled estimate describes a mix of doses
+    below the maximum the score covers. Otherwise rule 13 holds: a meta-analysis over a single
+    study. The build enforces this order; curation does not decide it.
+22. **Exposure measured in other units.** Strata in days a month or tablets a week are recorded
+    with `dose_mg_per_day` only when the source states the tablet strength; otherwise they are
+    recorded with `dose_mg_per_day: null` and a note, and the pair uses the source's overall
+    estimate. Exposure assessed as habitual use over years (questionnaires repeated every few
+    years) is `long_term`.
+23. **Joint exposure is not the ingredient's risk.** An estimate for the ingredient and a
+    co-medication together, against neither, includes the co-medication's own risk. It is used
+    only as `within_group` against the co-medication alone, with that group's baseline; otherwise
+    the pair is insufficient.
+24. **Outcome ids for heart outcomes.** `cardiovascular_bp` rows use `mi`, `stroke` or
+    `mi_stroke`, and pair only with a baseline of the same id (rule 18).
+25. **Stratum matching the baseline's population.** When a source reports the relative risk
+    separately for subgroups (for example vitamin K antagonist and direct oral anticoagulant
+    users), the stratum whose population matches the baseline's is used, not the larger.
+26. **Baseline preference order.** Same-study (rule 20); then a rate that excludes users of the
+    ingredient's class; then the age rule (rule 15); then, between two rates for the same whole
+    range, the one from the larger population-based source. A rate age-standardised to all ages
+    is not used for an age-band persona.
+27. **Interval type.** Rows record `interval: confidence` or `interval: credible`, and the app
+    labels them that way.
+28. **Notes say what was used.** An insufficient-evidence entry for a subgroup the general
+    estimate still covers reads, in the app, "no estimate specific to X; the general estimate is
+    used". A rule 19 entry made for a dropped row applies only to profiles with every attribute
+    of that row (persona, condition and co-medication together), and only when no usable row
+    covers them.
