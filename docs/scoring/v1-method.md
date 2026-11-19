@@ -2,18 +2,21 @@
 
 Status: v1.0 locked on 2026-11-18, before any v1 score was computed. v1.1 (section 8) and v1.2
 (section 9) were added on 2026-11-18 after the first and second independent evidence reviews,
-v1.3 and v1.4 (sections 10 and 11) after the third, and v1.6 (section 12) on 2026-11-18 to keep
-every v0 rating; see their change logs. Versions 1.0 to 1.2 were committed on their own, before the evidence
+v1.3 and v1.4 (sections 10 and 11) after the third, v1.6 (section 12) on 2026-11-18 to keep
+every v0 rating, and v1.7 (section 13) after the review of v1.6; see their change logs. Versions 1.0 to 1.2 were committed on their own, before the evidence
 changes they govern, so the order can be checked in git. v1.3 and v1.4 are the exceptions: their rules
 were written after the evidence changes and with their score effects known, and are pending
 pharmacist sign-off (sections 10 and 11). Changing a rule in this file needs a new version number, and
 the change log says why. No rule here may be changed because of the score it gives a particular
 product.
 
-v1 replaces the v0 severity ratings (`pipeline/knowledge/ingredients/`) as the source of a
-product's score. A score is the published probability of serious harm from one course of the
-product for this person, put on a fixed scale. Every number in it comes from a cited source or
-from FDA data through code in this repository.
+From v1.6 on, v1 combines two sources into one score: the published studies (sections 2 to 11)
+and the v0 severity ratings (`pipeline/knowledge/ingredients/`), which count where no study
+covers a risk (sections 12 and 13). A score is the estimated probability of serious harm from
+one course of the product for this person, put on a fixed scale. Every number in it comes from a
+cited source, from FDA data through code in this repository, or from the fitted mapping in
+section 12. (Up to v1.4 this paragraph said v1 replaces the v0 ratings; that stopped being true
+in v1.6.)
 
 ## 1. What is measured
 
@@ -399,3 +402,61 @@ Severity 1 rests on one pair. It agrees with `dimensions.md`, which defines seve
 that "do not result in organ damage, functional disability, or medical intervention", but it is
 the weakest of the three values. `engineV1.test.ts` pins these values, so a change in the
 evidence that moves them shows up as a deliberate update.
+
+## 13. Version 1.7: fixes from the review of v1.6
+
+Change log. An independent review of v1.6 (2026-11-18) found five blockers: (1) for a profile on
+a blood thinner, rule 16 let a blood-thinner bleeding rating delete a larger stomach-bleeding
+study term, so adding a blood thinner could raise the score; (2) a relative risk below 1 for one
+ingredient multiplied away another ingredient's harm and marked that ingredient as covered; (3)
+rule 33 let a pair with a relative risk at or below 1 into the calibration without a baseline,
+while a pair above 1 needed one, which biased `L(s)` toward zero; (4) ratings on dimensions that
+are not serious harms (`efficacy_evidence`, `rebound_overuse`) took points and were worded as an
+excess risk; (5) a hard stop could show a number in the yellow band. It also found that rule
+33's duplicate key ignored the study row when the excess risk was 0, and that the opening of this
+file still said v1 replaces the v0 ratings. Rules 37 to 41 fix these. They were written from the
+review's findings and committed before any v1.7 calibration value or score was computed. They
+apply to every ingredient alike. Section 12.2's values are superseded by section 13.2.
+
+37. **One bleeding row** (replaces rule 16, and rule 16's use in rule 35). For a profile on
+    anticoagulants or antiplatelets, `gi_bleeding` and `anticoagulant_bleeding` are one harm.
+    Each is worked out as rule 35 says (the larger of its study term and its rating terms), and
+    the profile gets one row for the two: the larger, under that dimension's name. Neither
+    deletes the other, so adding a blood thinner can never lower the bleeding risk counted.
+38. **A ratio below 1 cancels nothing** (amends rule 4 and rule 32). Within an outcome term each
+    ingredient's relative risk enters as `max(1, estimate)`: an ingredient whose study found no
+    excess risk adds nothing and cannot cancel another ingredient's harm. An ingredient is
+    covered (rule 32) when its own estimate is at or below 1, or when its outcome term has a
+    baseline; the condition clause of rule 32 still applies.
+39. **Every calibration pair needs a baseline** (amends rule 33). A pair enters only when the
+    ingredient's outcome has a baseline for the pair's profile (rules 6, 12, 20 and 25),
+    whatever its estimate. An estimate at or below 1 with a baseline enters as 0. The key that
+    collapses repeated pairs always includes the ingredient's own study row (source and
+    estimate), whether or not the excess risk is 0.
+40. **Only serious harms take points** (replaces the last sentence of rule 31 and amends rule
+    36). The score is the excess risk of a serious harm (section 1), so only the nine outcome
+    dimensions of section 1 give points, from a study or a rating. The ratings on the other
+    dimensions do not describe a serious harm with a risk of its own: `pediatric` (what a label
+    allows at an age), `rebound_overuse` (use beyond the label's directions), `excipients`
+    (inactive ingredients), `local_skin` (local irritation) and `efficacy_evidence` (whether
+    the product works). Where a serious harm lies behind one, it is already counted elsewhere:
+    acetaminophen overuse as `liver`, a `pediatric` rating of 3 as a hard stop (section 5,
+    unchanged). Each such rating above 0 is shown as a note (`template_id`
+    `engine_v1_note_<dimension>`) giving the rating and its source, with no points and no
+    excess-risk wording. `duplicate_dosing` stays with the Medicine Cabinet.
+41. **A hard stop is red in number too.** When a hard stop applies, the score is the lower of
+    the computed score and 49, the top of the red band in section 3, so the number and the tier
+    agree. In v0 a hard stop always came with a pediatric rating of 3 (51 points), so its number
+    was already in the red band.
+
+### 13.1 Decided in v1.7 without a rule change
+
+- **A study for another age band.** The review asked whether a persona with no study should use
+  a study for an adjacent persona (for example naproxen's heart risk, measured in adults, for a
+  child). The relative risk is often already general (`persona: all`); what is missing is the
+  child's baseline. Using an adult baseline for a child is what rules 15 and 26 forbid, so
+  rule 31's `L(s)` still applies. Recorded as judgment: for outcomes much rarer in children
+  than in adults, `L(s)` may overstate the child's risk. For a pharmacist to review.
+- **The stomach-bleeding baseline** (Bedene) is a crude rate for all ages, used for 18 to 64 and
+  65 and over alike. Rule 26 forbids only age-standardised rates, so it is still used; replacing
+  it with age-band rates is left to the next evidence review, not changed here.
