@@ -2,7 +2,8 @@
 
 Status: v1.0 locked on 2026-11-18, before any v1 score was computed. v1.1 (section 8) and v1.2
 (section 9) were added on 2026-11-18 after the first and second independent evidence reviews,
-and v1.3 and v1.4 (sections 10 and 11) after the third; see their change logs. Versions 1.0 to 1.2 were committed on their own, before the evidence
+v1.3 and v1.4 (sections 10 and 11) after the third, and v1.5 (section 12) after the user's
+review of the scores; see their change logs. Versions 1.0 to 1.2 were committed on their own, before the evidence
 changes they govern, so the order can be checked in git. v1.3 and v1.4 are the exceptions: their rules
 were written after the evidence changes and with their score effects known, and are pending
 pharmacist sign-off (sections 10 and 11). Changing a rule in this file needs a new version number, and
@@ -290,3 +291,20 @@ that contain the label maximum, so the rule changes no other score.
     recorded with its stated range (rule 14). A stratum defined by duration as well as dose is
     not a dose stratum; it is recorded with `dose_mg_per_day: null` and a note, and rule 21
     gives way to the dose stratum that contains the maximum.
+
+## 12. Version 1.5: v0 ratings as the floor
+
+Change log. On 2026-11-18 the user found that v1 scored a risk as zero whenever no study passed
+the rules, so products such as Equate Allergy Relief scored 100 for adults although v0 had rated
+their label-based risks (memory and thinking, drowsiness and falls). That dropped information v0
+had, and v1 was meant to be strictly better than v0, not narrower. Rule 31 restores it. It was
+written knowing that it lowers scores wherever v1 had no usable study.
+
+31. **v0 ratings fill what the studies do not cover.** For each risk dimension, when a usable
+    relative risk and baseline cover this profile (rules 1 to 30), the dimension's points are
+    v1's. When none does, the dimension's points are v0's (the label- and rubric-based rating in
+    `ratings.json`, with its own citations), unchanged. This includes dimensions v1 does not
+    model. The score is the v1 score minus the v0 points so added, clamped to 0 to 100, and the
+    tier follows the total. Hard stops and the child-label rule are unchanged. A study that
+    measures a small risk replaces v0's rating for that dimension; the absence of a study never
+    does.
