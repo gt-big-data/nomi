@@ -332,8 +332,8 @@ function studyTerms(
     rowsUsed.set(dimension, new Map(used.map(({ unii, row }) => [unii, row])));
     // Rule 18: one term per outcome; the dimension counts the largest.
     const outcomes = [...new Set(used.map(({ row }) => row.outcome))].sort();
-    // Rule 38: an ingredient whose own estimate is at or below 1 is covered.
-    const cover = new Set(used.filter(({ row }) => row.estimate <= 1).map(({ unii }) => unii));
+    // Rule 42: an ingredient is covered only when its outcome has a baseline.
+    const cover = new Set<string>();
     const withBaseline = new Set<string>();
     let best: Term | undefined;
     for (const outcome of outcomes) {
@@ -458,13 +458,16 @@ export function calibrate(ratings: Ratings, evidence: Evidence): Calibration {
 }
 
 /**
- * Rule 34: the mean excess risk of the pairs at each severity, made non-decreasing by pool
- * adjacent violators (weighted by pair count); an empty severity takes the mean of its nearest
- * fitted neighbours, or the one at an end. No pairs at all gives 0 for every severity.
+ * Rule 34: the mean excess risk of the pairs at severity 2 and 3, made non-decreasing by pool
+ * adjacent violators (weighted by pair count); an empty severity takes the other's fitted value.
+ * No pairs at all gives 0. Rule 43: severity 1 is 0 by definition and is not fitted.
  */
+/** Rule 43: the severities fitted to the pairs; severity 1 is not a serious harm. */
+const FITTED = [2, 3];
+
 export function calibrationLevels(pairs: CalibrationPair[]): Record<number, number> {
   const blocks: { severities: number[]; n: number; mean: number }[] = [];
-  for (const severity of [1, 2, 3]) {
+  for (const severity of FITTED) {
     const at = pairs.filter((p) => p.severity === severity).map((p) => p.ear);
     if (at.length === 0) continue;
     blocks.push({
@@ -487,14 +490,14 @@ export function calibrationLevels(pairs: CalibrationPair[]): Record<number, numb
   const fitted: Record<number, number> = {};
   for (const block of blocks)
     for (const severity of block.severities) fitted[severity] = block.mean;
-  const levels: Record<number, number> = {};
-  for (const severity of [1, 2, 3]) {
+  const levels: Record<number, number> = { 1: 0 };
+  for (const severity of FITTED) {
     if (severity in fitted) {
       levels[severity] = fitted[severity];
       continue;
     }
-    const below = [1, 2, 3].filter((s) => s < severity && s in fitted).pop();
-    const above = [1, 2, 3].find((s) => s > severity && s in fitted);
+    const below = FITTED.filter((s) => s < severity && s in fitted).pop();
+    const above = FITTED.find((s) => s > severity && s in fitted);
     const near = [below, above].filter((s): s is number => s !== undefined).map((s) => fitted[s]);
     levels[severity] = near.length === 0 ? 0 : near.reduce((a, b) => a + b, 0) / near.length;
   }
@@ -538,18 +541,27 @@ export function scoreV1(
   }
   const rows: Row[] = [];
   const notes: { template_id: string; text: string }[] = [];
+  const stopRatings: [string, RatedSeverity][] = [];
+  const noteFor = (dimension: string, unii: string, entry: RatedSeverity) => {
+    const because =
+      entry.raisedBy.length > 0 ? `, higher because of ${entry.raisedBy.join(" and ")}` : "";
+    const quote = quoteOf(entry.citations);
+    return {
+      template_id: `engine_v1_note_${dimension}`,
+      text: `${DIMENSION_NAMES[dimension] ?? capitalized(words(dimension))}: ${capitalized(name(unii))} is rated ${entry.severity} of 3 for this profile${because}. Not scored separately.${quote ? ` Source: "${quote}"` : ""}`,
+    };
+  };
   const dimensions = [...new Set([...Object.keys(OUTCOMES), ...found.keys()])];
   for (const dimension of dimensions) {
     if (!(dimension in OUTCOMES)) {
-      // Rule 40: not a serious harm, so a note with no points and no excess risk.
+      // Rules 40 and 44: a note with no points and no excess risk.
       for (const [unii, entry] of found.get(dimension) ?? new Map<string, RatedSeverity>()) {
-        const because =
-          entry.raisedBy.length > 0 ? `, higher because of ${entry.raisedBy.join(" and ")}` : "";
-        const quote = quoteOf(entry.citations);
-        notes.push({
-          template_id: `engine_v1_note_${dimension}`,
-          text: `${DIMENSION_NAMES[dimension] ?? capitalized(words(dimension))}: ${capitalized(name(unii))} is rated ${entry.severity} of 3 for this profile${because}. This is not a risk of serious harm, so it takes no points.${quote ? ` Source: "${quote}"` : ""}`,
-        });
+        if (dimension === "pediatric" && entry.severity === 3) {
+          // Rule 45: the hard stop, a row or a note after the totals.
+          stopRatings.push([unii, entry]);
+          continue;
+        }
+        notes.push(noteFor(dimension, unii, entry));
       }
       continue;
     }
@@ -563,9 +575,15 @@ export function scoreV1(
         ),
     );
     let rated: Row["rated"];
-    if (uncovered.length > 0) {
-      const severity = Math.max(...uncovered.map(([, e]) => e.severity));
-      const top = uncovered.filter(([, e]) => e.severity === severity);
+    const severe = uncovered.filter(([, e]) => e.severity >= 2);
+    if (!study && severe.length === 0) {
+      // Rule 43: a severity-1 rating with no study is a note.
+      for (const [unii, entry] of uncovered) notes.push(noteFor(dimension, unii, entry));
+      continue;
+    }
+    if (severe.length > 0) {
+      const severity = Math.max(...severe.map(([, e]) => e.severity));
+      const top = severe.filter(([, e]) => e.severity === severity);
       const citations: Citation[] = [];
       for (const [, e] of top) {
         for (const c of e.citations) {
@@ -623,11 +641,13 @@ export function scoreV1(
   }
 
   const excess = rows.reduce((sum, r) => sum + r.ear, 0);
-  // Rule 41: a hard stop is red in number too.
+  // Rules 41 and 45: rows share the computed score's points; a hard stop holds the score at 49
+  // and the difference is its own row.
   const computed = Math.round(scaleScore(excess));
-  const total = v0.hard_stops_triggered.length > 0 ? Math.min(computed, 49) : computed;
+  const stopped = v0.hard_stops_triggered.length > 0;
+  const total = stopped ? Math.min(computed, 49) : computed;
   const points = apportion(
-    100 - total,
+    100 - computed,
     rows.map((r) => r.ear),
   );
 
@@ -701,6 +721,27 @@ export function scoreV1(
     });
     explanation.push({ template_id: `engine_v1_${row.dimension}`, text: sentence });
   });
+  if (stopped && computed > total) {
+    const citations: Citation[] = stopRatings.flatMap(([, e]) => e.citations);
+    contributions.push({
+      dimension: "pediatric",
+      points: computed - total,
+      ingredient_uniis: stopRatings.map(([unii]) => unii),
+      citations,
+    });
+    explanation.push({
+      template_id: "engine_v1_hard_stop_pediatric",
+      text: `Hard stop: ${v0.hard_stops_triggered.map((h) => h.message).join(" ")} A product the label rules out for this profile is held at 49, in the red band.`,
+    });
+  } else {
+    for (const [unii, entry] of stopRatings) {
+      const quote = quoteOf(entry.citations);
+      notes.push({
+        template_id: "engine_v1_note_pediatric",
+        text: `${DIMENSION_NAMES.pediatric}: ${capitalized(name(unii))} is rated 3 of 3 for this age. This is the hard stop.${quote ? ` Source: "${quote}"` : ""}`,
+      });
+    }
+  }
   contributions.sort((a, b) => b.points - a.points || (a.dimension < b.dimension ? -1 : 1));
 
   explanation.push(...notes);

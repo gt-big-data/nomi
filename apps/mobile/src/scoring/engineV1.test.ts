@@ -418,20 +418,20 @@ const pair = (severity: number, ear: number) => ({
 });
 
 test("a severity means the mean excess risk of its pairs, made non-decreasing", () => {
-  assert.deepEqual(calibrationLevels([pair(1, 0), pair(1, 2e-4), pair(2, 3e-4), pair(3, 1e-3)]), {
-    1: 1e-4,
-    2: 3e-4,
-    3: 1e-3,
-  });
+  // Rule 43: severity 1 is 0 and its pairs are not fitted.
+  const fit = calibrationLevels([pair(1, 5e-3), pair(2, 3e-4), pair(2, 5e-4), pair(3, 1e-3)]);
+  assert.equal(fit[1], 0);
+  assert.ok(Math.abs(fit[2] - 4e-4) < 1e-12);
+  assert.equal(fit[3], 1e-3);
   // 2 above 3 pools them: (4e-3 + 2e-3) / 2.
-  assert.deepEqual(calibrationLevels([pair(1, 0), pair(2, 4e-3), pair(3, 2e-3)]), {
+  assert.deepEqual(calibrationLevels([pair(2, 4e-3), pair(3, 2e-3)]), {
     1: 0,
     2: 3e-3,
     3: 3e-3,
   });
-  // An empty severity takes the mean of its neighbours, or the one at an end.
-  assert.deepEqual(calibrationLevels([pair(1, 0), pair(3, 2e-3)]), { 1: 0, 2: 1e-3, 3: 2e-3 });
-  assert.deepEqual(calibrationLevels([pair(2, 1e-3)]), { 1: 1e-3, 2: 1e-3, 3: 1e-3 });
+  // An empty severity takes the other's value.
+  assert.deepEqual(calibrationLevels([pair(3, 2e-3)]), { 1: 0, 2: 2e-3, 3: 2e-3 });
+  assert.deepEqual(calibrationLevels([pair(2, 1e-3)]), { 1: 0, 2: 1e-3, 3: 1e-3 });
   assert.deepEqual(calibrationLevels([]), { 1: 0, 2: 0, 3: 0 });
 });
 
@@ -457,10 +457,22 @@ test("a study and a rating of the same harm count once, the larger", () => {
   assert.equal(record.contributions.length, 1);
 });
 
-test("a study that finds no excess risk replaces the rating", () => {
+test("a study replaces the rating only when it has a baseline (rule 42)", () => {
   const ev = evidence([rr("kidney", 0.8)], [rr("liver", 2)], [base("liver", 0.0365)]);
   const ratings = rated([rating("kidney", 2)], [rating("liver", 2)]);
+  // No kidney baseline: the study is not usable and the rating counts (1e-3, score 50).
+  assert.equal(scored(scoreV1(product([A]), ADULT, ratings, ev)).score, 50);
+  ev.baselines.push(base("kidney", 0.0365));
   assert.equal(scored(scoreV1(product([A]), ADULT, ratings, ev)).score, 100);
+});
+
+test("a severity-1 rating with no study is a note that denies nothing (rules 43 and 44)", () => {
+  const ev = evidence([], [rr("liver", 2)], [base("liver", 0.0365)]);
+  const ratings = rated([rating("kidney", 1)], [rating("liver", 2)]);
+  const record = scored(scoreV1(product([A]), ADULT, ratings, ev));
+  assert.equal(record.score, 100);
+  const note = record.explanation.find((e) => e.template_id === "engine_v1_note_kidney")!;
+  assert.ok(note.text.includes("Not scored separately"));
 });
 
 test("a study without the profile's condition does not cover the rating it raised", () => {
@@ -596,8 +608,13 @@ test("a hard stop from the label makes the record red", () => {
   const record = scored(result);
   assert.ok(record.hard_stops_triggered.length > 0);
   assert.equal(record.tier, "red");
-  // Rule 41.
+  // Rules 41 and 45: held at 49, and every point is on a row with a line.
   assert.ok(record.score <= 49);
+  assert.equal(
+    record.contributions.reduce((sum, c) => sum + c.points, 0),
+    100 - record.score,
+  );
+  assert.ok(record.explanation.every((e) => !e.text.includes("not a risk of serious harm")));
 });
 
 test("a child whose age the label wasn't checked for is unrated", () => {
