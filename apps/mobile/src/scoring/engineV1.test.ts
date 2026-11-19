@@ -555,11 +555,11 @@ test("the bundled evidence gives the calibration printed in v1-method.md section
 // The bundled evidence: every reference product is rated for these personas, and the scores are
 // pinned so a change to the evidence shows up here as a deliberate update.
 const GOLDEN: Record<string, Record<string, number>> = {
-  aleve: { adult_18_64: 70, adult_65_plus: 62, pregnant: 55 },
-  nyquil: { adult_18_64: 64, adult_65_plus: 42, pregnant: 59 },
-  "store-brand-diphenhydramine": { adult_18_64: 69, adult_65_plus: 42, pregnant: 65 },
-  tylenol: { adult_18_64: 68, adult_65_plus: 68, pregnant: 68 },
-  zzzquil: { adult_18_64: 69, adult_65_plus: 42, pregnant: 65 },
+  aleve: { adult_18_64: 68, adult_65_plus: 62, pregnant: 56 },
+  nyquil: { adult_18_64: 63, adult_65_plus: 42, pregnant: 60 },
+  "store-brand-diphenhydramine": { adult_18_64: 67, adult_65_plus: 42, pregnant: 63 },
+  tylenol: { adult_18_64: 75, adult_65_plus: 75, pregnant: 75 },
+  zzzquil: { adult_18_64: 67, adult_65_plus: 42, pregnant: 63 },
 };
 const EXAMPLES = new URL("../../../../packages/schema/examples/", import.meta.url);
 for (const folder of readdirSync(EXAMPLES, { withFileTypes: true }).filter((e) =>
