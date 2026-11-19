@@ -40,21 +40,23 @@ How to present Nomi from the `demo/v1-evidence` build. To put the app on a phone
 Points worth saying out loud:
 
 - Everything runs on the phone. No account, no internet, and no health answers leave the device.
-- Every point taken off links back to a published study and a baseline rate. FDA adverse-event reports
-  (FAERS) appear as supporting citations but never change the score.
+- Every point taken off links back to its source: a published study with a baseline rate where one
+  exists, otherwise the FDA label, ACB scale, Beers or other rating, valued from the studies that measured
+  risks of the same severity. FDA adverse-event reports (FAERS) appear as supporting citations but never
+  change the score.
 - Scores marked **Preliminary** come from the v1 method (`docs/scoring/v1-method.md`) and haven't been
-  reviewed by a pharmacist yet. Rules 29 and 30 in particular are waiting for sign-off.
+  reviewed by a pharmacist yet. Rules 29 and 30 and the v1.6 to v1.8 calibration in particular are waiting for sign-off.
 
-## Expected scores (v1.4 evidence)
+## Expected scores (v1.8 method)
 
 | Product | Adult 18-64 | 65+ | Pregnant | Child 6-11 |
 | --- | --- | --- | --- | --- |
-| Tylenol Extra Strength | 75 | 75 | 75 | 75 |
-| CVS Extra Strength Acetaminophen | 75 | 75 | 75 | Not scored for this age |
-| Aleve Liquid Gels | 78 | 62 | 78 | 78 |
-| Vicks NyQuil Cold and Flu | 75 | 44 | 75 | 75 |
-| Equate Allergy Relief | 100 | 45 | 100 | 100 |
-| ZzzQuil Nighttime Sleep-Aid | 100 | 45 | 100 | Do not use |
+| Tylenol Extra Strength | 75 | 75 | 67 | 75 |
+| CVS Extra Strength Acetaminophen | 75 | 75 | 67 | Not scored for this age |
+| Aleve Liquid Gels | 68 | 62 | 56 | 64 |
+| Vicks NyQuil Cold and Flu | 63 | 42 | 60 | 63 |
+| Equate Allergy Relief | 67 | 42 | 63 | 67 |
+| ZzzQuil Nighttime Sleep-Aid | 67 | 42 | 63 | Do not use |
 
 These are for a person with no conditions or other medicines. Teens show "Not scored for this age yet".
 
