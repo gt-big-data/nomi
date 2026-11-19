@@ -5,6 +5,7 @@ import { test } from "node:test";
 import { checkRecords, riskRows } from "../lib/referenceScores.ts";
 import type { Profile, Ratings, ScoreResult } from "./engine.ts";
 import {
+  calibrate,
   calibrationLevels,
   calibrationPairs,
   checkEvidence,
@@ -476,6 +477,17 @@ test("a study without the profile's condition does not cover the rating it raise
   const sick = { ...ADULT, conditions: ["kidney_disease"] };
   assert.equal(scored(scoreV1(product([A]), ADULT, ratings, ev)).score, 100);
   assert.ok(scored(scoreV1(product([A]), sick, ratings, ev)).score < 100);
+});
+
+test("the bundled evidence gives the calibration printed in v1-method.md section 12.2", () => {
+  const { pairs, levels } = calibrate(RATINGS, EVIDENCE);
+  assert.deepEqual(
+    [1, 2, 3].map((s) => pairs.filter((p) => p.severity === s).length),
+    [1, 11, 5],
+  );
+  assert.equal(levels[1], 0);
+  assert.equal(levels[2].toExponential(3), "8.529e-5");
+  assert.equal(levels[3].toExponential(3), "4.096e-4");
 });
 
 // The bundled evidence: every reference product is rated for these personas, and the scores are

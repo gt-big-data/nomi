@@ -360,3 +360,42 @@ in sections 1 to 11 still governs the study terms.
 - The pairs come only from the risks the evidence review has studied, mostly NSAIDs, decongestants,
   acetaminophen and first-generation antihistamines in older adults.
 - Section 6's open items still need a pharmacist.
+
+### 12.2 The fitted values (computed 2026-11-18 by rule 34, after rules 31 to 36 were committed)
+
+`calibrate()` in `apps/mobile/src/scoring/engineV1.ts`, on the bundled `ratings.json` and
+`evidence.json`, finds 17 pairs (rule 33). Excess risk is per 10-day course; each comes from the
+cited relative risk and baseline in `evidence.json`.
+
+| Severity | Ingredient (the others that repeat the pair) | Dimension | Persona | Excess risk |
+|---|---|---|---|---|
+| 1 | oxymetazoline | cardiovascular_bp | adult_18_64 | 0 (RR 0.69) |
+| 2 | phenylephrine (and pseudoephedrine) | cardiovascular_bp | adult_18_64 | 0 (RR 0.69) |
+| 2 | acetaminophen | pregnancy_lactation | pregnant | 0 (RR 0.95) |
+| 2 | naproxen | gi_bleeding | adult_18_64 | 7.558e-5 |
+| 2 | naproxen | cardiovascular_bp | adult_18_64 | 3.585e-6 |
+| 2 | naproxen | cardiovascular_bp | adult_65_plus | 1.886e-5 |
+| 2 | naproxen | kidney | adult_65_plus | 2.451e-4 |
+| 2 | aspirin | gi_bleeding | adult_18_64 | 3.470e-4 |
+| 2 | ibuprofen sodium (and ibuprofen) | gi_bleeding | adult_18_64 | 1.975e-5 |
+| 2 | ibuprofen sodium (and ibuprofen) | cardiovascular_bp | adult_18_64 | 6.236e-7 |
+| 2 | ibuprofen sodium (and ibuprofen) | cardiovascular_bp | adult_65_plus | 3.280e-6 |
+| 2 | ibuprofen sodium (and ibuprofen) | kidney | adult_65_plus | 2.244e-4 |
+| 3 | acetaminophen | liver | adult_18_64 | 6.372e-6 |
+| 3 | naproxen | gi_bleeding | adult_65_plus | 7.558e-5 |
+| 3 | aspirin | gi_bleeding | adult_65_plus | 3.470e-4 |
+| 3 | ibuprofen sodium (and ibuprofen) | gi_bleeding | adult_65_plus | 1.975e-5 |
+| 3 | diphenhydramine (and the other first-generation antihistamines) | sedation_falls | adult_65_plus | 1.599e-3 |
+
+The means are already non-decreasing, so pooling changes nothing:
+
+| Severity | Pairs | `L(s)`, excess risk per course | About | Score of that risk alone |
+|---|---|---|---|---|
+| 1 | 1 | 0 | none | 100 |
+| 2 | 11 | 8.529e-5 | 1 in 12,000 | 77 |
+| 3 | 5 | 4.096e-4 | 1 in 2,400 | 60 |
+
+Severity 1 rests on one pair. It agrees with `dimensions.md`, which defines severity 1 as effects
+that "do not result in organ damage, functional disability, or medical intervention", but it is
+the weakest of the three values. `engineV1.test.ts` pins these values, so a change in the
+evidence that moves them shows up as a deliberate update.
