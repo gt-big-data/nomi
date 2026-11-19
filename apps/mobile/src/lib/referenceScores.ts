@@ -204,11 +204,23 @@ export function riskRows(record: ScoreRecord): RiskRow[] {
     .sort((a, b) => b.points - a.points);
 }
 
+/** A v1 note on a rating that took no points ("engine_v1_note_overuse"). */
+const ENGINE_NOTE = /^engine_v1_note_/;
+/** Where a v1 note quotes the product label: `Label: "..."` at its end. */
+const LABEL_QUOTE = /\sLabel: "(.+)"$/;
+
+/** A label quote as a sentence for the banner. */
+function labelSentence(quote: string): string {
+  const sentence = quote.charAt(0).toUpperCase() + quote.slice(1);
+  return /[.!?]$/.test(sentence) ? sentence : `${sentence}.`;
+}
+
 /**
- * Every explanation line no risk row shows, except the draft note and the v1 "not enough
- * published evidence" note: what the label's directions
- * say for this age ("Children younger than 12 must not use this ZzzQuil presentation"), and any
- * line about a risk that took no points. The screen shows these as banners, so no line is lost.
+ * What the label says for this profile, shown as banners under "What the label says": the
+ * label's directions for this age ("Children younger than 12 must not use this ZzzQuil
+ * presentation"), and the label's own words behind a rating that took no points. Engine-only
+ * lines (the draft note, "not enough published evidence", "under one point each", and notes
+ * with no label quote) stay in the record for audit but are not shown here.
  */
 export function profileNotes(record: ScoreRecord): string[] {
   const shown = new Set(riskRows(record).map((row) => rowLine(record, row.dimension)));
@@ -222,8 +234,14 @@ export function profileNotes(record: ScoreRecord): string[] {
         // The "not enough published evidence" note stays in the record for audit but is not
         // shown on the result screen.
         e.template_id !== "engine_v1_insufficient" &&
+        e.template_id !== "engine_v1_under_one_point" &&
         !shown.has(e) &&
-        !(stopped && CHILD_DIRECTIONS_LINE.test(e.template_id)),
+        !(stopped && CHILD_DIRECTIONS_LINE.test(e.template_id)) &&
+        (!ENGINE_NOTE.test(e.template_id) || LABEL_QUOTE.test(e.text)),
     )
-    .map((e) => e.text);
+    .map((e) => {
+      const quote = ENGINE_NOTE.test(e.template_id) ? LABEL_QUOTE.exec(e.text)?.[1] : undefined;
+      return quote ? labelSentence(quote) : e.text;
+    })
+    .filter((note, index, notes) => notes.indexOf(note) === index);
 }

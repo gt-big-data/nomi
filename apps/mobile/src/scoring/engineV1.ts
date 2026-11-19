@@ -506,6 +506,21 @@ export function calibrationLevels(pairs: CalibrationPair[]): Record<number, numb
 
 /** The quote a v0 rating cites, for the rating row's sentence. */
 const quoteOf = (citations: Citation[]) => citations.find((c) => c.quote)?.quote;
+/** The label's own words, when a citation quotes the product label or the OTC monograph. */
+const LABEL_SOURCES = new Set(["fda_label", "otc_monograph"]);
+/** A note's closing quote: "Label:" for the label's words, which the result screen shows. */
+const noteQuote = (citations: Citation[]) => {
+  const cited = citations.find((c) => c.quote && LABEL_SOURCES.has(c.source));
+  if (cited?.quote) {
+    // A label section can hold the whole sentence the quote ends ("50570-1: Do not use to make a
+    // child sleepy" for "to make a child sleepy"): use that, so the quote isn't read alone.
+    const heading = (cited.section ?? "").replace(/^[\d-]+:\s*/, "");
+    const whole = heading.toLowerCase().endsWith(cited.quote.toLowerCase()) ? heading : cited.quote;
+    return ` Label: "${whole}"`;
+  }
+  const quote = quoteOf(citations);
+  return quote ? ` Source: "${quote}"` : "";
+};
 
 export function scoreV1(
   product: ScorableProduct,
@@ -545,10 +560,9 @@ export function scoreV1(
   const noteFor = (dimension: string, unii: string, entry: RatedSeverity) => {
     const because =
       entry.raisedBy.length > 0 ? `, higher because of ${entry.raisedBy.join(" and ")}` : "";
-    const quote = quoteOf(entry.citations);
     return {
       template_id: `engine_v1_note_${dimension}`,
-      text: `${DIMENSION_NAMES[dimension] ?? capitalized(words(dimension))}: ${capitalized(name(unii))} is rated ${entry.severity} of 3 for this profile${because}. Not scored separately.${quote ? ` Source: "${quote}"` : ""}`,
+      text: `${DIMENSION_NAMES[dimension] ?? capitalized(words(dimension))}: ${capitalized(name(unii))} is rated ${entry.severity} of 3 for this profile${because}. Not scored separately.${noteQuote(entry.citations)}`,
     };
   };
   const dimensions = [...new Set([...Object.keys(OUTCOMES), ...found.keys()])];
@@ -736,10 +750,9 @@ export function scoreV1(
     });
   } else {
     for (const [unii, entry] of stopRatings) {
-      const quote = quoteOf(entry.citations);
       notes.push({
         template_id: "engine_v1_note_pediatric",
-        text: `${DIMENSION_NAMES.pediatric}: ${capitalized(name(unii))} is rated 3 of 3 for this age. This is the hard stop.${quote ? ` Source: "${quote}"` : ""}`,
+        text: `${DIMENSION_NAMES.pediatric}: ${capitalized(name(unii))} is rated 3 of 3 for this age. This is the hard stop.${noteQuote(entry.citations)}`,
       });
     }
   }

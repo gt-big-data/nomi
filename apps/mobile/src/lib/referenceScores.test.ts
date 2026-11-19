@@ -167,6 +167,28 @@ test("the not-enough-evidence note is not shown", () => {
   assert.ok(!profileNotes(record).some((note) => note.startsWith("Not enough published")));
 });
 
+test("the label banner shows only the label's words, never engine notes", () => {
+  const record = {
+    ...RECORDS[0],
+    explanation: [
+      ...RECORDS[0].explanation,
+      {
+        template_id: "engine_v1_note_rebound_overuse",
+        text: 'Overuse: Acetaminophen is rated 2 of 3 for this profile. Not scored separately. Label: "do not use for more than 10 days"',
+      },
+      {
+        template_id: "engine_v1_note_skin",
+        text: 'Skin: X is rated 1 of 3 for this profile. Not scored separately. Source: "a guideline"',
+      },
+      { template_id: "engine_v1_note_excipients", text: "Excipients: X is rated 1 of 3." },
+      { template_id: "engine_v1_under_one_point", text: "Under one point each: x." },
+    ],
+  };
+  const notes = profileNotes(record);
+  assert.ok(notes.includes("Do not use for more than 10 days."));
+  assert.ok(!notes.some((note) => /rated \d of 3|Under one point|a guideline/.test(note)));
+});
+
 test("every explanation line reaches the screen, except the draft note and what a hard stop says", () => {
   for (const record of RECORDS) {
     const shown = new Set([...riskRows(record).map((row) => row.detail), ...profileNotes(record)]);
