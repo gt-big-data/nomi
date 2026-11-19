@@ -3,7 +3,8 @@
 Status: v1.0 locked on 2026-11-18, before any v1 score was computed. v1.1 (section 8) and v1.2
 (section 9) were added on 2026-11-18 after the first and second independent evidence reviews,
 v1.3 and v1.4 (sections 10 and 11) after the third, v1.6 (section 12) on 2026-11-18 to keep
-every v0 rating, and v1.7 (section 13) after the review of v1.6; see their change logs. Versions 1.0 to 1.2 were committed on their own, before the evidence
+every v0 rating, v1.7 (section 13) after the review of v1.6, and v1.8 (section 14) after the
+review of v1.7; see their change logs. Versions 1.0 to 1.2 were committed on their own, before the evidence
 changes they govern, so the order can be checked in git. v1.3 and v1.4 are the exceptions: their rules
 were written after the evidence changes and with their score effects known, and are pending
 pharmacist sign-off (sections 10 and 11). Changing a rule in this file needs a new version number, and
@@ -478,3 +479,45 @@ only neighbour with pairs.
 Severity 1 and 2 now mean the same excess risk, because no severity-1 rating has a usable study.
 That is a gap in the evidence, not a finding that the two are equal; it is listed for the next
 evidence review.
+
+## 14. Version 1.8: fixes from the review of v1.7
+
+Change log. The review of v1.7 (2026-11-18) confirmed v1.7's five fixes and found two new
+blockers and one inconsistency. (A) Rule 40's note told users that a pediatric rating of 3, such
+as aspirin's Reye's syndrome warning, was "not a risk of serious harm". (B) Rule 41 lowered the
+score to 49 but shared the lowered score's points among the risk rows, so rows took more points
+than their excess risk supports, and with no rows the points had no explanation. (C) Rule 38 let
+a study with no baseline replace a v0 rating when its estimate was at or below 1 (oral
+phenylephrine's heart rating, estimate 0.69), while rule 39 treats the same study as unusable for
+calibration. The review also noted that severity 1 borrowing severity 2's value (section 13.2)
+contradicts the rubric's definition of severity 1. Rules 42 to 45 were written from these
+findings and committed before any v1.8 value or score was computed.
+
+42. **A study covers a rating only when it is usable** (replaces the coverage clause of rule 38;
+    rule 32's condition clause still applies). An ingredient is covered on a dimension only when
+    its outcome has a baseline for the profile, the same test rule 39 applies to calibration
+    pairs. A study is then used the same way everywhere: with a baseline it gives an excess risk
+    (0 when the estimate is at or below 1) that both replaces the rating and calibrates `L(s)`;
+    without one it does neither, and the rating counts. Rule 38's `max(1, estimate)` is kept.
+    The other option the review offered (a ratio below 1 covers when its 95% interval is below 1)
+    was not chosen: it would make a study count without a baseline in scoring but not in
+    calibration, which is the inconsistency being fixed.
+43. **Severity 1 is not a serious harm** (amends rule 34). `dimensions.md` section 2 defines
+    severity 1 as "minor, self-limiting, or low-incidence adverse effects that do not result in
+    organ damage, functional disability, or medical intervention in the target persona". Section
+    1 counts only harms that lead to a hospital admission, an emergency visit or death. So `L(1)`
+    is 0 by definition, not fitted, and severity-1 pairs are left out of the fit. A severity-1
+    rating on an outcome dimension is shown as a note, like rule 40's, and takes no points.
+    `L(2)` and `L(3)` are fitted by rule 34 as before. This rule follows from the rubric's own
+    words, whatever the evidence; if a study covers the risk, the study still counts.
+44. **What a note says** (amends rule 40). No user-facing text denies a harm. A pediatric rating
+    of 3 is the hard stop, and its line says so (rule 45). Every other rating that takes no
+    points (rule 40's dimensions, and severity 1 under rule 43) is described as "not scored
+    separately", with its rating and its source.
+45. **The hard stop has its own row** (replaces the second half of rule 41). Row points are
+    shared from the computed score, before the cap, so each risk row takes the points its excess
+    risk supports. When a hard stop applies and the computed score is above 49, the difference
+    between the computed score and 49 is one more row, `pediatric` (every v0 hard stop comes
+    from a pediatric rating of 3), worded from the label's hard-stop text, with the rating's
+    citations. The shown score is 49, as rule 41 says. When the computed score is already 49 or
+    below, the pediatric rating's line is a note that says it is the hard stop.
