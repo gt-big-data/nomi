@@ -460,3 +460,21 @@ apply to every ingredient alike. Section 12.2's values are superseded by section
 - **The stomach-bleeding baseline** (Bedene) is a crude rate for all ages, used for 18 to 64 and
   65 and over alike. Rule 26 forbids only age-standardised rates, so it is still used; replacing
   it with age-band rates is left to the next evidence review, not changed here.
+
+### 13.2 The fitted values (computed 2026-11-18 by rules 34 and 39, after rules 37 to 41 were committed)
+
+Rule 39 removes the three pairs that had no baseline: the decongestant heart pairs (relative risk
+0.69, outcome `mi_stroke`, for which the table has no baseline) at severities 1 and 2, and
+acetaminophen in pregnancy (0.95, no pregnancy baseline). The other 14 pairs of section 12.2 are
+unchanged. Severity 1 now has no pair, so by rule 34 it takes the fitted value of severity 2, its
+only neighbour with pairs.
+
+| Severity | Pairs | `L(s)`, excess risk per course | About | Score of that risk alone |
+|---|---|---|---|---|
+| 1 | 0 | 1.042e-4 (from severity 2) | 1 in 9,600 | 75 |
+| 2 | 9 | 1.042e-4 | 1 in 9,600 | 75 |
+| 3 | 5 | 4.096e-4 | 1 in 2,400 | 60 |
+
+Severity 1 and 2 now mean the same excess risk, because no severity-1 rating has a usable study.
+That is a gap in the evidence, not a finding that the two are equal; it is listed for the next
+evidence review.
