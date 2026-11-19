@@ -13,13 +13,7 @@ import {
 } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-import {
-  riskSeverity,
-  riskSeverityColors,
-  riskSeverityText,
-  useIconScale,
-  useTheme,
-} from "@/theme";
+import { riskSeverity, riskSeverityColors, useIconScale, useTheme } from "@/theme";
 
 import { citationSourceText } from "./CitationChip";
 import { Icon } from "./Icon";
@@ -81,18 +75,15 @@ export function RiskList({
             <ListRow
               key={item.id}
               title={item.factor}
-              subtitle={[riskSeverityText[severity], sources(item)].filter(Boolean).join(" · ")}
+              // The points say how much; a severity word bucketed from them adds nothing true.
+              subtitle={sources(item) || undefined}
               trailing={
                 <Text style={[text("headline"), styles.points, { color: c.text }]}>
                   −{item.points}
                 </Text>
               }
               onPress={() => setOpen(item)}
-              accessibilityLabel={spokenLabel([
-                item.factor,
-                riskSeverityText[severity],
-                `minus ${item.points} points`,
-              ])}
+              accessibilityLabel={spokenLabel([item.factor, `minus ${item.points} points`])}
               accessibilityHint="Shows why, with the source"
             />
           );
@@ -236,9 +227,8 @@ function RiskSheet({ item, onClose }: { item: RiskItem | null; onClose: () => vo
                   </Text>
                   <Text style={[text("subhead"), { color: c.text }]}>
                     <Text style={{ fontFamily: text("headline").fontFamily }}>
-                      {riskSeverityText[severity]}
+                      {`−${item_.points} points`}
                     </Text>
-                    {` · −${item_.points} points`}
                   </Text>
                 </View>
                 <Tappable
