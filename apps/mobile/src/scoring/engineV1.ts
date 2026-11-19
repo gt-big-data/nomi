@@ -19,6 +19,7 @@ import {
   type Citation,
   type EngineRecord,
   type Modifier,
+  type RatedSeverity,
   type Profile,
   type Ratings,
   type ScorableProduct,
@@ -306,9 +307,19 @@ function studyTerms(
   uniis: string[],
   profile: Profile,
   evidence: Evidence,
-): { terms: Term[]; covered: Map<string, Set<string>>; noBaseline: Set<string> } {
+): {
+  terms: Term[];
+  covered: Map<string, Set<string>>;
+  /** Rule 39: the ingredients whose outcome has a baseline for this profile, by dimension. */
+  baselined: Map<string, Set<string>>;
+  /** By dimension: each ingredient's own row. */
+  rowsUsed: Map<string, Map<string, RelativeRisk>>;
+  noBaseline: Set<string>;
+} {
   const terms: Term[] = [];
   const covered = new Map<string, Set<string>>();
+  const baselined = new Map<string, Set<string>>();
+  const rowsUsed = new Map<string, Map<string, RelativeRisk>>();
   const noBaseline = new Set<string>();
   for (const dimension of Object.keys(OUTCOMES)) {
     const used = uniis.flatMap((unii) => {
@@ -318,18 +329,17 @@ function studyTerms(
       const row = pick(rows, profile.persona, profile, (r) => r.estimate);
       return row ? [{ unii, row }] : [];
     });
+    rowsUsed.set(dimension, new Map(used.map(({ unii, row }) => [unii, row])));
     // Rule 18: one term per outcome; the dimension counts the largest.
     const outcomes = [...new Set(used.map(({ row }) => row.outcome))].sort();
-    const cover = new Set<string>();
+    // Rule 38: an ingredient whose own estimate is at or below 1 is covered.
+    const cover = new Set(used.filter(({ row }) => row.estimate <= 1).map(({ unii }) => unii));
+    const withBaseline = new Set<string>();
     let best: Term | undefined;
     for (const outcome of outcomes) {
       const same = used.filter(({ row }) => row.outcome === outcome);
-      // Rule 4: ingredients without a row are a factor of 1.
-      const rr = same.reduce((product, { row }) => product * row.estimate, 1);
-      if (rr <= 1) {
-        for (const { unii } of same) cover.add(unii);
-        continue;
-      }
+      // Rules 4 and 38: no row is a factor of 1, and so is an estimate at or below 1.
+      const rr = same.reduce((product, { row }) => product * Math.max(1, row.estimate), 1);
       const groups = [
         ...new Set(
           same
@@ -337,31 +347,36 @@ function studyTerms(
             .map(({ row }) => `${row.condition}|${row.medication_type}`),
         ),
       ];
-      if (groups.length > 1) {
-        noBaseline.add(dimension);
-        continue;
+      let baseline: Pick<Baseline, "annual_incidence" | "citation"> | undefined;
+      if (groups.length <= 1) {
+        const group = same.find(({ row }) => row.comparator === "within_group")?.row;
+        // Rule 20: a source's own unexposed rate first (the largest relative risk's, if several).
+        const adult = ["pregnant", "breastfeeding"].includes(profile.persona)
+          ? "adult_18_64"
+          : profile.persona;
+        const own = same
+          .filter(({ row }) => row.unexposed_incidence?.personas.includes(adult))
+          .sort((a, b) => b.row.estimate - a.row.estimate)[0]?.row.unexposed_incidence;
+        baseline = own ?? baselineFor(evidence, dimension, outcome, group, profile);
       }
-      const group = same.find(({ row }) => row.comparator === "within_group")?.row;
-      // Rule 20: a source's own unexposed rate first (the largest relative risk's, if several).
-      const adult = ["pregnant", "breastfeeding"].includes(profile.persona)
-        ? "adult_18_64"
-        : profile.persona;
-      const own = same
-        .filter(({ row }) => row.unexposed_incidence?.personas.includes(adult))
-        .sort((a, b) => b.row.estimate - a.row.estimate)[0]?.row.unexposed_incidence;
-      const baseline = own ?? baselineFor(evidence, dimension, outcome, group, profile);
       if (!baseline) {
-        noBaseline.add(dimension);
+        if (rr > 1) noBaseline.add(dimension);
         continue;
       }
-      for (const { unii } of same) cover.add(unii);
+      for (const { unii } of same) {
+        cover.add(unii);
+        withBaseline.add(unii);
+      }
+      if (rr <= 1) continue;
       const ear = (baseline.annual_incidence * (rr - 1) * evidence.course_days) / 365;
-      if (!best || ear > best.ear) best = { dimension, outcome, ear, used: same, baseline };
+      const raising = same.filter(({ row }) => row.estimate > 1);
+      if (!best || ear > best.ear) best = { dimension, outcome, ear, used: raising, baseline };
     }
     if (best) terms.push(best);
     covered.set(dimension, cover);
+    baselined.set(dimension, withBaseline);
   }
-  return { terms, covered, noBaseline };
+  return { terms, covered, baselined, rowsUsed, noBaseline };
 }
 
 /** One calibration pair (rule 33): a v0 severity and the excess risk a study gives the same risk. */
@@ -400,12 +415,20 @@ export function calibrationPairs(ratings: Ratings, evidence: Evidence): Calibrat
     for (const rating of rated.ratings) {
       if (rating.severity <= 0 || !(rating.dimension in OUTCOMES)) continue;
       const profile = { persona: rating.persona, conditions: [], medicationTypes: [] };
-      const { terms, covered } = studyTerms([unii], profile, evidence);
-      if (!covered.get(rating.dimension)?.has(unii)) continue;
+      const { terms, baselined, rowsUsed } = studyTerms([unii], profile, evidence);
+      // Rule 39: every pair needs a baseline, whatever its estimate.
+      if (!baselined.get(rating.dimension)?.has(unii)) continue;
       const term = terms.find((t) => t.dimension === rating.dimension);
       const ear = term?.ear ?? 0;
-      const rows = (term?.used ?? []).map(({ row }) => `${row.citation.citation}|${row.estimate}`);
-      const key = [rating.dimension, rating.severity, ear, ...rows].join("|");
+      const own = rowsUsed.get(rating.dimension)!.get(unii)!;
+      const key = [
+        rating.dimension,
+        rating.severity,
+        ear,
+        own.citation.citation,
+        own.estimate,
+        own.outcome,
+      ].join("|");
       if (seen.has(key)) continue;
       seen.add(key);
       pairs.push({
@@ -514,8 +537,22 @@ export function scoreV1(
     rated?: { uniis: string[]; severity: number; raisedBy: string[]; citations: Citation[] };
   }
   const rows: Row[] = [];
+  const notes: { template_id: string; text: string }[] = [];
   const dimensions = [...new Set([...Object.keys(OUTCOMES), ...found.keys()])];
   for (const dimension of dimensions) {
+    if (!(dimension in OUTCOMES)) {
+      // Rule 40: not a serious harm, so a note with no points and no excess risk.
+      for (const [unii, entry] of found.get(dimension) ?? new Map<string, RatedSeverity>()) {
+        const because =
+          entry.raisedBy.length > 0 ? `, higher because of ${entry.raisedBy.join(" and ")}` : "";
+        const quote = quoteOf(entry.citations);
+        notes.push({
+          template_id: `engine_v1_note_${dimension}`,
+          text: `${DIMENSION_NAMES[dimension] ?? capitalized(words(dimension))}: ${capitalized(name(unii))} is rated ${entry.severity} of 3 for this profile${because}. This is not a risk of serious harm, so it takes no points.${quote ? ` Source: "${quote}"` : ""}`,
+        });
+      }
+      continue;
+    }
     const study = studies.find((t) => t.dimension === dimension);
     const uncovered = [...(found.get(dimension) ?? new Map()).entries()].filter(
       ([unii, entry]) =>
@@ -553,12 +590,15 @@ export function scoreV1(
         : { dimension, ear: ratedEar, rated },
     );
   }
-  // Rule 16, applied to the result (rule 35).
-  if (rows.some((r) => r.dimension === "anticoagulant_bleeding")) {
-    const gi = rows.findIndex((r) => r.dimension === "gi_bleeding");
-    if (gi >= 0) rows.splice(gi, 1);
-  }
   const filled = new Set(rows.filter((r) => r.rated).map((r) => r.dimension));
+  // Rule 37: on a blood thinner, stomach bleeding and blood-thinner bleeding are one row, the
+  // larger of the two.
+  const thinned = ["anticoagulants", "antiplatelets"].some((m) =>
+    profile.medicationTypes.includes(m),
+  );
+  const gi = rows.findIndex((r) => r.dimension === "gi_bleeding");
+  const ac = rows.findIndex((r) => r.dimension === "anticoagulant_bleeding");
+  if (thinned && gi >= 0 && ac >= 0) rows.splice(rows[gi].ear > rows[ac].ear ? ac : gi, 1);
 
   const gaps: string[] = [];
   for (const dimension of noBaseline) {
@@ -583,7 +623,9 @@ export function scoreV1(
   }
 
   const excess = rows.reduce((sum, r) => sum + r.ear, 0);
-  const total = Math.round(scaleScore(excess));
+  // Rule 41: a hard stop is red in number too.
+  const computed = Math.round(scaleScore(excess));
+  const total = v0.hard_stops_triggered.length > 0 ? Math.min(computed, 49) : computed;
   const points = apportion(
     100 - total,
     rows.map((r) => r.ear),
@@ -661,6 +703,7 @@ export function scoreV1(
   });
   contributions.sort((a, b) => b.points - a.points || (a.dimension < b.dimension ? -1 : 1));
 
+  explanation.push(...notes);
   if (small.length > 0) {
     explanation.push({
       template_id: "engine_v1_under_one_point",

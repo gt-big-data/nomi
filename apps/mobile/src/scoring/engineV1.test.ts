@@ -479,6 +479,68 @@ test("a study without the profile's condition does not cover the rating it raise
   assert.ok(scored(scoreV1(product([A]), sick, ratings, ev)).score < 100);
 });
 
+test("rule 37: a blood thinner's bleeding row never deletes a larger stomach-bleeding term", () => {
+  // Stomach bleeding study 1e-3; blood-thinner bleeding rated 2, which means 1e-4 here.
+  const ev = evidence(
+    [rr("gi_bleeding", 2)],
+    [rr("liver", 2)],
+    [base("gi_bleeding", 0.0365), base("liver", 0.00365)],
+  );
+  const ratings = rated(
+    [],
+    [rating("liver", 2)],
+    [
+      {
+        dimension: "anticoagulant_bleeding",
+        medication_type: "anticoagulants",
+        severity_change: 2,
+        citations: [],
+      },
+    ],
+  );
+  const alone = scored(scoreV1(product([A]), ADULT, ratings, ev));
+  const thinned = scored(
+    scoreV1(product([A]), { ...ADULT, medicationTypes: ["anticoagulants"] }, ratings, ev),
+  );
+  assert.equal(alone.score, 50);
+  assert.equal(thinned.score, 50);
+  assert.deepEqual(
+    thinned.contributions.map((c) => c.dimension),
+    ["gi_bleeding"],
+  );
+});
+
+test("rule 38: a ratio below 1 cancels no other ingredient's harm", () => {
+  const ev = evidence([rr("liver", 2)], [rr("liver", 0.5)], [base("liver", 0.0365)]);
+  const record = scored(scoreV1(product([A, B]), ADULT, BARE, ev));
+  assert.equal(record.score, 50);
+});
+
+test("rule 39: a calibration pair needs a baseline even when its ratio is below 1", () => {
+  const ev = evidence([rr("kidney", 0.8)], [rr("liver", 2)], [base("liver", 0.0365)]);
+  const ratings = rated([rating("kidney", 2)], [rating("liver", 2)]);
+  assert.deepEqual(
+    calibrationPairs(ratings, ev).map((p) => p.dimension),
+    ["liver"],
+  );
+  ev.baselines.push(base("kidney", 0.0365));
+  assert.equal(calibrationPairs(ratings, ev).length, 2);
+});
+
+test("rule 40: a rating that is not a serious harm is a note with no points", () => {
+  const ev = evidence([], [rr("liver", 2)], [base("liver", 0.0365)]);
+  const ratings = rated(
+    [rating("efficacy_evidence", 2), rating("rebound_overuse", 2)],
+    [rating("liver", 2)],
+  );
+  const record = scored(scoreV1(product([A]), ADULT, ratings, ev));
+  assert.equal(record.score, 100);
+  assert.equal(record.contributions.length, 0);
+  const notes = record.explanation.filter((e) => e.template_id.startsWith("engine_v1_note_"));
+  assert.equal(notes.length, 2);
+  assert.ok(notes.every((n) => !n.text.includes(" in ")));
+});
+
 test("the bundled evidence gives the calibration printed in v1-method.md section 12.2", () => {
   const { pairs, levels } = calibrate(RATINGS, EVIDENCE);
   assert.deepEqual(
@@ -534,6 +596,8 @@ test("a hard stop from the label makes the record red", () => {
   const record = scored(result);
   assert.ok(record.hard_stops_triggered.length > 0);
   assert.equal(record.tier, "red");
+  // Rule 41.
+  assert.ok(record.score <= 49);
 });
 
 test("a child whose age the label wasn't checked for is unrated", () => {
