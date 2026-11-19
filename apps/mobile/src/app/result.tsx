@@ -475,6 +475,9 @@ function useProfileOptions(): ProfileOption[] {
 }
 
 function ScoreDetails({ record }: { record: ScoreRecord }) {
+  // A link can open one risk's sheet (nomi://result?barcode=...&open=gi_bleeding), for demos.
+  const { open } = useLocalSearchParams<{ open?: string | string[] }>();
+  const initialOpen = Array.isArray(open) ? open[0] : open;
   const stopped = record.hard_stops_triggered.length > 0;
   const { colors, text } = useTheme();
   const rows = riskRows(record);
@@ -490,6 +493,7 @@ function ScoreDetails({ record }: { record: ScoreRecord }) {
       ) : (
         <RiskList
           title={stopped ? "Other risks" : "Why this score"}
+          initialOpen={initialOpen}
           items={rows.map((row) => ({
             id: row.dimension,
             factor: row.name,

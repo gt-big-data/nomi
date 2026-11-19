@@ -57,13 +57,25 @@ function sources(item: RiskItem): string {
 export function RiskList({
   items,
   title = "Why this score",
+  initialOpen,
 }: {
   items: RiskItem[];
   /** The section header. */
   title?: string;
+  /** A row id whose sheet opens on its own once, for demo links. */
+  initialOpen?: string;
 }) {
   const { colors, text } = useTheme();
   const [open, setOpen] = useState<RiskItem | null>(null);
+  const opened = useRef(false);
+  useEffect(() => {
+    const item = items.find((i) => i.id === initialOpen);
+    if (!item || opened.current) return;
+    opened.current = true;
+    // Let the screen settle first, as it would before a tap.
+    const timer = setTimeout(() => setOpen(item), 800);
+    return () => clearTimeout(timer);
+  }, [items, initialOpen]);
 
   return (
     <>
