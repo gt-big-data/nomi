@@ -139,28 +139,29 @@ function explanationText(
   return quote ? `${rated} Source: "${quote}"` : rated;
 }
 
-/**
- * The product's score for this profile, or "unrated" with the names of the active ingredients
- * that have no ratings: a product is only scored when every active ingredient is rated.
- */
-export function score(product: ScorableProduct, profile: Profile, ratings: Ratings): ScoreResult {
-  const missing = product.ingredients
-    .filter((ingredient) => !(ingredient.unii in ratings.ingredients))
-    .map((ingredient) => ingredient.name);
-  if (product.ingredients.length === 0 || missing.length > 0) {
-    return { status: "unrated", missing };
-  }
-  const label = product.setId ? ratings.labels[product.setId] : undefined;
-  const labelChecked = label?.personas.includes(profile.persona) ?? false;
-  const names = new Map(product.ingredients.map((i) => [i.unii, i.name]));
+/** One ingredient's severity on one dimension for a profile, and what raised it. */
+export interface RatedSeverity {
+  severity: number;
+  raisedBy: string[];
+  /** The modifiers that matched the profile and raised the severity. */
+  raisers: Modifier[];
+  citations: Citation[];
+}
 
-  // dimension -> unii -> severity and citations
-  const found = new Map<
-    string,
-    Map<string, { severity: number; raisedBy: string[]; citations: Citation[] }>
-  >();
+/**
+ * Every ingredient's v0 severity for this profile, by dimension then UNII (only severities above
+ * 0), with the label's ratings in place of the ingredient's where the label was checked, and the
+ * UNIIs whose pediatric rating at this age is 3. Every ingredient must be in ratings.
+ */
+export function ratedSeverities(
+  product: ScorableProduct,
+  profile: Profile,
+  ratings: Ratings,
+): { found: Map<string, Map<string, RatedSeverity>>; pediatricStops: string[] } {
+  const label = product.setId ? ratings.labels[product.setId] : undefined;
+  const found = new Map<string, Map<string, RatedSeverity>>();
   const pediatricStops: string[] = [];
-  for (const unii of [...new Set(names.keys())]) {
+  for (const unii of [...new Set(product.ingredients.map((i) => i.unii))]) {
     const own = new Map<string, Rating>();
     for (const rating of ratings.ingredients[unii].ratings) {
       if (rating.persona === profile.persona) own.set(rating.dimension, rating);
@@ -184,14 +185,31 @@ export function score(product: ScorableProduct, profile: Profile, ratings: Ratin
       if (severity > 0) {
         // The modifiers' sources first: they say why this profile is different.
         const citations = [...used.flatMap((m) => m.citations), ...(rating?.citations ?? [])];
-        const raisedBy = used
-          .filter((m) => m.severity_change > 0)
-          .map((m) => words(m.condition ?? m.medication_type!));
+        const raisers = used.filter((m) => m.severity_change > 0);
+        const raisedBy = raisers.map((m) => words(m.condition ?? m.medication_type!));
         if (!found.has(dimension)) found.set(dimension, new Map());
-        found.get(dimension)!.set(unii, { severity, raisedBy, citations });
+        found.get(dimension)!.set(unii, { severity, raisedBy, raisers, citations });
       }
     }
   }
+  return { found, pediatricStops };
+}
+
+/**
+ * The product's score for this profile, or "unrated" with the names of the active ingredients
+ * that have no ratings: a product is only scored when every active ingredient is rated.
+ */
+export function score(product: ScorableProduct, profile: Profile, ratings: Ratings): ScoreResult {
+  const missing = product.ingredients
+    .filter((ingredient) => !(ingredient.unii in ratings.ingredients))
+    .map((ingredient) => ingredient.name);
+  if (product.ingredients.length === 0 || missing.length > 0) {
+    return { status: "unrated", missing };
+  }
+  const label = product.setId ? ratings.labels[product.setId] : undefined;
+  const labelChecked = label?.personas.includes(profile.persona) ?? false;
+  const names = new Map(product.ingredients.map((i) => [i.unii, i.name]));
+  const { found, pediatricStops } = ratedSeverities(product, profile, ratings);
 
   const contributions: EngineRecord["contributions"] = [];
   const explanation: ScoreRecord["explanation"] = [];

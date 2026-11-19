@@ -1,19 +1,24 @@
 /**
- * The v1 on-device score: the published excess risk of serious harm from one course of the
- * product for this profile, on the fixed scale in docs/scoring/v1-method.md. Every number comes
- * from evidence.json (built by pipeline/src/nomi_pipeline/build/app_evidence.py from the cited
- * tables in pipeline/knowledge/evidence/). Nothing here is tuned to a product.
+ * The v1 on-device score (v1.6): the excess risk of serious harm from one course of the product
+ * for this profile, on the fixed scale in docs/scoring/v1-method.md. Where a study passes the
+ * evidence rules, the risk is the published relative risk times its baseline (evidence.json,
+ * built by pipeline/src/nomi_pipeline/build/app_evidence.py). Every other v0 rating (ratings.json)
+ * counts as the excess risk its severity stands for, fitted to the risks where both exist
+ * (rules 31 to 36). One harm counts once. Nothing here is tuned to a product.
  *
  * Hard stops and the child-label rule are the label's, as in v0, so they come from engine.ts.
  */
 
+import { DIMENSION_NAMES } from "../lib/referenceScores.ts";
 import {
   capitalized,
+  ratedSeverities,
   score as scoreV0,
   tier,
   words,
   type Citation,
   type EngineRecord,
+  type Modifier,
   type Profile,
   type Ratings,
   type ScorableProduct,
@@ -284,6 +289,198 @@ export function apportion(total: number, weights: number[]): number[] {
   return out;
 }
 
+interface Term {
+  dimension: string;
+  outcome: string | null;
+  ear: number;
+  used: { unii: string; row: RelativeRisk }[];
+  baseline: Pick<Baseline, "annual_incidence" | "citation">;
+}
+
+/**
+ * Rules 1 to 30 for one profile: the study term each outcome dimension counts, and, per
+ * dimension, the ingredients a study covers (rule 32): a row applies to them and their outcome
+ * has a baseline, or the relative risks multiply to 1 or less.
+ */
+function studyTerms(
+  uniis: string[],
+  profile: Profile,
+  evidence: Evidence,
+): { terms: Term[]; covered: Map<string, Set<string>>; noBaseline: Set<string> } {
+  const terms: Term[] = [];
+  const covered = new Map<string, Set<string>>();
+  const noBaseline = new Set<string>();
+  for (const dimension of Object.keys(OUTCOMES)) {
+    const used = uniis.flatMap((unii) => {
+      const rows = evidence.ingredients[unii].relative_risks.filter(
+        (r) => r.dimension === dimension,
+      );
+      const row = pick(rows, profile.persona, profile, (r) => r.estimate);
+      return row ? [{ unii, row }] : [];
+    });
+    // Rule 18: one term per outcome; the dimension counts the largest.
+    const outcomes = [...new Set(used.map(({ row }) => row.outcome))].sort();
+    const cover = new Set<string>();
+    let best: Term | undefined;
+    for (const outcome of outcomes) {
+      const same = used.filter(({ row }) => row.outcome === outcome);
+      // Rule 4: ingredients without a row are a factor of 1.
+      const rr = same.reduce((product, { row }) => product * row.estimate, 1);
+      if (rr <= 1) {
+        for (const { unii } of same) cover.add(unii);
+        continue;
+      }
+      const groups = [
+        ...new Set(
+          same
+            .filter(({ row }) => row.comparator === "within_group")
+            .map(({ row }) => `${row.condition}|${row.medication_type}`),
+        ),
+      ];
+      if (groups.length > 1) {
+        noBaseline.add(dimension);
+        continue;
+      }
+      const group = same.find(({ row }) => row.comparator === "within_group")?.row;
+      // Rule 20: a source's own unexposed rate first (the largest relative risk's, if several).
+      const adult = ["pregnant", "breastfeeding"].includes(profile.persona)
+        ? "adult_18_64"
+        : profile.persona;
+      const own = same
+        .filter(({ row }) => row.unexposed_incidence?.personas.includes(adult))
+        .sort((a, b) => b.row.estimate - a.row.estimate)[0]?.row.unexposed_incidence;
+      const baseline = own ?? baselineFor(evidence, dimension, outcome, group, profile);
+      if (!baseline) {
+        noBaseline.add(dimension);
+        continue;
+      }
+      for (const { unii } of same) cover.add(unii);
+      const ear = (baseline.annual_incidence * (rr - 1) * evidence.course_days) / 365;
+      if (!best || ear > best.ear) best = { dimension, outcome, ear, used: same, baseline };
+    }
+    if (best) terms.push(best);
+    covered.set(dimension, cover);
+  }
+  return { terms, covered, noBaseline };
+}
+
+/** One calibration pair (rule 33): a v0 severity and the excess risk a study gives the same risk. */
+export interface CalibrationPair {
+  unii: string;
+  dimension: string;
+  persona: string;
+  severity: number;
+  ear: number;
+}
+
+export interface Calibration {
+  pairs: CalibrationPair[];
+  /** Excess risk per course for severity 1, 2 and 3 (rule 34). */
+  levels: Record<number, number>;
+}
+
+const median = (values: number[]) => {
+  const sorted = [...values].sort((a, b) => a - b);
+  const mid = Math.floor(sorted.length / 2);
+  return sorted.length % 2 === 1 ? sorted[mid] : (sorted[mid - 1] + sorted[mid]) / 2;
+};
+
+/**
+ * Rule 33: every ingredient-dimension-persona that v0 rates above 0 and a study covers, for a
+ * profile with that persona and no condition or medication, scored as that one ingredient.
+ * Pairs that repeat the same severity, study rows and excess risk (salts of one ingredient, or
+ * personas sharing a row and a baseline) count once.
+ */
+export function calibrationPairs(ratings: Ratings, evidence: Evidence): CalibrationPair[] {
+  const pairs: CalibrationPair[] = [];
+  const seen = new Set<string>();
+  for (const unii of Object.keys(evidence.ingredients).sort()) {
+    const rated = ratings.ingredients[unii];
+    if (!rated) continue;
+    for (const rating of rated.ratings) {
+      if (rating.severity <= 0 || !(rating.dimension in OUTCOMES)) continue;
+      const profile = { persona: rating.persona, conditions: [], medicationTypes: [] };
+      const { terms, covered } = studyTerms([unii], profile, evidence);
+      if (!covered.get(rating.dimension)?.has(unii)) continue;
+      const term = terms.find((t) => t.dimension === rating.dimension);
+      const ear = term?.ear ?? 0;
+      const rows = (term?.used ?? []).map(({ row }) => `${row.citation.citation}|${row.estimate}`);
+      const key = [rating.dimension, rating.severity, ear, ...rows].join("|");
+      if (seen.has(key)) continue;
+      seen.add(key);
+      pairs.push({
+        unii,
+        dimension: rating.dimension,
+        persona: rating.persona,
+        severity: rating.severity,
+        ear,
+      });
+    }
+  }
+  return pairs;
+}
+
+const calibrations = new WeakMap<Evidence, WeakMap<Ratings, Calibration>>();
+
+/** Rule 34: what each v0 severity means in excess risk per course, from the pairs. */
+export function calibrate(ratings: Ratings, evidence: Evidence): Calibration {
+  const cached = calibrations.get(evidence)?.get(ratings);
+  if (cached) return cached;
+  const pairs = calibrationPairs(ratings, evidence);
+  const levels = calibrationLevels(pairs);
+  const result = { pairs, levels };
+  if (!calibrations.has(evidence)) calibrations.set(evidence, new WeakMap());
+  calibrations.get(evidence)!.set(ratings, result);
+  return result;
+}
+
+/**
+ * Rule 34: the mean excess risk of the pairs at each severity, made non-decreasing by pool
+ * adjacent violators (weighted by pair count); an empty severity takes the mean of its nearest
+ * fitted neighbours, or the one at an end. No pairs at all gives 0 for every severity.
+ */
+export function calibrationLevels(pairs: CalibrationPair[]): Record<number, number> {
+  const blocks: { severities: number[]; n: number; mean: number }[] = [];
+  for (const severity of [1, 2, 3]) {
+    const at = pairs.filter((p) => p.severity === severity).map((p) => p.ear);
+    if (at.length === 0) continue;
+    blocks.push({
+      severities: [severity],
+      n: at.length,
+      mean: at.reduce((a, b) => a + b, 0) / at.length,
+    });
+    // Pool adjacent violators.
+    while (blocks.length > 1 && blocks[blocks.length - 2].mean > blocks[blocks.length - 1].mean) {
+      const last = blocks.pop()!;
+      const prev = blocks.pop()!;
+      const n = prev.n + last.n;
+      blocks.push({
+        severities: [...prev.severities, ...last.severities],
+        n,
+        mean: (prev.mean * prev.n + last.mean * last.n) / n,
+      });
+    }
+  }
+  const fitted: Record<number, number> = {};
+  for (const block of blocks)
+    for (const severity of block.severities) fitted[severity] = block.mean;
+  const levels: Record<number, number> = {};
+  for (const severity of [1, 2, 3]) {
+    if (severity in fitted) {
+      levels[severity] = fitted[severity];
+      continue;
+    }
+    const below = [1, 2, 3].filter((s) => s < severity && s in fitted).pop();
+    const above = [1, 2, 3].find((s) => s > severity && s in fitted);
+    const near = [below, above].filter((s): s is number => s !== undefined).map((s) => fitted[s]);
+    levels[severity] = near.length === 0 ? 0 : near.reduce((a, b) => a + b, 0) / near.length;
+  }
+  return levels;
+}
+
+/** The quote a v0 rating cites, for the rating row's sentence. */
+const quoteOf = (citations: Citation[]) => citations.find((c) => c.quote)?.quote;
+
 export function scoreV1(
   product: ScorableProduct,
   profile: Profile,
@@ -305,93 +502,91 @@ export function scoreV1(
   const uniis = [...new Set(product.ingredients.map((i) => i.unii))].sort();
   const name = (unii: string) => words(evidence.ingredients[unii].name);
   const band = AGE_BANDS[profile.persona];
+  const { levels, pairs } = calibrate(ratings, evidence);
+  const { found } = ratedSeverities(product, profile, ratings);
+  const { terms: studies, covered, noBaseline } = studyTerms(uniis, profile, evidence);
 
-  interface Term {
+  // Rule 35: per dimension, the larger of the study term and the rating terms.
+  interface Row {
     dimension: string;
-    outcome: string | null;
     ear: number;
-    used: { unii: string; row: RelativeRisk }[];
-    baseline: Pick<Baseline, "annual_incidence" | "citation">;
+    study?: Term;
+    rated?: { uniis: string[]; severity: number; raisedBy: string[]; citations: Citation[] };
   }
-  const terms: Term[] = [];
-  const gaps: string[] = [];
-  for (const dimension of Object.keys(OUTCOMES)) {
-    const used = uniis.flatMap((unii) => {
-      const rows = evidence.ingredients[unii].relative_risks.filter(
-        (r) => r.dimension === dimension,
-      );
-      const row = pick(rows, profile.persona, profile, (r) => r.estimate);
-      return row ? [{ unii, row }] : [];
-    });
-    // Rule 18: one term per outcome; the dimension counts the largest.
-    const outcomes = [...new Set(used.map(({ row }) => row.outcome))].sort();
-    let best: Term | undefined;
-    let missingBaseline = false;
-    for (const outcome of outcomes) {
-      const same = used.filter(({ row }) => row.outcome === outcome);
-      // Rule 4: ingredients without a row are a factor of 1.
-      const rr = same.reduce((product, { row }) => product * row.estimate, 1);
-      if (rr <= 1) continue;
-      const groups = [
-        ...new Set(
-          same
-            .filter(({ row }) => row.comparator === "within_group")
-            .map(({ row }) => `${row.condition}|${row.medication_type}`),
+  const rows: Row[] = [];
+  const dimensions = [...new Set([...Object.keys(OUTCOMES), ...found.keys()])];
+  for (const dimension of dimensions) {
+    const study = studies.find((t) => t.dimension === dimension);
+    const uncovered = [...(found.get(dimension) ?? new Map()).entries()].filter(
+      ([unii, entry]) =>
+        !(
+          covered.get(dimension)?.has(unii) &&
+          // Rule 32: the row must be the study of the condition or medication that raised it.
+          entryMatchesStudy(entry.raisers, unii, dimension, studies, evidence, profile)
         ),
-      ];
-      if (groups.length > 1) {
-        missingBaseline = true;
-        continue;
+    );
+    let rated: Row["rated"];
+    if (uncovered.length > 0) {
+      const severity = Math.max(...uncovered.map(([, e]) => e.severity));
+      const top = uncovered.filter(([, e]) => e.severity === severity);
+      const citations: Citation[] = [];
+      for (const [, e] of top) {
+        for (const c of e.citations) {
+          if (!citations.some((seen) => JSON.stringify(seen) === JSON.stringify(c))) {
+            citations.push(c);
+          }
+        }
       }
-      const group = same.find(({ row }) => row.comparator === "within_group")?.row;
-      // Rule 20: a source's own unexposed rate first (the largest relative risk's, if several).
-      const adult = ["pregnant", "breastfeeding"].includes(profile.persona)
-        ? "adult_18_64"
-        : profile.persona;
-      const own = same
-        .filter(({ row }) => row.unexposed_incidence?.personas.includes(adult))
-        .sort((a, b) => b.row.estimate - a.row.estimate)[0]?.row.unexposed_incidence;
-      const baseline = own ?? baselineFor(evidence, dimension, outcome, group, profile);
-      if (!baseline) {
-        missingBaseline = true;
-        continue;
-      }
-      const ear = (baseline.annual_incidence * (rr - 1) * evidence.course_days) / 365;
-      if (!best || ear > best.ear) best = { dimension, outcome, ear, used: same, baseline };
+      rated = {
+        uniis: top.map(([unii]) => unii),
+        severity,
+        raisedBy: [...new Set(top.flatMap(([, e]) => e.raisedBy))],
+        citations,
+      };
     }
-    if (best) terms.push(best);
-    else if (missingBaseline) {
-      // Rules 6 and 12.
-      gaps.push(`${OUTCOMES[dimension]} (no published baseline rate for this profile)`);
-    }
+    const ratedEar = rated ? levels[rated.severity] : 0;
+    const studyEar = study?.ear ?? 0;
+    if (!study && !rated) continue;
+    rows.push(
+      study && studyEar >= ratedEar
+        ? { dimension, ear: studyEar, study }
+        : { dimension, ear: ratedEar, rated },
+    );
   }
-  // Rule 16: the anticoagulant major-bleeding rate already includes stomach bleeding.
-  if (terms.some((t) => t.dimension === "anticoagulant_bleeding")) {
-    const gi = terms.findIndex((t) => t.dimension === "gi_bleeding");
-    if (gi >= 0) terms.splice(gi, 1);
+  // Rule 16, applied to the result (rule 35).
+  if (rows.some((r) => r.dimension === "anticoagulant_bleeding")) {
+    const gi = rows.findIndex((r) => r.dimension === "gi_bleeding");
+    if (gi >= 0) rows.splice(gi, 1);
   }
+  const filled = new Set(rows.filter((r) => r.rated).map((r) => r.dimension));
 
+  const gaps: string[] = [];
+  for (const dimension of noBaseline) {
+    if (rows.some((r) => r.dimension === dimension)) continue;
+    // Rules 6 and 12.
+    gaps.push(`${OUTCOMES[dimension]} (no published baseline rate for this profile)`);
+  }
   for (const unii of uniis) {
     for (const gap of evidence.ingredients[unii].insufficient) {
-      if (!gapApplies(gap, profile)) continue;
+      if (!gapApplies(gap, profile) || filled.has(gap.dimension)) continue;
       const scoped = [...gap.personas, ...gap.conditions, ...gap.medication_types];
-      const covered = terms.some(
-        (t) => t.dimension === gap.dimension && t.used.some((u) => u.unii === unii),
+      const isCovered = rows.some(
+        (r) => r.dimension === gap.dimension && r.study?.used.some((u) => u.unii === unii),
       );
       // Rule 28: say when the general estimate still covers this profile.
       gaps.push(
-        covered && scoped.length > 0
+        isCovered && scoped.length > 0
           ? `${OUTCOMES[gap.dimension]} with ${name(unii)} specific to ${scoped.map(words).join(" and ")} (the general estimate is used)`
           : `${OUTCOMES[gap.dimension]} with ${name(unii)}`,
       );
     }
   }
 
-  const excess = terms.reduce((sum, t) => sum + t.ear, 0);
+  const excess = rows.reduce((sum, r) => sum + r.ear, 0);
   const total = Math.round(scaleScore(excess));
   const points = apportion(
     100 - total,
-    terms.map((t) => t.ear),
+    rows.map((r) => r.ear),
   );
 
   const signalFor = (unii: string, dimension: string) => {
@@ -402,41 +597,67 @@ export function scoreV1(
   const contributions: EngineRecord["contributions"] = [];
   const explanation: EngineRecord["explanation"] = [];
   const small: string[] = [];
-  terms.forEach((term, i) => {
-    const sentence = `${capitalized((term.outcome && OUTCOME_IDS[term.outcome]) || OUTCOMES[term.dimension])}: ${term.used
-      .map(({ unii, row }) => {
-        const short = row.citation.section?.split(",")[0] ?? "";
-        const measure = MEASURES[row.measure] ?? row.measure;
-        const grade = GRADES[row.grade] ?? row.grade;
-        return `${name(unii)} ${row.estimate} times as likely (${measure}, 95% ${row.interval === "credible" ? "credible interval" : "CI"} ${row.ci95[0]} to ${row.ci95[1]}; ${grade}, ${short})`;
-      })
-      .join("; ")}. Baseline ${oneIn(term.baseline.annual_incidence)} a year, so one ${
-      evidence.course_days
-    }-day course adds about ${oneIn(term.ear)}.`;
+  rows.forEach((row, i) => {
+    let sentence: string;
+    const citations: Citation[] = [];
+    let ingredientUniis: string[];
+    if (row.study) {
+      const term = row.study;
+      sentence = `${capitalized((term.outcome && OUTCOME_IDS[term.outcome]) || OUTCOMES[term.dimension])}: ${term.used
+        .map(({ unii, row: rr }) => {
+          const short = rr.citation.section?.split(",")[0] ?? "";
+          const measure = MEASURES[rr.measure] ?? rr.measure;
+          const grade = GRADES[rr.grade] ?? rr.grade;
+          return `${name(unii)} ${rr.estimate} times as likely (${measure}, 95% ${rr.interval === "credible" ? "credible interval" : "CI"} ${rr.ci95[0]} to ${rr.ci95[1]}; ${grade}, ${short})`;
+        })
+        .join("; ")}. Baseline ${oneIn(term.baseline.annual_incidence)} a year, so one ${
+        evidence.course_days
+      }-day course adds about ${oneIn(term.ear)}.`;
+      for (const { unii, row: rr } of term.used) {
+        citations.push(rr.citation);
+        const signal = signalFor(unii, term.dimension);
+        if (signal) {
+          citations.push({
+            source: "faers",
+            section: `${name(unii)}: ${signal.reports.toLocaleString("en-US")} reports, IC025 ${signal.ic025.toFixed(2)} (${words(signal.event_group)}, ages ${signal.age_band})`,
+          });
+        }
+      }
+      citations.push(term.baseline.citation);
+      ingredientUniis = term.used.map((u) => u.unii);
+    } else {
+      // Rule 36.
+      const rated = row.rated!;
+      const who = capitalized(rated.uniis.map(name).join(" and "));
+      const because =
+        rated.raisedBy.length > 0 ? `, higher because of ${rated.raisedBy.join(" and ")}` : "";
+      const meaning =
+        pairs.length === 0
+          ? "This rating is not yet calibrated."
+          : row.ear > 0
+            ? `Where studies measured risks rated ${rated.severity}, one course added about ${oneIn(row.ear)} on average.`
+            : `Where studies measured risks rated ${rated.severity}, they found no added risk on average.`;
+      const quote = quoteOf(rated.citations);
+      sentence = `${capitalized(DIMENSION_NAMES[row.dimension] ?? words(row.dimension))}: ${who} ${
+        rated.uniis.length > 1 ? "are" : "is"
+      } rated ${rated.severity} of 3 for this profile${because}; no study passed the evidence rules for it. ${meaning}${
+        quote ? ` Source: "${quote}"` : ""
+      }`;
+      citations.push(...rated.citations);
+      ingredientUniis = rated.uniis;
+    }
     if (points[i] === 0) {
       // Too small to take a whole point, but it still counts toward the score.
       small.push(sentence);
       return;
     }
-    const citations: Citation[] = [];
-    for (const { unii, row } of term.used) {
-      citations.push(row.citation);
-      const signal = signalFor(unii, term.dimension);
-      if (signal) {
-        citations.push({
-          source: "faers",
-          section: `${name(unii)}: ${signal.reports.toLocaleString("en-US")} reports, IC025 ${signal.ic025.toFixed(2)} (${words(signal.event_group)}, ages ${signal.age_band})`,
-        });
-      }
-    }
-    citations.push(term.baseline.citation);
     contributions.push({
-      dimension: term.dimension,
+      dimension: row.dimension,
       points: points[i],
-      ingredient_uniis: term.used.map((u) => u.unii),
+      ingredient_uniis: ingredientUniis,
       citations,
     });
-    explanation.push({ template_id: `engine_v1_${term.dimension}`, text: sentence });
+    explanation.push({ template_id: `engine_v1_${row.dimension}`, text: sentence });
   });
   contributions.sort((a, b) => b.points - a.points || (a.dimension < b.dimension ? -1 : 1));
 
@@ -460,4 +681,29 @@ export function scoreV1(
     contributions,
     explanation,
   };
+}
+
+/**
+ * Rule 32's last clause: every modifier that raised the ingredient's v0 severity is the condition
+ * or co-medication of the row the study used for it.
+ */
+function entryMatchesStudy(
+  raisers: Modifier[],
+  unii: string,
+  dimension: string,
+  studies: Term[],
+  evidence: Evidence,
+  profile: Profile,
+): boolean {
+  if (raisers.length === 0) return true;
+  const rows = evidence.ingredients[unii].relative_risks.filter((r) => r.dimension === dimension);
+  const row =
+    studies.find((t) => t.dimension === dimension)?.used.find((u) => u.unii === unii)?.row ??
+    pick(rows, profile.persona, profile, (r) => r.estimate);
+  if (!row) return false;
+  return raisers.every(
+    (m) =>
+      (m.condition !== undefined && row.condition === m.condition) ||
+      (m.medication_type !== undefined && row.medication_type === m.medication_type),
+  );
 }

@@ -5,6 +5,8 @@ import { test } from "node:test";
 import { checkRecords, riskRows } from "../lib/referenceScores.ts";
 import type { Profile, Ratings, ScoreResult } from "./engine.ts";
 import {
+  calibrationLevels,
+  calibrationPairs,
   checkEvidence,
   scaleScore,
   scoreV1,
@@ -58,6 +60,15 @@ function rr(
 // Two real UNIIs with made-up evidence, scored for an adult (no v0 hard stops), so only the v1
 // arithmetic is under test.
 const [A, B] = Object.keys(RATINGS.ingredients).sort();
+// A and B with no v0 ratings, so the made-up evidence alone decides (rules 31 to 36 add nothing).
+const BARE: Ratings = {
+  ...RATINGS,
+  ingredients: {
+    ...RATINGS.ingredients,
+    [A]: { ...RATINGS.ingredients[A], ratings: [], modifiers: [] },
+    [B]: { ...RATINGS.ingredients[B], ratings: [], modifiers: [] },
+  },
+};
 const product = (uniis: string[]) => ({
   ndc11: "00000000000",
   ingredients: uniis.map((unii) => ({ unii, name: unii })),
@@ -106,7 +117,7 @@ test("the scale is anchored to the CIOMS bands", () => {
 test("excess risk is baseline times (RR minus 1) over a 10-day course", () => {
   // 0.0365 a year * (2 - 1) * 10/365 = 1e-3, so 50.
   const ev = evidence([rr("liver", 2)], [], [base("liver", 0.0365)]);
-  const record = scored(scoreV1(product([A]), ADULT, RATINGS, ev));
+  const record = scored(scoreV1(product([A]), ADULT, BARE, ev));
   assert.equal(record.score, 50);
   assert.equal(record.contributions[0].points, 50);
 });
@@ -114,13 +125,13 @@ test("excess risk is baseline times (RR minus 1) over a 10-day course", () => {
 test("relative risks multiply across ingredients", () => {
   // 1.5 * 2 = 3, so 0.0365 * 2 * 10/365 = 2e-3.
   const ev = evidence([rr("liver", 1.5)], [rr("liver", 2)], [base("liver", 0.0365)]);
-  const record = scored(scoreV1(product([A, B]), ADULT, RATINGS, ev));
+  const record = scored(scoreV1(product([A, B]), ADULT, BARE, ev));
   assert.equal(record.score, Math.round(100 - 25 * (Math.log10(2e-3) + 5)));
 });
 
 test("an estimate at or below 1 gives nothing", () => {
   const ev = evidence([rr("liver", 0.9)], [], [base("liver", 0.0365)]);
-  const record = scored(scoreV1(product([A]), ADULT, RATINGS, ev));
+  const record = scored(scoreV1(product([A]), ADULT, BARE, ev));
   assert.equal(record.score, 100);
   assert.equal(record.contributions.length, 0);
 });
@@ -133,8 +144,8 @@ test("a row for the profile replaces the general one, largest first", () => {
   ];
   const ev = evidence(rows, [], [base("liver", 0.0365)]);
   const drinker = { ...ADULT, persona: "adult_65_plus", conditions: ["heavy_alcohol_use"] };
-  const general = scored(scoreV1(product([A]), ADULT, RATINGS, ev));
-  const specific = scored(scoreV1(product([A]), drinker, RATINGS, ev));
+  const general = scored(scoreV1(product([A]), ADULT, BARE, ev));
+  const specific = scored(scoreV1(product([A]), drinker, BARE, ev));
   // 0.2e-3 for the general row, 2e-3 for the RR 3 row.
   assert.equal(general.score, Math.round(100 - 25 * (Math.log10(2e-4) + 5)));
   assert.equal(specific.score, Math.round(100 - 25 * (Math.log10(2e-3) + 5)));
@@ -142,14 +153,14 @@ test("a row for the profile replaces the general one, largest first", () => {
 
 test("no baseline means no points and an insufficient note", () => {
   const ev = evidence([rr("kidney", 4)]);
-  const record = scored(scoreV1(product([A]), ADULT, RATINGS, ev));
+  const record = scored(scoreV1(product([A]), ADULT, BARE, ev));
   assert.equal(record.score, 100);
   assert.ok(record.explanation.some((e) => e.template_id === "engine_v1_insufficient"));
 });
 
 test("pregnancy falls back to the adult baseline", () => {
   const ev = evidence([rr("liver", 2)], [], [base("liver", 0.0365, { persona: "adult_18_64" })]);
-  const record = scored(scoreV1(product([A]), { ...ADULT, persona: "pregnant" }, RATINGS, ev));
+  const record = scored(scoreV1(product([A]), { ...ADULT, persona: "pregnant" }, BARE, ev));
   assert.equal(record.score, 50);
 });
 
@@ -159,7 +170,7 @@ test("row points add up to 100 minus the score", () => {
     [],
     [base("liver", 0.0365), base("kidney", 0.02), base("gi_bleeding", 0.001)],
   );
-  const record = scored(scoreV1(product([A]), ADULT, RATINGS, ev));
+  const record = scored(scoreV1(product([A]), ADULT, BARE, ev));
   assert.equal(
     record.contributions.reduce((s, c) => s + c.points, 0),
     100 - record.score,
@@ -169,7 +180,7 @@ test("row points add up to 100 minus the score", () => {
 test("an ingredient outside the evidence review is unrated", () => {
   const ev = evidence([]);
   delete ev.ingredients[B];
-  const result = scoreV1(product([A, B]), ADULT, RATINGS, ev);
+  const result = scoreV1(product([A, B]), ADULT, BARE, ev);
   assert.ok("status" in result && result.status === "unrated");
 });
 
@@ -179,7 +190,7 @@ test("pregnancy uses the adult baseline over an all-ages one", () => {
     [],
     [base("liver", 0.0365, { persona: "adult_18_64" }), base("liver", 0.365)],
   );
-  const record = scored(scoreV1(product([A]), { ...ADULT, persona: "pregnant" }, RATINGS, ev));
+  const record = scored(scoreV1(product([A]), { ...ADULT, persona: "pregnant" }, BARE, ev));
   assert.equal(record.score, 50);
 });
 
@@ -190,7 +201,7 @@ test("a risk under one point still counts and is explained", () => {
     [],
     [base("liver", 0.0365), base("kidney", 0.0000365)],
   );
-  const record = scored(scoreV1(product([A]), ADULT, RATINGS, ev));
+  const record = scored(scoreV1(product([A]), ADULT, BARE, ev));
   assert.deepEqual(
     record.contributions.map((c) => c.dimension),
     ["liver"],
@@ -215,7 +226,7 @@ test("insufficient-evidence notes follow their scope", () => {
     gap("kidney"),
   ];
   const note = (profile: Profile) => {
-    const record = scored(scoreV1(product([A]), profile, RATINGS, ev));
+    const record = scored(scoreV1(product([A]), profile, BARE, ev));
     return record.explanation.find((e) => e.template_id === "engine_v1_insufficient")?.text ?? "";
   };
   const adult = note(ADULT);
@@ -237,7 +248,7 @@ test("a FAERS signal is cited on its row, falling back to all ages", () => {
       reports: 900,
     },
   ];
-  const record = scored(scoreV1(product([A]), ADULT, RATINGS, ev));
+  const record = scored(scoreV1(product([A]), ADULT, BARE, ev));
   assert.ok(record.contributions[0].citations.some((c) => c.source === "faers"));
 });
 
@@ -256,7 +267,7 @@ test("a risk measured inside a group needs that group's baseline", () => {
   // Only a whole-population baseline: the group row can't use it, and the general row is not
   // used in its place.
   const without = evidence(rows, [], [base("kidney", 0.0365)]);
-  const record = scored(scoreV1(product([A]), diuretics, RATINGS, without));
+  const record = scored(scoreV1(product([A]), diuretics, BARE, without));
   assert.equal(record.score, 100);
   assert.ok(record.explanation.some((e) => e.template_id === "engine_v1_insufficient"));
   // With the diuretic users' own rate: 0.0365 * 2 * 10/365 = 2e-3.
@@ -265,7 +276,7 @@ test("a risk measured inside a group needs that group's baseline", () => {
     [],
     [base("kidney", 0.0365), base("kidney", 0.0365, { medication_type: "diuretics" })],
   );
-  const grouped = scored(scoreV1(product([A]), diuretics, RATINGS, withGroup));
+  const grouped = scored(scoreV1(product([A]), diuretics, BARE, withGroup));
   assert.equal(grouped.score, Math.round(100 - 25 * (Math.log10(2e-3) + 5)));
 });
 
@@ -275,7 +286,7 @@ test("a risk pairs only with a baseline for the same outcome, and the larger out
     [rr("sedation_falls", 3)],
     [base("sedation_falls", 0.0365, { outcome: "fracture" }), base("sedation_falls", 0.00365)],
   );
-  const record = scored(scoreV1(product([A, B]), ADULT, RATINGS, ev));
+  const record = scored(scoreV1(product([A, B]), ADULT, BARE, ev));
   // Fracture term 1e-3 beats the fall-injury term 2e-4; they are not added.
   assert.equal(record.score, 50);
 });
@@ -290,7 +301,7 @@ test("stomach bleeding is not counted again for anticoagulant users", () => {
     ],
   );
   const onBloodThinner = { ...ADULT, medicationTypes: ["anticoagulants"] };
-  const record = scored(scoreV1(product([A]), onBloodThinner, RATINGS, ev));
+  const record = scored(scoreV1(product([A]), onBloodThinner, BARE, ev));
   assert.deepEqual(
     record.contributions.map((c) => c.dimension),
     ["anticoagulant_bleeding"],
@@ -306,7 +317,7 @@ test("a source's own unexposed rate is the baseline before any outside rate", ()
   };
   const ev = evidence([rr("kidney", 2, { unexposed_incidence: own })], [], [base("kidney", 0.365)]);
   // 0.0365 * 1 * 10/365 = 1e-3, not the outside rate's 1e-2.
-  assert.equal(scored(scoreV1(product([A]), ADULT, RATINGS, ev)).score, 50);
+  assert.equal(scored(scoreV1(product([A]), ADULT, BARE, ev)).score, 50);
 });
 
 test("a sentence names the outcome the study measured", () => {
@@ -315,7 +326,7 @@ test("a sentence names the outcome the study measured", () => {
     [],
     [base("cardiovascular_bp", 0.0365, { outcome: "mi" })],
   );
-  const record = scored(scoreV1(product([A]), ADULT, RATINGS, ev));
+  const record = scored(scoreV1(product([A]), ADULT, BARE, ev));
   assert.ok(record.explanation[0].text.startsWith("Heart attack:"));
 });
 
@@ -328,12 +339,12 @@ test("a source's own rate is not used for ages its population leaves out", () =>
   };
   const ev = evidence([rr("kidney", 2, { unexposed_incidence: own })], [], [base("kidney", 0.365)]);
   // The outside rate: 0.365 * 1 * 10/365 = 1e-2, score 25.
-  assert.equal(scored(scoreV1(product([A]), ADULT, RATINGS, ev)).score, 25);
+  assert.equal(scored(scoreV1(product([A]), ADULT, BARE, ev)).score, 25);
 });
 
 test("a credible interval is labelled as one", () => {
   const ev = evidence([rr("liver", 2, { interval: "credible" })], [], [base("liver", 0.0365)]);
-  const record = scored(scoreV1(product([A]), ADULT, RATINGS, ev));
+  const record = scored(scoreV1(product([A]), ADULT, BARE, ev));
   assert.ok(record.explanation[0].text.includes("credible interval"));
 });
 
@@ -350,7 +361,7 @@ test("an all-attributes note shows only to profiles with every attribute", () =>
     },
   ];
   const note = (profile: Profile) =>
-    scored(scoreV1(product([A]), profile, RATINGS, ev)).explanation.some(
+    scored(scoreV1(product([A]), profile, BARE, ev)).explanation.some(
       (e) => e.template_id === "engine_v1_insufficient",
     );
   assert.equal(note({ ...ADULT, persona: "adult_65_plus" }), false);
@@ -370,10 +381,101 @@ test("a subgroup note says when the general estimate is still used", () => {
     },
   ];
   const record = scored(
-    scoreV1(product([A]), { ...ADULT, conditions: ["heavy_alcohol_use"] }, RATINGS, ev),
+    scoreV1(product([A]), { ...ADULT, conditions: ["heavy_alcohol_use"] }, BARE, ev),
   );
   const note = record.explanation.find((e) => e.template_id === "engine_v1_insufficient")!;
   assert.ok(note.text.includes("the general estimate is used"));
+});
+
+// Rules 31 to 36: v0 ratings on the v1 scale.
+const rating = (dimension: string, severity: number, persona = "adult_18_64") => ({
+  dimension,
+  persona,
+  severity,
+  citations: [{ source: "fda_label" as const, quote: "may occur" }],
+});
+function rated(
+  ratingsA: ReturnType<typeof rating>[],
+  ratingsB: ReturnType<typeof rating>[],
+  modifiersA: Ratings["ingredients"][string]["modifiers"] = [],
+): Ratings {
+  return {
+    ...BARE,
+    ingredients: {
+      ...BARE.ingredients,
+      [A]: { ...BARE.ingredients[A], ratings: ratingsA, modifiers: modifiersA },
+      [B]: { ...BARE.ingredients[B], ratings: ratingsB },
+    },
+  };
+}
+const pair = (severity: number, ear: number) => ({
+  unii: A,
+  dimension: "liver",
+  persona: "adult_18_64",
+  severity,
+  ear,
+});
+
+test("a severity means the mean excess risk of its pairs, made non-decreasing", () => {
+  assert.deepEqual(calibrationLevels([pair(1, 0), pair(1, 2e-4), pair(2, 3e-4), pair(3, 1e-3)]), {
+    1: 1e-4,
+    2: 3e-4,
+    3: 1e-3,
+  });
+  // 2 above 3 pools them: (4e-3 + 2e-3) / 2.
+  assert.deepEqual(calibrationLevels([pair(1, 0), pair(2, 4e-3), pair(3, 2e-3)]), {
+    1: 0,
+    2: 3e-3,
+    3: 3e-3,
+  });
+  // An empty severity takes the mean of its neighbours, or the one at an end.
+  assert.deepEqual(calibrationLevels([pair(1, 0), pair(3, 2e-3)]), { 1: 0, 2: 1e-3, 3: 2e-3 });
+  assert.deepEqual(calibrationLevels([pair(2, 1e-3)]), { 1: 1e-3, 2: 1e-3, 3: 1e-3 });
+  assert.deepEqual(calibrationLevels([]), { 1: 0, 2: 0, 3: 0 });
+});
+
+test("a rating with no study counts as the excess risk its severity stands for", () => {
+  // B's liver rating 2 is studied: 1e-3. So severity 2 means 1e-3, and A's kidney 2 counts 1e-3.
+  const ev = evidence([], [rr("liver", 2)], [base("liver", 0.0365)]);
+  const ratings = rated([rating("kidney", 2)], [rating("liver", 2)]);
+  assert.deepEqual(calibrationPairs(ratings, ev).length, 1);
+  const record = scored(scoreV1(product([A]), ADULT, ratings, ev));
+  assert.equal(record.score, 50);
+  assert.equal(record.contributions[0].dimension, "kidney");
+  const line = record.explanation.find((e) => e.template_id === "engine_v1_kidney")!;
+  assert.ok(line.text.includes("rated 2 of 3") && line.text.includes("may occur"));
+});
+
+test("a study and a rating of the same harm count once, the larger", () => {
+  // B's study gives 1e-3; A's uncovered liver rating 3 also stands for 1e-3. Added they would be
+  // 2e-3 (score 43); counted once, 50.
+  const ev = evidence([], [rr("liver", 2)], [base("liver", 0.0365)]);
+  const ratings = rated([rating("liver", 3)], [rating("liver", 2)]);
+  const record = scored(scoreV1(product([A, B]), ADULT, ratings, ev));
+  assert.equal(record.score, 50);
+  assert.equal(record.contributions.length, 1);
+});
+
+test("a study that finds no excess risk replaces the rating", () => {
+  const ev = evidence([rr("kidney", 0.8)], [rr("liver", 2)], [base("liver", 0.0365)]);
+  const ratings = rated([rating("kidney", 2)], [rating("liver", 2)]);
+  assert.equal(scored(scoreV1(product([A]), ADULT, ratings, ev)).score, 100);
+});
+
+test("a study without the profile's condition does not cover the rating it raised", () => {
+  const ev = evidence(
+    [rr("kidney", 0.8)],
+    [rr("liver", 2), rr("kidney", 3)],
+    [base("liver", 0.0365), base("kidney", 0.0365)],
+  );
+  const ratings = rated(
+    [rating("kidney", 1)],
+    [rating("liver", 2), rating("kidney", 3)],
+    [{ dimension: "kidney", condition: "kidney_disease", severity_change: 1, citations: [] }],
+  );
+  const sick = { ...ADULT, conditions: ["kidney_disease"] };
+  assert.equal(scored(scoreV1(product([A]), ADULT, ratings, ev)).score, 100);
+  assert.ok(scored(scoreV1(product([A]), sick, ratings, ev)).score < 100);
 });
 
 // The bundled evidence: every reference product is rated for these personas, and the scores are
