@@ -2,7 +2,8 @@
 
 Status: v1.0 locked on 2026-11-18, before any v1 score was computed. v1.1 (section 8) and v1.2
 (section 9) were added on 2026-11-18 after the first and second independent evidence reviews,
-and v1.3 and v1.4 (sections 10 and 11) after the third; see their change logs. Versions 1.0 to 1.2 were committed on their own, before the evidence
+v1.3 and v1.4 (sections 10 and 11) after the third, and v1.6 (section 12) on 2026-11-18 to keep
+every v0 rating; see their change logs. Versions 1.0 to 1.2 were committed on their own, before the evidence
 changes they govern, so the order can be checked in git. v1.3 and v1.4 are the exceptions: their rules
 were written after the evidence changes and with their score effects known, and are pending
 pharmacist sign-off (sections 10 and 11). Changing a rule in this file needs a new version number, and
@@ -290,3 +291,72 @@ that contain the label maximum, so the rule changes no other score.
     recorded with its stated range (rule 14). A stratum defined by duration as well as dose is
     not a dose stratum; it is recorded with `dose_mg_per_day: null` and a note, and rule 21
     gives way to the dose stratum that contains the maximum.
+
+## 12. Version 1.6: one rating from the label ratings and the studies
+
+Change log. Up to v1.4, a risk with no usable study counted as zero, so v1 dropped every v0
+rating that came from FDA labels, OTC monographs, the ACB scale, Beers, STOPP/START or LactMed
+whenever no study passed rules 1 to 30, and a product whose label warns about a harm could score
+100. A first fix (v1.5, commit 1bad48f) added v0's uncalibrated points on top of v1's scale and was
+withdrawn (revert da87c62); v1.5 is not used. v1.6 puts every v0 rating on v1's scale instead: a
+v0 severity is turned into an excess risk per course by a mapping fitted, by the fixed rule below,
+to the risks where v0 and a study rate the same thing. Rules 31 to 36 were written and committed
+on 2026-11-18 before the mapping's values or any v1.6 score were computed. They apply to every
+ingredient alike. Section 1's limit to outcome dimensions is replaced by rule 31; everything else
+in sections 1 to 11 still governs the study terms.
+
+31. **Every v0 rating counts.** For a product and profile, the v0 severity of each ingredient on
+    each dimension is the one `engine.ts` computes: the persona rating, or the label's where the
+    label was checked, plus the modifiers that match the profile, capped at 3. Every dimension v0
+    scores counts (all of section 1 of `dimensions.md` except `duplicate_dosing`, which v0 leaves
+    to the Medicine Cabinet), including those with no outcome in section 1 above.
+32. **What a study covers.** An ingredient is covered on a dimension for a profile when a
+    relative-risk row of its applies (rule 3), and either the relative risks of that outcome
+    multiply to 1 or less (a study that finds no excess risk) or that outcome has a baseline
+    (rules 6, 12, 20 and 25), and every v0 modifier that raised its severity for this profile
+    (a condition or co-medication) is the row's own condition or co-medication. A study measured
+    without the profile's condition does not cover the extra risk the label gives for it.
+33. **Calibration pairs.** A pair is an ingredient, outcome dimension and persona that v0 rates
+    above 0 (ingredient rating, no label or modifier) and that a study covers for a profile with
+    that persona and no condition or co-medication, with the study term's excess risk for that
+    ingredient alone (0 when the relative risk is 1 or less). Pairs with the same dimension,
+    severity, study rows and excess risk (salts of one ingredient, or personas that share a row
+    and a baseline) count once.
+34. **What a severity means.** `L(s)`, the excess risk per course for v0 severity `s` of 1, 2 or
+    3, is the arithmetic mean of the excess risk of the pairs at severity `s`. The mean is used,
+    not the median, because the score adds probabilities (section 3): for a rating with no
+    study, the best estimate of its excess risk is the average excess risk measured where that
+    severity was studied, zeros included. The three means are then made non-decreasing by
+    isotonic regression (pool adjacent violators, each level weighted by its number of pairs):
+    "the fitted line is non-decreasing ... [and] lies as close to the observations as possible"
+    (Wikipedia, Isotonic regression, opened 2026-11-18). A severity with no pair takes the mean
+    of the fitted values of the nearest severities above and below that have pairs, or the one
+    such value at an end. With no pair at all, `L(s)` is 0 and every rating is listed as not
+    yet calibrated. The pairs and the three values are printed in this file after they are
+    computed, and a test pins them.
+35. **One harm, one term.** For each dimension, the study term is computed by rules 1 to 30.
+    Each rated ingredient (severity above 0) not covered by rule 32 gives a rating term
+    `L(severity)`. The dimension counts the largest of its study term and its rating terms,
+    never their sum, as rule 18 does for outcomes: they describe the same harm. Rule 16 applies
+    to the result: when `anticoagulant_bleeding` counts for a profile, `gi_bleeding` is dropped.
+    Then section 3 as before: `E` is the sum over dimensions, the score is `100 - 25 *
+    (log10(E) + 5)` clamped to 0 to 100, and row points are shared by excess risk (rule 8).
+    Hard stops and the child-label rule are v0's, unchanged.
+36. **What the app says.** A row whose larger term is a study keeps the v1 sentence. A row whose
+    larger term is a rating says which ingredients are rated what for this profile, what raised
+    it, that no study passed the rules for it, and the excess risk `L(s)` that rating stands for,
+    with v0's citations and quote. Both use `template_id` `engine_v1_<dimension>`. An
+    insufficient-evidence note is not shown for a dimension that a rating term fills.
+
+### 12.1 What is still judgment in v1.6
+
+- That one severity scale means the same excess risk across dimensions. `dimensions.md` section 2
+  defines one 0 to 3 scale for all dimensions; the pairs are pooled across dimensions because no
+  dimension has enough of its own.
+- That non-outcome dimensions (`pediatric`, `rebound_overuse`, `excipients`, `local_skin`,
+  `efficacy_evidence`) take the same `L(s)`: their ratings are not risks of a serious harm in
+  section 1's sense, but the requirement is that every v0 rating counts, and the shared scale is
+  the only one with a fitted value.
+- The pairs come only from the risks the evidence review has studied, mostly NSAIDs, decongestants,
+  acetaminophen and first-generation antihistamines in older adults.
+- Section 6's open items still need a pharmacist.
