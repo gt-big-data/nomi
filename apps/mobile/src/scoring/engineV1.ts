@@ -723,6 +723,7 @@ export function scoreV1(
   });
   if (stopped && computed > total) {
     const citations: Citation[] = stopRatings.flatMap(([, e]) => e.citations);
+    const stopQuote = quoteOf(citations);
     contributions.push({
       dimension: "pediatric",
       points: computed - total,
@@ -731,7 +732,7 @@ export function scoreV1(
     });
     explanation.push({
       template_id: "engine_v1_hard_stop_pediatric",
-      text: `Hard stop: ${v0.hard_stops_triggered.map((h) => h.message).join(" ")} A product the label rules out for this profile is held at 49, in the red band.`,
+      text: `Hard stop: ${v0.hard_stops_triggered.map((h) => h.message).join(" ")} A product the label rules out for this profile is held at 49, in the red band.${stopQuote ? ` Source: "${stopQuote}"` : ""}`,
     });
   } else {
     for (const [unii, entry] of stopRatings) {

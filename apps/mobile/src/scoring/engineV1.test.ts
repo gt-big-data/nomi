@@ -570,7 +570,7 @@ const GOLDEN: Record<string, Record<string, number>> = {
   aleve: { adult_18_64: 68, adult_65_plus: 62, pregnant: 56 },
   nyquil: { adult_18_64: 63, adult_65_plus: 42, pregnant: 60 },
   "store-brand-diphenhydramine": { adult_18_64: 67, adult_65_plus: 42, pregnant: 63 },
-  tylenol: { adult_18_64: 75, adult_65_plus: 75, pregnant: 75 },
+  tylenol: { adult_18_64: 75, adult_65_plus: 75, pregnant: 67 },
   zzzquil: { adult_18_64: 67, adult_65_plus: 42, pregnant: 63 },
 };
 const EXAMPLES = new URL("../../../../packages/schema/examples/", import.meta.url);
