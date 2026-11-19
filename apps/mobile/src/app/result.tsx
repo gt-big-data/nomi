@@ -62,8 +62,15 @@ function useLookup(barcode: string): Loaded | undefined {
 }
 
 export default function Result() {
-  const params = useLocalSearchParams<{ barcode?: string | string[] }>();
+  const params = useLocalSearchParams<{ barcode?: string | string[]; for?: string | string[] }>();
   const barcode = (Array.isArray(params.barcode) ? params.barcode[0] : params.barcode) ?? "";
+  // A link can say who the score is for (nomi://result?barcode=...&for=child), for demos.
+  const scoredFor = Array.isArray(params.for) ? params.for[0] : params.for;
+  useEffect(() => {
+    if (scoredFor === "saved" || DEMO_PROFILES.some((p) => p.id === scoredFor)) {
+      setScoredFor(scoredFor as ScoredFor);
+    }
+  }, [scoredFor]);
   const lookup = useLookup(barcode);
   const { colors, space } = useTheme();
   const bottomSpace = useBottomBarSpace();
@@ -196,7 +203,12 @@ const REVIEWED = new Set(["sampled_ok", "pharmacist_reviewed"]);
  */
 function scoreFor(product: Product, profile: Profile): Scored {
   const { medication_types, ...rest } = toScoringProfile(profile);
-  const result = scoreV1(product, { ...rest, medicationTypes: medication_types }, RATINGS, EVIDENCE);
+  const result = scoreV1(
+    product,
+    { ...rest, medicationTypes: medication_types },
+    RATINGS,
+    EVIDENCE,
+  );
   return "missing" in result
     ? { missing: result.missing, childLabel: result.reason === "child_label" }
     : { record: result, missing: [], childLabel: false };
