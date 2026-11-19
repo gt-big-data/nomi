@@ -521,3 +521,14 @@ findings and committed before any v1.8 value or score was computed.
     from a pediatric rating of 3), worded from the label's hard-stop text, with the rating's
     citations. The shown score is 49, as rule 41 says. When the computed score is already 49 or
     below, the pediatric rating's line is a note that says it is the hard stop.
+
+### 14.1 The fitted values (computed 2026-11-18 by rules 34, 39 and 43, after rules 42 to 45 were committed)
+
+The pairs are the 14 of section 13.2; rule 42 changes which ratings a study covers, not the
+pairs. Severity 1 is 0 by rule 43.
+
+| Severity | Pairs | `L(s)`, excess risk per course | About | Score of that risk alone |
+|---|---|---|---|---|
+| 1 | not fitted | 0 (rule 43) | none | 100 |
+| 2 | 9 | 1.042e-4 | 1 in 9,600 | 75 |
+| 3 | 5 | 4.096e-4 | 1 in 2,400 | 60 |

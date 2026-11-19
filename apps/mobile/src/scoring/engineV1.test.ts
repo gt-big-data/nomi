@@ -553,13 +553,13 @@ test("rule 40: a rating that is not a serious harm is a note with no points", ()
   assert.ok(notes.every((n) => !n.text.includes(" in ")));
 });
 
-test("the bundled evidence gives the calibration printed in v1-method.md section 13.2", () => {
+test("the bundled evidence gives the calibration printed in v1-method.md section 14.1", () => {
   const { pairs, levels } = calibrate(RATINGS, EVIDENCE);
   assert.deepEqual(
     [1, 2, 3].map((s) => pairs.filter((p) => p.severity === s).length),
     [0, 9, 5],
   );
-  assert.equal(levels[1], levels[2]);
+  assert.equal(levels[1], 0);
   assert.equal(levels[2].toExponential(3), "1.042e-4");
   assert.equal(levels[3].toExponential(3), "4.096e-4");
 });
